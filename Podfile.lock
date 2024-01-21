@@ -1,0 +1,28 @@
+PODS:
+  - IQKeyboardManager (6.5.0)
+  - NVActivityIndicatorView (4.8.0):
+    - NVActivityIndicatorView/Presenter (= 4.8.0)
+  - NVActivityIndicatorView/Presenter (4.8.0)
+  - SDWebImage (5.18.5):
+    - SDWebImage/Core (= 5.18.5)
+  - SDWebImage/Core (5.18.5)
+
+DEPENDENCIES:
+  - IQKeyboardManager (= 6.5)
+  - NVActivityIndicatorView (= 4.8.0)
+  - SDWebImage
+
+SPEC REPOS:
+  trunk:
+    - IQKeyboardManager
+    - NVActivityIndicatorView
+    - SDWebImage
+
+SPEC CHECKSUMS:
+  IQKeyboardManager: 700e5155d6a292383b54e8678aec769e14fc78fc
+  NVActivityIndicatorView: d24b7ebcf80af5dcd994adb650e2b6c93379270f
+  SDWebImage: 7ac2b7ddc5e8484c79aa90fc4e30b149d6a2c88f
+
+PODFILE CHECKSUM: e201f1eadb9fe9a87780b06b209a0f1506358671
+
+COCOAPODS: 1.11.3
