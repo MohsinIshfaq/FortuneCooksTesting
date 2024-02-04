@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7102B7192B6FBDF60039ED0B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7102B7182B6FBDF50039ED0B /* GoogleService-Info.plist */; };
+		7144BD512B6E983100767374 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7144BD502B6E983100767374 /* HomeVC.swift */; };
+		7144BD542B6EA0CC00767374 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7144BD532B6EA0CC00767374 /* MenuVC.swift */; };
+		714B0F6C2B696F7800570578 /* SelectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714B0F6B2B696F7800570578 /* SelectionVC.swift */; };
+		714B0F702B69703B00570578 /* SelectioTCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714B0F6E2B69703A00570578 /* SelectioTCell.swift */; };
+		714B0F712B69703B00570578 /* SelectioTCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 714B0F6F2B69703A00570578 /* SelectioTCell.xib */; };
 		715166422B598537007CE092 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715166412B598537007CE092 /* LoginVC.swift */; };
 		715166442B5985E1007CE092 /* CrtProfile1VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715166432B5985E1007CE092 /* CrtProfile1VC.swift */; };
 		715166462B598903007CE092 /* CrtProfile2VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715166452B598903007CE092 /* CrtProfile2VC.swift */; };
@@ -14,6 +20,7 @@
 		7151664A2B598972007CE092 /* CrtProfile4VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715166492B598972007CE092 /* CrtProfile4VC.swift */; };
 		7151664C2B598989007CE092 /* CrtProfile5VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7151664B2B598989007CE092 /* CrtProfile5VC.swift */; };
 		7151664E2B598CF0007CE092 /* ResetPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7151664D2B598CF0007CE092 /* ResetPasswordVC.swift */; };
+		7151DD762B6EB58D001B3018 /* LoginNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7151DD752B6EB58D001B3018 /* LoginNC.swift */; };
 		7153888B2B5998BC006D682F /* CreatAccntVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7153888A2B5998BC006D682F /* CreatAccntVC.swift */; };
 		7153888D2B59A368006D682F /* TabbarController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7153888C2B59A368006D682F /* TabbarController.storyboard */; };
 		7153888F2B59A381006D682F /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7153888E2B59A381006D682F /* Home.storyboard */; };
@@ -39,12 +46,22 @@
 		71B3DCA02B55B1F100A3615F /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B3DC9F2B55B1F100A3615F /* BaseViewModel.swift */; };
 		71B3DCA22B55B20A00A3615F /* String+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B3DCA12B55B20A00A3615F /* String+extension.swift */; };
 		71B3DCA52B55B25800A3615F /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71B3DCA42B55B25800A3615F /* Auth.storyboard */; };
+		71C6A9C92B694CF200E19808 /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C6A9C72B694CF200E19808 /* CollectionCell.swift */; };
+		71C6A9CA2B694CF200E19808 /* CollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 71C6A9C82B694CF200E19808 /* CollectionCell.xib */; };
+		71C6A9CE2B695F3300E19808 /* AddDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C6A9CC2B695F3300E19808 /* AddDataCell.swift */; };
+		71C6A9CF2B695F3300E19808 /* AddDataCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 71C6A9CD2B695F3300E19808 /* AddDataCell.xib */; };
 		EA944290B83C384633A1F3EC /* Pods_Resturants.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12630E7FDFE8035647F4A575 /* Pods_Resturants.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		02DA9008ADEC2A4FAB6172BA /* Pods-Resturants.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Resturants.release.xcconfig"; path = "Target Support Files/Pods-Resturants/Pods-Resturants.release.xcconfig"; sourceTree = "<group>"; };
 		12630E7FDFE8035647F4A575 /* Pods_Resturants.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Resturants.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7102B7182B6FBDF50039ED0B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7144BD502B6E983100767374 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
+		7144BD532B6EA0CC00767374 /* MenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
+		714B0F6B2B696F7800570578 /* SelectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionVC.swift; sourceTree = "<group>"; };
+		714B0F6E2B69703A00570578 /* SelectioTCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectioTCell.swift; sourceTree = "<group>"; };
+		714B0F6F2B69703A00570578 /* SelectioTCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectioTCell.xib; sourceTree = "<group>"; };
 		715166412B598537007CE092 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		715166432B5985E1007CE092 /* CrtProfile1VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrtProfile1VC.swift; sourceTree = "<group>"; };
 		715166452B598903007CE092 /* CrtProfile2VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrtProfile2VC.swift; sourceTree = "<group>"; };
@@ -52,6 +69,7 @@
 		715166492B598972007CE092 /* CrtProfile4VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrtProfile4VC.swift; sourceTree = "<group>"; };
 		7151664B2B598989007CE092 /* CrtProfile5VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrtProfile5VC.swift; sourceTree = "<group>"; };
 		7151664D2B598CF0007CE092 /* ResetPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordVC.swift; sourceTree = "<group>"; };
+		7151DD752B6EB58D001B3018 /* LoginNC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNC.swift; sourceTree = "<group>"; };
 		7153888A2B5998BC006D682F /* CreatAccntVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatAccntVC.swift; sourceTree = "<group>"; };
 		7153888C2B59A368006D682F /* TabbarController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabbarController.storyboard; sourceTree = "<group>"; };
 		7153888E2B59A381006D682F /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
@@ -79,6 +97,10 @@
 		71B3DC9F2B55B1F100A3615F /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		71B3DCA12B55B20A00A3615F /* String+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+extension.swift"; sourceTree = "<group>"; };
 		71B3DCA42B55B25800A3615F /* Auth.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Auth.storyboard; sourceTree = "<group>"; };
+		71C6A9C72B694CF200E19808 /* CollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
+		71C6A9C82B694CF200E19808 /* CollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionCell.xib; sourceTree = "<group>"; };
+		71C6A9CC2B695F3300E19808 /* AddDataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDataCell.swift; sourceTree = "<group>"; };
+		71C6A9CD2B695F3300E19808 /* AddDataCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddDataCell.xib; sourceTree = "<group>"; };
 		86DC3A04EC9CE9152052B1C6 /* Pods-Resturants.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Resturants.debug.xcconfig"; path = "Target Support Files/Pods-Resturants/Pods-Resturants.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -111,6 +133,24 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		7144BD522B6EA0A000767374 /* HomeTab */ = {
+			isa = PBXGroup;
+			children = (
+				7144BD502B6E983100767374 /* HomeVC.swift */,
+				7144BD532B6EA0CC00767374 /* MenuVC.swift */,
+			);
+			path = HomeTab;
+			sourceTree = "<group>";
+		};
+		714B0F6D2B69700700570578 /* selectionTCell */ = {
+			isa = PBXGroup;
+			children = (
+				714B0F6E2B69703A00570578 /* SelectioTCell.swift */,
+				714B0F6F2B69703A00570578 /* SelectioTCell.xib */,
+			);
+			path = selectionTCell;
+			sourceTree = "<group>";
+		};
 		716F6FDA2B5ADD2400049C1C /* Auth */ = {
 			isa = PBXGroup;
 			children = (
@@ -122,6 +162,8 @@
 				7151664B2B598989007CE092 /* CrtProfile5VC.swift */,
 				7151664D2B598CF0007CE092 /* ResetPasswordVC.swift */,
 				7153888A2B5998BC006D682F /* CreatAccntVC.swift */,
+				714B0F6B2B696F7800570578 /* SelectionVC.swift */,
+				7151DD752B6EB58D001B3018 /* LoginNC.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -130,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				716F6FDC2B5ADD5A00049C1C /* TabbarController.swift */,
+				7144BD522B6EA0A000767374 /* HomeTab */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -137,6 +180,7 @@
 		71B3DC632B55A93D00A3615F = {
 			isa = PBXGroup;
 			children = (
+				7102B7182B6FBDF50039ED0B /* GoogleService-Info.plist */,
 				71B3DC6E2B55A93D00A3615F /* Resturants */,
 				71B3DC6D2B55A93D00A3615F /* Products */,
 				2A7CB6FEFDE89927A55B648F /* Pods */,
@@ -155,6 +199,7 @@
 		71B3DC6E2B55A93D00A3615F /* Resturants */ = {
 			isa = PBXGroup;
 			children = (
+				71C6A9C52B694CA000E19808 /* Cell */,
 				71B3DC832B55AB5600A3615F /* Manager */,
 				71B3DC842B55AB6600A3615F /* Helper */,
 				71B3DC852B55AB8A00A3615F /* Utilities */,
@@ -289,6 +334,34 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		71C6A9C52B694CA000E19808 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				714B0F6D2B69700700570578 /* selectionTCell */,
+				71C6A9CB2B695F1400E19808 /* AddDataCell */,
+				71C6A9C62B694CBD00E19808 /* CollectionCell */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		71C6A9C62B694CBD00E19808 /* CollectionCell */ = {
+			isa = PBXGroup;
+			children = (
+				71C6A9C72B694CF200E19808 /* CollectionCell.swift */,
+				71C6A9C82B694CF200E19808 /* CollectionCell.xib */,
+			);
+			name = CollectionCell;
+			sourceTree = "<group>";
+		};
+		71C6A9CB2B695F1400E19808 /* AddDataCell */ = {
+			isa = PBXGroup;
+			children = (
+				71C6A9CC2B695F3300E19808 /* AddDataCell.swift */,
+				71C6A9CD2B695F3300E19808 /* AddDataCell.xib */,
+			);
+			name = AddDataCell;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -335,6 +408,8 @@
 				Base,
 			);
 			mainGroup = 71B3DC632B55A93D00A3615F;
+			packageReferences = (
+			);
 			productRefGroup = 71B3DC6D2B55A93D00A3615F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -357,8 +432,12 @@
 				715388912B59A3B5006D682F /* Search.storyboard in Resources */,
 				71B3DC7C2B55A94000A3615F /* LaunchScreen.storyboard in Resources */,
 				715388932B59A3D2006D682F /* Add.storyboard in Resources */,
+				71C6A9CA2B694CF200E19808 /* CollectionCell.xib in Resources */,
+				714B0F712B69703B00570578 /* SelectioTCell.xib in Resources */,
 				71B3DC792B55A94000A3615F /* Assets.xcassets in Resources */,
 				715388952B59A3E1006D682F /* Video.storyboard in Resources */,
+				71C6A9CF2B695F3300E19808 /* AddDataCell.xib in Resources */,
+				7102B7192B6FBDF60039ED0B /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -413,6 +492,8 @@
 			files = (
 				71B3DC702B55A93D00A3615F /* AppDelegate.swift in Sources */,
 				715166462B598903007CE092 /* CrtProfile2VC.swift in Sources */,
+				714B0F702B69703B00570578 /* SelectioTCell.swift in Sources */,
+				7144BD512B6E983100767374 /* HomeVC.swift in Sources */,
 				7153888B2B5998BC006D682F /* CreatAccntVC.swift in Sources */,
 				7151664E2B598CF0007CE092 /* ResetPasswordVC.swift in Sources */,
 				71B3DCA02B55B1F100A3615F /* BaseViewModel.swift in Sources */,
@@ -423,9 +504,13 @@
 				71B3DC902B55AFC000A3615F /* Manager.swift in Sources */,
 				7151664C2B598989007CE092 /* CrtProfile5VC.swift in Sources */,
 				71B3DC9C2B55B19C00A3615F /* UIView+Extension.swift in Sources */,
+				7151DD762B6EB58D001B3018 /* LoginNC.swift in Sources */,
 				71B3DC722B55A93D00A3615F /* SceneDelegate.swift in Sources */,
 				716F6FDD2B5ADD5A00049C1C /* TabbarController.swift in Sources */,
 				716F6FDF2B5ADDC900049C1C /* CustomTabBar.swift in Sources */,
+				7144BD542B6EA0CC00767374 /* MenuVC.swift in Sources */,
+				714B0F6C2B696F7800570578 /* SelectionVC.swift in Sources */,
+				71C6A9C92B694CF200E19808 /* CollectionCell.swift in Sources */,
 				71B3DC982B55B15300A3615F /* Controller+Extension.swift in Sources */,
 				71B3DCA22B55B20A00A3615F /* String+extension.swift in Sources */,
 				71B3DC922B55AFF900A3615F /* Constant.swift in Sources */,
@@ -433,6 +518,7 @@
 				7151664A2B598972007CE092 /* CrtProfile4VC.swift in Sources */,
 				715166422B598537007CE092 /* LoginVC.swift in Sources */,
 				71B3DC9A2B55B17400A3615F /* UIColor+Extension.swift in Sources */,
+				71C6A9CE2B695F3300E19808 /* AddDataCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

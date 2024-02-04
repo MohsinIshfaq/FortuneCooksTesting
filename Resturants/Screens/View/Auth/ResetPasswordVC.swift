@@ -15,7 +15,10 @@ class ResetPasswordVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
+    @IBAction func ontapDismiss(_ sender: UIButton){
+        
+        self.dismiss(animated: true)
+    }
     /*
     // MARK: - Navigation
 
