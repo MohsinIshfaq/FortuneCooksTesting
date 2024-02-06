@@ -33,25 +33,131 @@ class CreatAccntVC: UIViewController , createAccntDelegate {
     @IBOutlet weak var CollectCuisine     : UICollectionView!
     @IBOutlet weak var CollectEnviorment  : UICollectionView!
     @IBOutlet weak var CollectFeature     : UICollectionView!
+    @IBOutlet weak var txtMeals           : UITextField!
     
     //MARK: - variables and Properties
-    private var selectedCuisine   :[String]       = []
-    private var selectedEnviorment:[String]       = []
-    private var selectedFeature   :[String]       = []
+    private var selectedCuisine           :[String]       = []
+    private var selectedEnviorment        :[String]       = []
+    private var selectedFeature           :[String]       = []
     
-    private var arrAccnt           = ["Restraurant", "Cafeteria", "Food Truck", " Hotels"]
+    private var arrMeals           = [
+        "Breakfast",
+        "Brunch",
+        "Lunch",
+        "Dinner",
+        "Dessert",
+        "Coffee"
+    ]
+    private var arrAccnt           = [
+        "Private person",
+        "Content Creator",
+        "Restaurant",
+        "Cafeteria",
+        "Grocery_store",
+        "Wholesaler",
+        "Bakery",
+        "Food_producer",
+        "Beverage_manufacturer",
+        "Food_truck",
+        "Hotel"
+    ]
     
-    private var arrCuisine         = ["African", "American", "Asian", "Brazilian", "British", "Ethiopian", "European", "French", "From the Mediterranean", "Fusion/Crossover", "Greek", "Grilled", "Indian", "Italian", "Japanese", "Chinese", "Korean", "Latin American", "Lebanese", "Moroccan", "Mexican", "Oriental", "Pakistani", "Persian", "Peruvian", "Portuguese", "Swiss", "Scandinavian", "Spanish", "Steakhouse", "Swedish", "Somali", "Thai", "Traditional food", "Tunisian", "Turkish", "German", "Eastern European"]
+    private var arrCuisine         = [
+        "African",
+        "American",
+        "Asian",
+        "Brazilian",
+        "British",
+        "Ethiopian",
+        "European",
+        "French",
+        "From the Mediterranean",
+        "Fusion/Crossover",
+        "Greek", "Grilled",
+        "Indian", "Italian",
+        "Japanese", "Chinese",
+        "Korean", "Latin American",
+        "Lebanese", "Moroccan",
+        "Mexican", "Oriental",
+        "Pakistani", "Persian",
+        "Peruvian", "Portuguese",
+        "Swiss", "Scandinavian",
+        "Spanish", "Steakhouse",
+        "Swedish", "Somali",
+        "Thai", "Traditional food",
+        "Tunisian", "Turkish",
+        "German",
+        "Eastern European"]
     
-    private var arrEnviorment      = ["Business dinner", "After work", "Brunch", "Wedding", "Buffet", "Central location", "Fantastic view", "Birthday", "Gastronomic", "Groups", "Hotel restaurant", "Tavern", "Live music", "With family","With friends", "Dinner cruise"," Modern food", "On the beach", "Raw food", "Street food", "Bachelor & bachelorette party", "Traditional", "Trendy", "Garden", "Outdoor seating", "By the sea", "By the water", "Wine bar Meals" , "Breakfast", "Brunch", "Lunch", "Dinner", "Dessert", "Coffe"]
+    private var arrEnviorment      = [
+        "Business dinner",
+        "After work",
+        "Brunch",
+        "Wedding",
+        "Buffet",
+        "Central location",
+        "Fantastic view",
+        "Birthday",
+        "Gastronomic",
+        "Groups",
+        "Hotel restaurant"
+        , "Tavern",
+        "Live music",
+        "With family",
+        "With friends",
+        "Dinner cruise",
+        " Modern food",
+        "On the beach",
+        "Raw food",
+        "Street food",
+        "Bachelor & bachelorette party",
+        "Traditional",
+        "Trendy",
+        "Garden",
+        "Outdoor seating",
+        "By the sea",
+        "By the water",
+        "Wine bar Meals" ,
+        "Breakfast",
+        "Brunch",
+        "Lunch",
+        "Dinner",
+        "Dessert",
+        "Coffe"]
     
-    private var arrFeature         = ["Seating", "Reservations", "Takeout", "Delivery", "Buffet", "Accepts credit cards", "Outdoor seating", "Wheelchair accessible", "Highchairs available", "Free wifi", "Street parking", "Accepts American Express", "Dogs allowed", "Gift cards available", "Card payment only", "Cash only Specelize" ,  "Halal Options" , "Kosher options" , "Vegan options", "Vegetarian options", "Gluten-free options"]
+    private var arrFeature         = [
+        "Seating",
+        "Reservations",
+        "Takeout",
+        "Delivery",
+        "Buffet",
+        "Accepts credit cards",
+        "Outdoor seating",
+        "Wheelchair accessible",
+        "Highchairs available",
+        "Free wifi",
+        "Street parking",
+        "Accepts American Express",
+        "Dogs allowed",
+        "Gift cards available",
+        "Card payment only",
+        "Cash only Specelize" ,
+        "Halal Options" ,
+        "Kosher options" ,
+        "Vegan options",
+        "Vegetarian options",
+        "Gluten-free options"]
+    
+    let actionClosure = { (action: UIAction) in
+         print(action.title)
+    }
         
     private var DetailsPicker       = UIPickerView(frame: CGRect(x: 0, y: 0, width:UIScreen.main.bounds.width, height: 150))
     var type                        = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         onlaod()
     }
     
@@ -60,6 +166,22 @@ class CreatAccntVC: UIViewController , createAccntDelegate {
         let vc = Constants.authStoryBoard.instantiateViewController(withIdentifier: "CrtProfile2VC") as? CrtProfile2VC
         self.navigationController?.pushViewController(vc!, animated: true)
     }
+    
+    @IBAction func onTapMeals(_ sender: UIButton) {
+        let actionClosure = { (action: UIAction) in
+            self.txtMeals.text = action.title // Update text field with selected option title
+        }
+        
+        var menuChildren: [UIMenuElement] = []
+        for meal in arrMeals {
+            menuChildren.append(UIAction(title: meal, handler: actionClosure))
+        }
+
+        sender.menu = UIMenu(options: .displayInline, children: menuChildren)
+        sender.showsMenuAsPrimaryAction = true
+    
+    }
+
 }
 
 //MARK: - Custom Implementation {}

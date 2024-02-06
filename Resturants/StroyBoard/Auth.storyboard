@@ -346,19 +346,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gmI-ZA-jIs">
                                                 <rect key="frame" x="0.0" y="32.666666666666657" width="345" height="55"/>
                                                 <subviews>
-                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Select account" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1BC-R2-uGh">
-                                                        <rect key="frame" x="16" y="0.0" width="299" height="55"/>
-                                                        <color key="tintColor" name="ColorLightGray"/>
-                                                        <color key="textColor" name="ColorWhite"/>
-                                                        <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
-                                                                <color key="value" name="ColorLightGray"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
-                                                    </textField>
-                                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kXW-ZQ-e5j">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kXW-ZQ-e5j">
                                                         <rect key="frame" x="291" y="12.666666666666686" width="30" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="30" id="NhT-tE-EwO"/>
@@ -371,6 +359,18 @@
                                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="semibold"/>
                                                         </state>
                                                     </button>
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Select account" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1BC-R2-uGh">
+                                                        <rect key="frame" x="16" y="0.0" width="299" height="55"/>
+                                                        <color key="tintColor" name="ColorLightGray"/>
+                                                        <color key="textColor" name="ColorWhite"/>
+                                                        <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
+                                                                <color key="value" name="ColorLightGray"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </textField>
                                                 </subviews>
                                                 <color key="backgroundColor" name="ColorBlack"/>
                                                 <constraints>
@@ -592,6 +592,19 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6gK-wK-sE9">
                                                                 <rect key="frame" x="0.0" y="0.0" width="345" height="55"/>
                                                                 <subviews>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZOv-IS-WcY">
+                                                                        <rect key="frame" x="299" y="12.666666666666686" width="30" height="30"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="30" id="INf-a9-el7"/>
+                                                                            <constraint firstAttribute="height" constant="30" id="mg6-hA-dAE"/>
+                                                                        </constraints>
+                                                                        <color key="tintColor" name="ColorWhite"/>
+                                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                        <state key="normal">
+                                                                            <imageReference key="image" image="chevron.down" catalog="system" symbolScale="medium"/>
+                                                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="semibold"/>
+                                                                        </state>
+                                                                    </button>
                                                                     <textField opaque="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="DD/MM/YYYY" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6jG-iV-Bae">
                                                                         <rect key="frame" x="12" y="0.0" width="325" height="55"/>
                                                                         <color key="tintColor" name="ColorLightGray"/>
@@ -604,9 +617,11 @@
                                                                 <constraints>
                                                                     <constraint firstAttribute="trailing" secondItem="6jG-iV-Bae" secondAttribute="trailing" constant="8" id="1Zd-wp-RUS"/>
                                                                     <constraint firstItem="6jG-iV-Bae" firstAttribute="leading" secondItem="6gK-wK-sE9" secondAttribute="leading" constant="12" id="8PT-T6-gTh"/>
+                                                                    <constraint firstItem="ZOv-IS-WcY" firstAttribute="centerY" secondItem="6gK-wK-sE9" secondAttribute="centerY" id="P9J-4l-0d0"/>
                                                                     <constraint firstAttribute="height" constant="55" id="S0Y-aq-u7Z"/>
                                                                     <constraint firstAttribute="bottom" secondItem="6jG-iV-Bae" secondAttribute="bottom" id="SOu-MP-0pz"/>
                                                                     <constraint firstItem="6jG-iV-Bae" firstAttribute="top" secondItem="6gK-wK-sE9" secondAttribute="top" id="YmE-oL-2A0"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="ZOv-IS-WcY" secondAttribute="trailing" constant="16" id="a9s-HQ-lYJ"/>
                                                                 </constraints>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -1004,7 +1019,7 @@
                                                                 <color key="tintColor" name="ColorLightGray"/>
                                                                 <color key="textColor" name="ColorWhite"/>
                                                                 <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits"/>
+                                                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
                                                                         <color key="value" name="ColorLightGray"/>
@@ -1066,7 +1081,7 @@
                                                                 <color key="tintColor" name="ColorLightGray"/>
                                                                 <color key="textColor" name="ColorWhite"/>
                                                                 <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits"/>
+                                                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
                                                                         <color key="value" name="ColorLightGray"/>
@@ -1760,6 +1775,19 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZXv-Jt-jkH">
                                                                 <rect key="frame" x="0.0" y="32.666666666666657" width="345" height="55"/>
                                                                 <subviews>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xQc-NN-EWl">
+                                                                        <rect key="frame" x="299" y="12.666666666666686" width="30" height="30"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="30" id="5eq-ak-AQ1"/>
+                                                                            <constraint firstAttribute="width" constant="30" id="JyA-eh-Yy9"/>
+                                                                        </constraints>
+                                                                        <color key="tintColor" name="ColorWhite"/>
+                                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                        <state key="normal">
+                                                                            <imageReference key="image" image="chevron.down" catalog="system" symbolScale="medium"/>
+                                                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="semibold"/>
+                                                                        </state>
+                                                                    </button>
                                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Restraurant" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9df-az-xzU">
                                                                         <rect key="frame" x="16" y="0.0" width="313" height="55"/>
                                                                         <color key="tintColor" name="ColorLightGray"/>
@@ -1772,7 +1800,9 @@
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="55" id="C3h-99-DCa"/>
                                                                     <constraint firstAttribute="trailing" secondItem="9df-az-xzU" secondAttribute="trailing" constant="16" id="ITz-AT-MP1"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="xQc-NN-EWl" secondAttribute="trailing" constant="16" id="WQN-4m-O6y"/>
                                                                     <constraint firstItem="9df-az-xzU" firstAttribute="leading" secondItem="ZXv-Jt-jkH" secondAttribute="leading" constant="16" id="Y3I-Ji-gYB"/>
+                                                                    <constraint firstItem="xQc-NN-EWl" firstAttribute="centerY" secondItem="ZXv-Jt-jkH" secondAttribute="centerY" id="gSL-vp-BZM"/>
                                                                     <constraint firstAttribute="bottom" secondItem="9df-az-xzU" secondAttribute="bottom" id="swS-t2-uGR"/>
                                                                     <constraint firstItem="9df-az-xzU" firstAttribute="top" secondItem="ZXv-Jt-jkH" secondAttribute="top" id="yvk-zq-BrV"/>
                                                                 </constraints>
@@ -1901,11 +1931,29 @@
                                                                         <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="14"/>
                                                                         <textInputTraits key="textInputTraits"/>
                                                                     </textField>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Trv-dC-xLU">
+                                                                        <rect key="frame" x="299" y="12.666666666666742" width="30" height="30"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="30" id="1Gg-tq-G4z"/>
+                                                                            <constraint firstAttribute="height" constant="30" id="kLG-2W-9Ql"/>
+                                                                        </constraints>
+                                                                        <color key="tintColor" name="ColorWhite"/>
+                                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                        <state key="normal">
+                                                                            <imageReference key="image" image="chevron.down" catalog="system" symbolScale="medium"/>
+                                                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="semibold"/>
+                                                                        </state>
+                                                                        <connections>
+                                                                            <action selector="onTapMeals:" destination="S9x-Wg-G9B" eventType="touchUpInside" id="G3D-7H-qxD"/>
+                                                                        </connections>
+                                                                    </button>
                                                                 </subviews>
                                                                 <color key="backgroundColor" name="ColorBlack"/>
                                                                 <constraints>
+                                                                    <constraint firstItem="Trv-dC-xLU" firstAttribute="centerY" secondItem="pMV-bo-YzU" secondAttribute="centerY" id="9E7-nE-HeG"/>
                                                                     <constraint firstItem="slj-43-lu7" firstAttribute="top" secondItem="pMV-bo-YzU" secondAttribute="top" id="DBf-GP-JDU"/>
                                                                     <constraint firstAttribute="trailing" secondItem="slj-43-lu7" secondAttribute="trailing" constant="16" id="K0u-lx-vQC"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="Trv-dC-xLU" secondAttribute="trailing" constant="16" id="T5L-TA-otG"/>
                                                                     <constraint firstAttribute="bottom" secondItem="slj-43-lu7" secondAttribute="bottom" id="UxR-eT-Lqs"/>
                                                                     <constraint firstItem="slj-43-lu7" firstAttribute="leading" secondItem="pMV-bo-YzU" secondAttribute="leading" constant="16" id="YuE-Qw-bVb"/>
                                                                     <constraint firstAttribute="height" constant="55" id="uq2-hr-AV6"/>
@@ -2077,6 +2125,7 @@
                         <outlet property="CollectEnviorment" destination="HuO-Mf-8vE" id="36T-fK-Fp5"/>
                         <outlet property="CollectFeature" destination="8yx-tG-vFE" id="RFb-V3-D5i"/>
                         <outlet property="txtAccnt" destination="9df-az-xzU" id="Ebx-lq-x2X"/>
+                        <outlet property="txtMeals" destination="slj-43-lu7" id="Ulv-jS-y7D"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Cp-2p-Net" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
