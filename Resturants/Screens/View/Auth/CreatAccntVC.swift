@@ -9,46 +9,59 @@ import UIKit
 
 protocol createAccntDelegate {
    
-    func collectionData(arr: [String] , type: Int)
+    func collectionData(type: Int)
 }
 
 class CreatAccntVC: UIViewController , createAccntDelegate {
-    func collectionData(arr: [String] , type: Int) {
+    func collectionData(type: Int) {
         if type == 0{
-            selectedCuisine    = arr
+            UserManager.shared.selectedCuisine.removeAll()
             CollectCuisine.reloadData()
         }
         else if type == 1{
-            selectedEnviorment = arr
+            UserManager.shared.selectedEnviorment.removeAll()
             CollectEnviorment.reloadData()
         }
-        else{
-            selectedFeature    = arr
+        else if type == 2{
+            UserManager.shared.selectedFeature.removeAll()
             CollectFeature.reloadData()
         }
-        
+        else if type == 3{
+            UserManager.shared.selectedMeals.removeAll()
+            CollectMeal.reloadData()
+        }
+        else{
+            UserManager.shared.selectedSpecial.removeAll()
+            CollectSpecial.reloadData()
+        }
     }
     //MARK: - @IBOutlets
     @IBOutlet weak var txtAccnt           : UITextField!
     @IBOutlet weak var CollectCuisine     : UICollectionView!
     @IBOutlet weak var CollectEnviorment  : UICollectionView!
     @IBOutlet weak var CollectFeature     : UICollectionView!
-    @IBOutlet weak var txtMeals           : UITextField!
+    @IBOutlet weak var CollectMeal        : UICollectionView!
+    @IBOutlet weak var CollectSpecial     : UICollectionView!
+    @IBOutlet weak var btnAddCusion       : UIButton!
+    @IBOutlet weak var btnEnviorment      : UIButton!
+    @IBOutlet weak var btnFeature         : UIButton!
+    @IBOutlet weak var btnMeal            : UIButton!
+    @IBOutlet weak var btnSpecial         : UIButton!
+    @IBOutlet weak var btnTopAddCusion    : UIButton!
+    @IBOutlet weak var btnTopEnviorment   : UIButton!
+    @IBOutlet weak var btnTopFeature      : UIButton!
+    @IBOutlet weak var btnTopMeal         : UIButton!
+    @IBOutlet weak var btnTopSpecial      : UIButton!
+    
+    @IBOutlet weak var stackCuisine       : UIStackView!
+    @IBOutlet weak var stackEnviorment    : UIStackView!
+    @IBOutlet weak var stackFeature       : UIStackView!
+    @IBOutlet weak var stackMeal          : UIStackView!
+    @IBOutlet weak var stackSpeaical      : UIStackView!
+    
     
     //MARK: - variables and Properties
-    private var selectedCuisine           :[String]       = []
-    private var selectedEnviorment        :[String]       = []
-    private var selectedFeature           :[String]       = []
-    
-    private var arrMeals           = [
-        "Breakfast",
-        "Brunch",
-        "Lunch",
-        "Dinner",
-        "Dessert",
-        "Coffee"
-    ]
-    private var arrAccnt           = [
+    private var arrAccnt                                  = [
         "Private person",
         "Content Creator",
         "Restaurant",
@@ -62,124 +75,69 @@ class CreatAccntVC: UIViewController , createAccntDelegate {
         "Hotel"
     ]
     
-    private var arrCuisine         = [
-        "African",
-        "American",
-        "Asian",
-        "Brazilian",
-        "British",
-        "Ethiopian",
-        "European",
-        "French",
-        "From the Mediterranean",
-        "Fusion/Crossover",
-        "Greek", "Grilled",
-        "Indian", "Italian",
-        "Japanese", "Chinese",
-        "Korean", "Latin American",
-        "Lebanese", "Moroccan",
-        "Mexican", "Oriental",
-        "Pakistani", "Persian",
-        "Peruvian", "Portuguese",
-        "Swiss", "Scandinavian",
-        "Spanish", "Steakhouse",
-        "Swedish", "Somali",
-        "Thai", "Traditional food",
-        "Tunisian", "Turkish",
-        "German",
-        "Eastern European"]
-    
-    private var arrEnviorment      = [
-        "Business dinner",
-        "After work",
-        "Brunch",
-        "Wedding",
-        "Buffet",
-        "Central location",
-        "Fantastic view",
-        "Birthday",
-        "Gastronomic",
-        "Groups",
-        "Hotel restaurant"
-        , "Tavern",
-        "Live music",
-        "With family",
-        "With friends",
-        "Dinner cruise",
-        " Modern food",
-        "On the beach",
-        "Raw food",
-        "Street food",
-        "Bachelor & bachelorette party",
-        "Traditional",
-        "Trendy",
-        "Garden",
-        "Outdoor seating",
-        "By the sea",
-        "By the water",
-        "Wine bar Meals" ,
-        "Breakfast",
-        "Brunch",
-        "Lunch",
-        "Dinner",
-        "Dessert",
-        "Coffe"]
-    
-    private var arrFeature         = [
-        "Seating",
-        "Reservations",
-        "Takeout",
-        "Delivery",
-        "Buffet",
-        "Accepts credit cards",
-        "Outdoor seating",
-        "Wheelchair accessible",
-        "Highchairs available",
-        "Free wifi",
-        "Street parking",
-        "Accepts American Express",
-        "Dogs allowed",
-        "Gift cards available",
-        "Card payment only",
-        "Cash only Specelize" ,
-        "Halal Options" ,
-        "Kosher options" ,
-        "Vegan options",
-        "Vegetarian options",
-        "Gluten-free options"]
-    
-    let actionClosure = { (action: UIAction) in
-         print(action.title)
-    }
-        
-    private var DetailsPicker       = UIPickerView(frame: CGRect(x: 0, y: 0, width:UIScreen.main.bounds.width, height: 150))
-    var type                        = -1
+    var type                                              = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         onlaod()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        onAppear()
     }
     
     @IBAction func ontapNextStep(_ sender: UIButton){
         
+        UserManager.shared.selectedAccountType    = self.txtAccnt.text!
         let vc = Constants.authStoryBoard.instantiateViewController(withIdentifier: "CrtProfile2VC") as? CrtProfile2VC
         self.navigationController?.pushViewController(vc!, animated: true)
     }
-    
-    @IBAction func onTapMeals(_ sender: UIButton) {
+    @IBAction func ontapAccnt(_ sender: UIButton){
         let actionClosure = { (action: UIAction) in
-            self.txtMeals.text = action.title // Update text field with selected option title
+            self.txtAccnt.text = action.title // Update text field with selected option title
+            self.setupAccountTypes(action.title)
         }
-        
         var menuChildren: [UIMenuElement] = []
-        for meal in arrMeals {
+        for meal in arrAccnt {
             menuChildren.append(UIAction(title: meal, handler: actionClosure))
         }
-
         sender.menu = UIMenu(options: .displayInline, children: menuChildren)
         sender.showsMenuAsPrimaryAction = true
-    
+    }
+    @IBAction func ontapAddCuision(_ sender: UIButton){
+        let vc = Constants.authStoryBoard.instantiateViewController(withIdentifier: "SelectionVC") as! SelectionVC
+        vc.delegate = self
+        vc.type     = 0
+        self.type   = 0
+        self.navigationController?.present(vc, animated: true)
+    }
+    @IBAction func ontapEnviorment(_ sender: UIButton){
+        let vc = Constants.authStoryBoard.instantiateViewController(withIdentifier: "SelectionVC") as! SelectionVC
+        vc.type     = 1
+        self.type   = 1
+        vc.delegate = self
+        self.navigationController?.present(vc, animated: true)
+    }
+    @IBAction func ontapFeature(_ sender: UIButton){
+        let vc = Constants.authStoryBoard.instantiateViewController(withIdentifier: "SelectionVC") as! SelectionVC
+        vc.type     = 2
+        self.type   = 2
+        vc.delegate = self
+        self.navigationController?.present(vc, animated: true)
+    }
+    @IBAction func onTapMeals(_ sender: UIButton) {
+        let vc = Constants.authStoryBoard.instantiateViewController(withIdentifier: "SelectionVC") as! SelectionVC
+        vc.delegate = self
+        vc.type     = 3
+        self.type   = 3
+        self.navigationController?.present(vc, animated: true)
+    }
+    @IBAction func onTapSpecail(_ sender: UIButton) {
+        let vc = Constants.authStoryBoard.instantiateViewController(withIdentifier: "SelectionVC") as! SelectionVC
+        vc.delegate = self
+        vc.type     = 4
+        self.type   = 4
+        self.navigationController?.present(vc, animated: true)
     }
 
 }
@@ -188,195 +146,222 @@ class CreatAccntVC: UIViewController , createAccntDelegate {
 extension CreatAccntVC {
     
     func onlaod(){
-      
+        
         setupViews()
+        
     }
     func onAppear(){
-        
+        removeNavBackbuttonTitle()
+        self.navigationItem.title  = "Create Account"
     }
     func setupViews() {
-        txtAccnt.inputView           = DetailsPicker
-           
-        DetailsPicker.delegate       = self
-        DetailsPicker.dataSource     = self
-        DetailsPicker.backgroundColor = .white
         
         CollectCuisine.register(CollectionCell.nib, forCellWithReuseIdentifier: CollectionCell.identifier)
-        CollectCuisine.delegate      = self
-        CollectCuisine.dataSource    = self
-        CollectCuisine.register(AddDataCell.nib, forCellWithReuseIdentifier: AddDataCell.identifier)
         CollectCuisine.delegate      = self
         CollectCuisine.dataSource    = self
         
         CollectEnviorment.register(CollectionCell.nib, forCellWithReuseIdentifier: CollectionCell.identifier)
         CollectEnviorment.delegate   = self
         CollectEnviorment.dataSource = self
-        CollectEnviorment.register(AddDataCell.nib, forCellWithReuseIdentifier: AddDataCell.identifier)
-        CollectEnviorment.delegate   = self
-        CollectEnviorment.dataSource = self
         
         CollectFeature.register(CollectionCell.nib, forCellWithReuseIdentifier: CollectionCell.identifier)
         CollectFeature.delegate      = self
         CollectFeature.dataSource    = self
-        CollectFeature.register(AddDataCell.nib, forCellWithReuseIdentifier: AddDataCell.identifier)
-        CollectFeature.delegate      = self
-        CollectFeature.dataSource    = self
         
+        CollectMeal.register(CollectionCell.nib, forCellWithReuseIdentifier: CollectionCell.identifier)
+        CollectMeal.delegate         = self
+        CollectMeal.dataSource       = self
+        
+        CollectSpecial.register(CollectionCell.nib, forCellWithReuseIdentifier: CollectionCell.identifier)
+        CollectSpecial.delegate      = self
+        CollectSpecial.dataSource    = self
     }
-   }
-
-   //MARK: - Gender Picker View Setup {}
-   extension CreatAccntVC: UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate  {
-
-       func textFieldDidBeginEditing(_ textField: UITextField) {
-           // Set the appropriate data source based on the active text field
-           DetailsPicker.tag = textField.tag
-           DetailsPicker.reloadAllComponents()
-       }
-
-       func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-           switch pickerView.tag {
-           case 0:
-               return arrAccnt.count
-           default:
-               return 0
-           }
-       }
-
-       func numberOfComponents(in pickerView: UIPickerView) -> Int {
-           return 1
-       }
-
-       func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-           switch pickerView.tag {
-           case 0:
-               return arrAccnt[row]
-           default:
-               return nil
-           }
-       }
-
-       func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-           let selectedValue: String
-           switch pickerView.tag {
-           case 0:
-               selectedValue        = arrAccnt[row]
-               txtAccnt.text        = selectedValue
-               
-           default:
-               return
-           }
-           pickerView.resignFirstResponder()
-       }
-   }
+    
+    func setupAccountTypes(_ string : String){
+        
+        switch string {
+        case "Private person" , "Content Creator" :
+            stackCuisine.isHidden     = true
+            stackEnviorment.isHidden  = true
+            stackFeature.isHidden     = true
+            stackMeal.isHidden        = true
+            stackSpeaical.isHidden    = true
+        case "Restaurant" , "Food_truck" , "Hotel":
+            stackCuisine.isHidden     = false
+            stackEnviorment.isHidden  = false
+            stackFeature.isHidden     = false
+            stackMeal.isHidden        = false
+            stackSpeaical.isHidden    = false
+        case "Cafeteria":
+            stackCuisine.isHidden     = true
+            stackEnviorment.isHidden  = false
+            stackFeature.isHidden     = false
+            stackMeal.isHidden        = false
+            stackSpeaical.isHidden    = false
+        default:
+            print("default")
+            stackCuisine.isHidden     = false
+            stackEnviorment.isHidden  = false
+            stackFeature.isHidden     = false
+            stackMeal.isHidden        = false
+            stackSpeaical.isHidden    = false
+        }
+    }
+}
 
 //MARK: - Collection View Setup {}
 extension CreatAccntVC: UICollectionViewDelegate , UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == CollectCuisine {
-            return selectedCuisine.count == 0 ? 1 : selectedCuisine.count
+            let totalCount = UserManager.shared.arrCuisine.reduce(0) { (totalCount, array) in
+                // Check if the second element of the array is equal to 1
+                return totalCount + (array[1] == "1" ? 1 : 0)
+            }
+            if totalCount == 0 {
+                self.btnAddCusion.isHidden = false
+                self.btnTopAddCusion.isHidden = true
+                return 0
+            }
+            else{
+                self.btnAddCusion.isHidden = true
+                self.btnTopAddCusion.isHidden = false
+               return totalCount
+            }
         }
         else if collectionView == CollectEnviorment {
-            return selectedEnviorment.count == 0 ? 1 : selectedEnviorment.count
+            let totalCount = UserManager.shared.arrEnviorment.reduce(0) { (totalCount, array) in
+                // Check if the second element of the array is equal to 1
+                return totalCount + (array[1] == "1" ? 1 : 0)
+            }
+            if totalCount == 0 {
+                self.btnEnviorment.isHidden = false
+                self.btnTopEnviorment.isHidden = true
+                return 0
+            }
+            else{
+                self.btnEnviorment.isHidden = true
+                self.btnTopEnviorment.isHidden = false
+               return totalCount
+            }
         }
-        else {
-            return selectedFeature.count == 0 ? 1 : selectedFeature.count
+        else if collectionView == CollectFeature {
+            let totalCount = UserManager.shared.arrFeature.reduce(0) { (totalCount, array) in
+                // Check if the second element of the array is equal to 1
+                return totalCount + (array[1] == "1" ? 1 : 0)
+            }
+            if totalCount == 0 {
+                self.btnFeature.isHidden = false
+                self.btnTopFeature.isHidden = true
+                return 0
+            }
+            else{
+                self.btnFeature.isHidden = true
+                self.btnTopFeature.isHidden = false
+               return totalCount
+            }
         }
-        
+        else if collectionView == CollectMeal {
+            let totalCount = UserManager.shared.arrMeals.reduce(0) { (totalCount, array) in
+                // Check if the second element of the array is equal to 1
+                return totalCount + (array[1] == "1" ? 1 : 0)
+            }
+            if totalCount == 0 {
+                self.btnMeal.isHidden = false
+                self.btnTopMeal.isHidden = true
+                return 0
+            }
+            else{
+                self.btnMeal.isHidden = true
+                self.btnTopMeal.isHidden = false
+               return totalCount
+            }
+        }
+        else{
+            let totalCount = UserManager.shared.arrSpeacials.reduce(0) { (totalCount, array) in
+                // Check if the second element of the array is equal to 1
+                return totalCount + (array[1] == "1" ? 1 : 0)
+            }
+            if totalCount == 0 {
+                self.btnSpecial.isHidden = false
+                self.btnTopSpecial.isHidden = true
+                return 0
+            }
+            else{
+                self.btnSpecial.isHidden = true
+                self.btnTopSpecial.isHidden = false
+               return totalCount
+            }
+        }
     }
     @objc func onTapCui(sender: UIButton){
-        selectedCuisine.remove(at: sender.tag)
+        UserManager.shared.arrCuisine[sender.tag][1] = "0"
+       // selectedCuisine.remove(at: sender.tag)
         CollectCuisine.reloadData()
     }
     @objc func onTapEnvior(sender: UIButton){
-        selectedEnviorment.remove(at: sender.tag)
+        UserManager.shared.arrEnviorment[sender.tag][1] = "0"
+       // selectedEnviorment.remove(at: sender.tag)
         CollectEnviorment.reloadData()
     }
     @objc func onTapIden(sender: UIButton){
-        selectedFeature.remove(at: sender.tag)
+        UserManager.shared.arrFeature[sender.tag][1] = "0"
+       // selectedFeature.remove(at: sender.tag)
         CollectFeature.reloadData()
+    }
+    @objc func onTapMeal(sender: UIButton){
+        UserManager.shared.arrMeals[sender.tag][1] = "0"
+       // selectedFeature.remove(at: sender.tag)
+        CollectMeal.reloadData()
+    }
+    
+    @objc func onTapSpecial(sender: UIButton){
+        UserManager.shared.arrSpeacials[sender.tag][1] = "0"
+       // selectedFeature.remove(at: sender.tag)
+        CollectSpecial.reloadData()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == CollectCuisine {
-            if selectedCuisine.count != 0{
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionCell.identifier, for: indexPath) as! CollectionCell
-                cell.lbl.text = selectedCuisine[indexPath.row]
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionCell.identifier, for: indexPath) as! CollectionCell
+            if UserManager.shared.arrCuisine[indexPath.row][1] == "1" {
+                cell.lbl.text = UserManager.shared.arrCuisine[indexPath.row][0]
+                UserManager.shared.selectedCuisine.append(UserManager.shared.arrCuisine[indexPath.row][0])
                 cell.btn.addTarget(self, action:#selector(onTapCui(sender:)), for: .touchUpInside)
                 cell.btn.tag = indexPath.row
-                return cell
             }
-            else{
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AddDataCell.identifier, for: indexPath) as! AddDataCell
-                return cell
-            }
+            return cell
         }
         else if collectionView == CollectEnviorment {
-            if selectedEnviorment.count != 0{
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionCell.identifier, for: indexPath) as! CollectionCell
-                cell.lbl.text = selectedEnviorment[indexPath.row]
-                cell.btn.addTarget(self, action:#selector(onTapEnvior(sender:)), for: .touchUpInside)
-                cell.btn.tag = indexPath.row
-                return cell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionCell.identifier, for: indexPath) as! CollectionCell
+            
+            if UserManager.shared.arrEnviorment[indexPath.row][1] == "1" {
+                cell.lbl.text = UserManager.shared.arrEnviorment[indexPath.row][0]
+                UserManager.shared.selectedEnviorment.append(UserManager.shared.arrEnviorment[indexPath.row][0])
             }
-            else{
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AddDataCell.identifier, for: indexPath) as! AddDataCell
-                return cell
-            }
+            cell.btn.addTarget(self, action:#selector(onTapEnvior(sender:)), for: .touchUpInside)
+            cell.btn.tag = indexPath.row
+            return cell
         }
-        else {
-            if selectedFeature.count != 0{
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionCell.identifier, for: indexPath) as! CollectionCell
-                cell.lbl.text = selectedFeature[indexPath.row]
-                cell.btn.addTarget(self, action:#selector(onTapIden(sender:)), for: .touchUpInside)
-                cell.btn.tag = indexPath.row
-                return cell
+        else if collectionView == CollectFeature {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionCell.identifier, for: indexPath) as! CollectionCell
+            if UserManager.shared.arrFeature[indexPath.row][1] == "1" {
+                cell.lbl.text = UserManager.shared.arrFeature[indexPath.row][0]
+                UserManager.shared.selectedFeature.append(UserManager.shared.arrFeature[indexPath.row][0])
             }
-            else{
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AddDataCell.identifier, for: indexPath) as! AddDataCell
-                return cell
-            }
+            cell.btn.addTarget(self, action:#selector(onTapIden(sender:)), for: .touchUpInside)
+            cell.btn.tag = indexPath.row
+            return cell
         }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView == CollectCuisine {
-            if selectedCuisine.count != 0{
-                
+        else  {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionCell.identifier, for: indexPath) as! CollectionCell
+            if UserManager.shared.arrSpeacials[indexPath.row][1] == "1" {
+                cell.lbl.text = UserManager.shared.arrSpeacials[indexPath.row][0]
+                UserManager.shared.selectedSpecial.append(UserManager.shared.arrSpeacials[indexPath.row][0])
             }
-            else{
-                let vc = Constants.authStoryBoard.instantiateViewController(withIdentifier: "SelectionVC") as! SelectionVC
-                vc.delegate = self
-                vc.type     = 0
-                self.type   = 0
-                self.navigationController?.present(vc, animated: true)
-            }
-        }
-        else if collectionView == CollectEnviorment {
-          
-            if selectedEnviorment.count != 0{
-                
-            }
-            else{
-                let vc = Constants.authStoryBoard.instantiateViewController(withIdentifier: "SelectionVC") as! SelectionVC
-                vc.type     = 1
-                self.type   = 1
-                vc.delegate = self
-                self.navigationController?.present(vc, animated: true)
-            }
-        }
-        else {
-            if selectedFeature.count != 0{
-                
-            }
-            else{
-                let vc = Constants.authStoryBoard.instantiateViewController(withIdentifier: "SelectionVC") as! SelectionVC
-                vc.type     = 2
-                self.type   = 2
-                vc.delegate = self
-                self.navigationController?.present(vc, animated: true)
-            }
+            cell.btn.addTarget(self, action:#selector(onTapSpecial(sender:)), for: .touchUpInside)
+            cell.btn.tag = indexPath.row
+            return cell
         }
     }
 }

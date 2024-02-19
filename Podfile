@@ -11,5 +11,8 @@ target 'Resturants' do
     pod 'IQKeyboardManager' , '6.5'
     pod 'Firebase/Auth'
     pod 'FirebaseFirestore'
+    pod 'CountryPickerView'
+
+    
 
 end

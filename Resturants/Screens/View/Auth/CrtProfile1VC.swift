@@ -32,6 +32,10 @@ class CrtProfile1VC: UIViewController {
 
         onlaod()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+       onAppear()
+    }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         .lightContent
     }
@@ -52,7 +56,7 @@ extension CrtProfile1VC {
         setupView()
     }
     func onAppear(){
-        
+        removeNavBackbuttonTitle()
     }
     func setupView() {
         txtAccntType.inputView  = AccntPicker

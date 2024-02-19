@@ -15,7 +15,8 @@ class Constants {
     
     
     //MARK: - Storyboard Identification
-    static let  authStoryBoard                =   UIStoryboard(name: "Auth", bundle: nil)
-    static let  homeStoryBoard                =   UIStoryboard(name: "Home", bundle: nil)
+    static let  authStoryBoard                  =   UIStoryboard(name: "Auth", bundle: nil)
+    static let  TabControllerStoryBoard         =   UIStoryboard(name: "TabbarController", bundle: nil)
+    static let  homehStoryBoard                 =   UIStoryboard(name: "Home", bundle: nil)
    
 }

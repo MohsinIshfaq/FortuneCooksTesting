@@ -10,19 +10,24 @@ import UIKit
 class CrtProfile2VC: UIViewController {
 
     //MARK: - @IBOutlets
-    @IBOutlet weak var txtYear  : UITextField!
+    @IBOutlet weak var txtYear      : UITextField!
+    @IBOutlet weak var txtChannelNm : UITextField!
     
     //MARK: - variables and Properties
     private var arrDate         = Array(1...31)
     private var arrmonths       = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
     private var birthYears      = Array(1950...2024)
     
-    private var genderPicker    = UIPickerView(frame: CGRect(x: 0, y: 0, width:UIScreen.main.bounds.width, height: 150))
+    private var genderPicker    = UIPickerView(frame: CGRect(x: 0, y: 0, width:UIScreen.main.bounds.width, height: 200))
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         onlaod()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        onAppear()
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         .lightContent
@@ -30,6 +35,8 @@ class CrtProfile2VC: UIViewController {
 
     @IBAction func ontapNextStep(_ sender: UIButton){
         
+        UserManager.shared.selectedChannelNm = txtChannelNm.text!
+        UserManager.shared.selectedDOB       = txtYear.text!
         let vc = Constants.authStoryBoard.instantiateViewController(withIdentifier: "CrtProfile3VC") as? CrtProfile3VC
         self.navigationController?.pushViewController(vc!, animated: true)
     }
@@ -43,7 +50,8 @@ extension CrtProfile2VC {
         setupView()
     }
     func onAppear(){
-        
+        removeNavBackbuttonTitle()
+        self.navigationItem.title  = "Create Account"
     }
     func setupView() {
         txtYear.inputView  = genderPicker

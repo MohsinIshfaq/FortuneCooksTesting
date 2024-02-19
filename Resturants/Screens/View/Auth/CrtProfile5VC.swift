@@ -14,6 +14,10 @@ class CrtProfile5VC: UIViewController {
 
         // Do any additional setup after loading the view.
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        onAppear()
+    }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         .lightContent
     }
@@ -25,4 +29,18 @@ class CrtProfile5VC: UIViewController {
         self.present(vc!, animated: true)
     }
 
+}
+
+//MARK: - Cutom Implementation {}
+extension CrtProfile5VC {
+    
+    func onLoad() {
+        
+      //  setupView()
+    }
+    
+    func onAppear() {
+        removeNavBackbuttonTitle()
+        self.navigationItem.title  = "Verificationx"
+    }
 }

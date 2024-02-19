@@ -26,9 +26,13 @@ class HomeVC: UIViewController , MenuVCDelegate {
     
     @objc func ontapNavRight() {
         
-        let vc = Constants.homeStoryBoard.instantiateViewController(withIdentifier: "MenuVC") as! MenuVC
+        let vc = Constants.homehStoryBoard.instantiateViewController(withIdentifier: "MenuVC") as! MenuVC
         vc.delegate = self
         self.present(vc, animated: true)
+    }
+    @objc func ontapNavLFT() {
+        
+       
     }
 
 }
@@ -47,6 +51,7 @@ extension HomeVC {
     func setupViews() {
         
         NavigationRightBtn()
+        NavigationLeftBtn()
     }
     func NavigationRightBtn() {
         
@@ -55,4 +60,10 @@ extension HomeVC {
         navigationItem.rightBarButtonItem = first
         navigationItem.rightBarButtonItem?.tintColor = .white
     }
+    func NavigationLeftBtn() {
+        let title = "FortuneCooks"
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: title, style: .plain, target: self, action: #selector(ontapNavLFT))
+        navigationItem.leftBarButtonItem?.tintColor = .white
+    }
+
 }
