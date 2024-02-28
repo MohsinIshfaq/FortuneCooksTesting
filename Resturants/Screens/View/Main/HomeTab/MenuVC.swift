@@ -7,7 +7,7 @@
 
 import UIKit
 protocol MenuVCDelegate{
-  func crtAccnt()
+    func crtAccnt(pressed : String)
 }
 
 class MenuVC: UIViewController {
@@ -32,9 +32,13 @@ class MenuVC: UIViewController {
     @IBAction func ontapCrtAccnt(_ sender: UIButton){
         self.dismiss(animated: true)
         UserDefault.isAuthenticated = false
-        delegate?.crtAccnt()
+        delegate?.crtAccnt(pressed: "Auth")
         NotificationCenter.default.post(name: NSNotification.Name("CrtAccnt"), object: nil)
     }
     
+    @IBAction func ontapVideoRecording(_ sender: UIButton) {
+        self.dismiss(animated: true)
+        delegate?.crtAccnt(pressed: "VideoRecording")
+    }
 
 }

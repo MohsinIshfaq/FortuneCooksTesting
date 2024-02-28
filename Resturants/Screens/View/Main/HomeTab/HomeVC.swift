@@ -8,10 +8,18 @@
 import UIKit
 
 class HomeVC: UIViewController , MenuVCDelegate {
-    func crtAccnt() {
-        let vc = Constants.authStoryBoard.instantiateViewController(withIdentifier: "LoginNC") as? LoginNC
-        vc?.modalPresentationStyle = .overFullScreen
-        self.navigationController?.present(vc!, animated: true)
+    func crtAccnt(pressed: String) {
+        
+        if pressed == "Auth" {
+            let vc = Constants.authStoryBoard.instantiateViewController(withIdentifier: "LoginNC") as? LoginNC
+            vc?.modalPresentationStyle = .overFullScreen
+            self.navigationController?.present(vc!, animated: true)
+        }
+        else{
+            let vc = Constants.homehStoryBoard.instantiateViewController(withIdentifier: "VideoRecordingVC") as? VideoRecordingVC
+            vc?.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc!, animated: true)
+        }
     }
     //MARK: - @IBOutlets
     

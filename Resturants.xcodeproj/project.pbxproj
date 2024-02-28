@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		28E0884F7B0D98691A6FD7BF /* Pods_Resturants.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 338B6AC4DD0531F5E7268D31 /* Pods_Resturants.framework */; };
 		7102B7192B6FBDF60039ED0B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7102B7182B6FBDF50039ED0B /* GoogleService-Info.plist */; };
+		7119F63A2B8B7DFF00FA8579 /* VideoRecordingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7119F6392B8B7DFF00FA8579 /* VideoRecordingVC.swift */; };
 		7144BD512B6E983100767374 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7144BD502B6E983100767374 /* HomeVC.swift */; };
 		7144BD542B6EA0CC00767374 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7144BD532B6EA0CC00767374 /* MenuVC.swift */; };
 		714B0F6C2B696F7800570578 /* SelectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714B0F6B2B696F7800570578 /* SelectionVC.swift */; };
@@ -57,6 +58,7 @@
 		0765EEAB37660B15C93D653F /* Pods-Resturants.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Resturants.debug.xcconfig"; path = "Target Support Files/Pods-Resturants/Pods-Resturants.debug.xcconfig"; sourceTree = "<group>"; };
 		338B6AC4DD0531F5E7268D31 /* Pods_Resturants.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Resturants.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7102B7182B6FBDF50039ED0B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7119F6392B8B7DFF00FA8579 /* VideoRecordingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRecordingVC.swift; sourceTree = "<group>"; };
 		7144BD502B6E983100767374 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		7144BD532B6EA0CC00767374 /* MenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
 		714B0F6B2B696F7800570578 /* SelectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionVC.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 			children = (
 				7144BD502B6E983100767374 /* HomeVC.swift */,
 				7144BD532B6EA0CC00767374 /* MenuVC.swift */,
+				7119F6392B8B7DFF00FA8579 /* VideoRecordingVC.swift */,
 			);
 			path = HomeTab;
 			sourceTree = "<group>";
@@ -498,6 +501,7 @@
 				71B3DC9E2B55B1B500A3615F /* BaseClass.swift in Sources */,
 				715166482B598961007CE092 /* CrtProfile3VC.swift in Sources */,
 				71B3DC962B55B0F100A3615F /* BaseStrings.swift in Sources */,
+				7119F63A2B8B7DFF00FA8579 /* VideoRecordingVC.swift in Sources */,
 				715166442B5985E1007CE092 /* CrtProfile1VC.swift in Sources */,
 				71B3DC902B55AFC000A3615F /* Manager.swift in Sources */,
 				7151664C2B598989007CE092 /* CrtProfile5VC.swift in Sources */,
