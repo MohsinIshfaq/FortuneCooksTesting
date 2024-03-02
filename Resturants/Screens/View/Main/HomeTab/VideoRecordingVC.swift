@@ -6,12 +6,18 @@
 //
 
 import UIKit
+import Photos
+import AVFoundation
+import AVKit
+import MobileCoreServices
 
 class VideoRecordingVC: UIViewController {
 
     //MARK: - @IBOutlets
     @IBOutlet weak var btnRecord         : UIButton!
     @IBOutlet weak var progressRecording : UIProgressView!
+    @IBOutlet weak var vwMain            : UIView!
+    @IBOutlet weak var imgPreview        : UIImageView!
     
     //MARK: - variables and Properties
     private var selected       : Bool = false
@@ -19,6 +25,13 @@ class VideoRecordingVC: UIViewController {
     var timer: Timer?
     let totalTime: Float = 30.0 // Total time in seconds
     var elapsedTime: Float = 0.0 // Elapsed time
+    var captureSession: AVCaptureSession!
+    var videoDevice   : AVCaptureDevice?
+    var cameraSession : AVCaptureDeviceInput!
+    var previewLayer  : AVCaptureVideoPreviewLayer!
+    var videoComtroller = UIImagePickerController()
+    var cameraConfig  : CameraConfiguration!
+    var selectedURL   : URL?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,21 +46,49 @@ class VideoRecordingVC: UIViewController {
         selectedRecord.toggle()
         btnRecord.backgroundColor = selectedRecord == true ? .red : .link
         elapsedTime = 0.0 // Elapsed time
+        self.cameraConfig.outputType = .video
+        
         if selectedRecord{
             startProgress()
+            self.cameraConfig.recordVideo { url, error in
+                guard let url = url else {
+                    self.showAlertWith(title: "Error!", message: "\(url)")
+                    return
+                }
+                UISaveVideoAtPathToSavedPhotosAlbum(url.path, self, #selector(self.video(_:didFinishSavingError: contextInfo:)), nil)
+            }
         }
         else{
             stopProgress()
+            elapsedTime = 0.0 // Elapsed time
+            self.cameraConfig.stopRecording {[weak self] error in
+                self?.showAlertWith(title: "Error!", message: "\(error?.localizedDescription ?? "")")
+            }
+        }
+    }
+    
+    @objc func video(_ video: String , didFinishSavingError error: NSError? , contextInfo: UnsafeRawPointer) {
+        if let error = error {
+            self.showAlertWith(title: "Error!", message: "Could Not Save \(error.localizedDescription)")
+        }
+        else{
+            self.selectedURL = URL(string: "file://" + video)
         }
     }
     
     @objc func ontapCameraRoll() {
-        
+        do {
+            try cameraConfig.switchCameras()
+        }
+        catch{
+            self.showAlertWith(title: "Error!", message: "\(error.localizedDescription)")
+        }
     }
     
     @objc func ontapFlash() {
         selected.toggle()
         NavigationRightBtns()
+        cameraConfig.toggleFlashlight()
     }
 }
 
@@ -56,11 +97,21 @@ extension VideoRecordingVC {
     func onLoad() {
         removeNavBackbuttonTitle()
         NavigationRightBtns()
+        setupVideo()
     }
     func onAppear() {
         
     }
     
+    func setupVideo() {
+        
+        cameraConfig.setup { error in
+            if error != nil{
+                self.showAlertWith(title: "Error!", message: "\(error!.localizedDescription)")
+            }
+            try? self.cameraConfig.displayPreview(self.vwMain)
+        }
+    }
     func NavigationRightBtns() {
         
         let imgCamera = UIImage(systemName: "arrow.triangle.2.circlepath")?.withRenderingMode(.automatic)

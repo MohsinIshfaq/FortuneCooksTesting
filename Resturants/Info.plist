@@ -2,6 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSCameraUsageDescription</key>
+	<string>we need camera access.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>we need microPhone access to be record your voice as well.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>we need access of your camera to be record.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Inter-VariableFont_slnt,wght.tff</string>

@@ -245,7 +245,6 @@
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Iaq-6K-f0G">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" name="ColorWhite"/>
                         <color key="barTintColor" name="ColorWhite"/>
@@ -573,6 +572,9 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iGn-ep-KFC">
                                 <rect key="frame" x="0.0" y="59" width="393" height="793"/>
                                 <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="k51-DL-exl">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="793"/>
+                                    </imageView>
                                     <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WQr-QK-BTC">
                                         <rect key="frame" x="16" y="36" width="361" height="4"/>
                                     </progressView>
@@ -609,9 +611,13 @@
                                 <color key="backgroundColor" name="ColorBlack"/>
                                 <constraints>
                                     <constraint firstItem="WQr-QK-BTC" firstAttribute="leading" secondItem="iGn-ep-KFC" secondAttribute="leading" constant="16" id="1j7-Nm-eZo"/>
+                                    <constraint firstAttribute="bottom" secondItem="k51-DL-exl" secondAttribute="bottom" id="6ab-6e-hea"/>
                                     <constraint firstItem="1fa-yV-Eta" firstAttribute="centerX" secondItem="iGn-ep-KFC" secondAttribute="centerX" id="Yah-QW-XXh"/>
                                     <constraint firstAttribute="trailing" secondItem="WQr-QK-BTC" secondAttribute="trailing" constant="16" id="aVt-Zb-894"/>
                                     <constraint firstItem="WQr-QK-BTC" firstAttribute="top" secondItem="iGn-ep-KFC" secondAttribute="top" constant="36" id="dFx-7o-fsx"/>
+                                    <constraint firstItem="k51-DL-exl" firstAttribute="leading" secondItem="iGn-ep-KFC" secondAttribute="leading" id="iQh-8W-0yl"/>
+                                    <constraint firstItem="k51-DL-exl" firstAttribute="top" secondItem="iGn-ep-KFC" secondAttribute="top" id="ilm-3O-6zs"/>
+                                    <constraint firstAttribute="trailing" secondItem="k51-DL-exl" secondAttribute="trailing" id="p0i-7w-6DH"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -631,7 +637,9 @@
                     </view>
                     <connections>
                         <outlet property="btnRecord" destination="1fa-yV-Eta" id="qx4-9M-WSA"/>
+                        <outlet property="imgPreview" destination="k51-DL-exl" id="2e3-Mf-DNc"/>
                         <outlet property="progressRecording" destination="WQr-QK-BTC" id="MSQ-gF-4LO"/>
+                        <outlet property="vwMain" destination="iGn-ep-KFC" id="jdl-Lu-UtR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rns-WN-oY3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -780,13 +788,13 @@
         <image name="FrameTop" width="375" height="164"/>
         <image name="Share" width="16.333333969116211" height="16"/>
         <image name="Video 1" width="374" height="217"/>
-        <image name="bookmark" catalog="system" width="110" height="128"/>
-        <image name="heart" catalog="system" width="128" height="107"/>
+        <image name="bookmark" catalog="system" width="32" height="32"/>
+        <image name="heart" catalog="system" width="32" height="32"/>
         <image name="house" width="24.333333969116211" height="24"/>
         <image name="message-circle" width="16.333333969116211" height="16"/>
-        <image name="person.fill" catalog="system" width="128" height="120"/>
+        <image name="person.fill" catalog="system" width="32" height="32"/>
         <image name="upload" width="24.333333969116211" height="23.333333969116211"/>
-        <image name="video" catalog="system" width="128" height="82"/>
+        <image name="video" catalog="system" width="32" height="32"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

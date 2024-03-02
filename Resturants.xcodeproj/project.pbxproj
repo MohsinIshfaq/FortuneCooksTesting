@@ -8,8 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		28E0884F7B0D98691A6FD7BF /* Pods_Resturants.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 338B6AC4DD0531F5E7268D31 /* Pods_Resturants.framework */; };
-		7102B7192B6FBDF60039ED0B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7102B7182B6FBDF50039ED0B /* GoogleService-Info.plist */; };
 		7119F63A2B8B7DFF00FA8579 /* VideoRecordingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7119F6392B8B7DFF00FA8579 /* VideoRecordingVC.swift */; };
+		7131D9952B92CCC4005DE42E /* CameraConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7131D9942B92CCC4005DE42E /* CameraConfiguration.swift */; };
+		7131D9972B92D766005DE42E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7131D9962B92D765005DE42E /* GoogleService-Info.plist */; };
 		7144BD512B6E983100767374 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7144BD502B6E983100767374 /* HomeVC.swift */; };
 		7144BD542B6EA0CC00767374 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7144BD532B6EA0CC00767374 /* MenuVC.swift */; };
 		714B0F6C2B696F7800570578 /* SelectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714B0F6B2B696F7800570578 /* SelectionVC.swift */; };
@@ -57,8 +58,9 @@
 /* Begin PBXFileReference section */
 		0765EEAB37660B15C93D653F /* Pods-Resturants.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Resturants.debug.xcconfig"; path = "Target Support Files/Pods-Resturants/Pods-Resturants.debug.xcconfig"; sourceTree = "<group>"; };
 		338B6AC4DD0531F5E7268D31 /* Pods_Resturants.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Resturants.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7102B7182B6FBDF50039ED0B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7119F6392B8B7DFF00FA8579 /* VideoRecordingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRecordingVC.swift; sourceTree = "<group>"; };
+		7131D9942B92CCC4005DE42E /* CameraConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraConfiguration.swift; sourceTree = "<group>"; };
+		7131D9962B92D765005DE42E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7144BD502B6E983100767374 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		7144BD532B6EA0CC00767374 /* MenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
 		714B0F6B2B696F7800570578 /* SelectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionVC.swift; sourceTree = "<group>"; };
@@ -183,7 +185,7 @@
 		71B3DC632B55A93D00A3615F = {
 			isa = PBXGroup;
 			children = (
-				7102B7182B6FBDF50039ED0B /* GoogleService-Info.plist */,
+				7131D9962B92D765005DE42E /* GoogleService-Info.plist */,
 				71B3DC6E2B55A93D00A3615F /* Resturants */,
 				71B3DC6D2B55A93D00A3615F /* Products */,
 				2A7CB6FEFDE89927A55B648F /* Pods */,
@@ -253,6 +255,7 @@
 				71B3DC9F2B55B1F100A3615F /* BaseViewModel.swift */,
 				71B3DCA12B55B20A00A3615F /* String+extension.swift */,
 				716F6FDE2B5ADDC900049C1C /* CustomTabBar.swift */,
+				7131D9942B92CCC4005DE42E /* CameraConfiguration.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -427,6 +430,7 @@
 			files = (
 				716D49962B570CD40077F47D /* Inter-VariableFont_slnt,wght.ttf in Resources */,
 				71B3DCA52B55B25800A3615F /* Auth.storyboard in Resources */,
+				7131D9972B92D766005DE42E /* GoogleService-Info.plist in Resources */,
 				715388972B59A3EF006D682F /* Profile.storyboard in Resources */,
 				7153888D2B59A368006D682F /* TabbarController.storyboard in Resources */,
 				7153888F2B59A381006D682F /* Home.storyboard in Resources */,
@@ -438,7 +442,6 @@
 				71B3DC792B55A94000A3615F /* Assets.xcassets in Resources */,
 				715388952B59A3E1006D682F /* Video.storyboard in Resources */,
 				71C6A9CF2B695F3300E19808 /* AddDataCell.xib in Resources */,
-				7102B7192B6FBDF60039ED0B /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -504,6 +507,7 @@
 				7119F63A2B8B7DFF00FA8579 /* VideoRecordingVC.swift in Sources */,
 				715166442B5985E1007CE092 /* CrtProfile1VC.swift in Sources */,
 				71B3DC902B55AFC000A3615F /* Manager.swift in Sources */,
+				7131D9952B92CCC4005DE42E /* CameraConfiguration.swift in Sources */,
 				7151664C2B598989007CE092 /* CrtProfile5VC.swift in Sources */,
 				71B3DC9C2B55B19C00A3615F /* UIView+Extension.swift in Sources */,
 				7151DD762B6EB58D001B3018 /* LoginNC.swift in Sources */,
