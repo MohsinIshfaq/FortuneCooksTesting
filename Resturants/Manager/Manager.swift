@@ -135,4 +135,31 @@ final class UserManager {
      var selectedEmail             : String        = ""
      var selectedPhone             : String        = ""
     
+    let filterDisplayNameList = [
+        "Normal",
+        "Chrome",
+        "Fade",
+        "Instant",
+        "Mono",
+        "Noir",
+        "Process",
+        "Tonal",
+        "Transfer",
+        "Tone",
+        "Linear"
+    ]
+    
+    let filterNameList = [
+        "No Filter",
+        "CIPhotoEffectChrome",
+        "CIPhotoEffectFade",
+        "CIPhotoEffectInstant",
+        "CIPhotoEffectMono",
+        "CIPhotoEffectNoir",
+        "CIPhotoEffectProcess",
+        "CIPhotoEffectTonal",
+        "CIPhotoEffectTransfer",
+        "CILinearToSRGBToneCurve",
+        "CISRGBToneCurveToLinear"
+    ]
 }

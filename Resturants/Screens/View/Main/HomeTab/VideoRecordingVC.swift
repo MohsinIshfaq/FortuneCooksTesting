@@ -18,20 +18,22 @@ class VideoRecordingVC: UIViewController {
     @IBOutlet weak var progressRecording : UIProgressView!
     @IBOutlet weak var vwMain            : UIView!
     @IBOutlet weak var imgPreview        : UIImageView!
+    @IBOutlet weak var lblProgress       : UILabel!
     
     //MARK: - variables and Properties
     private var selected       : Bool = false
     private var selectedRecord : Bool = false
-    var timer: Timer?
-    let totalTime: Float = 30.0 // Total time in seconds
-    var elapsedTime: Float = 0.0 // Elapsed time
-    var captureSession: AVCaptureSession!
-    var videoDevice   : AVCaptureDevice?
-    var cameraSession : AVCaptureDeviceInput!
-    var previewLayer  : AVCaptureVideoPreviewLayer!
-    var videoComtroller = UIImagePickerController()
-    var cameraConfig  : CameraConfiguration!
-    var selectedURL   : URL?
+    var timer                  : Timer?
+    let totalTime              : Float = 30.0 // Total time in seconds
+    var elapsedTime            : Float = 0.0 // Elapsed time
+    var captureSession         : AVCaptureSession!
+    var videoDevice            : AVCaptureDevice?
+    var cameraSession          : AVCaptureDeviceInput!
+    var previewLayer           : AVCaptureVideoPreviewLayer!
+    var videoComtroller        = UIImagePickerController()
+    var cameraConfig           : CameraConfiguration!
+    var selectedURL            : URL?
+    var progress_value         = 0.1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,8 +46,8 @@ class VideoRecordingVC: UIViewController {
     
     @IBAction func ontapRecord(_ sender: UIButton){
         selectedRecord.toggle()
-        btnRecord.backgroundColor = selectedRecord == true ? .red : .link
-        elapsedTime = 0.0 // Elapsed time
+        btnRecord.backgroundColor = selectedRecord == true ? .red : .ColorDarkBlue
+        elapsedTime               = 0.0 // Elapsed time
         self.cameraConfig.outputType = .video
         
         if selectedRecord{
@@ -55,12 +57,15 @@ class VideoRecordingVC: UIViewController {
                     self.showAlertWith(title: "Error!", message: "\(url)")
                     return
                 }
-                UISaveVideoAtPathToSavedPhotosAlbum(url.path, self, #selector(self.video(_:didFinishSavingError: contextInfo:)), nil)
+                let vc = Constants.homehStoryBoard.instantiateViewController(withIdentifier: "EditVideoVC") as? EditVideoVC
+                    vc?.urlVideo = url
+                    self.navigationController?.pushViewController(vc!, animated: true)
+//                UISaveVideoAtPathToSavedPhotosAlbum(url.path, self, #selector(self.video(_:didFinishSavingError: contextInfo:)), nil)
             }
         }
         else{
             stopProgress()
-            elapsedTime = 0.0 // Elapsed time
+            progressRecording.progress = 0
             self.cameraConfig.stopRecording {[weak self] error in
                 self?.showAlertWith(title: "Error!", message: "\(error?.localizedDescription ?? "")")
             }
@@ -71,8 +76,12 @@ class VideoRecordingVC: UIViewController {
         if let error = error {
             self.showAlertWith(title: "Error!", message: "Could Not Save \(error.localizedDescription)")
         }
-        else{
-            self.selectedURL = URL(string: "file://" + video)
+        else {
+            // Access the URL of the saved video here
+            let videoURL = URL(string: "file://" + video)
+            let vc = Constants.homehStoryBoard.instantiateViewController(withIdentifier: "EditVideoVC") as? EditVideoVC
+            vc?.urlVideo = videoURL
+            self.navigationController?.pushViewController(vc!, animated: true)
         }
     }
     
@@ -100,11 +109,12 @@ extension VideoRecordingVC {
         setupVideo()
     }
     func onAppear() {
-        
+        lblProgress.text           = "\(0)"
     }
     
     func setupVideo() {
         
+        self.cameraConfig = CameraConfiguration()
         cameraConfig.setup { error in
             if error != nil{
                 self.showAlertWith(title: "Error!", message: "\(error!.localizedDescription)")
@@ -131,10 +141,12 @@ extension VideoRecordingVC {
            elapsedTime += 0.1 // Update elapsed time
            let progress = elapsedTime / totalTime
            progressRecording.progress = progress
-           
+           self.progress_value += 0.05
+           lblProgress.text           = "\(Int(self.progress_value))"
            if elapsedTime >= totalTime {
                timer?.invalidate()
                timer = nil
+               //btnRecord.backgroundColor = .blue
            }
        }
     func stopProgress() {
@@ -143,7 +155,4 @@ extension VideoRecordingVC {
         }
 }
 
-//MARK: - Extension for Camera recording of both sides{}
-extension VideoRecordingVC {
-    
-}
+

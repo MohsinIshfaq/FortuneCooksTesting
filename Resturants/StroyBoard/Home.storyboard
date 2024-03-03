@@ -245,6 +245,7 @@
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Iaq-6K-f0G">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" name="ColorWhite"/>
                         <color key="barTintColor" name="ColorWhite"/>
@@ -577,6 +578,7 @@
                                     </imageView>
                                     <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WQr-QK-BTC">
                                         <rect key="frame" x="16" y="36" width="361" height="4"/>
+                                        <color key="tintColor" systemColor="systemRedColor"/>
                                     </progressView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1fa-yV-Eta">
                                         <rect key="frame" x="146.66666666666666" y="590" width="100" height="100"/>
@@ -586,35 +588,43 @@
                                             <constraint firstAttribute="width" constant="100" id="kH7-Eg-gqf"/>
                                         </constraints>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal">
+                                            <color key="titleColor" name="ColorDarkBlue"/>
+                                        </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="50"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
-                                                <real key="value" value="0.59999999999999998"/>
+                                                <real key="value" value="0.0"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                                                <real key="value" value="0.59999999999999998"/>
+                                                <real key="value" value="0.0"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
-                                                <size key="value" width="1" height="0.0"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                                <color key="value" name="ColorWhite"/>
+                                                <size key="value" width="0.0" height="0.0"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="ontapRecord:" destination="ONq-th-DDd" eventType="touchUpInside" id="yjM-fV-iEe"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tnP-lb-zWe">
+                                        <rect key="frame" x="185" y="52" width="23" height="20"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <color key="textColor" name="ColorWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" name="ColorBlack"/>
                                 <constraints>
                                     <constraint firstItem="WQr-QK-BTC" firstAttribute="leading" secondItem="iGn-ep-KFC" secondAttribute="leading" constant="16" id="1j7-Nm-eZo"/>
                                     <constraint firstAttribute="bottom" secondItem="k51-DL-exl" secondAttribute="bottom" id="6ab-6e-hea"/>
+                                    <constraint firstItem="tnP-lb-zWe" firstAttribute="top" secondItem="WQr-QK-BTC" secondAttribute="bottom" constant="12" id="SmP-j6-m0s"/>
                                     <constraint firstItem="1fa-yV-Eta" firstAttribute="centerX" secondItem="iGn-ep-KFC" secondAttribute="centerX" id="Yah-QW-XXh"/>
                                     <constraint firstAttribute="trailing" secondItem="WQr-QK-BTC" secondAttribute="trailing" constant="16" id="aVt-Zb-894"/>
                                     <constraint firstItem="WQr-QK-BTC" firstAttribute="top" secondItem="iGn-ep-KFC" secondAttribute="top" constant="36" id="dFx-7o-fsx"/>
+                                    <constraint firstItem="tnP-lb-zWe" firstAttribute="centerX" secondItem="iGn-ep-KFC" secondAttribute="centerX" id="iMP-eX-dyi"/>
                                     <constraint firstItem="k51-DL-exl" firstAttribute="leading" secondItem="iGn-ep-KFC" secondAttribute="leading" id="iQh-8W-0yl"/>
                                     <constraint firstItem="k51-DL-exl" firstAttribute="top" secondItem="iGn-ep-KFC" secondAttribute="top" id="ilm-3O-6zs"/>
                                     <constraint firstAttribute="trailing" secondItem="k51-DL-exl" secondAttribute="trailing" id="p0i-7w-6DH"/>
@@ -638,6 +648,7 @@
                     <connections>
                         <outlet property="btnRecord" destination="1fa-yV-Eta" id="qx4-9M-WSA"/>
                         <outlet property="imgPreview" destination="k51-DL-exl" id="2e3-Mf-DNc"/>
+                        <outlet property="lblProgress" destination="tnP-lb-zWe" id="IBD-SL-0s0"/>
                         <outlet property="progressRecording" destination="WQr-QK-BTC" id="MSQ-gF-4LO"/>
                         <outlet property="vwMain" destination="iGn-ep-KFC" id="jdl-Lu-UtR"/>
                     </connections>
@@ -783,18 +794,86 @@
             </objects>
             <point key="canvasLocation" x="1556.4885496183206" y="-651.4084507042254"/>
         </scene>
+        <!--Edit VideoVC-->
+        <scene sceneID="ngN-ph-jPv">
+            <objects>
+                <viewController storyboardIdentifier="EditVideoVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9xD-Tb-dFo" customClass="EditVideoVC" customModule="Resturants" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="GSP-c2-XAD">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gKS-hz-h5Z">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="59"/>
+                                <color key="backgroundColor" name="ColorBlack"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z34-HP-iXP">
+                                <rect key="frame" x="0.0" y="59" width="393" height="793"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yfq-7t-cgn">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="555"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="CgK-0w-Bw7">
+                                        <rect key="frame" x="0.0" y="631" width="393" height="120"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="120" id="48r-eT-TWi"/>
+                                        </constraints>
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="kOB-xz-ocX">
+                                            <size key="itemSize" width="128" height="128"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells/>
+                                    </collectionView>
+                                </subviews>
+                                <color key="backgroundColor" name="ColorBlack"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="yfq-7t-cgn" secondAttribute="trailing" id="FAd-EE-Dg8"/>
+                                    <constraint firstItem="yfq-7t-cgn" firstAttribute="top" secondItem="Z34-HP-iXP" secondAttribute="top" id="IAD-fG-UZR"/>
+                                    <constraint firstItem="CgK-0w-Bw7" firstAttribute="leading" secondItem="Z34-HP-iXP" secondAttribute="leading" id="SKn-nx-hD0"/>
+                                    <constraint firstItem="yfq-7t-cgn" firstAttribute="height" secondItem="Z34-HP-iXP" secondAttribute="height" multiplier="0.7" id="VI2-mR-vtO"/>
+                                    <constraint firstAttribute="trailing" secondItem="CgK-0w-Bw7" secondAttribute="trailing" id="qgE-Pn-RGw"/>
+                                    <constraint firstItem="yfq-7t-cgn" firstAttribute="leading" secondItem="Z34-HP-iXP" secondAttribute="leading" id="tNK-Hl-8cv"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="mZe-h2-OoB"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Z34-HP-iXP" firstAttribute="leading" secondItem="GSP-c2-XAD" secondAttribute="leading" id="1kD-K1-Rch"/>
+                            <constraint firstAttribute="trailing" secondItem="Z34-HP-iXP" secondAttribute="trailing" id="55Y-mh-3bR"/>
+                            <constraint firstItem="Z34-HP-iXP" firstAttribute="top" secondItem="gKS-hz-h5Z" secondAttribute="bottom" id="79h-BW-imy"/>
+                            <constraint firstAttribute="bottom" secondItem="Z34-HP-iXP" secondAttribute="bottom" id="9Pq-VA-4JR"/>
+                            <constraint firstItem="mZe-h2-OoB" firstAttribute="bottom" secondItem="CgK-0w-Bw7" secondAttribute="bottom" constant="8" id="KjA-ch-IEe"/>
+                            <constraint firstItem="gKS-hz-h5Z" firstAttribute="top" secondItem="GSP-c2-XAD" secondAttribute="top" id="M9U-Wh-DrH"/>
+                            <constraint firstItem="Z34-HP-iXP" firstAttribute="top" secondItem="mZe-h2-OoB" secondAttribute="top" id="P5n-jp-q1D"/>
+                            <constraint firstItem="gKS-hz-h5Z" firstAttribute="leading" secondItem="GSP-c2-XAD" secondAttribute="leading" id="i4U-2w-s9c"/>
+                            <constraint firstAttribute="trailing" secondItem="gKS-hz-h5Z" secondAttribute="trailing" id="y3l-uY-3y1"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="vwCollect" destination="CgK-0w-Bw7" id="ze4-gP-PVP"/>
+                        <outlet property="vwVideo" destination="yfq-7t-cgn" id="k8s-FF-RKH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iyV-s2-Kcs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2913.740458015267" y="5.6338028169014089"/>
+        </scene>
     </scenes>
     <resources>
         <image name="FrameTop" width="375" height="164"/>
         <image name="Share" width="16.333333969116211" height="16"/>
         <image name="Video 1" width="374" height="217"/>
-        <image name="bookmark" catalog="system" width="32" height="32"/>
-        <image name="heart" catalog="system" width="32" height="32"/>
+        <image name="bookmark" catalog="system" width="110" height="128"/>
+        <image name="heart" catalog="system" width="128" height="107"/>
         <image name="house" width="24.333333969116211" height="24"/>
         <image name="message-circle" width="16.333333969116211" height="16"/>
-        <image name="person.fill" catalog="system" width="32" height="32"/>
+        <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="upload" width="24.333333969116211" height="23.333333969116211"/>
-        <image name="video" catalog="system" width="32" height="32"/>
+        <image name="video" catalog="system" width="128" height="82"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -815,6 +894,9 @@
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

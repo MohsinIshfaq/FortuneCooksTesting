@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		28E0884F7B0D98691A6FD7BF /* Pods_Resturants.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 338B6AC4DD0531F5E7268D31 /* Pods_Resturants.framework */; };
+		46C4A0972B93245300F27C8F /* FilterCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C4A0952B93245300F27C8F /* FilterCCell.swift */; };
+		46C4A0982B93245300F27C8F /* FilterCCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46C4A0962B93245300F27C8F /* FilterCCell.xib */; };
+		46C4A09A2B93290100F27C8F /* VideoEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C4A0992B93290100F27C8F /* VideoEditor.swift */; };
+		46C820F92B930179007E543F /* EditVideoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C820F82B930179007E543F /* EditVideoVC.swift */; };
 		7119F63A2B8B7DFF00FA8579 /* VideoRecordingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7119F6392B8B7DFF00FA8579 /* VideoRecordingVC.swift */; };
 		7131D9952B92CCC4005DE42E /* CameraConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7131D9942B92CCC4005DE42E /* CameraConfiguration.swift */; };
 		7131D9972B92D766005DE42E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7131D9962B92D765005DE42E /* GoogleService-Info.plist */; };
@@ -58,6 +62,10 @@
 /* Begin PBXFileReference section */
 		0765EEAB37660B15C93D653F /* Pods-Resturants.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Resturants.debug.xcconfig"; path = "Target Support Files/Pods-Resturants/Pods-Resturants.debug.xcconfig"; sourceTree = "<group>"; };
 		338B6AC4DD0531F5E7268D31 /* Pods_Resturants.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Resturants.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		46C4A0952B93245300F27C8F /* FilterCCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCCell.swift; sourceTree = "<group>"; };
+		46C4A0962B93245300F27C8F /* FilterCCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterCCell.xib; sourceTree = "<group>"; };
+		46C4A0992B93290100F27C8F /* VideoEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoEditor.swift; sourceTree = "<group>"; };
+		46C820F82B930179007E543F /* EditVideoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditVideoVC.swift; sourceTree = "<group>"; };
 		7119F6392B8B7DFF00FA8579 /* VideoRecordingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRecordingVC.swift; sourceTree = "<group>"; };
 		7131D9942B92CCC4005DE42E /* CameraConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraConfiguration.swift; sourceTree = "<group>"; };
 		7131D9962B92D765005DE42E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -137,12 +145,22 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		46C4A0942B93240E00F27C8F /* FilterCCell */ = {
+			isa = PBXGroup;
+			children = (
+				46C4A0952B93245300F27C8F /* FilterCCell.swift */,
+				46C4A0962B93245300F27C8F /* FilterCCell.xib */,
+			);
+			path = FilterCCell;
+			sourceTree = "<group>";
+		};
 		7144BD522B6EA0A000767374 /* HomeTab */ = {
 			isa = PBXGroup;
 			children = (
 				7144BD502B6E983100767374 /* HomeVC.swift */,
 				7144BD532B6EA0CC00767374 /* MenuVC.swift */,
 				7119F6392B8B7DFF00FA8579 /* VideoRecordingVC.swift */,
+				46C820F82B930179007E543F /* EditVideoVC.swift */,
 			);
 			path = HomeTab;
 			sourceTree = "<group>";
@@ -256,6 +274,7 @@
 				71B3DCA12B55B20A00A3615F /* String+extension.swift */,
 				716F6FDE2B5ADDC900049C1C /* CustomTabBar.swift */,
 				7131D9942B92CCC4005DE42E /* CameraConfiguration.swift */,
+				46C4A0992B93290100F27C8F /* VideoEditor.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -343,6 +362,7 @@
 		71C6A9C52B694CA000E19808 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				46C4A0942B93240E00F27C8F /* FilterCCell */,
 				714B0F6D2B69700700570578 /* selectionTCell */,
 				71C6A9CB2B695F1400E19808 /* AddDataCell */,
 				71C6A9C62B694CBD00E19808 /* CollectionCell */,
@@ -440,6 +460,7 @@
 				71C6A9CA2B694CF200E19808 /* CollectionCell.xib in Resources */,
 				714B0F712B69703B00570578 /* SelectioTCell.xib in Resources */,
 				71B3DC792B55A94000A3615F /* Assets.xcassets in Resources */,
+				46C4A0982B93245300F27C8F /* FilterCCell.xib in Resources */,
 				715388952B59A3E1006D682F /* Video.storyboard in Resources */,
 				71C6A9CF2B695F3300E19808 /* AddDataCell.xib in Resources */,
 			);
@@ -494,8 +515,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46C4A0972B93245300F27C8F /* FilterCCell.swift in Sources */,
 				71B3DC702B55A93D00A3615F /* AppDelegate.swift in Sources */,
 				715166462B598903007CE092 /* CrtProfile2VC.swift in Sources */,
+				46C820F92B930179007E543F /* EditVideoVC.swift in Sources */,
 				714B0F702B69703B00570578 /* SelectioTCell.swift in Sources */,
 				7144BD512B6E983100767374 /* HomeVC.swift in Sources */,
 				7153888B2B5998BC006D682F /* CreatAccntVC.swift in Sources */,
@@ -514,6 +537,7 @@
 				71B3DC722B55A93D00A3615F /* SceneDelegate.swift in Sources */,
 				716F6FDD2B5ADD5A00049C1C /* TabbarController.swift in Sources */,
 				716F6FDF2B5ADDC900049C1C /* CustomTabBar.swift in Sources */,
+				46C4A09A2B93290100F27C8F /* VideoEditor.swift in Sources */,
 				7144BD542B6EA0CC00767374 /* MenuVC.swift in Sources */,
 				714B0F6C2B696F7800570578 /* SelectionVC.swift in Sources */,
 				71C6A9C92B694CF200E19808 /* CollectionCell.swift in Sources */,
@@ -664,7 +688,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3A7MPB58BH;
+				DEVELOPMENT_TEAM = 6Q8962R8FR;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Resturants/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -697,7 +721,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3A7MPB58BH;
+				DEVELOPMENT_TEAM = 6Q8962R8FR;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Resturants/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
