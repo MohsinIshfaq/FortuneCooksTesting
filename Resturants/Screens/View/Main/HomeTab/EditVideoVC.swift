@@ -7,8 +7,9 @@
 
 import UIKit
 import AVKit
+import Photos
 
-class EditVideoVC: UIViewController {
+class EditVideoVC: UIViewController, UINavigationControllerDelegate {
 
     //MARK: - @IBOutlets
     @IBOutlet weak var vwVideo   :  UIView!
@@ -23,11 +24,13 @@ class EditVideoVC: UIViewController {
     var videoPlayer           : AVPlayer!
     var avpController         : AVPlayerViewController!
     var avVideoComposition    : AVVideoComposition!
+    var video                 : AVURLAsset?
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         onLoad()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -35,14 +38,29 @@ class EditVideoVC: UIViewController {
         onAppear()
     }
     
+    @IBAction func ontapCancel(_ sender: UIButton) {
+        self.dismiss(animated: true)
+    }
+    
+    @IBAction func ontapSave(_ sender: UIButton) {
+        checkPhotoLibraryPermission()
+    }
+
 }
 
 //MARK: - Extension of setup Data{}
 extension EditVideoVC {
    
     func onLoad(){
+        guard let url = urlVideo else {
+            // Handle the case when the video URL is nil
+            return
+        }
+        // Convert URL to NSURL
+        let asset = AVURLAsset(url: url as URL)
+        self.video = asset
         removeNavBackbuttonTitle()
-        addVideoPlayer(videoUrl: urlVideo!, to: vwVideo, filterName: "")
+        addVideoPlayer(videoUrl: video!, to: vwVideo, filterName: "")
         setupFilterCollection()
         if let url = self.urlVideo {
             self.thumImg  = generateThumbnail(path: url)
@@ -52,12 +70,10 @@ extension EditVideoVC {
     func onAppear(){
     }
     
-    func addVideoPlayer(videoUrl: URL, to view: UIView , filterName: String) {
-        let videoUrl = videoUrl
-        let asset = AVAsset(url: videoUrl)
-        let avPlayerItem = AVPlayerItem(asset: asset)
+    func addVideoPlayer(videoUrl: AVURLAsset, to view: UIView , filterName: String) {
+        let avPlayerItem = AVPlayerItem(asset: videoUrl)
         if filterName != "" {
-            avVideoComposition = AVVideoComposition(asset: asset, applyingCIFiltersWithHandler: { request in
+            avVideoComposition = AVVideoComposition(asset: self.video!, applyingCIFiltersWithHandler: { request in
                 let source = request.sourceImage.clampedToExtent()
                 let filter = CIFilter(name:filterName)!
                 filter.setDefaults()
@@ -114,6 +130,64 @@ extension EditVideoVC {
         }
     }
     
+    //Exporting Video
+    func checkPhotoLibraryPermission() {
+        let status = PHPhotoLibrary.authorizationStatus()
+        switch status {
+        case .authorized:
+            exportFilteredVideo()
+        case .denied, .restricted:
+            showPermissionDeniedAlert()
+        case .notDetermined:
+            PHPhotoLibrary.requestAuthorization { [weak self] status in
+                DispatchQueue.main.async {
+                    if status == .authorized {
+                        self?.exportFilteredVideo()
+                    } else {
+                        self?.showPermissionDeniedAlert()
+                    }
+                }
+            }
+        @unknown default:
+            break
+        }
+    }
+
+    func exportFilteredVideo() {
+        if let video = self.video , let compostion = avVideoComposition {
+            video.exportFilterVideo(video: video, videoComposition: avVideoComposition , completion: { (url) in
+            })
+            self.dismiss(animated: true)
+        }
+        else{
+            print("Please select filter")
+        }
+        
+    }
+    
+    func showPermissionDeniedAlert() {
+        let alertController = UIAlertController(
+            title: "Photo Library Access Required",
+            message: "Access to the photo library is required to save the video. Please grant permission in the device settings.",
+            preferredStyle: .alert
+        )
+        
+        alertController.addAction(UIAlertAction(
+            title: "Open Settings",
+            style: .default,
+            handler: { _ in
+                // Open the settings app
+                UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!, options: [:], completionHandler: nil)
+            }
+        ))
+        alertController.addAction(UIAlertAction(
+            title: "Cancel",
+            style: .cancel,
+            handler: nil
+        ))
+        present(alertController, animated: true, completion: nil)
+    }
+    
 }
 
 //MARK: - Extension of Filter {}
@@ -138,10 +212,10 @@ extension EditVideoVC : UICollectionViewDelegate , UICollectionViewDataSource , 
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.row != 0 {
-            addVideoPlayer(videoUrl: urlVideo!, to: vwVideo, filterName:UserManager.shared.filterNameList[indexPath.row])
+            addVideoPlayer(videoUrl: self.video!, to: vwVideo, filterName:UserManager.shared.filterNameList[indexPath.row])
         }
         else{
-            addVideoPlayer(videoUrl: urlVideo!, to: vwVideo, filterName:"")
+            addVideoPlayer(videoUrl: self.video!, to: vwVideo, filterName:"")
         }
     }
     

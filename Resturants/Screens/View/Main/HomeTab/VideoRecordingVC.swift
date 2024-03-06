@@ -57,10 +57,11 @@ class VideoRecordingVC: UIViewController {
                     self.showAlertWith(title: "Error!", message: "\(url)")
                     return
                 }
+                
                 let vc = Constants.homehStoryBoard.instantiateViewController(withIdentifier: "EditVideoVC") as? EditVideoVC
                     vc?.urlVideo = url
-                    self.navigationController?.pushViewController(vc!, animated: true)
-//                UISaveVideoAtPathToSavedPhotosAlbum(url.path, self, #selector(self.video(_:didFinishSavingError: contextInfo:)), nil)
+                    self.navigationController?.present(vc!, animated: true)
+
             }
         }
         else{
@@ -69,19 +70,6 @@ class VideoRecordingVC: UIViewController {
             self.cameraConfig.stopRecording {[weak self] error in
                 self?.showAlertWith(title: "Error!", message: "\(error?.localizedDescription ?? "")")
             }
-        }
-    }
-    
-    @objc func video(_ video: String , didFinishSavingError error: NSError? , contextInfo: UnsafeRawPointer) {
-        if let error = error {
-            self.showAlertWith(title: "Error!", message: "Could Not Save \(error.localizedDescription)")
-        }
-        else {
-            // Access the URL of the saved video here
-            let videoURL = URL(string: "file://" + video)
-            let vc = Constants.homehStoryBoard.instantiateViewController(withIdentifier: "EditVideoVC") as? EditVideoVC
-            vc?.urlVideo = videoURL
-            self.navigationController?.pushViewController(vc!, animated: true)
         }
     }
     
@@ -134,25 +122,25 @@ extension VideoRecordingVC {
     }
     
     func startProgress() {
-           timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updateProgress), userInfo: nil, repeats: true)
-       }
-       
-       @objc func updateProgress() {
-           elapsedTime += 0.1 // Update elapsed time
-           let progress = elapsedTime / totalTime
-           progressRecording.progress = progress
-           self.progress_value += 0.05
-           lblProgress.text           = "\(Int(self.progress_value))"
-           if elapsedTime >= totalTime {
-               timer?.invalidate()
-               timer = nil
-               //btnRecord.backgroundColor = .blue
-           }
-       }
-    func stopProgress() {
+        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updateProgress), userInfo: nil, repeats: true)
+    }
+    
+    @objc func updateProgress() {
+        elapsedTime += 0.1 // Update elapsed time
+        let progress = elapsedTime / totalTime
+        progressRecording.progress = progress
+        self.progress_value += 0.05
+        lblProgress.text           = "\(Int(self.progress_value))"
+        if elapsedTime >= totalTime {
             timer?.invalidate()
             timer = nil
+            //btnRecord.backgroundColor = .blue
         }
+    }
+    func stopProgress() {
+        timer?.invalidate()
+        timer = nil
+    }
 }
 
 

@@ -14,6 +14,20 @@ final class UserManager {
     static let shared     = UserManager()
     private init () {}
     
+    let arrAccnt                                  = [
+       "Private person",
+       "Content Creator",
+       "Restaurant",
+       "Cafeteria",
+       "Grocery_store",
+       "Wholesaler",
+       "Bakery",
+       "Food_producer",
+       "Beverage_manufacturer",
+       "Food_truck",
+       "Hotel"
+   ]
+    
      var arrCuisine         = [["African" , "0"],
                                       ["American" , "0"],
                                       ["Asian" , "0"],

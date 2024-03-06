@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Nfc-BW-lwx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Nfc-BW-lwx">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -795,31 +795,31 @@
             <point key="canvasLocation" x="1556.4885496183206" y="-651.4084507042254"/>
         </scene>
         <!--Edit VideoVC-->
-        <scene sceneID="ngN-ph-jPv">
+        <scene sceneID="IYA-ZX-trA">
             <objects>
-                <viewController storyboardIdentifier="EditVideoVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9xD-Tb-dFo" customClass="EditVideoVC" customModule="Resturants" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="GSP-c2-XAD">
+                <viewController storyboardIdentifier="EditVideoVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="d7v-PW-ua1" customClass="EditVideoVC" customModule="Resturants" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="RIA-bm-kPy">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gKS-hz-h5Z">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Atv-KV-BWs">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="59"/>
                                 <color key="backgroundColor" name="ColorBlack"/>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z34-HP-iXP">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fUC-ay-Zcb">
                                 <rect key="frame" x="0.0" y="59" width="393" height="793"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yfq-7t-cgn">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="555"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Clc-dT-h7M">
+                                        <rect key="frame" x="0.0" y="60" width="393" height="555"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="CgK-0w-Bw7">
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="3ke-EA-HJr">
                                         <rect key="frame" x="0.0" y="631" width="393" height="120"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="120" id="48r-eT-TWi"/>
+                                            <constraint firstAttribute="height" constant="120" id="d5N-a9-DyJ"/>
                                         </constraints>
-                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="kOB-xz-ocX">
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="kGR-dm-4lH">
                                             <size key="itemSize" width="128" height="128"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -827,40 +827,76 @@
                                         </collectionViewFlowLayout>
                                         <cells/>
                                     </collectionView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ztn-cn-0Qb">
+                                        <rect key="frame" x="332" y="7" width="45" height="45"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="45" id="cpc-oS-v6X"/>
+                                            <constraint firstAttribute="height" constant="45" id="xlc-YC-SCI"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="tintColor" name="ColorWhite"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="checkmark" catalog="system">
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="medium"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="ontapSave:" destination="d7v-PW-ua1" eventType="touchUpInside" id="2gr-KL-1Tz"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dq6-aj-JfX">
+                                        <rect key="frame" x="16" y="22" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="3vq-2Q-fIa"/>
+                                            <constraint firstAttribute="width" constant="30" id="sQ1-Kc-1fS"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="tintColor" name="ColorWhite"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="multiply" catalog="system">
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="medium"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="ontapCancel:" destination="d7v-PW-ua1" eventType="touchUpInside" id="Abu-FO-vKZ"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" name="ColorBlack"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="yfq-7t-cgn" secondAttribute="trailing" id="FAd-EE-Dg8"/>
-                                    <constraint firstItem="yfq-7t-cgn" firstAttribute="top" secondItem="Z34-HP-iXP" secondAttribute="top" id="IAD-fG-UZR"/>
-                                    <constraint firstItem="CgK-0w-Bw7" firstAttribute="leading" secondItem="Z34-HP-iXP" secondAttribute="leading" id="SKn-nx-hD0"/>
-                                    <constraint firstItem="yfq-7t-cgn" firstAttribute="height" secondItem="Z34-HP-iXP" secondAttribute="height" multiplier="0.7" id="VI2-mR-vtO"/>
-                                    <constraint firstAttribute="trailing" secondItem="CgK-0w-Bw7" secondAttribute="trailing" id="qgE-Pn-RGw"/>
-                                    <constraint firstItem="yfq-7t-cgn" firstAttribute="leading" secondItem="Z34-HP-iXP" secondAttribute="leading" id="tNK-Hl-8cv"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ztn-cn-0Qb" secondAttribute="trailing" constant="16" id="5m7-aE-hnf"/>
+                                    <constraint firstItem="3ke-EA-HJr" firstAttribute="leading" secondItem="fUC-ay-Zcb" secondAttribute="leading" id="6TC-Ot-l1M"/>
+                                    <constraint firstItem="Clc-dT-h7M" firstAttribute="top" secondItem="fUC-ay-Zcb" secondAttribute="top" constant="60" id="90u-rf-RxO"/>
+                                    <constraint firstItem="Clc-dT-h7M" firstAttribute="leading" secondItem="fUC-ay-Zcb" secondAttribute="leading" id="TVc-Jb-eXD"/>
+                                    <constraint firstItem="Clc-dT-h7M" firstAttribute="top" secondItem="Ztn-cn-0Qb" secondAttribute="bottom" constant="8" id="a6E-5A-NRc"/>
+                                    <constraint firstItem="dq6-aj-JfX" firstAttribute="leading" secondItem="fUC-ay-Zcb" secondAttribute="leading" constant="16" id="esp-mK-S6B"/>
+                                    <constraint firstItem="Clc-dT-h7M" firstAttribute="top" secondItem="dq6-aj-JfX" secondAttribute="bottom" constant="8" id="fJP-qy-FOF"/>
+                                    <constraint firstAttribute="trailing" secondItem="Clc-dT-h7M" secondAttribute="trailing" id="gow-Wt-gcX"/>
+                                    <constraint firstItem="Clc-dT-h7M" firstAttribute="height" secondItem="fUC-ay-Zcb" secondAttribute="height" multiplier="0.7" id="hDZ-SU-x9H"/>
+                                    <constraint firstAttribute="trailing" secondItem="3ke-EA-HJr" secondAttribute="trailing" id="nFP-I0-39F"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="mZe-h2-OoB"/>
+                        <viewLayoutGuide key="safeArea" id="iCb-t8-lsh"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Z34-HP-iXP" firstAttribute="leading" secondItem="GSP-c2-XAD" secondAttribute="leading" id="1kD-K1-Rch"/>
-                            <constraint firstAttribute="trailing" secondItem="Z34-HP-iXP" secondAttribute="trailing" id="55Y-mh-3bR"/>
-                            <constraint firstItem="Z34-HP-iXP" firstAttribute="top" secondItem="gKS-hz-h5Z" secondAttribute="bottom" id="79h-BW-imy"/>
-                            <constraint firstAttribute="bottom" secondItem="Z34-HP-iXP" secondAttribute="bottom" id="9Pq-VA-4JR"/>
-                            <constraint firstItem="mZe-h2-OoB" firstAttribute="bottom" secondItem="CgK-0w-Bw7" secondAttribute="bottom" constant="8" id="KjA-ch-IEe"/>
-                            <constraint firstItem="gKS-hz-h5Z" firstAttribute="top" secondItem="GSP-c2-XAD" secondAttribute="top" id="M9U-Wh-DrH"/>
-                            <constraint firstItem="Z34-HP-iXP" firstAttribute="top" secondItem="mZe-h2-OoB" secondAttribute="top" id="P5n-jp-q1D"/>
-                            <constraint firstItem="gKS-hz-h5Z" firstAttribute="leading" secondItem="GSP-c2-XAD" secondAttribute="leading" id="i4U-2w-s9c"/>
-                            <constraint firstAttribute="trailing" secondItem="gKS-hz-h5Z" secondAttribute="trailing" id="y3l-uY-3y1"/>
+                            <constraint firstItem="fUC-ay-Zcb" firstAttribute="leading" secondItem="RIA-bm-kPy" secondAttribute="leading" id="HpF-o9-B5G"/>
+                            <constraint firstAttribute="trailing" secondItem="Atv-KV-BWs" secondAttribute="trailing" id="Hxe-hi-LbM"/>
+                            <constraint firstItem="Atv-KV-BWs" firstAttribute="top" secondItem="RIA-bm-kPy" secondAttribute="top" id="LwY-BK-K4f"/>
+                            <constraint firstAttribute="bottom" secondItem="fUC-ay-Zcb" secondAttribute="bottom" id="MCm-Dj-W7v"/>
+                            <constraint firstItem="fUC-ay-Zcb" firstAttribute="top" secondItem="iCb-t8-lsh" secondAttribute="top" id="Udy-fZ-iQj"/>
+                            <constraint firstItem="Atv-KV-BWs" firstAttribute="leading" secondItem="RIA-bm-kPy" secondAttribute="leading" id="WnK-re-og0"/>
+                            <constraint firstItem="fUC-ay-Zcb" firstAttribute="top" secondItem="Atv-KV-BWs" secondAttribute="bottom" id="ps3-Ar-FDA"/>
+                            <constraint firstItem="iCb-t8-lsh" firstAttribute="bottom" secondItem="3ke-EA-HJr" secondAttribute="bottom" constant="8" id="rRW-PZ-pQt"/>
+                            <constraint firstAttribute="trailing" secondItem="fUC-ay-Zcb" secondAttribute="trailing" id="tXA-0L-eUS"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="vwCollect" destination="CgK-0w-Bw7" id="ze4-gP-PVP"/>
-                        <outlet property="vwVideo" destination="yfq-7t-cgn" id="k8s-FF-RKH"/>
+                        <outlet property="vwCollect" destination="3ke-EA-HJr" id="LDt-VY-2av"/>
+                        <outlet property="vwVideo" destination="Clc-dT-h7M" id="0IC-j8-0BC"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="iyV-s2-Kcs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qli-yh-laj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2913.740458015267" y="5.6338028169014089"/>
+            <point key="canvasLocation" x="3088" y="6"/>
         </scene>
     </scenes>
     <resources>
@@ -868,9 +904,11 @@
         <image name="Share" width="16.333333969116211" height="16"/>
         <image name="Video 1" width="374" height="217"/>
         <image name="bookmark" catalog="system" width="110" height="128"/>
+        <image name="checkmark" catalog="system" width="128" height="114"/>
         <image name="heart" catalog="system" width="128" height="107"/>
         <image name="house" width="24.333333969116211" height="24"/>
         <image name="message-circle" width="16.333333969116211" height="16"/>
+        <image name="multiply" catalog="system" width="128" height="111"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="upload" width="24.333333969116211" height="23.333333969116211"/>
         <image name="video" catalog="system" width="128" height="82"/>

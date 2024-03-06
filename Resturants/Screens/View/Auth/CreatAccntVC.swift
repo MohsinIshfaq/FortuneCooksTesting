@@ -16,22 +16,47 @@ class CreatAccntVC: UIViewController , createAccntDelegate {
     func collectionData(type: Int) {
         if type == 0{
             UserManager.shared.selectedCuisine.removeAll()
+            for i in 0..<UserManager.shared.arrCuisine.count{
+                if UserManager.shared.arrCuisine[i][1] == "1" {
+                    self.arrSelectedCusisine.append(UserManager.shared.arrCuisine[i][0])
+                }
+            }
             CollectCuisine.reloadData()
         }
         else if type == 1{
             UserManager.shared.selectedEnviorment.removeAll()
+            for i in 0..<UserManager.shared.arrEnviorment.count{
+                if UserManager.shared.arrEnviorment[i][1] == "1" {
+                    self.arrSelectedEnviorment.append(UserManager.shared.arrEnviorment[i][0])
+                }
+            }
             CollectEnviorment.reloadData()
         }
         else if type == 2{
             UserManager.shared.selectedFeature.removeAll()
+            for i in 0..<UserManager.shared.arrFeature.count{
+                if UserManager.shared.arrFeature[i][1] == "1" {
+                    self.arrSelectedFeature.append(UserManager.shared.arrFeature[i][0])
+                }
+            }
             CollectFeature.reloadData()
         }
         else if type == 3{
             UserManager.shared.selectedMeals.removeAll()
+            for i in 0..<UserManager.shared.arrMeals.count{
+                if UserManager.shared.arrMeals[i][1] == "1" {
+                    self.arrSelectedMeals.append(UserManager.shared.arrMeals[i][0])
+                }
+            }
             CollectMeal.reloadData()
         }
         else{
             UserManager.shared.selectedSpecial.removeAll()
+            for i in 0..<UserManager.shared.arrSpeacials.count{
+                if UserManager.shared.arrSpeacials[i][1] == "1" {
+                    self.arrSelectedSpecial.append(UserManager.shared.arrSpeacials[i][0])
+                }
+            }
             CollectSpecial.reloadData()
         }
     }
@@ -61,21 +86,12 @@ class CreatAccntVC: UIViewController , createAccntDelegate {
     
     
     //MARK: - variables and Properties
-    private var arrAccnt                                  = [
-        "Private person",
-        "Content Creator",
-        "Restaurant",
-        "Cafeteria",
-        "Grocery_store",
-        "Wholesaler",
-        "Bakery",
-        "Food_producer",
-        "Beverage_manufacturer",
-        "Food_truck",
-        "Hotel"
-    ]
-    
-    var type                                              = -1
+    var type                              = -1
+    var arrSelectedCusisine : [String]    = []
+    var arrSelectedEnviorment : [String]  = []
+    var arrSelectedMeals    : [String]    = []
+    var arrSelectedFeature  : [String]    = []
+    var arrSelectedSpecial  : [String]    = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,7 +114,7 @@ class CreatAccntVC: UIViewController , createAccntDelegate {
             self.setupAccountTypes(action.title)
         }
         var menuChildren: [UIMenuElement] = []
-        for meal in arrAccnt {
+        for meal in UserManager.shared.arrAccnt {
             menuChildren.append(UIAction(title: meal, handler: actionClosure))
         }
         sender.menu = UIMenu(options: .displayInline, children: menuChildren)
@@ -214,11 +230,7 @@ extension CreatAccntVC: UICollectionViewDelegate , UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == CollectCuisine {
-            let totalCount = UserManager.shared.arrCuisine.reduce(0) { (totalCount, array) in
-                // Check if the second element of the array is equal to 1
-                return totalCount + (array[1] == "1" ? 1 : 0)
-            }
-            if totalCount == 0 {
+            if arrSelectedCusisine.count == 0 {
                 self.btnAddCusion.isHidden = false
                 self.btnTopAddCusion.isHidden = true
                 return 0
@@ -226,15 +238,11 @@ extension CreatAccntVC: UICollectionViewDelegate , UICollectionViewDataSource {
             else{
                 self.btnAddCusion.isHidden = true
                 self.btnTopAddCusion.isHidden = false
-               return totalCount
+                return arrSelectedCusisine.count
             }
         }
         else if collectionView == CollectEnviorment {
-            let totalCount = UserManager.shared.arrEnviorment.reduce(0) { (totalCount, array) in
-                // Check if the second element of the array is equal to 1
-                return totalCount + (array[1] == "1" ? 1 : 0)
-            }
-            if totalCount == 0 {
+            if arrSelectedEnviorment.count == 0 {
                 self.btnEnviorment.isHidden = false
                 self.btnTopEnviorment.isHidden = true
                 return 0
@@ -242,15 +250,11 @@ extension CreatAccntVC: UICollectionViewDelegate , UICollectionViewDataSource {
             else{
                 self.btnEnviorment.isHidden = true
                 self.btnTopEnviorment.isHidden = false
-               return totalCount
+               return arrSelectedEnviorment.count
             }
         }
         else if collectionView == CollectFeature {
-            let totalCount = UserManager.shared.arrFeature.reduce(0) { (totalCount, array) in
-                // Check if the second element of the array is equal to 1
-                return totalCount + (array[1] == "1" ? 1 : 0)
-            }
-            if totalCount == 0 {
+            if arrSelectedFeature.count == 0 {
                 self.btnFeature.isHidden = false
                 self.btnTopFeature.isHidden = true
                 return 0
@@ -258,15 +262,11 @@ extension CreatAccntVC: UICollectionViewDelegate , UICollectionViewDataSource {
             else{
                 self.btnFeature.isHidden = true
                 self.btnTopFeature.isHidden = false
-               return totalCount
+                return arrSelectedFeature.count
             }
         }
         else if collectionView == CollectMeal {
-            let totalCount = UserManager.shared.arrMeals.reduce(0) { (totalCount, array) in
-                // Check if the second element of the array is equal to 1
-                return totalCount + (array[1] == "1" ? 1 : 0)
-            }
-            if totalCount == 0 {
+            if arrSelectedMeals.count == 0 {
                 self.btnMeal.isHidden = false
                 self.btnTopMeal.isHidden = true
                 return 0
@@ -274,15 +274,11 @@ extension CreatAccntVC: UICollectionViewDelegate , UICollectionViewDataSource {
             else{
                 self.btnMeal.isHidden = true
                 self.btnTopMeal.isHidden = false
-               return totalCount
+               return arrSelectedMeals.count
             }
         }
         else{
-            let totalCount = UserManager.shared.arrSpeacials.reduce(0) { (totalCount, array) in
-                // Check if the second element of the array is equal to 1
-                return totalCount + (array[1] == "1" ? 1 : 0)
-            }
-            if totalCount == 0 {
+            if arrSelectedSpecial.count == 0 {
                 self.btnSpecial.isHidden = false
                 self.btnTopSpecial.isHidden = true
                 return 0
@@ -290,77 +286,102 @@ extension CreatAccntVC: UICollectionViewDelegate , UICollectionViewDataSource {
             else{
                 self.btnSpecial.isHidden = true
                 self.btnTopSpecial.isHidden = false
-               return totalCount
+               return arrSelectedSpecial.count
             }
         }
     }
     @objc func onTapCui(sender: UIButton){
-        UserManager.shared.arrCuisine[sender.tag][1] = "0"
-       // selectedCuisine.remove(at: sender.tag)
+        for i in 0..<UserManager.shared.arrCuisine.count{
+            if UserManager.shared.arrCuisine[i][0] == arrSelectedCusisine[sender.tag] {
+                UserManager.shared.arrCuisine[i][1]  = "0"
+            }
+        }
+        UserManager.shared.selectedCuisine.removeAll()
+        arrSelectedCusisine.remove(at: sender.tag)
         CollectCuisine.reloadData()
     }
     @objc func onTapEnvior(sender: UIButton){
-        UserManager.shared.arrEnviorment[sender.tag][1] = "0"
-       // selectedEnviorment.remove(at: sender.tag)
+        for i in 0..<UserManager.shared.arrEnviorment.count{
+            if UserManager.shared.arrEnviorment[i][0] == arrSelectedEnviorment[sender.tag] {
+                UserManager.shared.arrEnviorment[i][1]  = "0"
+            }
+        }
+        UserManager.shared.selectedEnviorment.removeAll()
+        arrSelectedEnviorment.remove(at: sender.tag)
         CollectEnviorment.reloadData()
     }
     @objc func onTapIden(sender: UIButton){
-        UserManager.shared.arrFeature[sender.tag][1] = "0"
-       // selectedFeature.remove(at: sender.tag)
+        for i in 0..<UserManager.shared.arrFeature.count{
+            if UserManager.shared.arrFeature[i][0] == arrSelectedFeature[sender.tag] {
+                UserManager.shared.arrFeature[i][1]  = "0"
+            }
+        }
+        UserManager.shared.selectedFeature.removeAll()
+        arrSelectedFeature.remove(at: sender.tag)
         CollectFeature.reloadData()
     }
     @objc func onTapMeal(sender: UIButton){
-        UserManager.shared.arrMeals[sender.tag][1] = "0"
-       // selectedFeature.remove(at: sender.tag)
+        for i in 0..<UserManager.shared.arrMeals.count{
+            if UserManager.shared.arrMeals[i][0] == arrSelectedMeals[sender.tag] {
+                UserManager.shared.arrFeature[i][1]  = "0"
+            }
+        }
+        UserManager.shared.selectedMeals.removeAll()
+        arrSelectedMeals.remove(at: sender.tag)
         CollectMeal.reloadData()
     }
-    
     @objc func onTapSpecial(sender: UIButton){
-        UserManager.shared.arrSpeacials[sender.tag][1] = "0"
-       // selectedFeature.remove(at: sender.tag)
+        for i in 0..<UserManager.shared.arrSpeacials.count{
+            if UserManager.shared.arrSpeacials[i][0] == arrSelectedSpecial[sender.tag] {
+                UserManager.shared.arrSpeacials[i][1]  = "0"
+            }
+        }
+        UserManager.shared.selectedSpecial.removeAll()
+        arrSelectedSpecial.remove(at: sender.tag)
         CollectSpecial.reloadData()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == CollectCuisine {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionCell.identifier, for: indexPath) as! CollectionCell
-            if UserManager.shared.arrCuisine[indexPath.row][1] == "1" {
-                cell.lbl.text = UserManager.shared.arrCuisine[indexPath.row][0]
-                UserManager.shared.selectedCuisine.append(UserManager.shared.arrCuisine[indexPath.row][0])
-                cell.btn.addTarget(self, action:#selector(onTapCui(sender:)), for: .touchUpInside)
-                cell.btn.tag = indexPath.row
-            }
+            
+            cell.lbl.text = arrSelectedCusisine[indexPath.row]
+            cell.btn.addTarget(self, action:#selector(onTapCui(sender:)), for: .touchUpInside)
+            cell.btn.tag = indexPath.row
+            UserManager.shared.selectedCuisine.append(arrSelectedCusisine[indexPath.row])
             return cell
         }
         else if collectionView == CollectEnviorment {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionCell.identifier, for: indexPath) as! CollectionCell
             
-            if UserManager.shared.arrEnviorment[indexPath.row][1] == "1" {
-                cell.lbl.text = UserManager.shared.arrEnviorment[indexPath.row][0]
-                UserManager.shared.selectedEnviorment.append(UserManager.shared.arrEnviorment[indexPath.row][0])
-            }
+            cell.lbl.text = arrSelectedEnviorment[indexPath.row]
             cell.btn.addTarget(self, action:#selector(onTapEnvior(sender:)), for: .touchUpInside)
             cell.btn.tag = indexPath.row
+            UserManager.shared.selectedEnviorment.append(arrSelectedEnviorment[indexPath.row])
             return cell
         }
         else if collectionView == CollectFeature {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionCell.identifier, for: indexPath) as! CollectionCell
-            if UserManager.shared.arrFeature[indexPath.row][1] == "1" {
-                cell.lbl.text = UserManager.shared.arrFeature[indexPath.row][0]
-                UserManager.shared.selectedFeature.append(UserManager.shared.arrFeature[indexPath.row][0])
-            }
+            cell.lbl.text = arrSelectedFeature[indexPath.row]
             cell.btn.addTarget(self, action:#selector(onTapIden(sender:)), for: .touchUpInside)
             cell.btn.tag = indexPath.row
+            UserManager.shared.selectedFeature.append(arrSelectedFeature[indexPath.row])
+            return cell
+        }
+        else if collectionView == CollectMeal {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionCell.identifier, for: indexPath) as! CollectionCell
+            cell.lbl.text = arrSelectedMeals[indexPath.row]
+            cell.btn.addTarget(self, action:#selector(onTapMeal(sender:)), for: .touchUpInside)
+            cell.btn.tag = indexPath.row
+            UserManager.shared.selectedMeals.append(arrSelectedMeals[indexPath.row])
             return cell
         }
         else  {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionCell.identifier, for: indexPath) as! CollectionCell
-            if UserManager.shared.arrSpeacials[indexPath.row][1] == "1" {
-                cell.lbl.text = UserManager.shared.arrSpeacials[indexPath.row][0]
-                UserManager.shared.selectedSpecial.append(UserManager.shared.arrSpeacials[indexPath.row][0])
-            }
+            cell.lbl.text = arrSelectedSpecial[indexPath.row]
             cell.btn.addTarget(self, action:#selector(onTapSpecial(sender:)), for: .touchUpInside)
             cell.btn.tag = indexPath.row
+            UserManager.shared.selectedSpecial.append(arrSelectedSpecial[indexPath.row])
             return cell
         }
     }

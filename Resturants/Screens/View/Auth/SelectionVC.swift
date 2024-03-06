@@ -11,6 +11,7 @@ class SelectionVC: UIViewController {
     
     //MARK: - @IBOutlets
     @IBOutlet weak var tblSelection: UITableView!
+    @IBOutlet weak var lblHeader   : UILabel!
     
     //MARK: - Variables and Properties
     var type  = 0
@@ -66,18 +67,23 @@ extension SelectionVC{
 extension SelectionVC: UITableViewDelegate , UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if type == 0 {
+            self.lblHeader.text  = "Cuisine"
             return UserManager.shared.arrCuisine.count
         }
         else if type == 1 {
+            self.lblHeader.text  = "Enviornment"
             return UserManager.shared.arrEnviorment.count
         }
         else if type == 2 {
+            self.lblHeader.text  = "Feature"
             return UserManager.shared.arrFeature.count
         }
         else if type == 3 {
+            self.lblHeader.text  = "Meal"
             return UserManager.shared.arrMeals.count
         }
         else{
+            self.lblHeader.text  = "Specailization"
             return UserManager.shared.arrSpeacials.count
         }
     }
@@ -165,7 +171,7 @@ extension SelectionVC: UITableViewDelegate , UITableViewDataSource{
             }
             tableView.reloadData()
         }
-        else if type == 2 {
+        else if type == 3 {
             if UserManager.shared.arrMeals[indexPath.row][1] == "1"{
                 UserManager.shared.arrMeals[indexPath.row][1] = "0"
             }
