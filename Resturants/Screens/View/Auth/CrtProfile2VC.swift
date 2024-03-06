@@ -65,6 +65,7 @@ extension CrtProfile2VC {
         datePicker.frame.size = CGSize(width: 0, height: 300)
         datePicker.preferredDatePickerStyle = .wheels
         datePicker.maximumDate = Date()
+        datePicker.backgroundColor = .white
         txtYear.inputView = datePicker
         txtYear.text = formatDate(date: Date())
     }
