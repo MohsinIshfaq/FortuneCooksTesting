@@ -55,6 +55,18 @@ class CameraConfiguration: NSObject {
 
 extension CameraConfiguration {
      
+    func applyFilterToPreview(_ filterName: String) {
+        guard let previewLayer = self.previewLayer else { return }
+        
+        // Create a filter
+        guard let filter = CIFilter(name: filterName) else {
+            print("Failed to create filter")
+            return
+        }
+        
+        // Apply the filter to the video preview
+        previewLayer.filters = [filter]
+    }
     
     func toggleFlashlight() {
            guard let device = videoDevice else { return }

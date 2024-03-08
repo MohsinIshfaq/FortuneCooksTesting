@@ -11,6 +11,7 @@ import AVFoundation
 import AVKit
 import MobileCoreServices
 
+
 class VideoRecordingVC: UIViewController {
 
     //MARK: - @IBOutlets
@@ -19,6 +20,7 @@ class VideoRecordingVC: UIViewController {
     @IBOutlet weak var vwMain            : UIView!
     @IBOutlet weak var imgPreview        : UIImageView!
     @IBOutlet weak var lblProgress       : UILabel!
+    @IBOutlet weak var CollectFilter     :  UICollectionView!
     
     //MARK: - variables and Properties
     private var selected       : Bool = false
@@ -95,11 +97,17 @@ extension VideoRecordingVC {
         removeNavBackbuttonTitle()
         NavigationRightBtns()
         setupVideo()
+        setupFilterCollection()
     }
     func onAppear() {
         lblProgress.text           = "\(0)"
     }
-    
+    func setupFilterCollection(){
+        
+        CollectFilter.register(FrameFilterCell.nib, forCellWithReuseIdentifier: FrameFilterCell.identifier)
+        CollectFilter.delegate   = self
+        CollectFilter.dataSource = self
+    }
     func setupVideo() {
         
         self.cameraConfig = CameraConfiguration()
@@ -143,4 +151,39 @@ extension VideoRecordingVC {
     }
 }
 
+//MARK: - Extension of Filter {}
+extension VideoRecordingVC : UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return UserManager.shared.FakefilterNameList.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell: FrameFilterCell = collectionView.dequeueReusableCell(withReuseIdentifier: FrameFilterCell.identifier, for: indexPath) as! FrameFilterCell
+        if indexPath.row == 0 {
+            cell.lblFilter.text = "Normal"
+        }
+        else{
+            cell.lblFilter.text = "Filter \(indexPath.row)"
+        }
+        cell.lblFilter.textColor = UserManager.shared.FakefilterNameList[indexPath.row][1] as! Int == 1 ? .white : .lightGray
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        for (index, _) in UserManager.shared.FakefilterNameList.enumerated() {
+            if index == indexPath.row {
+                UserManager.shared.FakefilterNameList[index][1] = 1
+
+            } else {
+                UserManager.shared.FakefilterNameList[index][1] = 0
+            }
+        }
+        CollectFilter.reloadData()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 60, height: 30)
+    }
+    
+}
 

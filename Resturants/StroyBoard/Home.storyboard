@@ -581,7 +581,7 @@
                                         <color key="tintColor" systemColor="systemRedColor"/>
                                     </progressView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1fa-yV-Eta">
-                                        <rect key="frame" x="146.66666666666666" y="590" width="100" height="100"/>
+                                        <rect key="frame" x="146.66666666666666" y="559" width="100" height="100"/>
                                         <color key="backgroundColor" name="AccentColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" id="032-gG-XHL"/>
@@ -615,12 +615,28 @@
                                         <color key="textColor" name="ColorWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="IEO-eP-qg7">
+                                        <rect key="frame" x="36" y="703" width="341" height="40"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="1L4-nU-WGb"/>
+                                        </constraints>
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="x4w-t9-mHM">
+                                            <size key="itemSize" width="128" height="128"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells/>
+                                    </collectionView>
                                 </subviews>
                                 <color key="backgroundColor" name="ColorBlack"/>
                                 <constraints>
                                     <constraint firstItem="WQr-QK-BTC" firstAttribute="leading" secondItem="iGn-ep-KFC" secondAttribute="leading" constant="16" id="1j7-Nm-eZo"/>
                                     <constraint firstAttribute="bottom" secondItem="k51-DL-exl" secondAttribute="bottom" id="6ab-6e-hea"/>
+                                    <constraint firstItem="IEO-eP-qg7" firstAttribute="leading" secondItem="iGn-ep-KFC" secondAttribute="leading" constant="36" id="NLX-y9-YIf"/>
                                     <constraint firstItem="tnP-lb-zWe" firstAttribute="top" secondItem="WQr-QK-BTC" secondAttribute="bottom" constant="12" id="SmP-j6-m0s"/>
+                                    <constraint firstAttribute="trailing" secondItem="IEO-eP-qg7" secondAttribute="trailing" constant="16" id="Xj7-jN-Sud"/>
                                     <constraint firstItem="1fa-yV-Eta" firstAttribute="centerX" secondItem="iGn-ep-KFC" secondAttribute="centerX" id="Yah-QW-XXh"/>
                                     <constraint firstAttribute="trailing" secondItem="WQr-QK-BTC" secondAttribute="trailing" constant="16" id="aVt-Zb-894"/>
                                     <constraint firstItem="WQr-QK-BTC" firstAttribute="top" secondItem="iGn-ep-KFC" secondAttribute="top" constant="36" id="dFx-7o-fsx"/>
@@ -637,7 +653,8 @@
                             <constraint firstItem="iGn-ep-KFC" firstAttribute="top" secondItem="k4h-2C-9xw" secondAttribute="top" id="6lu-IX-1Ez"/>
                             <constraint firstItem="iGn-ep-KFC" firstAttribute="leading" secondItem="AII-kH-p6h" secondAttribute="leading" id="7OX-Qd-ctc"/>
                             <constraint firstAttribute="bottom" secondItem="iGn-ep-KFC" secondAttribute="bottom" id="GO8-fH-hHY"/>
-                            <constraint firstItem="k4h-2C-9xw" firstAttribute="bottom" secondItem="1fa-yV-Eta" secondAttribute="bottom" constant="69" id="VMu-Nn-rOU"/>
+                            <constraint firstItem="k4h-2C-9xw" firstAttribute="bottom" secondItem="1fa-yV-Eta" secondAttribute="bottom" constant="100" id="VMu-Nn-rOU"/>
+                            <constraint firstItem="k4h-2C-9xw" firstAttribute="bottom" secondItem="IEO-eP-qg7" secondAttribute="bottom" constant="16" id="ZAF-4J-eff"/>
                             <constraint firstItem="ljH-fC-iMM" firstAttribute="leading" secondItem="AII-kH-p6h" secondAttribute="leading" id="dtL-db-JML"/>
                             <constraint firstItem="ljH-fC-iMM" firstAttribute="top" secondItem="AII-kH-p6h" secondAttribute="top" id="i6y-Bv-eG5"/>
                             <constraint firstItem="iGn-ep-KFC" firstAttribute="top" secondItem="ljH-fC-iMM" secondAttribute="bottom" id="juZ-D8-XM6"/>
@@ -897,6 +914,95 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qli-yh-laj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3088" y="6"/>
+        </scene>
+        <!--CameraVC-->
+        <scene sceneID="z4K-IS-RPk">
+            <objects>
+                <viewController storyboardIdentifier="CameraVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="08D-dR-gwB" customClass="CameraVC" customModule="Resturants" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ga7-Jh-d2a">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Hcj-Cf-2cE">
+                                <rect key="frame" x="16" y="95" width="361" height="4"/>
+                                <color key="tintColor" systemColor="systemRedColor"/>
+                            </progressView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1b6-BV-iIW">
+                                <rect key="frame" x="185" y="111" width="23" height="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" name="ColorWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dSu-Qu-ACL">
+                                <rect key="frame" x="146.66666666666666" y="622" width="100" height="100"/>
+                                <color key="backgroundColor" name="AccentColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="vNV-t8-TVf"/>
+                                    <constraint firstAttribute="width" constant="100" id="yQ0-h7-Q9n"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal">
+                                    <color key="titleColor" name="ColorDarkBlue"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="50"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                        <size key="value" width="0.0" height="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="ontapRecord:" destination="08D-dR-gwB" eventType="touchUpInside" id="nB8-lC-XMm"/>
+                                    <action selector="ontapRecord:" destination="ONq-th-DDd" eventType="touchUpInside" id="sCn-48-yeu"/>
+                                </connections>
+                            </button>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="KNl-u4-UdY">
+                                <rect key="frame" x="16" y="762" width="361" height="40"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="JF7-AD-0si"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="VYv-NB-0YY">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Tp9-Oq-ZLD"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="dSu-Qu-ACL" firstAttribute="centerX" secondItem="Ga7-Jh-d2a" secondAttribute="centerX" id="1SY-3L-QMs"/>
+                            <constraint firstItem="1b6-BV-iIW" firstAttribute="centerX" secondItem="Ga7-Jh-d2a" secondAttribute="centerX" id="5dY-q9-XMc"/>
+                            <constraint firstItem="Hcj-Cf-2cE" firstAttribute="leading" secondItem="Ga7-Jh-d2a" secondAttribute="leading" constant="16" id="9Vr-8D-9Kf"/>
+                            <constraint firstItem="Tp9-Oq-ZLD" firstAttribute="trailing" secondItem="Hcj-Cf-2cE" secondAttribute="trailing" constant="16" id="ATF-Y5-VFT"/>
+                            <constraint firstItem="Hcj-Cf-2cE" firstAttribute="top" secondItem="Tp9-Oq-ZLD" secondAttribute="top" constant="36" id="LHk-3f-KcV"/>
+                            <constraint firstItem="Tp9-Oq-ZLD" firstAttribute="bottom" secondItem="KNl-u4-UdY" secondAttribute="bottom" constant="16" id="M0l-MV-BIj"/>
+                            <constraint firstItem="KNl-u4-UdY" firstAttribute="top" secondItem="dSu-Qu-ACL" secondAttribute="bottom" constant="40" id="a7o-oz-hqd"/>
+                            <constraint firstItem="Tp9-Oq-ZLD" firstAttribute="trailing" secondItem="KNl-u4-UdY" secondAttribute="trailing" constant="16" id="m2d-Ci-s9I"/>
+                            <constraint firstItem="1b6-BV-iIW" firstAttribute="top" secondItem="Hcj-Cf-2cE" secondAttribute="bottom" constant="12" id="qgn-qk-REh"/>
+                            <constraint firstItem="KNl-u4-UdY" firstAttribute="leading" secondItem="Tp9-Oq-ZLD" secondAttribute="leading" constant="16" id="uBs-7L-pa3"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="CollectFilter" destination="KNl-u4-UdY" id="fCH-py-OE6"/>
+                        <outlet property="btnRecord" destination="dSu-Qu-ACL" id="xtZ-we-Ljb"/>
+                        <outlet property="lblProgress" destination="1b6-BV-iIW" id="OuL-g1-gKb"/>
+                        <outlet property="progressRecording" destination="Hcj-Cf-2cE" id="Eys-J7-wFe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qMx-xN-4i0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3774.8091603053435" y="5.6338028169014089"/>
         </scene>
     </scenes>
     <resources>

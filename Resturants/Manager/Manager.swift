@@ -176,4 +176,18 @@ final class UserManager {
         "CILinearToSRGBToneCurve",
         "CISRGBToneCurveToLinear"
     ]
+    
+    var FakefilterNameList = [
+        ["No Filter", 1],
+        ["CIPhotoEffectChrome", 0],
+        ["CIPhotoEffectFade", 0],
+        ["CIPhotoEffectInstant", 0],
+        ["CIPhotoEffectMono", 0],
+        ["CIPhotoEffectNoir", 0],
+        ["CIPhotoEffectProcess", 0],
+        ["CIPhotoEffectTonal", 0],
+        ["CIPhotoEffectTransfer", 0],
+        ["CILinearToSRGBToneCurve", 0],
+        ["CISRGBToneCurveToLinear", 0],
+    ]
 }

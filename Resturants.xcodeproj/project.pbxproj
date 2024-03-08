@@ -8,6 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		28E0884F7B0D98691A6FD7BF /* Pods_Resturants.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 338B6AC4DD0531F5E7268D31 /* Pods_Resturants.framework */; };
+		4625A17D2B98D8B000C763DD /* FrameFilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4625A17B2B98D8B000C763DD /* FrameFilterCell.swift */; };
+		4625A17E2B98D8B000C763DD /* FrameFilterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4625A17C2B98D8B000C763DD /* FrameFilterCell.xib */; };
+		4626306D2B995E5D00A4E7D1 /* CameraLiveCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4626306C2B995E5D00A4E7D1 /* CameraLiveCapture.swift */; };
+		4626306F2B99632900A4E7D1 /* CameraVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4626306E2B99632900A4E7D1 /* CameraVC.swift */; };
+		462630712B9A11F000A4E7D1 /* VIdeoCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462630702B9A11F000A4E7D1 /* VIdeoCapture.swift */; };
+		462630782B9AA2E100A4E7D1 /* FilterCamViewCOntroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462630772B9AA2E100A4E7D1 /* FilterCamViewCOntroller.swift */; };
+		4626307B2B9AA36F00A4E7D1 /* RecorderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4626307A2B9AA36F00A4E7D1 /* RecorderError.swift */; };
+		4626307D2B9AA38F00A4E7D1 /* RecorderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4626307C2B9AA38F00A4E7D1 /* RecorderDelegate.swift */; };
+		4626307F2B9AA3B800A4E7D1 /* Capture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4626307E2B9AA3B800A4E7D1 /* Capture.swift */; };
+		462630812B9AA3D600A4E7D1 /* CaptureError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462630802B9AA3D600A4E7D1 /* CaptureError.swift */; };
+		462630832B9AA3ED00A4E7D1 /* Composer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462630822B9AA3ED00A4E7D1 /* Composer.swift */; };
+		462630852B9AA40700A4E7D1 /* FrameRateCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462630842B9AA40700A4E7D1 /* FrameRateCalculator.swift */; };
 		46C4A0972B93245300F27C8F /* FilterCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C4A0952B93245300F27C8F /* FilterCCell.swift */; };
 		46C4A0982B93245300F27C8F /* FilterCCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46C4A0962B93245300F27C8F /* FilterCCell.xib */; };
 		46C4A09A2B93290100F27C8F /* VideoEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C4A0992B93290100F27C8F /* VideoEditor.swift */; };
@@ -62,6 +74,18 @@
 /* Begin PBXFileReference section */
 		0765EEAB37660B15C93D653F /* Pods-Resturants.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Resturants.debug.xcconfig"; path = "Target Support Files/Pods-Resturants/Pods-Resturants.debug.xcconfig"; sourceTree = "<group>"; };
 		338B6AC4DD0531F5E7268D31 /* Pods_Resturants.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Resturants.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4625A17B2B98D8B000C763DD /* FrameFilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameFilterCell.swift; sourceTree = "<group>"; };
+		4625A17C2B98D8B000C763DD /* FrameFilterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FrameFilterCell.xib; sourceTree = "<group>"; };
+		4626306C2B995E5D00A4E7D1 /* CameraLiveCapture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraLiveCapture.swift; sourceTree = "<group>"; };
+		4626306E2B99632900A4E7D1 /* CameraVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraVC.swift; sourceTree = "<group>"; };
+		462630702B9A11F000A4E7D1 /* VIdeoCapture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VIdeoCapture.swift; sourceTree = "<group>"; };
+		462630772B9AA2E100A4E7D1 /* FilterCamViewCOntroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCamViewCOntroller.swift; sourceTree = "<group>"; };
+		4626307A2B9AA36F00A4E7D1 /* RecorderError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecorderError.swift; sourceTree = "<group>"; };
+		4626307C2B9AA38F00A4E7D1 /* RecorderDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecorderDelegate.swift; sourceTree = "<group>"; };
+		4626307E2B9AA3B800A4E7D1 /* Capture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Capture.swift; sourceTree = "<group>"; };
+		462630802B9AA3D600A4E7D1 /* CaptureError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureError.swift; sourceTree = "<group>"; };
+		462630822B9AA3ED00A4E7D1 /* Composer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Composer.swift; sourceTree = "<group>"; };
+		462630842B9AA40700A4E7D1 /* FrameRateCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameRateCalculator.swift; sourceTree = "<group>"; };
 		46C4A0952B93245300F27C8F /* FilterCCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCCell.swift; sourceTree = "<group>"; };
 		46C4A0962B93245300F27C8F /* FilterCCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterCCell.xib; sourceTree = "<group>"; };
 		46C4A0992B93290100F27C8F /* VideoEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoEditor.swift; sourceTree = "<group>"; };
@@ -145,6 +169,20 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		462630792B9AA2F600A4E7D1 /* CameraDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				462630772B9AA2E100A4E7D1 /* FilterCamViewCOntroller.swift */,
+				4626307A2B9AA36F00A4E7D1 /* RecorderError.swift */,
+				4626307C2B9AA38F00A4E7D1 /* RecorderDelegate.swift */,
+				4626307E2B9AA3B800A4E7D1 /* Capture.swift */,
+				462630802B9AA3D600A4E7D1 /* CaptureError.swift */,
+				462630822B9AA3ED00A4E7D1 /* Composer.swift */,
+				462630842B9AA40700A4E7D1 /* FrameRateCalculator.swift */,
+			);
+			path = CameraDelegate;
+			sourceTree = "<group>";
+		};
 		46C4A0942B93240E00F27C8F /* FilterCCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -161,6 +199,7 @@
 				7144BD532B6EA0CC00767374 /* MenuVC.swift */,
 				7119F6392B8B7DFF00FA8579 /* VideoRecordingVC.swift */,
 				46C820F82B930179007E543F /* EditVideoVC.swift */,
+				4626306E2B99632900A4E7D1 /* CameraVC.swift */,
 			);
 			path = HomeTab;
 			sourceTree = "<group>";
@@ -275,6 +314,9 @@
 				716F6FDE2B5ADDC900049C1C /* CustomTabBar.swift */,
 				7131D9942B92CCC4005DE42E /* CameraConfiguration.swift */,
 				46C4A0992B93290100F27C8F /* VideoEditor.swift */,
+				4626306C2B995E5D00A4E7D1 /* CameraLiveCapture.swift */,
+				462630702B9A11F000A4E7D1 /* VIdeoCapture.swift */,
+				462630792B9AA2F600A4E7D1 /* CameraDelegate */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -366,6 +408,8 @@
 				714B0F6D2B69700700570578 /* selectionTCell */,
 				71C6A9CB2B695F1400E19808 /* AddDataCell */,
 				71C6A9C62B694CBD00E19808 /* CollectionCell */,
+				4625A17B2B98D8B000C763DD /* FrameFilterCell.swift */,
+				4625A17C2B98D8B000C763DD /* FrameFilterCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -453,6 +497,7 @@
 				7131D9972B92D766005DE42E /* GoogleService-Info.plist in Resources */,
 				715388972B59A3EF006D682F /* Profile.storyboard in Resources */,
 				7153888D2B59A368006D682F /* TabbarController.storyboard in Resources */,
+				4625A17E2B98D8B000C763DD /* FrameFilterCell.xib in Resources */,
 				7153888F2B59A381006D682F /* Home.storyboard in Resources */,
 				715388912B59A3B5006D682F /* Search.storyboard in Resources */,
 				71B3DC7C2B55A94000A3615F /* LaunchScreen.storyboard in Resources */,
@@ -515,14 +560,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				462630812B9AA3D600A4E7D1 /* CaptureError.swift in Sources */,
 				46C4A0972B93245300F27C8F /* FilterCCell.swift in Sources */,
 				71B3DC702B55A93D00A3615F /* AppDelegate.swift in Sources */,
 				715166462B598903007CE092 /* CrtProfile2VC.swift in Sources */,
+				4626307D2B9AA38F00A4E7D1 /* RecorderDelegate.swift in Sources */,
 				46C820F92B930179007E543F /* EditVideoVC.swift in Sources */,
 				714B0F702B69703B00570578 /* SelectioTCell.swift in Sources */,
 				7144BD512B6E983100767374 /* HomeVC.swift in Sources */,
 				7153888B2B5998BC006D682F /* CreatAccntVC.swift in Sources */,
 				7151664E2B598CF0007CE092 /* ResetPasswordVC.swift in Sources */,
+				462630712B9A11F000A4E7D1 /* VIdeoCapture.swift in Sources */,
 				71B3DCA02B55B1F100A3615F /* BaseViewModel.swift in Sources */,
 				71B3DC9E2B55B1B500A3615F /* BaseClass.swift in Sources */,
 				715166482B598961007CE092 /* CrtProfile3VC.swift in Sources */,
@@ -530,12 +578,16 @@
 				7119F63A2B8B7DFF00FA8579 /* VideoRecordingVC.swift in Sources */,
 				715166442B5985E1007CE092 /* CrtProfile1VC.swift in Sources */,
 				71B3DC902B55AFC000A3615F /* Manager.swift in Sources */,
+				462630852B9AA40700A4E7D1 /* FrameRateCalculator.swift in Sources */,
 				7131D9952B92CCC4005DE42E /* CameraConfiguration.swift in Sources */,
+				4626307F2B9AA3B800A4E7D1 /* Capture.swift in Sources */,
 				7151664C2B598989007CE092 /* CrtProfile5VC.swift in Sources */,
 				71B3DC9C2B55B19C00A3615F /* UIView+Extension.swift in Sources */,
 				7151DD762B6EB58D001B3018 /* LoginNC.swift in Sources */,
 				71B3DC722B55A93D00A3615F /* SceneDelegate.swift in Sources */,
 				716F6FDD2B5ADD5A00049C1C /* TabbarController.swift in Sources */,
+				462630832B9AA3ED00A4E7D1 /* Composer.swift in Sources */,
+				4626307B2B9AA36F00A4E7D1 /* RecorderError.swift in Sources */,
 				716F6FDF2B5ADDC900049C1C /* CustomTabBar.swift in Sources */,
 				46C4A09A2B93290100F27C8F /* VideoEditor.swift in Sources */,
 				7144BD542B6EA0CC00767374 /* MenuVC.swift in Sources */,
@@ -546,9 +598,13 @@
 				71B3DC922B55AFF900A3615F /* Constant.swift in Sources */,
 				71B3DC942B55B08000A3615F /* UserDefults.swift in Sources */,
 				7151664A2B598972007CE092 /* CrtProfile4VC.swift in Sources */,
+				4626306F2B99632900A4E7D1 /* CameraVC.swift in Sources */,
+				4625A17D2B98D8B000C763DD /* FrameFilterCell.swift in Sources */,
 				715166422B598537007CE092 /* LoginVC.swift in Sources */,
 				71B3DC9A2B55B17400A3615F /* UIColor+Extension.swift in Sources */,
 				71C6A9CE2B695F3300E19808 /* AddDataCell.swift in Sources */,
+				462630782B9AA2E100A4E7D1 /* FilterCamViewCOntroller.swift in Sources */,
+				4626306D2B995E5D00A4E7D1 /* CameraLiveCapture.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

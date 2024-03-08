@@ -16,7 +16,7 @@ class HomeVC: UIViewController , MenuVCDelegate {
             self.navigationController?.present(vc!, animated: true)
         }
         else{
-            let vc = Constants.homehStoryBoard.instantiateViewController(withIdentifier: "VideoRecordingVC") as? VideoRecordingVC
+            let vc = Constants.homehStoryBoard.instantiateViewController(withIdentifier: "CameraVC") as? CameraVC
             vc?.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc!, animated: true)
         }
