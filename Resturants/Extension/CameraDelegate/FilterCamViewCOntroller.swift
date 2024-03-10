@@ -135,6 +135,14 @@ open class FilterCamViewController: UIViewController {
 
     // MARK: - Private
 
+    public func toggleCamera() {
+        // Toggle camera position
+        devicePosition = (devicePosition == .front) ? .back : .front
+        
+        // Reconfigure the device with the new camera position
+        recorder.configureDevice(position: devicePosition)
+    }
+    
     private func setupDebugLabels() {
         fpsLabel = UILabel()
         fpsLabel.isHidden = true

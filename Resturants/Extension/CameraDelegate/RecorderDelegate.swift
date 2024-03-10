@@ -92,6 +92,10 @@ final class Recorder: NSObject {
         }
     }
 
+    func configureDevice(position: AVCaptureDevice.Position) {
+            capture.configureDevice(position: position)
+        }
+    
     private func makeAssetWriterVideoInput() -> AVAssetWriterInput {
         let settings: [String: Any]
         if #available(iOS 11.0, *) {
@@ -478,4 +482,5 @@ extension Recorder: CaptureDelegate {
         }
     }
 }
+
 

@@ -210,4 +210,28 @@ final class Capture {
             // just ignore
         }
     }
+    private func getDevice(for position: AVCaptureDevice.Position) -> AVCaptureDevice? {
+           return AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: position)
+       }
+    
+    func configureDevice(position: AVCaptureDevice.Position) {
+            guard let input = session?.inputs.first as? AVCaptureDeviceInput else {
+                return
+            }
+            
+            guard let newDevice = getDevice(for: position) else {
+                print("Failed to get AVCaptureDevice for the specified position")
+                return
+            }
+
+            do {
+                let newInput = try AVCaptureDeviceInput(device: newDevice)
+                session?.beginConfiguration()
+                session?.removeInput(input)
+                session?.addInput(newInput)
+                session?.commitConfiguration()
+            } catch {
+                print("Error configuring device: \(error.localizedDescription)")
+            }
+        }
 }

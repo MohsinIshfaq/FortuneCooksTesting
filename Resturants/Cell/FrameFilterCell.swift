@@ -11,6 +11,7 @@ class FrameFilterCell: UICollectionViewCell {
 
     //MARK: - IBOUtlets
     @IBOutlet weak var lblFilter : UILabel!
+    @IBOutlet weak var btn       : UIButton!
     
     //MARK: - Identifier
     static var identifier: String { return String(describing: self) }
