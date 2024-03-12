@@ -179,7 +179,7 @@ extension CrtProfile4VC {
         
         self.startAnimating()
         Auth.auth().createUser(withEmail: UserManager.shared.selectedEmail, password: txtPsd.text!) { Response, error in
-            
+            self.stopAnimating()
             if error == nil {
                 print("user successfully Registered")
                 var id = Firebase.Auth.auth().currentUser?.uid ?? ""
@@ -212,6 +212,7 @@ extension CrtProfile4VC {
                 }
             }
             else {
+                self.stopAnimating()
                 self.showToast(message: error?.localizedDescription ?? "", seconds: 2, clr: .red)
             }
             
