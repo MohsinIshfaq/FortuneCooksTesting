@@ -88,6 +88,10 @@ open class FilterCamViewController: UIViewController {
         previewViewRect = UIScreen.main.bounds
         super.init(coder: aDecoder)
     }
+    
+    func muteAudio(_ isMuted: Bool) {
+            recorder.muteAudio(isMuted)
+        }
 
     open override func viewDidLoad() {
         super.viewDidLoad()

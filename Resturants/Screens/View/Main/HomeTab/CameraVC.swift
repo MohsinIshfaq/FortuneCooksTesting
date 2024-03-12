@@ -19,6 +19,7 @@ class CameraVC: FilterCamViewController {
     @IBOutlet weak var CollectFilter     :  UICollectionView!
     @IBOutlet weak var lblProgress       : UILabel!
     @IBOutlet weak var stackEditOpt      : UIStackView!
+    @IBOutlet weak var btnFlash          : UIButton!
     
     //MARK: - variables and Properties
     private var selected                 : Bool = false
@@ -28,19 +29,22 @@ class CameraVC: FilterCamViewController {
     private var elapsedTime              : Float = 0.0 // Elapsed time
     private var progress_value           = 0.1
     private var outputURL: URL?          = nil
+    var mutableVideoURL                  = NSURL() //final video url
     
     override func viewDidLoad() {
         super.viewDidLoad()
         onLoad()
     }
     
-    @objc func ontapCameraRoll() {
-        
+    @IBAction func ontapBack(_ sender: UIButton){
+        self.dismiss(animated: true)
+    }
+    
+    @IBAction func ontapCameraRoll(_ sender: UIButton) {
         toggleCamera()
     }
     
-    @objc func ontapFlash() {
-        
+    @IBAction func ontapFlash(_ sender: UIButton) {
         if torchLevel == 1{
             torchLevel = 0
         }
@@ -48,7 +52,7 @@ class CameraVC: FilterCamViewController {
             torchLevel = 1
         }
         selected.toggle()
-        NavigationRightBtns()
+        btnFlash.tintColor = selected == true ? .yellow : .white
     }
     
     @IBAction func ontapVoiceOver(_ sender: UIButton){
@@ -59,22 +63,19 @@ class CameraVC: FilterCamViewController {
         guard let url = self.outputURL else {
             return
         }
-        removeAudioFromVideo(at: url) { url in
-            if let url = url {
-                self.outputURL = url
-                DispatchQueue.global(qos: .background).async {
-                    PHPhotoLibrary.shared().performChanges({
-                        PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: url)
-                    }) { success, error in
-                        if success {
-                            // Video saved successfully
-                            self.showToast(message: "Video saved successfully", seconds: 1, clr: .gray)
-                            print("Video saved successfully")
-                        } else {
-                            // Failed to save video
-                            self.showToast(message: "\(error?.localizedDescription ?? "Unknown error")", seconds: 1, clr: .gray)
-                            print("Failed to save video: \(error?.localizedDescription ?? "Unknown error")")
-                        }
+        removeAudioFromVideo(url) { url , error in
+            if error != nil {
+                self.showToast(message: "\(error)", seconds: 2, clr: .red)
+            }
+            else {
+                self.saveVideoToLibrary(at: url!) { error in
+                    if error != nil {
+                        //self.showToast(message: "\(error)", seconds: 2, clr: .red)
+                        print(error?.localizedDescription)
+                    }
+                    else{
+                       // self.showToast(message: "Saved Successfully", seconds: 2, clr: .gray)
+                        print("saved")
                     }
                 }
             }
@@ -93,7 +94,6 @@ class CameraVC: FilterCamViewController {
             self.lblProgress.text      = "0"
             stopProgress()
             self.stopRecording()
-            
         }
     }
     
@@ -107,10 +107,8 @@ class CameraVC: FilterCamViewController {
 extension CameraVC {
     func onLoad() {
         removeNavBackbuttonTitle()
-        NavigationRightBtns()
         setupFilterCollection()
         cameraDelegate = self
-        self.navigationItem.title = "Swift"
         self.stackEditOpt.isHidden = true
     }
     
@@ -123,17 +121,6 @@ extension CameraVC {
         //CollectFilter.collectionViewLayout = UICollectionViewFlowLayout()
         CollectFilter.delegate   = self
         CollectFilter.dataSource = self
-    }
-    
-    func NavigationRightBtns() {
-        
-        let imgCamera = UIImage(systemName: "arrow.triangle.2.circlepath")?.withRenderingMode(.automatic)
-        let btnCamera = UIBarButtonItem(image: imgCamera, style: .plain, target: self, action: #selector(ontapCameraRoll))
-        btnCamera.tintColor = .white
-        let imgFlash = UIImage(systemName: "bolt.fill")?.withRenderingMode(.automatic)
-        let btnFlash = UIBarButtonItem(image: imgFlash, style: .plain, target: self, action: #selector(ontapFlash))
-        btnFlash.tintColor = selected == true ? .yellow : .white
-        navigationItem.rightBarButtonItems = [btnCamera , btnFlash]
     }
     
     func stopProgress() {
@@ -223,24 +210,23 @@ extension CameraVC: FilterCamViewControllerDelegate{
     }
 
     func filterCam(_ filterCam: FilterCamViewController, didFinishWriting outputURL: URL) {
-        self.outputURL = outputURL
-        DispatchQueue.main.sync {
+        DispatchQueue.main.async {
+            self.outputURL = outputURL
             self.stackEditOpt.isHidden = false
-        }
 //            PHPhotoLibrary.shared().performChanges({
 //                PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: outputURL)
 //            }) { success, error in
 //                if success {
 //                    // Video saved successfully
-//                    self.showToast(message: "Video saved successfully", seconds: 1, clr: .gray)
+//                   // self.showToast(message: "Video saved successfully", seconds: 1, clr: .gray)
 //                    print("Video saved successfully")
 //                } else {
 //                    // Failed to save video
-//                    self.showToast(message: "\(error?.localizedDescription ?? "Unknown error")", seconds: 1, clr: .gray)
+//                    //self.showToast(message: "\(error?.localizedDescription ?? "Unknown error")", seconds: 1, clr: .gray)
 //                    print("Failed to save video: \(error?.localizedDescription ?? "Unknown error")")
 //                }
 //            }
-//        }
+        }
     }
 
     func filterCam(_ filterCam: FilterCamViewController, didFocusAtPoint tapPoint: CGPoint) {
@@ -274,59 +260,72 @@ extension CameraVC : UIImagePickerControllerDelegate, UINavigationControllerDele
 //MARK: - Mute Audio {}
 extension CameraVC {
 
-    func removeAudioFromVideo(at videoURL: URL, completion: @escaping (URL?) -> Void) {
-        let asset = AVAsset(url: videoURL)
-        
-        // Create a mutable composition
-        let composition = AVMutableComposition()
-        
-        // Add video track from the original asset
-        guard let videoTrack = composition.addMutableTrack(withMediaType: .video, preferredTrackID: kCMPersistentTrackID_Invalid),
-              let assetVideoTrack = asset.tracks(withMediaType: .video).first else {
-            completion(nil)
-            return
-        }
-        
-        // Insert video track from the original asset to the mutable composition
-        do {
-            try videoTrack.insertTimeRange(CMTimeRange(start: .zero, duration: asset.duration), of: assetVideoTrack, at: .zero)
-        } catch {
-            print("Error inserting video track: \(error)")
-            completion(nil)
-            return
-        }
-        
-        // Create an instruction to disable the audio track
-        let audioInstruction = AVMutableVideoCompositionInstruction()
-        audioInstruction.timeRange = CMTimeRange(start: .zero, duration: asset.duration)
-        
-        let audioTrack = composition.addMutableTrack(withMediaType: .audio, preferredTrackID: kCMPersistentTrackID_Invalid)
-        audioTrack?.removeTimeRange(CMTimeRange(start: .zero, duration: asset.duration))
-        
-        // Export the composition
-        guard let exportSession = AVAssetExportSession(asset: composition, presetName: AVAssetExportPresetHighestQuality) else {
-            completion(nil)
-            return
-        }
-        
-        let outputURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("muted_video.mp4")
-        exportSession.outputURL = outputURL
-        exportSession.outputFileType = .mp4
-        
-        exportSession.exportAsynchronously {
-            switch exportSession.status {
-            case .completed:
-                completion(outputURL)
-            case .failed:
-                print("Export failed: \(exportSession.error?.localizedDescription ?? "Unknown error")")
-                completion(nil)
-            case .cancelled:
-                print("Export cancelled")
-                completion(nil)
+    func removeAudioFromVideo(_ videoURL: URL, completion: @escaping (URL?, Error?) -> Void) {
+        let inputVideoURL: URL = videoURL
+        let sourceAsset = AVURLAsset(url: inputVideoURL)
+        let sourceVideoTrack: AVAssetTrack? = sourceAsset.tracks(withMediaType: AVMediaType.video)[0]
+        let composition : AVMutableComposition = AVMutableComposition()
+        let compositionVideoTrack: AVMutableCompositionTrack? = composition.addMutableTrack(withMediaType: AVMediaType.video, preferredTrackID: kCMPersistentTrackID_Invalid)
+        let x: CMTimeRange = CMTimeRangeMake(start: CMTime.zero, duration: sourceAsset.duration)
+        _ = try? compositionVideoTrack!.insertTimeRange(x, of: sourceVideoTrack!, at: CMTime.zero)
+        mutableVideoURL = NSURL(fileURLWithPath: NSHomeDirectory() + "/Documents/FinalVideo.mp4")
+        let exporter: AVAssetExportSession = AVAssetExportSession(asset: composition, presetName: AVAssetExportPresetHighestQuality)!
+        exporter.outputFileType = AVFileType.mp4
+        exporter.outputURL = mutableVideoURL as URL
+        removeFileAtURLIfExists(url: mutableVideoURL)
+        exporter.exportAsynchronously(completionHandler:
+                                        {
+            switch exporter.status
+            {
+            case AVAssetExportSession.Status.failed:
+                print("failed \(exporter.error)")
+                completion(nil , exporter.error)
+            case AVAssetExportSession.Status.cancelled:
+                print("cancelled \(exporter.error)")
+                completion(nil , exporter.error)
+            case AVAssetExportSession.Status.unknown:
+                print("unknown\(exporter.error)")
+                completion(nil , exporter.error)
+            case AVAssetExportSession.Status.waiting:
+                print("waiting\(exporter.error)")
+                completion(nil , exporter.error)
+            case AVAssetExportSession.Status.exporting:
+                print("exporting\(exporter.error)")
+                completion(nil , exporter.error)
             default:
-                print("Export status: \(exportSession.status.rawValue)")
-                completion(nil)
+                print("-----Mutable video exportation complete.")
+                completion(self.mutableVideoURL as URL , nil)
+            }
+        })
+    }
+
+    func removeFileAtURLIfExists(url: NSURL) {
+            if let filePath = url.path {
+                let fileManager = FileManager.default
+                if fileManager.fileExists(atPath: filePath) {
+                    do{
+                        try fileManager.removeItem(atPath: filePath)
+                    } catch let error as NSError {
+                        print("Couldn't remove existing destination file: \(error)")
+                    }
+                }
+            }
+        }
+    
+    func saveVideoToLibrary(at videoURL: URL, completion: @escaping (Error?) -> Void) {
+        DispatchQueue.main.async {
+            PHPhotoLibrary.shared().performChanges({
+                PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: videoURL)
+            }) { success, error in
+                if success {
+                    // Video saved successfully
+                    completion(nil)
+                } else {
+                    // Failed to save video
+                    completion(error ?? NSError(domain: "VideoSaving", code: 0, userInfo: [NSLocalizedDescriptionKey: "Unknown error"]))
+                }
             }
         }
     }
+    
 }

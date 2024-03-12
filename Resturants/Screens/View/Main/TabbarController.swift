@@ -15,7 +15,11 @@ class TabbarController: UITabBarController {
         self.navigationController?.isNavigationBarHidden = true
         guard let tabBar = self.tabBar as? CustomTabBar else { return }
         tabBar.didTapButton = { [unowned self] in
-            self.selectedIndex = 2
+            // self.selectedIndex = 2
+            let vc = Constants.addStoryBoard.instantiateViewController(withIdentifier: "CameraVC") as? CameraVC
+            vc?.modalPresentationStyle = .overFullScreen
+            self.present(vc!, animated: true)
+            
         }
     }
 

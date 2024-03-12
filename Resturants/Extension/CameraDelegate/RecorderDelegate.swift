@@ -24,6 +24,7 @@ protocol RecorderDelegate: class {
 
 final class Recorder: NSObject {
     weak var delegate: RecorderDelegate?
+    private var audioMixer: AVAudioMixerNode?
 
     var filters: [CIFilter] = []
 
@@ -39,6 +40,15 @@ final class Recorder: NSObject {
         return Int(seconds)
     }
 
+    // Call this method to mute audio during recording
+    func muteAudio(_ isMuted: Bool) {
+        if isMuted {
+            audioMixer?.volume = 0.0
+        } else {
+            audioMixer?.volume = 1.0
+        }
+    }
+    
     var hasTorch: Bool {
         return capture.hasTorch
     }
