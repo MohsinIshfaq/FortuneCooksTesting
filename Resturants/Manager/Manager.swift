@@ -28,6 +28,12 @@ final class UserManager {
        "Hotel"
    ]
     
+    var filteredCuisine:[[String]]          = []
+    var filteredEnviorment:[[String]]       = []
+    var filteredFeature:[[String]]          = []
+    var filteredMeals:[[String]]            = []
+    var filteredSpeacials:[[String]]        = []
+    
      var arrCuisine         = [["African" , "0"],
                                       ["American" , "0"],
                                       ["Asian" , "0"],

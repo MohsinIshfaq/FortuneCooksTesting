@@ -68,7 +68,17 @@ class CrtProfile4VC: UIViewController {
     @IBAction func ontapNextStep(_ sender: UIButton){
         
         if checkvalidPsd {
-            signUp()
+            if txtPsd.text == txtConfrmPsd.text{
+                if imgTrms.image == UIImage(systemName: "checkmark.square") && imgPrivacy.image == UIImage(systemName: "checkmark.square") {
+                    signUp()
+                }
+                else{
+                    self.showToast(message: "Please accept the terms and conditions", seconds: 2, clr: .red)
+                }
+            }
+            else{
+                self.showToast(message: "Password should be same", seconds: 2, clr: .red)
+            }
         }
         else{
             self.showToast(message: "Password is not valid", seconds: 2, clr: .red)
@@ -76,7 +86,7 @@ class CrtProfile4VC: UIViewController {
 //        let vc = Constants.authStoryBoard.instantiateViewController(withIdentifier: "CrtProfile5VC") as? CrtProfile5VC
 //        self.navigationController?.pushViewController(vc!, animated: true)
     }
-    @objc func gestureTrms(_ gesture:UITapGestureRecognizer){
+    @IBAction func gestureTrms(_ gesture: UIButton){
         
         if imgTrms.image      == UIImage(systemName: "checkmark.square") {
             imgTrms.image      = UIImage(systemName: "square")
@@ -85,7 +95,7 @@ class CrtProfile4VC: UIViewController {
             imgTrms.image      = UIImage(systemName: "checkmark.square")
         }
     }
-    @objc func gesturePrivacy(_ gesture:UITapGestureRecognizer){
+    @IBAction func gesturePrivacy(_ gesture: UIButton){
         
         if imgPrivacy.image      == UIImage(systemName: "checkmark.square") {
             imgPrivacy.image      = UIImage(systemName: "square")

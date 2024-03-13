@@ -7,11 +7,12 @@
 
 import UIKit
 
-class SelectionVC: UIViewController {
+class SelectionVC: UIViewController , UISearchTextFieldDelegate {
     
     //MARK: - @IBOutlets
     @IBOutlet weak var tblSelection: UITableView!
     @IBOutlet weak var lblHeader   : UILabel!
+    @IBOutlet weak var txtSearch   : UITextField!
     
     //MARK: - Variables and Properties
     var type  = 0
@@ -21,7 +22,6 @@ class SelectionVC: UIViewController {
         super.viewDidLoad()
         onLaod()
     }
-
     @IBAction func ontapDismiss(_ : UIButton){
         self.dismiss(animated: true)
     }
@@ -45,11 +45,44 @@ class SelectionVC: UIViewController {
     }
 }
 
+//MARK: - Search TextField {}
+extension SelectionVC: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let searchText = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) else {
+            return true
+        }
+        
+        filterContentForSearchText(searchText)
+        
+        return true
+    }
+    
+    func filterContentForSearchText(_ searchText: String) {
+        // Filter your data array based on the search text
+        // For example, assuming you have an array named filteredData
+        
+        if type == 0 {
+            UserManager.shared.filteredCuisine = UserManager.shared.arrCuisine.filter { $0[0].localizedCaseInsensitiveContains(searchText) }
+        } else if type == 1 {
+            UserManager.shared.filteredEnviorment = UserManager.shared.arrEnviorment.filter { $0[0].localizedCaseInsensitiveContains(searchText) }
+        } else if type == 2 {
+            UserManager.shared.filteredFeature = UserManager.shared.arrFeature.filter { $0[0].localizedCaseInsensitiveContains(searchText) }
+        } else if type == 3 {
+            UserManager.shared.filteredMeals = UserManager.shared.arrMeals.filter { $0[0].localizedCaseInsensitiveContains(searchText) }
+        } else {
+            UserManager.shared.filteredSpeacials = UserManager.shared.arrSpeacials.filter { $0[0].localizedCaseInsensitiveContains(searchText) }
+        }
+        
+        // Reload table view to reflect the filtered data
+        tblSelection.reloadData()
+    }
+}
 //MARK: - Custom Implementation {}
 extension SelectionVC{
    
     func onLaod() {
         setupView()
+        txtSearch.delegate = self
     }
     
     func onAppear() {

@@ -63,7 +63,7 @@ extension HomeVC {
     }
     func NavigationRightBtn() {
         
-        let myimage = UIImage(systemName: "line.3.horizontal.decrease")?.withRenderingMode(.automatic)
+        let myimage = UIImage(systemName: "line.3.horizontal")?.withRenderingMode(.automatic)
         var first = UIBarButtonItem(image: myimage, style: .plain, target: self, action: #selector(ontapNavRight))
         navigationItem.rightBarButtonItem = first
         navigationItem.rightBarButtonItem?.tintColor = .white

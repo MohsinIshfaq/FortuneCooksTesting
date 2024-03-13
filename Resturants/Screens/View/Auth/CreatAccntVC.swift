@@ -16,6 +16,7 @@ class CreatAccntVC: UIViewController , createAccntDelegate {
     func collectionData(type: Int) {
         if type == 0{
             UserManager.shared.selectedCuisine.removeAll()
+            arrSelectedCusisine.removeAll()
             for i in 0..<UserManager.shared.arrCuisine.count{
                 if UserManager.shared.arrCuisine[i][1] == "1" {
                     self.arrSelectedCusisine.append(UserManager.shared.arrCuisine[i][0])
@@ -25,6 +26,7 @@ class CreatAccntVC: UIViewController , createAccntDelegate {
         }
         else if type == 1{
             UserManager.shared.selectedEnviorment.removeAll()
+            arrSelectedEnviorment.removeAll()
             for i in 0..<UserManager.shared.arrEnviorment.count{
                 if UserManager.shared.arrEnviorment[i][1] == "1" {
                     self.arrSelectedEnviorment.append(UserManager.shared.arrEnviorment[i][0])
@@ -34,6 +36,7 @@ class CreatAccntVC: UIViewController , createAccntDelegate {
         }
         else if type == 2{
             UserManager.shared.selectedFeature.removeAll()
+            arrSelectedFeature.removeAll()
             for i in 0..<UserManager.shared.arrFeature.count{
                 if UserManager.shared.arrFeature[i][1] == "1" {
                     self.arrSelectedFeature.append(UserManager.shared.arrFeature[i][0])
@@ -43,6 +46,7 @@ class CreatAccntVC: UIViewController , createAccntDelegate {
         }
         else if type == 3{
             UserManager.shared.selectedMeals.removeAll()
+            arrSelectedMeals.removeAll()
             for i in 0..<UserManager.shared.arrMeals.count{
                 if UserManager.shared.arrMeals[i][1] == "1" {
                     self.arrSelectedMeals.append(UserManager.shared.arrMeals[i][0])
@@ -52,6 +56,7 @@ class CreatAccntVC: UIViewController , createAccntDelegate {
         }
         else{
             UserManager.shared.selectedSpecial.removeAll()
+            arrSelectedSpecial.removeAll()
             for i in 0..<UserManager.shared.arrSpeacials.count{
                 if UserManager.shared.arrSpeacials[i][1] == "1" {
                     self.arrSelectedSpecial.append(UserManager.shared.arrSpeacials[i][0])
