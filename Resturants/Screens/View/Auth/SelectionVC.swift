@@ -141,22 +141,22 @@ extension SelectionVC: UITableViewDelegate , UITableViewDataSource{
         }
         else if type == 1 {
             self.lblHeader.text  = "Enviornment"
-            return UserManager.shared.filteredEnviorment.count == 0 ? UserManager.shared.arrEnviorment.count : UserManager.shared.filteredEnviorment.count
+            return UserManager.shared.filteredEnviorment.count == 0 && txtSearch.text == "" ? UserManager.shared.arrEnviorment.count : UserManager.shared.filteredEnviorment.count
            // return UserManager.shared.arrEnviorment.count
         }
         else if type == 2 {
             self.lblHeader.text  = "Feature"
-            return UserManager.shared.filteredFeature.count == 0 ? UserManager.shared.arrFeature.count : UserManager.shared.filteredFeature.count
+            return UserManager.shared.filteredFeature.count == 0 && txtSearch.text == "" ? UserManager.shared.arrFeature.count : UserManager.shared.filteredFeature.count
            // return UserManager.shared.arrFeature.count
         }
         else if type == 3 {
             self.lblHeader.text  = "Meal"
-            return UserManager.shared.filteredMeals.count == 0 ? UserManager.shared.arrFeature.count : UserManager.shared.filteredMeals.count
+            return UserManager.shared.filteredMeals.count == 0 && txtSearch.text == "" ? UserManager.shared.arrMeals.count : UserManager.shared.filteredMeals.count
            // return UserManager.shared.arrMeals.count
         }
         else{
             self.lblHeader.text  = "Specailization"
-            return UserManager.shared.filteredSpeacials.count == 0 ? UserManager.shared.arrFeature.count : UserManager.shared.filteredSpeacials.count
+            return UserManager.shared.filteredSpeacials.count == 0 && txtSearch.text == "" ? UserManager.shared.arrSpeacials.count : UserManager.shared.filteredSpeacials.count
             //return UserManager.shared.arrSpeacials.count
         }
     }
@@ -301,7 +301,7 @@ extension SelectionVC: UITableViewDelegate , UITableViewDataSource{
             if UserManager.shared.filteredSpeacials.isEmpty {
                 cuisineName = UserManager.shared.arrSpeacials[indexPath.row][0]
             } else {
-                cuisineName = UserManager.shared.arrSpeacials[indexPath.row][0]
+                cuisineName = UserManager.shared.filteredSpeacials[indexPath.row][0]
             }
             
             if let index = UserManager.shared.arrSpeacials.firstIndex(where: { $0[0] == cuisineName }) {
