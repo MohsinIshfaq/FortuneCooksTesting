@@ -47,6 +47,10 @@ class SelectionVC: UIViewController , UISearchTextFieldDelegate {
 
 //MARK: - Search TextField {}
 extension SelectionVC: UITextFieldDelegate {
+    @objc func textFieldDidEndChange(_ textField: UITextField) {
+        print(txtSearch.text!)
+        tblSelection.reloadData()
+    }
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let searchText = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) else {
             return true
@@ -58,21 +62,51 @@ extension SelectionVC: UITextFieldDelegate {
     }
     
     func filterContentForSearchText(_ searchText: String) {
-        // Filter your data array based on the search text
-        // For example, assuming you have an array named filteredData
-        
         if type == 0 {
             UserManager.shared.filteredCuisine = UserManager.shared.arrCuisine.filter { $0[0].localizedCaseInsensitiveContains(searchText) }
-        } else if type == 1 {
-            UserManager.shared.filteredEnviorment = UserManager.shared.arrEnviorment.filter { $0[0].localizedCaseInsensitiveContains(searchText) }
-        } else if type == 2 {
-            UserManager.shared.filteredFeature = UserManager.shared.arrFeature.filter { $0[0].localizedCaseInsensitiveContains(searchText) }
-        } else if type == 3 {
-            UserManager.shared.filteredMeals = UserManager.shared.arrMeals.filter { $0[0].localizedCaseInsensitiveContains(searchText) }
-        } else {
-            UserManager.shared.filteredSpeacials = UserManager.shared.arrSpeacials.filter { $0[0].localizedCaseInsensitiveContains(searchText) }
+            // Filter the selection status based on the filtered cuisine items
+            for i in 0..<UserManager.shared.filteredCuisine.count {
+                if let index = UserManager.shared.arrCuisine.firstIndex(where: { $0[0] == UserManager.shared.filteredCuisine[i][0] }) {
+                    UserManager.shared.filteredCuisine[i][1] = UserManager.shared.arrCuisine[index][1]
+                }
+            }
         }
-        
+        else if type == 1 {
+            UserManager.shared.filteredEnviorment = UserManager.shared.arrEnviorment.filter { $0[0].localizedCaseInsensitiveContains(searchText) }
+            // Filter the selection status based on the filtered cuisine items
+            for i in 0..<UserManager.shared.filteredEnviorment.count {
+                if let index = UserManager.shared.arrEnviorment.firstIndex(where: { $0[0] == UserManager.shared.filteredEnviorment[i][0] }) {
+                    UserManager.shared.filteredEnviorment[i][1] = UserManager.shared.arrEnviorment[index][1]
+                }
+            }
+        }
+        else if type == 2 {
+            UserManager.shared.filteredFeature = UserManager.shared.arrFeature.filter { $0[0].localizedCaseInsensitiveContains(searchText) }
+            // Filter the selection status based on the filtered cuisine items
+            for i in 0..<UserManager.shared.filteredFeature.count {
+                if let index = UserManager.shared.arrFeature.firstIndex(where: { $0[0] == UserManager.shared.filteredFeature[i][0] }) {
+                    UserManager.shared.filteredFeature[i][1] = UserManager.shared.arrFeature[index][1]
+                }
+            }
+        }
+        else if type == 3 {
+            UserManager.shared.filteredMeals = UserManager.shared.arrMeals.filter { $0[0].localizedCaseInsensitiveContains(searchText) }
+            // Filter the selection status based on the filtered cuisine items
+            for i in 0..<UserManager.shared.filteredMeals.count {
+                if let index = UserManager.shared.arrMeals.firstIndex(where: { $0[0] == UserManager.shared.filteredMeals[i][0] }) {
+                    UserManager.shared.filteredMeals[i][1] = UserManager.shared.arrMeals[index][1]
+                }
+            }
+        }
+        else{
+            UserManager.shared.filteredSpeacials = UserManager.shared.arrSpeacials.filter { $0[0].localizedCaseInsensitiveContains(searchText) }
+            // Filter the selection status based on the filtered cuisine items
+            for i in 0..<UserManager.shared.filteredSpeacials.count {
+                if let index = UserManager.shared.arrSpeacials.firstIndex(where: { $0[0] == UserManager.shared.filteredSpeacials[i][0] }) {
+                    UserManager.shared.filteredSpeacials[i][1] = UserManager.shared.arrSpeacials[index][1]
+                }
+            }
+        }
         // Reload table view to reflect the filtered data
         tblSelection.reloadData()
     }
@@ -82,6 +116,8 @@ extension SelectionVC{
    
     func onLaod() {
         setupView()
+        txtSearch.addTarget(self, action: #selector(textFieldDidEndChange(_:)),
+                                  for: .editingChanged)
         txtSearch.delegate = self
     }
     
@@ -101,71 +137,86 @@ extension SelectionVC: UITableViewDelegate , UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if type == 0 {
             self.lblHeader.text  = "Cuisine"
-            return UserManager.shared.arrCuisine.count
+            return UserManager.shared.filteredCuisine.count == 0 && txtSearch.text == "" ? UserManager.shared.arrCuisine.count : UserManager.shared.filteredCuisine.count
         }
         else if type == 1 {
             self.lblHeader.text  = "Enviornment"
-            return UserManager.shared.arrEnviorment.count
+            return UserManager.shared.filteredEnviorment.count == 0 ? UserManager.shared.arrEnviorment.count : UserManager.shared.filteredEnviorment.count
+           // return UserManager.shared.arrEnviorment.count
         }
         else if type == 2 {
             self.lblHeader.text  = "Feature"
-            return UserManager.shared.arrFeature.count
+            return UserManager.shared.filteredFeature.count == 0 ? UserManager.shared.arrFeature.count : UserManager.shared.filteredFeature.count
+           // return UserManager.shared.arrFeature.count
         }
         else if type == 3 {
             self.lblHeader.text  = "Meal"
-            return UserManager.shared.arrMeals.count
+            return UserManager.shared.filteredMeals.count == 0 ? UserManager.shared.arrFeature.count : UserManager.shared.filteredMeals.count
+           // return UserManager.shared.arrMeals.count
         }
         else{
             self.lblHeader.text  = "Specailization"
-            return UserManager.shared.arrSpeacials.count
+            return UserManager.shared.filteredSpeacials.count == 0 ? UserManager.shared.arrFeature.count : UserManager.shared.filteredSpeacials.count
+            //return UserManager.shared.arrSpeacials.count
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SelectioTCell.identifier) as? SelectioTCell
         if type == 0 {
-            cell?.lbl.text = UserManager.shared.arrCuisine[indexPath.row][0]
-            if UserManager.shared.arrCuisine[indexPath.row][1] == "1" {
-                cell?.img.image = UIImage(systemName: "checkmark.square")
-            }
-            else{
-                cell?.img.image = UIImage(systemName: "square")
+            cell?.lbl.text = UserManager.shared.filteredCuisine.isEmpty && txtSearch.text == "" ? UserManager.shared.arrCuisine[indexPath.row][0] : UserManager.shared.filteredCuisine[indexPath.row][0]
+            
+            if let index = UserManager.shared.arrCuisine.firstIndex(where: { $0[0] == cell?.lbl.text }) {
+                if UserManager.shared.arrCuisine[index][1] == "1" {
+                    cell?.img.image = UIImage(systemName: "checkmark.square")
+                } else {
+                    cell?.img.image = UIImage(systemName: "square")
+                }
             }
         }
         else if type == 1 {
-            cell?.lbl.text = UserManager.shared.arrEnviorment[indexPath.row][0]
-            if UserManager.shared.arrEnviorment[indexPath.row][1] == "1" {
-                cell?.img.image = UIImage(systemName: "checkmark.square")
-            }
-            else{
-                cell?.img.image = UIImage(systemName: "square")
+            
+            cell?.lbl.text = UserManager.shared.filteredEnviorment.isEmpty && txtSearch.text == "" ? UserManager.shared.arrEnviorment[indexPath.row][0] : UserManager.shared.filteredEnviorment[indexPath.row][0]
+            
+            if let index = UserManager.shared.arrEnviorment.firstIndex(where: { $0[0] == cell?.lbl.text }) {
+                if UserManager.shared.arrEnviorment[index][1] == "1" {
+                    cell?.img.image = UIImage(systemName: "checkmark.square")
+                } else {
+                    cell?.img.image = UIImage(systemName: "square")
+                }
             }
         }
         else if type == 2 {
-            cell?.lbl.text = UserManager.shared.arrFeature[indexPath.row][0]
-            if UserManager.shared.arrFeature[indexPath.row][1] == "1" {
-                cell?.img.image = UIImage(systemName: "checkmark.square")
-            }
-            else{
-                cell?.img.image = UIImage(systemName: "square")
+            cell?.lbl.text = UserManager.shared.filteredFeature.isEmpty && txtSearch.text == "" ? UserManager.shared.arrFeature[indexPath.row][0] : UserManager.shared.filteredFeature[indexPath.row][0]
+            
+            if let index = UserManager.shared.arrFeature.firstIndex(where: { $0[0] == cell?.lbl.text }) {
+                if UserManager.shared.arrFeature[index][1] == "1" {
+                    cell?.img.image = UIImage(systemName: "checkmark.square")
+                } else {
+                    cell?.img.image = UIImage(systemName: "square")
+                }
             }
         }
         else if type == 3 {
-            cell?.lbl.text = UserManager.shared.arrMeals[indexPath.row][0]
-            if UserManager.shared.arrMeals[indexPath.row][1] == "1" {
-                cell?.img.image = UIImage(systemName: "checkmark.square")
-            }
-            else{
-                cell?.img.image = UIImage(systemName: "square")
+            cell?.lbl.text = UserManager.shared.filteredMeals.isEmpty && txtSearch.text == "" ? UserManager.shared.arrMeals[indexPath.row][0] : UserManager.shared.filteredMeals[indexPath.row][0]
+            
+            if let index = UserManager.shared.arrMeals.firstIndex(where: { $0[0] == cell?.lbl.text }) {
+                if UserManager.shared.arrMeals[index][1] == "1" {
+                    cell?.img.image = UIImage(systemName: "checkmark.square")
+                } else {
+                    cell?.img.image = UIImage(systemName: "square")
+                }
             }
         }
         else{
-            cell?.lbl.text = UserManager.shared.arrSpeacials[indexPath.row][0]
-            if UserManager.shared.arrSpeacials[indexPath.row][1] == "1" {
-                cell?.img.image = UIImage(systemName: "checkmark.square")
-            }
-            else{
-                cell?.img.image = UIImage(systemName: "square")
+            cell?.lbl.text = UserManager.shared.filteredSpeacials.isEmpty && txtSearch.text == "" ? UserManager.shared.arrSpeacials[indexPath.row][0] : UserManager.shared.filteredSpeacials[indexPath.row][0]
+            
+            if let index = UserManager.shared.arrSpeacials.firstIndex(where: { $0[0] == cell?.lbl.text }) {
+                if UserManager.shared.arrSpeacials[index][1] == "1" {
+                    cell?.img.image = UIImage(systemName: "checkmark.square")
+                } else {
+                    cell?.img.image = UIImage(systemName: "square")
+                }
             }
         }
         
@@ -176,49 +227,89 @@ extension SelectionVC: UITableViewDelegate , UITableViewDataSource{
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! SelectioTCell
-        
+            
         if type == 0 {
-            if UserManager.shared.arrCuisine[indexPath.row][1] == "1"{
-                UserManager.shared.arrCuisine[indexPath.row][1] = "0"
+            let cuisineName: String
+            if UserManager.shared.filteredCuisine.isEmpty {
+                cuisineName = UserManager.shared.arrCuisine[indexPath.row][0]
+            } else {
+                cuisineName = UserManager.shared.filteredCuisine[indexPath.row][0]
             }
-            else{
-                UserManager.shared.arrCuisine[indexPath.row][1] = "1"
+            
+            if let index = UserManager.shared.arrCuisine.firstIndex(where: { $0[0] == cuisineName }) {
+                if UserManager.shared.arrCuisine[index][1] == "1" {
+                    UserManager.shared.arrCuisine[index][1] = "0"
+                } else {
+                    UserManager.shared.arrCuisine[index][1] = "1"
+                }
             }
             tableView.reloadData()
         }
         else if type == 1 {
-            if UserManager.shared.arrEnviorment[indexPath.row][1] == "1"{
-                UserManager.shared.arrEnviorment[indexPath.row][1] = "0"
+            let cuisineName: String
+            if UserManager.shared.filteredEnviorment.isEmpty {
+                cuisineName = UserManager.shared.arrEnviorment[indexPath.row][0]
+            } else {
+                cuisineName = UserManager.shared.filteredEnviorment[indexPath.row][0]
             }
-            else{
-                UserManager.shared.arrEnviorment[indexPath.row][1] = "1"
+            
+            if let index = UserManager.shared.arrEnviorment.firstIndex(where: { $0[0] == cuisineName }) {
+                if UserManager.shared.arrEnviorment[index][1] == "1" {
+                    UserManager.shared.arrEnviorment[index][1] = "0"
+                } else {
+                    UserManager.shared.arrEnviorment[index][1] = "1"
+                }
             }
             tableView.reloadData()
         }
         else if type == 2 {
-            if UserManager.shared.arrFeature[indexPath.row][1] == "1"{
-                UserManager.shared.arrFeature[indexPath.row][1] = "0"
+            let cuisineName: String
+            if UserManager.shared.filteredFeature.isEmpty {
+                cuisineName = UserManager.shared.arrFeature[indexPath.row][0]
+            } else {
+                cuisineName = UserManager.shared.filteredFeature[indexPath.row][0]
             }
-            else{
-                UserManager.shared.arrFeature[indexPath.row][1] = "1"
+            
+            if let index = UserManager.shared.arrFeature.firstIndex(where: { $0[0] == cuisineName }) {
+                if UserManager.shared.arrFeature[index][1] == "1" {
+                    UserManager.shared.arrFeature[index][1] = "0"
+                } else {
+                    UserManager.shared.arrFeature[index][1] = "1"
+                }
             }
             tableView.reloadData()
         }
         else if type == 3 {
-            if UserManager.shared.arrMeals[indexPath.row][1] == "1"{
-                UserManager.shared.arrMeals[indexPath.row][1] = "0"
+            let cuisineName: String
+            if UserManager.shared.filteredMeals.isEmpty {
+                cuisineName = UserManager.shared.arrMeals[indexPath.row][0]
+            } else {
+                cuisineName = UserManager.shared.filteredMeals[indexPath.row][0]
             }
-            else{
-                UserManager.shared.arrMeals[indexPath.row][1] = "1"
+            
+            if let index = UserManager.shared.arrMeals.firstIndex(where: { $0[0] == cuisineName }) {
+                if UserManager.shared.arrMeals[index][1] == "1" {
+                    UserManager.shared.arrMeals[index][1] = "0"
+                } else {
+                    UserManager.shared.arrMeals[index][1] = "1"
+                }
             }
             tableView.reloadData()
         }
         else{
-            if UserManager.shared.arrSpeacials[indexPath.row][1] == "1"{
-                UserManager.shared.arrSpeacials[indexPath.row][1] = "0"
+            let cuisineName: String
+            if UserManager.shared.filteredSpeacials.isEmpty {
+                cuisineName = UserManager.shared.arrSpeacials[indexPath.row][0]
+            } else {
+                cuisineName = UserManager.shared.arrSpeacials[indexPath.row][0]
             }
-            else{
-                UserManager.shared.arrSpeacials[indexPath.row][1] = "1"
+            
+            if let index = UserManager.shared.arrSpeacials.firstIndex(where: { $0[0] == cuisineName }) {
+                if UserManager.shared.arrSpeacials[index][1] == "1" {
+                    UserManager.shared.arrSpeacials[index][1] = "0"
+                } else {
+                    UserManager.shared.arrSpeacials[index][1] = "1"
+                }
             }
             tableView.reloadData()
         }
