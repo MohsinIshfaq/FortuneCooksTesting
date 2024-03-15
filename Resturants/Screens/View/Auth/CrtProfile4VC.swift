@@ -43,30 +43,25 @@ class CrtProfile4VC: UIViewController {
 
     @IBAction func ontapToglePsd(_ sender: UIButton){
         if txtPsd.isSecureTextEntry == false {
-
             txtPsd.isSecureTextEntry = true
             btnToglePsd.setImage(UIImage(systemName: "eye.slash"), for: .normal)
         }
         else if txtPsd.isSecureTextEntry == true {
-
             txtPsd.isSecureTextEntry = false
             btnToglePsd.setImage(UIImage(systemName: "eye"), for: .normal)
         }
     }
     @IBAction func ontapTogleConPsd(_ sender: UIButton){
         if txtConfrmPsd.isSecureTextEntry == false {
-
             txtConfrmPsd.isSecureTextEntry = true
             btnTogleConPsd.setImage(UIImage(systemName: "eye.slash"), for: .normal)
         }
         else if txtConfrmPsd.isSecureTextEntry == true {
-
             txtConfrmPsd.isSecureTextEntry = false
             btnTogleConPsd.setImage(UIImage(systemName: "eye"), for: .normal)
         }
     }
     @IBAction func ontapNextStep(_ sender: UIButton){
-        
         if checkvalidPsd {
             if txtPsd.text == txtConfrmPsd.text{
                 if imgTrms.image == UIImage(systemName: "checkmark.square") && imgPrivacy.image == UIImage(systemName: "checkmark.square") {
@@ -87,7 +82,6 @@ class CrtProfile4VC: UIViewController {
 //        self.navigationController?.pushViewController(vc!, animated: true)
     }
     @IBAction func gestureTrms(_ gesture: UIButton){
-        
         if imgTrms.image      == UIImage(systemName: "checkmark.square") {
             imgTrms.image      = UIImage(systemName: "square")
         }
@@ -96,7 +90,6 @@ class CrtProfile4VC: UIViewController {
         }
     }
     @IBAction func gesturePrivacy(_ gesture: UIButton){
-        
         if imgPrivacy.image      == UIImage(systemName: "checkmark.square") {
             imgPrivacy.image      = UIImage(systemName: "square")
         }
@@ -111,54 +104,37 @@ class CrtProfile4VC: UIViewController {
 extension CrtProfile4VC {
     
     func onLoad() {
-      
         setupView()
     }
-    
     func onAppear() {
         removeNavBackbuttonTitle()
         self.navigationItem.title  = "Create Email & Password"
     }
-    
     func setupView() {
-        
         txtPsd.delegate                          = self
     }
 }
 //MARK: - Textfield Validation {}
 extension CrtProfile4VC: UISearchTextFieldDelegate {
-    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        // Get the updated text field content
         let updatedText = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) ?? ""
-        
-        // Use your validation function here
         validateTextField(updatedText)
-        // Return true to allow the text field to be updated
         return true
     }
-    
     func validateTextField(_ txtfld: String) {
-        // Check if the text field contains at least 8 characters
         if txtfld.count >= 8 {
             updateValidationStatus(true, message: "8 characters done", image: img8Charac)
         } else {
             updateValidationStatus(false, message: "At least 8 characters required", image: img8Charac)
         }
-
-        // Check if the text field contains at least 1 uppercase letter
         let uppercasePredicate = NSPredicate(format: "SELF MATCHES %@", ".*[A-Z]+.*")
         updateValidationStatus(uppercasePredicate.evaluate(with: txtfld),
                                 message: "Minimum 1 uppercase letter done",
                                 image: img1Upper)
-
-        // Check if the text field contains at least 1 lowercase letter
         let lowercasePredicate = NSPredicate(format: "SELF MATCHES %@", ".*[a-z]+.*")
         updateValidationStatus(lowercasePredicate.evaluate(with: txtfld),
                                 message: "Minimum 1 lowercase letter done",
                                 image: img1Lower)
-
-        // Check if the text field contains at least 1 number
         let numberPredicate = NSPredicate(format: "SELF MATCHES %@", ".*[0-9]+.*")
         updateValidationStatus(numberPredicate.evaluate(with: txtfld),
                                 message: "Minimum 1 number done",
@@ -167,11 +143,8 @@ extension CrtProfile4VC: UISearchTextFieldDelegate {
              checkvalidPsd = true
         }
     }
-
-    // Helper function to update validation status
     func updateValidationStatus(_ isValid: Bool, message: String, image: UIImageView) {
         print(message)
-
         if isValid {
             image.image = UIImage(systemName: "checkmark.circle")
             image.tintColor = UIColor.ColorDarkGreen
@@ -186,46 +159,53 @@ extension CrtProfile4VC: UISearchTextFieldDelegate {
 extension CrtProfile4VC {
     
     func signUp() {
-        
         self.startAnimating()
-        Auth.auth().createUser(withEmail: UserManager.shared.selectedEmail, password: txtPsd.text!) { Response, error in
+        Auth.auth().createUser(withEmail: UserManager.shared.selectedEmail, password: txtPsd.text!) { [weak self] response, error in
+            guard let self = self else { return }
             self.stopAnimating()
-            if error == nil {
-                print("user successfully Registered")
-                var id = Firebase.Auth.auth().currentUser?.uid ?? ""
-                UserDefault.token = id
-                UserDefault.isAuthenticated = true
-                self.db.collection("Accounts").document("\(id)").setData(
-
-                    ["Cuisine"       : UserManager.shared.selectedCuisine,
-                     "Enviorment"    : UserManager.shared.selectedEnviorment,
-                     "Feature"       : UserManager.shared.selectedFeature,
-                     "AccountType"   : UserManager.shared.selectedAccountType,
-                     "Meal"          : UserManager.shared.selectedMeals,
-                     "Specailizaiton": UserManager.shared.selectedSpecial,
-                     "ChannelName"   : UserManager.shared.selectedChannelNm,
-                     "DOB"           : UserManager.shared.selectedDOB,
-                     "Email"         : UserManager.shared.selectedEmail,
-                     "PhoneNumber"   : UserManager.shared.selectedPhone]
-                )
-                { err in
-                    if let err = err {
-                        self.stopAnimating()
-                        print("Error writing document: \(err)")
-                        self.showToast(message: error?.localizedDescription ?? "", seconds: 2, clr: .red)
-                    } else {
-                        self.stopAnimating()
-                        print("Document successfully written!")
-                        let vc = Constants.TabControllerStoryBoard.instantiateViewController(withIdentifier: "TabbarController") as? TabbarController
-                                self.navigationController?.pushViewController(vc!, animated: true)
-                    }
+            if let error = error {
+                self.showToast(message: error.localizedDescription, seconds: 2, clr: .red)
+                return
+            }
+            guard let user = response?.user else {
+                self.showToast(message: "User registration failed", seconds: 2, clr: .red)
+                return
+            }
+            user.sendEmailVerification { error in
+                if let error = error {
+                    print("Error sending verification email: \(error.localizedDescription)")
+                    self.showAlertWith(title: "Error", message: "Error sending verification email: \(error.localizedDescription)")
+                    return
+                }
+                print("Verification email sent successfully.")
+                self.showAlertWith(title: "FortuneCooks", message: "Verification email sent successfully.")
+            }
+            var id = user.uid
+            UserDefault.token = id
+            UserDefault.isAuthenticated = true
+            
+            self.db.collection("Accounts").document("\(id)").setData(
+                ["Cuisine"       : UserManager.shared.selectedCuisine,
+                 "Enviorment"    : UserManager.shared.selectedEnviorment,
+                 "Feature"       : UserManager.shared.selectedFeature,
+                 "AccountType"   : UserManager.shared.selectedAccountType,
+                 "Meal"          : UserManager.shared.selectedMeals,
+                 "Specailizaiton": UserManager.shared.selectedSpecial,
+                 "ChannelName"   : UserManager.shared.selectedChannelNm,
+                 "DOB"           : UserManager.shared.selectedDOB,
+                 "Email"         : UserManager.shared.selectedEmail,
+                 "PhoneNumber"   : UserManager.shared.selectedPhone]
+            ) { error in
+                if let error = error {
+                    print("Error writing document: \(error)")
+                    self.showToast(message: error.localizedDescription, seconds: 2, clr: .red)
+                } else {
+                    print("Document successfully written!")
+                    let vc = Constants.TabControllerStoryBoard.instantiateViewController(withIdentifier: "TabbarController") as? TabbarController
+                    self.navigationController?.pushViewController(vc!, animated: true)
                 }
             }
-            else {
-                self.stopAnimating()
-                self.showToast(message: error?.localizedDescription ?? "", seconds: 2, clr: .red)
-            }
-            
         }
     }
+
 }

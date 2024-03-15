@@ -175,8 +175,33 @@ extension CreatAccntVC {
         removeNavBackbuttonTitle()
         self.navigationItem.title  = "Create Account"
     }
+    
+    private func createLeftAlignedLayout() -> UICollectionViewLayout {
+        let item = NSCollectionLayoutItem(
+          layoutSize: NSCollectionLayoutSize(
+            widthDimension: .estimated(40),
+            heightDimension: .absolute(35)))
+        let group = NSCollectionLayoutGroup.horizontal(
+          layoutSize: .init(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .estimated(50)),
+          subitems: [item])
+        group.contentInsets = .init(top: 0, leading: 10, bottom: 0, trailing: 10)
+        group.interItemSpacing = .fixed(10)
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = .init(top: 10, leading: 20, bottom: 0, trailing: 20)
+        let headerSize = NSCollectionLayoutSize(
+          widthDimension: .fractionalWidth(1.0),
+          heightDimension: .absolute(44))
+        let header = NSCollectionLayoutBoundarySupplementaryItem(
+          layoutSize: headerSize,
+          elementKind: UICollectionView.elementKindSectionHeader,
+          alignment: .top)
+        section.boundarySupplementaryItems = [header]
+        return UICollectionViewCompositionalLayout(section: section)
+      }
+    
     func setupViews() {
-        
         CollectCuisine.register(CollectionCell.nib, forCellWithReuseIdentifier: CollectionCell.identifier)
         CollectCuisine.delegate      = self
         CollectCuisine.dataSource    = self

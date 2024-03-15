@@ -640,7 +640,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="slC-7x-vA3">
                                                 <rect key="frame" x="0.0" y="111.66666666666669" width="345" height="87.666666666666686"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DOB" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5fw-7f-OmV">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Created at" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5fw-7f-OmV">
                                                         <rect key="frame" x="0.0" y="0.0" width="345" height="20.666666666666668"/>
                                                         <fontDescription key="fontDescription" name="Inter-Regular_SemiBold" family="Inter" pointSize="17"/>
                                                         <color key="textColor" name="ColorWhite"/>

@@ -55,9 +55,7 @@ extension SelectionVC: UITextFieldDelegate {
         guard let searchText = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) else {
             return true
         }
-        
         filterContentForSearchText(searchText)
-        
         return true
     }
     

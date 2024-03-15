@@ -35,10 +35,15 @@ class CrtProfile2VC: UIViewController {
     
     @IBAction func ontapNextStep(_ sender: UIButton){
         
-        UserManager.shared.selectedChannelNm = txtChannelNm.text!
-        UserManager.shared.selectedDOB       = txtYear.text!
-        let vc = Constants.authStoryBoard.instantiateViewController(withIdentifier: "CrtProfile3VC") as? CrtProfile3VC
-        self.navigationController?.pushViewController(vc!, animated: true)
+        if txtChannelNm.text != "" {
+            UserManager.shared.selectedChannelNm = txtChannelNm.text!
+            UserManager.shared.selectedDOB       = txtYear.text!
+            let vc = Constants.authStoryBoard.instantiateViewController(withIdentifier: "CrtProfile3VC") as? CrtProfile3VC
+            self.navigationController?.pushViewController(vc!, animated: true)
+        }
+        else{
+            self.showToast(message: "Please enter a channel name.", seconds: 2, clr: .red)
+        }
     }
     @objc func dateChange(datePicker: UIDatePicker){
         txtYear.text = formatDate(date: datePicker.date)

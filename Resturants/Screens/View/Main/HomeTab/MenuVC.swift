@@ -15,6 +15,7 @@ class MenuVC: UIViewController {
     var delegate: MenuVCDelegate? = nil
     @IBOutlet weak var btnCreateAccnt :UIView!
     @IBOutlet weak var btnLogout      :UIView!
+    @IBOutlet weak var btnUpload      :UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,10 +23,12 @@ class MenuVC: UIViewController {
         if UserDefault.isAuthenticated {
             btnCreateAccnt.isHidden = true
             btnLogout.isHidden      = false
+            btnUpload.isHidden      = false
         }
         else{
             btnCreateAccnt.isHidden = false
             btnLogout.isHidden      = true
+            btnUpload.isHidden      = true
         }
     }
   
@@ -33,7 +36,14 @@ class MenuVC: UIViewController {
         self.dismiss(animated: true)
         UserDefault.isAuthenticated = false
         delegate?.crtAccnt(pressed: "Auth")
-        NotificationCenter.default.post(name: NSNotification.Name("CrtAccnt"), object: nil)
+        //NotificationCenter.default.post(name: NSNotification.Name("CrtAccnt"), object: nil)
+    }
+    
+    @IBAction func ontapLogout(_ sender: UIButton){
+        self.dismiss(animated: true)
+        UserDefault.isAuthenticated = false
+        delegate?.crtAccnt(pressed: "Auth")
+        //NotificationCenter.default.post(name: NSNotification.Name("CrtAccnt"), object: nil)
     }
     
     @IBAction func ontapVideoRecording(_ sender: UIButton) {
