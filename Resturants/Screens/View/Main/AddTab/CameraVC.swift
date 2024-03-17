@@ -20,6 +20,7 @@ class CameraVC: FilterCamViewController {
     @IBOutlet weak var lblProgress       : UILabel!
     @IBOutlet weak var stackEditOpt      : UIStackView!
     @IBOutlet weak var btnFlash          : UIButton!
+    @IBOutlet weak var stackVideoPicker  : UIStackView!
     
     //MARK: - variables and Properties
     private var selected                 : Bool = false
@@ -29,7 +30,8 @@ class CameraVC: FilterCamViewController {
     private var elapsedTime              : Float = 0.0 // Elapsed time
     private var progress_value           = 0.1
     private var outputURL: URL?          = nil
-    var mutableVideoURL                  = NSURL() //final video url
+    private var mutableVideoURL          = NSURL() //final video url
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,7 +58,11 @@ class CameraVC: FilterCamViewController {
     }
     
     @IBAction func ontapVoiceOver(_ sender: UIButton){
-        
+        let vc = Constants.addStoryBoard.instantiateViewController(withIdentifier: "AudioRecordVC") as! AudioRecordVC
+        vc.outputURL              = outputURL
+        vc.totalTime              = elapsedTime
+        vc.modalPresentationStyle = .overFullScreen
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func ontapMute(_ sender: UIButton){
@@ -68,14 +74,17 @@ class CameraVC: FilterCamViewController {
                 self.showToast(message: "\(error)", seconds: 2, clr: .red)
             }
             else {
-                self.saveVideoToLibrary(at: url!) { error in
-                    if error != nil {
-                        //self.showToast(message: "\(error)", seconds: 2, clr: .red)
-                        print(error?.localizedDescription)
-                    }
-                    else{
-                       // self.showToast(message: "Saved Successfully", seconds: 2, clr: .gray)
-                        print("saved")
+                DispatchQueue.main.async {
+                    if let videoURL = url {
+                        let player = AVPlayer(url: videoURL)
+                        let playerViewController = AVPlayerViewController()
+                        playerViewController.player = player
+                        
+                        self.present(playerViewController, animated: true) {
+                            player.play()
+                        }
+                    } else {
+                        print("Invalid video URL.")
                     }
                 }
             }
@@ -83,15 +92,20 @@ class CameraVC: FilterCamViewController {
     }
     
     @IBAction func ontapRecord(_ sender: UIButton){
+        
         selectedRecord.toggle()
         btnRecord.backgroundColor = selectedRecord == true ? .red : .ColorDarkBlue
+        CollectFilter.isHidden    = selectedRecord == true ? true : false
+        stackVideoPicker.isHidden = selectedRecord == true ? true : false
         if selectedRecord{
+            elapsedTime                = 0
             startProgress()
             self.startRecording()
         }
         else{
             progressRecording.progress = 0
             self.lblProgress.text      = "0"
+            progress_value             = 0
             stopProgress()
             self.stopRecording()
         }
@@ -110,6 +124,7 @@ extension CameraVC {
         setupFilterCollection()
         cameraDelegate = self
         self.stackEditOpt.isHidden = true
+        self.hideNavBar()
     }
     
     func onAppear() {
@@ -133,21 +148,28 @@ extension CameraVC {
     }
     
     @objc func updateProgress() {
-        elapsedTime += 0.1 // Update elapsed time
-        let progress = elapsedTime / totalTime
-        progressRecording.progress = progress
-        self.progress_value += 0.05
-        lblProgress.text           = "\(Int(self.progress_value))"
+        elapsedTime                   += 0.1 // Update elapsed time
+        let progress                   = elapsedTime / totalTime
+        progressRecording.progress     = progress
+        self.progress_value           += 0.05
+        lblProgress.text               = "\(Int(self.progress_value))"
         if elapsedTime >= totalTime {
             timer?.invalidate()
-            timer = nil
-            //btnRecord.backgroundColor = .blue
+            timer                      = nil
+            progressRecording.progress = 0
+            self.lblProgress.text      = "0"
+            elapsedTime                = 0
+            progress_value             = 0
+            stopProgress()
+            btnRecord.backgroundColor  = .ColorDarkBlue
+            self.stopRecording()
         }
     }
 }
 
 //MARK: - Extension of Filter {}
 extension CameraVC : UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return UserManager.shared.FakefilterNameList.count
     }
@@ -198,11 +220,9 @@ extension CameraVC : UICollectionViewDelegate , UICollectionViewDataSource , UIC
 extension CameraVC: FilterCamViewControllerDelegate{
     
     func filterCamDidStartRecording(_ filterCam: FilterCamViewController) {
-        
     }
 
     func filterCamDidFinishRecording(_ filterCame: FilterCamViewController) {
-        
     }
 
     func filterCam(_ filterCam: FilterCamViewController, didFailToRecord error: Error) {
@@ -213,24 +233,10 @@ extension CameraVC: FilterCamViewControllerDelegate{
         DispatchQueue.main.async {
             self.outputURL = outputURL
             self.stackEditOpt.isHidden = false
-//            PHPhotoLibrary.shared().performChanges({
-//                PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: outputURL)
-//            }) { success, error in
-//                if success {
-//                    // Video saved successfully
-//                   // self.showToast(message: "Video saved successfully", seconds: 1, clr: .gray)
-//                    print("Video saved successfully")
-//                } else {
-//                    // Failed to save video
-//                    //self.showToast(message: "\(error?.localizedDescription ?? "Unknown error")", seconds: 1, clr: .gray)
-//                    print("Failed to save video: \(error?.localizedDescription ?? "Unknown error")")
-//                }
-//            }
         }
     }
 
     func filterCam(_ filterCam: FilterCamViewController, didFocusAtPoint tapPoint: CGPoint) {
-        
     }
 }
 
@@ -255,7 +261,6 @@ extension CameraVC : UIImagePickerControllerDelegate, UINavigationControllerDele
         // Use the videoURL as needed
     }
 }
-
 
 //MARK: - Mute Audio {}
 extension CameraVC {
@@ -329,3 +334,15 @@ extension CameraVC {
     }
     
 }
+
+
+//                self.saveVideoToLibrary(at: url!) { error in
+//                    if error != nil {
+//                        //self.showToast(message: "\(error)", seconds: 2, clr: .red)
+//                        print(error?.localizedDescription)
+//                    }
+//                    else{
+//                       // self.showToast(message: "Saved Successfully", seconds: 2, clr: .gray)
+//                        print("saved")
+//                    }
+//                }

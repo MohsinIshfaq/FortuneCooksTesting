@@ -21,13 +21,12 @@ class CrtProfile4VC: UIViewController {
     @IBOutlet weak var img1Upper    : UIImageView!
     @IBOutlet weak var img1Lower    : UIImageView!
     @IBOutlet weak var img1number   : UIImageView!
-    
     @IBOutlet weak var imgTrms      : UIImageView!
     @IBOutlet weak var imgPrivacy   : UIImageView!
-     var checkvalidPsd: Bool        = false
     
     //MARK: - PROPERTIES
     var db = Firestore.firestore()
+    var checkvalidPsd: Bool        = false
     
     override func viewDidLoad() {
         super.viewDidLoad()

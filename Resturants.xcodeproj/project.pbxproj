@@ -20,6 +20,9 @@
 		462630812B9AA3D600A4E7D1 /* CaptureError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462630802B9AA3D600A4E7D1 /* CaptureError.swift */; };
 		462630832B9AA3ED00A4E7D1 /* Composer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462630822B9AA3ED00A4E7D1 /* Composer.swift */; };
 		462630852B9AA40700A4E7D1 /* FrameRateCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462630842B9AA40700A4E7D1 /* FrameRateCalculator.swift */; };
+		4635E1352BA69E3C00C149ED /* AudioRecordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4635E1342BA69E3C00C149ED /* AudioRecordVC.swift */; };
+		4635E1392BA6B27500C149ED /* AudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4635E1382BA6B27500C149ED /* AudioViewController.swift */; };
+		4635E13B2BA6D93100C149ED /* CameraNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4635E13A2BA6D93100C149ED /* CameraNC.swift */; };
 		46C4A0972B93245300F27C8F /* FilterCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C4A0952B93245300F27C8F /* FilterCCell.swift */; };
 		46C4A0982B93245300F27C8F /* FilterCCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46C4A0962B93245300F27C8F /* FilterCCell.xib */; };
 		46C4A09A2B93290100F27C8F /* VideoEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C4A0992B93290100F27C8F /* VideoEditor.swift */; };
@@ -86,6 +89,9 @@
 		462630802B9AA3D600A4E7D1 /* CaptureError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureError.swift; sourceTree = "<group>"; };
 		462630822B9AA3ED00A4E7D1 /* Composer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Composer.swift; sourceTree = "<group>"; };
 		462630842B9AA40700A4E7D1 /* FrameRateCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameRateCalculator.swift; sourceTree = "<group>"; };
+		4635E1342BA69E3C00C149ED /* AudioRecordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecordVC.swift; sourceTree = "<group>"; };
+		4635E1382BA6B27500C149ED /* AudioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioViewController.swift; sourceTree = "<group>"; };
+		4635E13A2BA6D93100C149ED /* CameraNC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraNC.swift; sourceTree = "<group>"; };
 		46C4A0952B93245300F27C8F /* FilterCCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCCell.swift; sourceTree = "<group>"; };
 		46C4A0962B93245300F27C8F /* FilterCCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterCCell.xib; sourceTree = "<group>"; };
 		46C4A0992B93290100F27C8F /* VideoEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoEditor.swift; sourceTree = "<group>"; };
@@ -183,6 +189,24 @@
 			path = CameraDelegate;
 			sourceTree = "<group>";
 		};
+		4635E1362BA69E5200C149ED /* AddTab */ = {
+			isa = PBXGroup;
+			children = (
+				4626306E2B99632900A4E7D1 /* CameraVC.swift */,
+				4635E1342BA69E3C00C149ED /* AudioRecordVC.swift */,
+				4635E13A2BA6D93100C149ED /* CameraNC.swift */,
+			);
+			path = AddTab;
+			sourceTree = "<group>";
+		};
+		4635E1372BA6B25E00C149ED /* AudioViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4635E1382BA6B27500C149ED /* AudioViewController.swift */,
+			);
+			path = AudioViewController;
+			sourceTree = "<group>";
+		};
 		46C4A0942B93240E00F27C8F /* FilterCCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -199,7 +223,6 @@
 				7144BD532B6EA0CC00767374 /* MenuVC.swift */,
 				7119F6392B8B7DFF00FA8579 /* VideoRecordingVC.swift */,
 				46C820F82B930179007E543F /* EditVideoVC.swift */,
-				4626306E2B99632900A4E7D1 /* CameraVC.swift */,
 			);
 			path = HomeTab;
 			sourceTree = "<group>";
@@ -235,6 +258,7 @@
 			children = (
 				716F6FDC2B5ADD5A00049C1C /* TabbarController.swift */,
 				7144BD522B6EA0A000767374 /* HomeTab */,
+				4635E1362BA69E5200C149ED /* AddTab */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -305,6 +329,7 @@
 		71B3DC862B55ABC700A3615F /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				4635E1372BA6B25E00C149ED /* AudioViewController */,
 				71B3DC972B55B15300A3615F /* Controller+Extension.swift */,
 				71B3DC992B55B17400A3615F /* UIColor+Extension.swift */,
 				71B3DC9B2B55B19C00A3615F /* UIView+Extension.swift */,
@@ -562,8 +587,11 @@
 			files = (
 				462630812B9AA3D600A4E7D1 /* CaptureError.swift in Sources */,
 				46C4A0972B93245300F27C8F /* FilterCCell.swift in Sources */,
+				4635E1352BA69E3C00C149ED /* AudioRecordVC.swift in Sources */,
+				4635E13B2BA6D93100C149ED /* CameraNC.swift in Sources */,
 				71B3DC702B55A93D00A3615F /* AppDelegate.swift in Sources */,
 				715166462B598903007CE092 /* CrtProfile2VC.swift in Sources */,
+				4635E1392BA6B27500C149ED /* AudioViewController.swift in Sources */,
 				4626307D2B9AA38F00A4E7D1 /* RecorderDelegate.swift in Sources */,
 				46C820F92B930179007E543F /* EditVideoVC.swift in Sources */,
 				714B0F702B69703B00570578 /* SelectioTCell.swift in Sources */,
