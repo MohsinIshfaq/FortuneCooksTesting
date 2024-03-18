@@ -43,13 +43,13 @@ class AudioRecordVC: AudioViewController {
                 // Merged video with audio successfully, use the mergedURL as needed
                 print("Merged video with audio URL: \(mergedURL)")
                 DispatchQueue.main.async {
-                        let player = AVPlayer(url: mergedURL)
-                        let playerViewController = AVPlayerViewController()
-                        playerViewController.player = player
-                        
-                        self.present(playerViewController, animated: true) {
-                            player.play()
-                        }
+                    let player = AVPlayer(url: mergedURL)
+                    let playerViewController = AVPlayerViewController()
+                    playerViewController.player = player
+                    
+                    self.present(playerViewController, animated: true) {
+                        player.play()
+                    }
                 }
             } else {
                 // Failed to merge video with audio
@@ -114,7 +114,7 @@ extension AudioRecordVC{
         }
         removeAudioFromVideo(url) { url , error in
             if error != nil {
-                self.showToast(message: "\(error)", seconds: 2, clr: .red)
+                self.showToast(message: "\(String(describing: error))", seconds: 2, clr: .red)
             }
             else{
                 self.outputURL = url

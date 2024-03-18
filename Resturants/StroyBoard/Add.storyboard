@@ -62,6 +62,37 @@
                                 <color key="textColor" name="ColorWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="bottom" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="V0B-2b-FJX">
+                                <rect key="frame" x="179" y="258.66666666666669" width="206" height="79.333333333333314"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7bc-Qc-Fn4">
+                                        <rect key="frame" x="90.666666666666686" y="0.0" width="115.33333333333331" height="33.666666666666664"/>
+                                        <color key="tintColor" name="ColorWhite"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" imagePlacement="trailing" title="Voice over" imagePadding="6">
+                                            <imageReference key="image" image="mic" catalog="system" symbolScale="medium"/>
+                                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="14" weight="semibold"/>
+                                            <fontDescription key="titleFontDescription" name="Inter-Regular_Medium" family="Inter" pointSize="14"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="ontapVoiceOver:" destination="0Uu-d4-jH1" eventType="touchUpInside" id="Nsn-qW-Htu"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gxv-Hv-e7h">
+                                        <rect key="frame" x="0.0" y="45.666666666666629" width="206" height="33.666666666666657"/>
+                                        <color key="tintColor" name="ColorWhite"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" imagePlacement="trailing" title="Mute Original Sound" imagePadding="6">
+                                            <imageReference key="image" image="speaker.wave.2" catalog="system" symbolScale="medium"/>
+                                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="14" weight="semibold"/>
+                                            <fontDescription key="titleFontDescription" name="Inter-Regular_Medium" family="Inter" pointSize="16"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="ontapMute:" destination="0Uu-d4-jH1" eventType="touchUpInside" id="hjq-OT-Fka"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CWz-Sc-IGb">
                                 <rect key="frame" x="146.66666666666666" y="568" width="100" height="100"/>
                                 <color key="backgroundColor" name="AccentColor"/>
@@ -138,37 +169,6 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                </subviews>
-                            </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="bottom" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="V0B-2b-FJX">
-                                <rect key="frame" x="179" y="258.66666666666669" width="206" height="79.333333333333314"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7bc-Qc-Fn4">
-                                        <rect key="frame" x="90.666666666666686" y="0.0" width="115.33333333333331" height="33.666666666666664"/>
-                                        <color key="tintColor" name="ColorWhite"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" imagePlacement="trailing" title="Voice over" imagePadding="6">
-                                            <imageReference key="image" image="mic" catalog="system" symbolScale="medium"/>
-                                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="14" weight="semibold"/>
-                                            <fontDescription key="titleFontDescription" name="Inter-Regular_Medium" family="Inter" pointSize="14"/>
-                                        </buttonConfiguration>
-                                        <connections>
-                                            <action selector="ontapVoiceOver:" destination="0Uu-d4-jH1" eventType="touchUpInside" id="Nsn-qW-Htu"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gxv-Hv-e7h">
-                                        <rect key="frame" x="0.0" y="45.666666666666629" width="206" height="33.666666666666657"/>
-                                        <color key="tintColor" name="ColorWhite"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" imagePlacement="trailing" title="Mute Original Sound" imagePadding="6">
-                                            <imageReference key="image" image="speaker.wave.2" catalog="system" symbolScale="medium"/>
-                                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="14" weight="semibold"/>
-                                            <fontDescription key="titleFontDescription" name="Inter-Regular_Medium" family="Inter" pointSize="16"/>
-                                        </buttonConfiguration>
-                                        <connections>
-                                            <action selector="ontapMute:" destination="0Uu-d4-jH1" eventType="touchUpInside" id="hjq-OT-Fka"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ob-D1-J65">
@@ -251,6 +251,21 @@
                                     <action selector="ontapBack:" destination="0Uu-d4-jH1" eventType="touchUpInside" id="aMi-JP-URM"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PDj-Zy-j0o">
+                                <rect key="frame" x="344" y="191" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="dG4-Ri-iph"/>
+                                    <constraint firstAttribute="width" constant="25" id="nmm-eG-rAk"/>
+                                </constraints>
+                                <color key="tintColor" red="0.63529411764705879" green="0.63529411764705879" blue="0.63529411764705879" alpha="0.56244826158940397" colorSpace="custom" customColorSpace="sRGB"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="multiply.circle.fill" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="20" scale="medium" weight="medium"/>
+                                </state>
+                                <connections>
+                                    <action selector="ontapRemove:" destination="0Uu-d4-jH1" eventType="touchUpInside" id="p4Q-Oa-gZG"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Fgb-Si-1WG"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -258,6 +273,7 @@
                             <constraint firstItem="o3D-u8-33l" firstAttribute="leading" secondItem="Fgb-Si-1WG" secondAttribute="leading" constant="16" id="0Xq-Gn-iqH"/>
                             <constraint firstItem="rw3-ff-FAi" firstAttribute="top" secondItem="2Ob-D1-J65" secondAttribute="bottom" constant="16" id="32M-0D-Q2Y"/>
                             <constraint firstItem="Fgb-Si-1WG" firstAttribute="trailing" secondItem="rw3-ff-FAi" secondAttribute="trailing" constant="16" id="Gpl-HD-9jY"/>
+                            <constraint firstItem="Fgb-Si-1WG" firstAttribute="trailing" secondItem="PDj-Zy-j0o" secondAttribute="trailing" constant="24" id="H5s-4X-efX"/>
                             <constraint firstItem="VmS-7B-5fl" firstAttribute="top" secondItem="Fgb-Si-1WG" secondAttribute="top" constant="60" id="IbE-R6-UTU"/>
                             <constraint firstItem="VmS-7B-5fl" firstAttribute="top" secondItem="o3D-u8-33l" secondAttribute="bottom" constant="24" id="K4O-eL-Z8W"/>
                             <constraint firstItem="rw3-ff-FAi" firstAttribute="leading" secondItem="9Y6-bd-Sf8" secondAttribute="trailing" constant="12" id="LNW-j4-Lhv"/>
@@ -267,6 +283,7 @@
                             <constraint firstItem="afp-I0-hTC" firstAttribute="centerX" secondItem="vET-Vx-8Kg" secondAttribute="centerX" id="Y5t-rF-uLE"/>
                             <constraint firstItem="VmS-7B-5fl" firstAttribute="leading" secondItem="vET-Vx-8Kg" secondAttribute="leading" constant="16" id="ZGR-vI-ahY"/>
                             <constraint firstItem="Fgb-Si-1WG" firstAttribute="trailing" secondItem="2Ob-D1-J65" secondAttribute="trailing" constant="16" id="boU-VT-NGW"/>
+                            <constraint firstItem="PDj-Zy-j0o" firstAttribute="top" secondItem="VmS-7B-5fl" secondAttribute="bottom" constant="24" id="dEq-K9-Nt9"/>
                             <constraint firstItem="Fgb-Si-1WG" firstAttribute="trailing" secondItem="V0B-2b-FJX" secondAttribute="trailing" constant="8" id="dS6-Qs-Nmw"/>
                             <constraint firstItem="Fgb-Si-1WG" firstAttribute="trailing" secondItem="VmS-7B-5fl" secondAttribute="trailing" constant="16" id="f4x-d8-wl0"/>
                             <constraint firstItem="Fgb-Si-1WG" firstAttribute="trailing" secondItem="PEu-CR-06N" secondAttribute="trailing" constant="16" id="fBY-1j-636"/>
@@ -284,6 +301,7 @@
                         <outlet property="CollectFilter" destination="rw3-ff-FAi" id="Yw7-hw-wrm"/>
                         <outlet property="btnFlash" destination="tvh-xA-ZAu" id="cQx-Cw-jnM"/>
                         <outlet property="btnRecord" destination="CWz-Sc-IGb" id="lL1-9w-rEI"/>
+                        <outlet property="btnRemove" destination="PDj-Zy-j0o" id="q1K-Zb-Imv"/>
                         <outlet property="lblProgress" destination="icF-OP-IJK" id="aM8-SI-PLy"/>
                         <outlet property="progressRecording" destination="VmS-7B-5fl" id="UfT-Mh-pow"/>
                         <outlet property="stackEditOpt" destination="V0B-2b-FJX" id="GTT-1l-TYR"/>
@@ -368,12 +386,123 @@
             </objects>
             <point key="canvasLocation" x="1577.8625954198474" y="-2.1126760563380285"/>
         </scene>
+        <!--Confirmation ActionVC-->
+        <scene sceneID="OnE-oJ-x9a">
+            <objects>
+                <viewController storyboardIdentifier="ConfirmationActionVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="DAV-9H-YV5" customClass="ConfirmationActionVC" customModule="Resturants" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ghW-Ga-gFi">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KHe-Ms-0Wb">
+                                <rect key="frame" x="0.0" y="685" width="393" height="167"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="1bY-LM-Aor">
+                                        <rect key="frame" x="24" y="12.000000000000007" width="345" height="115.66666666666669"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Are you sure you want to Delete this Swift?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ph-DT-VyS">
+                                                <rect key="frame" x="0.0" y="0.0" width="345" height="43.666666666666664"/>
+                                                <fontDescription key="fontDescription" name="Inter-Regular_Medium" family="Inter" pointSize="18"/>
+                                                <color key="textColor" name="ColorWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="G7n-Dx-wFz">
+                                                <rect key="frame" x="0.0" y="67.666666666666629" width="345" height="48"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uAQ-fe-K2S">
+                                                        <rect key="frame" x="0.0" y="0.0" width="166.66666666666666" height="48"/>
+                                                        <color key="backgroundColor" name="ColorLightGray"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="48" id="sI1-fR-dUQ"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="Cancel"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="Cancel">
+                                                            <fontDescription key="titleFontDescription" name="Inter-Regular_Medium" family="Inter" pointSize="14"/>
+                                                            <color key="baseForegroundColor" name="ColorBlack"/>
+                                                        </buttonConfiguration>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="12"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="ontapAction:" destination="DAV-9H-YV5" eventType="touchUpInside" id="NXp-9V-SVM"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="udT-ur-ecN">
+                                                        <rect key="frame" x="178.66666666666663" y="0.0" width="166.33333333333337" height="48"/>
+                                                        <color key="backgroundColor" name="ColorWhite"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="48" id="GxD-MX-QYu"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="Cancel"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="Yes">
+                                                            <fontDescription key="titleFontDescription" name="Inter-Regular_Medium" family="Inter" pointSize="14"/>
+                                                            <color key="baseForegroundColor" name="ColorBlack"/>
+                                                        </buttonConfiguration>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="12"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="ontapAction:" destination="DAV-9H-YV5" eventType="touchUpInside" id="r9H-M7-UL9"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.10980392160000001" green="0.10980392160000001" blue="0.10980392160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="1bY-LM-Aor" firstAttribute="leading" secondItem="KHe-Ms-0Wb" secondAttribute="leading" constant="24" id="TSe-w4-Qv0"/>
+                                    <constraint firstAttribute="trailing" secondItem="1bY-LM-Aor" secondAttribute="trailing" constant="24" id="eV6-BK-5Av"/>
+                                    <constraint firstItem="1bY-LM-Aor" firstAttribute="top" secondItem="KHe-Ms-0Wb" secondAttribute="top" constant="12" id="gMF-3Y-ejb"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="16"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" name="ColorLightGray"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Qeg-DM-BVB"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.24249793046357615" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="KHe-Ms-0Wb" secondAttribute="trailing" id="6kV-2v-bbZ"/>
+                            <constraint firstItem="Qeg-DM-BVB" firstAttribute="bottom" secondItem="1bY-LM-Aor" secondAttribute="bottom" constant="5.3333333333332575" id="JWJ-NV-9NY"/>
+                            <constraint firstItem="KHe-Ms-0Wb" firstAttribute="leading" secondItem="ghW-Ga-gFi" secondAttribute="leading" id="X4P-jE-y8X"/>
+                            <constraint firstAttribute="bottom" secondItem="KHe-Ms-0Wb" secondAttribute="bottom" id="jhi-Lw-LXU"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="0.0"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bnH-ZI-vpf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2248" y="-2"/>
+        </scene>
     </scenes>
     <resources>
         <image name="arrow.triangle.2.circlepath" catalog="system" width="128" height="104"/>
         <image name="bolt.fill" catalog="system" width="100" height="128"/>
         <image name="chevron.left" catalog="system" width="97" height="128"/>
         <image name="mic" catalog="system" width="110" height="128"/>
+        <image name="multiply.circle.fill" catalog="system" width="128" height="123"/>
         <image name="speaker.wave.2" catalog="system" width="128" height="88"/>
         <image name="video" catalog="system" width="128" height="82"/>
         <namedColor name="AccentColor">
@@ -384,6 +513,9 @@
         </namedColor>
         <namedColor name="ColorDarkBlue">
             <color red="0.36078431372549019" green="0.64313725490196083" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ColorLightGray">
+            <color red="0.63529411764705879" green="0.63529411764705879" blue="0.63529411764705879" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="ColorWhite">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

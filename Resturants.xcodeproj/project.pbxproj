@@ -23,6 +23,7 @@
 		4635E1352BA69E3C00C149ED /* AudioRecordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4635E1342BA69E3C00C149ED /* AudioRecordVC.swift */; };
 		4635E1392BA6B27500C149ED /* AudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4635E1382BA6B27500C149ED /* AudioViewController.swift */; };
 		4635E13B2BA6D93100C149ED /* CameraNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4635E13A2BA6D93100C149ED /* CameraNC.swift */; };
+		4635E13D2BA7ECA700C149ED /* ConfirmationActionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4635E13C2BA7ECA700C149ED /* ConfirmationActionVC.swift */; };
 		46C4A0972B93245300F27C8F /* FilterCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C4A0952B93245300F27C8F /* FilterCCell.swift */; };
 		46C4A0982B93245300F27C8F /* FilterCCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46C4A0962B93245300F27C8F /* FilterCCell.xib */; };
 		46C4A09A2B93290100F27C8F /* VideoEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C4A0992B93290100F27C8F /* VideoEditor.swift */; };
@@ -92,6 +93,7 @@
 		4635E1342BA69E3C00C149ED /* AudioRecordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecordVC.swift; sourceTree = "<group>"; };
 		4635E1382BA6B27500C149ED /* AudioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioViewController.swift; sourceTree = "<group>"; };
 		4635E13A2BA6D93100C149ED /* CameraNC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraNC.swift; sourceTree = "<group>"; };
+		4635E13C2BA7ECA700C149ED /* ConfirmationActionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationActionVC.swift; sourceTree = "<group>"; };
 		46C4A0952B93245300F27C8F /* FilterCCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCCell.swift; sourceTree = "<group>"; };
 		46C4A0962B93245300F27C8F /* FilterCCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterCCell.xib; sourceTree = "<group>"; };
 		46C4A0992B93290100F27C8F /* VideoEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoEditor.swift; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 				4626306E2B99632900A4E7D1 /* CameraVC.swift */,
 				4635E1342BA69E3C00C149ED /* AudioRecordVC.swift */,
 				4635E13A2BA6D93100C149ED /* CameraNC.swift */,
+				4635E13C2BA7ECA700C149ED /* ConfirmationActionVC.swift */,
 			);
 			path = AddTab;
 			sourceTree = "<group>";
@@ -590,6 +593,7 @@
 				4635E1352BA69E3C00C149ED /* AudioRecordVC.swift in Sources */,
 				4635E13B2BA6D93100C149ED /* CameraNC.swift in Sources */,
 				71B3DC702B55A93D00A3615F /* AppDelegate.swift in Sources */,
+				4635E13D2BA7ECA700C149ED /* ConfirmationActionVC.swift in Sources */,
 				715166462B598903007CE092 /* CrtProfile2VC.swift in Sources */,
 				4635E1392BA6B27500C149ED /* AudioViewController.swift in Sources */,
 				4626307D2B9AA38F00A4E7D1 /* RecorderDelegate.swift in Sources */,
