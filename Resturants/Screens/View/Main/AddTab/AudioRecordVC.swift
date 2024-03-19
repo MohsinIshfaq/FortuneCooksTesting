@@ -15,6 +15,7 @@ class AudioRecordVC: AudioViewController {
     @IBOutlet weak var btnRecord         : UIButton!
     @IBOutlet weak var progressRecording : UIProgressView!
     @IBOutlet weak var btnPlay           : UIButton!
+    @IBOutlet weak var btnDismiss        : UIButton!
     
     //MARK: - Variables and Properties
     var outputURL              : URL?         = nil
@@ -36,6 +37,14 @@ class AudioRecordVC: AudioViewController {
         super.viewWillAppear(animated)
         onAppear()
     }
+    
+    @IBAction func ontapDismiss(_ sender: UIButton) {
+        let vc = Constants.addStoryBoard.instantiateViewController(withIdentifier: "ConfirmationActionVC") as! ConfirmationActionVC
+        vc.delegate               = self
+        vc.modalPresentationStyle = .overFullScreen
+        self.navigationController?.present(vc, animated: true)
+    }
+    
     @IBAction func ontapPlay(_ sender: UIButton){
        
         mergeAudioWithVideo(videoURL: outputURL!, audioURL: getRecordedAudioFile()!) { mergedURL in
@@ -67,12 +76,10 @@ class AudioRecordVC: AudioViewController {
             if audioRecorder == nil {
                 startAudioRecording()
             }
-            playVideo()
+            player.play()
+            btnRecord.isHidden = true
         }
         else{
-            progressRecording.progress = 0
-            elapsedTime                = 0
-            progress_value             = 0
             stopProgress()
             finishAudioRecording(success: true)
         }
@@ -87,6 +94,7 @@ extension AudioRecordVC{
         setupAudioRecording()
         muteVideo()
         removeNavBackbuttonTitle()
+        btnDismiss.isHidden   = true
     }
     func onAppear(){
         
@@ -95,29 +103,30 @@ extension AudioRecordVC{
     func playVideo() {
         
         if let url = outputURL {
-            let player = AVPlayer(url: url)
+             player = AVPlayer(url: url)
             let playerLayer = AVPlayerLayer(player: player)
             playerLayer.frame = view.bounds
             playerLayer.videoGravity = .resizeAspectFill
             view.layer.addSublayer(playerLayer)
-            player.play()
             view.bringSubviewToFront(btnRecord)
             view.bringSubviewToFront(progressRecording)
             view.bringSubviewToFront(btnPlay)
+            view.bringSubviewToFront(btnDismiss)
         }
     }
     
     func muteVideo() {
-        
         guard let url = self.outputURL else {
             return
         }
         removeAudioFromVideo(url) { url , error in
-            if error != nil {
-                self.showToast(message: "\(String(describing: error))", seconds: 2, clr: .red)
-            }
-            else{
-                self.outputURL = url
+            DispatchQueue.main.async { // Ensure UI updates are done on the main thread
+                if let error = error {
+                    self.showToast(message: "\(error)", seconds: 2, clr: .red)
+                } else {
+                    self.outputURL = url
+                    self.playVideo()
+                }
             }
         }
     }
@@ -134,11 +143,9 @@ extension AudioRecordVC{
         if elapsedTime >= totalTime {
             timer?.invalidate()
             timer                      = nil
-            progressRecording.progress = 0
-            elapsedTime                = 0
-            progress_value             = 0
+            btnDismiss.isHidden        = false
+            selectedRecord             = false
             stopProgress()
-            btnRecord.backgroundColor  = .ColorDarkBlue
             finishAudioRecording(success: true)
         }
     }
@@ -149,15 +156,11 @@ extension AudioRecordVC{
     }
     
     func playRecordedAudio() {
+        
         if let recordedAudioURL = getRecordedAudioFile() {
-            // Create an AVPlayer instance
             let player = AVPlayer(url: recordedAudioURL)
-            
-            // Create an AVPlayerViewController instance
             let playerViewController = AVPlayerViewController()
             playerViewController.player = player
-            
-            // Present the player view controller
             present(playerViewController, animated: true) {
                 player.play()
             }
@@ -166,3 +169,22 @@ extension AudioRecordVC{
         }
     }
 }
+//MARK: - Protocol for action on recorded video about rerecording or not {}
+extension AudioRecordVC : ConfirmationAutionsDelegate{
+    
+    func willDelete(_ condition: Bool) {
+        if condition{
+            self.dismiss(animated: true)
+            progressRecording.progress = 0
+            btnRecord.backgroundColor  = .ColorDarkBlue
+            btnRecord.isHidden         = false
+            btnDismiss.isHidden        = true
+            elapsedTime                = 0
+            progress_value             = 0
+        }
+        else{
+            self.dismiss(animated: true)
+        }
+    }
+}
+

@@ -11,7 +11,7 @@ import AVFoundation
 import AVKit
 import MobileCoreServices
 
-class CameraVC: FilterCamViewController {
+class CameraVC: FilterCamViewController{
 
     //MARK: - IBOUtlets
     @IBOutlet weak var btnRecord         : UIButton!
@@ -27,7 +27,7 @@ class CameraVC: FilterCamViewController {
     private var selected                 : Bool = false
     private var selectedRecord           : Bool = false
     private var timer                    : Timer?
-    private let totalTime                : Float = 30.0 // Total time in seconds
+    private let totalTime                : Float = 10.0 // Total time in seconds
     private var elapsedTime              : Float = 0.0 // Elapsed time
     private var progress_value           = 0.1
     private var outputURL: URL?          = nil
@@ -37,6 +37,11 @@ class CameraVC: FilterCamViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         onLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        onAppear()
     }
     
     @IBAction func ontapBack(_ sender: UIButton){
@@ -68,17 +73,9 @@ class CameraVC: FilterCamViewController {
     
     @IBAction func ontapRemove(_ sender: UIButton) {
         let vc = Constants.addStoryBoard.instantiateViewController(withIdentifier: "ConfirmationActionVC") as! ConfirmationActionVC
+        vc.delegate               = self
         vc.modalPresentationStyle = .overFullScreen
         self.navigationController?.present(vc, animated: true)
-        
-//        progressRecording.progress = 0
-//        self.lblProgress.text      = "0"
-//        progress_value             = 0
-//        btnRecord.backgroundColor  = .ColorDarkBlue
-//        btnRecord.isHidden         = false
-//        stackEditOpt.isHidden      = true
-//        outputURL                  = nil
-//        btnRemove.isHidden         = true
     }
     
     @IBAction func ontapMute(_ sender: UIButton){
@@ -110,8 +107,8 @@ class CameraVC: FilterCamViewController {
     @IBAction func ontapRecord(_ sender: UIButton){
         
         selectedRecord.toggle()
-        CollectFilter.isHidden         = selectedRecord == true ? true : false
-        stackVideoPicker.isHidden      = selectedRecord == true ? true : false
+        CollectFilter.isHidden         = true
+        stackVideoPicker.isHidden      = true
         if selectedRecord{
             btnRecord.backgroundColor  = .red
             elapsedTime                = 0
@@ -129,6 +126,22 @@ class CameraVC: FilterCamViewController {
         pickVideo()
     }
     
+    @objc func updateProgress() {
+        elapsedTime                   += 0.1 // Update elapsed time
+        let progress                   = elapsedTime / totalTime
+        progressRecording.progress     = progress
+        self.progress_value           += 0.05
+        lblProgress.text               = "\(Int(self.progress_value))"
+        if elapsedTime >= totalTime {
+            timer?.invalidate()
+            timer                      = nil
+            btnRemove.isHidden         = false
+            btnRecord.isHidden         = true
+            selectedRecord             = false
+            stopProgress()
+            self.stopRecording()
+        }
+    }
 }
 
 //MARK: - Extension of setup Data{}
@@ -138,11 +151,11 @@ extension CameraVC {
         setupFilterCollection()
         cameraDelegate             = self
         self.stackEditOpt.isHidden = true
-        self.hideNavBar()
         btnRemove.isHidden         = true
     }
     
     func onAppear() {
+        self.hideNavBar()
     }
     
     func setupFilterCollection(){
@@ -161,27 +174,6 @@ extension CameraVC {
     
     func startProgress() {
         timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updateProgress), userInfo: nil, repeats: true)
-    }
-    
-    @objc func updateProgress() {
-        elapsedTime                   += 0.1 // Update elapsed time
-        let progress                   = elapsedTime / totalTime
-        progressRecording.progress     = progress
-        self.progress_value           += 0.05
-        lblProgress.text               = "\(Int(self.progress_value))"
-        if elapsedTime >= totalTime {
-            timer?.invalidate()
-            timer                      = nil
-            btnRemove.isHidden         = false
-            btnRecord.isHidden         = true
-//            progressRecording.progress = 0
-//            self.lblProgress.text      = "0"
-//            elapsedTime                = 0
-//            progress_value             = 0
-            stopProgress()
-            btnRecord.backgroundColor  = .ColorDarkBlue
-            self.stopRecording()
-        }
     }
 }
 
@@ -353,6 +345,31 @@ extension CameraVC {
     
 }
 
+//MARK: - Protocol for action on recorded video about rerecording or not {}
+extension CameraVC : ConfirmationAutionsDelegate{
+    
+    func willDelete(_ condition: Bool) {
+        if condition{
+            self.dismiss(animated: true)
+            progressRecording.progress = 0
+            self.lblProgress.text      = "0"
+            progress_value             = 0
+            timer?.invalidate()
+            timer                      = nil
+            btnRecord.backgroundColor  = .ColorDarkBlue
+            btnRecord.isHidden         = false
+            stackEditOpt.isHidden      = true
+            outputURL                  = nil
+            btnRemove.isHidden         = true
+            stackVideoPicker.isHidden  = false
+            CollectFilter.isHidden     = false
+            
+        }
+        else{
+            self.dismiss(animated: true)
+        }
+    }
+}
 
 //                self.saveVideoToLibrary(at: url!) { error in
 //                    if error != nil {

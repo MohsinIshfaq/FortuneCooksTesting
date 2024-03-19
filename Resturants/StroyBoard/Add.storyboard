@@ -26,13 +26,13 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Dj9-Ei-hjT">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" name="ColorBlack"/>
+                        <color key="tintColor" name="ColorWhite"/>
                         <color key="barTintColor" name="ColorBlack"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" name="ColorWhite"/>
                         </textAttributes>
                         <textAttributes key="largeTitleTextAttributes">
-                            <color key="textColor" name="ColorBlack"/>
+                            <color key="textColor" name="ColorWhite"/>
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -171,7 +171,7 @@
                                     </view>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ob-D1-J65">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ob-D1-J65">
                                 <rect key="frame" x="291" y="662" width="86" height="35"/>
                                 <color key="backgroundColor" name="ColorWhite"/>
                                 <constraints>
@@ -326,8 +326,8 @@
                                 <color key="trackTintColor" name="ColorDarkBlue"/>
                             </progressView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nFf-m2-TEk">
-                                <rect key="frame" x="146.66666666666666" y="617" width="100" height="100"/>
-                                <color key="backgroundColor" name="AccentColor"/>
+                                <rect key="frame" x="146.66666666666666" y="658" width="100" height="100"/>
+                                <color key="backgroundColor" systemColor="systemRedColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="AoK-tK-jCZ"/>
                                     <constraint firstAttribute="width" constant="100" id="ngT-l6-wmO"/>
@@ -354,7 +354,7 @@
                                     <action selector="ontapRecord:" destination="f5z-t5-fMu" eventType="touchUpInside" id="dyE-Wc-fYR"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DYx-MA-duV">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DYx-MA-duV">
                                 <rect key="frame" x="159" y="404.66666666666669" width="75" height="43"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Button"/>
@@ -362,21 +362,39 @@
                                     <action selector="ontapPlay:" destination="f5z-t5-fMu" eventType="touchUpInside" id="P1P-qV-4H8"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9o2-of-zAS">
+                                <rect key="frame" x="344" y="103" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="htu-Of-L3C"/>
+                                    <constraint firstAttribute="width" constant="25" id="viF-jg-q50"/>
+                                </constraints>
+                                <color key="tintColor" red="0.63529411759999999" green="0.63529411759999999" blue="0.63529411759999999" alpha="0.56244826160000005" colorSpace="custom" customColorSpace="sRGB"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="multiply.circle.fill" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="20" scale="medium" weight="medium"/>
+                                </state>
+                                <connections>
+                                    <action selector="ontapDismiss:" destination="f5z-t5-fMu" eventType="touchUpInside" id="HBK-f5-wMg"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Xmo-ST-csC"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="9o2-of-zAS" firstAttribute="top" secondItem="cAn-eX-pV6" secondAttribute="bottom" constant="24" id="3wX-Pd-2K7"/>
                             <constraint firstItem="cAn-eX-pV6" firstAttribute="leading" secondItem="dxq-IF-iKh" secondAttribute="leading" constant="16" id="8jq-ys-y3O"/>
                             <constraint firstItem="DYx-MA-duV" firstAttribute="centerX" secondItem="dxq-IF-iKh" secondAttribute="centerX" id="I7N-Vl-thA"/>
-                            <constraint firstItem="Xmo-ST-csC" firstAttribute="bottom" secondItem="nFf-m2-TEk" secondAttribute="bottom" constant="101" id="IMV-a5-SWy"/>
+                            <constraint firstItem="Xmo-ST-csC" firstAttribute="bottom" secondItem="nFf-m2-TEk" secondAttribute="bottom" constant="60" id="IMV-a5-SWy"/>
                             <constraint firstItem="DYx-MA-duV" firstAttribute="centerY" secondItem="dxq-IF-iKh" secondAttribute="centerY" id="T3g-e2-dhz"/>
                             <constraint firstItem="cAn-eX-pV6" firstAttribute="top" secondItem="Xmo-ST-csC" secondAttribute="top" constant="16" id="gwK-qh-ZrV"/>
                             <constraint firstItem="Xmo-ST-csC" firstAttribute="trailing" secondItem="cAn-eX-pV6" secondAttribute="trailing" constant="16" id="rlA-ot-iT0"/>
+                            <constraint firstItem="Xmo-ST-csC" firstAttribute="trailing" secondItem="9o2-of-zAS" secondAttribute="trailing" constant="24" id="txQ-i0-uzI"/>
                             <constraint firstItem="nFf-m2-TEk" firstAttribute="centerX" secondItem="dxq-IF-iKh" secondAttribute="centerX" id="zKS-U7-05O"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Rnp-1G-olN"/>
                     <connections>
+                        <outlet property="btnDismiss" destination="9o2-of-zAS" id="gFk-lY-Wyy"/>
                         <outlet property="btnPlay" destination="DYx-MA-duV" id="nJb-BE-efO"/>
                         <outlet property="btnRecord" destination="nFf-m2-TEk" id="lec-e1-mUe"/>
                         <outlet property="progressRecording" destination="cAn-eX-pV6" id="gwM-mo-GAp"/>
