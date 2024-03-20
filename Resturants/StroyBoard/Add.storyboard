@@ -257,7 +257,7 @@
                                     <constraint firstAttribute="height" constant="25" id="dG4-Ri-iph"/>
                                     <constraint firstAttribute="width" constant="25" id="nmm-eG-rAk"/>
                                 </constraints>
-                                <color key="tintColor" red="0.63529411764705879" green="0.63529411764705879" blue="0.63529411764705879" alpha="0.56244826158940397" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" red="0.63529411764705879" green="0.63529411764705879" blue="0.63529411764705879" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="multiply.circle.fill" catalog="system">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="20" scale="medium" weight="medium"/>
@@ -368,7 +368,7 @@
                                     <constraint firstAttribute="height" constant="25" id="htu-Of-L3C"/>
                                     <constraint firstAttribute="width" constant="25" id="viF-jg-q50"/>
                                 </constraints>
-                                <color key="tintColor" red="0.63529411759999999" green="0.63529411759999999" blue="0.63529411759999999" alpha="0.56244826160000005" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" red="0.63529411759999999" green="0.63529411759999999" blue="0.63529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="multiply.circle.fill" catalog="system">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="20" scale="medium" weight="medium"/>
@@ -377,16 +377,41 @@
                                     <action selector="ontapDismiss:" destination="f5z-t5-fMu" eventType="touchUpInside" id="HBK-f5-wMg"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tib-Q8-wjA">
+                                <rect key="frame" x="24" y="762" width="345" height="48"/>
+                                <color key="backgroundColor" name="ColorWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="chz-Y8-SAl"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Cancel"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Done">
+                                    <fontDescription key="titleFontDescription" name="Inter-Regular_SemiBold" family="Inter" pointSize="16"/>
+                                    <color key="baseForegroundColor" name="ColorBlack"/>
+                                </buttonConfiguration>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="12"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="ontapNext:" destination="f5z-t5-fMu" eventType="touchUpInside" id="oQi-4E-D6R"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Xmo-ST-csC"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="9o2-of-zAS" firstAttribute="top" secondItem="cAn-eX-pV6" secondAttribute="bottom" constant="24" id="3wX-Pd-2K7"/>
+                            <constraint firstItem="Xmo-ST-csC" firstAttribute="trailing" secondItem="tib-Q8-wjA" secondAttribute="trailing" constant="24" id="6zD-dy-7Ip"/>
                             <constraint firstItem="cAn-eX-pV6" firstAttribute="leading" secondItem="dxq-IF-iKh" secondAttribute="leading" constant="16" id="8jq-ys-y3O"/>
+                            <constraint firstItem="tib-Q8-wjA" firstAttribute="leading" secondItem="Xmo-ST-csC" secondAttribute="leading" constant="24" id="C8G-3U-1fe"/>
                             <constraint firstItem="DYx-MA-duV" firstAttribute="centerX" secondItem="dxq-IF-iKh" secondAttribute="centerX" id="I7N-Vl-thA"/>
                             <constraint firstItem="Xmo-ST-csC" firstAttribute="bottom" secondItem="nFf-m2-TEk" secondAttribute="bottom" constant="60" id="IMV-a5-SWy"/>
                             <constraint firstItem="DYx-MA-duV" firstAttribute="centerY" secondItem="dxq-IF-iKh" secondAttribute="centerY" id="T3g-e2-dhz"/>
                             <constraint firstItem="cAn-eX-pV6" firstAttribute="top" secondItem="Xmo-ST-csC" secondAttribute="top" constant="16" id="gwK-qh-ZrV"/>
+                            <constraint firstItem="Xmo-ST-csC" firstAttribute="bottom" secondItem="tib-Q8-wjA" secondAttribute="bottom" constant="8" id="ldb-hu-INu"/>
                             <constraint firstItem="Xmo-ST-csC" firstAttribute="trailing" secondItem="cAn-eX-pV6" secondAttribute="trailing" constant="16" id="rlA-ot-iT0"/>
                             <constraint firstItem="Xmo-ST-csC" firstAttribute="trailing" secondItem="9o2-of-zAS" secondAttribute="trailing" constant="24" id="txQ-i0-uzI"/>
                             <constraint firstItem="nFf-m2-TEk" firstAttribute="centerX" secondItem="dxq-IF-iKh" secondAttribute="centerX" id="zKS-U7-05O"/>
@@ -395,6 +420,7 @@
                     <navigationItem key="navigationItem" id="Rnp-1G-olN"/>
                     <connections>
                         <outlet property="btnDismiss" destination="9o2-of-zAS" id="gFk-lY-Wyy"/>
+                        <outlet property="btnNext" destination="tib-Q8-wjA" id="spw-gN-ldd"/>
                         <outlet property="btnPlay" destination="DYx-MA-duV" id="nJb-BE-efO"/>
                         <outlet property="btnRecord" destination="nFf-m2-TEk" id="lec-e1-mUe"/>
                         <outlet property="progressRecording" destination="cAn-eX-pV6" id="gwM-mo-GAp"/>

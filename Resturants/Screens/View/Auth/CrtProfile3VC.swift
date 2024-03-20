@@ -7,6 +7,7 @@
 
 import UIKit
 import CountryPickerView
+import Firebase
 
 class CrtProfile3VC: UIViewController  {
 
@@ -33,8 +34,9 @@ class CrtProfile3VC: UIViewController  {
         UserManager.shared.selectedPhone = txtPhoneNumbr.text!
         UserManager.shared.selectedEmail = txtEmailAddress.text!
         if checkCredentials(txtEmailAddress.text!) {
-            let vc = Constants.authStoryBoard.instantiateViewController(withIdentifier: "CrtProfile4VC") as? CrtProfile4VC
-            self.navigationController?.pushViewController(vc!, animated: true)
+            verifyPhoneNUmber()
+//            let vc = Constants.authStoryBoard.instantiateViewController(withIdentifier: "CrtProfile4VC") as? CrtProfile4VC
+//            self.navigationController?.pushViewController(vc!, animated: true)
         }
         else{
             self.showToast(message: "Email is not valid", seconds: 2.0, clr: .red)
@@ -42,6 +44,7 @@ class CrtProfile3VC: UIViewController  {
     }
 
 }
+//MARK: - Setup Profile {}
 extension CrtProfile3VC {
     
     func onlaod(){
@@ -63,5 +66,29 @@ extension CrtProfile3VC {
         removeNavBackbuttonTitle()
         self.navigationItem.title  = "Create Email & Password"
         self.navigationController?.removeBackground()
+    }
+}
+
+//MARK: - Setup Profile {}
+extension CrtProfile3VC {
+    
+    func verifyPhoneNUmber() {
+        self.startAnimating()
+        PhoneAuthProvider.provider().verifyPhoneNumber("+923454085461", uiDelegate: nil) { (verificationID, error) in
+            if let error = error {
+                self.stopAnimating()
+                // Handle error
+                //print("Error in verification: \(error.localizedDescription)")
+                self.showToast(message: "Error in verification: \(error.localizedDescription)", seconds: 2, clr: .red)
+                return
+            }
+            self.stopAnimating()
+            print("\(verificationID)")
+            // Verification code sent successfully
+            // Save verification ID for later use
+            UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
+            // Prompt user to enter the verification code
+            // You can show UI to input the verification code here
+        }
     }
 }
