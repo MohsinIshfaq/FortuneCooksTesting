@@ -34,9 +34,9 @@ class CrtProfile3VC: UIViewController  {
         UserManager.shared.selectedPhone = txtPhoneNumbr.text!
         UserManager.shared.selectedEmail = txtEmailAddress.text!
         if checkCredentials(txtEmailAddress.text!) {
-            verifyPhoneNUmber()
-//            let vc = Constants.authStoryBoard.instantiateViewController(withIdentifier: "CrtProfile4VC") as? CrtProfile4VC
-//            self.navigationController?.pushViewController(vc!, animated: true)
+            //verifyPhoneNUmber()
+            let vc = Constants.authStoryBoard.instantiateViewController(withIdentifier: "CrtProfile4VC") as? CrtProfile4VC
+            self.navigationController?.pushViewController(vc!, animated: true)
         }
         else{
             self.showToast(message: "Email is not valid", seconds: 2.0, clr: .red)
@@ -78,7 +78,7 @@ extension CrtProfile3VC {
             if let error = error {
                 self.stopAnimating()
                 // Handle error
-                //print("Error in verification: \(error.localizedDescription)")
+                print("Error in verification: \(error.localizedDescription)")
                 self.showToast(message: "Error in verification: \(error.localizedDescription)", seconds: 2, clr: .red)
                 return
             }
