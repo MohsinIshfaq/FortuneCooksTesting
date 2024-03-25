@@ -12,16 +12,20 @@ protocol MenuVCDelegate{
 
 class MenuVC: UIViewController {
 
-    var delegate: MenuVCDelegate? = nil
-    @IBOutlet weak var btnCreateAccnt :UIView!
-    @IBOutlet weak var btnLogout      :UIView!
-    @IBOutlet weak var btnUpload      :UIView!
+    
+    @IBOutlet weak var btnCreateAccnt : UIView!
+    @IBOutlet weak var btnLogout      : UIView!
+    @IBOutlet weak var btnUpload      : UIView!
+    @IBOutlet weak var btnLogin       : UIView!
+    
+    var delegate: MenuVCDelegate?     = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if UserDefault.isAuthenticated {
             btnCreateAccnt.isHidden = true
+            btnLogin.isHidden       = true
             btnLogout.isHidden      = false
             btnUpload.isHidden      = false
         }

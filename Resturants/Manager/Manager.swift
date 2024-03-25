@@ -197,3 +197,17 @@ final class UserManager {
         ["CISRGBToneCurveToLinear", 0],
     ]
 }
+
+
+extension FileManager {
+    func removeItemIfExisted(_ url:URL) -> Void {
+        if FileManager.default.fileExists(atPath: url.path) {
+            do {
+                try FileManager.default.removeItem(atPath: url.path)
+            }
+            catch {
+                print("Failed to delete file")
+            }
+        }
+    }
+}

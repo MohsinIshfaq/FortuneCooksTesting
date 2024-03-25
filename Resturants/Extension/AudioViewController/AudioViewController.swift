@@ -9,6 +9,7 @@ import Foundation
 import AVFAudio
 import UIKit
 import AVFoundation
+import Photos
 
 open class AudioViewController: UIViewController, AVAudioRecorderDelegate {
     
@@ -186,16 +187,113 @@ open class AudioViewController: UIViewController, AVAudioRecorderDelegate {
     }
 
     func removeFileAtURLIfExists(url: NSURL) {
-            if let filePath = url.path {
-                let fileManager = FileManager.default
-                if fileManager.fileExists(atPath: filePath) {
-                    do{
-                        try fileManager.removeItem(atPath: filePath)
-                    } catch let error as NSError {
-                        print("Couldn't remove existing destination file: \(error)")
+        if let filePath = url.path {
+            let fileManager = FileManager.default
+            if fileManager.fileExists(atPath: filePath) {
+                do{
+                    try fileManager.removeItem(atPath: filePath)
+                } catch let error as NSError {
+                    print("Couldn't remove existing destination file: \(error)")
+                }
+            }
+        }
+    }
+    
+    func addTextVideo(textBgClr: UIColor, textForeClr: UIColor, text: String, fontNm: String, videoURL: URL, completion: @escaping (URL?) -> Void) {
+        let vidAsset = AVURLAsset(url: videoURL, options: nil)
+        let composition = AVMutableComposition()
+        
+        // get video track
+        guard let videoTrack = vidAsset.tracks(withMediaType: AVMediaType.video).first else {
+            print("Unable to get video track")
+            completion(nil)
+            return
+        }
+        
+        let vid_timerange = CMTimeRangeMake(start: CMTime.zero, duration: vidAsset.duration)
+        
+        let compositionvideoTrack = composition.addMutableTrack(withMediaType: AVMediaType.video, preferredTrackID: kCMPersistentTrackID_Invalid)
+        
+        do {
+            try compositionvideoTrack?.insertTimeRange(vid_timerange, of: videoTrack, at: CMTime.zero)
+            compositionvideoTrack?.preferredTransform = videoTrack.preferredTransform
+        } catch {
+            print("Error inserting video track")
+            completion(nil)
+            return
+        }
+        
+        // Create text Layer
+        let titleLayer = CATextLayer()
+        titleLayer.backgroundColor = textBgClr.cgColor
+        titleLayer.foregroundColor = textForeClr.cgColor
+        titleLayer.string = text
+        titleLayer.font = UIFont(name: fontNm, size: 20)
+        titleLayer.shadowOpacity = 0.5
+        titleLayer.alignmentMode = .center
+        titleLayer.frame = CGRect(x: 0, y: 50, width: videoTrack.naturalSize.width, height: videoTrack.naturalSize.height / 6)
+        
+        let parentlayer = CALayer()
+        parentlayer.frame = CGRect(x: 0, y: 0, width: videoTrack.naturalSize.width, height: videoTrack.naturalSize.height)
+        parentlayer.addSublayer(titleLayer)
+        
+        let layercomposition = AVMutableVideoComposition()
+        layercomposition.frameDuration = CMTimeMake(value: 1, timescale: 30)
+        layercomposition.renderSize = videoTrack.naturalSize
+        layercomposition.animationTool = AVVideoCompositionCoreAnimationTool(postProcessingAsVideoLayer: parentlayer, in: parentlayer)
+        
+        // Instruction for watermark
+        let instruction = AVMutableVideoCompositionInstruction()
+        instruction.timeRange = CMTimeRangeMake(start: CMTime.zero, duration: composition.duration)
+        let layerinstruction = AVMutableVideoCompositionLayerInstruction(assetTrack: videoTrack)
+        instruction.layerInstructions = [layerinstruction]
+        layercomposition.instructions = [instruction]
+        
+        // Create a new file to receive data
+        let dirPaths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        let docsDir = dirPaths[0] as NSString
+        let movieFilePath = docsDir.appendingPathComponent("result.mov")
+        let movieDestinationUrl = URL(fileURLWithPath: movieFilePath)
+        
+        // Use AVAssetExportSession to export video
+        let assetExport = AVAssetExportSession(asset: composition, presetName: AVAssetExportPresetHighestQuality)
+        assetExport?.outputFileType = .mov
+        assetExport?.videoComposition = layercomposition
+        assetExport?.outputURL = movieDestinationUrl
+        
+        // Check existence and remove old file
+        FileManager.default.removeItemIfExisted(movieDestinationUrl)
+        
+        assetExport?.exportAsynchronously {
+            switch assetExport!.status {
+            case .failed:
+                if let error = assetExport?.error {
+                    print("Export failed with error: \(error)")
+                } else {
+                    print("Export failed with unknown error.")
+                }
+                completion(nil)
+            case .cancelled:
+                print("Export cancelled.")
+                completion(nil)
+            default:
+                print("Movie export completed successfully.")
+                completion(movieDestinationUrl)
+                
+                // Save video to photo library
+                PHPhotoLibrary.shared().performChanges({
+                    PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: movieDestinationUrl)
+                }) { saved, error in
+                    if saved {
+                        print("Video saved to photo library.")
+                    } else if let error = error {
+                        print("Failed to save video to photo library: \(error)")
                     }
                 }
             }
         }
+    }
+
+
 
 }

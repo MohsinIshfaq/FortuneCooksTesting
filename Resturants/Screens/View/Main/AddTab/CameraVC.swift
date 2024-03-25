@@ -48,6 +48,14 @@ class CameraVC: FilterCamViewController{
         self.dismiss(animated: true)
     }
     
+    @IBAction func ontapAddCap(_ sender: UIButton){
+        
+        let vc = Constants.addStoryBoard.instantiateViewController(withIdentifier: "AddCaptionVC") as! AddCaptionVC
+        vc.outputURL              = outputURL
+        vc.modalPresentationStyle = .overFullScreen
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     @IBAction func ontapCameraRoll(_ sender: UIButton) {
         toggleCamera()
     }
