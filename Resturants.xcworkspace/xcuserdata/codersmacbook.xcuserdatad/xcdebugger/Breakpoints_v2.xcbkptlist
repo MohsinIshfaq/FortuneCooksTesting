@@ -261,33 +261,97 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "C2A8E444-3B7C-4D16-A6B2-BAF2D138C647"
+            uuid = "D747DC38-3E8D-4DD7-A766-80EBD4003C91"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Resturants/Screens/View/Main/AddTab/CameraVC.swift"
+            filePath = "Resturants/Screens/View/Main/AddTab/AddCaptionVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "252"
-            endingLineNumber = "252"
-            landmarkName = "filterCam(_:didFinishWriting:)"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
+            landmarkName = "ontapFontsChanging(_:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "D747DC38-3E8D-4DD7-A766-80EBD4003C91 - 2d3e5c0f7687398c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #1 @Swift.MainActor () -&gt; () in closure #1 (Foundation.URL) -&gt; () in Resturants.AddCaptionVC.ontapFontsChanging(__C.UIButton) -&gt; ()"
+                  moduleName = "Resturants"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/codersmacbook/Documents/FortuneCooksIOS/Resturants/Screens/View/Main/AddTab/AddCaptionVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "100"
+                  endingLineNumber = "100"
+                  offsetFromSymbolStart = "28">
+               </Location>
+               <Location
+                  uuid = "D747DC38-3E8D-4DD7-A766-80EBD4003C91 - c8833c1219ff24d1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in closure #1 (Foundation.URL) -&gt; () in Resturants.AddCaptionVC.ontapFontsChanging(__C.UIButton) -&gt; ()"
+                  moduleName = "Resturants"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/codersmacbook/Documents/FortuneCooksIOS/Resturants/Screens/View/Main/AddTab/AddCaptionVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "100"
+                  endingLineNumber = "100"
+                  offsetFromSymbolStart = "140">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "4536023C-459B-4CEC-9825-C176450B4B47"
+            uuid = "440CA0DE-E806-4408-B337-9551213AA348"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Resturants/Extension/AudioViewController/AudioViewController.swift"
+            filePath = "Resturants/Screens/View/Main/AddTab/AddCaptionVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "280"
-            endingLineNumber = "280"
-            landmarkName = "addTextVideo(textBgClr:textForeClr:text:fontNm:videoURL:completion:)"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "ontapFontsChanging(_:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "440CA0DE-E806-4408-B337-9551213AA348 - fd37f81e1339c6e0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Resturants.AddCaptionVC.ontapFontsChanging(__C.UIButton) -&gt; ()"
+                  moduleName = "Resturants"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/codersmacbook/Documents/FortuneCooksIOS/Resturants/Screens/View/Main/AddTab/AddCaptionVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "109"
+                  endingLineNumber = "109"
+                  offsetFromSymbolStart = "1312">
+               </Location>
+               <Location
+                  uuid = "440CA0DE-E806-4408-B337-9551213AA348 - 9bf4b3833b00b72c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Swift.Optional&lt;Swift.String&gt;) -&gt; () in Resturants.AddCaptionVC.ontapFontsChanging(__C.UIButton) -&gt; ()"
+                  moduleName = "Resturants"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/codersmacbook/Documents/FortuneCooksIOS/Resturants/Screens/View/Main/AddTab/AddCaptionVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "109"
+                  endingLineNumber = "109"
+                  offsetFromSymbolStart = "84">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

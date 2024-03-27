@@ -61,12 +61,6 @@ class AddCaptionVC: AudioViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         onLoad()
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
-        txtCaption.addGestureRecognizer(panGesture)
-        
-        // Store initial frame of the textField
-        initialFrame = txtCaption.frame
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -95,18 +89,24 @@ class AddCaptionVC: AudioViewController {
         }
     
     @IBAction func ontapFontsChanging(_ sender: UIButton){
-        addTextVideo(textBgClr: .red, textForeClr: .ColorBlack, text: "Usama", fontNm: "Helvetica", videoURL: self.outputURL!) { url in
-            if let url = url {
-                DispatchQueue.main.async {
-                    let player = AVPlayer(url: url)
-                    let playerViewController = AVPlayerViewController()
-                    playerViewController.player = player
-                    
-                    self.present(playerViewController, animated: true) {
-                        player.play()
-                    }
+        addStickerorTexttoVideo(textBgClr: .white
+                                , textForeClr: .red
+                                , fontNm: "Helvetica"
+                                , videoUrl: self.outputURL!
+                                , watermarkText: "Usamasdfsada"
+                                , imageName: ""
+                                , position: 0) { url in
+            DispatchQueue.main.async {
+                let player = AVPlayer(url: url)
+                let playerViewController = AVPlayerViewController()
+                playerViewController.player = player
+                
+                self.present(playerViewController, animated: true) {
+                    player.play()
                 }
             }
+        } failure: { msg in
+            print(msg)
         }
         if sender.tag == 0{
             vwFont1.borderColor  = .white
@@ -224,11 +224,16 @@ class AddCaptionVC: AudioViewController {
 extension AddCaptionVC {
     
     func onLoad() {
-       
+        
         collectColors.register(ColorCCell.nib, forCellWithReuseIdentifier: ColorCCell.identifier)
         collectColors.delegate   = self
         collectColors.dataSource = self
         playVideo()
+        
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
+        txtCaption.addGestureRecognizer(panGesture)
+        // Store initial frame of the textField
+        initialFrame = txtCaption.frame
     }
     
     func onAppear() {

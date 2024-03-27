@@ -199,101 +199,164 @@ open class AudioViewController: UIViewController, AVAudioRecorderDelegate {
         }
     }
     
-    func addTextVideo(textBgClr: UIColor, textForeClr: UIColor, text: String, fontNm: String, videoURL: URL, completion: @escaping (URL?) -> Void) {
-        let vidAsset = AVURLAsset(url: videoURL, options: nil)
-        let composition = AVMutableComposition()
+    func addStickerorTexttoVideo(textBgClr: UIColor , textForeClr: UIColor , fontNm: String , videoUrl: URL, watermarkText text : String, imageName name : String, position : Int,  success: @escaping ((URL) -> Void), failure: @escaping ((String?) -> Void)) {
         
-        // get video track
-        guard let videoTrack = vidAsset.tracks(withMediaType: AVMediaType.video).first else {
-            print("Unable to get video track")
-            completion(nil)
-            return
+        
+        let asset          = AVURLAsset.init(url: videoUrl)
+        let composition    = AVMutableComposition.init()
+        composition.addMutableTrack(withMediaType: AVMediaType.video, preferredTrackID: kCMPersistentTrackID_Invalid)
+        let clipVideoTrack = asset.tracks(withMediaType: AVMediaType.video)[0]
+        
+        // Rotate to potrait
+        let transformer    = AVMutableVideoCompositionLayerInstruction(assetTrack: clipVideoTrack)
+        let videoTransform:CGAffineTransform = clipVideoTrack.preferredTransform
+        
+        
+        //fix orientation
+        var videoAssetOrientation            = UIImage.Orientation.up
+        
+        var isVideoAssetPortrait             = false
+        
+        if videoTransform.a                  == 0 && videoTransform.b == 1.0 && videoTransform.c == -1.0 && videoTransform.d == 0 {
+            videoAssetOrientation            = UIImage.Orientation.right
+            isVideoAssetPortrait             = true
+        }
+        if videoTransform.a  == 0 && videoTransform.b == -1.0 && videoTransform.c == 1.0 && videoTransform.d == 0 {
+            videoAssetOrientation =  UIImage.Orientation.left
+            isVideoAssetPortrait  = true
+        }
+        if videoTransform.a  == 1.0 && videoTransform.b == 0 && videoTransform.c == 0 && videoTransform.d == 1.0 {
+            videoAssetOrientation =  UIImage.Orientation.up
+        }
+        if videoTransform.a  == -1.0 && videoTransform.b == 0 && videoTransform.c == 0 && videoTransform.d == -1.0 {
+            videoAssetOrientation = UIImage.Orientation.down;
         }
         
-        let vid_timerange = CMTimeRangeMake(start: CMTime.zero, duration: vidAsset.duration)
+        transformer.setTransform(clipVideoTrack.preferredTransform, at: CMTime.zero)
+        transformer.setOpacity(0.0, at: asset.duration)
         
-        let compositionvideoTrack = composition.addMutableTrack(withMediaType: AVMediaType.video, preferredTrackID: kCMPersistentTrackID_Invalid)
+        //adjust the render size if neccessary
+        var naturalSize: CGSize
+        if(isVideoAssetPortrait){
+            naturalSize = CGSize(width: clipVideoTrack.naturalSize.height, height: clipVideoTrack.naturalSize.width)
+        } else {
+            naturalSize = clipVideoTrack.naturalSize;
+        }
         
+        var renderWidth  : CGFloat!
+        var renderHeight : CGFloat!
+        
+        renderWidth  = naturalSize.width
+        renderHeight = naturalSize.height
+        
+        let parentlayer    = CALayer()
+        let videoLayer     = CALayer()
+        let watermarkLayer = CALayer()
+        
+        let videoComposition        = AVMutableVideoComposition()
+        videoComposition.renderSize = CGSize(width: renderWidth, height: renderHeight)
+        videoComposition.frameDuration = CMTimeMake(value: 1, timescale: 30)
+        videoComposition.renderScale   = 1.0
+        
+        parentlayer.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: naturalSize)
+        videoLayer.frame  = CGRect(origin: CGPoint(x: 0, y: 0), size: naturalSize)
+        parentlayer.addSublayer(videoLayer)
+        
+        
+        if name != "" {
+            let stickerView:UIView = UIView.init(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: naturalSize))
+            let sticker:UIImageView = UIImageView.init()
+            sticker.image       = UIImage(named: name)
+            sticker.contentMode = .scaleAspectFit
+            let stickerWidth = renderWidth / 6
+            let stickerX     = renderWidth * CGFloat(5 * (position % 3)) / 12
+            let stickerY     = (renderHeight - ( renderHeight * CGFloat(position / 3) / 3)) - 150
+            sticker.frame    = CGRect(x:stickerX, y: stickerY, width: stickerWidth, height: stickerWidth)
+            stickerView.addSubview(sticker)
+            watermarkLayer.contents = stickerView.asImage().cgImage
+            watermarkLayer.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: naturalSize)
+            parentlayer.addSublayer(watermarkLayer)
+        }
+        
+        if text != "" {
+            let textLayer    = CATextLayer()
+            textLayer.string = text
+            textLayer.font   = UIFont(name: "", size: 40) ?? UIFont.systemFont(ofSize: 40)
+            textLayer.backgroundColor = textBgClr.cgColor
+            textLayer.foregroundColor = textForeClr.cgColor
+            
+            if position % 3 == 0 {
+                textLayer.alignmentMode = CATextLayerAlignmentMode.left
+            } else if position % 3 == 1 {
+                textLayer.alignmentMode = CATextLayerAlignmentMode.center
+            } else {
+                textLayer.alignmentMode = CATextLayerAlignmentMode.right
+            }
+            
+            let textWidth = renderWidth / 5
+            let textX     = renderWidth * CGFloat(5 * (position % 3)) / 12
+            let textY     = renderHeight * CGFloat(position / 3) / 3
+            textLayer.frame = CGRect(x: textX , y: textY + 20, width: textWidth, height: 50)
+            textLayer.opacity = 0.6
+            parentlayer.addSublayer(textLayer)
+        }
+        
+        //Create Directory path for Save
+        let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        var outputURL = documentDirectory.appendingPathComponent("StickerVideo")
         do {
-            try compositionvideoTrack?.insertTimeRange(vid_timerange, of: videoTrack, at: CMTime.zero)
-            compositionvideoTrack?.preferredTransform = videoTrack.preferredTransform
-        } catch {
-            print("Error inserting video track")
-            completion(nil)
-            return
+            try FileManager.default.createDirectory(at: outputURL, withIntermediateDirectories: true, attributes: nil)
+            outputURL = outputURL.appendingPathComponent("\(outputURL.lastPathComponent).m4v")
+        }catch let error {
+            print(error)
         }
         
-        // Create text Layer
-        let titleLayer = CATextLayer()
-        titleLayer.backgroundColor = textBgClr.cgColor
-        titleLayer.foregroundColor = textForeClr.cgColor
-        titleLayer.string = text
-        titleLayer.font = UIFont(name: fontNm, size: 20)
-        titleLayer.shadowOpacity = 0.5
-        titleLayer.alignmentMode = .center
-        titleLayer.frame = CGRect(x: 0, y: 50, width: videoTrack.naturalSize.width, height: videoTrack.naturalSize.height / 6)
+        //Remove existing file
+        self.deleteFile(outputURL)
         
-        let parentlayer = CALayer()
-        parentlayer.frame = CGRect(x: 0, y: 0, width: videoTrack.naturalSize.width, height: videoTrack.naturalSize.height)
-        parentlayer.addSublayer(titleLayer)
+        // Add watermark to video
+        videoComposition.animationTool = AVVideoCompositionCoreAnimationTool(postProcessingAsVideoLayers: [videoLayer], in: parentlayer)
         
-        let layercomposition = AVMutableVideoComposition()
-        layercomposition.frameDuration = CMTimeMake(value: 1, timescale: 30)
-        layercomposition.renderSize = videoTrack.naturalSize
-        layercomposition.animationTool = AVVideoCompositionCoreAnimationTool(postProcessingAsVideoLayer: parentlayer, in: parentlayer)
-        
-        // Instruction for watermark
         let instruction = AVMutableVideoCompositionInstruction()
-        instruction.timeRange = CMTimeRangeMake(start: CMTime.zero, duration: composition.duration)
-        let layerinstruction = AVMutableVideoCompositionLayerInstruction(assetTrack: videoTrack)
-        instruction.layerInstructions = [layerinstruction]
-        layercomposition.instructions = [instruction]
+        instruction.timeRange = CMTimeRangeMake(start: CMTime.zero, duration: CMTimeMakeWithSeconds(60, preferredTimescale: 30))
         
-        // Create a new file to receive data
-        let dirPaths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-        let docsDir = dirPaths[0] as NSString
-        let movieFilePath = docsDir.appendingPathComponent("result.mov")
-        let movieDestinationUrl = URL(fileURLWithPath: movieFilePath)
+        instruction.layerInstructions = [transformer]
+        videoComposition.instructions = [instruction]
         
-        // Use AVAssetExportSession to export video
-        let assetExport = AVAssetExportSession(asset: composition, presetName: AVAssetExportPresetHighestQuality)
-        assetExport?.outputFileType = .mov
-        assetExport?.videoComposition = layercomposition
-        assetExport?.outputURL = movieDestinationUrl
+        let exporter = AVAssetExportSession.init(asset: asset, presetName: AVAssetExportPresetHighestQuality)
+        exporter?.outputFileType = AVFileType.mov
+        exporter?.outputURL = outputURL
+        exporter?.videoComposition = videoComposition
         
-        // Check existence and remove old file
-        FileManager.default.removeItemIfExisted(movieDestinationUrl)
-        
-        assetExport?.exportAsynchronously {
-            switch assetExport!.status {
+        exporter!.exportAsynchronously(completionHandler: {() -> Void in
+            
+            switch exporter!.status {
+            case .completed :
+                success(outputURL)
             case .failed:
-                if let error = assetExport?.error {
-                    print("Export failed with error: \(error)")
-                } else {
-                    print("Export failed with unknown error.")
+                if let _error = exporter?.error?.localizedDescription {
+                    failure(_error)
                 }
-                completion(nil)
             case .cancelled:
-                print("Export cancelled.")
-                completion(nil)
+                if let _error = exporter?.error?.localizedDescription {
+                    failure(_error)
+                }
             default:
-                print("Movie export completed successfully.")
-                completion(movieDestinationUrl)
-                
-                // Save video to photo library
-                PHPhotoLibrary.shared().performChanges({
-                    PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: movieDestinationUrl)
-                }) { saved, error in
-                    if saved {
-                        print("Video saved to photo library.")
-                    } else if let error = error {
-                        print("Failed to save video to photo library: \(error)")
-                    }
+                if let _error = exporter?.error?.localizedDescription {
+                    failure(_error)
                 }
             }
+        })
+    }
+    
+    func deleteFile(_ filePath:URL) {
+        guard FileManager.default.fileExists(atPath: filePath.path) else {
+            return
+        }
+        do {
+            try FileManager.default.removeItem(atPath: filePath.path)
+        }catch{
+            fatalError("Unable to delete file: \(error) : \(#function).")
         }
     }
-
-
-
 }
