@@ -22,6 +22,10 @@ class SelectionVC: UIViewController , UISearchTextFieldDelegate {
         super.viewDidLoad()
         onLaod()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        onAppear()
+    }
     @IBAction func ontapDismiss(_ : UIButton){
         self.dismiss(animated: true)
     }
@@ -120,6 +124,11 @@ extension SelectionVC{
     }
     
     func onAppear() {
+        UserManager.shared.filteredCuisine.removeAll()
+        UserManager.shared.filteredEnviorment.removeAll()
+        UserManager.shared.filteredFeature.removeAll()
+        UserManager.shared.filteredMeals.removeAll()
+        UserManager.shared.filteredSpeacials.removeAll()
     }
     
     func setupView(){

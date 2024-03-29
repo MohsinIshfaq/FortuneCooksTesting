@@ -199,7 +199,7 @@ open class AudioViewController: UIViewController, AVAudioRecorderDelegate {
         }
     }
     
-    func addStickerorTexttoVideo(textBgClr: UIColor , textForeClr: UIColor , fontNm: String , videoUrl: URL, watermarkText text : String, imageName name : String, position : Int,  success: @escaping ((URL) -> Void), failure: @escaping ((String?) -> Void)) {
+    func addStickerorTexttoVideo(textBgClr: UIColor , textForeClr: UIColor , fontNm: Int , videoUrl: URL, watermarkText text : String, imageName name : String, position : Int,  success: @escaping ((URL) -> Void), failure: @escaping ((String?) -> Void)) {
         
         
         let asset          = AVURLAsset.init(url: videoUrl)
@@ -281,9 +281,19 @@ open class AudioViewController: UIViewController, AVAudioRecorderDelegate {
         if text != "" {
             let textLayer    = CATextLayer()
             textLayer.string = text
-            textLayer.font   = UIFont(name: "", size: 40) ?? UIFont.systemFont(ofSize: 40)
-            textLayer.backgroundColor = textBgClr.cgColor
-            textLayer.foregroundColor = textForeClr.cgColor
+            // textLayer.font   = UIFont(name: "", size: 40) ?? UIFont.systemFont(ofSize: 40)
+            if fontNm        == 0 {
+                textLayer.font   = UIFont.systemFont(ofSize: 60)
+            }
+            else if fontNm   == 1 {
+                textLayer.font   = UIFont.boldSystemFont(ofSize: 60)
+            }
+            else if fontNm   == 2 {
+                textLayer.font   = UIFont.italicSystemFont(ofSize: 60)
+            }
+            else if fontNm   == 3 {
+                textLayer.font   = UIFont(name: "Helvetica", size: 60)
+            }
             
             if position % 3 == 0 {
                 textLayer.alignmentMode = CATextLayerAlignmentMode.left
@@ -293,11 +303,18 @@ open class AudioViewController: UIViewController, AVAudioRecorderDelegate {
                 textLayer.alignmentMode = CATextLayerAlignmentMode.right
             }
             
-            let textWidth = renderWidth / 5
-            let textX     = renderWidth * CGFloat(5 * (position % 3)) / 12
-            let textY     = renderHeight * CGFloat(position / 3) / 3
-            textLayer.frame = CGRect(x: textX , y: textY + 20, width: textWidth, height: 50)
+            // Calculate text position and size with padding
+            let padding: CGFloat = 10
+            let textWidth = 300 + (2 * padding) // Adjust width with padding
+            let textHeight = 100 + (2 * padding) // Adjust height with padding
+            let textX = renderWidth * CGFloat(5 * (position % 3)) / 12
+            let textY = renderHeight * CGFloat(position / 3) / 3
+            textLayer.frame = CGRect(x: textX, y: textY + 20, width: textWidth, height: textHeight)
+            
             textLayer.opacity = 0.6
+            textLayer.backgroundColor = textBgClr.cgColor
+            textLayer.foregroundColor = textForeClr.cgColor
+            textLayer.cornerRadius    = 6
             parentlayer.addSublayer(textLayer)
         }
         

@@ -89,25 +89,6 @@ class AddCaptionVC: AudioViewController {
         }
     
     @IBAction func ontapFontsChanging(_ sender: UIButton){
-        addStickerorTexttoVideo(textBgClr: .white
-                                , textForeClr: .red
-                                , fontNm: "Helvetica"
-                                , videoUrl: self.outputURL!
-                                , watermarkText: "Usamasdfsada"
-                                , imageName: ""
-                                , position: 0) { url in
-            DispatchQueue.main.async {
-                let player = AVPlayer(url: url)
-                let playerViewController = AVPlayerViewController()
-                playerViewController.player = player
-                
-                self.present(playerViewController, animated: true) {
-                    player.play()
-                }
-            }
-        } failure: { msg in
-            print(msg)
-        }
         if sender.tag == 0{
             vwFont1.borderColor  = .white
             vwFont1.cornerRadius = 8
@@ -203,21 +184,41 @@ class AddCaptionVC: AudioViewController {
     @IBAction func ontapColorChanging(_ sender: UIButton){
         
         if sender.tag == 0 {
-            vwForeground.backgroundColor = .white
-            vwBackground.backgroundColor = .clear
-            lblForground.textColor       = .black
-            lblBackground.textColor      = .white
             typeSelected                 = 0
+            if vwForeground.borderColor  == UIColor.white {
+                vwForeground.borderWidth = 1
+                vwForeground.borderColor = .white
+            }
         }
         else{
-            vwForeground.backgroundColor = .clear
-            vwBackground.backgroundColor = .white
-            lblForground.textColor       = .white
-            lblBackground.textColor      = .black
             typeSelected                 = 1
+            vwBackground.borderWidth     = 1
+            vwBackground.borderColor     = .white
         }
     }
-
+    
+    @objc func ontapDone() {
+        
+        addStickerorTexttoVideo(textBgClr: .white
+                                , textForeClr: .red
+                                , fontNm: 0
+                                , videoUrl: self.outputURL!
+                                , watermarkText: "Usamasdfsada"
+                                , imageName: ""
+                                , position: 3) { url in
+            DispatchQueue.main.async {
+                let player = AVPlayer(url: url)
+                let playerViewController = AVPlayerViewController()
+                playerViewController.player = player
+                
+                self.present(playerViewController, animated: true) {
+                    player.play()
+                }
+            }
+        } failure: { msg in
+            print(msg)
+        }
+    }
 }
 
 //MARK: - setup View {}
@@ -229,6 +230,7 @@ extension AddCaptionVC {
         collectColors.delegate   = self
         collectColors.dataSource = self
         playVideo()
+        NavigationRightBtn()
         
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
         txtCaption.addGestureRecognizer(panGesture)
@@ -238,6 +240,8 @@ extension AddCaptionVC {
     
     func onAppear() {
         
+        showNavBar()
+        removeNavBackbuttonTitle()
         lblFont1.font = fonts[0]
         lblFont2.font = fonts[1]
         lblFont3.font = fonts[2]
@@ -258,6 +262,14 @@ extension AddCaptionVC {
             view.bringSubviewToFront(txtCaption)
         }
     }
+    
+    func NavigationRightBtn() {
+        
+        let btnDone = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(ontapDone))
+        btnDone.tintColor = .white
+        navigationItem.rightBarButtonItem = btnDone
+    }
+
 }
 
 //MARK: - setup Collection View {}
@@ -279,9 +291,13 @@ extension AddCaptionVC: UICollectionViewDelegate , UICollectionViewDataSource , 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if typeSelected                 == 0 {
             txtCaption.textColor        = colors[indexPath.row]
+            vwForeground.borderWidth    = 2
+            vwForeground.borderColor    = colors[indexPath.row]
+            
         }
         else if typeSelected            == 1 {
             txtCaption.backgroundColor  = colors[indexPath.row]
+            vwBackground.backgroundColor = colors[indexPath.row]
         }
         else{
             
