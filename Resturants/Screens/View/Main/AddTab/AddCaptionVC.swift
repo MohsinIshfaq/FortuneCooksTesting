@@ -29,6 +29,8 @@ class AddCaptionVC: AudioViewController {
     @IBOutlet weak var vwFont5         : UIView!
     @IBOutlet weak var lblFont5        : UILabel!
     @IBOutlet weak var txtCaption      : UITextField!
+    @IBOutlet weak var btnDismiss      : UIButton!
+    @IBOutlet weak var btnBackground   : UIButton!
     
     //MARK: - Variables and Properties
     let colors: [UIColor]                    = [
@@ -66,6 +68,19 @@ class AddCaptionVC: AudioViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         onAppear()
+    }
+    
+    @IBAction func ontapDismiss(_ sender: UIButton){
+        
+        txtCaption.backgroundColor = .clear
+        txtCaption.text            = "Hello World"
+        txtCaption.textColor       = .white
+        txtCaption.font            = UIFont.systemFont(ofSize: 18)
+        vwForeground.borderWidth   = 0.5
+        vwForeground.borderColor   = .white
+        vwBackground.backgroundColor = .clear
+        vwBackground.borderWidth     = 0.5
+        vwBackground.borderColor     = .white
     }
    
     @objc func handlePanGesture(_ recognizer: UIPanGestureRecognizer) {
@@ -197,26 +212,57 @@ class AddCaptionVC: AudioViewController {
         }
     }
     
-    @objc func ontapDone() {
+    @objc func handleDoubleTap() {
+        print("Button double tapped!")
+        vwBackground.backgroundColor = .clear
+        txtCaption.backgroundColor   = .clear
+    }
+    
+    func addNewlineIfNeeded(to text: String, maxWordsPerLine: Int) -> String? {
+        let words = text.components(separatedBy: .whitespacesAndNewlines)
+        var newText = ""
+        var wordCount = 0
         
-        addStickerorTexttoVideo(textBgClr: .white
-                                , textForeClr: .red
-                                , fontNm: 0
-                                , videoUrl: self.outputURL!
-                                , watermarkText: "Usamasdfsada"
-                                , imageName: ""
-                                , position: 3) { url in
-            DispatchQueue.main.async {
-                let player = AVPlayer(url: url)
-                let playerViewController = AVPlayerViewController()
-                playerViewController.player = player
-                
-                self.present(playerViewController, animated: true) {
-                    player.play()
-                }
+        for word in words {
+            // Check if adding the current word exceeds the maximum words per line
+            if wordCount + 1 <= maxWordsPerLine {
+                // If not, add the word to the current line
+                newText += word + " "
+                wordCount += 1
+            } else {
+                // If adding the current word exceeds the maximum words per line,
+                // insert a newline character and start a new line with the current word
+                newText += "\n" + word + " "
+                wordCount = 1 // Reset word count for the new line
             }
-        } failure: { msg in
-            print(msg)
+        }
+        
+        return newText.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+
+
+    
+    @objc func ontapDone() {
+        if var string = addNewlineIfNeeded(to: txtCaption.text!, maxWordsPerLine: 7) {
+            addStickerorTexttoVideo(textBgClr: .white
+                                    , textForeClr: .red
+                                    , fontNm: 3
+                                    , videoUrl: self.outputURL!
+                                    , watermarkText: string
+                                    , imageName: ""
+                                    , position: 2) { url in
+                DispatchQueue.main.async {
+                    let player = AVPlayer(url: url)
+                    let playerViewController = AVPlayerViewController()
+                    playerViewController.player = player
+                    
+                    self.present(playerViewController, animated: true) {
+                        player.play()
+                    }
+                }
+            } failure: { msg in
+                print(msg)
+            }
         }
     }
 }
@@ -236,6 +282,10 @@ extension AddCaptionVC {
         txtCaption.addGestureRecognizer(panGesture)
         // Store initial frame of the textField
         initialFrame = txtCaption.frame
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTap))
+        tapGesture.numberOfTapsRequired = 2
+        btnBackground.addGestureRecognizer(tapGesture)
     }
     
     func onAppear() {
@@ -260,6 +310,7 @@ extension AddCaptionVC {
             view.bringSubviewToFront(collectColors)
             view.bringSubviewToFront(scrollFonts)
             view.bringSubviewToFront(txtCaption)
+            view.bringSubviewToFront(btnDismiss)
         }
     }
     

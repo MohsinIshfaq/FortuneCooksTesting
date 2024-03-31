@@ -278,45 +278,59 @@ open class AudioViewController: UIViewController, AVAudioRecorderDelegate {
             parentlayer.addSublayer(watermarkLayer)
         }
         
+        // Create textFont variable outside the if block
+        let textFont: UIFont
+
+        if fontNm == 0 {
+            textFont = CTFontCreateWithName("Helvetica" as CFString, 60, nil)
+        } else if fontNm == 1 {
+            textFont = CTFontCreateWithName("Helvetica-Bold" as CFString, 60, nil)
+        } else if fontNm == 2 {
+            textFont = CTFontCreateWithName("Helvetica-Oblique" as CFString, 60, nil)
+        } else if fontNm == 3 {
+            textFont = CTFontCreateWithName("TimesNewRomanPSMT" as CFString, 60, nil)
+        } else {
+            textFont = UIFont.systemFont(ofSize: 60)
+        }
+
         if text != "" {
-            let textLayer    = CATextLayer()
-            textLayer.string = text
-            // textLayer.font   = UIFont(name: "", size: 40) ?? UIFont.systemFont(ofSize: 40)
-            if fontNm        == 0 {
-                textLayer.font   = UIFont.systemFont(ofSize: 60)
-            }
-            else if fontNm   == 1 {
-                textLayer.font   = UIFont.boldSystemFont(ofSize: 60)
-            }
-            else if fontNm   == 2 {
-                textLayer.font   = UIFont.italicSystemFont(ofSize: 60)
-            }
-            else if fontNm   == 3 {
-                textLayer.font   = UIFont(name: "Helvetica", size: 60)
+            // Remove any existing text layers from parentlayer
+            parentlayer.sublayers?.forEach { layer in
+                if layer is CATextLayer {
+                    layer.removeFromSuperlayer()
+                }
             }
             
-            if position % 3 == 0 {
-                textLayer.alignmentMode = CATextLayerAlignmentMode.left
-            } else if position % 3 == 1 {
-                textLayer.alignmentMode = CATextLayerAlignmentMode.center
-            } else {
-                textLayer.alignmentMode = CATextLayerAlignmentMode.right
-            }
+            let textLayer = CATextLayer()
             
-            // Calculate text position and size with padding
+            let attributes: [NSAttributedString.Key: Any] = [
+                .font: textFont,
+                .foregroundColor: textForeClr
+            ]
+            let attributedString = NSAttributedString(string: text, attributes: attributes)
+            textLayer.string = attributedString
+            
+            // Calculate text size
+            let textSize = attributedString.size()
+            
+            // Adjust text layer size and position
             let padding: CGFloat = 10
-            let textWidth = 300 + (2 * padding) // Adjust width with padding
-            let textHeight = 100 + (2 * padding) // Adjust height with padding
-            let textX = renderWidth * CGFloat(5 * (position % 3)) / 12
-            let textY = renderHeight * CGFloat(position / 3) / 3
-            textLayer.frame = CGRect(x: textX, y: textY + 20, width: textWidth, height: textHeight)
+            let textWidth   = textSize.width + (3 * padding)
+            let textHeight  = textSize.height + (2 * padding)
+            let textX = (renderWidth - textWidth) / 2
+            let textY = position == 0 ? renderHeight - textHeight - 80 : position == 1 ? (renderHeight - textHeight) / 2 :  20
+                textLayer.frame = CGRect(x: textX + 10, y: textY + 20, width: textWidth + 20, height: textHeight + 60)
             
             textLayer.opacity = 0.6
             textLayer.backgroundColor = textBgClr.cgColor
             textLayer.foregroundColor = textForeClr.cgColor
-            textLayer.cornerRadius    = 6
+            textLayer.cornerRadius = 6
+            
             parentlayer.addSublayer(textLayer)
         }
+
+
+
         
         //Create Directory path for Save
         let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
