@@ -315,11 +315,11 @@ open class AudioViewController: UIViewController, AVAudioRecorderDelegate {
             
             // Adjust text layer size and position
             let padding: CGFloat = 10
-            let textWidth   = textSize.width + (3 * padding)
+            let textWidth   = textSize.width //+ (2 * padding)
             let textHeight  = textSize.height + (2 * padding)
             let textX = (renderWidth - textWidth) / 2
             let textY = position == 0 ? renderHeight - textHeight - 80 : position == 1 ? (renderHeight - textHeight) / 2 :  20
-                textLayer.frame = CGRect(x: textX + 10, y: textY + 20, width: textWidth + 20, height: textHeight + 60)
+                textLayer.frame = CGRect(x: textX + 0, y: textY + 20, width: textWidth + 20, height: textHeight + 20)
             
             textLayer.opacity = 0.6
             textLayer.backgroundColor = textBgClr.cgColor
