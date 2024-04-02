@@ -34,15 +34,18 @@ class CrtProfile3VC: UIViewController  {
         UserManager.shared.selectedPhone = txtPhoneNumbr.text!
         UserManager.shared.selectedEmail = txtEmailAddress.text!
         if checkCredentials(txtEmailAddress.text!) {
-            //verifyPhoneNUmber()
-            let vc = Constants.authStoryBoard.instantiateViewController(withIdentifier: "CrtProfile4VC") as? CrtProfile4VC
-            self.navigationController?.pushViewController(vc!, animated: true)
+            if "".validPhoneRegex(value: txtPhoneNumbr.text!){
+                let vc = Constants.authStoryBoard.instantiateViewController(withIdentifier: "CrtProfile4VC") as? CrtProfile4VC
+                self.navigationController?.pushViewController(vc!, animated: true)
+            }
+            else{
+                self.showToast(message: "Phone number is not valid", seconds: 2.0, clr: .red)
+            }
         }
         else{
             self.showToast(message: "Email is not valid", seconds: 2.0, clr: .red)
         }
     }
-
 }
 //MARK: - Setup Profile {}
 extension CrtProfile3VC {

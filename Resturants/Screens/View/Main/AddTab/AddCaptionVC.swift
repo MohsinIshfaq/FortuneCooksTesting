@@ -286,25 +286,27 @@ class AddCaptionVC: AudioViewController {
             showToast(message: "Please change your caption", seconds: 2, clr: .red)
         }
         else{
-            if var string = addNewlineIfNeeded(to: txtCaption.text!, maxWordsPerLine: 5) {
-                addStickerorTexttoVideo(textBgClr: self.txtBGcolor
-                                        , textForeClr: self.txtForcolor
-                                        , fontNm: self.fontNum
-                                        , videoUrl: self.outputURL!
-                                        , watermarkText: string
-                                        , imageName: ""
-                                        , position: self.posotionTxtFld) { url in
-                    DispatchQueue.main.async {
-                        let player = AVPlayer(url: url)
-                        let playerViewController = AVPlayerViewController()
-                        playerViewController.player = player
-                        
-                        self.present(playerViewController, animated: true) {
-                            player.play()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                if var string = self.addNewlineIfNeeded(to: self.txtCaption.text!, maxWordsPerLine: 5) {
+                    self.addStickerorTexttoVideo(textBgClr: self.txtBGcolor
+                                            , textForeClr: self.txtForcolor
+                                            , fontNm: self.fontNum
+                                            , videoUrl: self.outputURL!
+                                            , watermarkText: string
+                                            , imageName: ""
+                                            , position: self.posotionTxtFld) { url in
+                        DispatchQueue.main.async {
+                            let player = AVPlayer(url: url)
+                            let playerViewController = AVPlayerViewController()
+                            playerViewController.player = player
+                            
+                            self.present(playerViewController, animated: true) {
+                                player.play()
+                            }
                         }
+                    } failure: { msg in
+                        print(msg)
                     }
-                } failure: { msg in
-                    print(msg)
                 }
             }
         }

@@ -1466,8 +1466,8 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="btnTogleConPsd" destination="U2R-bx-IiJ" id="5cr-T9-Mkw"/>
-                        <outlet property="btnToglePsd" destination="sRA-u0-GkT" id="a1T-z1-EdU"/>
+                        <outlet property="btnTogleConPsd" destination="sRA-u0-GkT" id="5BH-YR-NhR"/>
+                        <outlet property="btnToglePsd" destination="U2R-bx-IiJ" id="LRm-bV-YIG"/>
                         <outlet property="img1Lower" destination="ynX-q2-s7o" id="rgO-ys-uL1"/>
                         <outlet property="img1Upper" destination="rPa-US-EA5" id="lZW-gO-OeO"/>
                         <outlet property="img1number" destination="i0y-n7-k79" id="gbv-QL-365"/>

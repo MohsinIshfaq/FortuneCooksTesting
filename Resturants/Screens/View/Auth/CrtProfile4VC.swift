@@ -111,6 +111,7 @@ extension CrtProfile4VC {
     }
     func setupView() {
         txtPsd.delegate                          = self
+        txtConfrmPsd.delegate                    = self
     }
 }
 //MARK: - Textfield Validation {}
@@ -138,7 +139,7 @@ extension CrtProfile4VC: UISearchTextFieldDelegate {
         updateValidationStatus(numberPredicate.evaluate(with: txtfld),
                                 message: "Minimum 1 number done",
                                 image: img1number)
-        if uppercasePredicate.evaluate(with: txtfld) && lowercasePredicate.evaluate(with: txtfld) && numberPredicate.evaluate(with: txtfld) {
+        if uppercasePredicate.evaluate(with: txtfld) && lowercasePredicate.evaluate(with: txtfld) && numberPredicate.evaluate(with: txtfld) && txtfld.count >= 8 {
              checkvalidPsd = true
         }
     }
