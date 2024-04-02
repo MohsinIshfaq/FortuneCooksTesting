@@ -933,16 +933,30 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JUD-qr-Ads">
+                                <rect key="frame" x="161.66666666666666" y="625" width="70" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="0Q1-lE-efB"/>
+                                    <constraint firstAttribute="width" constant="70" id="NkT-Sy-FMv"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="trash-blank"/>
+                                <connections>
+                                    <action selector="ontapDismiss:" destination="hm4-oA-yCW" eventType="touchUpInside" id="2Oi-pJ-AvP"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="yQK-fu-Sp5"/>
                         <color key="backgroundColor" systemColor="labelColor"/>
                         <constraints>
                             <constraint firstItem="yQK-fu-Sp5" firstAttribute="trailing" secondItem="FLM-Yo-0om" secondAttribute="trailing" id="4jj-sz-Enl"/>
+                            <constraint firstItem="FLM-Yo-0om" firstAttribute="top" secondItem="JUD-qr-Ads" secondAttribute="bottom" constant="36" id="4q8-tF-wRh"/>
                             <constraint firstItem="yQK-fu-Sp5" firstAttribute="trailing" secondItem="Qfc-nn-lCX" secondAttribute="trailing" constant="24" id="7LC-cn-BxQ"/>
                             <constraint firstItem="YUg-7b-Zoi" firstAttribute="leading" secondItem="yQK-fu-Sp5" secondAttribute="leading" constant="16" id="LGX-hT-q32"/>
                             <constraint firstItem="yQK-fu-Sp5" firstAttribute="trailing" secondItem="YUg-7b-Zoi" secondAttribute="trailing" constant="16" id="b0f-KH-Xd8"/>
                             <constraint firstItem="YUg-7b-Zoi" firstAttribute="bottom" secondItem="yQK-fu-Sp5" secondAttribute="bottom" id="gO8-Xw-7xb"/>
                             <constraint firstItem="Qfc-nn-lCX" firstAttribute="top" secondItem="yQK-fu-Sp5" secondAttribute="top" constant="24" id="k91-nt-jCN"/>
+                            <constraint firstItem="JUD-qr-Ads" firstAttribute="centerX" secondItem="EqP-It-8y0" secondAttribute="centerX" id="lhe-vJ-5Kh"/>
                             <constraint firstItem="YUg-7b-Zoi" firstAttribute="top" secondItem="FLM-Yo-0om" secondAttribute="bottom" constant="12" id="qe9-GI-pfe"/>
                             <constraint firstItem="FLM-Yo-0om" firstAttribute="leading" secondItem="yQK-fu-Sp5" secondAttribute="leading" constant="16" id="zkr-L3-UlD"/>
                         </constraints>
@@ -950,6 +964,7 @@
                     <connections>
                         <outlet property="btnBackground" destination="h2D-XB-aOu" id="CXO-pB-aVa"/>
                         <outlet property="btnDismiss" destination="Qfc-nn-lCX" id="xgE-DY-h78"/>
+                        <outlet property="btnTrash" destination="JUD-qr-Ads" id="FoQ-nf-Qbm"/>
                         <outlet property="collectColors" destination="YUg-7b-Zoi" id="dzL-9O-7xQ"/>
                         <outlet property="lblBackground" destination="fcj-C6-2QD" id="God-oa-FRU"/>
                         <outlet property="lblFont1" destination="TdW-IH-2Sx" id="jP9-3Z-mBG"/>
@@ -1819,6 +1834,7 @@
         <image name="selecPhoto" width="32.333332061767578" height="32"/>
         <image name="speaker.wave.2" catalog="system" width="128" height="88"/>
         <image name="text" width="24" height="24"/>
+        <image name="trash-blank" width="50" height="50"/>
         <image name="unselecPhoto" width="32" height="32"/>
         <image name="user" width="24" height="24"/>
         <image name="video" catalog="system" width="128" height="82"/>

@@ -31,6 +31,7 @@ class AddCaptionVC: AudioViewController {
     @IBOutlet weak var txtCaption      : UITextField!
     @IBOutlet weak var btnDismiss      : UIButton!
     @IBOutlet weak var btnBackground   : UIButton!
+    @IBOutlet weak var btnTrash        : UIButton!
     
     //MARK: - Variables and Properties
     let colors: [UIColor]                    = [
@@ -84,6 +85,7 @@ class AddCaptionVC: AudioViewController {
         vwBackground.backgroundColor = .clear
         vwBackground.borderWidth     = 0.5
         vwBackground.borderColor     = .white
+        btnTrash.isHidden            = true
     }
     
     @objc func handlePanGesture(_ recognizer: UIPanGestureRecognizer) {
@@ -269,9 +271,15 @@ class AddCaptionVC: AudioViewController {
         
         return "  " + newText.trimmingCharacters(in: .whitespacesAndNewlines) + " "
     }
-
-
     
+    @objc func longPressed(_ gestureRecognizer: UILongPressGestureRecognizer) {
+            if gestureRecognizer.state == .began {
+                // Long press gesture recognized
+                print("Long press detected!")
+                btnTrash.isHidden  = false
+            }
+        }
+
     @objc func ontapDone() {
         if txtCaption.text == "Hello world"{
             showToast(message: "Please change your caption", seconds: 2, clr: .red)
@@ -321,6 +329,9 @@ extension AddCaptionVC {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTap))
         tapGesture.numberOfTapsRequired = 2
         btnBackground.addGestureRecognizer(tapGesture)
+        
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(longPressed(_:)))
+        txtCaption.addGestureRecognizer(longPressGesture)
     }
     
     func onAppear() {
@@ -346,6 +357,7 @@ extension AddCaptionVC {
             view.bringSubviewToFront(scrollFonts)
             view.bringSubviewToFront(txtCaption)
             view.bringSubviewToFront(btnDismiss)
+            view.bringSubviewToFront(btnTrash)
         }
     }
     
