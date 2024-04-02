@@ -128,10 +128,6 @@ class AddCaptionVC: AudioViewController {
         }
     }
 
-
-
-
-    
     @IBAction func ontapFontsChanging(_ sender: UIButton){
         if sender.tag == 0{
             self.fontNum         =  0
@@ -277,25 +273,30 @@ class AddCaptionVC: AudioViewController {
 
     
     @objc func ontapDone() {
-        if var string = addNewlineIfNeeded(to: txtCaption.text!, maxWordsPerLine: 5) {
-            addStickerorTexttoVideo(textBgClr: self.txtBGcolor
-                                    , textForeClr: self.txtForcolor
-                                    , fontNm: self.fontNum
-                                    , videoUrl: self.outputURL!
-                                    , watermarkText: string
-                                    , imageName: ""
-                                    , position: self.posotionTxtFld) { url in
-                DispatchQueue.main.async {
-                    let player = AVPlayer(url: url)
-                    let playerViewController = AVPlayerViewController()
-                    playerViewController.player = player
-                    
-                    self.present(playerViewController, animated: true) {
-                        player.play()
+        if txtCaption.text == "Hello world"{
+            showToast(message: "Please change your caption", seconds: 2, clr: .red)
+        }
+        else{
+            if var string = addNewlineIfNeeded(to: txtCaption.text!, maxWordsPerLine: 5) {
+                addStickerorTexttoVideo(textBgClr: self.txtBGcolor
+                                        , textForeClr: self.txtForcolor
+                                        , fontNm: self.fontNum
+                                        , videoUrl: self.outputURL!
+                                        , watermarkText: string
+                                        , imageName: ""
+                                        , position: self.posotionTxtFld) { url in
+                    DispatchQueue.main.async {
+                        let player = AVPlayer(url: url)
+                        let playerViewController = AVPlayerViewController()
+                        playerViewController.player = player
+                        
+                        self.present(playerViewController, animated: true) {
+                            player.play()
+                        }
                     }
+                } failure: { msg in
+                    print(msg)
                 }
-            } failure: { msg in
-                print(msg)
             }
         }
     }

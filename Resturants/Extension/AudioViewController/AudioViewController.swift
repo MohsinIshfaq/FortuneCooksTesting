@@ -282,7 +282,7 @@ open class AudioViewController: UIViewController, AVAudioRecorderDelegate {
         let textFont: UIFont
 
         if fontNm == 0 {
-            textFont = CTFontCreateWithName("Helvetica" as CFString, 60, nil)
+            textFont = CTFontCreateWithName("HelveticaNeue" as CFString, 60, nil)
         } else if fontNm == 1 {
             textFont = CTFontCreateWithName("Helvetica-Bold" as CFString, 60, nil)
         } else if fontNm == 2 {

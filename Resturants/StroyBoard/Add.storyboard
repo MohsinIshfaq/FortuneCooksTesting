@@ -909,14 +909,6 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Hello world" borderStyle="roundedRect" placeholder="Enter Caption Here" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vuk-d4-HTC">
-                                <rect key="frame" x="59" y="395" width="259" height="62"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="textColor" name="ColorWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qfc-nn-lCX">
                                 <rect key="frame" x="344" y="83" width="25" height="25"/>
                                 <constraints>
@@ -933,6 +925,14 @@
                                     <action selector="ontapDismiss:" destination="hm4-oA-yCW" eventType="touchUpInside" id="HBo-hw-9IK"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Hello world" borderStyle="roundedRect" placeholder="Enter Caption Here" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vuk-d4-HTC">
+                                <rect key="frame" x="60" y="395" width="272" height="62"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" name="ColorWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="yQK-fu-Sp5"/>
                         <color key="backgroundColor" systemColor="labelColor"/>
@@ -1820,7 +1820,7 @@
         <image name="speaker.wave.2" catalog="system" width="128" height="88"/>
         <image name="text" width="24" height="24"/>
         <image name="unselecPhoto" width="32" height="32"/>
-        <image name="user" width="24.333333969116211" height="24"/>
+        <image name="user" width="24" height="24"/>
         <image name="video" catalog="system" width="128" height="82"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
