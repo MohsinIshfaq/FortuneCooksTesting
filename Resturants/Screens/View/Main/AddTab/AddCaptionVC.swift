@@ -86,6 +86,7 @@ class AddCaptionVC: AudioViewController {
         vwBackground.borderWidth     = 0.5
         vwBackground.borderColor     = .white
         btnTrash.isHidden            = true
+        lblBackground.textColor      = .white
     }
     
     @objc func handlePanGesture(_ recognizer: UIPanGestureRecognizer) {
@@ -391,13 +392,14 @@ extension AddCaptionVC: UICollectionViewDelegate , UICollectionViewDataSource , 
             txtCaption.textColor        = colors[indexPath.row]
             self.txtForcolor            = colors[indexPath.row]
             vwForeground.borderWidth    = 2
-            vwForeground.borderColor    = colors[indexPath.row]
+            vwForeground.borderColor    = .ColorLightBlue
             
         }
         else if typeSelected            == 1 {
             txtCaption.backgroundColor  = colors[indexPath.row]
             self.txtBGcolor             = colors[indexPath.row]
-            vwBackground.backgroundColor = colors[indexPath.row]
+            vwBackground.backgroundColor = .white
+            lblBackground.textColor      = .black
         }
         else{
             

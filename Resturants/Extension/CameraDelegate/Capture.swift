@@ -21,11 +21,12 @@ final class Capture {
     weak var delegate: CaptureDelegate?
     weak var videoDataOutputSampleBufferDelegate: AVCaptureVideoDataOutputSampleBufferDelegate?
     weak var audioDataOutputSampleBufferDelegate: AVCaptureAudioDataOutputSampleBufferDelegate?
-
+    private let sessionQueue = DispatchQueue(label: "capture_session_queue")
+    
     var hasTorch: Bool {
         return videoDevice.hasTorch
     }
-
+    
     var torchLevel: Float = 0 {
         didSet {
             if !hasTorch { return }
@@ -39,13 +40,13 @@ final class Capture {
             videoDevice.unlockForConfiguration()
         }
     }
-
+    
     let queue = DispatchQueue(label: "caputre_session_queue")
-
+    
     private(set) var session: AVCaptureSession?
     private var audioDevice: AVCaptureDevice!
     private var videoDevice: AVCaptureDevice!
-
+    
     private var videoDeviceInput: AVCaptureDeviceInput? {
         do {
             return try AVCaptureDeviceInput(device: videoDevice)
@@ -54,7 +55,7 @@ final class Capture {
             return nil
         }
     }
-
+    
     private var audioDeviceInput: AVCaptureDeviceInput? {
         do {
             return try AVCaptureDeviceInput(device: audioDevice)
@@ -63,7 +64,7 @@ final class Capture {
             return nil
         }
     }
-
+    
     // create and configure video data output
     private var videoDataOutput: AVCaptureVideoDataOutput {
         let output = AVCaptureVideoDataOutput()
@@ -75,14 +76,14 @@ final class Capture {
         output.setSampleBufferDelegate(videoDataOutputSampleBufferDelegate, queue: queue)
         return output
     }
-
+    
     private var audioDataOutput: AVCaptureAudioDataOutput {
         // configure audio data output
         let output = AVCaptureAudioDataOutput()
         output.setSampleBufferDelegate(audioDataOutputSampleBufferDelegate, queue: queue)
         return output
     }
-
+    
     init(devicePosition: AVCaptureDevice.Position,
          preset: AVCaptureSession.Preset,
          delegate: CaptureDelegate,
@@ -91,7 +92,7 @@ final class Capture {
         self.delegate = delegate
         self.videoDataOutputSampleBufferDelegate = videoDataOutputSampleBufferDelegate
         self.audioDataOutputSampleBufferDelegate = audioDataOutputSampleBufferDelegate
-
+        
         do {
             try AVAudioSession.sharedInstance().setActive(false)
             try AVAudioSession.sharedInstance().setCategory(.playAndRecord, mode: .videoRecording, options: [.mixWithOthers, .defaultToSpeaker, .allowBluetooth, .allowAirPlay, .allowBluetoothA2DP])
@@ -99,15 +100,15 @@ final class Capture {
         } catch {
             NSLog("Failed to set background audio preference")
         }
-
+        
         // check the availability of video and audio devices
         // create and start the capture session only if the devices are present
         do {
-            #if targetEnvironment(simulator)
-                NSLog("On iPhone Simulator, the app still gets a video device, but the video device will not work")
-                NSLog("On iPad Simulator, the app gets no video device")
-            #endif
-
+#if targetEnvironment(simulator)
+            NSLog("On iPhone Simulator, the app still gets a video device, but the video device will not work")
+            NSLog("On iPad Simulator, the app gets no video device")
+#endif
+            
             // see if we have any video device
             // get the input device and also validate the settings
             if let videoDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: devicePosition) {
@@ -127,42 +128,42 @@ final class Capture {
             }
         }
     }
-
+    
     func start(_ preset: AVCaptureSession.Preset) {
         if session != nil {
             return
         }
-
+        
         delegate?.captureWillStart()
-
+        
         queue.async { [unowned self] in
-
+            
             // obtain device input
             guard let videoDeviceInput = self.videoDeviceInput else { return }
             guard let audioDeviceInput = self.audioDeviceInput else { return }
-
+            
             // create the capture session
             let session = AVCaptureSession()
             session.sessionPreset = preset
             session.automaticallyConfiguresApplicationAudioSession = false
             self.session = session
-
+            
             // obtain data output
             let videoDataOutput = self.videoDataOutput
             let audioDataOutput = self.audioDataOutput
-
+            
             if !session.canAddOutput(videoDataOutput) {
                 self.delegate?.captureDidFail(with: .couldNotAddVideoDataOutput)
                 self.session = nil
                 return
             }
-
+            
             if !session.canAddOutput(audioDataOutput) {
                 self.delegate?.captureDidFail(with: .couldNotAddAudioDataOutput)
                 self.session = nil
                 return
             }
-
+            
             // begin configure capture session
             session.beginConfiguration()
             // connect the video device input and video data and still image outputs
@@ -172,30 +173,30 @@ final class Capture {
             session.addOutput(audioDataOutput)
             session.commitConfiguration()
             session.startRunning()
-
+            
             DispatchQueue.main.async {
                 self.delegate?.captureDidStart()
             }
         }
     }
-
+    
     func stop() {
         guard let session = session else { return }
         if !session.isRunning { return }
-
+        
         delegate?.captureWillStop()
-
+        
         session.stopRunning()
-
+        
         queue.async {
             NSLog("waiting for capture session to end")
         }
-
+        
         self.session = nil
-
+        
         delegate?.captureDidStop()
     }
-
+    
     func focus(at point: CGPoint) {
         do {
             try videoDevice.lockForConfiguration()
@@ -211,27 +212,42 @@ final class Capture {
         }
     }
     private func getDevice(for position: AVCaptureDevice.Position) -> AVCaptureDevice? {
-           return AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: position)
-       }
+        return AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: position)
+    }
     
     func configureDevice(position: AVCaptureDevice.Position) {
-            guard let input = session?.inputs.first as? AVCaptureDeviceInput else {
+        guard let session = session else {
+            print("Session is not initialized")
+            return
+        }
+        
+        sessionQueue.async {
+            guard let currentInput = session.inputs.first as? AVCaptureDeviceInput else {
+                print("No video input found")
                 return
             }
             
-            guard let newDevice = getDevice(for: position) else {
+            guard let newDevice = self.getDevice(for: position) else {
                 print("Failed to get AVCaptureDevice for the specified position")
                 return
             }
-
+            
             do {
                 let newInput = try AVCaptureDeviceInput(device: newDevice)
-                session?.beginConfiguration()
-                session?.removeInput(input)
-                session?.addInput(newInput)
-                session?.commitConfiguration()
+                session.beginConfiguration()
+                session.removeInput(currentInput)
+                
+                if session.canAddInput(newInput) {
+                    session.addInput(newInput)
+                } else {
+                    print("Cannot add new input to session")
+                }
+                
+                session.commitConfiguration()
             } catch {
                 print("Error configuring device: \(error.localizedDescription)")
             }
         }
+    }
+
 }

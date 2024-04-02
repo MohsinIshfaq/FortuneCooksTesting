@@ -290,7 +290,8 @@ open class AudioViewController: UIViewController, AVAudioRecorderDelegate {
         } else if fontNm == 3 {
             textFont = CTFontCreateWithName("TimesNewRomanPSMT" as CFString, 60, nil)
         } else {
-            textFont = UIFont.systemFont(ofSize: 60)
+           // textFont = UIFont.systemFont(ofSize: 60)
+            textFont = CTFontCreateWithName("HelveticaNeue" as CFString, 60, nil)
         }
 
         if text != "" {
