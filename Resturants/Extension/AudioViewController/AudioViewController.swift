@@ -202,106 +202,101 @@ open class AudioViewController: UIViewController, AVAudioRecorderDelegate {
     func addStickerorTexttoVideo(textBgClr: UIColor , textForeClr: UIColor , fontNm: Int , videoUrl: URL, watermarkText text : String, imageName name : String, position : Int,  success: @escaping ((URL) -> Void), failure: @escaping ((String?) -> Void)) {
         
         
-        let asset          = AVURLAsset.init(url: videoUrl)
-        let composition    = AVMutableComposition.init()
-        composition.addMutableTrack(withMediaType: AVMediaType.video, preferredTrackID: kCMPersistentTrackID_Invalid)
-        let clipVideoTrack = asset.tracks(withMediaType: AVMediaType.video)[0]
+        let asset = AVURLAsset(url: videoUrl)
+        let composition = AVMutableComposition()
+        composition.addMutableTrack(withMediaType: .video, preferredTrackID: kCMPersistentTrackID_Invalid)
+        let clipVideoTrack = asset.tracks(withMediaType: .video)[0]
         
-        // Rotate to potrait
-        let transformer    = AVMutableVideoCompositionLayerInstruction(assetTrack: clipVideoTrack)
-        let videoTransform:CGAffineTransform = clipVideoTrack.preferredTransform
+        // Rotate to portrait
+        let transformer = AVMutableVideoCompositionLayerInstruction(assetTrack: clipVideoTrack)
+        let videoTransform = clipVideoTrack.preferredTransform
         
+        // Fix orientation
+        var videoAssetOrientation = UIImage.Orientation.up
+        var isVideoAssetPortrait = false
         
-        //fix orientation
-        var videoAssetOrientation            = UIImage.Orientation.up
-        
-        var isVideoAssetPortrait             = false
-        
-        if videoTransform.a                  == 0 && videoTransform.b == 1.0 && videoTransform.c == -1.0 && videoTransform.d == 0 {
-            videoAssetOrientation            = UIImage.Orientation.right
-            isVideoAssetPortrait             = true
+        if videoTransform.a == 0 && videoTransform.b == 1.0 && videoTransform.c == -1.0 && videoTransform.d == 0 {
+            videoAssetOrientation = UIImage.Orientation.right
+            isVideoAssetPortrait = true
         }
-        if videoTransform.a  == 0 && videoTransform.b == -1.0 && videoTransform.c == 1.0 && videoTransform.d == 0 {
-            videoAssetOrientation =  UIImage.Orientation.left
-            isVideoAssetPortrait  = true
+        if videoTransform.a == 0 && videoTransform.b == -1.0 && videoTransform.c == 1.0 && videoTransform.d == 0 {
+            videoAssetOrientation = UIImage.Orientation.left
+            isVideoAssetPortrait = true
         }
-        if videoTransform.a  == 1.0 && videoTransform.b == 0 && videoTransform.c == 0 && videoTransform.d == 1.0 {
-            videoAssetOrientation =  UIImage.Orientation.up
+        if videoTransform.a == 1.0 && videoTransform.b == 0 && videoTransform.c == 0 && videoTransform.d == 1.0 {
+            videoAssetOrientation = UIImage.Orientation.up
         }
-        if videoTransform.a  == -1.0 && videoTransform.b == 0 && videoTransform.c == 0 && videoTransform.d == -1.0 {
-            videoAssetOrientation = UIImage.Orientation.down;
+        if videoTransform.a == -1.0 && videoTransform.b == 0 && videoTransform.c == 0 && videoTransform.d == -1.0 {
+            videoAssetOrientation = UIImage.Orientation.down
         }
         
         transformer.setTransform(clipVideoTrack.preferredTransform, at: CMTime.zero)
         transformer.setOpacity(0.0, at: asset.duration)
         
-        //adjust the render size if neccessary
+        // Adjust the render size if necessary
         var naturalSize: CGSize
-        if(isVideoAssetPortrait){
+        if isVideoAssetPortrait {
             naturalSize = CGSize(width: clipVideoTrack.naturalSize.height, height: clipVideoTrack.naturalSize.width)
         } else {
-            naturalSize = clipVideoTrack.naturalSize;
+            naturalSize = clipVideoTrack.naturalSize
         }
         
-        var renderWidth  : CGFloat!
-        var renderHeight : CGFloat!
+        var renderWidth: CGFloat!
+        var renderHeight: CGFloat!
         
-        renderWidth  = naturalSize.width
+        renderWidth = naturalSize.width
         renderHeight = naturalSize.height
         
-        let parentlayer    = CALayer()
-        let videoLayer     = CALayer()
-        let watermarkLayer = CALayer()
+        let parentlayer = CALayer()
+        let videoLayer = CALayer()
         
-        let videoComposition        = AVMutableVideoComposition()
+        let videoComposition = AVMutableVideoComposition()
         videoComposition.renderSize = CGSize(width: renderWidth, height: renderHeight)
         videoComposition.frameDuration = CMTimeMake(value: 1, timescale: 30)
-        videoComposition.renderScale   = 1.0
+        videoComposition.renderScale = 1.0
         
         parentlayer.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: naturalSize)
-        videoLayer.frame  = CGRect(origin: CGPoint(x: 0, y: 0), size: naturalSize)
+        videoLayer.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: naturalSize)
         parentlayer.addSublayer(videoLayer)
         
-        
         if name != "" {
-            let stickerView:UIView = UIView.init(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: naturalSize))
-            let sticker:UIImageView = UIImageView.init()
-            sticker.image       = UIImage(named: name)
+            let stickerView = UIView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: naturalSize))
+            let sticker = UIImageView()
+            sticker.image = UIImage(named: name)
             sticker.contentMode = .scaleAspectFit
             let stickerWidth = renderWidth / 6
-            let stickerX     = renderWidth * CGFloat(5 * (position % 3)) / 12
-            let stickerY     = (renderHeight - ( renderHeight * CGFloat(position / 3) / 3)) - 150
-            sticker.frame    = CGRect(x:stickerX, y: stickerY, width: stickerWidth, height: stickerWidth)
+            let stickerX = renderWidth * CGFloat(5 * (position % 3)) / 12
+            let stickerY = (renderHeight - (renderHeight * CGFloat(position / 3) / 3)) - 150
+            sticker.frame = CGRect(x:stickerX, y: stickerY, width: stickerWidth, height: stickerWidth)
             stickerView.addSubview(sticker)
-            watermarkLayer.contents = stickerView.asImage().cgImage
-            watermarkLayer.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: naturalSize)
-            parentlayer.addSublayer(watermarkLayer)
+            videoLayer.addSublayer(stickerView.layer)
         }
         
-        // Create textFont variable outside the if block
+        // Create textFont variable
         let textFont: UIFont
-
-        if fontNm == 0 {
-            textFont = CTFontCreateWithName("HelveticaNeue" as CFString, 60, nil)
-        } else if fontNm == 1 {
-            textFont = CTFontCreateWithName("Helvetica-Bold" as CFString, 60, nil)
-        } else if fontNm == 2 {
-            textFont = CTFontCreateWithName("Helvetica-Oblique" as CFString, 60, nil)
-        } else if fontNm == 3 {
-            textFont = CTFontCreateWithName("TimesNewRomanPSMT" as CFString, 60, nil)
-        } else {
-           // textFont = UIFont.systemFont(ofSize: 60)
-            textFont = CTFontCreateWithName("HelveticaNeue" as CFString, 60, nil)
+        
+        switch fontNm {
+        case 0:
+            textFont = UIFont(name: "HelveticaNeue", size: 60) ?? UIFont.systemFont(ofSize: 60)
+        case 1:
+            textFont = UIFont(name: "Helvetica-Bold", size: 60) ?? UIFont.systemFont(ofSize: 60)
+        case 2:
+            textFont = UIFont(name: "Helvetica-Oblique", size: 60) ?? UIFont.systemFont(ofSize: 60)
+        case 3:
+            textFont = UIFont(name: "TimesNewRomanPSMT", size: 60) ?? UIFont.systemFont(ofSize: 60)
+        default:
+            textFont = UIFont.systemFont(ofSize: 60)
         }
-
+        
         if text != "" {
-            // Remove any existing text layers from parentlayer
+            // Remove any existing text layers
             parentlayer.sublayers?.forEach { layer in
                 if layer is CATextLayer {
                     layer.removeFromSuperlayer()
                 }
             }
             
+            // Create text layer
             let textLayer = CATextLayer()
             
             let attributes: [NSAttributedString.Key: Any] = [
@@ -316,34 +311,33 @@ open class AudioViewController: UIViewController, AVAudioRecorderDelegate {
             
             // Adjust text layer size and position
             let padding: CGFloat = 10
-            let textWidth   = textSize.width //+ (2 * padding)
-            let textHeight  = textSize.height + (2 * padding)
+            let textWidth = textSize.width + (2 * padding)
+            let textHeight = textSize.height + (2 * padding)
             let textX = (renderWidth - textWidth) / 2
-            let textY = position == 0 ? renderHeight - textHeight - 80 : position == 1 ? (renderHeight - textHeight) / 2 :  20
-                textLayer.frame = CGRect(x: textX + 0, y: textY + 20, width: textWidth + 20, height: textHeight + 20)
+            let textY = position == 0 ? max(20, renderHeight - textHeight - 80) : position == 1 ? max(20, (renderHeight - textHeight) / 2) : 20
             
-            textLayer.opacity = 0.6
+            // Ensure text doesn't cross the top border
+            textLayer.frame = CGRect(x: textX, y: textY, width: textWidth, height: textHeight)
+            
+            textLayer.opacity = 1.0 // Set opacity to 1.0 to ensure full visibility
             textLayer.backgroundColor = textBgClr.cgColor
             textLayer.foregroundColor = textForeClr.cgColor
             textLayer.cornerRadius = 6
             
             parentlayer.addSublayer(textLayer)
         }
-
-
-
         
-        //Create Directory path for Save
+        // Create Directory path for Save
         let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         var outputURL = documentDirectory.appendingPathComponent("StickerVideo")
         do {
             try FileManager.default.createDirectory(at: outputURL, withIntermediateDirectories: true, attributes: nil)
             outputURL = outputURL.appendingPathComponent("\(outputURL.lastPathComponent).m4v")
-        }catch let error {
+        } catch let error {
             print(error)
         }
         
-        //Remove existing file
+        // Remove existing file
         self.deleteFile(outputURL)
         
         // Add watermark to video
@@ -355,12 +349,12 @@ open class AudioViewController: UIViewController, AVAudioRecorderDelegate {
         instruction.layerInstructions = [transformer]
         videoComposition.instructions = [instruction]
         
-        let exporter = AVAssetExportSession.init(asset: asset, presetName: AVAssetExportPresetHighestQuality)
+        let exporter = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetHighestQuality)
         exporter?.outputFileType = AVFileType.mov
         exporter?.outputURL = outputURL
         exporter?.videoComposition = videoComposition
         
-        exporter!.exportAsynchronously(completionHandler: {() -> Void in
+        exporter?.exportAsynchronously(completionHandler: {() -> Void in
             
             switch exporter!.status {
             case .completed :
@@ -380,6 +374,7 @@ open class AudioViewController: UIViewController, AVAudioRecorderDelegate {
             }
         })
     }
+
     
     func deleteFile(_ filePath:URL) {
         guard FileManager.default.fileExists(atPath: filePath.path) else {

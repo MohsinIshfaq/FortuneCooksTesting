@@ -50,8 +50,8 @@ class AddCaptionVC: AudioViewController {
             UIFont.systemFont(ofSize: 20),
             UIFont.boldSystemFont(ofSize: 20),
             UIFont.italicSystemFont(ofSize: 20),
-            UIFont(name: "Helvetica", size: 20) ?? UIFont.systemFont(ofSize: 20),
-            UIFont(name: "Arial", size: 20) ?? UIFont.systemFont(ofSize: 20),
+            UIFont(name: "TimesNewRomanPSMT", size: 20) ?? UIFont.systemFont(ofSize: 20),
+            UIFont.systemFont(ofSize: 20)
             // Add more fonts as needed
         ]
     var outputURL              : URL?        = nil
@@ -235,13 +235,17 @@ class AddCaptionVC: AudioViewController {
             typeSelected                 = 0
             if vwForeground.borderColor  == UIColor.white {
                 vwForeground.borderWidth = 1
-                vwForeground.borderColor = .white
+                vwForeground.borderColor = .ColorDarkBlue
+                vwBackground.borderWidth = 0.5
+                vwBackground.borderColor = .white
             }
         }
         else{
+            vwForeground.borderWidth     = 0.5
+            vwForeground.borderColor     = .white
             typeSelected                 = 1
             vwBackground.borderWidth     = 1
-            vwBackground.borderColor     = .white
+            vwBackground.borderColor     = .ColorDarkBlue
         }
     }
     
@@ -257,19 +261,14 @@ class AddCaptionVC: AudioViewController {
         var wordCount = 0
         
         for word in words {
-            // Check if adding the current word exceeds the maximum words per line
             if wordCount + 1 <= maxWordsPerLine {
-                // If not, add the word to the current line
                 newText += word + " "
                 wordCount += 1
             } else {
-                // If adding the current word exceeds the maximum words per line,
-                // insert a newline character and start a new line with the current word
                 newText += "\n " + word + " "
-                wordCount = 1 // Reset word count for the new line
+                wordCount = 1
             }
         }
-        
         return "  " + newText.trimmingCharacters(in: .whitespacesAndNewlines) + " "
     }
     
@@ -286,7 +285,7 @@ class AddCaptionVC: AudioViewController {
             showToast(message: "Please change your caption", seconds: 2, clr: .red)
         }
         else{
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+          //  DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 if var string = self.addNewlineIfNeeded(to: self.txtCaption.text!, maxWordsPerLine: 5) {
                     self.addStickerorTexttoVideo(textBgClr: self.txtBGcolor
                                             , textForeClr: self.txtForcolor
@@ -308,7 +307,7 @@ class AddCaptionVC: AudioViewController {
                         print(msg)
                     }
                 }
-            }
+          //  }
         }
     }
 }
@@ -393,8 +392,6 @@ extension AddCaptionVC: UICollectionViewDelegate , UICollectionViewDataSource , 
         if typeSelected                 == 0 {
             txtCaption.textColor        = colors[indexPath.row]
             self.txtForcolor            = colors[indexPath.row]
-            vwForeground.borderWidth    = 2
-            vwForeground.borderColor    = .ColorLightBlue
             
         }
         else if typeSelected            == 1 {
