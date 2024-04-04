@@ -14,7 +14,10 @@ final class UserManager {
     static let shared     = UserManager()
     private init () {}
     
-    let arrAccnt                                  = [
+    var finalURL                   : URL?             = nil
+    var thumbnail                  : UIImage?         = nil
+    
+    let arrAccnt                                      = [
        "Private person",
        "Content Creator",
        "Restaurant",
@@ -27,53 +30,51 @@ final class UserManager {
        "Food_truck",
        "Hotel"
    ]
+    var filteredCuisine            : [[String]]       = []
+    var filteredEnviorment         : [[String]]       = []
+    var filteredFeature            : [[String]]       = []
+    var filteredMeals              : [[String]]       = []
+    var filteredSpeacials          : [[String]]       = []
     
-    var filteredCuisine:[[String]]          = []
-    var filteredEnviorment:[[String]]       = []
-    var filteredFeature:[[String]]          = []
-    var filteredMeals:[[String]]            = []
-    var filteredSpeacials:[[String]]        = []
-    
-     var arrCuisine         = [["African" , "0"],
-                                      ["American" , "0"],
-                                      ["Asian" , "0"],
-                                      ["Brazilian" , "0"],
-                                      ["British" , "0"],
-                                      ["Ethiopian" , "0"],
-                                      ["European" , "0"],
-                                      ["French" , "0"],
-                                      ["From the Mediterranean" , "0"] ,
-                                      ["Fusion/Crossover" , "0"],
-                                      ["Greek" , "0"],
-                                      ["Grilled" , "0"],
-                                      [ "Indian" , "0"],
-                                      ["Italian" , "0"],
-                                      ["Japanese" , "0"],
-                                      ["Chinese" , "0"],
-                                      ["Korean" , "0"],
-                                      [ "Latin American" , "0"],
-                                      ["Lebanese" , "0"],
-                                      ["Moroccan" , "0"],
-                                      ["Mexican" , "0"],
-                                      ["Oriental" , "0"],
-                                      ["Pakistani" , "0"],
-                                      ["Persian" , "0"],
-                                      ["Peruvian" , "0"],
-                                      ["Portuguese" , "0"],
-                                      ["Swiss" , "0"],
-                                      [ "Scandinavian" , "0"],
-                                      ["Spanish" , "0"],
-                                      ["Steakhouse" , "0"],
-                                      [ "Swedish" , "0"],
-                                      ["Somali" , "0"],
-                                      ["Thai" , "0"],
-                                      [ "Traditional food" , "0"],
-                                      ["Tunisian" , "0"],
-                                      ["Turkish" , "0"],
-                                      ["German" , "0"],
-                                      ["Eastern European" , "0"]]
-    
-     var arrEnviorment      = [["Business dinner" , "0"],
+    var arrCuisine                                    = [["African" , "0"],
+                                    ["American" , "0"],
+                                    ["Asian" , "0"],
+                                    ["Brazilian" , "0"],
+                                    ["British" , "0"],
+                                    ["Ethiopian" , "0"],
+                                    ["European" , "0"],
+                                    ["French" , "0"],
+                                    ["From the Mediterranean" , "0"] ,
+                                    ["Fusion/Crossover" , "0"],
+                                    ["Greek" , "0"],
+                                    ["Grilled" , "0"],
+                                    [ "Indian" , "0"],
+                                    ["Italian" , "0"],
+                                    ["Japanese" , "0"],
+                                    ["Chinese" , "0"],
+                                    ["Korean" , "0"],
+                                    [ "Latin American" , "0"],
+                                    ["Lebanese" , "0"],
+                                    ["Moroccan" , "0"],
+                                    ["Mexican" , "0"],
+                                    ["Oriental" , "0"],
+                                    ["Pakistani" , "0"],
+                                    ["Persian" , "0"],
+                                    ["Peruvian" , "0"],
+                                    ["Portuguese" , "0"],
+                                    ["Swiss" , "0"],
+                                    [ "Scandinavian" , "0"],
+                                    ["Spanish" , "0"],
+                                    ["Steakhouse" , "0"],
+                                    [ "Swedish" , "0"],
+                                    ["Somali" , "0"],
+                                    ["Thai" , "0"],
+                                    [ "Traditional food" , "0"],
+                                    ["Tunisian" , "0"],
+                                    ["Turkish" , "0"],
+                                    ["German" , "0"],
+                                    ["Eastern European" , "0"]]
+    var arrEnviorment                                 = [["Business dinner" , "0"],
                                       [ "After work" , "0"],
                                       [ "Brunch" , "0"],
                                       ["Wedding" , "0"],
@@ -107,8 +108,7 @@ final class UserManager {
                                       ["Dinner" , "0"],
                                       ["Dessert" , "0"],
                                       ["Coffe" , "0"]]
-    
-     var arrFeature         = [["Seating" , "0"],
+    var arrFeature                                    = [["Seating" , "0"],
                                       ["Reservations" , "0"],
                                       ["Takeout" , "0"],
                                       ["Delivery" , "0"],
@@ -129,33 +129,31 @@ final class UserManager {
                                       ["Vegan options" , "0"],
                                       ["Vegetarian options" , "0"],
                                       ["Gluten-free options" , "0"]]
-    
-     var arrMeals           = [["Breakfast" , "0"],
+    var arrMeals                                      = [["Breakfast" , "0"],
                                ["Brunch" , "0"],
                                ["Lunch" , "0"],
                                ["Dinner" , "0"],
                                ["Dessert" , "0"],
                                ["Coffee" , "0"]]
-    
-     var arrSpeacials       = [["Halal Options" , "0"],
+    var arrSpeacials                                  = [["Halal Options" , "0"],
                                ["Kosher options" , "0"],
                                ["Vegan options" , "0"],
                                ["Vegetarian options" , "0"],
                                ["Gluten-free options" , "0"]]
     
     //MARK: - DATA for Firestore
-     var selectedCuisine           :[String]       = []
-     var selectedEnviorment        :[String]       = []
-     var selectedFeature           :[String]       = []
-     var selectedMeals             :[String]       = []
-     var selectedSpecial           :[String]       = []
-     var selectedAccountType       : String        = ""
-     var selectedChannelNm         : String        = ""
-     var selectedDOB               : String        = ""
-     var selectedEmail             : String        = ""
-     var selectedPhone             : String        = ""
+     var selectedCuisine           : [String]          = []
+     var selectedEnviorment        : [String]          = []
+     var selectedFeature           : [String]          = []
+     var selectedMeals             : [String]          = []
+     var selectedSpecial           : [String]          = []
+     var selectedAccountType       : String            = ""
+     var selectedChannelNm         : String            = ""
+     var selectedDOB               : String            = ""
+     var selectedEmail             : String            = ""
+     var selectedPhone             : String            = ""
     
-    let filterDisplayNameList = [
+    let filterDisplayNameList                          = [
         "Normal",
         "Chrome",
         "Fade",
@@ -168,8 +166,7 @@ final class UserManager {
         "Tone",
         "Linear"
     ]
-    
-    let filterNameList = [
+    let filterNameList                                 = [
         "No Filter",
         "CIPhotoEffectChrome",
         "CIPhotoEffectFade",
@@ -182,8 +179,7 @@ final class UserManager {
         "CILinearToSRGBToneCurve",
         "CISRGBToneCurveToLinear"
     ]
-    
-    var FakefilterNameList = [
+    var FakefilterNameList                             = [
         ["No Filter", 1],
         ["CIPhotoEffectChrome", 0],
         ["CIPhotoEffectFade", 0],

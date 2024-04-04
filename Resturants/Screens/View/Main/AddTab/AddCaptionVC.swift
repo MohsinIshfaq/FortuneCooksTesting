@@ -295,12 +295,12 @@ class AddCaptionVC: AudioViewController {
                                             , imageName: ""
                                             , position: self.posotionTxtFld) { url in
                         DispatchQueue.main.async {
-                            let player = AVPlayer(url: url)
-                            let playerViewController = AVPlayerViewController()
-                            playerViewController.player = player
-                            
-                            self.present(playerViewController, animated: true) {
-                                player.play()
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                UserManager.shared.finalURL  = url
+                                self.showToast(message: "Caption added successfully.", seconds: 2, clr: .gray)
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                    self.popRoot()
+                                }
                             }
                         }
                     } failure: { msg in
@@ -317,6 +317,7 @@ extension AddCaptionVC {
     
     func onLoad() {
         
+        self.outputURL           = UserManager.shared.finalURL
         collectColors.register(ColorCCell.nib, forCellWithReuseIdentifier: ColorCCell.identifier)
         collectColors.delegate   = self
         collectColors.dataSource = self

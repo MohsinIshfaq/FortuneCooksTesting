@@ -76,6 +76,22 @@ extension UIViewController {
         })
     }
     
+    //MARK: Thumbnail Image generate
+    func generateThumbnail(path: URL) -> UIImage? {
+        // getting image from video
+        do {
+            let asset = AVURLAsset(url: path, options: nil)
+            let imgGenerator = AVAssetImageGenerator(asset: asset)
+            imgGenerator.appliesPreferredTrackTransform = true
+            let cgImage = try imgGenerator.copyCGImage(at: CMTimeMake(value: 0, timescale: 1), actualTime: nil)
+            let thumbnail = UIImage(cgImage: cgImage)
+            return thumbnail
+        } catch let error {
+            self.showAlertWith(title: "Error", message: error.localizedDescription)
+            return nil
+        }
+    }
+    
     //MARK: - Navigation Title large Animation {}
     func scroll(_ scrollView: UIScrollView, _ title: String) {
         let scrollOffset = scrollView.contentOffset.y
@@ -168,6 +184,7 @@ extension UIView {
 //MARK: - Manage Animation {}
 import SDWebImage
 import NVActivityIndicatorView
+import AVFoundation
 extension UIViewController : NVActivityIndicatorViewable {
     
     func showLoader() -> Void {

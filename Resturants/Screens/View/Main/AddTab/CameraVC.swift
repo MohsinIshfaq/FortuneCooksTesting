@@ -22,6 +22,7 @@ class CameraVC: FilterCamViewController{
     @IBOutlet weak var btnFlash          : UIButton!
     @IBOutlet weak var stackVideoPicker  : UIStackView!
     @IBOutlet weak var btnRemove         : UIButton!
+    @IBOutlet weak var btnUpload         : UIButton!
     
     //MARK: - variables and Properties
     private var selected                 : Bool = false
@@ -42,6 +43,12 @@ class CameraVC: FilterCamViewController{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         onAppear()
+    }
+    
+    @IBAction func ontapUpload(_ sender: UIButton){
+        
+        let vc = Constants.addStoryBoard.instantiateViewController(withIdentifier: "UplaodSwiftVC") as? UplaodSwiftVC
+        self.navigationController?.pushViewController(vc!, animated: true)
     }
     
     @IBAction func ontapBack(_ sender: UIButton){
@@ -96,17 +103,8 @@ class CameraVC: FilterCamViewController{
             }
             else {
                 DispatchQueue.main.async {
-                    if let videoURL = url {
-                        let player = AVPlayer(url: videoURL)
-                        let playerViewController = AVPlayerViewController()
-                        playerViewController.player = player
-                        
-                        self.present(playerViewController, animated: true) {
-                            player.play()
-                        }
-                    } else {
-                        print("Invalid video URL.")
-                    }
+                    UserManager.shared.finalURL = url
+                    self.showToast(message: "Video got muted successfully.", seconds: 2, clr: .gray)
                 }
             }
         }
@@ -131,9 +129,7 @@ class CameraVC: FilterCamViewController{
     }
     
     @IBAction func ontapPickFromGallery(_ sender: UIButton){
-        //pickVideo()
-        let vc = Constants.addStoryBoard.instantiateViewController(withIdentifier: "UplaodSwiftVC") as? UplaodSwiftVC
-        self.navigationController?.pushViewController(vc!, animated: true)
+        self.pickVideo()
     }
     
     @objc func updateProgress() {
@@ -162,6 +158,7 @@ extension CameraVC {
         cameraDelegate             = self
         self.stackEditOpt.isHidden = true
         btnRemove.isHidden         = true
+        btnUpload.isHidden         = true
     }
     
     func onAppear() {
@@ -251,8 +248,10 @@ extension CameraVC: FilterCamViewControllerDelegate{
 
     func filterCam(_ filterCam: FilterCamViewController, didFinishWriting outputURL: URL) {
         DispatchQueue.main.async {
-            self.outputURL = outputURL
-            self.stackEditOpt.isHidden = false
+            self.outputURL               = outputURL
+            UserManager.shared.finalURL  = outputURL
+            self.stackEditOpt.isHidden   = false
+            self.btnUpload.isHidden      = false
         }
     }
 
@@ -347,6 +346,7 @@ extension CameraVC : ConfirmationAutionsDelegate{
             btnRecord.backgroundColor  = .ColorDarkBlue
             btnRecord.isHidden         = false
             stackEditOpt.isHidden      = true
+            btnUpload.isHidden         = true
             outputURL                  = nil
             btnRemove.isHidden         = true
             stackVideoPicker.isHidden  = false
@@ -355,6 +355,30 @@ extension CameraVC : ConfirmationAutionsDelegate{
         }
         else{
             self.dismiss(animated: true)
+        }
+    }
+}
+
+extension CameraVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func pickVideo() {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.mediaTypes = [kUTTypeMovie as String] // This ensures only videos are shown
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        dismiss(animated: true, completion: nil)
+        guard let videoURL = info[.mediaURL] as? URL else {
+            print("Error getting video URL")
+            return
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            UserManager.shared.finalURL  = videoURL
+            let vc = Constants.addStoryBoard.instantiateViewController(withIdentifier: "UplaodSwiftVC") as? UplaodSwiftVC
+            self.navigationController?.pushViewController(vc!, animated: true)
         }
     }
 }
@@ -369,3 +393,13 @@ extension CameraVC : ConfirmationAutionsDelegate{
 //                        print("saved")
 //                    }
 //                }
+
+//        if let url = UserManager.shared.finalURL {
+//            let player = AVPlayer(url: url)
+//            let playerViewController = AVPlayerViewController()
+//            playerViewController.player = player
+//
+//            self.present(playerViewController, animated: true) {
+//                player.play()
+//            }
+//        }

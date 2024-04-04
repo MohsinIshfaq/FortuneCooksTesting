@@ -41,6 +41,7 @@ class AudioRecordVC: AudioViewController {
     }
     
     @IBAction func ontapNext(_ sender: UIButton) {
+        UserManager.shared.finalURL  = mergedVideoURL
         popRoot()
     }
     
@@ -96,6 +97,7 @@ class AudioRecordVC: AudioViewController {
 extension AudioRecordVC{
     
     func onLoad(){
+        self.outputURL        = UserManager.shared.finalURL
         self.showNavBar()
         setupAudioRecording()
         muteVideo()
