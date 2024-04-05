@@ -7,9 +7,19 @@
 
 import UIKit
 import MobileCoreServices
+import AVFoundation
+import AVKit
+protocol ReloadDelegate {
+    func reload(img : UIImage?)
+}
 
-class UplaodSwiftVC: UIViewController {
- 
+class UplaodSwiftVC: UIViewController , ReloadDelegate {
+    
+    func reload(img: UIImage?) {
+        imgThumbnail.image = img
+       // if let img = img {
+       // }
+    }
     //MARK: - IBOUtlets
     @IBOutlet weak var txtAddress : UITextField!
     @IBOutlet weak var txtZipCode : UITextField!
@@ -19,8 +29,12 @@ class UplaodSwiftVC: UIViewController {
     @IBOutlet weak var txtHastag  : UITextField!
     @IBOutlet weak var txtLang    : UITextField!
     
+    @IBOutlet weak var btnThumbnail  : UIButton!
+    @IBOutlet weak var imgThumbnail  : UIImageView!
+    @IBOutlet weak var imgVideoThumb : UIImageView!
+    
     //MARK: - Variables and Properties
-    private var outputURL: URL?          = nil
+    private var outputURL: URL?            = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,11 +47,22 @@ class UplaodSwiftVC: UIViewController {
     }
     
     @IBAction func ontapPickVideo(_ sender: UIButton){
-        pickVideo()
+        DispatchQueue.main.async {
+            if let url = UserManager.shared.finalURL {
+                let player = AVPlayer(url: url)
+                let playerViewController = AVPlayerViewController()
+                playerViewController.player = player
+                
+                self.present(playerViewController, animated: true) {
+                    player.play()
+                }
+            }
+        }
     }
     
     @IBAction func ontapThumbnail(_ sender: UIButton){
         let vc = Constants.addStoryBoard.instantiateViewController(withIdentifier: "UploadThumbnailVC") as? UploadThumbnailVC
+        vc?.delegate  = self
         self.present(vc!, animated: true)
     }
 }
@@ -46,6 +71,11 @@ class UplaodSwiftVC: UIViewController {
 extension UplaodSwiftVC {
     func onLoad() {
         removeNavBackbuttonTitle()
+        if let url = UserManager.shared.finalURL {
+            if let img = generateThumbnail(path: url) {
+                self.imgVideoThumb.image  = img
+            }
+        }
     }
     
     func onAppear() {
@@ -55,21 +85,4 @@ extension UplaodSwiftVC {
 
 extension UplaodSwiftVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    func pickVideo() {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .photoLibrary
-        imagePicker.mediaTypes = [kUTTypeMovie as String] // This ensures only videos are shown
-        present(imagePicker, animated: true, completion: nil)
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        dismiss(animated: true, completion: nil)
-        guard let videoURL = info[.mediaURL] as? URL else {
-            print("Error getting video URL")
-            return
-        }
-        self.outputURL = videoURL
-        // Use the videoURL as needed
-    }
 }

@@ -7,6 +7,7 @@
 
 import UIKit
 import AVFoundation
+import UIKit
 
 class UploadThumbnailVC: UIViewController {
 
@@ -17,14 +18,16 @@ class UploadThumbnailVC: UIViewController {
     @IBOutlet weak var imgThumbnail     : UIImageView!
     
     
-    private var thumImg     : UIImage?  = nil
+    private var thumImg     : UIImage?        = nil
+    var delegate            : ReloadDelegate? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
     }
     @IBAction func ontapSave(_ sender: UIButton){
-        UserManager.shared.thumbnail  = thumImg
+        //UserManager.shared.thumbnail = thumImg
+        delegate?.reload(img: thumImg)
         self.dismiss(animated: true)
     }
     
@@ -42,6 +45,7 @@ class UploadThumbnailVC: UIViewController {
             if let url = UserManager.shared.finalURL {
                 if let img = generateThumbnail(path: url) {
                     self.imgThumbnail.image  = img
+                    self.thumImg             = img
                 }
             }
         }
@@ -50,9 +54,21 @@ class UploadThumbnailVC: UIViewController {
             imgPickFromVideo.image  = UIImage(named: "unselecPhoto")
             lblFromVideo.textColor  = .white
             lblOwn.textColor        = .ColorDarkBlue
+            
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = .photoLibrary
+            present(imagePicker, animated: true, completion: nil)
         }
     }
 }
-extension UploadThumbnailVC {
+extension UploadThumbnailVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let pickedImage = info[.originalImage] as? UIImage {
+            self.imgThumbnail.image = pickedImage
+            self.thumImg             = pickedImage
+        }
+        dismiss(animated: true, completion: nil)
+    }
 }

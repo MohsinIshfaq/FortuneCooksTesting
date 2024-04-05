@@ -1032,25 +1032,79 @@
                                                     <constraint firstAttribute="height" constant="1" id="eg9-ue-xFt"/>
                                                 </constraints>
                                             </view>
-                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="dfK-xW-y9L">
-                                                <rect key="frame" x="42.666666666666657" y="61" width="308" height="180"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="dfK-xW-y9L">
+                                                <rect key="frame" x="6" y="61" width="381" height="180"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w7o-3n-G5d">
-                                                        <rect key="frame" x="0.0" y="0.0" width="148" height="180"/>
-                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                        <state key="normal" image="Upload VIdeo"/>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gpu-wi-6a9">
-                                                        <rect key="frame" x="160" y="0.0" width="148" height="180"/>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gx7-F4-llQ">
+                                                        <rect key="frame" x="0.0" y="0.0" width="184.66666666666666" height="180"/>
+                                                        <subviews>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qU1-9o-X46">
+                                                                <rect key="frame" x="0.0" y="0.0" width="184.66666666666666" height="180"/>
+                                                            </imageView>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nDp-pa-YaF">
+                                                                <rect key="frame" x="0.0" y="0.0" width="184.66666666666666" height="180"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="180" id="fXj-WL-tGq"/>
+                                                                </constraints>
+                                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                <state key="normal">
+                                                                    <imageReference key="image" image="play" catalog="system" symbolScale="large"/>
+                                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="26" weight="medium"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="ontapPickVideo:" destination="FOF-hf-cYf" eventType="touchUpInside" id="psi-nR-UI1"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="180" id="XVr-PU-B91"/>
+                                                            <constraint firstItem="nDp-pa-YaF" firstAttribute="leading" secondItem="Gx7-F4-llQ" secondAttribute="leading" id="2PN-nx-hBe"/>
+                                                            <constraint firstAttribute="trailing" secondItem="nDp-pa-YaF" secondAttribute="trailing" id="Hpl-8N-lFx"/>
+                                                            <constraint firstItem="qU1-9o-X46" firstAttribute="top" secondItem="Gx7-F4-llQ" secondAttribute="top" id="Rec-Fv-0BY"/>
+                                                            <constraint firstAttribute="bottom" secondItem="qU1-9o-X46" secondAttribute="bottom" id="U9c-Pc-5eO"/>
+                                                            <constraint firstAttribute="bottom" secondItem="nDp-pa-YaF" secondAttribute="bottom" id="bMY-QL-Eo8"/>
+                                                            <constraint firstAttribute="trailing" secondItem="qU1-9o-X46" secondAttribute="trailing" id="hKy-6a-nEh"/>
+                                                            <constraint firstItem="qU1-9o-X46" firstAttribute="leading" secondItem="Gx7-F4-llQ" secondAttribute="leading" id="nsT-IG-jb9"/>
+                                                            <constraint firstItem="nDp-pa-YaF" firstAttribute="top" secondItem="Gx7-F4-llQ" secondAttribute="top" id="wfm-Ew-juc"/>
                                                         </constraints>
-                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                        <state key="normal" image="Upload Thumbnail"/>
-                                                        <connections>
-                                                            <action selector="ontapThumbnail:" destination="FOF-hf-cYf" eventType="touchUpInside" id="vRU-LV-Jz4"/>
-                                                        </connections>
-                                                    </button>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                <color key="value" name="AccentColor"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yrD-58-dYF">
+                                                        <rect key="frame" x="196.66666666666663" y="0.0" width="184.33333333333337" height="180"/>
+                                                        <subviews>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Upload Thumbnail" translatesAutoresizingMaskIntoConstraints="NO" id="rz1-3p-SxR">
+                                                                <rect key="frame" x="0.0" y="0.0" width="184.33333333333334" height="180"/>
+                                                            </imageView>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gpu-wi-6a9">
+                                                                <rect key="frame" x="0.0" y="0.0" width="184.33333333333334" height="180"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="180" id="XVr-PU-B91"/>
+                                                                </constraints>
+                                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                <connections>
+                                                                    <action selector="ontapThumbnail:" destination="FOF-hf-cYf" eventType="touchUpInside" id="vRU-LV-Jz4"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="bottom" secondItem="rz1-3p-SxR" secondAttribute="bottom" id="6IR-gq-GXc"/>
+                                                            <constraint firstAttribute="bottom" secondItem="gpu-wi-6a9" secondAttribute="bottom" id="7HX-Tv-Ckg"/>
+                                                            <constraint firstItem="rz1-3p-SxR" firstAttribute="top" secondItem="yrD-58-dYF" secondAttribute="top" id="C7s-YB-qBS"/>
+                                                            <constraint firstItem="gpu-wi-6a9" firstAttribute="top" secondItem="yrD-58-dYF" secondAttribute="top" id="FlT-dI-8Eo"/>
+                                                            <constraint firstAttribute="trailing" secondItem="gpu-wi-6a9" secondAttribute="trailing" id="fXZ-SH-wD7"/>
+                                                            <constraint firstItem="rz1-3p-SxR" firstAttribute="leading" secondItem="yrD-58-dYF" secondAttribute="leading" id="gBq-pf-02G"/>
+                                                            <constraint firstItem="gpu-wi-6a9" firstAttribute="leading" secondItem="yrD-58-dYF" secondAttribute="leading" id="gFd-Rd-ZpN"/>
+                                                            <constraint firstAttribute="trailing" secondItem="rz1-3p-SxR" secondAttribute="trailing" id="ocf-lC-k0t"/>
+                                                        </constraints>
+                                                    </view>
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="8ex-H4-jfi">
@@ -1587,6 +1641,8 @@
                                             <constraint firstItem="HmV-RI-g5K" firstAttribute="centerX" secondItem="1pZ-6W-OpP" secondAttribute="centerX" id="4ct-qt-dn1"/>
                                             <constraint firstAttribute="bottom" secondItem="8ex-H4-jfi" secondAttribute="bottom" constant="12" id="B3f-4i-poC"/>
                                             <constraint firstItem="dfK-xW-y9L" firstAttribute="top" secondItem="HmV-RI-g5K" secondAttribute="bottom" constant="36" id="Bnz-A6-KEv"/>
+                                            <constraint firstItem="dfK-xW-y9L" firstAttribute="leading" secondItem="1pZ-6W-OpP" secondAttribute="leading" constant="6" id="Hb0-qP-74m"/>
+                                            <constraint firstAttribute="trailing" secondItem="dfK-xW-y9L" secondAttribute="trailing" constant="6" id="KdV-Wx-Vl5"/>
                                             <constraint firstAttribute="trailing" secondItem="HmV-RI-g5K" secondAttribute="trailing" id="LAF-Pd-0KI"/>
                                             <constraint firstItem="8ex-H4-jfi" firstAttribute="leading" secondItem="1pZ-6W-OpP" secondAttribute="leading" constant="24" id="UPJ-5i-2fq"/>
                                             <constraint firstItem="dfK-xW-y9L" firstAttribute="centerX" secondItem="1pZ-6W-OpP" secondAttribute="centerX" id="gtl-DJ-tZk"/>
@@ -1671,6 +1727,11 @@
                             <constraint firstItem="eH1-3R-2SI" firstAttribute="top" secondItem="G15-wM-vey" secondAttribute="top" id="zTb-U2-z3B"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="btnThumbnail" destination="gpu-wi-6a9" id="cgB-ci-kLp"/>
+                        <outlet property="imgThumbnail" destination="rz1-3p-SxR" id="WbQ-FR-8bs"/>
+                        <outlet property="imgVideoThumb" destination="qU1-9o-X46" id="1XQ-K7-osr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2T1-6t-vGD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1722,7 +1783,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
-                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="0Hs-Ds-d74">
+                                    <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="0Hs-Ds-d74">
                                         <rect key="frame" x="24" y="268.66666666666669" width="345" height="4"/>
                                     </progressView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="36" translatesAutoresizingMaskIntoConstraints="NO" id="GcP-9j-o4g">
@@ -1916,7 +1977,6 @@
     </scenes>
     <resources>
         <image name="Upload Thumbnail" width="148" height="182"/>
-        <image name="Upload VIdeo" width="148" height="182"/>
         <image name="arrow.triangle.2.circlepath" catalog="system" width="128" height="104"/>
         <image name="back" width="8.3333330154418945" height="14"/>
         <image name="bolt.fill" catalog="system" width="100" height="128"/>
@@ -1925,13 +1985,14 @@
         <image name="location-pin" width="24" height="24"/>
         <image name="mic" catalog="system" width="110" height="128"/>
         <image name="multiply.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="play" catalog="system" width="117" height="128"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="plus.app.fill" catalog="system" width="128" height="114"/>
         <image name="speaker.wave.2" catalog="system" width="128" height="88"/>
         <image name="text" width="24" height="24"/>
         <image name="trash-blank" width="50" height="50"/>
         <image name="unselecPhoto" width="32" height="32"/>
-        <image name="user" width="24.333333969116211" height="24"/>
+        <image name="user" width="24" height="24"/>
         <image name="video" catalog="system" width="128" height="82"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
