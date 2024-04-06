@@ -17,6 +17,73 @@ final class UserManager {
     var finalURL                   : URL?             = nil
     var thumbnail                  : UIImage?         = nil
     
+    var filteredCuisine            : [[String]]       = []
+    var filteredEnviorment         : [[String]]       = []
+    var filteredFeature            : [[String]]       = []
+    var filteredMeals              : [[String]]       = []
+    var filteredSpeacials          : [[String]]       = []
+    var filteredContent            : [[String]]       = []
+    var arrTagPeoples                                 = [["Breakfast" , "0"],
+                               ["Brunch" , "0"],
+                               ["Lunch" , "0"],
+                               ["Dinner" , "0"],
+                               ["Dessert" , "0"],
+                               ["Coffee" , "0"]]
+    
+    let arrlanguages                                  = ["English",
+                                                         "Spanish",
+                                                         "French",
+                                                         "German",
+                                                         "Chinese",
+                                                         "Japanese",
+                                                         "Korean",
+                                                         "Arabic",
+                                                         "Russian",
+                                                         "Italian",
+                                                         "Portuguese",
+                                                         "Dutch",
+                                                         "Swedish",
+                                                         "Norwegian",
+                                                         "Danish",
+                                                         "Finnish",
+                                                         "Greek",
+                                                         "Turkish",
+                                                         "Hindi",
+                                                         "Bengali",
+                                                         "Urdu",
+                                                         "Punjabi",
+                                                         "Tamil",
+                                                         "Telugu",
+                                                         "Marathi",
+                                                         "Filipino",
+                                                         "Vietnamese",
+                                                         "Thai",
+                                                         "Indonesian",
+                                                         "Malay",
+                                                         "Swahili",
+                                                         "Amharic",
+                                                         "Hebrew",
+                                                         "Persian",
+                                                         "Kurdish",
+                                                         "Pashto",
+                                                         "Sindhi",
+                                                         "Sinhala",
+                                                         "Nepali",
+                                                         "Burmese",
+                                                         "Khmer",
+                                                         "Lao",
+                                                         "Hausa",
+                                                         "Yoruba",
+                                                         "Igbo",
+                                                         "Zulu",
+                                                         "Xhosa",
+                                                         "Afrikaans",
+                                                         "Farsi",
+                                                         "Kazakh",
+                                                         "Kyrgyz",
+                                                         "Tajik",
+                                                         "Turkmen",
+                                                         "Uzbek"]
     let arrAccnt                                      = [
        "Private person",
        "Content Creator",
@@ -30,12 +97,31 @@ final class UserManager {
        "Food_truck",
        "Hotel"
    ]
-    var filteredCuisine            : [[String]]       = []
-    var filteredEnviorment         : [[String]]       = []
-    var filteredFeature            : [[String]]       = []
-    var filteredMeals              : [[String]]       = []
-    var filteredSpeacials          : [[String]]       = []
-    
+    var arrContent                                    = [["Asmr", "0"],
+                                                        ["Family and friends", "0"],
+                                                        ["Content for kids", "0"],
+                                                        ["Eat and talk", "0"],
+                                                        ["Restaurants review", "0"],
+                                                        ["GRWM", "0"],
+                                                        ["Behind the-Scenes", "0"],
+                                                        ["Food Challenges and Contests", "0"],
+                                                        ["Collaborations with Influencers", "0"],
+                                                        ["Food History and Fun Facts", "0"],
+                                                        ["Home cooking snacks tips", "0"],
+                                                        ["Cooking quality food on a budget", "0"],
+                                                        ["Get to know us", "0"],
+                                                        ["Get to know me", "0"],
+                                                        ["Experiment", "0"],
+                                                        ["Food tourism", "0"],
+                                                        ["Video of food prep", "0"],
+                                                        ["Food critic", "0"],
+                                                        ["Take out", "0"],
+                                                        ["Couple goals", "0"],
+                                                        ["Halal diet", "0"],
+                                                        ["Kosher", "0"],
+                                                        ["Vegan", "0"],
+                                                        ["Vegetarian", "0"],
+                                                        ["Gluten free", "0"]]
     var arrCuisine                                    = [["African" , "0"],
                                     ["American" , "0"],
                                     ["Asian" , "0"],
@@ -142,6 +228,7 @@ final class UserManager {
                                ["Gluten-free options" , "0"]]
     
     //MARK: - DATA for Firestore
+     var selectedContent           : [String]          = []
      var selectedCuisine           : [String]          = []
      var selectedEnviorment        : [String]          = []
      var selectedFeature           : [String]          = []

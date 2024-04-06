@@ -28,6 +28,14 @@
 		468155422BAFE08800DF5DBC /* ColorCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468155402BAFE08800DF5DBC /* ColorCCell.swift */; };
 		468155432BAFE08800DF5DBC /* ColorCCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 468155412BAFE08800DF5DBC /* ColorCCell.xib */; };
 		468155452BAFE20E00DF5DBC /* AddCaptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468155442BAFE20E00DF5DBC /* AddCaptionVC.swift */; };
+		469AD6022BC02F0100469F6B /* TagPeopleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469AD6012BC02F0100469F6B /* TagPeopleVC.swift */; };
+		469AD6062BC0302100469F6B /* TagUserTCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469AD6042BC0302100469F6B /* TagUserTCell.swift */; };
+		469AD6072BC0302100469F6B /* TagUserTCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 469AD6052BC0302100469F6B /* TagUserTCell.xib */; };
+		469AD6092BC05E8D00469F6B /* ContentSelectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469AD6082BC05E8D00469F6B /* ContentSelectionVC.swift */; };
+		469AD60D2BC0EC5200469F6B /* HastagCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469AD60B2BC0EC5200469F6B /* HastagCCell.swift */; };
+		469AD60E2BC0EC5200469F6B /* HastagCCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 469AD60C2BC0EC5200469F6B /* HastagCCell.xib */; };
+		469AD6142BC0FA9B00469F6B /* TagPeopleCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469AD6122BC0FA9B00469F6B /* TagPeopleCCell.swift */; };
+		469AD6152BC0FA9B00469F6B /* TagPeopleCCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 469AD6132BC0FA9B00469F6B /* TagPeopleCCell.xib */; };
 		46A508BF2BB3BDFD00493310 /* UploadThumbnailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A508BE2BB3BDFD00493310 /* UploadThumbnailVC.swift */; };
 		46C4A0972B93245300F27C8F /* FilterCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C4A0952B93245300F27C8F /* FilterCCell.swift */; };
 		46C4A0982B93245300F27C8F /* FilterCCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46C4A0962B93245300F27C8F /* FilterCCell.xib */; };
@@ -104,6 +112,14 @@
 		468155402BAFE08800DF5DBC /* ColorCCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCCell.swift; sourceTree = "<group>"; };
 		468155412BAFE08800DF5DBC /* ColorCCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorCCell.xib; sourceTree = "<group>"; };
 		468155442BAFE20E00DF5DBC /* AddCaptionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCaptionVC.swift; sourceTree = "<group>"; };
+		469AD6012BC02F0100469F6B /* TagPeopleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagPeopleVC.swift; sourceTree = "<group>"; };
+		469AD6042BC0302100469F6B /* TagUserTCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagUserTCell.swift; sourceTree = "<group>"; };
+		469AD6052BC0302100469F6B /* TagUserTCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TagUserTCell.xib; sourceTree = "<group>"; };
+		469AD6082BC05E8D00469F6B /* ContentSelectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentSelectionVC.swift; sourceTree = "<group>"; };
+		469AD60B2BC0EC5200469F6B /* HastagCCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HastagCCell.swift; sourceTree = "<group>"; };
+		469AD60C2BC0EC5200469F6B /* HastagCCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HastagCCell.xib; sourceTree = "<group>"; };
+		469AD6122BC0FA9B00469F6B /* TagPeopleCCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagPeopleCCell.swift; sourceTree = "<group>"; };
+		469AD6132BC0FA9B00469F6B /* TagPeopleCCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TagPeopleCCell.xib; sourceTree = "<group>"; };
 		46A508BE2BB3BDFD00493310 /* UploadThumbnailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadThumbnailVC.swift; sourceTree = "<group>"; };
 		46C4A0952B93245300F27C8F /* FilterCCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCCell.swift; sourceTree = "<group>"; };
 		46C4A0962B93245300F27C8F /* FilterCCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterCCell.xib; sourceTree = "<group>"; };
@@ -212,6 +228,8 @@
 				468155442BAFE20E00DF5DBC /* AddCaptionVC.swift */,
 				46303FEF2BB3B16500B15EB8 /* UplaodSwiftVC.swift */,
 				46A508BE2BB3BDFD00493310 /* UploadThumbnailVC.swift */,
+				469AD6012BC02F0100469F6B /* TagPeopleVC.swift */,
+				469AD6082BC05E8D00469F6B /* ContentSelectionVC.swift */,
 			);
 			path = AddTab;
 			sourceTree = "<group>";
@@ -240,6 +258,33 @@
 				468155412BAFE08800DF5DBC /* ColorCCell.xib */,
 			);
 			path = ColorCCell;
+			sourceTree = "<group>";
+		};
+		469AD6032BC02FFF00469F6B /* TagUserCell */ = {
+			isa = PBXGroup;
+			children = (
+				469AD6042BC0302100469F6B /* TagUserTCell.swift */,
+				469AD6052BC0302100469F6B /* TagUserTCell.xib */,
+			);
+			path = TagUserCell;
+			sourceTree = "<group>";
+		};
+		469AD60A2BC0EC1800469F6B /* HastagCCell */ = {
+			isa = PBXGroup;
+			children = (
+				469AD60B2BC0EC5200469F6B /* HastagCCell.swift */,
+				469AD60C2BC0EC5200469F6B /* HastagCCell.xib */,
+			);
+			path = HastagCCell;
+			sourceTree = "<group>";
+		};
+		469AD60F2BC0FA5100469F6B /* TagPeopleCCell */ = {
+			isa = PBXGroup;
+			children = (
+				469AD6122BC0FA9B00469F6B /* TagPeopleCCell.swift */,
+				469AD6132BC0FA9B00469F6B /* TagPeopleCCell.xib */,
+			);
+			path = TagPeopleCCell;
 			sourceTree = "<group>";
 		};
 		46C4A0942B93240E00F27C8F /* FilterCCell */ = {
@@ -457,6 +502,9 @@
 		71C6A9C52B694CA000E19808 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				469AD60F2BC0FA5100469F6B /* TagPeopleCCell */,
+				469AD60A2BC0EC1800469F6B /* HastagCCell */,
+				469AD6032BC02FFF00469F6B /* TagUserCell */,
 				4681553F2BAFE06100DF5DBC /* ColorCCell */,
 				46C4A0942B93240E00F27C8F /* FilterCCell */,
 				714B0F6D2B69700700570578 /* selectionTCell */,
@@ -546,7 +594,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				716D49962B570CD40077F47D /* Inter-VariableFont_slnt,wght.ttf in Resources */,
+				469AD60E2BC0EC5200469F6B /* HastagCCell.xib in Resources */,
 				71B3DCA52B55B25800A3615F /* Auth.storyboard in Resources */,
+				469AD6152BC0FA9B00469F6B /* TagPeopleCCell.xib in Resources */,
+				469AD6072BC0302100469F6B /* TagUserTCell.xib in Resources */,
 				7131D9972B92D766005DE42E /* GoogleService-Info.plist in Resources */,
 				715388972B59A3EF006D682F /* Profile.storyboard in Resources */,
 				7153888D2B59A368006D682F /* TabbarController.storyboard in Resources */,
@@ -617,6 +668,7 @@
 				462630812B9AA3D600A4E7D1 /* CaptureError.swift in Sources */,
 				46C4A0972B93245300F27C8F /* FilterCCell.swift in Sources */,
 				4635E1352BA69E3C00C149ED /* AudioRecordVC.swift in Sources */,
+				469AD60D2BC0EC5200469F6B /* HastagCCell.swift in Sources */,
 				4635E13B2BA6D93100C149ED /* CameraNC.swift in Sources */,
 				71B3DC702B55A93D00A3615F /* AppDelegate.swift in Sources */,
 				468155422BAFE08800DF5DBC /* ColorCCell.swift in Sources */,
@@ -629,6 +681,7 @@
 				7144BD512B6E983100767374 /* HomeVC.swift in Sources */,
 				7153888B2B5998BC006D682F /* CreatAccntVC.swift in Sources */,
 				7151664E2B598CF0007CE092 /* ResetPasswordVC.swift in Sources */,
+				469AD6062BC0302100469F6B /* TagUserTCell.swift in Sources */,
 				462630712B9A11F000A4E7D1 /* VIdeoCapture.swift in Sources */,
 				71B3DCA02B55B1F100A3615F /* BaseViewModel.swift in Sources */,
 				71B3DC9E2B55B1B500A3615F /* BaseClass.swift in Sources */,
@@ -642,6 +695,7 @@
 				4626307F2B9AA3B800A4E7D1 /* Capture.swift in Sources */,
 				7151664C2B598989007CE092 /* CrtProfile5VC.swift in Sources */,
 				71B3DC9C2B55B19C00A3615F /* UIView+Extension.swift in Sources */,
+				469AD6092BC05E8D00469F6B /* ContentSelectionVC.swift in Sources */,
 				7151DD762B6EB58D001B3018 /* LoginNC.swift in Sources */,
 				71B3DC722B55A93D00A3615F /* SceneDelegate.swift in Sources */,
 				716F6FDD2B5ADD5A00049C1C /* TabbarController.swift in Sources */,
@@ -660,12 +714,14 @@
 				7151664A2B598972007CE092 /* CrtProfile4VC.swift in Sources */,
 				46A508BF2BB3BDFD00493310 /* UploadThumbnailVC.swift in Sources */,
 				4626306F2B99632900A4E7D1 /* CameraVC.swift in Sources */,
+				469AD6142BC0FA9B00469F6B /* TagPeopleCCell.swift in Sources */,
 				4625A17D2B98D8B000C763DD /* FrameFilterCell.swift in Sources */,
 				715166422B598537007CE092 /* LoginVC.swift in Sources */,
 				71B3DC9A2B55B17400A3615F /* UIColor+Extension.swift in Sources */,
 				468155452BAFE20E00DF5DBC /* AddCaptionVC.swift in Sources */,
 				71C6A9CE2B695F3300E19808 /* AddDataCell.swift in Sources */,
 				462630782B9AA2E100A4E7D1 /* FilterCamViewCOntroller.swift in Sources */,
+				469AD6022BC02F0100469F6B /* TagPeopleVC.swift in Sources */,
 				4626306D2B995E5D00A4E7D1 /* CameraLiveCapture.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
