@@ -6,11 +6,16 @@
 //
 
 import UIKit
+protocol TagPeopleDelegate {
+    func reload()
+}
 
 class TagPeopleVC: UIViewController , UISearchTextFieldDelegate{
 
     @IBOutlet weak var tblSelection: UITableView!
     @IBOutlet weak var txtSearch   : UITextField!
+    
+    var delegate: TagPeopleDelegate? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +27,7 @@ class TagPeopleVC: UIViewController , UISearchTextFieldDelegate{
 
     @IBAction func ontapDone(_ sender: UIButton){
         self.dismiss(animated: true)
+        delegate?.reload()
     }
     
     @IBAction func ontapDismis(_ sender: UIButton){
@@ -76,9 +82,12 @@ extension TagPeopleVC: UITableViewDelegate , UITableViewDataSource{
        
         if UserManager.shared.arrTagPeoples[indexPath.row][1] == "0" {
             UserManager.shared.arrTagPeoples[indexPath.row][1] = "1"
+            UserManager.shared.totalTagPeople += 1
+            print(UserManager.shared.totalTagPeople)
         }
         else{
             UserManager.shared.arrTagPeoples[indexPath.row][1] = "0"
+            UserManager.shared.totalTagPeople -= 1
         }
         tableView.reloadData()
     }

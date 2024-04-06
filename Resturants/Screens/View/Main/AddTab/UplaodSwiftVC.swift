@@ -13,8 +13,11 @@ protocol ReloadDelegate {
     func reload(img : UIImage?)
 }
 
-class UplaodSwiftVC: UIViewController , ReloadDelegate , UITextViewDelegate , createAccntDelegate{
+class UplaodSwiftVC: UIViewController , ReloadDelegate , UITextViewDelegate , createAccntDelegate , TagPeopleDelegate{
     
+    func reload() {
+        collectTagPeople.reloadData()
+    }
     func collectionData(type: Int) {
         UserManager.shared.selectedCuisine.removeAll()
         arrSelectedContent.removeAll()
@@ -92,6 +95,7 @@ class UplaodSwiftVC: UIViewController , ReloadDelegate , UITextViewDelegate , cr
     @IBAction func ontapTagPeople(_ sender: UIButton) {
         
         let vc = Constants.addStoryBoard.instantiateViewController(withIdentifier: "TagPeopleVC") as? TagPeopleVC
+        vc?.delegate = self
         self.present(vc!, animated: true)
     }
     
@@ -122,6 +126,12 @@ class UplaodSwiftVC: UIViewController , ReloadDelegate , UITextViewDelegate , cr
         }
         sender.menu = UIMenu(options: .displayInline, children: menuChildren)
         sender.showsMenuAsPrimaryAction = true
+    }
+    
+    @IBAction func ontapNext(_ sender: UIButton){
+        
+        let vc = Constants.addStoryBoard.instantiateViewController(withIdentifier: "UploadSwift2VC") as! UploadSwift2VC
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 
@@ -199,7 +209,7 @@ extension UplaodSwiftVC: UICollectionViewDelegate , UICollectionViewDataSource {
             }
         }
         else if collectionView == collectTagPeople {
-            return UserManager.shared.arrTagPeoples.count
+            return UserManager.shared.totalTagPeople
         }
         else{
             lblhastag.text = "\(arrHastag.count)/10"

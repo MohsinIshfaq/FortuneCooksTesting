@@ -14,6 +14,7 @@ final class UserManager {
     static let shared     = UserManager()
     private init () {}
     
+    var totalTagPeople             : Int              = 0
     var finalURL                   : URL?             = nil
     var thumbnail                  : UIImage?         = nil
     
