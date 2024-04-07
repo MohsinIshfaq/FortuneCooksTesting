@@ -16,14 +16,17 @@ class UploadThumbnailVC: UIViewController {
     @IBOutlet weak var lblFromVideo     : UILabel!
     @IBOutlet weak var lblOwn           : UILabel!
     @IBOutlet weak var imgThumbnail     : UIImageView!
-    
+    @IBOutlet weak var videoSlider      : UISlider!
     
     private var thumImg     : UIImage?        = nil
     var delegate            : ReloadDelegate? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        videoSlider.minimumValue = 0
+        videoSlider.maximumValue = 1
+        
     }
     @IBAction func ontapSave(_ sender: UIButton){
         //UserManager.shared.thumbnail = thumImg
@@ -59,6 +62,32 @@ class UploadThumbnailVC: UIViewController {
             imagePicker.delegate = self
             imagePicker.sourceType = .photoLibrary
             present(imagePicker, animated: true, completion: nil)
+        }
+    }
+    
+    @IBAction func sliderValueChanged(_ sender: UISlider) {
+        if imgPickFromVideo.image  == UIImage(named: "selecPhoto"){
+            guard let videoURL = UserManager.shared.finalURL else { return }
+            
+            let time = Double(sender.value) * CMTimeGetSeconds(AVURLAsset(url: videoURL).duration)
+            generateThumbnail(for: videoURL, at: time)
+        }
+    }
+    
+    func generateThumbnail(for videoURL: URL, at time: Double) {
+        let asset = AVAsset(url: videoURL)
+        let imageGenerator = AVAssetImageGenerator(asset: asset)
+        imageGenerator.appliesPreferredTrackTransform = true
+        
+        let cmTime = CMTime(seconds: time, preferredTimescale: 60)
+        
+        do {
+            let cgImage = try imageGenerator.copyCGImage(at: cmTime, actualTime: nil)
+            let thumbnail = UIImage(cgImage: cgImage)
+            imgThumbnail.image = thumbnail
+            self.thumImg       = thumbnail
+        } catch {
+            print("Error generating thumbnail: \(error.localizedDescription)")
         }
     }
 }

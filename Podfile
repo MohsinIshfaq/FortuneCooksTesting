@@ -12,6 +12,7 @@ target 'Resturants' do
     pod 'Firebase/Auth'
     pod 'FirebaseFirestore'
     pod 'CountryPickerView'
+    pod 'Firebase/Storage'
 
     
 

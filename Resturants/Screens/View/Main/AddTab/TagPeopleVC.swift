@@ -71,7 +71,7 @@ extension TagPeopleVC: UITableViewDelegate , UITableViewDataSource{
             cell?.imgSelected.image  = UIImage(systemName: "circle")
         }
         else{
-            cell?.imgSelected.image  = UIImage(systemName: "circle.fill")
+            cell?.imgSelected.image  = UIImage(systemName: "checkmark.circle.fill")
         }
         return cell!
     }

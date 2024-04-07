@@ -13,7 +13,7 @@ protocol ReloadDelegate {
     func reload(img : UIImage?)
 }
 
-class UplaodSwiftVC: UIViewController , ReloadDelegate , UITextViewDelegate , createAccntDelegate , TagPeopleDelegate{
+class UplaodSwiftVC: UIViewController , ReloadDelegate , UITextViewDelegate , createAccntDelegate , TagPeopleDelegate, UITextFieldDelegate{
     
     func reload() {
         collectTagPeople.reloadData()
@@ -28,10 +28,10 @@ class UplaodSwiftVC: UIViewController , ReloadDelegate , UITextViewDelegate , cr
         }
         collectContent.reloadData()
     }
-    
     func reload(img: UIImage?) {
         imgThumbnail.image = img
     }
+    
     //MARK: - IBOUtlets
     @IBOutlet weak var txtAddress : UITextField!
     @IBOutlet weak var txtZipCode : UITextField!
@@ -40,20 +40,17 @@ class UplaodSwiftVC: UIViewController , ReloadDelegate , UITextViewDelegate , cr
     @IBOutlet weak var txtTitle   : UITextField!
     @IBOutlet weak var txtHastag  : UITextField!
     @IBOutlet weak var txtLang    : UITextField!
-    
     @IBOutlet weak var btnThumbnail  : UIButton!
     @IBOutlet weak var imgThumbnail  : UIImageView!
     @IBOutlet weak var imgVideoThumb : UIImageView!
     @IBOutlet weak var txtView       : UITextView!
-    
     @IBOutlet weak var btnContent    : UIButton!
     @IBOutlet weak var btnTopContent : UIButton!
     @IBOutlet weak var collectContent: UICollectionView!
-    
     @IBOutlet weak var collectHastag : UICollectionView!
     @IBOutlet weak var lblhastag     : UILabel!
-    
     @IBOutlet weak var collectTagPeople : UICollectionView!
+    @IBOutlet weak var btnAddHastag  : UIButton!
     
     //MARK: - Variables and Properties
     private var outputURL: URL?            = nil
@@ -107,11 +104,12 @@ class UplaodSwiftVC: UIViewController , ReloadDelegate , UITextViewDelegate , cr
     
     @IBAction func ontapAddHastag(_ sender : UIButton) {
         
-        if txtHastag.text != "" {
-            if arrHastag.count <= 10{
+        if txtHastag.text             != "" {
+            if arrHastag.count        <= 10 {
                 arrHastag.append("#\(txtHastag.text!)")
                 collectHastag.reloadData()
-                txtHastag.text = ""
+                txtHastag.text        = ""
+                btnAddHastag.isHidden = true
             }
         }
     }
@@ -144,7 +142,8 @@ extension UplaodSwiftVC {
                 self.imgVideoThumb.image  = img
             }
         }
-        txtView.delegate = self
+        txtView.delegate   = self
+        txtHastag.delegate = self
         setupPlaceholder()
         setupViews()
     }
@@ -177,13 +176,24 @@ extension UplaodSwiftVC {
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == placeholderColor {
             textView.text = nil
-            textView.textColor = UIColor.black
+            textView.textColor = UIColor.white
         }
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
             setupPlaceholder()
+        }
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if let text = txtHastag.text, !text.isEmpty {
+            // TextField is not empty
+            btnAddHastag.isHidden = false
+        } else {
+            // TextField is empty
+            print("TextField is empty")
+            btnAddHastag.isHidden = true
         }
     }
 }
