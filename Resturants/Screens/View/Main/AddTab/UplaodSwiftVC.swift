@@ -106,7 +106,8 @@ class UplaodSwiftVC: UIViewController , ReloadDelegate , UITextViewDelegate , cr
         
         if txtHastag.text             != "" {
             if arrHastag.count        <= 10 {
-                arrHastag.append("#\(txtHastag.text!)")
+                let stringWithoutSpaces = txtHastag.text!.replacingOccurrences(of: " ", with: "")
+                arrHastag.append("#\(stringWithoutSpaces)")
                 collectHastag.reloadData()
                 txtHastag.text        = ""
                 btnAddHastag.isHidden = true

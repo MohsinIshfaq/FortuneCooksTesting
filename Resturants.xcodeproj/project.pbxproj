@@ -42,6 +42,7 @@
 		46C4A0982B93245300F27C8F /* FilterCCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46C4A0962B93245300F27C8F /* FilterCCell.xib */; };
 		46C4A09A2B93290100F27C8F /* VideoEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C4A0992B93290100F27C8F /* VideoEditor.swift */; };
 		46C820F92B930179007E543F /* EditVideoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C820F82B930179007E543F /* EditVideoVC.swift */; };
+		46DCFC772BC39E3200EF3FA3 /* UploadingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DCFC762BC39E3200EF3FA3 /* UploadingVC.swift */; };
 		7119F63A2B8B7DFF00FA8579 /* VideoRecordingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7119F6392B8B7DFF00FA8579 /* VideoRecordingVC.swift */; };
 		7131D9952B92CCC4005DE42E /* CameraConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7131D9942B92CCC4005DE42E /* CameraConfiguration.swift */; };
 		7131D9972B92D766005DE42E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7131D9962B92D765005DE42E /* GoogleService-Info.plist */; };
@@ -127,6 +128,7 @@
 		46C4A0962B93245300F27C8F /* FilterCCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterCCell.xib; sourceTree = "<group>"; };
 		46C4A0992B93290100F27C8F /* VideoEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoEditor.swift; sourceTree = "<group>"; };
 		46C820F82B930179007E543F /* EditVideoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditVideoVC.swift; sourceTree = "<group>"; };
+		46DCFC762BC39E3200EF3FA3 /* UploadingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadingVC.swift; sourceTree = "<group>"; };
 		7119F6392B8B7DFF00FA8579 /* VideoRecordingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRecordingVC.swift; sourceTree = "<group>"; };
 		7131D9942B92CCC4005DE42E /* CameraConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraConfiguration.swift; sourceTree = "<group>"; };
 		7131D9962B92D765005DE42E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 				469AD6012BC02F0100469F6B /* TagPeopleVC.swift */,
 				469AD6082BC05E8D00469F6B /* ContentSelectionVC.swift */,
 				469FC43C2BC1847000952EA5 /* UploadSwift2VC.swift */,
+				46DCFC762BC39E3200EF3FA3 /* UploadingVC.swift */,
 			);
 			path = AddTab;
 			sourceTree = "<group>";
@@ -692,6 +695,7 @@
 				715166482B598961007CE092 /* CrtProfile3VC.swift in Sources */,
 				71B3DC962B55B0F100A3615F /* BaseStrings.swift in Sources */,
 				7119F63A2B8B7DFF00FA8579 /* VideoRecordingVC.swift in Sources */,
+				46DCFC772BC39E3200EF3FA3 /* UploadingVC.swift in Sources */,
 				715166442B5985E1007CE092 /* CrtProfile1VC.swift in Sources */,
 				71B3DC902B55AFC000A3615F /* Manager.swift in Sources */,
 				462630852B9AA40700A4E7D1 /* FrameRateCalculator.swift in Sources */,

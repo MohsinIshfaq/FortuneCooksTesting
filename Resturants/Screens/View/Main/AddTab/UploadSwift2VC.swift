@@ -83,76 +83,7 @@ class UploadSwift2VC: UIViewController {
     }
     
     @IBAction func ontapPublishVideo(_ sender: UIButton){
-        
-        // Create a progress view
-        let progressView = UIProgressView(progressViewStyle: .default)
-        progressView.setProgress(0, animated: false)
-        
-        // Embed the progress view into a bar button item
-        let progressItem = UIBarButtonItem(customView: progressView)
-        navigationItem.rightBarButtonItem = progressItem
-        
-        // Start uploading the video
-        startVideoUpload()
+        let vc = Constants.addStoryBoard.instantiateViewController(withIdentifier: "UploadingVC") as! UploadingVC
+        self.navigationController?.pushViewController(vc, animated: true)
     }
-    
-    func startVideoUpload() {
-        self.startAnimating()
-        // Your video upload logic goes here
-        let storage = Storage.storage()
-        let storageRef = storage.reference()
-        
-        // Replace 'pathToVideo' with the actual URL of the video you want to upload
-        guard let pathToVideo = UserManager.shared.finalURL else {
-            self.stopAnimating()
-            print("Error: Video file not found.")
-            return
-        }
-        // Convert the video file to Data
-        guard let videoData = try? Data(contentsOf: pathToVideo) else {
-            self.stopAnimating()
-            print("Error: Failed to convert video file to Data.")
-            return
-        }
-        
-        // Create a reference for the video in Firebase Storage
-        let videoRef = storageRef.child("videos/\(UUID().uuidString).mp4")
-        
-        // Upload the video data to Firebase Storage
-        uploadTask = videoRef.putData(videoData, metadata: nil) { metadata, error in
-            if error == nil {
-                // Upload successful
-                self.handleUploadCompletion()
-            } else {
-                // Handle error
-                print("Error uploading video: \(error!.localizedDescription)")
-            }
-        }
-        
-        // Observe the upload progress
-        uploadTask?.observe(.progress) { snapshot in
-            guard let progress = snapshot.progress else { return }
-            // Update the progress view if you have one
-            let progressPercentage = Int(progress.fractionCompleted * 100)
-            print("Upload progress: \(progressPercentage)%")
-            DispatchQueue.main.async {
-                // Assuming you have a progress label named progressLabel
-               // self.lblProgress.isHidden  = false
-              //  self.lblProgress.text      = "Upload Progress: \(progressPercentage)%"
-               // self.startAnimating(message: "Upload Progress: \(progressPercentage)%")
-            }
-            if progressPercentage == 100 {
-                self.stopAnimating() // Stop animation when upload is complete
-            }
-        }
-    }
-    
-    private func handleUploadCompletion() {
-        // Stop animation and show toast message
-        DispatchQueue.main.async {
-            self.stopAnimating()
-            self.showToast(message: "Successfully Uploaded", seconds: 2, clr: .gray)
-        }
-    }
-
 }

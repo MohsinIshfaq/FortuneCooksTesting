@@ -1927,7 +1927,7 @@
                                                                 <rect key="frame" x="12" y="0.0" width="80" height="80"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="unselecPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="MCU-rR-6JR">
-                                                                        <rect key="frame" x="25" y="25" width="30" height="30"/>
+                                                                        <rect key="frame" x="25" y="26" width="30" height="28.666666666666671"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="30" id="6hC-91-lpR"/>
                                                                             <constraint firstAttribute="height" constant="30" id="Lwj-to-Ltj"/>
@@ -2932,6 +2932,104 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1ur-iX-XBj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5915.2671755725187" y="7.042253521126761"/>
+        </scene>
+        <!--UploadingVC-->
+        <scene sceneID="TAI-nF-tRM">
+            <objects>
+                <viewController storyboardIdentifier="UploadingVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3th-5r-5cj" customClass="UploadingVC" customModule="Resturants" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qEG-GY-eyS">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vln-Aa-iMr">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="59"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kfv-MW-DNq">
+                                <rect key="frame" x="0.0" y="59" width="393" height="793"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="26" translatesAutoresizingMaskIntoConstraints="NO" id="ljD-KF-guA">
+                                        <rect key="frame" x="24" y="316" width="345" height="161"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0rD-hw-D2F">
+                                                <rect key="frame" x="0.0" y="0.0" width="345" height="50"/>
+                                                <fontDescription key="fontDescription" name="Inter-Regular_Medium" family="Inter" pointSize="16"/>
+                                                <color key="textColor" name="ColorWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FOR-84-lbg">
+                                                <rect key="frame" x="0.0" y="76" width="345" height="4"/>
+                                            </progressView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G98-cU-pdd">
+                                                <rect key="frame" x="0.0" y="106" width="345" height="55"/>
+                                                <color key="backgroundColor" name="ColorWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="55" id="GUp-5W-yNw"/>
+                                                </constraints>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Cancel the upload">
+                                                    <fontDescription key="titleFontDescription" name="Inter-Regular_Medium" family="Inter" pointSize="18"/>
+                                                    <color key="baseForegroundColor" name="ColorBlack"/>
+                                                </buttonConfiguration>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="ontapCancelUplaod:" destination="3th-5r-5cj" eventType="touchUpInside" id="PZl-ae-MMp"/>
+                                                    <action selector="ontapPublishVideo:" destination="jHF-an-AES" eventType="touchUpInside" id="E00-3Q-aKf"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V7a-hN-90y">
+                                        <rect key="frame" x="24" y="24" width="25" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="25" id="Jdm-sU-3Op"/>
+                                            <constraint firstAttribute="height" constant="25" id="cUs-KF-89V"/>
+                                        </constraints>
+                                        <color key="tintColor" name="ColorWhite"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="multiply" catalog="system">
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="medium"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="ontapopUp:" destination="3th-5r-5cj" eventType="touchUpInside" id="3A4-oP-jMz"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="ljD-KF-guA" firstAttribute="leading" secondItem="Kfv-MW-DNq" secondAttribute="leading" constant="24" id="JhD-bA-wCW"/>
+                                    <constraint firstItem="V7a-hN-90y" firstAttribute="top" secondItem="Kfv-MW-DNq" secondAttribute="top" constant="24" id="L5M-Xo-tci"/>
+                                    <constraint firstItem="V7a-hN-90y" firstAttribute="leading" secondItem="Kfv-MW-DNq" secondAttribute="leading" constant="24" id="Sl0-XZ-p8i"/>
+                                    <constraint firstAttribute="trailing" secondItem="ljD-KF-guA" secondAttribute="trailing" constant="24" id="XkI-BN-buB"/>
+                                    <constraint firstItem="ljD-KF-guA" firstAttribute="centerY" secondItem="Kfv-MW-DNq" secondAttribute="centerY" id="cIv-Tg-ZaH"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="9VR-CN-dJA"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Vln-Aa-iMr" firstAttribute="top" secondItem="qEG-GY-eyS" secondAttribute="top" id="BDW-ex-5TD"/>
+                            <constraint firstItem="Kfv-MW-DNq" firstAttribute="top" secondItem="9VR-CN-dJA" secondAttribute="top" id="O07-nE-EkC"/>
+                            <constraint firstItem="Kfv-MW-DNq" firstAttribute="top" secondItem="Vln-Aa-iMr" secondAttribute="bottom" id="P8N-7f-5cR"/>
+                            <constraint firstAttribute="trailing" secondItem="Vln-Aa-iMr" secondAttribute="trailing" id="WsH-am-J38"/>
+                            <constraint firstAttribute="trailing" secondItem="Kfv-MW-DNq" secondAttribute="trailing" id="lHw-Kd-eh3"/>
+                            <constraint firstItem="Kfv-MW-DNq" firstAttribute="leading" secondItem="qEG-GY-eyS" secondAttribute="leading" id="p8f-BZ-hfr"/>
+                            <constraint firstAttribute="bottom" secondItem="Kfv-MW-DNq" secondAttribute="bottom" id="qLm-sn-1rc"/>
+                            <constraint firstItem="Vln-Aa-iMr" firstAttribute="leading" secondItem="qEG-GY-eyS" secondAttribute="leading" id="vm8-tx-wwm"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="ProgressBr" destination="FOR-84-lbg" id="r2R-IZ-ZWk"/>
+                        <outlet property="lblProgress" destination="0rD-hw-D2F" id="3EL-oD-JAx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jGV-6v-P3f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6561" y="7"/>
         </scene>
     </scenes>
     <resources>
