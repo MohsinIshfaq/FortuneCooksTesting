@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Privacy - NSPhotoLibraryUsageDescription</key>
-	<string>We need access to your photo library to select an image.</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -21,6 +19,8 @@
 			<array/>
 		</dict>
 	</array>
+	<key>Privacy - NSPhotoLibraryUsageDescription</key>
+	<string>We need access to your photo library to select an image.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Inter-VariableFont_slnt,wght.tff</string>
@@ -46,6 +46,7 @@
 	</dict>
 	<key>UIBackgroundModes</key>
 	<array>
+		<string>fetch</string>
 		<string>processing</string>
 		<string>push-to-talk</string>
 	</array>

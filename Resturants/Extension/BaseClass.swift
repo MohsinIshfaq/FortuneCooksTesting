@@ -84,12 +84,9 @@ class BaseClass : UIViewController {
         return UIImage(cgImage: cgImage)
     }
     
-    
     func copyButtonTapped(string : String) {
         
         let stringToCopy = string
         UIPasteboard.general.string = stringToCopy
     }
- 
 }
-

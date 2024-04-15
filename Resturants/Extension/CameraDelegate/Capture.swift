@@ -215,39 +215,82 @@ final class Capture {
         return AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: position)
     }
     
-    func configureDevice(position: AVCaptureDevice.Position) {
+    var flipAttempts = 0
+
+    func flipCameraWithRetry(position: AVCaptureDevice.Position, completion: @escaping (Bool, Error?) -> Void) {
+        flipAttempts = 0
+        attemptCameraFlip(position: position, completion: completion)
+    }
+
+    func attemptCameraFlip(position: AVCaptureDevice.Position, completion: @escaping (Bool, Error?) -> Void) {
+        configureDevice(position: position) { success, error in
+            if success {
+                // If successful, call the completion block with success
+                completion(true, nil)
+            } else {
+                // If unsuccessful and we haven't reached the maximum retry attempts, retry flipping the camera
+                if self.flipAttempts < 3 {
+                    self.flipAttempts += 1
+                    self.attemptCameraFlip(position: position, completion: completion)
+                } else {
+                    // If maximum retry attempts reached, call the completion block with failure
+                    completion(false, error)
+                }
+            }
+        }
+    }
+    
+    func configureDevice(position: AVCaptureDevice.Position, completion: @escaping (Bool, Error?) -> Void) {
         guard let session = session else {
             print("Session is not initialized")
+            completion(false, nil)
             return
         }
         
         sessionQueue.async {
             guard let currentInput = session.inputs.first as? AVCaptureDeviceInput else {
                 print("No video input found")
+                completion(false, NSError(domain: "CaptureError", code: 1, userInfo: [NSLocalizedDescriptionKey: "No video input found"]))
                 return
             }
             
             guard let newDevice = self.getDevice(for: position) else {
                 print("Failed to get AVCaptureDevice for the specified position")
+                completion(false, NSError(domain: "CaptureError", code: 2, userInfo: [NSLocalizedDescriptionKey: "Failed to get AVCaptureDevice"]))
                 return
             }
             
             do {
                 let newInput = try AVCaptureDeviceInput(device: newDevice)
-                session.beginConfiguration()
-                session.removeInput(currentInput)
                 
-                if session.canAddInput(newInput) {
-                    session.addInput(newInput)
-                } else {
-                    print("Cannot add new input to session")
+                session.beginConfiguration()
+                
+                // Remove existing input before adding new one
+                if session.inputs.contains(currentInput) {
+                    session.removeInput(currentInput)
                 }
                 
-                session.commitConfiguration()
+                // Add a new input to the session
+                if session.canAddInput(newInput) {
+                    session.addInput(newInput)
+                    
+                    // Ensure session is committed on the main queue
+                    DispatchQueue.main.async {
+                        session.commitConfiguration()
+                        completion(true, nil)
+                    }
+                } else {
+                    print("Cannot add new input to session")
+                    session.commitConfiguration() // Rollback configuration
+                    completion(false, NSError(domain: "CaptureError", code: 3, userInfo: [NSLocalizedDescriptionKey: "Cannot add new input to session"]))
+                }
             } catch {
                 print("Error configuring device: \(error.localizedDescription)")
+                completion(false, error)
             }
         }
     }
+
+
 
 }

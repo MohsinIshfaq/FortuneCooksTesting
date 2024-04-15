@@ -101,11 +101,17 @@ final class Recorder: NSObject {
             return nil
         }
     }
-
-    func configureDevice(position: AVCaptureDevice.Position) {
-            capture.configureDevice(position: position)
+    func configureDevice(position: AVCaptureDevice.Position, completion: @escaping (Bool) -> Void) {
+        capture.attemptCameraFlip(position: position) { success, error  in
+            if error == nil {
+                completion(success)
+            }
+            else{
+                print(error)
+            }
         }
-    
+    }
+
     private func makeAssetWriterVideoInput() -> AVAssetWriterInput {
         let settings: [String: Any]
         if #available(iOS 11.0, *) {
@@ -474,23 +480,21 @@ extension Recorder: CaptureDelegate {
         stopTimer()
         frameRateCalculator.reset()
     }
-
+    
     func captureDidStart() {
         startTimer()
     }
-
+    
     func captureWillStop() {}
-
+    
     func captureDidStop() {
         stopTimer()
         stopRecording()
     }
-
+    
     func captureDidFail(with error: CaptureError) {
         DispatchQueue.main.async {
             self.delegate?.recorderDidFail(with: error)
         }
     }
 }
-
-

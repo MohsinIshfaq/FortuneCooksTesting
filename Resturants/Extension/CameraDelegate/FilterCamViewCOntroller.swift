@@ -22,6 +22,7 @@ open class FilterCamViewController: UIViewController, AVAudioRecorderDelegate {
     
     public weak var cameraDelegate             : FilterCamViewControllerDelegate?
     public var devicePosition                  = AVCaptureDevice.Position.back
+    public var currentPosition                 = AVCaptureDevice.Position.back
     public var videoQuality                    = AVCaptureSession.Preset.high
     private let previewViewRect                : CGRect
     private var videoPreviewContainerView      : UIView!
@@ -128,12 +129,25 @@ open class FilterCamViewController: UIViewController, AVAudioRecorderDelegate {
     }
 
     // MARK: - Private
+    // Modify the toggleCamera method to wait for configuration completion
     public func toggleCamera() {
         
-        devicePosition = (devicePosition == .front) ? .back : .front
-        recorder.configureDevice(position: devicePosition)
+        DispatchQueue.main.async {
+            self.currentPosition = self.devicePosition
+            
+            // Add a delay before configuring the device
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.recorder.configureDevice(position: self.devicePosition) { success in
+                    if success {
+                        self.devicePosition = (self.devicePosition == .front) ? .back : .front
+                    } else {
+                        print("Failed to configure device")
+                    }
+                }
+            }
+        }
     }
-    
+
     private func setupDebugLabels() {
         
         fpsLabel = UILabel()

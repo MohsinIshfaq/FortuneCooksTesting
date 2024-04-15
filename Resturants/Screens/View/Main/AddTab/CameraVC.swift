@@ -159,6 +159,11 @@ extension CameraVC {
         self.stackEditOpt.isHidden = true
         btnRemove.isHidden         = true
         btnUpload.isHidden         = true
+        self.view.layer.opacity    = 0
+        toggleCamera()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+            self.view.layer.opacity = 1
+        }
     }
     
     func onAppear() {

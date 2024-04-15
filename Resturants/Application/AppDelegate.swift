@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseCore
+import BackgroundTasks
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,6 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         UIApplication.shared.statusBarStyle = .lightContent
         FirebaseApp.configure()
+        
+        //register handler for task
+        //submit task to be scheduled
+        //handle the when its run
         return true
     }
 

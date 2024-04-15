@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MobileCoreServices
 
 class HomeVC: UIViewController , MenuVCDelegate {
     func crtAccnt(pressed: String) {
@@ -14,6 +15,9 @@ class HomeVC: UIViewController , MenuVCDelegate {
             let vc = Constants.authStoryBoard.instantiateViewController(withIdentifier: "LoginNC") as? LoginNC
             vc?.modalPresentationStyle = .overFullScreen
             self.navigationController?.present(vc!, animated: true)
+        }
+        else if pressed == "VideoRecording" {
+            pickVideo()
         }
         else{
 //            let vc = Constants.homehStoryBoard.instantiateViewController(withIdentifier: "CameraVC") as? CameraVC
@@ -38,10 +42,7 @@ class HomeVC: UIViewController , MenuVCDelegate {
         vc.delegate = self
         self.present(vc, animated: true)
     }
-    @objc func ontapNavLFT() {
-        
-       
-    }
+    @objc func ontapNavLFT() {}
 
 }
 
@@ -73,5 +74,28 @@ extension HomeVC {
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: title, style: .plain, target: self, action: #selector(ontapNavLFT))
         navigationItem.leftBarButtonItem?.tintColor = .white
     }
+}
 
+extension HomeVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func pickVideo() {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.mediaTypes = [kUTTypeMovie as String] // This ensures only videos are shown
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        dismiss(animated: true, completion: nil)
+        guard let videoURL = info[.mediaURL] as? URL else {
+            print("Error getting video URL")
+            return
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            UserManager.shared.finalURL  = videoURL
+            let vc = Constants.addStoryBoard.instantiateViewController(withIdentifier: "UplaodSwiftVC") as? UplaodSwiftVC
+            self.navigationController?.pushViewController(vc!, animated: true)
+        }
+    }
 }
