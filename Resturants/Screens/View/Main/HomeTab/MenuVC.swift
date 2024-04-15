@@ -39,7 +39,14 @@ class MenuVC: UIViewController {
     @IBAction func ontapCrtAccnt(_ sender: UIButton){
         self.dismiss(animated: true)
         UserDefault.isAuthenticated = false
-        delegate?.crtAccnt(pressed: "Auth")
+        delegate?.crtAccnt(pressed: "CrtAccnt")
+        //NotificationCenter.default.post(name: NSNotification.Name("CrtAccnt"), object: nil)
+    }
+    
+    @IBAction func ontapLogin(_ sender: UIButton){
+        self.dismiss(animated: true)
+        UserDefault.isAuthenticated = false
+        delegate?.crtAccnt(pressed: "Login")
         //NotificationCenter.default.post(name: NSNotification.Name("CrtAccnt"), object: nil)
     }
     

@@ -328,8 +328,8 @@
             filePath = "Resturants/Screens/View/Main/AddTab/AddCaptionVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "289"
-            endingLineNumber = "289"
+            startingLineNumber = "291"
+            endingLineNumber = "291"
             landmarkName = "ontapDone()"
             landmarkType = "7">
          </BreakpointContent>
@@ -344,8 +344,8 @@
             filePath = "Resturants/Screens/View/Main/AddTab/AddCaptionVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "307"
-            endingLineNumber = "307"
+            startingLineNumber = "310"
+            endingLineNumber = "310"
             landmarkName = "ontapDone()"
             landmarkType = "7">
          </BreakpointContent>
@@ -363,22 +363,6 @@
             startingLineNumber = "72"
             endingLineNumber = "72"
             landmarkName = "sliderValueChanged(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "3F060D6A-C133-4EF5-91FC-8139D8B61A7B"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Resturants/Screens/View/Main/AddTab/CameraVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "165"
-            endingLineNumber = "165"
-            landmarkName = "onLoad()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

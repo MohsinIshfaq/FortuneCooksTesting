@@ -281,11 +281,13 @@ class AddCaptionVC: AudioViewController {
         }
 
     @objc func ontapDone() {
+       
         if txtCaption.text == "Hello world"{
             showToast(message: "Please change your caption", seconds: 2, clr: .red)
         }
         else{
           //  DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.startAnimating()
                 if var string = self.addNewlineIfNeeded(to: self.txtCaption.text!, maxWordsPerLine: 5) {
                     self.addStickerorTexttoVideo(textBgClr: self.txtBGcolor
                                             , textForeClr: self.txtForcolor
@@ -299,6 +301,7 @@ class AddCaptionVC: AudioViewController {
                                 UserManager.shared.finalURL  = url
                                 self.showToast(message: "Caption added successfully.", seconds: 2, clr: .gray)
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                    self.stopAnimating()
                                     self.popRoot()
                                 }
                             }

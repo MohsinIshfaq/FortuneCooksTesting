@@ -11,8 +11,20 @@ import MobileCoreServices
 class HomeVC: UIViewController , MenuVCDelegate {
     func crtAccnt(pressed: String) {
         
-        if pressed == "Auth" {
-            let vc = Constants.authStoryBoard.instantiateViewController(withIdentifier: "LoginNC") as? LoginNC
+        if pressed == "CrtAccnt" {
+            if let loginVC = Constants.authStoryBoard.instantiateViewController(withIdentifier: "LoginVC") as? LoginVC {
+                let navController = UINavigationController(rootViewController: loginVC)
+                navController.modalPresentationStyle = .overFullScreen
+                self.navigationController?.present(navController, animated: true) {
+                    if let createAccountVC = Constants.authStoryBoard.instantiateViewController(withIdentifier: "CreatAccntVC") as? CreatAccntVC {
+                        navController.pushViewController(createAccountVC, animated: true)
+                    }
+                }
+            }
+        }
+        
+        else if pressed == "Login" {
+            let vc  = Constants.authStoryBoard.instantiateViewController(withIdentifier: "LoginNC") as? LoginNC
             vc?.modalPresentationStyle = .overFullScreen
             self.navigationController?.present(vc!, animated: true)
         }

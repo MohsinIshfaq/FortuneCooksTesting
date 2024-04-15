@@ -173,6 +173,7 @@ extension CreatAccntVC {
     }
     func onAppear(){
         removeNavBackbuttonTitle()
+        self.navigationController!.removeBackground()
         self.navigationItem.title  = "Create Account"
     }
     

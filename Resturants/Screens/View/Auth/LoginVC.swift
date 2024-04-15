@@ -18,7 +18,6 @@ class LoginVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(CrtAccnt), name: NSNotification.Name("CrtAccnt"), object: nil)
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         .lightContent
