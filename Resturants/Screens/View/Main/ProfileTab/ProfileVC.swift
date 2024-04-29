@@ -7,18 +7,18 @@
 
 import UIKit
 
-class ProfileVC: UIViewController , TagPeopleDelegate{
-    func reload() {
-        collectTagPeople.reloadData()
-    }
+class ProfileVC: UIViewController {
     
     //MARK: - IBOUtlet
-    @IBOutlet weak var txtViewBio       : UITextView!
-    @IBOutlet weak var collectTagPeople : UICollectionView!
+    @IBOutlet weak var vwVideo         : UIView!
+    @IBOutlet weak var vwSwift         : UIView!
+    @IBOutlet weak var vwCollection    : UIView!
+    @IBOutlet weak var vwVideoContnr   : UIView!
+    @IBOutlet weak var vwSwiftContnr   : UIView!
+    @IBOutlet weak var vwCollectContnr : UIView!
     
     //MARK: - Variables and Properties
-    let placeholder                        = "Enter Bio..."
-    let placeholderColor                   = UIColor.lightGray
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,11 +30,34 @@ class ProfileVC: UIViewController , TagPeopleDelegate{
         onAppear()
     }
     
-    @IBAction func ontapTagPeople(_ sender: UIButton) {
-        
-        let vc = Constants.addStoryBoard.instantiateViewController(withIdentifier: "TagPeopleVC") as? TagPeopleVC
-        vc?.delegate = self
-        self.present(vc!, animated: true)
+    @IBAction func ontapSetting(_ sender: UIButton) {
+        let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "SettingsVC") as! SettingsVC
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @IBAction func ontapTabPressed(_ sender: UIButton){
+        if sender.tag      == 0 {
+            vwVideo.isHidden       = false
+            vwSwift.isHidden       = true
+            vwCollection.isHidden  = true
+            vwVideoContnr.isHidden = false
+            vwSwiftContnr.isHidden = true
+        }
+        else if sender.tag == 1 {
+            vwVideo.isHidden       = true
+            vwSwift.isHidden       = false
+            vwCollection.isHidden  = true
+            vwVideoContnr.isHidden = true
+            vwSwiftContnr.isHidden = false
+        }
+        else{
+            vwVideo.isHidden       = true
+            vwSwift.isHidden       = true
+            vwCollection.isHidden  = false
+            vwVideoContnr.isHidden = false
+            vwSwiftContnr.isHidden = false
+        }
     }
 }
 
@@ -42,52 +65,17 @@ class ProfileVC: UIViewController , TagPeopleDelegate{
 extension ProfileVC {
    
     func onload() {
-        removeNavBackbuttonTitle()
-        txtViewBio.delegate   = self
-        setupPlaceholder()
-        setupView()
+       // self.navigationController?.removeBackground()
     }
     
     func onAppear() {
-    }
-    
-    func setupPlaceholder() {
-        txtViewBio.text      = placeholder
-        txtViewBio.textColor = placeholderColor
-    }
-    
-    func setupView() {
-        collectTagPeople.register(TagPeopleCCell.nib, forCellWithReuseIdentifier: TagPeopleCCell.identifier)
-        collectTagPeople.delegate   = self
-        collectTagPeople.dataSource = self
-
+        
+        vwVideo.isHidden         = false
+        vwSwift.isHidden         = true
+        vwCollection.isHidden    = true
+        vwSwiftContnr.isHidden   = true
+        vwCollectContnr.isHidden = true
+        vwVideoContnr.isHidden   = false
     }
 }
 
-//MARK: - Collection View Setup {}
-extension ProfileVC: UICollectionViewDelegate , UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return UserManager.shared.totalTagPeople
-    }
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TagPeopleCCell.identifier, for: indexPath) as! TagPeopleCCell
-        return cell
-    }
-}
-
-// MARK: - UITextViewDelegate {}
-extension ProfileVC : UITextViewDelegate{
-    
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.textColor == placeholderColor {
-            textView.text      = nil
-            textView.textColor = UIColor.white
-        }
-    }
-    
-    func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text.isEmpty {
-            setupPlaceholder()
-        }
-    }
-}

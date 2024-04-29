@@ -20,7 +20,7 @@ class SettingsVC: UIViewController {
     }
     
     @IBAction func ontapProfile(_ sender: UIButton) {
-        let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileVC
+        let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "UpdateProfileVC") as! UpdateProfileVC
         vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -33,6 +33,18 @@ class SettingsVC: UIViewController {
     
     @IBAction func ontapNotifications(_ sender: UIButton) {
         let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "NotificationsVC") as! NotificationsVC
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @IBAction func ontapAccont(_ sender: UIButton) {
+        let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "AccountsVC") as! AccountsVC
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @IBAction func ontapMenu(_ sender: UIButton) {
+        let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "UpdateMenuVC") as! UpdateMenuVC
         vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
     }
