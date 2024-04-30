@@ -4479,20 +4479,79 @@
             </objects>
             <point key="canvasLocation" x="2097" y="-822"/>
         </scene>
-        <!--View Controller-->
+        <!--Collection Container-->
         <scene sceneID="u7c-ik-PVm">
             <objects>
-                <viewController id="AkC-ic-JJn" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CollectionContainer" useStoryboardIdentifierAsRestorationIdentifier="YES" id="AkC-ic-JJn" customClass="CollectionContainer" customModule="Resturants" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UYU-7p-B8a">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="500"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bbc-YT-Kd5">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="500"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qZT-dE-dgs">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="1"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="BcQ-Uk-ca0"/>
+                                        </constraints>
+                                    </view>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="xYs-dy-lpw">
+                                        <rect key="frame" x="0.0" y="1" width="393" height="250"/>
+                                        <color key="backgroundColor" name="ColorBlack"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="250" id="gxh-9J-3sY"/>
+                                        </constraints>
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="9sK-qo-SGe">
+                                            <size key="itemSize" width="128" height="128"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells/>
+                                    </collectionView>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="p7Y-2N-5iR">
+                                        <rect key="frame" x="0.0" y="275" width="393" height="250"/>
+                                        <color key="backgroundColor" name="ColorBlack"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="250" id="ebG-5D-PfK"/>
+                                        </constraints>
+                                        <color key="sectionIndexBackgroundColor" name="ColorBlack"/>
+                                    </tableView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="p7Y-2N-5iR" firstAttribute="leading" secondItem="Bbc-YT-Kd5" secondAttribute="leading" id="6wj-cB-Q0a"/>
+                                    <constraint firstItem="qZT-dE-dgs" firstAttribute="top" secondItem="Bbc-YT-Kd5" secondAttribute="top" id="8wy-HM-7Fr"/>
+                                    <constraint firstItem="qZT-dE-dgs" firstAttribute="leading" secondItem="Bbc-YT-Kd5" secondAttribute="leading" id="BRI-ww-gFQ"/>
+                                    <constraint firstItem="xYs-dy-lpw" firstAttribute="leading" secondItem="Bbc-YT-Kd5" secondAttribute="leading" id="C27-gK-hJU"/>
+                                    <constraint firstAttribute="trailing" secondItem="p7Y-2N-5iR" secondAttribute="trailing" id="CQc-kG-Xek"/>
+                                    <constraint firstAttribute="trailing" secondItem="qZT-dE-dgs" secondAttribute="trailing" id="N3E-Ng-sjz"/>
+                                    <constraint firstItem="qZT-dE-dgs" firstAttribute="centerX" secondItem="Bbc-YT-Kd5" secondAttribute="centerX" id="amI-6K-CSm"/>
+                                    <constraint firstItem="p7Y-2N-5iR" firstAttribute="top" secondItem="xYs-dy-lpw" secondAttribute="bottom" constant="24" id="dsw-cT-uRO"/>
+                                    <constraint firstAttribute="bottom" secondItem="p7Y-2N-5iR" secondAttribute="bottom" constant="12" id="eV5-uB-rak"/>
+                                    <constraint firstItem="xYs-dy-lpw" firstAttribute="top" secondItem="qZT-dE-dgs" secondAttribute="bottom" id="msS-nb-wp6"/>
+                                    <constraint firstAttribute="trailing" secondItem="xYs-dy-lpw" secondAttribute="trailing" id="yNj-fw-bAk"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="7JP-JE-Jsl"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Bbc-YT-Kd5" secondAttribute="trailing" id="784-rn-RZl"/>
+                            <constraint firstAttribute="bottom" secondItem="Bbc-YT-Kd5" secondAttribute="bottom" id="Qwm-xL-Xak"/>
+                            <constraint firstItem="Bbc-YT-Kd5" firstAttribute="top" secondItem="UYU-7p-B8a" secondAttribute="top" id="cvG-E3-3EI"/>
+                            <constraint firstItem="Bbc-YT-Kd5" firstAttribute="leading" secondItem="UYU-7p-B8a" secondAttribute="leading" id="koB-QU-8hf"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tblVIdeos" destination="p7Y-2N-5iR" id="jRf-3Q-YlD"/>
+                        <outlet property="vwCollection" destination="xYs-dy-lpw" id="4fl-p0-oOf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gre-Ew-qZl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="698" y="-592"/>
+            <point key="canvasLocation" x="525.95419847328242" y="-744.36619718309862"/>
         </scene>
     </scenes>
     <resources>
@@ -4530,7 +4589,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

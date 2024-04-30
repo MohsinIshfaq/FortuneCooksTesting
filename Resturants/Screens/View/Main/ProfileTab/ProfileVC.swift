@@ -38,25 +38,28 @@ class ProfileVC: UIViewController {
     
     @IBAction func ontapTabPressed(_ sender: UIButton){
         if sender.tag      == 0 {
-            vwVideo.isHidden       = false
-            vwSwift.isHidden       = true
-            vwCollection.isHidden  = true
-            vwVideoContnr.isHidden = false
-            vwSwiftContnr.isHidden = true
+            vwVideo.isHidden         = false
+            vwSwift.isHidden         = true
+            vwCollection.isHidden    = true
+            vwVideoContnr.isHidden   = false
+            vwSwiftContnr.isHidden   = true
+            vwCollectContnr.isHidden = true
         }
         else if sender.tag == 1 {
-            vwVideo.isHidden       = true
-            vwSwift.isHidden       = false
-            vwCollection.isHidden  = true
-            vwVideoContnr.isHidden = true
-            vwSwiftContnr.isHidden = false
+            vwVideo.isHidden         = true
+            vwSwift.isHidden         = false
+            vwCollection.isHidden    = true
+            vwVideoContnr.isHidden   = true
+            vwSwiftContnr.isHidden   = false
+            vwCollectContnr.isHidden = true
         }
         else{
-            vwVideo.isHidden       = true
-            vwSwift.isHidden       = true
-            vwCollection.isHidden  = false
-            vwVideoContnr.isHidden = false
-            vwSwiftContnr.isHidden = false
+            vwVideo.isHidden         = true
+            vwSwift.isHidden         = true
+            vwCollection.isHidden    = false
+            vwVideoContnr.isHidden   = true
+            vwSwiftContnr.isHidden   = true
+            vwCollectContnr.isHidden = false
         }
     }
 }

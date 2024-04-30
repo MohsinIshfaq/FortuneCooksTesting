@@ -21,6 +21,7 @@
 		462630812B9AA3D600A4E7D1 /* CaptureError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462630802B9AA3D600A4E7D1 /* CaptureError.swift */; };
 		462630832B9AA3ED00A4E7D1 /* Composer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462630822B9AA3ED00A4E7D1 /* Composer.swift */; };
 		462630852B9AA40700A4E7D1 /* FrameRateCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462630842B9AA40700A4E7D1 /* FrameRateCalculator.swift */; };
+		462ADBDE2BE08F2200F575AC /* CollectionContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462ADBDD2BE08F2200F575AC /* CollectionContainer.swift */; };
 		462BD63E2BCD56BA00C4F067 /* NotificationsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462BD63D2BCD56BA00C4F067 /* NotificationsVC.swift */; };
 		46303FF02BB3B16500B15EB8 /* UplaodSwiftVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46303FEF2BB3B16500B15EB8 /* UplaodSwiftVC.swift */; };
 		4635E1352BA69E3C00C149ED /* AudioRecordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4635E1342BA69E3C00C149ED /* AudioRecordVC.swift */; };
@@ -130,6 +131,7 @@
 		462630802B9AA3D600A4E7D1 /* CaptureError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureError.swift; sourceTree = "<group>"; };
 		462630822B9AA3ED00A4E7D1 /* Composer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Composer.swift; sourceTree = "<group>"; };
 		462630842B9AA40700A4E7D1 /* FrameRateCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameRateCalculator.swift; sourceTree = "<group>"; };
+		462ADBDD2BE08F2200F575AC /* CollectionContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionContainer.swift; sourceTree = "<group>"; };
 		462BD63D2BCD56BA00C4F067 /* NotificationsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsVC.swift; sourceTree = "<group>"; };
 		46303FEF2BB3B16500B15EB8 /* UplaodSwiftVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UplaodSwiftVC.swift; sourceTree = "<group>"; };
 		4635E1342BA69E3C00C149ED /* AudioRecordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecordVC.swift; sourceTree = "<group>"; };
@@ -301,6 +303,7 @@
 			children = (
 				465493F92BD79F2700EF5111 /* VideosContainer.swift */,
 				465494022BD7E74B00EF5111 /* SwiftsContainer.swift */,
+				462ADBDD2BE08F2200F575AC /* CollectionContainer.swift */,
 			);
 			path = Container;
 			sourceTree = "<group>";
@@ -823,6 +826,7 @@
 				4626307D2B9AA38F00A4E7D1 /* RecorderDelegate.swift in Sources */,
 				46C820F92B930179007E543F /* EditVideoVC.swift in Sources */,
 				714B0F702B69703B00570578 /* SelectioTCell.swift in Sources */,
+				462ADBDE2BE08F2200F575AC /* CollectionContainer.swift in Sources */,
 				7144BD512B6E983100767374 /* HomeVC.swift in Sources */,
 				7153888B2B5998BC006D682F /* CreatAccntVC.swift in Sources */,
 				46B5CF6D2BCE1DB2000E5207 /* AccntDeleteReasonVC.swift in Sources */,
