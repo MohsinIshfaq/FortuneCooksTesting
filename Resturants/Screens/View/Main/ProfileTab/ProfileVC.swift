@@ -7,18 +7,22 @@
 
 import UIKit
 
+
 class ProfileVC: UIViewController {
     
     //MARK: - IBOUtlet
     @IBOutlet weak var vwVideo         : UIView!
     @IBOutlet weak var vwSwift         : UIView!
     @IBOutlet weak var vwCollection    : UIView!
-    @IBOutlet weak var vwVideoContnr   : UIView!
-    @IBOutlet weak var vwSwiftContnr   : UIView!
-    @IBOutlet weak var vwCollectContnr : UIView!
+    @IBOutlet weak var tblVideoHeightCons : NSLayoutConstraint!
+    @IBOutlet weak var tblVIdeos       : UITableView!
+    @IBOutlet weak var stackVideos     : UIStackView!
+    @IBOutlet weak var collectSwiftHeightCons : NSLayoutConstraint!
+    @IBOutlet weak var collectSwift    : UICollectionView!
+    @IBOutlet weak var stackSwift      : UIStackView!
     
     //MARK: - Variables and Properties
-   
+    var arr: [String]   = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,25 +45,24 @@ class ProfileVC: UIViewController {
             vwVideo.isHidden         = false
             vwSwift.isHidden         = true
             vwCollection.isHidden    = true
-            vwVideoContnr.isHidden   = false
-            vwSwiftContnr.isHidden   = true
-            vwCollectContnr.isHidden = true
+            stackVideos.isHidden     = false
+            stackSwift.isHidden      = true
+            collectSwift.isHidden    = true
         }
         else if sender.tag == 1 {
             vwVideo.isHidden         = true
             vwSwift.isHidden         = false
             vwCollection.isHidden    = true
-            vwVideoContnr.isHidden   = true
-            vwSwiftContnr.isHidden   = false
-            vwCollectContnr.isHidden = true
+            stackVideos.isHidden     = true
+            stackSwift.isHidden      = false
+            tblVIdeos.isHidden       = true
         }
         else{
             vwVideo.isHidden         = true
             vwSwift.isHidden         = true
             vwCollection.isHidden    = false
-            vwVideoContnr.isHidden   = true
-            vwSwiftContnr.isHidden   = true
-            vwCollectContnr.isHidden = false
+            stackVideos.isHidden     = true
+            stackSwift.isHidden      = true
         }
     }
 }
@@ -68,7 +71,23 @@ class ProfileVC: UIViewController {
 extension ProfileVC {
    
     func onload() {
-       // self.navigationController?.removeBackground()
+        setupView()
+    }
+    
+    func setupView() {
+        tblVIdeos.register(VideoTCell.nib, forCellReuseIdentifier: VideoTCell.identifier)
+        tblVIdeos.delegate   = self
+        tblVIdeos.dataSource = self
+        
+        tblVIdeos.register(NoPostTCell.nib, forCellReuseIdentifier: NoPostTCell.identifier)
+        tblVIdeos.delegate   = self
+        tblVIdeos.dataSource = self
+        
+        tblVIdeos.register(VideosHeaderView.nib, forHeaderFooterViewReuseIdentifier: VideosHeaderView.identifier)
+        
+        collectSwift.register(SwiftCCell.nib, forCellWithReuseIdentifier: SwiftCCell.identifier)
+        collectSwift.delegate   = self
+        collectSwift.dataSource = self
     }
     
     func onAppear() {
@@ -76,9 +95,84 @@ extension ProfileVC {
         vwVideo.isHidden         = false
         vwSwift.isHidden         = true
         vwCollection.isHidden    = true
-        vwSwiftContnr.isHidden   = true
-        vwCollectContnr.isHidden = true
-        vwVideoContnr.isHidden   = false
+        stackVideos.isHidden     = false
     }
 }
 
+//MARK: - TableVew {}
+extension ProfileVC : UITableViewDelegate , UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        if arr.count == 0 {
+            return 1
+        }
+        else{
+            return 1
+        }
+        
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if arr.count == 0 {
+            return 1
+        }
+        else{
+            tblVideoHeightCons.constant = CGFloat(300 + (arr.count * 100))
+            return arr.count
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "VideosHeaderView") as! VideosHeaderView
+        return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if arr.count != 0 {
+            return 300
+        }
+        else{
+            return 0
+        }
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if arr.count == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: NoPostTCell.identifier, for: indexPath) as! NoPostTCell
+            return cell
+        }
+        else{
+            let cell = tableView.dequeueReusableCell(withIdentifier: VideoTCell.identifier, for: indexPath) as! VideoTCell
+            return cell
+        }
+        
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+    
+}
+
+
+//MARK: - collection view {}
+extension ProfileVC : UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        collectSwiftHeightCons.constant = 400
+        return 6
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SwiftCCell.identifier, for: indexPath) as! SwiftCCell
+       // let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NoPostCCell.identifier, for: indexPath) as! NoPostCCell
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 170, height: 250)
+    }
+    
+}
