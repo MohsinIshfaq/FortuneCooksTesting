@@ -14,15 +14,26 @@ class ProfileVC: UIViewController {
     @IBOutlet weak var vwVideo         : UIView!
     @IBOutlet weak var vwSwift         : UIView!
     @IBOutlet weak var vwCollection    : UIView!
+    @IBOutlet weak var vwMenu          : UIView!
+    
     @IBOutlet weak var tblVideoHeightCons : NSLayoutConstraint!
     @IBOutlet weak var tblVIdeos       : UITableView!
     @IBOutlet weak var stackVideos     : UIStackView!
+    
     @IBOutlet weak var collectSwiftHeightCons : NSLayoutConstraint!
     @IBOutlet weak var collectSwift    : UICollectionView!
     @IBOutlet weak var stackSwift      : UIStackView!
+    @IBOutlet weak var stackCollection : UIStackView!
+    
+    @IBOutlet weak var collectSwiftColl: UICollectionView!
+    @IBOutlet weak var tblVIdeosColl   : UITableView!
+    @IBOutlet weak var tblVideosCollHeightCons : NSLayoutConstraint!
+    
+    @IBOutlet weak var stackMore       : UIStackView!
+    
     
     //MARK: - Variables and Properties
-    var arr: [String]   = []
+    var arr: [String]   = ["" , "" , ""]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,24 +56,46 @@ class ProfileVC: UIViewController {
             vwVideo.isHidden         = false
             vwSwift.isHidden         = true
             vwCollection.isHidden    = true
+            vwMenu.isHidden          = true
             stackVideos.isHidden     = false
             stackSwift.isHidden      = true
-            collectSwift.isHidden    = true
+            stackCollection.isHidden = true
         }
         else if sender.tag == 1 {
             vwVideo.isHidden         = true
             vwSwift.isHidden         = false
             vwCollection.isHidden    = true
+            vwMenu.isHidden          = true
             stackVideos.isHidden     = true
             stackSwift.isHidden      = false
-            tblVIdeos.isHidden       = true
+            stackCollection.isHidden = true
         }
-        else{
+        else if sender.tag == 2 {
             vwVideo.isHidden         = true
             vwSwift.isHidden         = true
             vwCollection.isHidden    = false
+            vwMenu.isHidden          = true
             stackVideos.isHidden     = true
             stackSwift.isHidden      = true
+            stackCollection.isHidden = false
+        }
+        else  {
+            vwVideo.isHidden         = true
+            vwSwift.isHidden         = true
+            vwCollection.isHidden    = true
+            vwMenu.isHidden          = false
+//            stackVideos.isHidden     = true
+//            stackSwift.isHidden      = true
+//            stackCollection.isHidden = false
+        }
+    }
+    
+    @IBAction func ontapSeeMore(_ sender: UIButton){
+        if stackMore.isHidden == true {
+            stackMore.isHidden = false
+        }
+        else{
+            stackMore.isHidden = true
         }
     }
 }
@@ -76,18 +109,26 @@ extension ProfileVC {
     
     func setupView() {
         tblVIdeos.register(VideoTCell.nib, forCellReuseIdentifier: VideoTCell.identifier)
-        tblVIdeos.delegate   = self
-        tblVIdeos.dataSource = self
+        tblVIdeos.delegate            = self
+        tblVIdeos.dataSource          = self
         
         tblVIdeos.register(NoPostTCell.nib, forCellReuseIdentifier: NoPostTCell.identifier)
-        tblVIdeos.delegate   = self
-        tblVIdeos.dataSource = self
+        tblVIdeos.delegate            = self
+        tblVIdeos.dataSource          = self
         
         tblVIdeos.register(VideosHeaderView.nib, forHeaderFooterViewReuseIdentifier: VideosHeaderView.identifier)
         
         collectSwift.register(SwiftCCell.nib, forCellWithReuseIdentifier: SwiftCCell.identifier)
-        collectSwift.delegate   = self
-        collectSwift.dataSource = self
+        collectSwift.delegate        = self
+        collectSwift.dataSource      = self
+        
+        collectSwiftColl.register(SwiftCCell.nib, forCellWithReuseIdentifier: SwiftCCell.identifier)
+        collectSwiftColl.delegate   = self
+        collectSwiftColl.dataSource = self
+        
+        tblVIdeosColl.register(VideoTCell.nib, forCellReuseIdentifier: VideoTCell.identifier)
+        tblVIdeosColl.delegate     = self
+        tblVIdeosColl.dataSource   = self
     }
     
     func onAppear() {
@@ -103,21 +144,32 @@ extension ProfileVC {
 extension ProfileVC : UITableViewDelegate , UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        if arr.count == 0 {
-            return 1
+        if tableView == tblVIdeos {
+            if arr.count == 0 {
+                return 1
+            }
+            else{
+                return 1
+            }
         }
-        else{
+        else {
             return 1
         }
         
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if arr.count == 0 {
-            return 1
+        if tableView == tblVIdeos {
+            if arr.count == 0 {
+                return 1
+            }
+            else{
+                tblVideoHeightCons.constant = CGFloat(300 + (arr.count * 105))
+                return arr.count
+            }
         }
         else{
-            tblVideoHeightCons.constant = CGFloat(300 + (arr.count * 100))
+            tblVideosCollHeightCons.constant = CGFloat(arr.count * 105)
             return arr.count
         }
     }
@@ -128,8 +180,13 @@ extension ProfileVC : UITableViewDelegate , UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if arr.count != 0 {
-            return 300
+        if tableView == tblVIdeos {
+            if arr.count != 0 {
+                return 300
+            }
+            else{
+                return 0
+            }
         }
         else{
             return 0
@@ -137,9 +194,15 @@ extension ProfileVC : UITableViewDelegate , UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if arr.count == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: NoPostTCell.identifier, for: indexPath) as! NoPostTCell
-            return cell
+        if tableView == tblVIdeos {
+            if arr.count == 0 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: NoPostTCell.identifier, for: indexPath) as! NoPostTCell
+                return cell
+            }
+            else{
+                let cell = tableView.dequeueReusableCell(withIdentifier: VideoTCell.identifier, for: indexPath) as! VideoTCell
+                return cell
+            }
         }
         else{
             let cell = tableView.dequeueReusableCell(withIdentifier: VideoTCell.identifier, for: indexPath) as! VideoTCell
@@ -158,14 +221,26 @@ extension ProfileVC : UITableViewDelegate , UITableViewDataSource {
 //MARK: - collection view {}
 extension ProfileVC : UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        collectSwiftHeightCons.constant = 400
-        return 6
+        if collectionView == collectSwift {
+            collectSwiftHeightCons.constant = 250 * 3
+            return 6
+        }
+        else{
+           return 3
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SwiftCCell.identifier, for: indexPath) as! SwiftCCell
-       // let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NoPostCCell.identifier, for: indexPath) as! NoPostCCell
-        return cell
+        if collectionView == collectSwift {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SwiftCCell.identifier, for: indexPath) as! SwiftCCell
+            // let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NoPostCCell.identifier, for: indexPath) as! NoPostCCell
+            return cell
+        }
+        else{
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SwiftCCell.identifier, for: indexPath) as! SwiftCCell
+            // let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NoPostCCell.identifier, for: indexPath) as! NoPostCCell
+            return cell
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

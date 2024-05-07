@@ -49,6 +49,8 @@
 		469AD60E2BC0EC5200469F6B /* HastagCCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 469AD60C2BC0EC5200469F6B /* HastagCCell.xib */; };
 		469AD6142BC0FA9B00469F6B /* TagPeopleCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469AD6122BC0FA9B00469F6B /* TagPeopleCCell.swift */; };
 		469AD6152BC0FA9B00469F6B /* TagPeopleCCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 469AD6132BC0FA9B00469F6B /* TagPeopleCCell.xib */; };
+		469C7E922BE9F65900D9797D /* MenuTCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469C7E902BE9F65900D9797D /* MenuTCell.swift */; };
+		469C7E932BE9F65900D9797D /* MenuTCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 469C7E912BE9F65900D9797D /* MenuTCell.xib */; };
 		469FC43D2BC1847000952EA5 /* UploadSwift2VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469FC43C2BC1847000952EA5 /* UploadSwift2VC.swift */; };
 		46A508BF2BB3BDFD00493310 /* UploadThumbnailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A508BE2BB3BDFD00493310 /* UploadThumbnailVC.swift */; };
 		46AB1E882BCD492100FA1567 /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AB1E872BCD492100FA1567 /* FeedVC.swift */; };
@@ -160,6 +162,8 @@
 		469AD60C2BC0EC5200469F6B /* HastagCCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HastagCCell.xib; sourceTree = "<group>"; };
 		469AD6122BC0FA9B00469F6B /* TagPeopleCCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagPeopleCCell.swift; sourceTree = "<group>"; };
 		469AD6132BC0FA9B00469F6B /* TagPeopleCCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TagPeopleCCell.xib; sourceTree = "<group>"; };
+		469C7E902BE9F65900D9797D /* MenuTCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTCell.swift; sourceTree = "<group>"; };
+		469C7E912BE9F65900D9797D /* MenuTCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuTCell.xib; sourceTree = "<group>"; };
 		469FC43C2BC1847000952EA5 /* UploadSwift2VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadSwift2VC.swift; sourceTree = "<group>"; };
 		46A508BE2BB3BDFD00493310 /* UploadThumbnailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadThumbnailVC.swift; sourceTree = "<group>"; };
 		46AB1E872BCD492100FA1567 /* FeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
@@ -378,6 +382,15 @@
 				469AD6132BC0FA9B00469F6B /* TagPeopleCCell.xib */,
 			);
 			path = TagPeopleCCell;
+			sourceTree = "<group>";
+		};
+		469C7E942BE9F66300D9797D /* MenuTCell */ = {
+			isa = PBXGroup;
+			children = (
+				469C7E902BE9F65900D9797D /* MenuTCell.swift */,
+				469C7E912BE9F65900D9797D /* MenuTCell.xib */,
+			);
+			path = MenuTCell;
 			sourceTree = "<group>";
 		};
 		46B8FDA12BCCEF940058E80C /* ProfileTab */ = {
@@ -648,6 +661,7 @@
 				4681553E2BAFE04B00DF5DBC /* FrameCCell */,
 				465494012BD7D57A00EF5111 /* SwiftCCell */,
 				46FFDA182BDF4F5E000F03C0 /* NoPostCCell */,
+				469C7E942BE9F66300D9797D /* MenuTCell */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -741,6 +755,7 @@
 				715388972B59A3EF006D682F /* Profile.storyboard in Resources */,
 				7153888D2B59A368006D682F /* TabbarController.storyboard in Resources */,
 				4625A17E2B98D8B000C763DD /* FrameFilterCell.xib in Resources */,
+				469C7E932BE9F65900D9797D /* MenuTCell.xib in Resources */,
 				7153888F2B59A381006D682F /* Home.storyboard in Resources */,
 				46FFDA0A2BDF4512000F03C0 /* VideosHeaderView.xib in Resources */,
 				715388912B59A3B5006D682F /* Search.storyboard in Resources */,
@@ -863,6 +878,7 @@
 				716F6FDF2B5ADDC900049C1C /* CustomTabBar.swift in Sources */,
 				46C4A09A2B93290100F27C8F /* VideoEditor.swift in Sources */,
 				7144BD542B6EA0CC00767374 /* MenuVC.swift in Sources */,
+				469C7E922BE9F65900D9797D /* MenuTCell.swift in Sources */,
 				46B5CF6B2BCE1CE2000E5207 /* DeleteAccntVC.swift in Sources */,
 				714B0F6C2B696F7800570578 /* SelectionVC.swift in Sources */,
 				71C6A9C92B694CF200E19808 /* CollectionCell.swift in Sources */,
