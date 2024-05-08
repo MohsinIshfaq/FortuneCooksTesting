@@ -93,6 +93,7 @@ class UplaodSwiftVC: UIViewController , ReloadDelegate , UITextViewDelegate , cr
         
         let vc = Constants.addStoryBoard.instantiateViewController(withIdentifier: "TagPeopleVC") as? TagPeopleVC
         vc?.delegate = self
+        vc?.showTagUsers = false
         self.present(vc!, animated: true)
     }
     

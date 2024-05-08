@@ -30,6 +30,9 @@ class ProfileVC: UIViewController {
     @IBOutlet weak var tblVideosCollHeightCons : NSLayoutConstraint!
     
     @IBOutlet weak var stackMore       : UIStackView!
+    @IBOutlet weak var tblMenu         : UITableView!
+    @IBOutlet weak var stackMenu       : UIStackView!
+    @IBOutlet weak var tblMenuHeightCons : NSLayoutConstraint!
     
     
     //MARK: - Variables and Properties
@@ -51,6 +54,13 @@ class ProfileVC: UIViewController {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
+    @IBAction func ontapTagPeople(_ sender: UIButton) {
+        
+        let vc = Constants.addStoryBoard.instantiateViewController(withIdentifier: "TagPeopleVC") as? TagPeopleVC
+        vc?.showTagUsers = true
+        self.present(vc!, animated: true)
+    }
+    
     @IBAction func ontapTabPressed(_ sender: UIButton){
         if sender.tag      == 0 {
             vwVideo.isHidden         = false
@@ -60,6 +70,7 @@ class ProfileVC: UIViewController {
             stackVideos.isHidden     = false
             stackSwift.isHidden      = true
             stackCollection.isHidden = true
+            stackMenu.isHidden       = true
         }
         else if sender.tag == 1 {
             vwVideo.isHidden         = true
@@ -69,6 +80,7 @@ class ProfileVC: UIViewController {
             stackVideos.isHidden     = true
             stackSwift.isHidden      = false
             stackCollection.isHidden = true
+            stackMenu.isHidden       = true
         }
         else if sender.tag == 2 {
             vwVideo.isHidden         = true
@@ -78,15 +90,17 @@ class ProfileVC: UIViewController {
             stackVideos.isHidden     = true
             stackSwift.isHidden      = true
             stackCollection.isHidden = false
+            stackMenu.isHidden       = true
         }
         else  {
             vwVideo.isHidden         = true
             vwSwift.isHidden         = true
             vwCollection.isHidden    = true
             vwMenu.isHidden          = false
-//            stackVideos.isHidden     = true
-//            stackSwift.isHidden      = true
-//            stackCollection.isHidden = false
+            stackVideos.isHidden     = true
+            stackSwift.isHidden      = true
+            stackCollection.isHidden = true
+            stackMenu.isHidden       = false
         }
     }
     
@@ -129,6 +143,10 @@ extension ProfileVC {
         tblVIdeosColl.register(VideoTCell.nib, forCellReuseIdentifier: VideoTCell.identifier)
         tblVIdeosColl.delegate     = self
         tblVIdeosColl.dataSource   = self
+        
+        tblMenu.register(MenuTCell.nib, forCellReuseIdentifier: MenuTCell.identifier)
+        tblMenu.delegate           = self
+        tblMenu.dataSource         = self
     }
     
     func onAppear() {
@@ -136,7 +154,9 @@ extension ProfileVC {
         vwVideo.isHidden         = false
         vwSwift.isHidden         = true
         vwCollection.isHidden    = true
+        vwMenu.isHidden          = true
         stackVideos.isHidden     = false
+        stackMenu.isHidden       = true
     }
 }
 
@@ -151,6 +171,9 @@ extension ProfileVC : UITableViewDelegate , UITableViewDataSource {
             else{
                 return 1
             }
+        }
+        if tableView == tblMenu {
+          return 1
         }
         else {
             return 1
@@ -167,6 +190,10 @@ extension ProfileVC : UITableViewDelegate , UITableViewDataSource {
                 tblVideoHeightCons.constant = CGFloat(300 + (arr.count * 105))
                 return arr.count
             }
+        }
+        if tableView == tblMenu {
+            tblMenuHeightCons.constant = CGFloat(arr.count * 105)
+            return arr.count
         }
         else{
             tblVideosCollHeightCons.constant = CGFloat(arr.count * 105)
@@ -188,6 +215,9 @@ extension ProfileVC : UITableViewDelegate , UITableViewDataSource {
                 return 0
             }
         }
+        if tableView == tblMenu {
+            return 0
+        }
         else{
             return 0
         }
@@ -203,6 +233,10 @@ extension ProfileVC : UITableViewDelegate , UITableViewDataSource {
                 let cell = tableView.dequeueReusableCell(withIdentifier: VideoTCell.identifier, for: indexPath) as! VideoTCell
                 return cell
             }
+        }
+        if tableView == tblMenu {
+            let cell = tableView.dequeueReusableCell(withIdentifier: MenuTCell.identifier, for: indexPath) as! MenuTCell
+            return cell
         }
         else{
             let cell = tableView.dequeueReusableCell(withIdentifier: VideoTCell.identifier, for: indexPath) as! VideoTCell

@@ -17,5 +17,6 @@ extension UIColor {
     static var ColorLightGray     = UIColor(named: "ColorLightGray") ?? #colorLiteral(red: 0.6352941176, green: 0.6352941176, blue: 0.6352941176, alpha: 1)
     static var ColorDarkGreen     = UIColor(named: "ColorDarkGreen") ?? #colorLiteral(red: 0.03529411765, green: 0.8078431373, blue: 0.5058823529, alpha: 1)
     static var ColorDarkBlue      = UIColor(named: "ColorDarkBlue") ?? #colorLiteral(red: 0.3607843137, green: 0.6431372549, blue: 0.9725490196, alpha: 1)
+    static var ColorYellow        = UIColor(named: "ColorYellow") ?? #colorLiteral(red: 0.8039215686, green: 0.862745098, blue: 0.2235294118, alpha: 1)
 }
 
