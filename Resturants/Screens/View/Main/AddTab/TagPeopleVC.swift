@@ -79,8 +79,9 @@ extension TagPeopleVC: UITableViewDelegate , UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TagUserTCell.identifier) as? TagUserTCell
+        cell?.btnMore.isHidden         = true
         if showTagUsers {
-            cell?.btnFollow.isHidden = false
+            cell?.btnFollow.isHidden   = false
             cell?.imgSelected.isHidden = true
         }
         else {

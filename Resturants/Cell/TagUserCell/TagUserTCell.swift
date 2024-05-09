@@ -16,6 +16,7 @@ class TagUserTCell: UITableViewCell {
     @IBOutlet weak var lblType      : UILabel!
     @IBOutlet weak var imgSelected  : UIImageView!
     @IBOutlet weak var btnFollow    : UIButton!
+    @IBOutlet weak var btnMore     : UIButton!
     
     //MARK: - Variables and Properties
     static var identifier: String { return String(describing: self) }
