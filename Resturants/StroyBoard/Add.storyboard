@@ -2078,14 +2078,27 @@
                                         </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="CnT-d9-RaH">
-                                        <rect key="frame" x="8" y="129" width="377" height="481"/>
+                                        <rect key="frame" x="8" y="68" width="377" height="542"/>
                                         <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder=" Search" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rqF-3V-7G5">
+                                                <rect key="frame" x="0.0" y="0.0" width="377" height="45"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="45" id="eXJ-LH-4Rd"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
+                                                        <color key="value" name="ColorLightGray"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="7f8-MF-6e0">
-                                                <rect key="frame" x="0.0" y="0.0" width="377" height="410"/>
+                                                <rect key="frame" x="0.0" y="61" width="377" height="410"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </tableView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PG5-Ab-8rq">
-                                                <rect key="frame" x="0.0" y="426" width="377" height="55"/>
+                                                <rect key="frame" x="0.0" y="487" width="377" height="55"/>
                                                 <color key="backgroundColor" name="ColorWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="55" id="fhx-es-jln"/>
@@ -2112,19 +2125,6 @@
                                         <color key="textColor" name="ColorWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder=" Search" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rqF-3V-7G5">
-                                        <rect key="frame" x="24" y="68" width="345" height="45"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="45" id="eXJ-LH-4Rd"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
-                                                <color key="value" name="ColorLightGray"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" red="0.10980392156862745" green="0.10980392156862745" blue="0.10980392156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -2132,16 +2132,18 @@
                                     <constraint firstItem="CnT-d9-RaH" firstAttribute="leading" secondItem="qv7-io-iRG" secondAttribute="leading" constant="8" id="4UG-h3-NU4"/>
                                     <constraint firstAttribute="trailing" secondItem="F2k-QV-Uaq" secondAttribute="trailing" constant="12" id="5wi-HR-aNk"/>
                                     <constraint firstAttribute="bottom" secondItem="CnT-d9-RaH" secondAttribute="bottom" constant="40" id="9As-Nw-b7w"/>
-                                    <constraint firstItem="rqF-3V-7G5" firstAttribute="leading" secondItem="qv7-io-iRG" secondAttribute="leading" constant="24" id="G44-pc-d0f"/>
-                                    <constraint firstItem="CnT-d9-RaH" firstAttribute="top" secondItem="rqF-3V-7G5" secondAttribute="bottom" constant="16" id="JN8-Vd-EXp"/>
-                                    <constraint firstAttribute="trailing" secondItem="rqF-3V-7G5" secondAttribute="trailing" constant="24" id="Qut-A1-g5p"/>
                                     <constraint firstAttribute="height" constant="650" id="ULH-6d-4Oy"/>
                                     <constraint firstItem="F2k-QV-Uaq" firstAttribute="top" secondItem="qv7-io-iRG" secondAttribute="top" constant="24" id="fNC-FE-bcS"/>
                                     <constraint firstItem="8It-01-HWN" firstAttribute="top" secondItem="qv7-io-iRG" secondAttribute="top" constant="12" id="hJW-qS-bsb"/>
                                     <constraint firstAttribute="trailing" secondItem="CnT-d9-RaH" secondAttribute="trailing" constant="8" id="jrc-Qe-mfg"/>
                                     <constraint firstItem="F2k-QV-Uaq" firstAttribute="leading" secondItem="qv7-io-iRG" secondAttribute="leading" constant="12" id="nEj-bM-jFX"/>
-                                    <constraint firstItem="rqF-3V-7G5" firstAttribute="top" secondItem="8It-01-HWN" secondAttribute="bottom" constant="16" id="nme-T7-zCB"/>
+                                    <constraint firstItem="CnT-d9-RaH" firstAttribute="top" secondItem="8It-01-HWN" secondAttribute="bottom" constant="16" id="o2g-Wn-LaQ"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="12"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="lfC-RB-Hch"/>
@@ -3056,7 +3058,7 @@
         <image name="text" width="24" height="24"/>
         <image name="trash-blank" width="50" height="50"/>
         <image name="unselecPhoto" width="32" height="32"/>
-        <image name="user" width="24.333333969116211" height="24"/>
+        <image name="user" width="24" height="24"/>
         <image name="video" catalog="system" width="128" height="82"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
