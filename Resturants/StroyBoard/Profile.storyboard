@@ -3986,36 +3986,61 @@
                                                             <constraint firstItem="jWP-GP-xm7" firstAttribute="leading" secondItem="mPf-U1-OLg" secondAttribute="leading" id="pZU-Yp-e5c"/>
                                                         </constraints>
                                                     </view>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qhs-FK-cZX">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="cMm-QW-icx">
                                                         <rect key="frame" x="257" y="68" width="120" height="52"/>
-                                                        <color key="backgroundColor" name="ColorDarkGray"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="120" id="2Vm-D2-dlX"/>
-                                                            <constraint firstAttribute="height" constant="52" id="GAu-qb-Gjj"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" name="Inter-Regular_SemiBold" family="Inter" pointSize="16"/>
-                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                        <state key="normal" title="Settings">
-                                                            <color key="titleColor" name="ColorWhite"/>
-                                                        </state>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                <real key="value" value="6"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <action selector="ontapSetting:" destination="ADG-6d-fWP" eventType="touchUpInside" id="efA-p4-Gt1"/>
-                                                        </connections>
-                                                    </button>
+                                                        <subviews>
+                                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qhs-FK-cZX">
+                                                                <rect key="frame" x="0.0" y="0.0" width="120" height="52"/>
+                                                                <color key="backgroundColor" name="ColorDarkGray"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="120" id="2Vm-D2-dlX"/>
+                                                                    <constraint firstAttribute="height" constant="52" id="GAu-qb-Gjj"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" name="Inter-Regular_SemiBold" family="Inter" pointSize="16"/>
+                                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                <state key="normal" title="Settings">
+                                                                    <color key="titleColor" name="ColorWhite"/>
+                                                                </state>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                        <real key="value" value="6"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="ontapSetting:" destination="ADG-6d-fWP" eventType="touchUpInside" id="efA-p4-Gt1"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QvS-Bl-8G9">
+                                                                <rect key="frame" x="0.0" y="0.0" width="120" height="52"/>
+                                                                <color key="backgroundColor" name="ColorWhite"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="52" id="VO2-5K-5G0"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" name="Inter-Regular_SemiBold" family="Inter" pointSize="16"/>
+                                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                <state key="normal" title="Other locations">
+                                                                    <color key="titleColor" name="ColorBlack"/>
+                                                                </state>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                        <real key="value" value="6"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="ontapOtherLoc:" destination="ADG-6d-fWP" eventType="touchUpInside" id="z80-tm-iJp"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="bottom" secondItem="Qhs-FK-cZX" secondAttribute="bottom" id="26r-vm-HEO"/>
+                                                    <constraint firstAttribute="trailing" secondItem="cMm-QW-icx" secondAttribute="trailing" constant="16" id="1FZ-bB-9bA"/>
                                                     <constraint firstItem="OYY-Ez-pMv" firstAttribute="top" secondItem="tTj-de-ad8" secondAttribute="top" id="4Pj-m1-KKz"/>
-                                                    <constraint firstAttribute="trailing" secondItem="Qhs-FK-cZX" secondAttribute="trailing" constant="16" id="HeK-Ar-eOD"/>
                                                     <constraint firstItem="mPf-U1-OLg" firstAttribute="trailing" secondItem="OYY-Ez-pMv" secondAttribute="trailing" id="JLm-lC-Hbe"/>
                                                     <constraint firstItem="mPf-U1-OLg" firstAttribute="bottom" secondItem="OYY-Ez-pMv" secondAttribute="bottom" id="RJ9-2A-qBI"/>
                                                     <constraint firstAttribute="bottom" secondItem="OYY-Ez-pMv" secondAttribute="bottom" id="eDT-7s-L7A"/>
+                                                    <constraint firstItem="cMm-QW-icx" firstAttribute="bottom" secondItem="OYY-Ez-pMv" secondAttribute="bottom" id="k8K-CN-iMe"/>
                                                     <constraint firstItem="OYY-Ez-pMv" firstAttribute="leading" secondItem="tTj-de-ad8" secondAttribute="leading" constant="16" id="oRT-sQ-vKN"/>
                                                 </constraints>
                                             </view>
@@ -5449,10 +5474,10 @@
             </objects>
             <point key="canvasLocation" x="2719.8473282442746" y="-670.42253521126759"/>
         </scene>
-        <!--View Controller-->
+        <!--Other LocVC-->
         <scene sceneID="1Kd-Hv-iRx">
             <objects>
-                <viewController id="gl6-Au-q0b" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OtherLocVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="gl6-Au-q0b" customClass="OtherLocVC" customModule="Resturants" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cMv-t1-0bI">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -5478,26 +5503,37 @@
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="20" scale="large" weight="semibold"/>
                                         </state>
                                     </button>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ggq-6q-N3u">
+                                        <rect key="frame" x="0.0" y="76" width="393" height="498"/>
+                                        <color key="backgroundColor" name="ColorBlack"/>
+                                    </tableView>
                                 </subviews>
-                                <color key="backgroundColor" red="0.10980392160000001" green="0.10980392160000001" blue="0.10980392160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" name="ColorBlack"/>
                                 <constraints>
+                                    <constraint firstItem="ggq-6q-N3u" firstAttribute="leading" secondItem="ngW-sd-nDO" secondAttribute="leading" id="7ZN-d5-exL"/>
                                     <constraint firstAttribute="trailing" secondItem="Lfb-rj-uJg" secondAttribute="trailing" constant="12" id="EBz-Zj-KF5"/>
                                     <constraint firstItem="Lfb-rj-uJg" firstAttribute="centerY" secondItem="4ZU-qn-kNj" secondAttribute="centerY" id="GbW-fv-cbf"/>
                                     <constraint firstItem="Lfb-rj-uJg" firstAttribute="leading" secondItem="ngW-sd-nDO" secondAttribute="leading" constant="12" id="LeW-ra-7jx"/>
                                     <constraint firstAttribute="height" constant="616" id="QQo-az-TO5"/>
+                                    <constraint firstItem="ggq-6q-N3u" firstAttribute="top" secondItem="4ZU-qn-kNj" secondAttribute="bottom" constant="24" id="V3G-N3-P5H"/>
+                                    <constraint firstAttribute="trailing" secondItem="ggq-6q-N3u" secondAttribute="trailing" id="VPG-2t-DzU"/>
                                     <constraint firstAttribute="trailing" secondItem="4ZU-qn-kNj" secondAttribute="trailing" constant="12" id="Zfm-w6-fy0"/>
                                     <constraint firstItem="4ZU-qn-kNj" firstAttribute="top" secondItem="ngW-sd-nDO" secondAttribute="top" constant="12" id="jWd-as-Z90"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="SJn-S9-DuF"/>
-                        <color key="backgroundColor" red="0.10980392160000001" green="0.10980392160000001" blue="0.10980392160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.24994826158940397" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="ngW-sd-nDO" firstAttribute="leading" secondItem="cMv-t1-0bI" secondAttribute="leading" id="Eae-BS-b4c"/>
                             <constraint firstAttribute="trailing" secondItem="ngW-sd-nDO" secondAttribute="trailing" id="a94-py-bbl"/>
                             <constraint firstAttribute="bottom" secondItem="ngW-sd-nDO" secondAttribute="bottom" id="hO3-gg-eYa"/>
+                            <constraint firstItem="SJn-S9-DuF" firstAttribute="bottom" secondItem="ggq-6q-N3u" secondAttribute="bottom" constant="8" id="wVP-7p-V6i"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tblLocation" destination="ggq-6q-N3u" id="Dy0-Ms-p3v"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AIF-YG-AHc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -5519,7 +5555,7 @@
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="plus.app.fill" catalog="system" width="128" height="114"/>
-        <image name="user" width="24" height="24"/>
+        <image name="user" width="24.333333969116211" height="24"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -5542,10 +5578,10 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tintColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

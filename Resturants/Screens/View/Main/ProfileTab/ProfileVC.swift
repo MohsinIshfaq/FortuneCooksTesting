@@ -48,6 +48,12 @@ class ProfileVC: UIViewController {
         onAppear()
     }
     
+    @IBAction func ontapOtherLoc(_ sender: UIButton) {
+        
+        let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "OtherLocVC") as! OtherLocVC
+        self.present(vc, animated: true)
+    }
+    
     @IBAction func ontapSetting(_ sender: UIButton) {
         let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "SettingsVC") as! SettingsVC
         vc.hidesBottomBarWhenPushed = true

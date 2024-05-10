@@ -35,12 +35,15 @@
 		465494032BD7E74B00EF5111 /* SwiftsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465494022BD7E74B00EF5111 /* SwiftsContainer.swift */; };
 		4654940B2BDF3B5300EF5111 /* NoPostTCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465494092BDF3B5300EF5111 /* NoPostTCell.swift */; };
 		4654940C2BDF3B5300EF5111 /* NoPostTCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4654940A2BDF3B5300EF5111 /* NoPostTCell.xib */; };
+		467158142BEDF2AA00F934C6 /* OtherLocVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467158132BEDF2AA00F934C6 /* OtherLocVC.swift */; };
 		467441AE2BD78FB700C51D6E /* UpdateProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467441AD2BD78FB700C51D6E /* UpdateProfileVC.swift */; };
 		467441B22BD7965B00C51D6E /* VideoTCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467441B02BD7965B00C51D6E /* VideoTCell.swift */; };
 		467441B32BD7965B00C51D6E /* VideoTCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 467441B12BD7965B00C51D6E /* VideoTCell.xib */; };
 		468155422BAFE08800DF5DBC /* ColorCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468155402BAFE08800DF5DBC /* ColorCCell.swift */; };
 		468155432BAFE08800DF5DBC /* ColorCCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 468155412BAFE08800DF5DBC /* ColorCCell.xib */; };
 		468155452BAFE20E00DF5DBC /* AddCaptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468155442BAFE20E00DF5DBC /* AddCaptionVC.swift */; };
+		468D10B92BEDF01B009C61CB /* LocationTCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 468D10B82BEDF01B009C61CB /* LocationTCell.xib */; };
+		468D10BA2BEDF01B009C61CB /* LocationTCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468D10B72BEDF01B009C61CB /* LocationTCell.swift */; };
 		469AD6022BC02F0100469F6B /* TagPeopleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469AD6012BC02F0100469F6B /* TagPeopleVC.swift */; };
 		469AD6062BC0302100469F6B /* TagUserTCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469AD6042BC0302100469F6B /* TagUserTCell.swift */; };
 		469AD6072BC0302100469F6B /* TagUserTCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 469AD6052BC0302100469F6B /* TagUserTCell.xib */; };
@@ -150,12 +153,15 @@
 		465494092BDF3B5300EF5111 /* NoPostTCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoPostTCell.swift; sourceTree = "<group>"; };
 		4654940A2BDF3B5300EF5111 /* NoPostTCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoPostTCell.xib; sourceTree = "<group>"; };
 		4658F4402BABCC2900A84706 /* Resturants.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Resturants.entitlements; sourceTree = "<group>"; };
+		467158132BEDF2AA00F934C6 /* OtherLocVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherLocVC.swift; sourceTree = "<group>"; };
 		467441AD2BD78FB700C51D6E /* UpdateProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProfileVC.swift; sourceTree = "<group>"; };
 		467441B02BD7965B00C51D6E /* VideoTCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoTCell.swift; sourceTree = "<group>"; };
 		467441B12BD7965B00C51D6E /* VideoTCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoTCell.xib; sourceTree = "<group>"; };
 		468155402BAFE08800DF5DBC /* ColorCCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCCell.swift; sourceTree = "<group>"; };
 		468155412BAFE08800DF5DBC /* ColorCCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorCCell.xib; sourceTree = "<group>"; };
 		468155442BAFE20E00DF5DBC /* AddCaptionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCaptionVC.swift; sourceTree = "<group>"; };
+		468D10B72BEDF01B009C61CB /* LocationTCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTCell.swift; sourceTree = "<group>"; };
+		468D10B82BEDF01B009C61CB /* LocationTCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationTCell.xib; sourceTree = "<group>"; };
 		469AD6012BC02F0100469F6B /* TagPeopleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagPeopleVC.swift; sourceTree = "<group>"; };
 		469AD6042BC0302100469F6B /* TagUserTCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagUserTCell.swift; sourceTree = "<group>"; };
 		469AD6052BC0302100469F6B /* TagUserTCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TagUserTCell.xib; sourceTree = "<group>"; };
@@ -361,6 +367,15 @@
 			path = ColorCCell;
 			sourceTree = "<group>";
 		};
+		468D10B62BEDEFC6009C61CB /* LocationTCell */ = {
+			isa = PBXGroup;
+			children = (
+				468D10B72BEDF01B009C61CB /* LocationTCell.swift */,
+				468D10B82BEDF01B009C61CB /* LocationTCell.xib */,
+			);
+			path = LocationTCell;
+			sourceTree = "<group>";
+		};
 		469AD6032BC02FFF00469F6B /* TagUserCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -415,6 +430,7 @@
 				465493FB2BD7B77000EF5111 /* ProfileNC.swift */,
 				46FAF52E2BEC671900518C0D /* FollowersVC.swift */,
 				46E9F21C2BEC7D320058CC30 /* RemoveFollowerVC.swift */,
+				467158132BEDF2AA00F934C6 /* OtherLocVC.swift */,
 			);
 			path = ProfileTab;
 			sourceTree = "<group>";
@@ -653,6 +669,7 @@
 		71C6A9C52B694CA000E19808 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				468D10B62BEDEFC6009C61CB /* LocationTCell */,
 				46FFDA042BDF4420000F03C0 /* VideosTHeaderView */,
 				465494042BDF3AEF00EF5111 /* NoPostTCell */,
 				467441AF2BD7961F00C51D6E /* videoTCell */,
@@ -769,6 +786,7 @@
 				4654940C2BDF3B5300EF5111 /* NoPostTCell.xib in Resources */,
 				715388932B59A3D2006D682F /* Add.storyboard in Resources */,
 				71C6A9CA2B694CF200E19808 /* CollectionCell.xib in Resources */,
+				468D10B92BEDF01B009C61CB /* LocationTCell.xib in Resources */,
 				467441B32BD7965B00C51D6E /* VideoTCell.xib in Resources */,
 				714B0F712B69703B00570578 /* SelectioTCell.xib in Resources */,
 				71B3DC792B55A94000A3615F /* Assets.xcassets in Resources */,
@@ -835,6 +853,7 @@
 				469FC43D2BC1847000952EA5 /* UploadSwift2VC.swift in Sources */,
 				4635E1352BA69E3C00C149ED /* AudioRecordVC.swift in Sources */,
 				469AD60D2BC0EC5200469F6B /* HastagCCell.swift in Sources */,
+				468D10BA2BEDF01B009C61CB /* LocationTCell.swift in Sources */,
 				465494032BD7E74B00EF5111 /* SwiftsContainer.swift in Sources */,
 				4654940B2BDF3B5300EF5111 /* NoPostTCell.swift in Sources */,
 				4635E13B2BA6D93100C149ED /* CameraNC.swift in Sources */,
@@ -851,6 +870,7 @@
 				7144BD512B6E983100767374 /* HomeVC.swift in Sources */,
 				7153888B2B5998BC006D682F /* CreatAccntVC.swift in Sources */,
 				46B5CF6D2BCE1DB2000E5207 /* AccntDeleteReasonVC.swift in Sources */,
+				467158142BEDF2AA00F934C6 /* OtherLocVC.swift in Sources */,
 				7151664E2B598CF0007CE092 /* ResetPasswordVC.swift in Sources */,
 				469AD6062BC0302100469F6B /* TagUserTCell.swift in Sources */,
 				462630712B9A11F000A4E7D1 /* VIdeoCapture.swift in Sources */,
