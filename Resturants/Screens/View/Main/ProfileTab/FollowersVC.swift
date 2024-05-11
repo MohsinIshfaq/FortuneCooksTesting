@@ -9,11 +9,15 @@ import UIKit
 
 class FollowersVC: UIViewController {
     
+    //MARK: - IBOUtlets
     @IBOutlet weak var tblSelection: UITableView!
     @IBOutlet weak var txtSearch   : UITextField!
-    
     @IBOutlet weak var vwFollowing : UIView!
     @IBOutlet weak var vwFollowers : UIView!
+    
+    //MARK: - Variables and Properties
+    var isFollowers                  = false
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,11 +34,14 @@ class FollowersVC: UIViewController {
         if sender.tag == 0{
             vwFollowing.isHidden = false
             vwFollowers.isHidden = true
+            isFollowers          = false
         }
         else{
             vwFollowing.isHidden = true
             vwFollowers.isHidden = false
+            isFollowers          = true
         }
+        tblSelection.reloadData()
     }
 }
 //MARK: - Custom Implementation {}
@@ -70,6 +77,16 @@ extension FollowersVC: UITableViewDelegate , UITableViewDataSource{
         cell?.btnFollow.isHidden = false
         cell?.imgSelected.isHidden = true
         cell?.btnMore.addTarget(self, action: #selector(ontapMore(_ :)), for: .touchUpInside)
+        if isFollowers {
+            cell?.btnFollow.backgroundColor             = .gray
+            cell?.btnFollow.titleLabel?.textColor       = .white
+            cell?.btnMore.isHidden                      = true
+        }
+        else{
+            cell?.btnFollow.backgroundColor              = .ColorYellow
+            cell?.btnFollow.titleLabel?.textColor        = .black
+            cell?.btnMore.isHidden                       = false
+        }
         cell?.tag = indexPath.row
         return cell!
         
