@@ -15,6 +15,13 @@ class BlockUserPopUpVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func ontapCancel(_ snder: UIButton) {
+        self.dismiss(animated: true)
+    }
+    
+    @IBAction func ontapOK(_ sender: UIButton) {
+        
+    }
 
     /*
     // MARK: - Navigation

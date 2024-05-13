@@ -7,23 +7,29 @@
 
 import UIKit
 
-Protocol AccountReportDelegate{
-    func actions(_ call : String)
-}
-
 class AccountReportVC: UIViewController {
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    @IBAction func ontapReport(_ sender: UIButton) {
-       
+        onLoad()
     }
     
-    @IBAction func ontapBlock(_ sender: UIButton) {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        onAppear()
+    }
+}
+
+//MARK: - setup Profile {}
+extension AccountReportVC {
+    
+    func onLoad() {
         
+    }
+    
+    func onAppear() {
+       
+        removeNavBackbuttonTitle()
     }
 }

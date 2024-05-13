@@ -50,6 +50,7 @@ class ProfileVC: UIViewController {
     
     @IBAction func ontapMenuDots(_ sender: UIButton){
         let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "AccountActionPopupVC") as! AccountActionPopupVC
+        vc.delegate  = self
         self.present(vc, animated: true)
     }
     @IBAction func ontapOtherLoc(_ sender: UIButton) {
@@ -298,6 +299,21 @@ extension ProfileVC : UICollectionViewDelegate , UICollectionViewDataSource , UI
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 170, height: 250)
+    }
+    
+}
+
+//MARK: - Protocol of AccountreportDelete
+extension ProfileVC: AccountReportDelete {
+    func action(call: String) {
+        if call == "Report" {
+            let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "AccountReportVC") as! AccountReportVC
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        else{
+            let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "BlockUserPopUpVC") as! BlockUserPopUpVC
+            self.present(vc, animated: true)
+        }
     }
     
 }
