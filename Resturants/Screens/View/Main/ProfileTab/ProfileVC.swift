@@ -48,6 +48,10 @@ class ProfileVC: UIViewController {
         onAppear()
     }
     
+    @IBAction func ontapMenuDots(_ sender: UIButton){
+        let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "AccountActionPopupVC") as! AccountActionPopupVC
+        self.present(vc, animated: true)
+    }
     @IBAction func ontapOtherLoc(_ sender: UIButton) {
         
         let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "OtherLocVC") as! OtherLocVC
