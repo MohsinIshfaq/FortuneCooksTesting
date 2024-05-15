@@ -17,6 +17,10 @@ class OtherLocVC: UIViewController {
         
         onLoad()
     }
+    
+    @IBAction func ontapDismiss(_ sender: UIButton) {
+        self.dismiss(animated: true)
+    }
 }
 
 //MARK: - Custom Implementation {}

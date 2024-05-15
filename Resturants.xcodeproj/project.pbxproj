@@ -27,6 +27,7 @@
 		4635E1392BA6B27500C149ED /* AudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4635E1382BA6B27500C149ED /* AudioViewController.swift */; };
 		4635E13B2BA6D93100C149ED /* CameraNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4635E13A2BA6D93100C149ED /* CameraNC.swift */; };
 		4635E13D2BA7ECA700C149ED /* ConfirmationActionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4635E13C2BA7ECA700C149ED /* ConfirmationActionVC.swift */; };
+		464BC8842BF3BD4B0066C486 /* MenuDetailPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464BC8832BF3BD4B0066C486 /* MenuDetailPopupVC.swift */; };
 		465493FC2BD7B77000EF5111 /* ProfileNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465493FB2BD7B77000EF5111 /* ProfileNC.swift */; };
 		465493FF2BD7D56700EF5111 /* SwiftCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465493FD2BD7D56700EF5111 /* SwiftCCell.swift */; };
 		465494002BD7D56700EF5111 /* SwiftCCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 465493FE2BD7D56700EF5111 /* SwiftCCell.xib */; };
@@ -148,6 +149,7 @@
 		4635E1382BA6B27500C149ED /* AudioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioViewController.swift; sourceTree = "<group>"; };
 		4635E13A2BA6D93100C149ED /* CameraNC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraNC.swift; sourceTree = "<group>"; };
 		4635E13C2BA7ECA700C149ED /* ConfirmationActionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationActionVC.swift; sourceTree = "<group>"; };
+		464BC8832BF3BD4B0066C486 /* MenuDetailPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDetailPopupVC.swift; sourceTree = "<group>"; };
 		465493FB2BD7B77000EF5111 /* ProfileNC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNC.swift; sourceTree = "<group>"; };
 		465493FD2BD7D56700EF5111 /* SwiftCCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftCCell.swift; sourceTree = "<group>"; };
 		465493FE2BD7D56700EF5111 /* SwiftCCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwiftCCell.xib; sourceTree = "<group>"; };
@@ -435,6 +437,7 @@
 				468C55312BF1C101005E4333 /* AccountReportVC.swift */,
 				468C55332BF1C139005E4333 /* BlockUserPopUpVC.swift */,
 				468C55352BF1C16B005E4333 /* AboutPopupVC.swift */,
+				464BC8832BF3BD4B0066C486 /* MenuDetailPopupVC.swift */,
 			);
 			path = ProfileTab;
 			sourceTree = "<group>";
@@ -879,6 +882,7 @@
 				462630712B9A11F000A4E7D1 /* VIdeoCapture.swift in Sources */,
 				46FFDA062BDF445E000F03C0 /* VIdeosHeaderView.swift in Sources */,
 				71B3DCA02B55B1F100A3615F /* BaseViewModel.swift in Sources */,
+				464BC8842BF3BD4B0066C486 /* MenuDetailPopupVC.swift in Sources */,
 				71B3DC9E2B55B1B500A3615F /* BaseClass.swift in Sources */,
 				715166482B598961007CE092 /* CrtProfile3VC.swift in Sources */,
 				71B3DC962B55B0F100A3615F /* BaseStrings.swift in Sources */,

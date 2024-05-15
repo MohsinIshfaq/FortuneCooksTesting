@@ -266,6 +266,14 @@ extension ProfileVC : UITableViewDelegate , UITableViewDataSource {
         return 100
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableView == tblMenu {
+            let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "MenuDetailPopupVC") as! MenuDetailPopupVC
+            self.present(vc, animated: true)
+            
+        }
+    }
+    
 }
 
 

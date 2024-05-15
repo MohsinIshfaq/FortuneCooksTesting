@@ -23,6 +23,14 @@ class UpdateProfileVC: UIViewController , TagPeopleDelegate{
     @IBOutlet weak var txtZipCode       : UITextField!
     @IBOutlet weak var txtCity          : UITextField!
     
+    @IBOutlet weak var stackMonday      : UIStackView!
+    @IBOutlet weak var stackTuesday     : UIStackView!
+    @IBOutlet weak var stackWednesday   : UIStackView!
+    @IBOutlet weak var stackThursday    : UIStackView!
+    @IBOutlet weak var stackFriday      : UIStackView!
+    @IBOutlet weak var stackSaturday    : UIStackView!
+    @IBOutlet weak var stackSunday      : UIStackView!
+    
     //MARK: - Variables and Properties
     let placeholder                        = "Enter Bio..."
     let placeholderColor                   = UIColor.lightGray
@@ -35,6 +43,30 @@ class UpdateProfileVC: UIViewController , TagPeopleDelegate{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         onAppear()
+    }
+    @IBAction func ontapScheduleSwitch(_ sender: UISwitch){
+        
+        switch sender.tag {
+        case 0:
+            stackMonday.isHidden = switchStack(sender: sender.isOn)
+            break
+        case 1:
+            stackTuesday.isHidden = switchStack(sender: sender.isOn)
+            break
+        case 2:
+            stackWednesday.isHidden = switchStack(sender: sender.isOn)
+            break
+        case 3:
+            stackThursday.isHidden = switchStack(sender: sender.isOn)
+            break
+        case 4: 
+            stackFriday.isHidden = switchStack(sender: sender.isOn)
+            break
+        case 5: 
+            stackSaturday.isHidden = switchStack(sender: sender.isOn)
+            break
+        default: break
+        }
     }
     
     @IBAction func ontapTagPeople(_ sender: UIButton) {
@@ -92,6 +124,15 @@ extension UpdateProfileVC {
         collectTagPeople.delegate   = self
         collectTagPeople.dataSource = self
 
+    }
+    
+    func switchStack(sender: Bool) -> Bool {
+        if sender {
+            return false
+        }
+        else{
+            return true
+        }
     }
 }
 

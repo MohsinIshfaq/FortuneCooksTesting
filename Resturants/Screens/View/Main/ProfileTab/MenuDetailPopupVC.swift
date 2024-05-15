@@ -1,13 +1,13 @@
 //
-//  RemoveFollowerVC.swift
+//  MenuDetailPopupVC.swift
 //  Resturants
 //
-//  Created by Coder Crew on 09/05/2024.
+//  Created by Coder Crew on 14/05/2024.
 //
 
 import UIKit
 
-class RemoveFollowerVC: UIViewController {
+class MenuDetailPopupVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -15,9 +15,9 @@ class RemoveFollowerVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func ontapDismiss(_ sender: UIButton) {
-        
+    @IBAction func ontapDismiss(_ sender: UIButton){
         self.dismiss(animated: true)
     }
+
 
 }
