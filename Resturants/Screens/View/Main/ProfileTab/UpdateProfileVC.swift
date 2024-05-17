@@ -22,6 +22,7 @@ class UpdateProfileVC: UIViewController , TagPeopleDelegate{
     @IBOutlet weak var txtAddAddressLoc : UITextField!
     @IBOutlet weak var txtZipCode       : UITextField!
     @IBOutlet weak var txtCity          : UITextField!
+    @IBOutlet weak var txtAccntType     : UITextField!
     
     @IBOutlet weak var stackMonday      : UIStackView!
     @IBOutlet weak var stackTuesday     : UIStackView!
@@ -44,6 +45,19 @@ class UpdateProfileVC: UIViewController , TagPeopleDelegate{
         super.viewWillAppear(animated)
         onAppear()
     }
+    
+    @IBAction func ontapAccnt(_ sender: UIButton){
+        let actionClosure = { (action: UIAction) in
+            self.txtAccntType.text = action.title // Update text field with selected option title
+        }
+        var menuChildren: [UIMenuElement] = []
+        for meal in UserManager.shared.arrAccnt {
+            menuChildren.append(UIAction(title: meal, handler: actionClosure))
+        }
+        sender.menu = UIMenu(options: .displayInline, children: menuChildren)
+        sender.showsMenuAsPrimaryAction = true
+    }
+    
     @IBAction func ontapScheduleSwitch(_ sender: UISwitch){
         
         switch sender.tag {
@@ -65,6 +79,9 @@ class UpdateProfileVC: UIViewController , TagPeopleDelegate{
         case 5: 
             stackSaturday.isHidden = switchStack(sender: sender.isOn)
             break
+        case 6:
+            stackSunday.isHidden = switchStack(sender: sender.isOn)
+            break
         default: break
         }
     }
@@ -73,6 +90,7 @@ class UpdateProfileVC: UIViewController , TagPeopleDelegate{
         
         let vc = Constants.addStoryBoard.instantiateViewController(withIdentifier: "TagPeopleVC") as? TagPeopleVC
         vc?.delegate = self
+       // vc.showTagUsers
         self.present(vc!, animated: true)
     }
     
@@ -143,6 +161,7 @@ extension UpdateProfileVC: UICollectionViewDelegate , UICollectionViewDataSource
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TagPeopleCCell.identifier, for: indexPath) as! TagPeopleCCell
+        
         return cell
     }
 }

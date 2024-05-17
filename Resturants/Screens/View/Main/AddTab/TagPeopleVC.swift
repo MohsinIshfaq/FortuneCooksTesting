@@ -85,6 +85,7 @@ extension TagPeopleVC: UITableViewDelegate , UITableViewDataSource{
             cell?.imgSelected.isHidden = true
         }
         else {
+            cell?.btnFollow.isHidden   = true
             if UserManager.shared.arrTagPeoples[indexPath.row][1] == "0" {
                 cell?.imgSelected.image  = UIImage(systemName: "circle")
             }
