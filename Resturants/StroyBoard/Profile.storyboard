@@ -2322,6 +2322,9 @@
                                                                         <state key="normal" image="plus.app.fill" catalog="system">
                                                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="26" scale="large"/>
                                                                         </state>
+                                                                        <connections>
+                                                                            <action selector="ontapAddAccountType:" destination="W9f-1p-cgR" eventType="touchUpInside" id="fU2-tB-Zil"/>
+                                                                        </connections>
                                                                     </button>
                                                                 </subviews>
                                                             </stackView>
@@ -2348,6 +2351,9 @@
                                                                             <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="23"/>
                                                                             <fontDescription key="titleFontDescription" name="AlNile-Bold" family="Al Nile" pointSize="16"/>
                                                                         </buttonConfiguration>
+                                                                        <connections>
+                                                                            <action selector="ontapAddAccountType:" destination="W9f-1p-cgR" eventType="touchUpInside" id="65i-au-NIT"/>
+                                                                        </connections>
                                                                     </button>
                                                                 </subviews>
                                                                 <color key="backgroundColor" name="ColorBlack"/>
@@ -2677,8 +2683,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="8P8-RT-bLO"/>
                     <connections>
+                        <outlet property="CollectAccntType" destination="yPm-T9-i4Q" id="lfL-jQ-XHr"/>
                         <outlet property="CollectContent" destination="l8O-ON-QGB" id="8IL-IX-2Xu"/>
+                        <outlet property="btnAccntType" destination="cga-jd-EXK" id="gug-63-5Ms"/>
                         <outlet property="btnContent" destination="Rr8-AQ-uyR" id="FtX-dA-pnm"/>
+                        <outlet property="btnTopAccntType" destination="oHr-2C-zQf" id="cRk-XU-cVn"/>
                         <outlet property="btnTopContent" destination="MLS-cB-EfZ" id="4g4-be-WPd"/>
                     </connections>
                 </viewController>

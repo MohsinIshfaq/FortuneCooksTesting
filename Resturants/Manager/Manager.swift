@@ -24,6 +24,7 @@ final class UserManager {
     var filteredMeals              : [[String]]       = []
     var filteredSpeacials          : [[String]]       = []
     var filteredContent            : [[String]]       = []
+    var filteredAccntType          : [[String]]       = []
     var arrTagPeoples                                 = [["Breakfast" , "0"],
                                ["Brunch" , "0"],
                                ["Lunch" , "0"],
@@ -97,6 +98,19 @@ final class UserManager {
        "Beverage_manufacturer",
        "Food_truck",
        "Hotel"
+   ]
+    var arrAccntType                                      = [
+       ["Private person","0"],
+       ["Content Creator","0"],
+       ["Restaurant","0"],
+       ["Cafeteria","0"],
+       ["Grocery_store","0"],
+       ["Wholesaler","0"],
+       ["Bakery","0"],
+       ["Food_producer","0"],
+       ["Beverage_manufacturer","0"],
+       ["Food_truck","0"],
+       ["Hotel","0"]
    ]
     var arrContent                                    = [["Asmr", "0"],
                                                         ["Family and friends", "0"],
@@ -230,6 +244,7 @@ final class UserManager {
     
     //MARK: - DATA for Firestore
      var selectedContent           : [String]          = []
+     var selectedFeedAccnt         : [String]          = []
      var selectedCuisine           : [String]          = []
      var selectedEnviorment        : [String]          = []
      var selectedFeature           : [String]          = []
