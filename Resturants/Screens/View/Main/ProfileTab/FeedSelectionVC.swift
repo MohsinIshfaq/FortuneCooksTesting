@@ -34,7 +34,8 @@ class FeedSelectionVC: UIViewController , UISearchTextFieldDelegate{
     
     @IBAction func ontapDone(_ sender: UIButton){
         self.dismiss(animated: true)
-        delegate?.collectionData(type: 0)
+        
+        delegate?.collectionData(type: type == 0 ? 0 : 1)
     }
 
 }

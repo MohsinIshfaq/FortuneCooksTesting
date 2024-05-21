@@ -31,10 +31,14 @@ class UpdateProfileVC: UIViewController , TagPeopleDelegate{
     @IBOutlet weak var stackFriday      : UIStackView!
     @IBOutlet weak var stackSaturday    : UIStackView!
     @IBOutlet weak var stackSunday      : UIStackView!
+    @IBOutlet weak var imgProfile       : UIImageView!
+    @IBOutlet weak var imgBig           : UIImageView!
     
     //MARK: - Variables and Properties
     let placeholder                        = "Enter Bio..."
     let placeholderColor                   = UIColor.lightGray
+    var currentImage                       : UIImage!
+    var CurrentTagImg                      : Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +48,11 @@ class UpdateProfileVC: UIViewController , TagPeopleDelegate{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         onAppear()
+    }
+    
+    @IBAction func ontapAddProfileImg(_ sender: UIButton){
+        CurrentTagImg = sender.tag
+        pickImg()
     }
     
     @IBAction func ontapAccnt(_ sender: UIButton){
@@ -179,6 +188,31 @@ extension UpdateProfileVC : UITextViewDelegate{
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
             setupPlaceholder()
+        }
+    }
+}
+
+//MARK: - Protocol Image Picker {}
+extension UpdateProfileVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func pickImg() {
+        let picker = UIImagePickerController()
+        picker.allowsEditing = true
+        picker.delegate = self
+        present(picker, animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[.editedImage] as? UIImage else { return }
+
+        dismiss(animated: true)
+
+        currentImage = image
+        if CurrentTagImg == 0 {
+            imgProfile.image = currentImage
+        }
+        else {
+            imgBig.image     = currentImage
         }
     }
 }

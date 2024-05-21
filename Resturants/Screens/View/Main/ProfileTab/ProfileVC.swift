@@ -33,10 +33,14 @@ class ProfileVC: UIViewController {
     @IBOutlet weak var tblMenu         : UITableView!
     @IBOutlet weak var stackMenu       : UIStackView!
     @IBOutlet weak var tblMenuHeightCons : NSLayoutConstraint!
+    @IBOutlet weak var imgProfile       : UIImageView!
+    @IBOutlet weak var imgBig           : UIImageView!
     
     
     //MARK: - Variables and Properties
     var arr: [String]   = ["" , "" , ""]
+    var currentImage    : UIImage!
+    var CurrentTagImg   : Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +52,11 @@ class ProfileVC: UIViewController {
         onAppear()
     }
     
+    @IBAction func ontapAddProfileImg(_ sender: UIButton){
+        CurrentTagImg = sender.tag
+        pickImg()
+    }
+
     @IBAction func ontapMenuDots(_ sender: UIButton){
         let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "AccountActionPopupVC") as! AccountActionPopupVC
         vc.delegate  = self
@@ -324,4 +333,29 @@ extension ProfileVC: AccountReportDelete {
         }
     }
     
+}
+
+//MARK: - Protocol Image Picker {}
+extension ProfileVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func pickImg() {
+        let picker = UIImagePickerController()
+        picker.allowsEditing = true
+        picker.delegate = self
+        present(picker, animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[.editedImage] as? UIImage else { return }
+
+        dismiss(animated: true)
+
+        currentImage = image
+        if CurrentTagImg == 0 {
+            imgProfile.image = currentImage
+        }
+        else {
+            imgBig.image     = currentImage
+        }
+    }
 }

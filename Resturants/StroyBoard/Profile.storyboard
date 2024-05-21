@@ -499,10 +499,13 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kJJ-rn-xRw">
                                                 <rect key="frame" x="329" y="41" width="40" height="40"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LyO-J5-JCe">
+                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LyO-J5-JCe">
                                                         <rect key="frame" x="0.0" y="-14" width="40" height="54"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" image="EditPhoto" title=" "/>
+                                                        <connections>
+                                                            <action selector="ontapAddProfileImg:" destination="UaT-i4-q4Q" eventType="touchUpInside" id="cJS-PI-Sup"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -543,6 +546,9 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
                                                                 <state key="normal" title="Button"/>
                                                                 <buttonConfiguration key="configuration" style="plain" image="EditPhoto" title=" "/>
+                                                                <connections>
+                                                                    <action selector="ontapAddProfileImg:" destination="UaT-i4-q4Q" eventType="touchUpInside" id="fjb-k8-1LC"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2240,6 +2246,8 @@
                     <navigationItem key="navigationItem" id="g2X-YK-yYR"/>
                     <connections>
                         <outlet property="collectTagPeople" destination="7ar-Kn-mkb" id="PVe-4N-Aaf"/>
+                        <outlet property="imgBig" destination="jJU-Uy-9fQ" id="7bb-6f-l1X"/>
+                        <outlet property="imgProfile" destination="TfP-8N-Y1Q" id="uj4-zK-YCp"/>
                         <outlet property="stackFriday" destination="eSP-Jj-DBS" id="oSQ-yc-Qjj"/>
                         <outlet property="stackMonday" destination="vRD-rO-gOg" id="BV2-Ze-cre"/>
                         <outlet property="stackSaturday" destination="sHh-9Y-Zbe" id="co6-Dz-qOL"/>
@@ -2298,7 +2306,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Ohy-uu-fGr">
-                                                <rect key="frame" x="16" y="127.66666666666663" width="361" height="720"/>
+                                                <rect key="frame" x="16" y="127.66666666666663" width="361" height="740"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="OJ2-ZO-yS2">
                                                         <rect key="frame" x="0.0" y="0.0" width="361" height="158"/>
@@ -2461,7 +2469,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="CqC-kD-wLn">
-                                                        <rect key="frame" x="0.0" y="348" width="361" height="128"/>
+                                                        <rect key="frame" x="0.0" y="348" width="361" height="148"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Language" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FZH-lf-YDg" userLabel="Tag People">
                                                                 <rect key="frame" x="0.0" y="0.0" width="361" height="17"/>
@@ -2484,20 +2492,13 @@
                                                                             </userDefinedRuntimeAttribute>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </textField>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rIQ-Ny-T4R">
-                                                                        <rect key="frame" x="328" y="2" width="25" height="51"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="width" constant="25" id="NC2-hO-2IK"/>
-                                                                        </constraints>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rIQ-Ny-T4R">
+                                                                        <rect key="frame" x="12" y="2" width="341" height="51"/>
                                                                         <color key="tintColor" name="ColorWhite"/>
                                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                         <state key="normal" image="chevron.down" catalog="system"/>
-                                                                    </button>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kqd-Qv-IHI">
-                                                                        <rect key="frame" x="325" y="0.0" width="30" height="55"/>
-                                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                         <connections>
-                                                                            <action selector="ontapTagPeople:" destination="UaT-i4-q4Q" eventType="touchUpInside" id="LKe-xH-Jch"/>
+                                                                            <action selector="ontapLangs:" destination="W9f-1p-cgR" eventType="touchUpInside" id="q7v-cO-DcG"/>
                                                                         </connections>
                                                                     </button>
                                                                 </subviews>
@@ -2505,14 +2506,12 @@
                                                                 <constraints>
                                                                     <constraint firstAttribute="trailing" secondItem="rIQ-Ny-T4R" secondAttribute="trailing" constant="8" id="9Zj-y7-XrT"/>
                                                                     <constraint firstItem="rIQ-Ny-T4R" firstAttribute="top" secondItem="zvM-Hj-SBd" secondAttribute="top" constant="2" id="FG1-n6-ZRG"/>
-                                                                    <constraint firstAttribute="trailing" secondItem="Kqd-Qv-IHI" secondAttribute="trailing" constant="6" id="GTi-Rq-fxw"/>
                                                                     <constraint firstAttribute="bottom" secondItem="rIQ-Ny-T4R" secondAttribute="bottom" constant="2" id="I5t-uR-P8o"/>
                                                                     <constraint firstItem="rIQ-Ny-T4R" firstAttribute="centerY" secondItem="zvM-Hj-SBd" secondAttribute="centerY" id="M1Z-jk-2gh"/>
-                                                                    <constraint firstAttribute="bottom" secondItem="Kqd-Qv-IHI" secondAttribute="bottom" id="Q0j-bz-kEf"/>
                                                                     <constraint firstItem="l35-yJ-SGT" firstAttribute="top" secondItem="zvM-Hj-SBd" secondAttribute="top" id="Qen-Wl-Swv"/>
                                                                     <constraint firstAttribute="height" constant="55" id="VWq-aq-xO4"/>
+                                                                    <constraint firstItem="rIQ-Ny-T4R" firstAttribute="leading" secondItem="zvM-Hj-SBd" secondAttribute="leading" constant="12" id="jqS-xT-6sg"/>
                                                                     <constraint firstAttribute="trailing" secondItem="l35-yJ-SGT" secondAttribute="trailing" constant="36" id="mlK-HK-qD3"/>
-                                                                    <constraint firstItem="Kqd-Qv-IHI" firstAttribute="top" secondItem="zvM-Hj-SBd" secondAttribute="top" id="vhb-2b-aZ2"/>
                                                                     <constraint firstItem="l35-yJ-SGT" firstAttribute="leading" secondItem="zvM-Hj-SBd" secondAttribute="leading" constant="24" id="xPX-HF-fi3"/>
                                                                     <constraint firstAttribute="bottom" secondItem="l35-yJ-SGT" secondAttribute="bottom" id="y1l-iD-6IY"/>
                                                                 </constraints>
@@ -2529,10 +2528,10 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
                                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="GAp-QE-pzh">
-                                                                <rect key="frame" x="0.0" y="88" width="361" height="40"/>
+                                                                <rect key="frame" x="0.0" y="88" width="361" height="60"/>
                                                                 <color key="backgroundColor" name="ColorBlack"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" constant="40" id="WVF-tF-sBi"/>
+                                                                    <constraint firstAttribute="height" constant="60" id="WVF-tF-sBi"/>
                                                                 </constraints>
                                                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="u6y-cF-jSC">
                                                                     <size key="itemSize" width="128" height="128"/>
@@ -2545,7 +2544,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="xkr-my-ZZO">
-                                                        <rect key="frame" x="0.0" y="492" width="361" height="157"/>
+                                                        <rect key="frame" x="0.0" y="512" width="361" height="157"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="qYT-aH-0nV">
                                                                 <rect key="frame" x="0.0" y="0.0" width="361" height="34"/>
@@ -2576,10 +2575,13 @@
                                                                                     </userDefinedRuntimeAttribute>
                                                                                 </userDefinedRuntimeAttributes>
                                                                             </textField>
-                                                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nwt-Ok-qN9">
+                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nwt-Ok-qN9">
                                                                                 <rect key="frame" x="313" y="2" width="42" height="51"/>
                                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                                 <state key="normal" title="Add"/>
+                                                                                <connections>
+                                                                                    <action selector="ontapAddHastag:" destination="W9f-1p-cgR" eventType="touchUpInside" id="PWu-hk-2h6"/>
+                                                                                </connections>
                                                                             </button>
                                                                         </subviews>
                                                                         <color key="backgroundColor" name="ColorBlack"/>
@@ -2625,7 +2627,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SpU-CX-RVa">
-                                                        <rect key="frame" x="0.0" y="665" width="361" height="55"/>
+                                                        <rect key="frame" x="0.0" y="685" width="361" height="55"/>
                                                         <color key="backgroundColor" name="ColorWhite"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="55" id="KFh-9n-dA4"/>
@@ -2686,9 +2688,14 @@
                         <outlet property="CollectAccntType" destination="yPm-T9-i4Q" id="lfL-jQ-XHr"/>
                         <outlet property="CollectContent" destination="l8O-ON-QGB" id="8IL-IX-2Xu"/>
                         <outlet property="btnAccntType" destination="cga-jd-EXK" id="gug-63-5Ms"/>
+                        <outlet property="btnAddHastag" destination="nwt-Ok-qN9" id="h6V-Ai-FMG"/>
                         <outlet property="btnContent" destination="Rr8-AQ-uyR" id="FtX-dA-pnm"/>
                         <outlet property="btnTopAccntType" destination="oHr-2C-zQf" id="cRk-XU-cVn"/>
                         <outlet property="btnTopContent" destination="MLS-cB-EfZ" id="4g4-be-WPd"/>
+                        <outlet property="collectHastag" destination="HMg-wC-xvN" id="1fB-qD-xQr"/>
+                        <outlet property="collectLangs" destination="GAp-QE-pzh" id="aEl-bg-ca7"/>
+                        <outlet property="txtHastag" destination="Bp9-Qs-oGP" id="dFc-6i-6YX"/>
+                        <outlet property="txtLang" destination="l35-yJ-SGT" id="mTS-ef-3jb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Lu-DS-MSn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -4719,10 +4726,13 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qGR-G0-O5H">
                                                         <rect key="frame" x="40" y="0.0" width="40" height="40"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vm5-rt-sjV">
+                                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vm5-rt-sjV">
                                                                 <rect key="frame" x="0.0" y="-14" width="40" height="54"/>
                                                                 <state key="normal" title="Button"/>
                                                                 <buttonConfiguration key="configuration" style="plain" image="EditPhoto" title=" "/>
+                                                                <connections>
+                                                                    <action selector="ontapAddProfileImg:" destination="ADG-6d-fWP" eventType="touchUpInside" id="xc4-Bd-S3j"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -4765,6 +4775,9 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
                                                                 <state key="normal" title="Button"/>
                                                                 <buttonConfiguration key="configuration" style="plain" image="EditPhoto" title=" "/>
+                                                                <connections>
+                                                                    <action selector="ontapAddProfileImg:" destination="ADG-6d-fWP" eventType="touchUpInside" id="GZ6-gI-TdH"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -5911,6 +5924,8 @@
                         <outlet property="collectSwift" destination="1Jr-CT-ECg" id="sBc-2n-h3F"/>
                         <outlet property="collectSwiftColl" destination="MxZ-pC-PjL" id="2oZ-wr-nC3"/>
                         <outlet property="collectSwiftHeightCons" destination="WLe-zc-8by" id="lXm-vg-VqG"/>
+                        <outlet property="imgBig" destination="0ap-gT-xZQ" id="CDK-gY-UMq"/>
+                        <outlet property="imgProfile" destination="OYY-Ez-pMv" id="tBK-OC-2hO"/>
                         <outlet property="stackCollection" destination="JaX-xQ-pHa" id="rPi-DW-5L7"/>
                         <outlet property="stackMenu" destination="jTf-db-gW1" id="zQk-gT-Cle"/>
                         <outlet property="stackMore" destination="d5J-98-0py" id="YZp-ET-P4c"/>
@@ -7808,9 +7823,6 @@ Only tap the link if you trust it's safe!</string>
                                         <state key="normal" image="multiply" catalog="system">
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="20" scale="large" weight="semibold"/>
                                         </state>
-                                        <connections>
-                                            <action selector="ontapDismiss:" destination="L26-9R-EbW" eventType="touchUpInside" id="jRI-Di-4TD"/>
-                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1hh-lJ-df0">
                                         <rect key="frame" x="24" y="535" width="345" height="55"/>
