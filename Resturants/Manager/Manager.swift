@@ -295,6 +295,7 @@ final class UserManager {
         ["CILinearToSRGBToneCurve", 0],
         ["CISRGBToneCurveToLinear", 0],
     ]
+    
 }
 
 

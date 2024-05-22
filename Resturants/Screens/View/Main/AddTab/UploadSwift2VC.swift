@@ -29,8 +29,8 @@ class UploadSwift2VC: UIViewController {
     @IBOutlet weak var imgChicken    : UIImageView!
     
     //MARK: - Variables and Properties
-    var uploadTask: StorageUploadTask?
-    
+    var uploadTask          : StorageUploadTask?
+    var UploadVideoModel    : [String: Any] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,6 +84,7 @@ class UploadSwift2VC: UIViewController {
     
     @IBAction func ontapPublishVideo(_ sender: UIButton){
         let vc = Constants.addStoryBoard.instantiateViewController(withIdentifier: "UploadingVC") as! UploadingVC
+        vc.UploadVideoModel = UploadVideoModel
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

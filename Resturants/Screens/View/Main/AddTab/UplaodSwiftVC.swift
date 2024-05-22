@@ -9,6 +9,7 @@ import UIKit
 import MobileCoreServices
 import AVFoundation
 import AVKit
+import FirebaseStorage
 protocol ReloadDelegate {
     func reload(img : UIImage?)
 }
@@ -30,6 +31,11 @@ class UplaodSwiftVC: UIViewController , ReloadDelegate , UITextViewDelegate , cr
     }
     func reload(img: UIImage?) {
         imgThumbnail.image = img
+        guard let image = imgThumbnail.image else {
+            print("Error: imgThumbnail.image is nil")
+            return
+        }
+        self.uplaodThumbnail(image)
     }
     
     //MARK: - IBOUtlets
@@ -58,6 +64,22 @@ class UplaodSwiftVC: UIViewController , ReloadDelegate , UITextViewDelegate , cr
     let placeholderColor                   = UIColor.lightGray
     var arrSelectedContent  : [String]     = []
     var arrHastag           : [String]     = []
+    var thumbnailURL        : URL?         = nil
+    let storage = Storage.storage().reference()
+    
+    lazy var UploadVideoModel              : [String: Any] =  {
+        return ["address": txtAddress.text! as String  ,
+                "Zipcode": txtZipCode.text! as String  ,
+                "city"   : txtCity.text! as String     ,
+                "hashTagsModelList": arrHastag         ,
+                "Title":   txtTitle.text! as String    ,
+                "description": txtView.text! as String ,
+                "categories": arrSelectedContent       ,
+                "language": txtLang.text! as String    ,
+                "ThumbnailUrl": thumbnailURL           ,
+                "videoUrl"    : ""]
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -130,8 +152,10 @@ class UplaodSwiftVC: UIViewController , ReloadDelegate , UITextViewDelegate , cr
     
     @IBAction func ontapNext(_ sender: UIButton){
         
-        let vc = Constants.addStoryBoard.instantiateViewController(withIdentifier: "UploadSwift2VC") as! UploadSwift2VC
-        self.navigationController?.pushViewController(vc, animated: true)
+            let vc = Constants.addStoryBoard.instantiateViewController(withIdentifier: "UploadSwift2VC") as! UploadSwift2VC
+            vc.UploadVideoModel = self.UploadVideoModel
+            print(UploadVideoModel)
+            self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 
@@ -201,9 +225,7 @@ extension UplaodSwiftVC {
 }
 
 extension UplaodSwiftVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
 }
-
 //MARK: - Collection View Setup {}
 extension UplaodSwiftVC: UICollectionViewDelegate , UICollectionViewDataSource {
     
@@ -266,6 +288,36 @@ extension UplaodSwiftVC: UICollectionViewDelegate , UICollectionViewDataSource {
             cell.btn.addTarget(self, action:#selector(onTapHastag(sender:)), for: .touchUpInside)
             cell.btn.tag   = indexPath.row
             return cell
+        }
+    }
+}
+
+//MARK: - Uplaod Thumbnail {}
+extension UplaodSwiftVC {
+    
+    func uplaodThumbnail(_ img: UIImage) {
+        self.startAnimating()
+        let storageRef = Storage.storage().reference().child("MyImg.png")
+        let imgData = img.pngData()
+        let metadata = StorageMetadata()
+        metadata.contentType = "image/png"
+        storageRef.putData(imgData!,metadata: metadata) { metadata, error in
+            self.stopAnimating()
+            if error == nil {
+                let storage = Storage.storage().reference(withPath: "MyImg.png")
+                storage.downloadURL { (url, error) in
+                    if error != nil {
+                        self.stopAnimating()
+                        print((error?.localizedDescription)!)
+                        return
+                    }
+                    self.stopAnimating()
+                    print("Download success")
+                    //url = your will get an image URL
+                    var DownlodedURL  = url!
+                    self.thumbnailURL = DownlodedURL
+                }
+            }
         }
     }
 }

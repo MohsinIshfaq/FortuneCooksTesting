@@ -25,12 +25,19 @@ class UpdateProfileVC: UIViewController , TagPeopleDelegate{
     @IBOutlet weak var txtAccntType     : UITextField!
     
     @IBOutlet weak var stackMonday      : UIStackView!
+    @IBOutlet weak var lblMonday        : UILabel!
     @IBOutlet weak var stackTuesday     : UIStackView!
+    @IBOutlet weak var lblTuesday       : UILabel!
     @IBOutlet weak var stackWednesday   : UIStackView!
+    @IBOutlet weak var lblWednesday     : UILabel!
     @IBOutlet weak var stackThursday    : UIStackView!
+    @IBOutlet weak var lblThursday      : UILabel!
     @IBOutlet weak var stackFriday      : UIStackView!
+    @IBOutlet weak var lblFriday        : UILabel!
     @IBOutlet weak var stackSaturday    : UIStackView!
+    @IBOutlet weak var lblSaturday      : UILabel!
     @IBOutlet weak var stackSunday      : UIStackView!
+    @IBOutlet weak var lblSunday        : UILabel!
     @IBOutlet weak var imgProfile       : UIImageView!
     @IBOutlet weak var imgBig           : UIImageView!
     
@@ -39,6 +46,7 @@ class UpdateProfileVC: UIViewController , TagPeopleDelegate{
     let placeholderColor                   = UIColor.lightGray
     var currentImage                       : UIImage!
     var CurrentTagImg                      : Int?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,24 +79,31 @@ class UpdateProfileVC: UIViewController , TagPeopleDelegate{
         
         switch sender.tag {
         case 0:
+            lblMonday.isHidden   = sender.isOn
             stackMonday.isHidden = switchStack(sender: sender.isOn)
             break
         case 1:
+            lblTuesday.isHidden   = sender.isOn
             stackTuesday.isHidden = switchStack(sender: sender.isOn)
             break
         case 2:
+            lblWednesday.isHidden   = sender.isOn
             stackWednesday.isHidden = switchStack(sender: sender.isOn)
             break
         case 3:
+            lblThursday.isHidden   = sender.isOn
             stackThursday.isHidden = switchStack(sender: sender.isOn)
             break
         case 4: 
+            lblFriday.isHidden   = sender.isOn
             stackFriday.isHidden = switchStack(sender: sender.isOn)
             break
         case 5: 
+            lblSaturday.isHidden   = sender.isOn
             stackSaturday.isHidden = switchStack(sender: sender.isOn)
             break
         case 6:
+            lblSunday.isHidden   = sender.isOn
             stackSunday.isHidden = switchStack(sender: sender.isOn)
             break
         default: break

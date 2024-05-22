@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseStorage
+import FirebaseFirestoreInternal
 
 class UploadingVC: UIViewController {
 
@@ -16,6 +17,8 @@ class UploadingVC: UIViewController {
     
     //MARK: - Variables and Properties
     var backgroundTask: UIBackgroundTaskIdentifier = .invalid
+    var UploadVideoModel    : [String: Any] = [:]
+    var db = Firestore.firestore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,6 +73,8 @@ class UploadingVC: UIViewController {
                 videoRef.downloadURL { url, error in
                     if error == nil {
                         //WE WILL GOT VIDEO FROM THIS URL
+                        self.UploadVideoModel["videoUrl"] = url
+                        self.uploadDataToFirestore()
                     }
                     else{
                         self.showToast(message: error?.localizedDescription ?? "", seconds: 2, clr: .red)
@@ -97,4 +102,25 @@ class UploadingVC: UIViewController {
         }
     }
 
+    func uploadDataToFirestore() {
+        self.startAnimating()
+        let userToken = UserDefaults.standard.string(forKey: "token") ?? "defaultToken"
+        let videosCollectionRef = db.collection("Videos").document(userToken).collection("VideosData")
+        
+        let newDocumentRef = videosCollectionRef.addDocument(data:
+        UploadVideoModel
+        ) { error in
+            self.stopAnimating()
+            if let error = error {
+                print("Error writing document: \(error)")
+                self.showToast(message: error.localizedDescription, seconds: 2, clr: .red)
+            } else {
+                print("Document successfully written!")
+                let vc = Constants.TabControllerStoryBoard.instantiateViewController(withIdentifier: "TabbarController") as? TabbarController
+                self.navigationController?.pushViewController(vc!, animated: true)
+            }
+        }
+
+    }
 }
+
