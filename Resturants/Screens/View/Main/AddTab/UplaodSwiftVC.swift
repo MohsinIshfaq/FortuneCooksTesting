@@ -76,7 +76,7 @@ class UplaodSwiftVC: UIViewController , ReloadDelegate , UITextViewDelegate , cr
                 "description": txtView.text! as String ,
                 "categories": arrSelectedContent       ,
                 "language": txtLang.text! as String    ,
-                "ThumbnailUrl": thumbnailURL           ,
+                "ThumbnailUrl": "\(thumbnailURL)"      ,
                 "videoUrl"    : ""]
     }()
     
