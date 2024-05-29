@@ -35,7 +35,9 @@ class UplaodSwiftVC: UIViewController , ReloadDelegate , UITextViewDelegate , cr
             print("Error: imgThumbnail.image is nil")
             return
         }
-        self.uplaodThumbnail(image)
+        DispatchQueue.global(qos: .background).async {
+            self.uplaodThumbnail(image)
+        }
     }
     
     //MARK: - IBOUtlets
@@ -76,7 +78,7 @@ class UplaodSwiftVC: UIViewController , ReloadDelegate , UITextViewDelegate , cr
                 "description": txtView.text! as String ,
                 "categories": arrSelectedContent       ,
                 "language": txtLang.text! as String    ,
-                "ThumbnailUrl": "\(thumbnailURL)"      ,
+                "ThumbnailUrl": "\(thumbnailURL!)"      ,
                 "videoUrl"    : ""]
     }()
     
@@ -296,13 +298,13 @@ extension UplaodSwiftVC: UICollectionViewDelegate , UICollectionViewDataSource {
 extension UplaodSwiftVC {
     
     func uplaodThumbnail(_ img: UIImage) {
-        self.startAnimating()
+       // self.startAnimating()
         let storageRef = Storage.storage().reference().child("MyImg.png")
         let imgData = img.pngData()
         let metadata = StorageMetadata()
         metadata.contentType = "image/png"
         storageRef.putData(imgData!,metadata: metadata) { metadata, error in
-            self.stopAnimating()
+          //  self.stopAnimating()
             if error == nil {
                 let storage = Storage.storage().reference(withPath: "MyImg.png")
                 storage.downloadURL { (url, error) in
@@ -311,7 +313,7 @@ extension UplaodSwiftVC {
                         print((error?.localizedDescription)!)
                         return
                     }
-                    self.stopAnimating()
+                  //  self.stopAnimating()
                     print("Download success")
                     //url = your will get an image URL
                     var DownlodedURL  = url!

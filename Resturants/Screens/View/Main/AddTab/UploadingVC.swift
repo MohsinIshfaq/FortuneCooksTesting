@@ -73,7 +73,7 @@ class UploadingVC: UIViewController {
                 videoRef.downloadURL { url, error in
                     if error == nil {
                         //WE WILL GOT VIDEO FROM THIS URL
-                        self.UploadVideoModel["videoUrl"] = "\(url)"
+                        self.UploadVideoModel["videoUrl"] = "\(url!)"
                         self.uploadDataToFirestore()
                     }
                     else{
@@ -104,10 +104,10 @@ class UploadingVC: UIViewController {
 
     func uploadDataToFirestore() {
         self.startAnimating()
-        let userToken = UserDefaults.standard.string(forKey: "token") ?? "defaultToken"
+        let userToken = UserDefaults.standard.string(forKey: "token") ?? "defaultToken1"
         let videosCollectionRef = db.collection("Videos").document(userToken).collection("VideosData")
-        
         let newDocumentRef = videosCollectionRef.addDocument(data:
+                                                                
         UploadVideoModel
         ) { error in
             self.stopAnimating()
@@ -120,7 +120,6 @@ class UploadingVC: UIViewController {
                 self.navigationController?.pushViewController(vc!, animated: true)
             }
         }
-
     }
 }
 

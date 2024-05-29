@@ -13,6 +13,10 @@ class SwiftCCell: UICollectionViewCell {
     static var identifier: String { return String(describing: self) }
     static var nib: UINib { return UINib(nibName: identifier, bundle: nil) }
     
+    @IBOutlet weak var lblDescrip : UILabel!
+    @IBOutlet weak var lblName    : UILabel!
+    @IBOutlet weak var imgMain    : UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -32,6 +32,11 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="EbU-q3-lZz"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="XPP-nY-EcP">
                                 <rect key="frame" x="2" y="206" width="167" height="55"/>
@@ -87,6 +92,11 @@
                             <constraint firstItem="O3o-ny-BDt" firstAttribute="top" secondItem="GlO-6T-qzZ" secondAttribute="top" id="qar-t2-e5D"/>
                             <constraint firstAttribute="trailing" secondItem="O3o-ny-BDt" secondAttribute="trailing" id="zwj-Nb-Hav"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="6"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
             </view>
@@ -99,6 +109,11 @@
                 <constraint firstItem="GlO-6T-qzZ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="a2A-j6-b77"/>
             </constraints>
             <size key="customSize" width="171" height="267"/>
+            <connections>
+                <outlet property="imgMain" destination="O3o-ny-BDt" id="dkk-dd-zgL"/>
+                <outlet property="lblDescrip" destination="CTY-r8-ImX" id="a9A-TG-Ga2"/>
+                <outlet property="lblName" destination="2uJ-RU-4HP" id="e7R-B9-WDn"/>
+            </connections>
             <point key="canvasLocation" x="-12.977099236641221" y="96.126760563380287"/>
         </collectionViewCell>
     </objects>

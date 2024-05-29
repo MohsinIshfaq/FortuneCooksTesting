@@ -6,41 +6,42 @@
 //
 
 import UIKit
+import FirebaseFirestoreInternal
 
 
 class ProfileVC: UIViewController {
-    
+     
     //MARK: - IBOUtlet
-    @IBOutlet weak var vwVideo         : UIView!
-    @IBOutlet weak var vwSwift         : UIView!
-    @IBOutlet weak var vwCollection    : UIView!
-    @IBOutlet weak var vwMenu          : UIView!
-    
-    @IBOutlet weak var tblVideoHeightCons : NSLayoutConstraint!
-    @IBOutlet weak var tblVIdeos       : UITableView!
-    @IBOutlet weak var stackVideos     : UIStackView!
-    
-    @IBOutlet weak var collectSwiftHeightCons : NSLayoutConstraint!
-    @IBOutlet weak var collectSwift    : UICollectionView!
-    @IBOutlet weak var stackSwift      : UIStackView!
-    @IBOutlet weak var stackCollection : UIStackView!
-    
-    @IBOutlet weak var collectSwiftColl: UICollectionView!
-    @IBOutlet weak var tblVIdeosColl   : UITableView!
+    @IBOutlet weak var vwVideo                 : UIView!
+    @IBOutlet weak var vwSwift                 : UIView!
+    @IBOutlet weak var vwCollection            : UIView!
+    @IBOutlet weak var vwMenu                  : UIView!
+    @IBOutlet weak var tblVideoHeightCons      : NSLayoutConstraint!
+    @IBOutlet weak var tblVIdeos               : UITableView!
+    @IBOutlet weak var stackVideos             : UIStackView!
+    @IBOutlet weak var collectSwiftHeightCons  : NSLayoutConstraint!
+    @IBOutlet weak var collectSwift            : UICollectionView!
+    @IBOutlet weak var stackSwift              : UIStackView!
+    @IBOutlet weak var stackCollection         : UIStackView!
+    @IBOutlet weak var collectSwiftColl        : UICollectionView!
+    @IBOutlet weak var tblVIdeosColl           : UITableView!
     @IBOutlet weak var tblVideosCollHeightCons : NSLayoutConstraint!
-    
-    @IBOutlet weak var stackMore       : UIStackView!
-    @IBOutlet weak var tblMenu         : UITableView!
-    @IBOutlet weak var stackMenu       : UIStackView!
-    @IBOutlet weak var tblMenuHeightCons : NSLayoutConstraint!
-    @IBOutlet weak var imgProfile       : UIImageView!
-    @IBOutlet weak var imgBig           : UIImageView!
+    @IBOutlet weak var stackMore               : UIStackView!
+    @IBOutlet weak var tblMenu                 : UITableView!
+    @IBOutlet weak var stackMenu               : UIStackView!
+    @IBOutlet weak var tblMenuHeightCons       : NSLayoutConstraint!
+    @IBOutlet weak var imgProfile              : UIImageView!
+    @IBOutlet weak var imgBig                  : UIImageView!
     
     
     //MARK: - Variables and Properties
     var arr: [String]   = ["" , "" , ""]
     var currentImage    : UIImage!
     var CurrentTagImg   : Int?
+    var db = Firestore.firestore()
+    var responseModel   : [ProfileVideosModel]? = []
+    let itemsPerColumn  : Int = 2
+    let itemHeight      : CGFloat = 250.0 // Example item height
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,7 +57,6 @@ class ProfileVC: UIViewController {
         CurrentTagImg = sender.tag
         pickImg()
     }
-
     @IBAction func ontapMenuDots(_ sender: UIButton){
         let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "AccountActionPopupVC") as! AccountActionPopupVC
         vc.delegate  = self
@@ -67,26 +67,22 @@ class ProfileVC: UIViewController {
         let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "OtherLocVC") as! OtherLocVC
         self.present(vc, animated: true)
     }
-    
     @IBAction func ontapSetting(_ sender: UIButton) {
         let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "SettingsVC") as! SettingsVC
         vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
     @IBAction func ontappFollowers(_ sender: UIButton) {
         let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "FollowersVC") as! FollowersVC
         vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
     @IBAction func ontapTagPeople(_ sender: UIButton) {
         
         let vc = Constants.addStoryBoard.instantiateViewController(withIdentifier: "TagPeopleVC") as? TagPeopleVC
         vc?.showTagUsers = true
         self.present(vc!, animated: true)
     }
-    
     @IBAction func ontapTabPressed(_ sender: UIButton){
         if sender.tag      == 0 {
             vwVideo.isHidden         = false
@@ -129,7 +125,6 @@ class ProfileVC: UIViewController {
             stackMenu.isHidden       = false
         }
     }
-    
     @IBAction func ontapSeeMore(_ sender: UIButton){
         if stackMore.isHidden == true {
             stackMore.isHidden = false
@@ -145,6 +140,7 @@ extension ProfileVC {
    
     func onload() {
         setupView()
+        fetchDataFromFirestore()
     }
     
     func setupView() {
@@ -183,6 +179,13 @@ extension ProfileVC {
         vwMenu.isHidden          = true
         stackVideos.isHidden     = false
         stackMenu.isHidden       = true
+    }
+    
+    func updateCollectionViewHeight() {
+        let numberOfItems = responseModel?.count ?? 0
+        let numberOfRows = ceil(Double(numberOfItems) / Double(itemsPerColumn))
+        let newHeight = numberOfRows * Double(itemHeight)
+        collectSwiftHeightCons.constant = CGFloat(newHeight)
     }
 }
 
@@ -290,8 +293,9 @@ extension ProfileVC : UITableViewDelegate , UITableViewDataSource {
 extension ProfileVC : UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == collectSwift {
-            collectSwiftHeightCons.constant = 250 * 3
-            return 6
+            //collectSwiftHeightCons.constant = 250 * 3
+            updateCollectionViewHeight()
+            return responseModel?.count ?? 0
         }
         else{
            return 3
@@ -301,7 +305,15 @@ extension ProfileVC : UICollectionViewDelegate , UICollectionViewDataSource , UI
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == collectSwift {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SwiftCCell.identifier, for: indexPath) as! SwiftCCell
-            // let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NoPostCCell.identifier, for: indexPath) as! NoPostCCell
+            cell.lblDescrip.text = responseModel?[indexPath.row].description ?? ""
+            cell.lblName.text    = responseModel?[indexPath.row].Title ?? ""
+            DispatchQueue.main.async {
+                guard let url = self.responseModel?[indexPath.row].ThumbnailUrl else {
+                    return
+                }
+                let url1 = URL(string: url)!
+                cell.imgMain?.sd_setImage(with: url1)
+            }
             return cell
         }
         else{
@@ -312,6 +324,12 @@ extension ProfileVC : UICollectionViewDelegate , UICollectionViewDataSource , UI
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == collectSwift {
+            
+            let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "SwiftVC") as? SwiftVC
+            vc?.responseModel = self.responseModel
+            self.navigationController?.pushViewController(vc!, animated: true)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -347,15 +365,49 @@ extension ProfileVC: UIImagePickerControllerDelegate, UINavigationControllerDele
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let image = info[.editedImage] as? UIImage else { return }
-
         dismiss(animated: true)
-
         currentImage = image
         if CurrentTagImg == 0 {
             imgProfile.image = currentImage
         }
         else {
             imgBig.image     = currentImage
+        }
+    }
+}
+
+//MARK: - Get Videos {}
+extension ProfileVC {
+    
+    func fetchDataFromFirestore() {
+    
+        self.startAnimating()
+        let userToken = UserDefaults.standard.string(forKey: "token") ?? "defaultToken1"
+        let videosCollectionRef = db.collection("Videos").document(userToken).collection("VideosData")
+        
+        videosCollectionRef.addSnapshotListener { querysnap, error in
+            self.stopAnimating()
+            guard let document = querysnap?.documents else {
+                print("no document")
+                return
+            }
+            self.responseModel = document.map  { (QueryDocumentSnapshot) -> ProfileVideosModel in
+                
+                let data         =  QueryDocumentSnapshot.data()
+                let address      = data["address"] as? String ?? ""
+                let ZipCode      = data["Zipcode"] as? String ?? ""
+                let city         = data["city"] as? String ?? ""
+                let hashTagsList = data["hashTagsModelList"] as? [String] ?? []
+                let Title        = data["Title"] as? String ?? ""
+                let description  = data["description"] as? String ?? ""
+                let language     = data["language"] as? String ?? ""
+                let ThumbnailUrl = data["ThumbnailUrl"] as? String ?? ""
+                let videoUrl     = data["videoUrl"] as? String ?? ""
+                
+                return ProfileVideosModel(address: address, Zipcode: ZipCode, city: city, hashTagsModelList: hashTagsList, Title: Title, description: description, language: language, ThumbnailUrl: ThumbnailUrl, videoUrl: videoUrl)
+            }
+            print(self.responseModel)
+            self.collectSwift.reloadData()
         }
     }
 }

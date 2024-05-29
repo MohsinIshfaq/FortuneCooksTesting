@@ -13,6 +13,11 @@ target 'Resturants' do
     pod 'FirebaseFirestore'
     pod 'CountryPickerView'
     pod 'Firebase/Storage'
+    
+    
+    pod 'IGListKit', '~> 4.0.0'
+    pod 'CachingPlayerItem'
+    pod 'MediaWatermark'
 
     
 

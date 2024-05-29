@@ -17,6 +17,9 @@
             <string>Inter-Regular_Medium</string>
             <string>Inter-Regular_SemiBold</string>
         </array>
+        <array key="PlusJakartaDisplay-Regular.otf">
+            <string>PlusJakartaDisplay-Regular</string>
+        </array>
     </customFonts>
     <scenes>
         <!--SettingsVC-->
@@ -7955,6 +7958,81 @@ Only tap the link if you trust it's safe!</string>
             </objects>
             <point key="canvasLocation" x="3405" y="25"/>
         </scene>
+        <!--SwiftVC-->
+        <scene sceneID="4Ux-tP-rqB">
+            <objects>
+                <viewController storyboardIdentifier="SwiftVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="nrR-eW-UKR" customClass="SwiftVC" customModule="Resturants" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8l8-K9-glZ">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Videos Found!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rl6-gL-2CS">
+                                <rect key="frame" x="128.66666666666666" y="416" width="135.99999999999997" height="20"/>
+                                <fontDescription key="fontDescription" name="PlusJakartaDisplay-Regular" family="Plus Jakarta Display" pointSize="17"/>
+                                <color key="textColor" name="BgColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="t3A-BB-Nto">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <color key="backgroundColor" name="ButtonsTextColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="nBM-BD-MKy">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                            <view alpha="0.60000002384185791" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DZ1-Gu-RrL">
+                                <rect key="frame" x="0.0" y="817" width="393" height="1"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="JEi-we-epf"/>
+                                </constraints>
+                            </view>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8EH-oW-iom">
+                                <rect key="frame" x="30" y="71" width="24" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="8EH-oW-iom" secondAttribute="height" id="N9O-QT-wex"/>
+                                    <constraint firstAttribute="height" constant="24" id="RrK-A6-QWa"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="xmark" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="20" scale="large" weight="bold"/>
+                                </state>
+                                <connections>
+                                    <action selector="onTapCancel:" destination="nrR-eW-UKR" eventType="touchUpInside" id="Bka-Vh-xgy"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Z94-nk-P0s"/>
+                        <color key="backgroundColor" name="ButtonsTextColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="DZ1-Gu-RrL" secondAttribute="trailing" id="8lI-0c-jv3"/>
+                            <constraint firstItem="8EH-oW-iom" firstAttribute="leading" secondItem="Z94-nk-P0s" secondAttribute="leading" constant="30" id="8ta-Xo-fHA"/>
+                            <constraint firstItem="Z94-nk-P0s" firstAttribute="trailing" secondItem="t3A-BB-Nto" secondAttribute="trailing" id="9Mo-tH-S57"/>
+                            <constraint firstItem="DZ1-Gu-RrL" firstAttribute="leading" secondItem="Z94-nk-P0s" secondAttribute="leading" id="KjH-ya-h2l"/>
+                            <constraint firstItem="t3A-BB-Nto" firstAttribute="top" secondItem="8l8-K9-glZ" secondAttribute="top" id="YFu-z1-T1a"/>
+                            <constraint firstItem="t3A-BB-Nto" firstAttribute="leading" secondItem="Z94-nk-P0s" secondAttribute="leading" id="at1-qj-2v6"/>
+                            <constraint firstItem="rl6-gL-2CS" firstAttribute="centerY" secondItem="8l8-K9-glZ" secondAttribute="centerY" id="bgl-hw-hrT"/>
+                            <constraint firstItem="8EH-oW-iom" firstAttribute="top" secondItem="Z94-nk-P0s" secondAttribute="top" constant="12" id="jOp-bM-huQ"/>
+                            <constraint firstItem="Z94-nk-P0s" firstAttribute="bottom" secondItem="DZ1-Gu-RrL" secondAttribute="bottom" id="oFJ-cu-4cb"/>
+                            <constraint firstAttribute="bottom" secondItem="t3A-BB-Nto" secondAttribute="bottom" id="taW-CZ-I4V"/>
+                            <constraint firstItem="rl6-gL-2CS" firstAttribute="centerX" secondItem="8l8-K9-glZ" secondAttribute="centerX" id="udc-ck-Kpm"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="qye-zK-x4H"/>
+                    <connections>
+                        <outlet property="btnCancel" destination="8EH-oW-iom" id="Yys-hF-7CP"/>
+                        <outlet property="cvVideos" destination="t3A-BB-Nto" id="V6a-OC-Mgu"/>
+                        <outlet property="lblNoData" destination="rl6-gL-2CS" id="WMU-4V-rfX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yaq-1P-XdB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="689" y="1343"/>
+        </scene>
     </scenes>
     <resources>
         <image name="3dots" width="26.333333969116211" height="16.333333969116211"/>
@@ -7976,8 +8054,15 @@ Only tap the link if you trust it's safe!</string>
         <image name="star.fill" catalog="system" width="128" height="116"/>
         <image name="user" width="24" height="24"/>
         <image name="user-block" width="24" height="24"/>
+        <image name="xmark" catalog="system" width="128" height="113"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="BgColor">
+            <color red="0.32899999618530273" green="0.32400000095367432" blue="0.4779999852180481" alpha="0.33000001311302185" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ButtonsTextColor">
+            <color red="0.32899999618530273" green="0.32400000095367432" blue="0.4779999852180481" alpha="0.33000001311302185" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="ColorBlack">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -8001,13 +8086,13 @@ Only tap the link if you trust it's safe!</string>
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tintColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
