@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -26,7 +26,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hRy-Ep-afj">
                         <rect key="frame" x="0.0" y="0.0" width="364" height="83"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Video 1" translatesAutoresizingMaskIntoConstraints="NO" id="9Jv-Nx-zpg">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Video 1" translatesAutoresizingMaskIntoConstraints="NO" id="9Jv-Nx-zpg">
                                 <rect key="frame" x="16" y="6" width="120" height="71"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="120" id="XI1-pv-1xd"/>
@@ -37,23 +37,23 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="S2T-73-I8P">
-                                <rect key="frame" x="142" y="8" width="216" height="67"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="S2T-73-I8P">
+                                <rect key="frame" x="142" y="9" width="216" height="65.333333333333314"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Does Swedan have *These Best * Snacks?!  - This with them" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RBA-kv-DtG">
-                                        <rect key="frame" x="0.0" y="0.0" width="216" height="21"/>
-                                        <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="11"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Does Swedan have *These Best * Snacks?!  - This with them" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RBA-kv-DtG">
+                                        <rect key="frame" x="0.0" y="0.0" width="216" height="28.666666666666668"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                                         <color key="textColor" name="ColorWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="21 march 2023 / 35 views" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xAM-jo-FoB">
-                                        <rect key="frame" x="0.0" y="23" width="216" height="21"/>
+                                        <rect key="frame" x="0.0" y="34.666666666666664" width="216" height="12.333333333333336"/>
                                         <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="10"/>
                                         <color key="textColor" name="ColorLightGray"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amin Kitchen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PM5-Si-hdr">
-                                        <rect key="frame" x="0.0" y="46" width="216" height="21"/>
+                                        <rect key="frame" x="0.0" y="53" width="216" height="12.333333333333329"/>
                                         <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="10"/>
                                         <color key="textColor" name="ColorLightGray"/>
                                         <nil key="highlightedColor"/>
@@ -65,10 +65,9 @@
                         <constraints>
                             <constraint firstItem="9Jv-Nx-zpg" firstAttribute="leading" secondItem="hRy-Ep-afj" secondAttribute="leading" constant="16" id="3es-oP-a9o"/>
                             <constraint firstAttribute="trailing" secondItem="S2T-73-I8P" secondAttribute="trailing" constant="6" id="5qt-EF-fIN"/>
-                            <constraint firstAttribute="bottom" secondItem="S2T-73-I8P" secondAttribute="bottom" constant="8" id="7df-WO-YgG"/>
                             <constraint firstItem="9Jv-Nx-zpg" firstAttribute="top" secondItem="hRy-Ep-afj" secondAttribute="top" constant="6" id="GcU-9V-1i8"/>
                             <constraint firstItem="S2T-73-I8P" firstAttribute="leading" secondItem="9Jv-Nx-zpg" secondAttribute="trailing" constant="6" id="PYT-65-jrx"/>
-                            <constraint firstItem="S2T-73-I8P" firstAttribute="top" secondItem="hRy-Ep-afj" secondAttribute="top" constant="8" id="VJS-Ch-1bH"/>
+                            <constraint firstItem="S2T-73-I8P" firstAttribute="centerY" secondItem="9Jv-Nx-zpg" secondAttribute="centerY" id="Ta3-iR-v8L"/>
                             <constraint firstAttribute="bottom" secondItem="9Jv-Nx-zpg" secondAttribute="bottom" constant="6" id="kcH-V8-5n2"/>
                         </constraints>
                     </view>

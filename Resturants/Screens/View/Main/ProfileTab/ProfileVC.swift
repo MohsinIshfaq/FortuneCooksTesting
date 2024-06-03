@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseFirestoreInternal
+import AVFoundation
 
 
 class ProfileVC: UIViewController {
@@ -42,6 +43,9 @@ class ProfileVC: UIViewController {
     var responseModel   : [ProfileVideosModel]? = []
     let itemsPerColumn  : Int = 2
     let itemHeight      : CGFloat = 250.0 // Example item height
+    var selectedVideo   : ProfileVideosModel? = nil
+    var player          : AVPlayer!
+    var playerLayer     : AVPlayerLayer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -187,6 +191,17 @@ extension ProfileVC {
         let newHeight = numberOfRows * Double(itemHeight)
         collectSwiftHeightCons.constant = CGFloat(newHeight)
     }
+    
+    func setupAVPlayer(with url: URL , vw: UIView) -> AVPlayerLayer {
+
+        player = AVPlayer(url: url)
+        playerLayer = AVPlayerLayer(player: player)
+        playerLayer.frame = vw.bounds
+        playerLayer.videoGravity = .resizeAspectFill
+        return playerLayer
+        //self.view.layer.addSublayer(playerLayer)
+       // player.play()
+    }
 }
 
 //MARK: - TableVew {}
@@ -194,7 +209,7 @@ extension ProfileVC : UITableViewDelegate , UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         if tableView == tblVIdeos {
-            if arr.count == 0 {
+            if (responseModel?.count ?? 0) == 0 {
                 return 1
             }
             else{
@@ -212,12 +227,13 @@ extension ProfileVC : UITableViewDelegate , UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == tblVIdeos {
-            if arr.count == 0 {
+            if (responseModel?.count ?? 0) == 0 {
                 return 1
             }
             else{
-                tblVideoHeightCons.constant = CGFloat(300 + (arr.count * 105))
-                return arr.count
+                tblVideoHeightCons.constant = CGFloat(300 + ((responseModel?.count ?? 0) * 105))
+                //return arr.count
+                return responseModel?.count ?? 0
             }
         }
         if tableView == tblMenu {
@@ -232,12 +248,34 @@ extension ProfileVC : UITableViewDelegate , UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "VideosHeaderView") as! VideosHeaderView
+        if self.selectedVideo?.videoUrl ?? "" != ""{
+            headerView.btnPlay.setImage(UIImage(systemName: "play.circle.fill"), for: .normal)
+            headerView.vwVideo.layer.addSublayer(setupAVPlayer(with: URL(string: self.selectedVideo?.videoUrl ?? "")!, vw: headerView.vwVideo))
+            headerView.btnPlay.addTarget(self, action: #selector(playButtonTapped), for: .touchUpInside)
+            headerView.lblTitle.text = self.selectedVideo?.description ?? ""
+            headerView.lblViews.text = "3/10/2002 / 200 views"
+            player.pause()
+            
+        }
         return headerView
     }
     
+    @objc func playButtonTapped(_ sender: UIButton) {
+        if sender.tag == 0 {
+            sender.setImage(UIImage(systemName: "pause.circle.fill"), for: .normal)
+            sender.tag = 1
+            player.play()
+        }
+        else{
+            sender.setImage(UIImage(systemName: "play.circle.fill"), for: .normal)
+            sender.tag = 0
+            player.pause()
+        }
+    }
+        
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if tableView == tblVIdeos {
-            if arr.count != 0 {
+            if self.selectedVideo?.videoUrl ?? "" != "" {
                 return 300
             }
             else{
@@ -254,12 +292,22 @@ extension ProfileVC : UITableViewDelegate , UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView == tblVIdeos {
-            if arr.count == 0 {
+            if (responseModel?.count ?? 0) == 0 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: NoPostTCell.identifier, for: indexPath) as! NoPostTCell
                 return cell
             }
             else{
                 let cell = tableView.dequeueReusableCell(withIdentifier: VideoTCell.identifier, for: indexPath) as! VideoTCell
+                cell.lblDEscrip.text = responseModel?[indexPath.row].description ?? ""
+                cell.lblName.text    = responseModel?[indexPath.row].Title ?? ""
+                cell.lblDateViews.text    = "3/10/2002 / 200 views"
+                DispatchQueue.main.async {
+                    guard let url = self.responseModel?[indexPath.row].ThumbnailUrl else {
+                        return
+                    }
+                    let url1 = URL(string: url)!
+                    cell.imgVideo?.sd_setImage(with: url1)
+                }
                 return cell
             }
         }
@@ -282,7 +330,10 @@ extension ProfileVC : UITableViewDelegate , UITableViewDataSource {
         if tableView == tblMenu {
             let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "MenuDetailPopupVC") as! MenuDetailPopupVC
             self.present(vc, animated: true)
-            
+        }
+        else if tableView == tblVIdeos {
+            self.selectedVideo = responseModel?[indexPath.row]
+            tblVIdeos.reloadData()
         }
     }
     
@@ -408,6 +459,8 @@ extension ProfileVC {
             }
             print(self.responseModel)
             self.collectSwift.reloadData()
+            self.tblVIdeos.reloadData()
         }
     }
 }
+
