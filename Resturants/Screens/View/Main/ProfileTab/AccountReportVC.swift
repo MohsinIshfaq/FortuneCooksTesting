@@ -10,7 +10,21 @@ import UIKit
 class AccountReportVC: UIViewController {
 
     //MARK: - IBOUtlet
-    @IBOutlet weak var txtViewBio       : UITextView!
+    @IBOutlet weak var txtViewBio            : UITextView!
+    @IBOutlet weak var switchVolience        : UISwitch!
+    @IBOutlet weak var switchDefemation      : UISwitch!
+    @IBOutlet weak var switchSelfHarm        : UISwitch!
+    @IBOutlet weak var switchInsult          : UISwitch!
+    @IBOutlet weak var switchCyberBullying   : UISwitch!
+    @IBOutlet weak var switchUnlawfulThreats : UISwitch!
+    @IBOutlet weak var switchNudity          : UISwitch!
+    @IBOutlet weak var switchAnimalCruelty   : UISwitch!
+    @IBOutlet weak var switchInappropriate   : UISwitch!
+    @IBOutlet weak var switchTechError       : UISwitch!
+    @IBOutlet weak var switchViolation       : UISwitch!
+    @IBOutlet weak var switchOther           : UISwitch!
+    @IBOutlet weak var switchFalseInfo       : UISwitch!
+    
     
     //MARK: - Variables and Properties
     let placeholder                        = " Write Here..."

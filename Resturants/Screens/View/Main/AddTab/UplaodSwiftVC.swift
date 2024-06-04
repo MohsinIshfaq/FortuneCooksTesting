@@ -299,7 +299,8 @@ extension UplaodSwiftVC {
     
     func uplaodThumbnail(_ img: UIImage) {
        // self.startAnimating()
-        let storageRef = Storage.storage().reference().child("MyImg.png")
+        let uniqueID = UUID().uuidString
+        let storageRef = Storage.storage().reference().child("\(uniqueID).png")
         let imgData = img.pngData()
         let metadata = StorageMetadata()
         metadata.contentType = "image/png"

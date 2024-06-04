@@ -198,10 +198,17 @@ extension ProfileVC {
         playerLayer = AVPlayerLayer(player: player)
         playerLayer.frame = vw.bounds
         playerLayer.videoGravity = .resizeAspectFill
+        NotificationCenter.default.addObserver(self, selector: #selector(playerItemDidReachEnd(notification:)), name: .AVPlayerItemDidPlayToEndTime, object: player.currentItem)
         return playerLayer
         //self.view.layer.addSublayer(playerLayer)
        // player.play()
     }
+    
+    @objc func playerItemDidReachEnd(notification: Notification) {
+            player.seek(to: .zero) {
+                _ in self.player.play()
+            }
+        }
 }
 
 //MARK: - TableVew {}
