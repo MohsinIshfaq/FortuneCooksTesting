@@ -201,7 +201,7 @@ extension ProfileVC {
         NotificationCenter.default.addObserver(self, selector: #selector(playerItemDidReachEnd(notification:)), name: .AVPlayerItemDidPlayToEndTime, object: player.currentItem)
         return playerLayer
         //self.view.layer.addSublayer(playerLayer)
-       // player.play()
+       //
     }
     
     @objc func playerItemDidReachEnd(notification: Notification) {
@@ -264,6 +264,14 @@ extension ProfileVC : UITableViewDelegate , UITableViewDataSource {
             player.pause()
             
         }
+        else if responseModel?.count != 0{
+            headerView.btnPlay.setImage(UIImage(systemName: "play.circle.fill"), for: .normal)
+            headerView.vwVideo.layer.addSublayer(setupAVPlayer(with: URL(string: self.responseModel?[0].videoUrl ?? "")!, vw: headerView.vwVideo))
+            headerView.btnPlay.addTarget(self, action: #selector(playButtonTapped), for: .touchUpInside)
+            headerView.lblTitle.text = self.responseModel?[0].description ?? ""
+            headerView.lblViews.text = "3/10/2002 / 200 views"
+            player.pause()
+        }
         return headerView
     }
     
@@ -282,12 +290,12 @@ extension ProfileVC : UITableViewDelegate , UITableViewDataSource {
         
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if tableView == tblVIdeos {
-            if self.selectedVideo?.videoUrl ?? "" != "" {
+//            if self.selectedVideo?.videoUrl ?? "" != "" {
+//                return 300
+//            }
+           // else{
                 return 300
-            }
-            else{
-                return 0
-            }
+          //  }
         }
         if tableView == tblMenu {
             return 0
