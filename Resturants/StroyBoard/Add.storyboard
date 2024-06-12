@@ -929,14 +929,6 @@
                                     <action selector="ontapDismiss:" destination="hm4-oA-yCW" eventType="touchUpInside" id="HBo-hw-9IK"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Hello world" placeholder="Enter Caption Here" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vuk-d4-HTC">
-                                <rect key="frame" x="60" y="395" width="272" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="textColor" name="ColorWhite"/>
-                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JUD-qr-Ads">
                                 <rect key="frame" x="161.66666666666666" y="625" width="70" height="70"/>
                                 <constraints>
@@ -958,6 +950,14 @@
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ueq-cm-wRp">
                                 <rect key="frame" x="70" y="461" width="240" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Hello world" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="6L4-l8-Mpu">
+                                <rect key="frame" x="58" y="325" width="240" height="159"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -993,7 +993,7 @@
                         <outlet property="lblFont5" destination="ddw-pr-hFU" id="3lr-4C-XfN"/>
                         <outlet property="lblForground" destination="6WS-lp-BwJ" id="ftb-T1-CF4"/>
                         <outlet property="scrollFonts" destination="FLM-Yo-0om" id="0Xq-k0-ctc"/>
-                        <outlet property="txtCaption" destination="vuk-d4-HTC" id="frn-5f-Y9w"/>
+                        <outlet property="txtCaption" destination="6L4-l8-Mpu" id="maa-Kf-1VB"/>
                         <outlet property="vwBackground" destination="mJ2-1g-3IW" id="jEA-0T-eff"/>
                         <outlet property="vwFont1" destination="Gao-rl-PGQ" id="dek-zw-MdY"/>
                         <outlet property="vwFont2" destination="x4Y-Zf-IKG" id="CvD-gh-H0N"/>
@@ -3058,7 +3058,7 @@
         <image name="text" width="24" height="24"/>
         <image name="trash-blank" width="50" height="50"/>
         <image name="unselecPhoto" width="32" height="32"/>
-        <image name="user" width="24" height="24"/>
+        <image name="user" width="24.333333969116211" height="24"/>
         <image name="video" catalog="system" width="128" height="82"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -3085,7 +3085,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

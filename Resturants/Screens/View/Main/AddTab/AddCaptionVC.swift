@@ -28,7 +28,7 @@ class AddCaptionVC: AudioViewController {
     @IBOutlet weak var lblFont4        : UILabel!
     @IBOutlet weak var vwFont5         : UIView!
     @IBOutlet weak var lblFont5        : UILabel!
-    @IBOutlet weak var txtCaption      : UITextField!
+    @IBOutlet weak var txtCaption      : UITextView!
     @IBOutlet weak var btnDismiss      : UIButton!
     @IBOutlet weak var btnBackground   : UIButton!
     @IBOutlet weak var btnTrash        : UIButton!
