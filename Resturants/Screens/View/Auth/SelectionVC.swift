@@ -56,16 +56,16 @@ extension SelectionVC: UITextFieldDelegate {
         tblSelection.reloadData()
     }
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        guard let searchText = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) else {
-            return true
-        }
-        filterContentForSearchText(searchText)
+        guard let currentText = textField.text as NSString? else { return true }
+        let updatedText = currentText.replacingCharacters(in: range, with: string)
+        filterContentForSearchText(updatedText)
         return true
     }
     
     func filterContentForSearchText(_ searchText: String) {
         if type == 0 {
-            UserManager.shared.filteredCuisine = UserManager.shared.arrCuisine.filter { $0[0].localizedCaseInsensitiveContains(searchText) }
+            let lowercasedSearchText = searchText.lowercased()
+            UserManager.shared.filteredCuisine = UserManager.shared.arrCuisine.filter { $0[0].lowercased().hasPrefix(lowercasedSearchText) }
             // Filter the selection status based on the filtered cuisine items
             for i in 0..<UserManager.shared.filteredCuisine.count {
                 if let index = UserManager.shared.arrCuisine.firstIndex(where: { $0[0] == UserManager.shared.filteredCuisine[i][0] }) {
@@ -74,7 +74,8 @@ extension SelectionVC: UITextFieldDelegate {
             }
         }
         else if type == 1 {
-            UserManager.shared.filteredEnviorment = UserManager.shared.arrEnviorment.filter { $0[0].localizedCaseInsensitiveContains(searchText) }
+            let lowercasedSearchText = searchText.lowercased()
+            UserManager.shared.filteredEnviorment = UserManager.shared.arrEnviorment.filter { $0[0].lowercased().hasPrefix(lowercasedSearchText) }
             // Filter the selection status based on the filtered cuisine items
             for i in 0..<UserManager.shared.filteredEnviorment.count {
                 if let index = UserManager.shared.arrEnviorment.firstIndex(where: { $0[0] == UserManager.shared.filteredEnviorment[i][0] }) {
@@ -83,7 +84,8 @@ extension SelectionVC: UITextFieldDelegate {
             }
         }
         else if type == 2 {
-            UserManager.shared.filteredFeature = UserManager.shared.arrFeature.filter { $0[0].localizedCaseInsensitiveContains(searchText) }
+            let lowercasedSearchText = searchText.lowercased()
+            UserManager.shared.filteredFeature = UserManager.shared.arrFeature.filter { $0[0].lowercased().hasPrefix(lowercasedSearchText) }
             // Filter the selection status based on the filtered cuisine items
             for i in 0..<UserManager.shared.filteredFeature.count {
                 if let index = UserManager.shared.arrFeature.firstIndex(where: { $0[0] == UserManager.shared.filteredFeature[i][0] }) {
@@ -92,7 +94,8 @@ extension SelectionVC: UITextFieldDelegate {
             }
         }
         else if type == 3 {
-            UserManager.shared.filteredMeals = UserManager.shared.arrMeals.filter { $0[0].localizedCaseInsensitiveContains(searchText) }
+            let lowercasedSearchText = searchText.lowercased()
+            UserManager.shared.filteredMeals = UserManager.shared.arrMeals.filter { $0[0].lowercased().hasPrefix(lowercasedSearchText) }
             // Filter the selection status based on the filtered cuisine items
             for i in 0..<UserManager.shared.filteredMeals.count {
                 if let index = UserManager.shared.arrMeals.firstIndex(where: { $0[0] == UserManager.shared.filteredMeals[i][0] }) {
@@ -101,7 +104,8 @@ extension SelectionVC: UITextFieldDelegate {
             }
         }
         else{
-            UserManager.shared.filteredSpeacials = UserManager.shared.arrSpeacials.filter { $0[0].localizedCaseInsensitiveContains(searchText) }
+            let lowercasedSearchText = searchText.lowercased()
+            UserManager.shared.filteredSpeacials = UserManager.shared.arrSpeacials.filter { $0[0].lowercased().hasPrefix(lowercasedSearchText) }
             // Filter the selection status based on the filtered cuisine items
             for i in 0..<UserManager.shared.filteredSpeacials.count {
                 if let index = UserManager.shared.arrSpeacials.firstIndex(where: { $0[0] == UserManager.shared.filteredSpeacials[i][0] }) {
