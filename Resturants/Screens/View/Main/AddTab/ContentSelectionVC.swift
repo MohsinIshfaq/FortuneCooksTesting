@@ -66,7 +66,8 @@ extension ContentSelectionVC: UITextFieldDelegate {
     }
     
     func filterContentForSearchText(_ searchText: String) {
-        UserManager.shared.filteredContent = UserManager.shared.arrContent.filter { $0[0].localizedCaseInsensitiveContains(searchText) }
+        let lowercasedSearchText = searchText.lowercased()
+        UserManager.shared.filteredContent = UserManager.shared.arrContent.filter { $0[0].lowercased().hasPrefix(lowercasedSearchText) }
         // Filter the selection status based on the filtered cuisine items
         for i in 0..<UserManager.shared.filteredContent.count {
             if let index = UserManager.shared.arrContent.firstIndex(where: { $0[0] == UserManager.shared.filteredContent[i][0] }) {

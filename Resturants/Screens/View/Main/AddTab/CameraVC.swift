@@ -28,12 +28,12 @@ class CameraVC: FilterCamViewController{
     private var selected                 : Bool = false
     private var selectedRecord           : Bool = false
     private var timer                    : Timer?
-    private let totalTime                : Float = 10.0 // Total time in seconds
+    private let totalTime                : Float = 30.0 // Total time in seconds
     private var elapsedTime              : Float = 0.0 // Elapsed time
     private var progress_value           = 0.1
     private var outputURL: URL?          = nil
     private var mutableVideoURL          = NSURL() //final video url
-    
+    private var seesionGoing             = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +52,11 @@ class CameraVC: FilterCamViewController{
     }
     
     @IBAction func ontapBack(_ sender: UIButton){
-        self.dismiss(animated: true)
+        if !seesionGoing {
+            self.dismiss(animated: true)
+        }else{
+            self.showToast(message: "Action not allowed: Recording in progress.", seconds: 2, clr: .red)
+        }
     }
     
     @IBAction func ontapAddCap(_ sender: UIButton){
@@ -118,12 +122,14 @@ class CameraVC: FilterCamViewController{
         if selectedRecord{
             btnRecord.backgroundColor  = .red
             elapsedTime                = 0
+            seesionGoing               = true
             startProgress()
             self.startRecording()
         }
         else{
             stopProgress()
             self.stopRecording()
+            seesionGoing               = false
             btnRecord.isHidden         = true
         }
     }
@@ -136,7 +142,7 @@ class CameraVC: FilterCamViewController{
         elapsedTime                   += 0.1 // Update elapsed time
         let progress                   = elapsedTime / totalTime
         progressRecording.progress     = progress
-        self.progress_value           += 0.05
+        self.progress_value           += 0.1
         lblProgress.text               = "\(Int(self.progress_value))"
         if elapsedTime >= totalTime {
             timer?.invalidate()
@@ -146,6 +152,7 @@ class CameraVC: FilterCamViewController{
             selectedRecord             = false
             stopProgress()
             self.stopRecording()
+            seesionGoing               = false
         }
     }
 }
@@ -257,6 +264,15 @@ extension CameraVC: FilterCamViewControllerDelegate{
             UserManager.shared.finalURL  = outputURL
             self.stackEditOpt.isHidden   = false
             self.btnUpload.isHidden      = false
+            if let url = UserManager.shared.finalURL {
+                let player = AVPlayer(url: url)
+                let playerViewController = AVPlayerViewController()
+                playerViewController.player = player
+                
+                self.present(playerViewController, animated: true) {
+                    player.play()
+                }
+            }
         }
     }
 
