@@ -9,7 +9,7 @@ import UIKit
 import AVFoundation
 import AVKit
 
-class AddCaptionVC: AudioViewController {
+class AddCaptionVC: AudioViewController , UITextViewDelegate {
 
     //MARK: - IBOUtlets
     @IBOutlet weak var collectColors   : UICollectionView!
@@ -32,6 +32,7 @@ class AddCaptionVC: AudioViewController {
     @IBOutlet weak var btnDismiss      : UIButton!
     @IBOutlet weak var btnBackground   : UIButton!
     @IBOutlet weak var btnTrash        : UIButton!
+    @IBOutlet weak var heightTxtView   : NSLayoutConstraint!
     
     //MARK: - Variables and Properties
     let colors: [UIColor]                    = [
@@ -338,6 +339,7 @@ extension AddCaptionVC {
         
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(longPressed(_:)))
         txtCaption.addGestureRecognizer(longPressGesture)
+        txtCaption.delegate = self
     }
     
     func onAppear() {
@@ -372,6 +374,39 @@ extension AddCaptionVC {
         let btnDone = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(ontapDone))
         btnDone.tintColor = .white
         navigationItem.rightBarButtonItem = btnDone
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        checkIfTextViewWentToSecondLine(textView: textView)
+    }
+    
+    func checkIfTextViewWentToSecondLine(textView: UITextView) {
+        guard let font = textView.font else { return }
+        
+        // Calculate the width of the text view's visible content area
+        let textViewWidth = textView.bounds.width - textView.textContainerInset.left - textView.textContainerInset.right
+        
+        // Calculate the width of the current text
+        let textWidth = (textView.text as NSString).boundingRect(
+            with: CGSize(width: CGFloat.greatestFiniteMagnitude, height: font.lineHeight),
+            options: .usesLineFragmentOrigin,
+            attributes: [.font: font],
+            context: nil
+        ).width
+        
+        // Calculate the number of lines needed for the text
+        let numberOfLines = ceil(textWidth / textViewWidth)
+        
+        // Check if the number of lines is greater than 1
+        if numberOfLines > 1 {
+            print("TextView went to second line or more")
+            // Increase the height of the text view by 40 points
+            if textView.frame.height < textView.contentSize.height {
+                textView.frame.size.height += 40
+            }
+        } else {
+            print("TextView is within a single line")
+        }
     }
 
 }
