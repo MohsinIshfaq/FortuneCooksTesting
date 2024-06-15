@@ -52,10 +52,20 @@ class CameraVC: FilterCamViewController{
     }
     
     @IBAction func ontapBack(_ sender: UIButton){
-        if !seesionGoing {
-            self.dismiss(animated: true)
-        }else{
-            self.showToast(message: "Action not allowed: Recording in progress.", seconds: 2, clr: .red)
+        if !self.stackEditOpt.isHidden {
+            showTwoWayAlert(title: "Confirmation!", message: "Upon navigating back, the video will be permanently deleted.", on: self) { success in
+                if success{
+                    self.dismiss(animated: true)
+                }
+                
+            }
+        }
+        else{
+            if !seesionGoing {
+                self.dismiss(animated: true)
+            }else{
+                self.showToast(message: "Action not allowed: Recording in progress.", seconds: 2, clr: .red)
+            }
         }
     }
     
@@ -91,6 +101,7 @@ class CameraVC: FilterCamViewController{
     }
     
     @IBAction func ontapRemove(_ sender: UIButton) {
+        
         let vc = Constants.addStoryBoard.instantiateViewController(withIdentifier: "ConfirmationActionVC") as! ConfirmationActionVC
         vc.delegate               = self
         vc.modalPresentationStyle = .overFullScreen

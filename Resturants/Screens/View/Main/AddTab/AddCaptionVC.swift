@@ -256,22 +256,52 @@ class AddCaptionVC: AudioViewController , UITextViewDelegate {
         txtCaption.backgroundColor   = .clear
     }
     
-    func addNewlineIfNeeded(to text: String, maxWordsPerLine: Int) -> String? {
+//    func addNewlineIfNeeded(to text: String, maxWordsPerLine: Int) -> String? {
+//        let words = text.components(separatedBy: .whitespacesAndNewlines)
+//        var newText = ""
+//        var wordCount = 0
+//        
+//        for word in words {
+//            if wordCount + 1 <= maxWordsPerLine {
+//                newText += word + " "
+//                wordCount += 1
+//            } else {
+//                newText += "\n" + word + " "
+//                wordCount = 1
+//            }
+//        }
+//        return "  " + newText.trimmingCharacters(in: .whitespacesAndNewlines) + " "
+//    }
+    
+    func addNewlineIfNeeded(to text: String, textViewWidth: CGFloat, font: UIFont) -> String? {
         let words = text.components(separatedBy: .whitespacesAndNewlines)
         var newText = ""
-        var wordCount = 0
-        
+        var currentLine = ""
+        let spaceWidth = " ".size(withAttributes: [.font: font]).width
+
         for word in words {
-            if wordCount + 1 <= maxWordsPerLine {
-                newText += word + " "
-                wordCount += 1
+            let wordWidth = word.size(withAttributes: [.font: font]).width
+            let currentLineWidth = currentLine.size(withAttributes: [.font: font]).width
+
+            if currentLineWidth + wordWidth + spaceWidth <= textViewWidth {
+                if !currentLine.isEmpty {
+                    currentLine += " " + word
+                } else {
+                    currentLine = word
+                }
             } else {
-                newText += "\n " + word + " "
-                wordCount = 1
+                newText += currentLine + "\n"
+                currentLine = word
             }
         }
-        return "  " + newText.trimmingCharacters(in: .whitespacesAndNewlines) + " "
+
+        if !currentLine.isEmpty {
+            newText += currentLine
+        }
+
+        return newText
     }
+
     
     @objc func longPressed(_ gestureRecognizer: UILongPressGestureRecognizer) {
             if gestureRecognizer.state == .began {
@@ -289,7 +319,8 @@ class AddCaptionVC: AudioViewController , UITextViewDelegate {
         else{
           //  DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.startAnimating()
-                if var string = self.addNewlineIfNeeded(to: self.txtCaption.text!, maxWordsPerLine: 5) {
+                if var string = addNewlineIfNeeded(to: txtCaption.text, textViewWidth: txtCaption.frame.width, font: txtCaption.font ?? UIFont.systemFont(ofSize: 17)) {
+                    print(string)
                     self.addStickerorTexttoVideo(textBgClr: self.txtBGcolor
                                             , textForeClr: self.txtForcolor
                                             , fontNm: self.fontNum
@@ -298,13 +329,23 @@ class AddCaptionVC: AudioViewController , UITextViewDelegate {
                                             , imageName: ""
                                             , position: self.posotionTxtFld) { url in
                         DispatchQueue.main.async {
+                            self.stopAnimating()
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                                 UserManager.shared.finalURL  = url
-                                self.showToast(message: "Caption added successfully.", seconds: 2, clr: .gray)
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                                    self.stopAnimating()
-                                    self.popRoot()
+                                if let url = UserManager.shared.finalURL {
+                                    let player = AVPlayer(url: url)
+                                    let playerViewController = AVPlayerViewController()
+                                    playerViewController.player = player
+                                    
+                                    self.present(playerViewController, animated: true) {
+                                        player.play()
+                                    }
                                 }
+//                                self.showToast(message: "Caption added successfully.", seconds: 2, clr: .gray)
+//                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+//                                    self.stopAnimating()
+//                                    self.popRoot()
+//                                }
                             }
                         }
                     } failure: { msg in
@@ -408,6 +449,8 @@ extension AddCaptionVC {
             print("TextView is within a single line")
         }
     }
+    
+
 
 }
 
@@ -442,5 +485,11 @@ extension AddCaptionVC: UICollectionViewDelegate , UICollectionViewDataSource , 
         else{
             
         }
+    }
+}
+
+extension String {
+    func size(withAttributes attrs: [NSAttributedString.Key: Any]) -> CGSize {
+        return (self as NSString).size(withAttributes: attrs)
     }
 }

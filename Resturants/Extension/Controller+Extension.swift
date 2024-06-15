@@ -7,6 +7,9 @@
 
 import Foundation
 import UIKit
+import SDWebImage
+import NVActivityIndicatorView
+import AVFoundation
 
 extension UIViewController {
     
@@ -136,8 +139,28 @@ extension UIViewController {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
-        
     }
+
+    func showTwoWayAlert(title: String, message: String, on viewController: UIViewController, completion: @escaping (Bool) -> Void) {
+        // Create an alert controller
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        // Add "OK" button with action
+        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+            completion(true)
+        }
+        alertController.addAction(okAction)
+        
+        // Add "Cancel" button with action
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            completion(false)
+        }
+        alertController.addAction(cancelAction)
+        
+        // Present the alert on the provided view controller
+        viewController.present(alertController, animated: true, completion: nil)
+    }
+
     
     
     //MARK: - print and share {}
@@ -181,10 +204,9 @@ extension UIView {
         }
     }
 }
+
+
 //MARK: - Manage Animation {}
-import SDWebImage
-import NVActivityIndicatorView
-import AVFoundation
 extension UIViewController : NVActivityIndicatorViewable {
     
     func showLoader() -> Void {
@@ -204,8 +226,6 @@ extension UITableViewCell : NVActivityIndicatorViewable {
         imageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
     }
 }
-
-
 extension UINavigationController {
     
     func removeBackground() {
