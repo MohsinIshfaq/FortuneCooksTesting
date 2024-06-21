@@ -10,6 +10,8 @@ import MobileCoreServices
 import AVFoundation
 import AVKit
 import FirebaseStorage
+import Reachability
+
 protocol ReloadDelegate {
     func reload(img : UIImage?)
 }
@@ -68,6 +70,8 @@ class UplaodSwiftVC: UIViewController , ReloadDelegate , UITextViewDelegate , cr
     var arrHastag           : [String]     = []
     var thumbnailURL        : URL?         = nil
     let storage = Storage.storage().reference()
+    var gotSelectedThumbnail: Bool         = false
+    let reachability = try! Reachability()
     
     lazy var UploadVideoModel              : [String: Any] =  {
         return ["address": txtAddress.text! as String  ,
@@ -78,8 +82,13 @@ class UplaodSwiftVC: UIViewController , ReloadDelegate , UITextViewDelegate , cr
                 "description": txtView.text! as String ,
                 "categories": arrSelectedContent       ,
                 "language": txtLang.text! as String    ,
-                "ThumbnailUrl": "\(thumbnailURL!)"      ,
-                "videoUrl"    : ""]
+                "ThumbnailUrl": "\(thumbnailURL!)"     ,
+                "videoUrl"    : ""                     ,
+                "Likes"       : false                  ,
+                "comments"    : false                  ,
+                "views"       : false                  ,
+                "paidCollab"  : false                  ,
+                "introVideos" : false                  ]
     }()
     
     
@@ -153,11 +162,15 @@ class UplaodSwiftVC: UIViewController , ReloadDelegate , UITextViewDelegate , cr
     }
     
     @IBAction func ontapNext(_ sender: UIButton){
-        
+        if checkFields() == "" {
             let vc = Constants.addStoryBoard.instantiateViewController(withIdentifier: "UploadSwift2VC") as! UploadSwift2VC
             vc.UploadVideoModel = self.UploadVideoModel
             print(UploadVideoModel)
             self.navigationController?.pushViewController(vc, animated: true)
+        }
+        else{
+            self.showToast(message: checkFields(), seconds: 2, clr: .red)
+        }
     }
 }
 
@@ -223,6 +236,38 @@ extension UplaodSwiftVC {
             print("TextField is empty")
             btnAddHastag.isHidden = true
         }
+    }
+    
+    func checkFields() -> String {
+        
+        if !gotSelectedThumbnail {
+            return "Thumbnail is not selected."
+        }
+         if txtAddress.text == "" {
+            return "Field Address shouldn't empty."
+        }
+        else if txtZipCode.text == "" {
+            return "Field ZipCode shouldn't empty."
+        }
+        else if txtCity.text == "" {
+            return "Field city shouldn't empty."
+        }
+        else if txtTitle.text == "" {
+            return "Field Title shouldn't empty."
+        }
+        else if txtView.text == "" {
+            return "Field city shouldn't empty."
+        }
+        else if UserManager.shared.selectedContent.count == 0 {
+            return "Content is not added."
+        }
+        else if arrHastag.count == 0 {
+            return "Hastag is not added."
+        }
+        else if txtLang.text == "" {
+            return "Field Language shouldn't empty."
+        }
+        return ""
     }
 }
 
@@ -298,29 +343,35 @@ extension UplaodSwiftVC: UICollectionViewDelegate , UICollectionViewDataSource {
 extension UplaodSwiftVC {
     
     func uplaodThumbnail(_ img: UIImage) {
-       // self.startAnimating()
-        let uniqueID = UUID().uuidString
-        let storageRef = Storage.storage().reference().child("\(uniqueID).png")
-        let imgData = img.pngData()
-        let metadata = StorageMetadata()
-        metadata.contentType = "image/png"
-        storageRef.putData(imgData!,metadata: metadata) { metadata, error in
-          //  self.stopAnimating()
-            if error == nil {
-                let storage = Storage.storage().reference(withPath: "MyImg.png")
-                storage.downloadURL { (url, error) in
-                    if error != nil {
-                        self.stopAnimating()
-                        print((error?.localizedDescription)!)
-                        return
+        // self.startAnimating()
+        if reachability.isReachable {
+            let uniqueID = UUID().uuidString
+            let storageRef = Storage.storage().reference().child("\(uniqueID).png")
+            let imgData = img.pngData()
+            let metadata = StorageMetadata()
+            metadata.contentType = "image/png"
+            storageRef.putData(imgData!,metadata: metadata) { metadata, error in
+                //  self.stopAnimating()
+                if error == nil {
+                    let storage = Storage.storage().reference(withPath: "MyImg.png")
+                    storage.downloadURL { (url, error) in
+                        if error != nil {
+                            self.stopAnimating()
+                            print((error?.localizedDescription)!)
+                            return
+                        }
+                        //  self.stopAnimating()
+                        print("Download success")
+                        //url = your will get an image URL
+                        var DownlodedURL  = url!
+                        self.thumbnailURL = DownlodedURL
+                        self.gotSelectedThumbnail = true
                     }
-                  //  self.stopAnimating()
-                    print("Download success")
-                    //url = your will get an image URL
-                    var DownlodedURL  = url!
-                    self.thumbnailURL = DownlodedURL
                 }
             }
+        }
+        else{
+            self.showToast(message: "Internet connection is off.", seconds: 2, clr: .red)
         }
     }
 }

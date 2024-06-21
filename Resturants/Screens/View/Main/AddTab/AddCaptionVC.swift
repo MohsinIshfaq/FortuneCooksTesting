@@ -73,6 +73,7 @@ class AddCaptionVC: AudioViewController , UITextViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         onAppear()
+        txtCaption.backgroundColor = .clear
     }
     
     @IBAction func ontapDismiss(_ sender: UIButton){

@@ -2789,7 +2789,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="DNr-lP-YGS">
-                                                        <rect key="frame" x="0.0" y="55.666666666666629" width="361" height="552"/>
+                                                        <rect key="frame" x="0.0" y="55.666666666666629" width="361" height="552.00000000000011"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="USF-0P-i7q">
                                                                 <rect key="frame" x="0.0" y="0.0" width="361" height="38"/>
@@ -3916,9 +3916,12 @@
                                                                                 <color key="tintColor" name="ColorWhite"/>
                                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                                 <state key="normal">
-                                                                                    <imageReference key="image" image="eye.slash" catalog="system" symbolScale="medium"/>
+                                                                                    <imageReference key="image" image="eye" catalog="system" symbolScale="medium"/>
                                                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="semibold"/>
                                                                                 </state>
+                                                                                <connections>
+                                                                                    <action selector="ontapToglePsd:" destination="Eof-Aa-BwG" eventType="touchUpInside" id="uYu-jA-nxW"/>
+                                                                                </connections>
                                                                             </button>
                                                                         </subviews>
                                                                         <color key="backgroundColor" name="ColorBlack"/>
@@ -4014,6 +4017,10 @@
                             <constraint firstAttribute="bottom" secondItem="5O2-Ix-lJR" secondAttribute="bottom" id="cdo-3D-0wz"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="btnToglePsd" destination="RMG-nr-fce" id="UUm-nE-NJi"/>
+                        <outlet property="txtPsd" destination="dg0-sc-dMT" id="9ZP-Br-KLX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JZB-YA-mvG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -5973,6 +5980,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="2Zo-x2-tFe"/>
                     <connections>
+                        <outlet property="btnMore" destination="pAu-Rj-kam" id="wg4-rk-rPC"/>
                         <outlet property="collectSwift" destination="1Jr-CT-ECg" id="sBc-2n-h3F"/>
                         <outlet property="collectSwiftColl" destination="MxZ-pC-PjL" id="2oZ-wr-nC3"/>
                         <outlet property="collectSwiftHeightCons" destination="WLe-zc-8by" id="lXm-vg-VqG"/>
@@ -7270,7 +7278,7 @@
                                                                         <color key="textColor" name="ColorWhite"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WQL-GC-d5N">
+                                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="WQL-GC-d5N">
                                                                         <rect key="frame" x="296" y="0.0" width="51" height="31"/>
                                                                         <color key="onTintColor" name="AccentColor"/>
                                                                     </switch>
@@ -7285,7 +7293,7 @@
                                                                         <color key="textColor" name="ColorWhite"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nIO-Ao-qXX">
+                                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="nIO-Ao-qXX">
                                                                         <rect key="frame" x="296" y="0.0" width="51" height="31"/>
                                                                         <color key="onTintColor" name="AccentColor"/>
                                                                     </switch>
@@ -7300,7 +7308,7 @@
                                                                         <color key="textColor" name="ColorWhite"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N99-Wv-7iS">
+                                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="N99-Wv-7iS">
                                                                         <rect key="frame" x="296" y="0.0" width="51" height="31"/>
                                                                         <color key="onTintColor" name="AccentColor"/>
                                                                     </switch>
@@ -7315,7 +7323,7 @@
                                                                         <color key="textColor" name="ColorWhite"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="itp-Xn-Q48">
+                                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="itp-Xn-Q48">
                                                                         <rect key="frame" x="296" y="0.0" width="51" height="31"/>
                                                                         <color key="onTintColor" name="AccentColor"/>
                                                                     </switch>
@@ -7330,7 +7338,7 @@
                                                                         <color key="textColor" name="ColorWhite"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v65-1r-HoE">
+                                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="v65-1r-HoE">
                                                                         <rect key="frame" x="296" y="0.0" width="51" height="31"/>
                                                                         <color key="onTintColor" name="AccentColor"/>
                                                                     </switch>
@@ -7345,7 +7353,7 @@
                                                                         <color key="textColor" name="ColorWhite"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WU6-bc-kwG">
+                                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="WU6-bc-kwG">
                                                                         <rect key="frame" x="296" y="0.0" width="51" height="31"/>
                                                                         <color key="onTintColor" name="AccentColor"/>
                                                                     </switch>
@@ -7360,7 +7368,7 @@
                                                                         <color key="textColor" name="ColorWhite"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0ow-3G-O1n">
+                                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="0ow-3G-O1n">
                                                                         <rect key="frame" x="296" y="0.0" width="51" height="31"/>
                                                                         <color key="onTintColor" name="AccentColor"/>
                                                                     </switch>
@@ -7375,7 +7383,7 @@
                                                                         <color key="textColor" name="ColorWhite"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VTo-xz-wuU">
+                                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="VTo-xz-wuU">
                                                                         <rect key="frame" x="296" y="0.0" width="51" height="31"/>
                                                                         <color key="onTintColor" name="AccentColor"/>
                                                                     </switch>
@@ -7390,7 +7398,7 @@
                                                                         <color key="textColor" name="ColorWhite"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rwC-Ag-ark">
+                                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="rwC-Ag-ark">
                                                                         <rect key="frame" x="296" y="0.0" width="51" height="31"/>
                                                                         <color key="onTintColor" name="AccentColor"/>
                                                                     </switch>
@@ -7405,7 +7413,7 @@
                                                                         <color key="textColor" name="ColorWhite"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pTk-FK-8py">
+                                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="pTk-FK-8py">
                                                                         <rect key="frame" x="296" y="0.0" width="51" height="31"/>
                                                                         <color key="onTintColor" name="AccentColor"/>
                                                                     </switch>
@@ -7420,7 +7428,7 @@
                                                                         <color key="textColor" name="ColorWhite"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xBb-tX-otu">
+                                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="xBb-tX-otu">
                                                                         <rect key="frame" x="296" y="0.0" width="51" height="31"/>
                                                                         <color key="onTintColor" name="AccentColor"/>
                                                                     </switch>
@@ -7435,7 +7443,7 @@
                                                                         <color key="textColor" name="ColorWhite"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FbU-BX-ICW">
+                                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="FbU-BX-ICW">
                                                                         <rect key="frame" x="296" y="0.0" width="51" height="31"/>
                                                                         <color key="onTintColor" name="AccentColor"/>
                                                                     </switch>
@@ -7450,7 +7458,7 @@
                                                                         <color key="textColor" name="ColorWhite"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="96Z-im-yeK">
+                                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="96Z-im-yeK">
                                                                         <rect key="frame" x="296" y="0.0" width="51" height="31"/>
                                                                         <color key="onTintColor" name="AccentColor"/>
                                                                     </switch>
@@ -8070,6 +8078,7 @@ Only tap the link if you trust it's safe!</string>
         <image name="arrow-right" width="20" height="20"/>
         <image name="bookmark" catalog="system" width="110" height="128"/>
         <image name="chevron.down" catalog="system" width="128" height="70"/>
+        <image name="eye" catalog="system" width="128" height="79"/>
         <image name="eye.slash" catalog="system" width="128" height="95"/>
         <image name="location-pin" width="24" height="24"/>
         <image name="multiply" catalog="system" width="128" height="111"/>

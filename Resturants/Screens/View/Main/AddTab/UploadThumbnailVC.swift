@@ -41,6 +41,7 @@ class UploadThumbnailVC: UIViewController {
     @IBAction func ontapPickImg(_ sender: UIButton){
         
         if sender.tag == 0 {
+            videoSlider.isHidden    = false
             imgPickFromVideo.image  = UIImage(named: "selecPhoto")
             imgPickOwn.image        = UIImage(named: "unselecPhoto")
             lblFromVideo.textColor  = .ColorDarkBlue
@@ -53,14 +54,16 @@ class UploadThumbnailVC: UIViewController {
             }
         }
         else{
+            videoSlider.isHidden    = true
             imgPickOwn.image        = UIImage(named: "selecPhoto")
             imgPickFromVideo.image  = UIImage(named: "unselecPhoto")
             lblFromVideo.textColor  = .white
             lblOwn.textColor        = .ColorDarkBlue
             
             let imagePicker = UIImagePickerController()
-            imagePicker.delegate = self
-            imagePicker.sourceType = .photoLibrary
+            imagePicker.delegate      = self
+            imagePicker.allowsEditing = true
+            imagePicker.sourceType    = .photoLibrary
             present(imagePicker, animated: true, completion: nil)
         }
     }

@@ -83,6 +83,11 @@ class UploadSwift2VC: UIViewController {
     }
     
     @IBAction func ontapPublishVideo(_ sender: UIButton){
+        self.UploadVideoModel["Likes"]       = switchLike.isOn
+        self.UploadVideoModel["comments"]    = switchLike.isOn
+        self.UploadVideoModel["views"]       = switchLike.isOn
+        self.UploadVideoModel["paidCollab"]  = switchLike.isOn
+        self.UploadVideoModel["introVideos"] = switchLike.isOn
         let vc = Constants.addStoryBoard.instantiateViewController(withIdentifier: "UploadingVC") as! UploadingVC
         vc.UploadVideoModel = UploadVideoModel
         self.navigationController?.pushViewController(vc, animated: true)

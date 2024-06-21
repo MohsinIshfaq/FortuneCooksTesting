@@ -33,6 +33,7 @@ class ProfileVC: UIViewController {
     @IBOutlet weak var tblMenuHeightCons       : NSLayoutConstraint!
     @IBOutlet weak var imgProfile              : UIImageView!
     @IBOutlet weak var imgBig                  : UIImageView!
+    @IBOutlet weak var btnMore                 : UIButton!
     
     
     //MARK: - Variables and Properties
@@ -132,9 +133,11 @@ class ProfileVC: UIViewController {
     @IBAction func ontapSeeMore(_ sender: UIButton){
         if stackMore.isHidden == true {
             stackMore.isHidden = false
+            btnMore.setTitle("view less info", for: .normal)
         }
         else{
             stackMore.isHidden = true
+            btnMore.setTitle("view more info", for: .normal)
         }
     }
 }
@@ -260,7 +263,7 @@ extension ProfileVC : UITableViewDelegate , UITableViewDataSource {
             headerView.vwVideo.layer.addSublayer(setupAVPlayer(with: URL(string: self.selectedVideo?.videoUrl ?? "")!, vw: headerView.vwVideo))
             headerView.btnPlay.addTarget(self, action: #selector(playButtonTapped), for: .touchUpInside)
             headerView.lblTitle.text = self.selectedVideo?.description ?? ""
-            headerView.lblViews.text = "3/10/2002 / 200 views"
+            headerView.lblViews.text = "3 October 2002 / 200 views"
             player.pause()
             
         }
@@ -315,7 +318,7 @@ extension ProfileVC : UITableViewDelegate , UITableViewDataSource {
                 let cell = tableView.dequeueReusableCell(withIdentifier: VideoTCell.identifier, for: indexPath) as! VideoTCell
                 cell.lblDEscrip.text = responseModel?[indexPath.row].description ?? ""
                 cell.lblName.text    = responseModel?[indexPath.row].Title ?? ""
-                cell.lblDateViews.text    = "3/10/2002 / 200 views"
+                cell.lblDateViews.text    = "3 October 2002 / 200 views"
                 DispatchQueue.main.async {
                     guard let url = self.responseModel?[indexPath.row].ThumbnailUrl else {
                         return
