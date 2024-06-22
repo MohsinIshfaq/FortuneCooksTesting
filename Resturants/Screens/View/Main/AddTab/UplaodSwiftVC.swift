@@ -327,6 +327,8 @@ extension UplaodSwiftVC: UICollectionViewDelegate , UICollectionViewDataSource {
         }
         else if collectionView == collectTagPeople {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TagPeopleCCell.identifier, for: indexPath) as! TagPeopleCCell
+            cell.btnDismiss.addTarget(self, action: #selector(removeTapped(sender:)), for: .touchUpInside)
+            cell.btnDismiss.tag = indexPath.row
             return cell
         }
         else{
@@ -336,6 +338,19 @@ extension UplaodSwiftVC: UICollectionViewDelegate , UICollectionViewDataSource {
             cell.btn.tag   = indexPath.row
             return cell
         }
+    }
+    
+    @objc func removeTapped(sender: UIButton) {
+        if UserManager.shared.arrTagPeoples[sender.tag][1] == "0" {
+            UserManager.shared.arrTagPeoples[sender.tag][1] = "1"
+            UserManager.shared.totalTagPeople += 1
+            print(UserManager.shared.totalTagPeople)
+        }
+        else{
+            UserManager.shared.arrTagPeoples[sender.tag][1] = "0"
+            UserManager.shared.totalTagPeople -= 1
+        }
+        collectTagPeople.reloadData()
     }
 }
 

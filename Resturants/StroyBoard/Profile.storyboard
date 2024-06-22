@@ -574,19 +574,19 @@
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="JLn-g7-dpW">
-                                                <rect key="frame" x="16" y="296.99999999999989" width="361" height="1661.333333333333"/>
+                                                <rect key="frame" x="16" y="297.00000000000011" width="361" height="1684.666666666667"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amin Kitchen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pTX-7T-Bga">
-                                                        <rect key="frame" x="0.0" y="0.0" width="361" height="24.333333333333332"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="361" height="23.333333333333332"/>
                                                         <fontDescription key="fontDescription" name="Inter-Regular_SemiBold" family="Inter" pointSize="20"/>
                                                         <color key="textColor" name="ColorWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="1P5-Lw-nnh">
-                                                        <rect key="frame" x="0.0" y="40.333333333333314" width="361" height="19.666666666666671"/>
+                                                        <rect key="frame" x="0.0" y="39.333333333333314" width="361" height="18.666666666666671"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 Followers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gb2-eK-Wif">
-                                                                <rect key="frame" x="0.0" y="0.0" width="100" height="19.666666666666668"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="100" height="18.666666666666668"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="100" id="9Vw-OV-LqH"/>
                                                                 </constraints>
@@ -595,7 +595,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="( Content creator )" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ua-o8-yhe">
-                                                                <rect key="frame" x="106" y="0.0" width="255" height="19.666666666666668"/>
+                                                                <rect key="frame" x="106" y="0.0" width="255" height="18.666666666666668"/>
                                                                 <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="16"/>
                                                                 <color key="textColor" name="ColorDarkBlue"/>
                                                                 <nil key="highlightedColor"/>
@@ -603,7 +603,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hSm-Jx-U36">
-                                                        <rect key="frame" x="0.0" y="76" width="361" height="55"/>
+                                                        <rect key="frame" x="0.0" y="74" width="361" height="55"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Change account type" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7mQ-pQ-nB8">
                                                                 <rect key="frame" x="16" y="0.0" width="315" height="55"/>
@@ -657,16 +657,16 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="PNE-EC-QUw">
-                                                        <rect key="frame" x="0.0" y="147" width="361" height="84"/>
+                                                        <rect key="frame" x="0.0" y="145" width="361" height="83.333333333333314"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name of channel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qqe-Io-WUE">
-                                                                <rect key="frame" x="0.0" y="0.0" width="361" height="17"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="361" height="16.333333333333332"/>
                                                                 <fontDescription key="fontDescription" name="Inter-Regular_Medium" family="Inter" pointSize="14"/>
                                                                 <color key="textColor" name="ColorWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dum-O1-6sw">
-                                                                <rect key="frame" x="0.0" y="29" width="361" height="55"/>
+                                                                <rect key="frame" x="0.0" y="28.333333333333314" width="361" height="55"/>
                                                                 <subviews>
                                                                     <textField opaque="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name of channel" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pRO-hv-LHb">
                                                                         <rect key="frame" x="16" y="0.0" width="339" height="55"/>
@@ -704,16 +704,16 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="KkU-jP-2ut">
-                                                        <rect key="frame" x="0.0" y="247" width="361" height="149"/>
+                                                        <rect key="frame" x="0.0" y="244.33333333333337" width="361" height="148.33333333333337"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Bio" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gBz-iR-dwi">
-                                                                <rect key="frame" x="0.0" y="0.0" width="361" height="17"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="361" height="16.333333333333332"/>
                                                                 <fontDescription key="fontDescription" name="Inter-Regular_Medium" family="Inter" pointSize="14"/>
                                                                 <color key="textColor" name="ColorWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z8O-KO-pFn">
-                                                                <rect key="frame" x="0.0" y="29" width="361" height="120"/>
+                                                                <rect key="frame" x="0.0" y="28.333333333333258" width="361" height="120"/>
                                                                 <subviews>
                                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Bio" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="9w2-iP-jOr">
                                                                         <rect key="frame" x="16" y="0.0" width="329" height="120"/>
@@ -746,16 +746,16 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="0FA-3i-X3K">
-                                                        <rect key="frame" x="0.0" y="412" width="361" height="128"/>
+                                                        <rect key="frame" x="0.0" y="408.66666666666663" width="361" height="157.33333333333337"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="tag People" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ovh-ww-VqP" userLabel="Tag People">
-                                                                <rect key="frame" x="0.0" y="0.0" width="361" height="17"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="361" height="16.333333333333332"/>
                                                                 <fontDescription key="fontDescription" name="Inter-Regular_Medium" family="Inter" pointSize="14"/>
                                                                 <color key="textColor" name="ColorWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WB8-0Q-8dS">
-                                                                <rect key="frame" x="0.0" y="25" width="361" height="55"/>
+                                                                <rect key="frame" x="0.0" y="24.333333333333371" width="361" height="55"/>
                                                                 <subviews>
                                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Write name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GBx-eP-Pay">
                                                                         <rect key="frame" x="36" y="0.0" width="309" height="55"/>
@@ -814,10 +814,10 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
                                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7ar-Kn-mkb">
-                                                                <rect key="frame" x="0.0" y="88" width="361" height="40"/>
+                                                                <rect key="frame" x="0.0" y="87.333333333333371" width="361" height="70"/>
                                                                 <color key="backgroundColor" name="ColorBlack"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" constant="40" id="pOM-XT-sUP"/>
+                                                                    <constraint firstAttribute="height" constant="70" id="pOM-XT-sUP"/>
                                                                 </constraints>
                                                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Lav-89-iHq">
                                                                     <size key="itemSize" width="128" height="128"/>
@@ -830,23 +830,23 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="XtL-X9-T77">
-                                                        <rect key="frame" x="0.0" y="556" width="361" height="84"/>
+                                                        <rect key="frame" x="0.0" y="582" width="361" height="83.333333333333371"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add email" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t0A-PU-Krr">
-                                                                <rect key="frame" x="0.0" y="0.0" width="361" height="17"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="361" height="16.333333333333332"/>
                                                                 <fontDescription key="fontDescription" name="Inter-Regular_Medium" family="Inter" pointSize="14"/>
                                                                 <color key="textColor" name="ColorWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kkc-2v-H6N">
-                                                                <rect key="frame" x="0.0" y="29" width="361" height="55"/>
+                                                                <rect key="frame" x="0.0" y="28.333333333333371" width="361" height="55"/>
                                                                 <subviews>
-                                                                    <textField opaque="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name of channel" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c2Z-8C-KsT">
+                                                                    <textField opaque="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Add email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c2Z-8C-KsT">
                                                                         <rect key="frame" x="16" y="0.0" width="339" height="55"/>
                                                                         <color key="tintColor" name="ColorLightGray"/>
                                                                         <color key="textColor" name="ColorWhite"/>
                                                                         <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="14"/>
-                                                                        <textInputTraits key="textInputTraits"/>
+                                                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                                                         <userDefinedRuntimeAttributes>
                                                                             <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
                                                                                 <color key="value" name="ColorLightGray"/>
@@ -877,23 +877,23 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="m0v-Qg-TPX">
-                                                        <rect key="frame" x="0.0" y="656" width="361" height="84"/>
+                                                        <rect key="frame" x="0.0" y="681.33333333333337" width="361" height="83.333333333333371"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add website" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fNR-Gj-enV">
-                                                                <rect key="frame" x="0.0" y="0.0" width="361" height="17"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="361" height="16.333333333333332"/>
                                                                 <fontDescription key="fontDescription" name="Inter-Regular_Medium" family="Inter" pointSize="14"/>
                                                                 <color key="textColor" name="ColorWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w2b-2H-2OP">
-                                                                <rect key="frame" x="0.0" y="29" width="361" height="55"/>
+                                                                <rect key="frame" x="0.0" y="28.333333333333258" width="361" height="55"/>
                                                                 <subviews>
-                                                                    <textField opaque="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name of channel" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5vj-uB-3aQ">
+                                                                    <textField opaque="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Add website" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5vj-uB-3aQ">
                                                                         <rect key="frame" x="16" y="0.0" width="339" height="55"/>
                                                                         <color key="tintColor" name="ColorLightGray"/>
                                                                         <color key="textColor" name="ColorWhite"/>
                                                                         <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="14"/>
-                                                                        <textInputTraits key="textInputTraits"/>
+                                                                        <textInputTraits key="textInputTraits" keyboardType="webSearch"/>
                                                                         <userDefinedRuntimeAttributes>
                                                                             <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
                                                                                 <color key="value" name="ColorLightGray"/>
@@ -924,23 +924,23 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="ho8-ju-yvE">
-                                                        <rect key="frame" x="0.0" y="756" width="361" height="84"/>
+                                                        <rect key="frame" x="0.0" y="780.66666666666674" width="361" height="83.333333333333371"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add phone number" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f3k-R6-dlW">
-                                                                <rect key="frame" x="0.0" y="0.0" width="361" height="17"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="361" height="16.333333333333332"/>
                                                                 <fontDescription key="fontDescription" name="Inter-Regular_Medium" family="Inter" pointSize="14"/>
                                                                 <color key="textColor" name="ColorWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Sv-bh-7Yq">
-                                                                <rect key="frame" x="0.0" y="29" width="361" height="55"/>
+                                                                <rect key="frame" x="0.0" y="28.333333333333258" width="361" height="55"/>
                                                                 <subviews>
-                                                                    <textField opaque="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name of channel" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UBp-mZ-18U">
+                                                                    <textField opaque="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Add phone number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UBp-mZ-18U">
                                                                         <rect key="frame" x="16" y="0.0" width="339" height="55"/>
                                                                         <color key="tintColor" name="ColorLightGray"/>
                                                                         <color key="textColor" name="ColorWhite"/>
                                                                         <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="14"/>
-                                                                        <textInputTraits key="textInputTraits"/>
+                                                                        <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                                                                         <userDefinedRuntimeAttributes>
                                                                             <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
                                                                                 <color key="value" name="ColorLightGray"/>
@@ -971,19 +971,19 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="LYp-ft-7VN">
-                                                        <rect key="frame" x="0.0" y="856" width="361" height="151"/>
+                                                        <rect key="frame" x="0.0" y="880" width="361" height="150.33333333333326"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="GhL-0x-jZM">
-                                                                <rect key="frame" x="0.0" y="0.0" width="361" height="84"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="361" height="83.333333333333329"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address or Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CTN-Ja-SMV">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="361" height="17"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="361" height="16.333333333333332"/>
                                                                         <fontDescription key="fontDescription" name="Inter-Regular_Medium" family="Inter" pointSize="14"/>
                                                                         <color key="textColor" name="ColorWhite"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="umH-vl-bXT">
-                                                                        <rect key="frame" x="0.0" y="29" width="361" height="55"/>
+                                                                        <rect key="frame" x="0.0" y="28.333333333333258" width="361" height="55"/>
                                                                         <subviews>
                                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JLR-Y6-aPC">
                                                                                 <rect key="frame" x="36" y="0.0" width="309" height="55"/>
@@ -1033,7 +1033,7 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="cPo-mG-Abe">
-                                                                <rect key="frame" x="0.0" y="96" width="361" height="55"/>
+                                                                <rect key="frame" x="0.0" y="95.333333333333258" width="361" height="55"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="JpN-mV-Xla">
                                                                         <rect key="frame" x="0.0" y="0.0" width="174.66666666666666" height="55"/>
@@ -1046,7 +1046,7 @@
                                                                                         <color key="tintColor" name="ColorLightGray"/>
                                                                                         <color key="textColor" name="ColorWhite"/>
                                                                                         <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="14"/>
-                                                                                        <textInputTraits key="textInputTraits"/>
+                                                                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                                                         <userDefinedRuntimeAttributes>
                                                                                             <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
                                                                                                 <color key="value" name="ColorLightGray"/>
@@ -1122,7 +1122,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="nJm-z8-XUa">
-                                                        <rect key="frame" x="0.0" y="1015" width="361" height="67"/>
+                                                        <rect key="frame" x="0.0" y="1038.3333333333333" width="361" height="67"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Day" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vpq-Eq-vGx">
                                                                 <rect key="frame" x="0.0" y="0.0" width="361" height="0.0"/>
@@ -1184,7 +1184,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="prh-JQ-gK1">
-                                                        <rect key="frame" x="0.0" y="1023.0000000000001" width="361" height="67.333333333333371"/>
+                                                        <rect key="frame" x="0.0" y="1046.3333333333333" width="361" height="67.333333333333258"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Hri-5E-ep6">
                                                                 <rect key="frame" x="0.0" y="0.0" width="361" height="40"/>
@@ -1214,7 +1214,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="vRD-rO-gOg">
-                                                                <rect key="frame" x="0.0" y="67.333333333333258" width="361" height="55"/>
+                                                                <rect key="frame" x="0.0" y="67.333333333333485" width="361" height="55"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="dee-es-sKE">
                                                                         <rect key="frame" x="0.0" y="0.0" width="177" height="55"/>
@@ -1222,20 +1222,8 @@
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dCT-t1-lgB">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="177" height="55"/>
                                                                                 <subviews>
-                                                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="08 : 00" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ap6-y4-aYd">
-                                                                                        <rect key="frame" x="16" y="0.0" width="131" height="55"/>
-                                                                                        <color key="tintColor" name="ColorLightGray"/>
-                                                                                        <color key="textColor" name="ColorWhite"/>
-                                                                                        <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="14"/>
-                                                                                        <textInputTraits key="textInputTraits"/>
-                                                                                        <userDefinedRuntimeAttributes>
-                                                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
-                                                                                                <color key="value" name="ColorLightGray"/>
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                        </userDefinedRuntimeAttributes>
-                                                                                    </textField>
                                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dTs-pd-gBk">
-                                                                                        <rect key="frame" x="12" y="12.666666666666742" width="141" height="30"/>
+                                                                                        <rect key="frame" x="12" y="12.666666666666515" width="141" height="30"/>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="height" constant="30" id="1jU-DR-13Y"/>
                                                                                         </constraints>
@@ -1246,10 +1234,22 @@
                                                                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="semibold"/>
                                                                                         </state>
                                                                                     </button>
+                                                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="08 : 00" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ap6-y4-aYd">
+                                                                                        <rect key="frame" x="16" y="0.0" width="149" height="55"/>
+                                                                                        <color key="tintColor" name="ColorLightGray"/>
+                                                                                        <color key="textColor" name="ColorWhite"/>
+                                                                                        <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="14"/>
+                                                                                        <textInputTraits key="textInputTraits"/>
+                                                                                        <userDefinedRuntimeAttributes>
+                                                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
+                                                                                                <color key="value" name="ColorLightGray"/>
+                                                                                            </userDefinedRuntimeAttribute>
+                                                                                        </userDefinedRuntimeAttributes>
+                                                                                    </textField>
                                                                                 </subviews>
                                                                                 <color key="backgroundColor" name="ColorBlack"/>
                                                                                 <constraints>
-                                                                                    <constraint firstAttribute="trailing" secondItem="Ap6-y4-aYd" secondAttribute="trailing" constant="30" id="0DU-u6-9wN"/>
+                                                                                    <constraint firstAttribute="trailing" secondItem="Ap6-y4-aYd" secondAttribute="trailing" constant="12" id="0DU-u6-9wN"/>
                                                                                     <constraint firstItem="dTs-pd-gBk" firstAttribute="leading" secondItem="dCT-t1-lgB" secondAttribute="leading" constant="12" id="Iy3-Iy-qHr"/>
                                                                                     <constraint firstItem="Ap6-y4-aYd" firstAttribute="leading" secondItem="dCT-t1-lgB" secondAttribute="leading" constant="16" id="Jh5-yR-Zvp"/>
                                                                                     <constraint firstAttribute="bottom" secondItem="Ap6-y4-aYd" secondAttribute="bottom" id="SDp-xF-7We"/>
@@ -1278,20 +1278,8 @@
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r3g-dv-ACv">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="177" height="55"/>
                                                                                 <subviews>
-                                                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="08 : 00" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="M88-tj-DXc">
-                                                                                        <rect key="frame" x="16" y="0.0" width="131" height="55"/>
-                                                                                        <color key="tintColor" name="ColorLightGray"/>
-                                                                                        <color key="textColor" name="ColorWhite"/>
-                                                                                        <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="14"/>
-                                                                                        <textInputTraits key="textInputTraits"/>
-                                                                                        <userDefinedRuntimeAttributes>
-                                                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
-                                                                                                <color key="value" name="ColorLightGray"/>
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                        </userDefinedRuntimeAttributes>
-                                                                                    </textField>
                                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K52-yK-no8">
-                                                                                        <rect key="frame" x="12" y="12.666666666666742" width="141" height="30"/>
+                                                                                        <rect key="frame" x="12" y="12.666666666666515" width="141" height="30"/>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="height" constant="30" id="zRU-Kr-2ix"/>
                                                                                         </constraints>
@@ -1302,6 +1290,18 @@
                                                                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="semibold"/>
                                                                                         </state>
                                                                                     </button>
+                                                                                    <textField opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="08 : 00" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="M88-tj-DXc">
+                                                                                        <rect key="frame" x="16" y="0.0" width="149" height="55"/>
+                                                                                        <color key="tintColor" name="ColorLightGray"/>
+                                                                                        <color key="textColor" name="ColorWhite"/>
+                                                                                        <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="14"/>
+                                                                                        <textInputTraits key="textInputTraits"/>
+                                                                                        <userDefinedRuntimeAttributes>
+                                                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
+                                                                                                <color key="value" name="ColorLightGray"/>
+                                                                                            </userDefinedRuntimeAttribute>
+                                                                                        </userDefinedRuntimeAttributes>
+                                                                                    </textField>
                                                                                 </subviews>
                                                                                 <color key="backgroundColor" name="ColorBlack"/>
                                                                                 <constraints>
@@ -1312,7 +1312,7 @@
                                                                                     <constraint firstItem="M88-tj-DXc" firstAttribute="leading" secondItem="r3g-dv-ACv" secondAttribute="leading" constant="16" id="ULX-BN-fW8"/>
                                                                                     <constraint firstAttribute="height" constant="55" id="bQh-V6-71q"/>
                                                                                     <constraint firstItem="K52-yK-no8" firstAttribute="centerY" secondItem="r3g-dv-ACv" secondAttribute="centerY" id="yyf-Q9-fJK"/>
-                                                                                    <constraint firstAttribute="trailing" secondItem="M88-tj-DXc" secondAttribute="trailing" constant="30" id="zvQ-Xj-XBb"/>
+                                                                                    <constraint firstAttribute="trailing" secondItem="M88-tj-DXc" secondAttribute="trailing" constant="12" id="zvQ-Xj-XBb"/>
                                                                                 </constraints>
                                                                                 <userDefinedRuntimeAttributes>
                                                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -1333,7 +1333,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="uGO-QY-ZxX">
-                                                        <rect key="frame" x="0.0" y="1106.3333333333333" width="361" height="67.333333333333258"/>
+                                                        <rect key="frame" x="0.0" y="1129.6666666666667" width="361" height="67.333333333333258"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="4Am-TY-F40">
                                                                 <rect key="frame" x="0.0" y="0.0" width="361" height="40"/>
@@ -1363,7 +1363,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="Cb5-qf-EnE">
-                                                                <rect key="frame" x="0.0" y="67.333333333333485" width="361" height="55"/>
+                                                                <rect key="frame" x="0.0" y="67.333333333333258" width="361" height="55"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="gmv-ze-ZhW">
                                                                         <rect key="frame" x="0.0" y="0.0" width="177" height="55"/>
@@ -1371,20 +1371,8 @@
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="apT-Lv-dSf">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="177" height="55"/>
                                                                                 <subviews>
-                                                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="08 : 00" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MkN-dM-1Al">
-                                                                                        <rect key="frame" x="16" y="0.0" width="131" height="55"/>
-                                                                                        <color key="tintColor" name="ColorLightGray"/>
-                                                                                        <color key="textColor" name="ColorWhite"/>
-                                                                                        <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="14"/>
-                                                                                        <textInputTraits key="textInputTraits"/>
-                                                                                        <userDefinedRuntimeAttributes>
-                                                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
-                                                                                                <color key="value" name="ColorLightGray"/>
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                        </userDefinedRuntimeAttributes>
-                                                                                    </textField>
                                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bP3-lT-470">
-                                                                                        <rect key="frame" x="12" y="12.666666666666515" width="141" height="30"/>
+                                                                                        <rect key="frame" x="12" y="12.666666666666742" width="141" height="30"/>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="height" constant="30" id="DOo-b4-e2J"/>
                                                                                         </constraints>
@@ -1395,6 +1383,18 @@
                                                                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="semibold"/>
                                                                                         </state>
                                                                                     </button>
+                                                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="08 : 00" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MkN-dM-1Al">
+                                                                                        <rect key="frame" x="16" y="0.0" width="149" height="55"/>
+                                                                                        <color key="tintColor" name="ColorLightGray"/>
+                                                                                        <color key="textColor" name="ColorWhite"/>
+                                                                                        <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="14"/>
+                                                                                        <textInputTraits key="textInputTraits"/>
+                                                                                        <userDefinedRuntimeAttributes>
+                                                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
+                                                                                                <color key="value" name="ColorLightGray"/>
+                                                                                            </userDefinedRuntimeAttribute>
+                                                                                        </userDefinedRuntimeAttributes>
+                                                                                    </textField>
                                                                                 </subviews>
                                                                                 <color key="backgroundColor" name="ColorBlack"/>
                                                                                 <constraints>
@@ -1403,7 +1403,7 @@
                                                                                     <constraint firstItem="bP3-lT-470" firstAttribute="leading" secondItem="apT-Lv-dSf" secondAttribute="leading" constant="12" id="IkE-4v-rAB"/>
                                                                                     <constraint firstAttribute="height" constant="55" id="YJD-IZ-Lhe"/>
                                                                                     <constraint firstAttribute="bottom" secondItem="MkN-dM-1Al" secondAttribute="bottom" id="dET-uk-sAp"/>
-                                                                                    <constraint firstAttribute="trailing" secondItem="MkN-dM-1Al" secondAttribute="trailing" constant="30" id="mCG-vz-gjZ"/>
+                                                                                    <constraint firstAttribute="trailing" secondItem="MkN-dM-1Al" secondAttribute="trailing" constant="12" id="mCG-vz-gjZ"/>
                                                                                     <constraint firstItem="MkN-dM-1Al" firstAttribute="leading" secondItem="apT-Lv-dSf" secondAttribute="leading" constant="16" id="tZf-rF-gmr"/>
                                                                                     <constraint firstItem="bP3-lT-470" firstAttribute="centerY" secondItem="apT-Lv-dSf" secondAttribute="centerY" id="ycb-pj-fSZ"/>
                                                                                 </constraints>
@@ -1427,20 +1427,8 @@
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MtF-18-RhC">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="177" height="55"/>
                                                                                 <subviews>
-                                                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="08 : 00" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lha-cK-Vmz">
-                                                                                        <rect key="frame" x="16" y="0.0" width="131" height="55"/>
-                                                                                        <color key="tintColor" name="ColorLightGray"/>
-                                                                                        <color key="textColor" name="ColorWhite"/>
-                                                                                        <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="14"/>
-                                                                                        <textInputTraits key="textInputTraits"/>
-                                                                                        <userDefinedRuntimeAttributes>
-                                                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
-                                                                                                <color key="value" name="ColorLightGray"/>
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                        </userDefinedRuntimeAttributes>
-                                                                                    </textField>
                                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6d4-43-6xx">
-                                                                                        <rect key="frame" x="12" y="12.666666666666515" width="141" height="30"/>
+                                                                                        <rect key="frame" x="12" y="12.666666666666742" width="141" height="30"/>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="height" constant="30" id="vRj-8h-hAF"/>
                                                                                         </constraints>
@@ -1451,13 +1439,25 @@
                                                                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="semibold"/>
                                                                                         </state>
                                                                                     </button>
+                                                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="08 : 00" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lha-cK-Vmz">
+                                                                                        <rect key="frame" x="16" y="0.0" width="149" height="55"/>
+                                                                                        <color key="tintColor" name="ColorLightGray"/>
+                                                                                        <color key="textColor" name="ColorWhite"/>
+                                                                                        <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="14"/>
+                                                                                        <textInputTraits key="textInputTraits"/>
+                                                                                        <userDefinedRuntimeAttributes>
+                                                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
+                                                                                                <color key="value" name="ColorLightGray"/>
+                                                                                            </userDefinedRuntimeAttribute>
+                                                                                        </userDefinedRuntimeAttributes>
+                                                                                    </textField>
                                                                                 </subviews>
                                                                                 <color key="backgroundColor" name="ColorBlack"/>
                                                                                 <constraints>
                                                                                     <constraint firstItem="6d4-43-6xx" firstAttribute="leading" secondItem="MtF-18-RhC" secondAttribute="leading" constant="12" id="FKl-KU-fRT"/>
                                                                                     <constraint firstItem="6d4-43-6xx" firstAttribute="centerY" secondItem="MtF-18-RhC" secondAttribute="centerY" id="HTx-kD-NW6"/>
                                                                                     <constraint firstAttribute="trailing" secondItem="6d4-43-6xx" secondAttribute="trailing" constant="24" id="I2r-Yk-zJg"/>
-                                                                                    <constraint firstAttribute="trailing" secondItem="Lha-cK-Vmz" secondAttribute="trailing" constant="30" id="Xsu-Fp-V2c"/>
+                                                                                    <constraint firstAttribute="trailing" secondItem="Lha-cK-Vmz" secondAttribute="trailing" constant="12" id="Xsu-Fp-V2c"/>
                                                                                     <constraint firstAttribute="height" constant="55" id="a7m-rF-5oh"/>
                                                                                     <constraint firstItem="Lha-cK-Vmz" firstAttribute="top" secondItem="MtF-18-RhC" secondAttribute="top" id="gC5-fq-sqP"/>
                                                                                     <constraint firstItem="Lha-cK-Vmz" firstAttribute="leading" secondItem="MtF-18-RhC" secondAttribute="leading" constant="16" id="uhi-ei-uB4"/>
@@ -1482,7 +1482,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="QPF-yA-wOi">
-                                                        <rect key="frame" x="0.0" y="1189.6666666666667" width="361" height="67.333333333333258"/>
+                                                        <rect key="frame" x="0.0" y="1213" width="361" height="67.333333333333258"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="dbd-Yv-sIe">
                                                                 <rect key="frame" x="0.0" y="0.0" width="361" height="40"/>
@@ -1520,18 +1520,6 @@
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dd9-rx-mtW">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="177" height="55"/>
                                                                                 <subviews>
-                                                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="08 : 00" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wxb-KQ-qS0">
-                                                                                        <rect key="frame" x="16" y="0.0" width="131" height="55"/>
-                                                                                        <color key="tintColor" name="ColorLightGray"/>
-                                                                                        <color key="textColor" name="ColorWhite"/>
-                                                                                        <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="14"/>
-                                                                                        <textInputTraits key="textInputTraits"/>
-                                                                                        <userDefinedRuntimeAttributes>
-                                                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
-                                                                                                <color key="value" name="ColorLightGray"/>
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                        </userDefinedRuntimeAttributes>
-                                                                                    </textField>
                                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dky-sr-iWw">
                                                                                         <rect key="frame" x="12" y="12.666666666666742" width="141" height="30"/>
                                                                                         <constraints>
@@ -1544,10 +1532,22 @@
                                                                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="semibold"/>
                                                                                         </state>
                                                                                     </button>
+                                                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="08 : 00" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wxb-KQ-qS0">
+                                                                                        <rect key="frame" x="16" y="0.0" width="149" height="55"/>
+                                                                                        <color key="tintColor" name="ColorLightGray"/>
+                                                                                        <color key="textColor" name="ColorWhite"/>
+                                                                                        <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="14"/>
+                                                                                        <textInputTraits key="textInputTraits"/>
+                                                                                        <userDefinedRuntimeAttributes>
+                                                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
+                                                                                                <color key="value" name="ColorLightGray"/>
+                                                                                            </userDefinedRuntimeAttribute>
+                                                                                        </userDefinedRuntimeAttributes>
+                                                                                    </textField>
                                                                                 </subviews>
                                                                                 <color key="backgroundColor" name="ColorBlack"/>
                                                                                 <constraints>
-                                                                                    <constraint firstAttribute="trailing" secondItem="wxb-KQ-qS0" secondAttribute="trailing" constant="30" id="20M-Eu-YCx"/>
+                                                                                    <constraint firstAttribute="trailing" secondItem="wxb-KQ-qS0" secondAttribute="trailing" constant="12" id="20M-Eu-YCx"/>
                                                                                     <constraint firstAttribute="trailing" secondItem="dky-sr-iWw" secondAttribute="trailing" constant="24" id="KO1-Si-Mj6"/>
                                                                                     <constraint firstItem="wxb-KQ-qS0" firstAttribute="leading" secondItem="Dd9-rx-mtW" secondAttribute="leading" constant="16" id="Vn2-vf-YNU"/>
                                                                                     <constraint firstAttribute="bottom" secondItem="wxb-KQ-qS0" secondAttribute="bottom" id="aUl-tf-val"/>
@@ -1576,18 +1576,6 @@
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VBk-9g-b1H">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="177" height="55"/>
                                                                                 <subviews>
-                                                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="08 : 00" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vZo-0f-5bS">
-                                                                                        <rect key="frame" x="16" y="0.0" width="131" height="55"/>
-                                                                                        <color key="tintColor" name="ColorLightGray"/>
-                                                                                        <color key="textColor" name="ColorWhite"/>
-                                                                                        <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="14"/>
-                                                                                        <textInputTraits key="textInputTraits"/>
-                                                                                        <userDefinedRuntimeAttributes>
-                                                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
-                                                                                                <color key="value" name="ColorLightGray"/>
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                        </userDefinedRuntimeAttributes>
-                                                                                    </textField>
                                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aKd-4a-p5y">
                                                                                         <rect key="frame" x="12" y="12.666666666666742" width="141" height="30"/>
                                                                                         <constraints>
@@ -1600,13 +1588,25 @@
                                                                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="semibold"/>
                                                                                         </state>
                                                                                     </button>
+                                                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="08 : 00" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vZo-0f-5bS">
+                                                                                        <rect key="frame" x="16" y="0.0" width="149" height="55"/>
+                                                                                        <color key="tintColor" name="ColorLightGray"/>
+                                                                                        <color key="textColor" name="ColorWhite"/>
+                                                                                        <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="14"/>
+                                                                                        <textInputTraits key="textInputTraits"/>
+                                                                                        <userDefinedRuntimeAttributes>
+                                                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
+                                                                                                <color key="value" name="ColorLightGray"/>
+                                                                                            </userDefinedRuntimeAttribute>
+                                                                                        </userDefinedRuntimeAttributes>
+                                                                                    </textField>
                                                                                 </subviews>
                                                                                 <color key="backgroundColor" name="ColorBlack"/>
                                                                                 <constraints>
                                                                                     <constraint firstItem="vZo-0f-5bS" firstAttribute="top" secondItem="VBk-9g-b1H" secondAttribute="top" id="5pf-gY-5nY"/>
                                                                                     <constraint firstItem="vZo-0f-5bS" firstAttribute="leading" secondItem="VBk-9g-b1H" secondAttribute="leading" constant="16" id="9L5-2d-ldt"/>
                                                                                     <constraint firstAttribute="trailing" secondItem="aKd-4a-p5y" secondAttribute="trailing" constant="24" id="Psc-6M-zJP"/>
-                                                                                    <constraint firstAttribute="trailing" secondItem="vZo-0f-5bS" secondAttribute="trailing" constant="30" id="Ws9-dn-Mno"/>
+                                                                                    <constraint firstAttribute="trailing" secondItem="vZo-0f-5bS" secondAttribute="trailing" constant="12" id="Ws9-dn-Mno"/>
                                                                                     <constraint firstItem="aKd-4a-p5y" firstAttribute="leading" secondItem="VBk-9g-b1H" secondAttribute="leading" constant="12" id="YPx-Qg-o5c"/>
                                                                                     <constraint firstAttribute="height" constant="55" id="dK0-MH-aEo"/>
                                                                                     <constraint firstItem="aKd-4a-p5y" firstAttribute="centerY" secondItem="VBk-9g-b1H" secondAttribute="centerY" id="gZh-qq-5Xg"/>
@@ -1631,7 +1631,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="3g1-Ss-7tG">
-                                                        <rect key="frame" x="0.0" y="1273" width="361" height="67.333333333333258"/>
+                                                        <rect key="frame" x="0.0" y="1296.3333333333333" width="361" height="67.333333333333258"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="hPZ-lv-wLd">
                                                                 <rect key="frame" x="0.0" y="0.0" width="361" height="40"/>
@@ -1661,7 +1661,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="odU-Q6-uSU">
-                                                                <rect key="frame" x="0.0" y="67.333333333333258" width="361" height="55"/>
+                                                                <rect key="frame" x="0.0" y="67.333333333333485" width="361" height="55"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="hps-Kz-E03">
                                                                         <rect key="frame" x="0.0" y="0.0" width="177" height="55"/>
@@ -1669,20 +1669,8 @@
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tPz-gA-XQv">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="177" height="55"/>
                                                                                 <subviews>
-                                                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="08 : 00" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2W1-F5-Smm">
-                                                                                        <rect key="frame" x="16" y="0.0" width="131" height="55"/>
-                                                                                        <color key="tintColor" name="ColorLightGray"/>
-                                                                                        <color key="textColor" name="ColorWhite"/>
-                                                                                        <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="14"/>
-                                                                                        <textInputTraits key="textInputTraits"/>
-                                                                                        <userDefinedRuntimeAttributes>
-                                                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
-                                                                                                <color key="value" name="ColorLightGray"/>
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                        </userDefinedRuntimeAttributes>
-                                                                                    </textField>
                                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bwD-FS-THq">
-                                                                                        <rect key="frame" x="12" y="12.666666666666742" width="141" height="30"/>
+                                                                                        <rect key="frame" x="12" y="12.666666666666515" width="141" height="30"/>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="height" constant="30" id="38o-f6-hbz"/>
                                                                                         </constraints>
@@ -1693,6 +1681,18 @@
                                                                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="semibold"/>
                                                                                         </state>
                                                                                     </button>
+                                                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="08 : 00" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2W1-F5-Smm">
+                                                                                        <rect key="frame" x="16" y="0.0" width="149" height="55"/>
+                                                                                        <color key="tintColor" name="ColorLightGray"/>
+                                                                                        <color key="textColor" name="ColorWhite"/>
+                                                                                        <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="14"/>
+                                                                                        <textInputTraits key="textInputTraits"/>
+                                                                                        <userDefinedRuntimeAttributes>
+                                                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
+                                                                                                <color key="value" name="ColorLightGray"/>
+                                                                                            </userDefinedRuntimeAttribute>
+                                                                                        </userDefinedRuntimeAttributes>
+                                                                                    </textField>
                                                                                 </subviews>
                                                                                 <color key="backgroundColor" name="ColorBlack"/>
                                                                                 <constraints>
@@ -1703,7 +1703,7 @@
                                                                                     <constraint firstItem="bwD-FS-THq" firstAttribute="leading" secondItem="tPz-gA-XQv" secondAttribute="leading" constant="12" id="b0c-yQ-3Md"/>
                                                                                     <constraint firstItem="bwD-FS-THq" firstAttribute="centerY" secondItem="tPz-gA-XQv" secondAttribute="centerY" id="g8O-5C-lli"/>
                                                                                     <constraint firstAttribute="trailing" secondItem="bwD-FS-THq" secondAttribute="trailing" constant="24" id="pSn-Qf-y8A"/>
-                                                                                    <constraint firstAttribute="trailing" secondItem="2W1-F5-Smm" secondAttribute="trailing" constant="30" id="tyd-ia-5Jg"/>
+                                                                                    <constraint firstAttribute="trailing" secondItem="2W1-F5-Smm" secondAttribute="trailing" constant="12" id="tyd-ia-5Jg"/>
                                                                                 </constraints>
                                                                                 <userDefinedRuntimeAttributes>
                                                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -1725,20 +1725,8 @@
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C0f-sX-pb1">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="177" height="55"/>
                                                                                 <subviews>
-                                                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="08 : 00" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rgY-Og-m3V">
-                                                                                        <rect key="frame" x="16" y="0.0" width="131" height="55"/>
-                                                                                        <color key="tintColor" name="ColorLightGray"/>
-                                                                                        <color key="textColor" name="ColorWhite"/>
-                                                                                        <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="14"/>
-                                                                                        <textInputTraits key="textInputTraits"/>
-                                                                                        <userDefinedRuntimeAttributes>
-                                                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
-                                                                                                <color key="value" name="ColorLightGray"/>
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                        </userDefinedRuntimeAttributes>
-                                                                                    </textField>
                                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6AS-Sl-9jz">
-                                                                                        <rect key="frame" x="12" y="12.666666666666742" width="141" height="30"/>
+                                                                                        <rect key="frame" x="12" y="12.666666666666515" width="141" height="30"/>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="height" constant="30" id="hcm-RD-eEY"/>
                                                                                         </constraints>
@@ -1749,13 +1737,25 @@
                                                                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="semibold"/>
                                                                                         </state>
                                                                                     </button>
+                                                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="08 : 00" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rgY-Og-m3V">
+                                                                                        <rect key="frame" x="16" y="0.0" width="149" height="55"/>
+                                                                                        <color key="tintColor" name="ColorLightGray"/>
+                                                                                        <color key="textColor" name="ColorWhite"/>
+                                                                                        <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="14"/>
+                                                                                        <textInputTraits key="textInputTraits"/>
+                                                                                        <userDefinedRuntimeAttributes>
+                                                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
+                                                                                                <color key="value" name="ColorLightGray"/>
+                                                                                            </userDefinedRuntimeAttribute>
+                                                                                        </userDefinedRuntimeAttributes>
+                                                                                    </textField>
                                                                                 </subviews>
                                                                                 <color key="backgroundColor" name="ColorBlack"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="trailing" secondItem="6AS-Sl-9jz" secondAttribute="trailing" constant="24" id="3VO-2f-71d"/>
                                                                                     <constraint firstItem="6AS-Sl-9jz" firstAttribute="leading" secondItem="C0f-sX-pb1" secondAttribute="leading" constant="12" id="3ij-4U-6uE"/>
                                                                                     <constraint firstAttribute="height" constant="55" id="H4y-Z9-deB"/>
-                                                                                    <constraint firstAttribute="trailing" secondItem="rgY-Og-m3V" secondAttribute="trailing" constant="30" id="Qfy-f7-F2P"/>
+                                                                                    <constraint firstAttribute="trailing" secondItem="rgY-Og-m3V" secondAttribute="trailing" constant="12" id="Qfy-f7-F2P"/>
                                                                                     <constraint firstItem="6AS-Sl-9jz" firstAttribute="centerY" secondItem="C0f-sX-pb1" secondAttribute="centerY" id="iqN-dx-8NO"/>
                                                                                     <constraint firstItem="rgY-Og-m3V" firstAttribute="top" secondItem="C0f-sX-pb1" secondAttribute="top" id="jfW-fH-Kx5"/>
                                                                                     <constraint firstItem="rgY-Og-m3V" firstAttribute="leading" secondItem="C0f-sX-pb1" secondAttribute="leading" constant="16" id="nGI-ws-c0S"/>
@@ -1780,7 +1780,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="1wx-0T-fLp">
-                                                        <rect key="frame" x="0.0" y="1356.3333333333333" width="361" height="67.333333333333258"/>
+                                                        <rect key="frame" x="0.0" y="1379.6666666666667" width="361" height="67.333333333333258"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Ca3-Bw-sJT">
                                                                 <rect key="frame" x="0.0" y="0.0" width="361" height="40"/>
@@ -1810,7 +1810,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="eSP-Jj-DBS">
-                                                                <rect key="frame" x="0.0" y="67.333333333333485" width="361" height="55"/>
+                                                                <rect key="frame" x="0.0" y="67.333333333333258" width="361" height="55"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="fJb-U7-hix">
                                                                         <rect key="frame" x="0.0" y="0.0" width="177" height="55"/>
@@ -1818,20 +1818,8 @@
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="45x-4r-e8F">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="177" height="55"/>
                                                                                 <subviews>
-                                                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="08 : 00" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="enc-4z-LFE">
-                                                                                        <rect key="frame" x="16" y="0.0" width="131" height="55"/>
-                                                                                        <color key="tintColor" name="ColorLightGray"/>
-                                                                                        <color key="textColor" name="ColorWhite"/>
-                                                                                        <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="14"/>
-                                                                                        <textInputTraits key="textInputTraits"/>
-                                                                                        <userDefinedRuntimeAttributes>
-                                                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
-                                                                                                <color key="value" name="ColorLightGray"/>
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                        </userDefinedRuntimeAttributes>
-                                                                                    </textField>
                                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Om-6h-AEQ">
-                                                                                        <rect key="frame" x="12" y="12.666666666666515" width="141" height="30"/>
+                                                                                        <rect key="frame" x="12" y="12.666666666666742" width="141" height="30"/>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="height" constant="30" id="tg8-jJ-Cj2"/>
                                                                                         </constraints>
@@ -1842,13 +1830,25 @@
                                                                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="semibold"/>
                                                                                         </state>
                                                                                     </button>
+                                                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="08 : 00" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="enc-4z-LFE">
+                                                                                        <rect key="frame" x="16" y="0.0" width="149" height="55"/>
+                                                                                        <color key="tintColor" name="ColorLightGray"/>
+                                                                                        <color key="textColor" name="ColorWhite"/>
+                                                                                        <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="14"/>
+                                                                                        <textInputTraits key="textInputTraits"/>
+                                                                                        <userDefinedRuntimeAttributes>
+                                                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
+                                                                                                <color key="value" name="ColorLightGray"/>
+                                                                                            </userDefinedRuntimeAttribute>
+                                                                                        </userDefinedRuntimeAttributes>
+                                                                                    </textField>
                                                                                 </subviews>
                                                                                 <color key="backgroundColor" name="ColorBlack"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="trailing" secondItem="9Om-6h-AEQ" secondAttribute="trailing" constant="24" id="1RV-h2-VKs"/>
                                                                                     <constraint firstItem="9Om-6h-AEQ" firstAttribute="leading" secondItem="45x-4r-e8F" secondAttribute="leading" constant="12" id="SSz-aW-Kgp"/>
                                                                                     <constraint firstAttribute="height" constant="55" id="TO6-nb-Bi2"/>
-                                                                                    <constraint firstAttribute="trailing" secondItem="enc-4z-LFE" secondAttribute="trailing" constant="30" id="hlR-HH-yjt"/>
+                                                                                    <constraint firstAttribute="trailing" secondItem="enc-4z-LFE" secondAttribute="trailing" constant="12" id="hlR-HH-yjt"/>
                                                                                     <constraint firstItem="enc-4z-LFE" firstAttribute="leading" secondItem="45x-4r-e8F" secondAttribute="leading" constant="16" id="qIq-oz-uRx"/>
                                                                                     <constraint firstItem="9Om-6h-AEQ" firstAttribute="centerY" secondItem="45x-4r-e8F" secondAttribute="centerY" id="rD8-vu-zvE"/>
                                                                                     <constraint firstItem="enc-4z-LFE" firstAttribute="top" secondItem="45x-4r-e8F" secondAttribute="top" id="wNo-UF-a8G"/>
@@ -1874,20 +1874,8 @@
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a1N-Nz-eDo">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="177" height="55"/>
                                                                                 <subviews>
-                                                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="08 : 00" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lab-oz-vsB">
-                                                                                        <rect key="frame" x="16" y="0.0" width="131" height="55"/>
-                                                                                        <color key="tintColor" name="ColorLightGray"/>
-                                                                                        <color key="textColor" name="ColorWhite"/>
-                                                                                        <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="14"/>
-                                                                                        <textInputTraits key="textInputTraits"/>
-                                                                                        <userDefinedRuntimeAttributes>
-                                                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
-                                                                                                <color key="value" name="ColorLightGray"/>
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                        </userDefinedRuntimeAttributes>
-                                                                                    </textField>
                                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wCv-KK-Ff2">
-                                                                                        <rect key="frame" x="12" y="12.666666666666515" width="141" height="30"/>
+                                                                                        <rect key="frame" x="12" y="12.666666666666742" width="141" height="30"/>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="height" constant="30" id="Qs9-oc-Yb7"/>
                                                                                         </constraints>
@@ -1898,6 +1886,18 @@
                                                                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="semibold"/>
                                                                                         </state>
                                                                                     </button>
+                                                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="08 : 00" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lab-oz-vsB">
+                                                                                        <rect key="frame" x="16" y="0.0" width="149" height="55"/>
+                                                                                        <color key="tintColor" name="ColorLightGray"/>
+                                                                                        <color key="textColor" name="ColorWhite"/>
+                                                                                        <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="14"/>
+                                                                                        <textInputTraits key="textInputTraits"/>
+                                                                                        <userDefinedRuntimeAttributes>
+                                                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
+                                                                                                <color key="value" name="ColorLightGray"/>
+                                                                                            </userDefinedRuntimeAttribute>
+                                                                                        </userDefinedRuntimeAttributes>
+                                                                                    </textField>
                                                                                 </subviews>
                                                                                 <color key="backgroundColor" name="ColorBlack"/>
                                                                                 <constraints>
@@ -1908,7 +1908,7 @@
                                                                                     <constraint firstAttribute="bottom" secondItem="Lab-oz-vsB" secondAttribute="bottom" id="i6Y-8r-pb9"/>
                                                                                     <constraint firstAttribute="trailing" secondItem="wCv-KK-Ff2" secondAttribute="trailing" constant="24" id="pUa-xE-Sy4"/>
                                                                                     <constraint firstItem="wCv-KK-Ff2" firstAttribute="leading" secondItem="a1N-Nz-eDo" secondAttribute="leading" constant="12" id="sUG-kC-FFz"/>
-                                                                                    <constraint firstAttribute="trailing" secondItem="Lab-oz-vsB" secondAttribute="trailing" constant="30" id="tvJ-kd-8EO"/>
+                                                                                    <constraint firstAttribute="trailing" secondItem="Lab-oz-vsB" secondAttribute="trailing" constant="12" id="tvJ-kd-8EO"/>
                                                                                 </constraints>
                                                                                 <userDefinedRuntimeAttributes>
                                                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -1929,7 +1929,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="J5m-ye-cl5">
-                                                        <rect key="frame" x="0.0" y="1439.6666666666667" width="361" height="67.333333333333258"/>
+                                                        <rect key="frame" x="0.0" y="1463" width="361" height="67.333333333333258"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="6k6-iA-fdn">
                                                                 <rect key="frame" x="0.0" y="0.0" width="361" height="40"/>
@@ -1967,18 +1967,6 @@
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Gj-0N-Yx0">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="177" height="55"/>
                                                                                 <subviews>
-                                                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="08 : 00" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OeY-x5-7Ky">
-                                                                                        <rect key="frame" x="16" y="0.0" width="131" height="55"/>
-                                                                                        <color key="tintColor" name="ColorLightGray"/>
-                                                                                        <color key="textColor" name="ColorWhite"/>
-                                                                                        <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="14"/>
-                                                                                        <textInputTraits key="textInputTraits"/>
-                                                                                        <userDefinedRuntimeAttributes>
-                                                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
-                                                                                                <color key="value" name="ColorLightGray"/>
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                        </userDefinedRuntimeAttributes>
-                                                                                    </textField>
                                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N3Q-ob-seB">
                                                                                         <rect key="frame" x="12" y="12.666666666666742" width="141" height="30"/>
                                                                                         <constraints>
@@ -1991,12 +1979,24 @@
                                                                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="semibold"/>
                                                                                         </state>
                                                                                     </button>
+                                                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="08 : 00" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OeY-x5-7Ky">
+                                                                                        <rect key="frame" x="16" y="0.0" width="149" height="55"/>
+                                                                                        <color key="tintColor" name="ColorLightGray"/>
+                                                                                        <color key="textColor" name="ColorWhite"/>
+                                                                                        <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="14"/>
+                                                                                        <textInputTraits key="textInputTraits"/>
+                                                                                        <userDefinedRuntimeAttributes>
+                                                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
+                                                                                                <color key="value" name="ColorLightGray"/>
+                                                                                            </userDefinedRuntimeAttribute>
+                                                                                        </userDefinedRuntimeAttributes>
+                                                                                    </textField>
                                                                                 </subviews>
                                                                                 <color key="backgroundColor" name="ColorBlack"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="55" id="2h4-dy-1AK"/>
                                                                                     <constraint firstItem="N3Q-ob-seB" firstAttribute="centerY" secondItem="0Gj-0N-Yx0" secondAttribute="centerY" id="ESo-Kf-XPY"/>
-                                                                                    <constraint firstAttribute="trailing" secondItem="OeY-x5-7Ky" secondAttribute="trailing" constant="30" id="HGX-AZ-Dlt"/>
+                                                                                    <constraint firstAttribute="trailing" secondItem="OeY-x5-7Ky" secondAttribute="trailing" constant="12" id="HGX-AZ-Dlt"/>
                                                                                     <constraint firstAttribute="bottom" secondItem="OeY-x5-7Ky" secondAttribute="bottom" id="Jgw-V7-rsr"/>
                                                                                     <constraint firstItem="OeY-x5-7Ky" firstAttribute="leading" secondItem="0Gj-0N-Yx0" secondAttribute="leading" constant="16" id="VS2-Pt-WPf"/>
                                                                                     <constraint firstItem="OeY-x5-7Ky" firstAttribute="top" secondItem="0Gj-0N-Yx0" secondAttribute="top" id="ZAN-wm-5gA"/>
@@ -2023,18 +2023,6 @@
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jta-Fc-QdM">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="177" height="55"/>
                                                                                 <subviews>
-                                                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="08 : 00" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7ht-r3-PED">
-                                                                                        <rect key="frame" x="16" y="0.0" width="131" height="55"/>
-                                                                                        <color key="tintColor" name="ColorLightGray"/>
-                                                                                        <color key="textColor" name="ColorWhite"/>
-                                                                                        <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="14"/>
-                                                                                        <textInputTraits key="textInputTraits"/>
-                                                                                        <userDefinedRuntimeAttributes>
-                                                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
-                                                                                                <color key="value" name="ColorLightGray"/>
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                        </userDefinedRuntimeAttributes>
-                                                                                    </textField>
                                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ftA-8z-b4T">
                                                                                         <rect key="frame" x="12" y="12.666666666666742" width="141" height="30"/>
                                                                                         <constraints>
@@ -2047,10 +2035,22 @@
                                                                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="semibold"/>
                                                                                         </state>
                                                                                     </button>
+                                                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="08 : 00" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7ht-r3-PED">
+                                                                                        <rect key="frame" x="16" y="0.0" width="149" height="55"/>
+                                                                                        <color key="tintColor" name="ColorLightGray"/>
+                                                                                        <color key="textColor" name="ColorWhite"/>
+                                                                                        <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="14"/>
+                                                                                        <textInputTraits key="textInputTraits"/>
+                                                                                        <userDefinedRuntimeAttributes>
+                                                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
+                                                                                                <color key="value" name="ColorLightGray"/>
+                                                                                            </userDefinedRuntimeAttribute>
+                                                                                        </userDefinedRuntimeAttributes>
+                                                                                    </textField>
                                                                                 </subviews>
                                                                                 <color key="backgroundColor" name="ColorBlack"/>
                                                                                 <constraints>
-                                                                                    <constraint firstAttribute="trailing" secondItem="7ht-r3-PED" secondAttribute="trailing" constant="30" id="RIu-bN-Eeb"/>
+                                                                                    <constraint firstAttribute="trailing" secondItem="7ht-r3-PED" secondAttribute="trailing" constant="12" id="RIu-bN-Eeb"/>
                                                                                     <constraint firstAttribute="trailing" secondItem="ftA-8z-b4T" secondAttribute="trailing" constant="24" id="UlO-Rb-WfI"/>
                                                                                     <constraint firstAttribute="bottom" secondItem="7ht-r3-PED" secondAttribute="bottom" id="Uoi-xh-fMw"/>
                                                                                     <constraint firstItem="ftA-8z-b4T" firstAttribute="centerY" secondItem="jta-Fc-QdM" secondAttribute="centerY" id="bnU-lK-3bn"/>
@@ -2078,7 +2078,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="min-Be-PeW">
-                                                        <rect key="frame" x="0.0" y="1523" width="361" height="67.333333333333258"/>
+                                                        <rect key="frame" x="0.0" y="1546.3333333333333" width="361" height="67.333333333333258"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="8pH-l6-2er">
                                                                 <rect key="frame" x="0.0" y="0.0" width="361" height="40"/>
@@ -2108,7 +2108,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="v1v-4k-g8a">
-                                                                <rect key="frame" x="0.0" y="67.333333333333258" width="361" height="55"/>
+                                                                <rect key="frame" x="0.0" y="67.333333333333485" width="361" height="55"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="9nv-e8-OLi">
                                                                         <rect key="frame" x="0.0" y="0.0" width="177" height="55"/>
@@ -2116,20 +2116,8 @@
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vHR-gL-rXG">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="177" height="55"/>
                                                                                 <subviews>
-                                                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="08 : 00" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pXr-Bb-Nhi">
-                                                                                        <rect key="frame" x="16" y="0.0" width="131" height="55"/>
-                                                                                        <color key="tintColor" name="ColorLightGray"/>
-                                                                                        <color key="textColor" name="ColorWhite"/>
-                                                                                        <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="14"/>
-                                                                                        <textInputTraits key="textInputTraits"/>
-                                                                                        <userDefinedRuntimeAttributes>
-                                                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
-                                                                                                <color key="value" name="ColorLightGray"/>
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                        </userDefinedRuntimeAttributes>
-                                                                                    </textField>
                                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JY9-DV-VLf">
-                                                                                        <rect key="frame" x="12" y="12.666666666666742" width="141" height="30"/>
+                                                                                        <rect key="frame" x="12" y="12.666666666666515" width="141" height="30"/>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="height" constant="30" id="bhp-b7-4Kl"/>
                                                                                         </constraints>
@@ -2140,12 +2128,24 @@
                                                                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="semibold"/>
                                                                                         </state>
                                                                                     </button>
+                                                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="08 : 00" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pXr-Bb-Nhi">
+                                                                                        <rect key="frame" x="16" y="0.0" width="149" height="55"/>
+                                                                                        <color key="tintColor" name="ColorLightGray"/>
+                                                                                        <color key="textColor" name="ColorWhite"/>
+                                                                                        <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="14"/>
+                                                                                        <textInputTraits key="textInputTraits"/>
+                                                                                        <userDefinedRuntimeAttributes>
+                                                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
+                                                                                                <color key="value" name="ColorLightGray"/>
+                                                                                            </userDefinedRuntimeAttribute>
+                                                                                        </userDefinedRuntimeAttributes>
+                                                                                    </textField>
                                                                                 </subviews>
                                                                                 <color key="backgroundColor" name="ColorBlack"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="trailing" secondItem="JY9-DV-VLf" secondAttribute="trailing" constant="24" id="KIJ-sH-faF"/>
                                                                                     <constraint firstItem="pXr-Bb-Nhi" firstAttribute="top" secondItem="vHR-gL-rXG" secondAttribute="top" id="dj2-ny-Bso"/>
-                                                                                    <constraint firstAttribute="trailing" secondItem="pXr-Bb-Nhi" secondAttribute="trailing" constant="30" id="khL-Mt-rUE"/>
+                                                                                    <constraint firstAttribute="trailing" secondItem="pXr-Bb-Nhi" secondAttribute="trailing" constant="12" id="khL-Mt-rUE"/>
                                                                                     <constraint firstAttribute="bottom" secondItem="pXr-Bb-Nhi" secondAttribute="bottom" id="kqe-gL-WOv"/>
                                                                                     <constraint firstItem="pXr-Bb-Nhi" firstAttribute="leading" secondItem="vHR-gL-rXG" secondAttribute="leading" constant="16" id="nKT-c8-uk9"/>
                                                                                     <constraint firstAttribute="height" constant="55" id="oeo-Qn-Aj3"/>
@@ -2172,20 +2172,8 @@
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ViI-vW-8k3">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="177" height="55"/>
                                                                                 <subviews>
-                                                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="08 : 00" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="onY-KB-nts">
-                                                                                        <rect key="frame" x="16" y="0.0" width="131" height="55"/>
-                                                                                        <color key="tintColor" name="ColorLightGray"/>
-                                                                                        <color key="textColor" name="ColorWhite"/>
-                                                                                        <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="14"/>
-                                                                                        <textInputTraits key="textInputTraits"/>
-                                                                                        <userDefinedRuntimeAttributes>
-                                                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
-                                                                                                <color key="value" name="ColorLightGray"/>
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                        </userDefinedRuntimeAttributes>
-                                                                                    </textField>
                                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="10K-dP-Vbv">
-                                                                                        <rect key="frame" x="12" y="12.666666666666742" width="141" height="30"/>
+                                                                                        <rect key="frame" x="12" y="12.666666666666515" width="141" height="30"/>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="height" constant="30" id="TbD-a9-eSd"/>
                                                                                         </constraints>
@@ -2196,12 +2184,24 @@
                                                                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="semibold"/>
                                                                                         </state>
                                                                                     </button>
+                                                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="08 : 00" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="onY-KB-nts">
+                                                                                        <rect key="frame" x="16" y="0.0" width="149" height="55"/>
+                                                                                        <color key="tintColor" name="ColorLightGray"/>
+                                                                                        <color key="textColor" name="ColorWhite"/>
+                                                                                        <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="14"/>
+                                                                                        <textInputTraits key="textInputTraits"/>
+                                                                                        <userDefinedRuntimeAttributes>
+                                                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
+                                                                                                <color key="value" name="ColorLightGray"/>
+                                                                                            </userDefinedRuntimeAttribute>
+                                                                                        </userDefinedRuntimeAttributes>
+                                                                                    </textField>
                                                                                 </subviews>
                                                                                 <color key="backgroundColor" name="ColorBlack"/>
                                                                                 <constraints>
                                                                                     <constraint firstItem="10K-dP-Vbv" firstAttribute="centerY" secondItem="ViI-vW-8k3" secondAttribute="centerY" id="7vc-5m-OXL"/>
                                                                                     <constraint firstAttribute="trailing" secondItem="10K-dP-Vbv" secondAttribute="trailing" constant="24" id="Dxe-KQ-Dyt"/>
-                                                                                    <constraint firstAttribute="trailing" secondItem="onY-KB-nts" secondAttribute="trailing" constant="30" id="GsU-BR-9xo"/>
+                                                                                    <constraint firstAttribute="trailing" secondItem="onY-KB-nts" secondAttribute="trailing" constant="12" id="GsU-BR-9xo"/>
                                                                                     <constraint firstAttribute="height" constant="55" id="HpB-nc-qXB"/>
                                                                                     <constraint firstAttribute="bottom" secondItem="onY-KB-nts" secondAttribute="bottom" id="IOf-zc-XlK"/>
                                                                                     <constraint firstItem="onY-KB-nts" firstAttribute="leading" secondItem="ViI-vW-8k3" secondAttribute="leading" constant="16" id="ePZ-Y2-gwJ"/>
@@ -2227,7 +2227,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="233-JY-CIA">
-                                                        <rect key="frame" x="0.0" y="1606.3333333333333" width="361" height="55"/>
+                                                        <rect key="frame" x="0.0" y="1629.6666666666667" width="361" height="55"/>
                                                         <color key="backgroundColor" name="ColorWhite"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="55" id="fiP-MX-Cqq"/>
@@ -2308,7 +2308,21 @@
                         <outlet property="stackTuesday" destination="Cb5-qf-EnE" id="c0O-pM-cHZ"/>
                         <outlet property="stackWednesday" destination="5YW-SC-Gib" id="8Hd-Vf-9ni"/>
                         <outlet property="txtAccntType" destination="7mQ-pQ-nB8" id="aIH-92-Prr"/>
-                        <outlet property="txtViewBio" destination="9w2-iP-jOr" id="VvZ-Vg-oya"/>
+                        <outlet property="txtFridayClosing" destination="Lab-oz-vsB" id="CmE-NF-r60"/>
+                        <outlet property="txtFridayOpening" destination="enc-4z-LFE" id="ZCw-vC-asM"/>
+                        <outlet property="txtMondayClosing" destination="M88-tj-DXc" id="wjO-V1-hFy"/>
+                        <outlet property="txtMondayOpening" destination="Ap6-y4-aYd" id="DOH-kF-FMF"/>
+                        <outlet property="txtSaturdayClosing" destination="7ht-r3-PED" id="MtL-gT-hDl"/>
+                        <outlet property="txtSaturdayOpening" destination="OeY-x5-7Ky" id="ECb-75-rfW"/>
+                        <outlet property="txtSundayClosing" destination="onY-KB-nts" id="8sm-xz-ao6"/>
+                        <outlet property="txtSundayOpening" destination="pXr-Bb-Nhi" id="jW6-mW-3wY"/>
+                        <outlet property="txtThrusdayClosing" destination="rgY-Og-m3V" id="vw9-n7-ekw"/>
+                        <outlet property="txtThrusdayOpening" destination="2W1-F5-Smm" id="mo4-bF-uhR"/>
+                        <outlet property="txtTuesdayClosing" destination="Lha-cK-Vmz" id="j54-Wc-LTs"/>
+                        <outlet property="txtTuesdayOpening" destination="MkN-dM-1Al" id="g2K-kK-e1B"/>
+                        <outlet property="txtViewBio" destination="9w2-iP-jOr" id="V2W-UM-UKm"/>
+                        <outlet property="txtWednesdayClosing" destination="vZo-0f-5bS" id="CkP-hV-jog"/>
+                        <outlet property="txtWednesdayOpening" destination="wxb-KQ-qS0" id="CJ4-2W-IgA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W88-iV-K56" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2780,16 +2794,16 @@
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="36" translatesAutoresizingMaskIntoConstraints="NO" id="7Kw-rU-UW6">
-                                                <rect key="frame" x="16" y="25" width="361" height="607.66666666666663"/>
+                                                <rect key="frame" x="16" y="25" width="361" height="605"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What Notifications do you want to receive ?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7bp-mJ-rlQ">
-                                                        <rect key="frame" x="0.0" y="0.0" width="361" height="19.666666666666668"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="361" height="18.666666666666668"/>
                                                         <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="16"/>
                                                         <color key="textColor" name="ColorLightGray"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="DNr-lP-YGS">
-                                                        <rect key="frame" x="0.0" y="55.666666666666629" width="361" height="552.00000000000011"/>
+                                                        <rect key="frame" x="0.0" y="54.666666666666686" width="361" height="550.33333333333326"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="USF-0P-i7q">
                                                                 <rect key="frame" x="0.0" y="0.0" width="361" height="38"/>
@@ -2803,7 +2817,7 @@
                                                                                 <color key="textColor" name="ColorWhite"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
-                                                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cYB-uS-gKB">
+                                                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="cYB-uS-gKB">
                                                                                 <rect key="frame" x="312" y="0.0" width="51" height="31"/>
                                                                                 <color key="onTintColor" name="AccentColor"/>
                                                                             </switch>
@@ -2830,7 +2844,7 @@
                                                                                 <color key="textColor" name="ColorWhite"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
-                                                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uLC-xO-Kyf">
+                                                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="uLC-xO-Kyf">
                                                                                 <rect key="frame" x="312" y="0.0" width="51" height="31"/>
                                                                                 <color key="onTintColor" name="AccentColor"/>
                                                                             </switch>
@@ -2857,7 +2871,7 @@
                                                                                 <color key="textColor" name="ColorWhite"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
-                                                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OkU-4i-jhP">
+                                                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="OkU-4i-jhP">
                                                                                 <rect key="frame" x="312" y="0.0" width="51" height="31"/>
                                                                                 <color key="onTintColor" name="AccentColor"/>
                                                                             </switch>
@@ -2954,13 +2968,13 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You will not know who saved it , you only know someone has saved it." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bcX-gt-DLd">
-                                                                <rect key="frame" x="0.0" y="372" width="361" height="39"/>
+                                                                <rect key="frame" x="0.0" y="372" width="361" height="37.333333333333314"/>
                                                                 <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="16"/>
                                                                 <color key="textColor" name="ColorLightGray"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="JE1-xF-ioV">
-                                                                <rect key="frame" x="0.0" y="435" width="361" height="38"/>
+                                                                <rect key="frame" x="0.0" y="433.33333333333337" width="361" height="38"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="lvd-pg-hyJ">
                                                                         <rect key="frame" x="0.0" y="0.0" width="361" height="31"/>
@@ -2987,7 +3001,7 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RLA-YU-ksf">
-                                                                <rect key="frame" x="0.0" y="497" width="361" height="55"/>
+                                                                <rect key="frame" x="0.0" y="495.33333333333337" width="361" height="55"/>
                                                                 <color key="backgroundColor" name="ColorWhite"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="55" id="GMf-En-SdS"/>

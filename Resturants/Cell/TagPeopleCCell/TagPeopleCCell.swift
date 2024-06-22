@@ -11,6 +11,7 @@ class TagPeopleCCell: UICollectionViewCell {
 
     @IBOutlet weak var lbl : UILabel!
     @IBOutlet weak var img : UIImageView!
+    @IBOutlet weak var btnDismiss: UIButton!
     
     //MARK: - Identifier
     static var identifier: String { return String(describing: self) }

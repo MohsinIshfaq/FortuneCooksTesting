@@ -25,13 +25,13 @@ final class UserManager {
     var filteredSpeacials          : [[String]]       = []
     var filteredContent            : [[String]]       = []
     var filteredAccntType          : [[String]]       = []
+    
     var arrTagPeoples                                 = [["Breakfast" , "0"],
                                ["Brunch" , "0"],
                                ["Lunch" , "0"],
                                ["Dinner" , "0"],
                                ["Dessert" , "0"],
                                ["Coffee" , "0"]]
-    
     let arrlanguages                                  = ["English",
                                                          "Spanish",
                                                          "French",
@@ -99,7 +99,7 @@ final class UserManager {
        "Food_truck",
        "Hotel"
    ]
-    var arrAccntType                                      = [
+    var arrAccntType                                  = [
        ["Private person","0"],
        ["Content Creator","0"],
        ["Restaurant","0"],
@@ -177,7 +177,6 @@ final class UserManager {
         ["Tunisian", "0"],
         ["Turkish", "0"]
     ]
-
     var arrEnviorment                                 = [
         ["After work", "0"],
         ["Bachelor & bachelorette party", "0"],
@@ -213,7 +212,6 @@ final class UserManager {
         ["With family", "0"],
         ["With friends", "0"]
     ]
-
     var arrFeature                                    = [
         ["Accepts American Express", "0"],
         ["Accepts credit cards", "0"],
@@ -237,7 +235,6 @@ final class UserManager {
         ["Vegetarian options", "0"],
         ["Wheelchair accessible", "0"]
     ]
-
     var arrMeals                                      = [
         ["Breakfast" , "0"],
         ["Brunch" , "0"],
@@ -306,6 +303,9 @@ final class UserManager {
         ["CILinearToSRGBToneCurve", 0],
         ["CISRGBToneCurveToLinear", 0],
     ]
+    
+    let arrHour                     : [String]         = ["01" , "02" , "03" , "04" , "05" , "06" , "07" , "08" , "09" , "10" , "11" , "12"]
+    let arrMints                     : [String]         = [ "59" , "58" , "57" , "56" , "55" , "54" , "53" , "52" , "51" , "50" , "49" , "48" , "47" , "46" , "45" , "44" , "43" , "42" , "41" , "40" , "39" , "38" , "37" , "36" , "35" , "34" , "33" , "32" , "31" , "30" , "29" , "28" , "27" , "26" , "25" , "24" , "23" , "22" , "21" , "20" , "19" , "18" , "17" , "16" , "15" , "14" , "13" , "12" , "11" , "10" , "09" , "08" , "07" , "06" , "05" , "04" , "03" , "02" , "01" , "00"]
     
 }
 

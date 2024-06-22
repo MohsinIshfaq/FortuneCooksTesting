@@ -41,11 +41,30 @@ class UpdateProfileVC: UIViewController , TagPeopleDelegate{
     @IBOutlet weak var imgProfile       : UIImageView!
     @IBOutlet weak var imgBig           : UIImageView!
     
+    @IBOutlet weak var txtMondayOpening    : UITextField!
+    @IBOutlet weak var txtMondayClosing    : UITextField!
+    @IBOutlet weak var txtTuesdayOpening   : UITextField!
+    @IBOutlet weak var txtTuesdayClosing   : UITextField!
+    @IBOutlet weak var txtWednesdayOpening : UITextField!
+    @IBOutlet weak var txtWednesdayClosing : UITextField!
+    @IBOutlet weak var txtThrusdayOpening  : UITextField!
+    @IBOutlet weak var txtThrusdayClosing  : UITextField!
+    @IBOutlet weak var txtFridayOpening    : UITextField!
+    @IBOutlet weak var txtFridayClosing    : UITextField!
+    @IBOutlet weak var txtSaturdayOpening  : UITextField!
+    @IBOutlet weak var txtSaturdayClosing  : UITextField!
+    @IBOutlet weak var txtSundayOpening    : UITextField!
+    @IBOutlet weak var txtSundayClosing    : UITextField!
+    
     //MARK: - Variables and Properties
+    var activeTextField: UITextField?      = nil
+    var selectedHrs                        = ""
+    var selectedMins                       = ""
     let placeholder                        = "Enter Bio..."
     let placeholderColor                   = UIColor.lightGray
     var currentImage                       : UIImage!
     var CurrentTagImg                      : Int?
+    private var AccntPicker                = UIPickerView(frame: CGRect(x: 0, y: 0, width:UIScreen.main.bounds.width, height: 150))
     
     
     override func viewDidLoad() {
@@ -150,6 +169,7 @@ extension UpdateProfileVC {
         removeNavBackbuttonTitle()
         txtViewBio.delegate   = self
         setupPlaceholder()
+        setupPickerView()
         setupView()
     }
     
@@ -165,7 +185,54 @@ extension UpdateProfileVC {
         collectTagPeople.register(TagPeopleCCell.nib, forCellWithReuseIdentifier: TagPeopleCCell.identifier)
         collectTagPeople.delegate   = self
         collectTagPeople.dataSource = self
-
+    }
+    
+    func setupPickerView() {
+        txtMondayOpening.inputView     = AccntPicker
+        txtMondayClosing.inputView     = AccntPicker
+        
+        txtTuesdayOpening.inputView    = AccntPicker
+        txtTuesdayClosing.inputView    = AccntPicker
+        
+        txtWednesdayOpening.inputView  = AccntPicker
+        txtWednesdayClosing.inputView  = AccntPicker
+        
+        txtThrusdayOpening.inputView   = AccntPicker
+        txtThrusdayClosing.inputView   = AccntPicker
+        
+        txtFridayOpening.inputView     = AccntPicker
+        txtFridayClosing.inputView     = AccntPicker
+        
+        txtSaturdayOpening.inputView   = AccntPicker
+        txtSaturdayClosing.inputView   = AccntPicker
+        
+        txtSundayOpening.inputView     = AccntPicker
+        txtSundayClosing.inputView     = AccntPicker
+        
+        // Set the text field delegates
+        txtMondayOpening.delegate     = self
+        txtMondayClosing.delegate     = self
+        
+        txtTuesdayOpening.delegate    = self
+        txtTuesdayClosing.delegate    = self
+        
+        txtWednesdayOpening.delegate  = self
+        txtWednesdayClosing.delegate  = self
+        
+        txtThrusdayOpening.delegate   = self
+        txtThrusdayClosing.delegate   = self
+        
+        txtFridayOpening.delegate     = self
+        txtFridayClosing.delegate     = self
+        
+        txtSaturdayOpening.delegate   = self
+        txtSaturdayClosing.delegate   = self
+        
+        txtSundayOpening.delegate     = self
+        txtSundayClosing.delegate     = self
+        
+        AccntPicker.delegate          = self
+        AccntPicker.backgroundColor   = .white
     }
     
     func switchStack(sender: Bool) -> Bool {
@@ -178,6 +245,17 @@ extension UpdateProfileVC {
     }
 }
 
+//MARK: -  Extend the class to conform to UITextFieldDelegate
+extension UpdateProfileVC: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        activeTextField = textField
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        activeTextField = nil
+    }
+}
+
 //MARK: - Collection View Setup {}
 extension UpdateProfileVC: UICollectionViewDelegate , UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -185,8 +263,23 @@ extension UpdateProfileVC: UICollectionViewDelegate , UICollectionViewDataSource
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TagPeopleCCell.identifier, for: indexPath) as! TagPeopleCCell
+        cell.btnDismiss.addTarget(self, action: #selector(removeTapped(sender:)), for: .touchUpInside)
+        cell.btnDismiss.tag = indexPath.row
         
         return cell
+    }
+    
+    @objc func removeTapped(sender: UIButton) {
+        if UserManager.shared.arrTagPeoples[sender.tag][1] == "0" {
+            UserManager.shared.arrTagPeoples[sender.tag][1] = "1"
+            UserManager.shared.totalTagPeople += 1
+            print(UserManager.shared.totalTagPeople)
+        }
+        else{
+            UserManager.shared.arrTagPeoples[sender.tag][1] = "0"
+            UserManager.shared.totalTagPeople -= 1
+        }
+        collectTagPeople.reloadData()
     }
 }
 
@@ -228,6 +321,45 @@ extension UpdateProfileVC: UIImagePickerControllerDelegate, UINavigationControll
         }
         else {
             imgBig.image     = currentImage
+        }
+    }
+}
+
+//MARK: - Picker View for Schedule Selection {}
+extension UpdateProfileVC : UIPickerViewDelegate, UIPickerViewDataSource {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if component == 0 {
+            return UserManager.shared.arrHour.count
+        }
+        else{
+            return UserManager.shared.arrMints.count
+        }
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 2
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if component == 0 {
+            return UserManager.shared.arrHour[row]
+        }
+        else{
+            return UserManager.shared.arrMints[row]
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+        if component == 0 {
+            selectedHrs = UserManager.shared.arrHour[row]
+        } else {
+            selectedMins = UserManager.shared.arrMints[row]
+        }
+        
+        // Update the active text field
+        if let activeTextField = activeTextField {
+            activeTextField.text = "\(selectedHrs) : \(selectedMins)"
         }
     }
 }
