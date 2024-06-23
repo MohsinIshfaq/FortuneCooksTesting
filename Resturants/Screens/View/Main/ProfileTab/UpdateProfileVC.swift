@@ -83,15 +83,18 @@ class UpdateProfileVC: UIViewController , TagPeopleDelegate{
     }
     
     @IBAction func ontapAccnt(_ sender: UIButton){
-        let actionClosure = { (action: UIAction) in
-            self.txtAccntType.text = action.title // Update text field with selected option title
-        }
-        var menuChildren: [UIMenuElement] = []
-        for meal in UserManager.shared.arrAccnt {
-            menuChildren.append(UIAction(title: meal, handler: actionClosure))
-        }
-        sender.menu = UIMenu(options: .displayInline, children: menuChildren)
-        sender.showsMenuAsPrimaryAction = true
+        
+        let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "UpdateMenuVC") as? UpdateMenuVC
+        self.navigationController?.pushViewController(vc!, animated: true)
+//        let actionClosure = { (action: UIAction) in
+//            self.txtAccntType.text = action.title // Update text field with selected option title
+//        }
+//        var menuChildren: [UIMenuElement] = []
+//        for meal in UserManager.shared.arrAccnt {
+//            menuChildren.append(UIAction(title: meal, handler: actionClosure))
+//        }
+//        sender.menu = UIMenu(options: .displayInline, children: menuChildren)
+//        sender.showsMenuAsPrimaryAction = true
     }
     
     @IBAction func ontapScheduleSwitch(_ sender: UISwitch){

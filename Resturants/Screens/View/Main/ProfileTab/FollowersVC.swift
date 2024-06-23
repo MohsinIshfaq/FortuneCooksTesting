@@ -49,8 +49,14 @@ extension FollowersVC{
    
     func onLaod() {
         setupView()
-        vwFollowing.isHidden = false
-        vwFollowers.isHidden = true
+        if !isFollowers{
+            vwFollowing.isHidden = false
+            vwFollowers.isHidden = true
+        }
+        else{
+            vwFollowing.isHidden = true
+            vwFollowers.isHidden = false
+        }
     }
     
     func setupView(){

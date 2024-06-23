@@ -27,9 +27,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="364" height="83"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Video 1" translatesAutoresizingMaskIntoConstraints="NO" id="9Jv-Nx-zpg">
-                                <rect key="frame" x="16" y="6" width="120" height="71"/>
+                                <rect key="frame" x="16" y="6" width="150" height="71"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="120" id="XI1-pv-1xd"/>
+                                    <constraint firstAttribute="width" constant="150" id="XI1-pv-1xd"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -38,22 +38,22 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="S2T-73-I8P">
-                                <rect key="frame" x="142" y="9" width="216" height="65.333333333333314"/>
+                                <rect key="frame" x="172" y="9" width="186" height="65.333333333333329"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Does Swedan have *These Best * Snacks?!  - This with them" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RBA-kv-DtG">
-                                        <rect key="frame" x="0.0" y="0.0" width="216" height="28.666666666666668"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="186" height="28.666666666666668"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                                         <color key="textColor" name="ColorWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="21 march 2023 / 35 views" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xAM-jo-FoB">
-                                        <rect key="frame" x="0.0" y="34.666666666666664" width="216" height="12.333333333333336"/>
+                                        <rect key="frame" x="0.0" y="34.666666666666664" width="186" height="12.333333333333336"/>
                                         <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="10"/>
                                         <color key="textColor" name="ColorLightGray"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amin Kitchen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PM5-Si-hdr">
-                                        <rect key="frame" x="0.0" y="53" width="216" height="12.333333333333329"/>
+                                        <rect key="frame" x="0.0" y="53" width="186" height="12.333333333333329"/>
                                         <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="10"/>
                                         <color key="textColor" name="ColorLightGray"/>
                                         <nil key="highlightedColor"/>

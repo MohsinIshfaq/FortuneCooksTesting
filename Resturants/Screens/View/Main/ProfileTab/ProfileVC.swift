@@ -77,10 +77,24 @@ class ProfileVC: UIViewController {
         vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    @IBAction func ontappFollowers(_ sender: UIButton) {
-        let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "FollowersVC") as! FollowersVC
+    @IBAction func ontapAddBio(_ sender: UIButton) {
+        let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "AddBioVC") as! AddBioVC
         vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    @IBAction func ontappFollowers(_ sender: UIButton) {
+        if sender.tag == 0 {
+            let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "FollowersVC") as! FollowersVC
+            vc.hidesBottomBarWhenPushed = true
+            vc.isFollowers = false
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        else{
+            let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "FollowersVC") as! FollowersVC
+            vc.hidesBottomBarWhenPushed = true
+            vc.isFollowers = true
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     @IBAction func ontapTagPeople(_ sender: UIButton) {
         
@@ -241,7 +255,7 @@ extension ProfileVC : UITableViewDelegate , UITableViewDataSource {
                 return 1
             }
             else{
-                tblVideoHeightCons.constant = CGFloat(300 + ((responseModel?.count ?? 0) * 105))
+                tblVideoHeightCons.constant = CGFloat(300 + ((responseModel?.count ?? 0) * 140))
                 //return arr.count
                 return responseModel?.count ?? 0
             }
@@ -341,7 +355,7 @@ extension ProfileVC : UITableViewDelegate , UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 120
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -402,7 +416,7 @@ extension ProfileVC : UICollectionViewDelegate , UICollectionViewDataSource , UI
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 170, height: 250)
+        return CGSize(width: 120, height: 250)
     }
     
 }
