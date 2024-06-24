@@ -26,6 +26,10 @@ final class UserManager {
     var filteredContent            : [[String]]       = []
     var filteredAccntType          : [[String]]       = []
     
+    var arrReason                  : [String]         = ["I do not have time" ,
+                                                         "Health issue" ,
+                                                         "Too much advertising" ,
+                                                         "something else"]
     var arrTagPeoples                                 = [["Breakfast" , "0"],
                                ["Brunch" , "0"],
                                ["Lunch" , "0"],

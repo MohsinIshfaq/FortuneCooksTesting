@@ -48,6 +48,8 @@
 		468155422BAFE08800DF5DBC /* ColorCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468155402BAFE08800DF5DBC /* ColorCCell.swift */; };
 		468155432BAFE08800DF5DBC /* ColorCCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 468155412BAFE08800DF5DBC /* ColorCCell.xib */; };
 		468155452BAFE20E00DF5DBC /* AddCaptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468155442BAFE20E00DF5DBC /* AddCaptionVC.swift */; };
+		4685608C2C293EB7003ECD0E /* ManageMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4685608B2C293EB7003ECD0E /* ManageMenuVC.swift */; };
+		4685608E2C294C01003ECD0E /* ManageInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4685608D2C294C01003ECD0E /* ManageInfoVC.swift */; };
 		468C552A2BF1BEF3005E4333 /* RatingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468C55292BF1BEF3005E4333 /* RatingVC.swift */; };
 		468C552C2BF1BF33005E4333 /* GiveRatingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468C552B2BF1BF33005E4333 /* GiveRatingVC.swift */; };
 		468C552E2BF1BF67005E4333 /* InfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468C552D2BF1BF67005E4333 /* InfoVC.swift */; };
@@ -182,6 +184,8 @@
 		468155402BAFE08800DF5DBC /* ColorCCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCCell.swift; sourceTree = "<group>"; };
 		468155412BAFE08800DF5DBC /* ColorCCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorCCell.xib; sourceTree = "<group>"; };
 		468155442BAFE20E00DF5DBC /* AddCaptionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCaptionVC.swift; sourceTree = "<group>"; };
+		4685608B2C293EB7003ECD0E /* ManageMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageMenuVC.swift; sourceTree = "<group>"; };
+		4685608D2C294C01003ECD0E /* ManageInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageInfoVC.swift; sourceTree = "<group>"; };
 		468C55292BF1BEF3005E4333 /* RatingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingVC.swift; sourceTree = "<group>"; };
 		468C552B2BF1BF33005E4333 /* GiveRatingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveRatingVC.swift; sourceTree = "<group>"; };
 		468C552D2BF1BF67005E4333 /* InfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoVC.swift; sourceTree = "<group>"; };
@@ -478,6 +482,8 @@
 				46C296992C2905B700715CB3 /* BlockedAccntVC.swift */,
 				46C2969B2C290CD400715CB3 /* FeedBackVC.swift */,
 				46C2969D2C29174200715CB3 /* ResonOfBugVC.swift */,
+				4685608B2C293EB7003ECD0E /* ManageMenuVC.swift */,
+				4685608D2C294C01003ECD0E /* ManageInfoVC.swift */,
 			);
 			path = ProfileTab;
 			sourceTree = "<group>";
@@ -939,6 +945,7 @@
 				71B3DC9E2B55B1B500A3615F /* BaseClass.swift in Sources */,
 				715166482B598961007CE092 /* CrtProfile3VC.swift in Sources */,
 				71B3DC962B55B0F100A3615F /* BaseStrings.swift in Sources */,
+				4685608C2C293EB7003ECD0E /* ManageMenuVC.swift in Sources */,
 				468C552C2BF1BF33005E4333 /* GiveRatingVC.swift in Sources */,
 				468C55302BF1C08B005E4333 /* AccountActionPopupVC.swift in Sources */,
 				7119F63A2B8B7DFF00FA8579 /* VideoRecordingVC.swift in Sources */,
@@ -963,6 +970,7 @@
 				46B5CF692BCE1C2A000E5207 /* ChangePsdVC.swift in Sources */,
 				46B5CF652BCE0C6F000E5207 /* UpdateMenuVC.swift in Sources */,
 				46AB1E882BCD492100FA1567 /* FeedVC.swift in Sources */,
+				4685608E2C294C01003ECD0E /* ManageInfoVC.swift in Sources */,
 				462630832B9AA3ED00A4E7D1 /* Composer.swift in Sources */,
 				4626307B2B9AA36F00A4E7D1 /* RecorderError.swift in Sources */,
 				46303FF02BB3B16500B15EB8 /* UplaodSwiftVC.swift in Sources */,

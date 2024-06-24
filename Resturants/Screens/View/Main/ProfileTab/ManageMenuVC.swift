@@ -1,33 +1,32 @@
 //
-//  OtherLocVC.swift
+//  ManageMenuVC.swift
 //  Resturants
 //
-//  Created by Coder Crew on 10/05/2024.
+//  Created by Coder Crew on 24/06/2024.
 //
 
 import UIKit
 
-class OtherLocVC: UIViewController {
+class ManageMenuVC: UIViewController {
 
     //MARK: - IBOUtlets
     @IBOutlet weak var tblLocation: UITableView!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         onLoad()
     }
-    
-    @IBAction func ontapDismiss(_ sender: UIButton) {
-        self.dismiss(animated: true)
-    }
+
 }
 
 //MARK: - Custom Implementation {}
-extension OtherLocVC {
+extension ManageMenuVC {
     
     func onLoad() {
         setupView()
+        self.navigationItem.title = "Add or manage"
+        removeNavBackbuttonTitle()
     }
     
     func onAppear() {
@@ -43,20 +42,24 @@ extension OtherLocVC {
 }
 
 //MARK: - TableView {}
-extension OtherLocVC : UITableViewDelegate , UITableViewDataSource {
+extension ManageMenuVC : UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: LocationTCell.identifier, for: indexPath) as? LocationTCell
-        cell?.stackBtns.isHidden = true
+        cell?.btnManangeInfo.addTarget(self, action: #selector(ontapMangeInfo(sender:)), for: .touchUpInside)
         return cell!
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 85
+    @objc func ontapMangeInfo(sender: UIButton) {
+        let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "ManageInfoVC") as! ManageInfoVC
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 130
+    }
 }

@@ -10,6 +10,7 @@ import UIKit
 class AccntDeleteReasonVC: UIViewController {
     
     @IBOutlet weak var txtViewBio       : UITextView!
+    @IBOutlet weak var txtReason        : UITextField!
     
     
     let placeholder                        = "Enter Issue..."
@@ -23,6 +24,19 @@ class AccntDeleteReasonVC: UIViewController {
         super.viewWillAppear(animated)
         onAppear()
     }
+    
+    @IBAction func ontapAccnt(_ sender: UIButton){
+        let actionClosure = { (action: UIAction) in
+            self.txtReason.text = action.title // Update text field with selected option title
+        }
+        var menuChildren: [UIMenuElement] = []
+        for meal in UserManager.shared.arrReason {
+            menuChildren.append(UIAction(title: meal, handler: actionClosure))
+        }
+        sender.menu = UIMenu(options: .displayInline, children: menuChildren)
+        sender.showsMenuAsPrimaryAction = true
+    }
+
     
 }
 
