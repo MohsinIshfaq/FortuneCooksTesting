@@ -35,6 +35,20 @@ class ProfileVC: UIViewController {
     @IBOutlet weak var imgBig                  : UIImageView!
     @IBOutlet weak var btnMore                 : UIButton!
     
+    @IBOutlet weak var lblChannelName          : UILabel!
+    @IBOutlet weak var lblChannelType          : UILabel!
+    @IBOutlet weak var lblEmail                : UILabel!
+    @IBOutlet weak var lblWebLInk              : UILabel!
+    @IBOutlet weak var lblAddress              : UILabel!
+    @IBOutlet weak var lblMondayDuration       : UILabel!
+    @IBOutlet weak var lblTuesdayDuration      : UILabel!
+    @IBOutlet weak var lblWednesdayDuration    : UILabel!
+    @IBOutlet weak var lblThursdayDuration     : UILabel!
+    @IBOutlet weak var lblFridayDuration       : UILabel!
+    @IBOutlet weak var lblSaturdayDuration     : UILabel!
+    @IBOutlet weak var lblSundayDuration       : UILabel!
+    
+    
     
     //MARK: - Variables and Properties
     var arr: [String]   = ["" , "" , ""]
@@ -144,6 +158,7 @@ class ProfileVC: UIViewController {
             stackMenu.isHidden       = false
         }
     }
+    
     @IBAction func ontapSeeMore(_ sender: UIButton){
         if stackMore.isHidden == true {
             stackMore.isHidden = false
@@ -162,6 +177,21 @@ extension ProfileVC {
     func onload() {
         setupView()
         fetchDataFromFirestore()
+        fetchUserData(userID: UserDefault.token) { user in
+            if let user = user {
+                // Use the user model as needed
+                self.setupProfile(user: user)
+                print("User data: \(user)")
+            } else {
+                print("Failed to fetch user data.")
+            }
+        }
+    }
+    
+    func setupProfile(user: UserProfileModel) {
+        lblChannelName.text = user.channelName ?? ""
+        lblChannelType.text = user.accountType ?? ""
+        lblEmail.text       = user.email ?? ""
     }
     
     func setupView() {
@@ -462,6 +492,38 @@ extension ProfileVC: UIImagePickerControllerDelegate, UINavigationControllerDele
 //MARK: - Get Videos {}
 extension ProfileVC {
     
+    // Function to fetch the data
+    func fetchUserData(userID: String, completion: @escaping (UserProfileModel?) -> Void) {
+        self.startAnimating()
+        let db = Firestore.firestore()
+        db.collection("Accounts").document(userID).getDocument { (document, error) in
+            self.stopAnimating()
+            if let document = document, document.exists {
+                let data = document.data()
+                
+                // Access each field using its key and map to the model
+                let user = UserProfileModel(
+                    cuisine: data?["Cuisine"] as? [String] ?? [],
+                    environment: data?["Environment"] as? [String] ?? [],
+                    feature: data?["Feature"] as? [String] ?? [],
+                    accountType: data?["AccountType"] as? String ?? "",
+                    meal: data?["Meal"] as? [String] ?? [],
+                    specialization: data?["Specialization"] as? [String] ?? [],
+                    channelName: data?["ChannelName"] as? String ?? "",
+                    dob: data?["DOB"] as? String ?? "",
+                    email: data?["Email"] as? String ?? "",
+                    phoneNumber: data?["PhoneNumber"] as? String ?? ""
+                )
+                
+                completion(user)
+            } else {
+                self.stopAnimating()
+                self.showToast(message: "Document does not exist: \(error?.localizedDescription ?? "Unknown error")", seconds: 2, clr: .red)
+                print("Document does not exist: \(error?.localizedDescription ?? "Unknown error")")
+                completion(nil)
+            }
+        }
+    }
     func fetchDataFromFirestore() {
     
         self.startAnimating()

@@ -19,6 +19,20 @@ import Foundation
 //        "ThumbnailUrl": "\(thumbnailURL)"      ,
 //        "videoUrl"    : ""]
 
+// Define the model
+struct UserProfileModel {
+    var cuisine       : [String]?
+    var environment   : [String]?
+    var feature       : [String]?
+    var accountType   : String?
+    var meal          : [String]?
+    var specialization: [String]?
+    var channelName   : String?
+    var dob           : String?
+    var email         : String?
+    var phoneNumber   : String?
+}
+
 struct UploadVideosModel: Codable {
     
     let address      : String?
