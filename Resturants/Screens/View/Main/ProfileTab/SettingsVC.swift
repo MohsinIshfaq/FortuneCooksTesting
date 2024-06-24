@@ -48,6 +48,18 @@ class SettingsVC: UIViewController {
 //        vc.hidesBottomBarWhenPushed = true
 //        self.navigationController?.pushViewController(vc, animated: true)
     }
+    
+    @IBAction func ontapBlockUsers(_ sender: UIButton) {
+        let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "BlockedAccntVC") as! BlockedAccntVC
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @IBAction func ontapFeedBack(_ sender: UIButton) {
+        let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "FeedBackVC") as! FeedBackVC
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 //MARK: - Setup Profile {}

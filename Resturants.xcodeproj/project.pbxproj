@@ -78,6 +78,9 @@
 		46B5CF6F2BCE20CB000E5207 /* NewPsdVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B5CF6E2BCE20CB000E5207 /* NewPsdVC.swift */; };
 		46B8FDA32BCCEFB10058E80C /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B8FDA22BCCEFB10058E80C /* SettingsVC.swift */; };
 		46C296982C2872BE00715CB3 /* AddBioVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C296972C2872BD00715CB3 /* AddBioVC.swift */; };
+		46C2969A2C2905B700715CB3 /* BlockedAccntVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C296992C2905B700715CB3 /* BlockedAccntVC.swift */; };
+		46C2969C2C290CD400715CB3 /* FeedBackVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C2969B2C290CD400715CB3 /* FeedBackVC.swift */; };
+		46C2969E2C29174200715CB3 /* ResonOfBugVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C2969D2C29174200715CB3 /* ResonOfBugVC.swift */; };
 		46C4A0972B93245300F27C8F /* FilterCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C4A0952B93245300F27C8F /* FilterCCell.swift */; };
 		46C4A0982B93245300F27C8F /* FilterCCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46C4A0962B93245300F27C8F /* FilterCCell.xib */; };
 		46C4A09A2B93290100F27C8F /* VideoEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C4A0992B93290100F27C8F /* VideoEditor.swift */; };
@@ -209,6 +212,9 @@
 		46B5CF6E2BCE20CB000E5207 /* NewPsdVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPsdVC.swift; sourceTree = "<group>"; };
 		46B8FDA22BCCEFB10058E80C /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		46C296972C2872BD00715CB3 /* AddBioVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBioVC.swift; sourceTree = "<group>"; };
+		46C296992C2905B700715CB3 /* BlockedAccntVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedAccntVC.swift; sourceTree = "<group>"; };
+		46C2969B2C290CD400715CB3 /* FeedBackVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedBackVC.swift; sourceTree = "<group>"; };
+		46C2969D2C29174200715CB3 /* ResonOfBugVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResonOfBugVC.swift; sourceTree = "<group>"; };
 		46C4A0952B93245300F27C8F /* FilterCCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCCell.swift; sourceTree = "<group>"; };
 		46C4A0962B93245300F27C8F /* FilterCCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterCCell.xib; sourceTree = "<group>"; };
 		46C4A0992B93290100F27C8F /* VideoEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoEditor.swift; sourceTree = "<group>"; };
@@ -469,6 +475,9 @@
 				4671C5EE2C043BE40089F82B /* SwiftVC.swift */,
 				46472E3F2C0594B400505AE4 /* VideosSectionController.swift */,
 				46C296972C2872BD00715CB3 /* AddBioVC.swift */,
+				46C296992C2905B700715CB3 /* BlockedAccntVC.swift */,
+				46C2969B2C290CD400715CB3 /* FeedBackVC.swift */,
+				46C2969D2C29174200715CB3 /* ResonOfBugVC.swift */,
 			);
 			path = ProfileTab;
 			sourceTree = "<group>";
@@ -910,6 +919,7 @@
 				468155422BAFE08800DF5DBC /* ColorCCell.swift in Sources */,
 				4635E13D2BA7ECA700C149ED /* ConfirmationActionVC.swift in Sources */,
 				715166462B598903007CE092 /* CrtProfile2VC.swift in Sources */,
+				46C2969E2C29174200715CB3 /* ResonOfBugVC.swift in Sources */,
 				4635E1392BA6B27500C149ED /* AudioViewController.swift in Sources */,
 				4626307D2B9AA38F00A4E7D1 /* RecorderDelegate.swift in Sources */,
 				46C820F92B930179007E543F /* EditVideoVC.swift in Sources */,
@@ -924,6 +934,7 @@
 				462630712B9A11F000A4E7D1 /* VIdeoCapture.swift in Sources */,
 				46FFDA062BDF445E000F03C0 /* VIdeosHeaderView.swift in Sources */,
 				71B3DCA02B55B1F100A3615F /* BaseViewModel.swift in Sources */,
+				46C2969C2C290CD400715CB3 /* FeedBackVC.swift in Sources */,
 				464BC8842BF3BD4B0066C486 /* MenuDetailPopupVC.swift in Sources */,
 				71B3DC9E2B55B1B500A3615F /* BaseClass.swift in Sources */,
 				715166482B598961007CE092 /* CrtProfile3VC.swift in Sources */,
@@ -935,6 +946,7 @@
 				46DCFC772BC39E3200EF3FA3 /* UploadingVC.swift in Sources */,
 				715166442B5985E1007CE092 /* CrtProfile1VC.swift in Sources */,
 				71B3DC902B55AFC000A3615F /* Manager.swift in Sources */,
+				46C2969A2C2905B700715CB3 /* BlockedAccntVC.swift in Sources */,
 				462630852B9AA40700A4E7D1 /* FrameRateCalculator.swift in Sources */,
 				465493FC2BD7B77000EF5111 /* ProfileNC.swift in Sources */,
 				7131D9952B92CCC4005DE42E /* CameraConfiguration.swift in Sources */,
