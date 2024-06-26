@@ -184,17 +184,30 @@ extension CrtProfile4VC {
             UserDefault.token = id
             UserDefault.isAuthenticated = true
             
-            self.db.collection("Accounts").document("\(id)").setData(
-                ["Cuisine"       : UserManager.shared.selectedCuisine,
-                 "Enviorment"    : UserManager.shared.selectedEnviorment,
-                 "Feature"       : UserManager.shared.selectedFeature,
-                 "AccountType"   : UserManager.shared.selectedAccountType,
-                 "Meal"          : UserManager.shared.selectedMeals,
-                 "Specailizaiton": UserManager.shared.selectedSpecial,
-                 "ChannelName"   : UserManager.shared.selectedChannelNm,
-                 "DOB"           : UserManager.shared.selectedDOB,
-                 "Email"         : UserManager.shared.selectedEmail,
-                 "PhoneNumber"   : UserManager.shared.selectedPhone]
+            self.db.collection("Users").document("\(id)").setData(
+                ["selectedCuisine"                : UserManager.shared.selectedCuisine,
+                 "selectedEnvironment"            : UserManager.shared.selectedEnviorment,
+                 "selectedFeatures"               : UserManager.shared.selectedFeature,
+                 "accountType"                    : UserManager.shared.selectedAccountType,
+                 "address"                        : "",
+                 "bio"                            : "",
+                 "city"                           : "",
+                 "uid"                            : "\(UserDefault.token)",
+                 "website"                        : "",
+                 "zipcode"                        : "",
+                 "coverUrl"                       : "",
+                 "profileUrl"                     : "",
+                 "followers"                      : [],
+                 "followings"                     : [],
+                 "timings"                        : [],
+                 "tagPersons"                     : [],
+                 "selectedTypeOfRegion"           : [],
+                 "selectedMeals"                  : UserManager.shared.selectedMeals,
+                 "selectedSpecialize"             : UserManager.shared.selectedSpecial,
+                 "channelName"                    : UserManager.shared.selectedChannelNm,
+                 "dateOfBirth"                    : UserManager.shared.selectedDOB,
+                 "email"                          : UserManager.shared.selectedEmail,
+                 "phoneNumber"                    : UserManager.shared.selectedPhone]
             ) { error in
                 if let error = error {
                     print("Error writing document: \(error)")

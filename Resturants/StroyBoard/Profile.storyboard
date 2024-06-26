@@ -471,7 +471,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ulj-d7-cIA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="17.557251908396946" y="-2.1126760563380285"/>
+            <point key="canvasLocation" x="-257" y="-670"/>
         </scene>
         <!--Update ProfileVC-->
         <scene sceneID="qeb-7c-Slw">
@@ -2333,7 +2333,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W88-iV-K56" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1396" y="-2"/>
+            <point key="canvasLocation" x="1175" y="-670"/>
         </scene>
         <!--FeedVC-->
         <scene sceneID="YeM-XF-83f">
@@ -6139,7 +6139,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bbK-a9-bML" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1382.4427480916031" y="-670.42253521126759"/>
+            <point key="canvasLocation" x="456" y="-670"/>
         </scene>
         <!--FollowersVC-->
         <scene sceneID="bq8-9Y-b89">

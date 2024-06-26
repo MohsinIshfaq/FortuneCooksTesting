@@ -496,25 +496,35 @@ extension ProfileVC {
     func fetchUserData(userID: String, completion: @escaping (UserProfileModel?) -> Void) {
         self.startAnimating()
         let db = Firestore.firestore()
-        db.collection("Accounts").document(userID).getDocument { (document, error) in
+        db.collection("Users").document(userID).getDocument { (document, error) in
             self.stopAnimating()
             if let document = document, document.exists {
                 let data = document.data()
                 
                 // Access each field using its key and map to the model
-                let user = UserProfileModel(
-                    cuisine: data?["Cuisine"] as? [String] ?? [],
-                    environment: data?["Environment"] as? [String] ?? [],
-                    feature: data?["Feature"] as? [String] ?? [],
-                    accountType: data?["AccountType"] as? String ?? "",
-                    meal: data?["Meal"] as? [String] ?? [],
-                    specialization: data?["Specialization"] as? [String] ?? [],
-                    channelName: data?["ChannelName"] as? String ?? "",
-                    dob: data?["DOB"] as? String ?? "",
-                    email: data?["Email"] as? String ?? "",
-                    phoneNumber: data?["PhoneNumber"] as? String ?? ""
-                )
-                
+                let user = UserProfileModel(selectedCuisine: data?["selectedCuisine"] as? [String] ?? [],
+                                            selectedEnvironment: data?["selectedEnvironment"] as? [String] ?? [],
+                                            selectedFeatures: data?["selectedFeatures"] as? [String] ?? [],
+                                            accountType: data?["accountType"] as? String ?? "",
+                                            address: data?["address"] as? String ?? "",
+                                            bio: data?["bio"] as? String ?? "",
+                                            city: data?["city"] as? String ?? "",
+                                            uid: data?["uid"] as? String ?? "",
+                                            website: data?["website"] as? String ?? "",
+                                            zipcode: data?["zipcode"] as? String ?? "",
+                                            coverUrl: data?["coverUrl"] as? String ?? "",
+                                            profileUrl: data?["profileUrl"] as? String ?? "",
+                                            followers: data?["followers"] as? [String] ?? [],
+                                            followings: data?["followings"] as? [String] ?? [],
+                                            timings: data?["timings"] as? [String] ?? [],
+                                            tagPersons: data?["tagPersons"] as? [String] ?? [],
+                                            selectedTypeOfRegion: data?["selectedTypeOfRegion"] as? [String] ?? [],
+                                            selectedMeals: data?["selectedMeals"] as? [String] ?? [],
+                                            selectedSpecialize: data?["selectedSpecialize"] as? [String] ?? [],
+                                            channelName: data?["channelName"] as? String ?? "",
+                                            dateOfBirth: data?["dateOfBirth"] as? String ?? "",
+                                            email: data?["email"] as? String ?? "",
+                                            phoneNumber: data?["phoneNumber"] as? String ?? "")
                 completion(user)
             } else {
                 self.stopAnimating()
