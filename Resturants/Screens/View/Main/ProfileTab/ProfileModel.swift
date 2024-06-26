@@ -21,30 +21,31 @@ import Foundation
 
 // Define the model
 struct UserProfileModel {
-    var selectedCuisine       : [String]?
-    var selectedEnvironment   : [String]?
-    var selectedFeatures      : [String]?
-    var accountType           : String?
-    var address               : String?
-    var bio                   : String?
-    var city                  : String?
-    var uid                   : String?
-    var website               : String?
-    var zipcode               : String?
-    var coverUrl              : String?
-    var profileUrl            : String?
-    var followers             : [String]?
-    var followings            : [String]?
-    var timings               : [String]?
-    var tagPersons            : [String]?
-    var selectedTypeOfRegion  : [String]?
-    var selectedMeals         : [String]?
-    var selectedSpecialize    : [String]?
-    var channelName           : String?
-    var dateOfBirth           : String?
-    var email                 : String?
-    var phoneNumber           : String?
+    var selectedCuisine: [String]?
+    var selectedEnvironment: [String]?
+    var selectedFeatures: [String]?
+    var accountType: String?
+    var address: String?
+    var bio: String?
+    var city: String?
+    var uid: String?
+    var website: String?
+    var zipcode: String?
+    var coverUrl: String?
+    var profileUrl: String?
+    var followers: [String]?
+    var followings: [String]?
+    var timings: [String]?
+    var tagPersons: [String]?
+    var selectedTypeOfRegion: [String]?
+    var selectedMeals: [String]?
+    var selectedSpecialize: [String]?
+    var channelName: String?
+    var dateOfBirth: String?
+    var email: String?
+    var phoneNumber: String?
 }
+
 
 struct UploadVideosModel: Codable {
     

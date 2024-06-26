@@ -8,6 +8,8 @@
 import UIKit
 import FirebaseFirestoreInternal
 import AVFoundation
+import Reachability
+import FirebaseStorage
 
 
 class ProfileVC: UIViewController {
@@ -31,8 +33,6 @@ class ProfileVC: UIViewController {
     @IBOutlet weak var tblMenu                 : UITableView!
     @IBOutlet weak var stackMenu               : UIStackView!
     @IBOutlet weak var tblMenuHeightCons       : NSLayoutConstraint!
-    @IBOutlet weak var imgProfile              : UIImageView!
-    @IBOutlet weak var imgBig                  : UIImageView!
     @IBOutlet weak var btnMore                 : UIButton!
     
     @IBOutlet weak var lblChannelName          : UILabel!
@@ -47,10 +47,16 @@ class ProfileVC: UIViewController {
     @IBOutlet weak var lblFridayDuration       : UILabel!
     @IBOutlet weak var lblSaturdayDuration     : UILabel!
     @IBOutlet weak var lblSundayDuration       : UILabel!
+    @IBOutlet weak var lblFollowing            : UILabel!
+    @IBOutlet weak var lblFollowers            : UILabel!
+    @IBOutlet weak var imgCover                : UIImageView!
+    @IBOutlet weak var imgProfile              : UIImageView!
+    @IBOutlet weak var stackWeekTimes          : UIStackView!
     
     
     
     //MARK: - Variables and Properties
+    let reachability = try! Reachability()
     var arr: [String]   = ["" , "" , ""]
     var currentImage    : UIImage!
     var CurrentTagImg   : Int?
@@ -61,17 +67,18 @@ class ProfileVC: UIViewController {
     var selectedVideo   : ProfileVideosModel? = nil
     var player          : AVPlayer!
     var playerLayer     : AVPlayerLayer!
+    var profileModel    : UserProfileModel? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
         onload()
     }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         onAppear()
     }
     
+    //MARK: IBActions {}
     @IBAction func ontapAddProfileImg(_ sender: UIButton){
         CurrentTagImg = sender.tag
         pickImg()
@@ -158,7 +165,6 @@ class ProfileVC: UIViewController {
             stackMenu.isHidden       = false
         }
     }
-    
     @IBAction func ontapSeeMore(_ sender: UIButton){
         if stackMore.isHidden == true {
             stackMore.isHidden = false
@@ -181,6 +187,7 @@ extension ProfileVC {
             if let user = user {
                 // Use the user model as needed
                 self.setupProfile(user: user)
+                self.profileModel = user
                 print("User data: \(user)")
             } else {
                 print("Failed to fetch user data.")
@@ -188,10 +195,53 @@ extension ProfileVC {
         }
     }
     
+    func updateCoverUrlInModel(newCoverUrl: String) {
+        if var model = self.profileModel {
+            model.coverUrl = newCoverUrl
+            self.profileModel = model
+            self.setupProfile(user: model)
+        }
+    }
+    
+    func updateProfileUrlInModel(newProfileUrl: String) {
+        if var model = self.profileModel {
+            model.profileUrl = newProfileUrl
+            self.profileModel = model
+            self.setupProfile(user: model)
+        }
+    }
+    
     func setupProfile(user: UserProfileModel) {
         lblChannelName.text = user.channelName ?? ""
         lblChannelType.text = user.accountType ?? ""
         lblEmail.text       = user.email ?? ""
+        lblWebLInk.text     = user.website ?? ""
+        lblAddress.text     = user.address ?? ""
+        lblFollowers.text   = "\(user.followers?.count ?? 0) Followers"
+        lblFollowing.text   = "\(user.followings?.count ?? 0) Following"
+        if !(user.timings?.isEmpty ?? true) {
+            stackWeekTimes.isHidden    = false
+            lblMondayDuration.text     = "Monday                   \(user.timings?[0] ?? "")"
+            lblMondayDuration.text     = "Tuesday                  \(user.timings?[1] ?? "")"
+            lblMondayDuration.text     = "Wednesday                \(user.timings?[2] ?? "")"
+            lblMondayDuration.text     = "Thursday                 \(user.timings?[3] ?? "")"
+            lblMondayDuration.text     = "Friday                   \(user.timings?[4] ?? "")"
+            lblMondayDuration.text     = "Saturday                 \(user.timings?[5] ?? "")"
+            lblMondayDuration.text     = "Sunday                   \(user.timings?[6] ?? "")"
+        }
+        else{
+            stackWeekTimes.isHidden = true
+        }
+        DispatchQueue.main.async {
+            if let coverURL = user.coverUrl, let urlCover1 = URL(string: coverURL) {
+                self.imgCover.sd_setImage(with: urlCover1)
+            }
+        }
+        DispatchQueue.main.async {
+            if let profileURL = user.profileUrl, let urlProfile1 = URL(string: profileURL) {
+                self.imgProfile.sd_setImage(with: urlProfile1)
+            }
+        }
     }
     
     func setupView() {
@@ -278,7 +328,6 @@ extension ProfileVC : UITableViewDelegate , UITableViewDataSource {
         }
         
     }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == tblVIdeos {
             if (responseModel?.count ?? 0) == 0 {
@@ -299,7 +348,6 @@ extension ProfileVC : UITableViewDelegate , UITableViewDataSource {
             return arr.count
         }
     }
-    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "VideosHeaderView") as! VideosHeaderView
         if self.selectedVideo?.videoUrl ?? "" != ""{
@@ -321,20 +369,6 @@ extension ProfileVC : UITableViewDelegate , UITableViewDataSource {
         }
         return headerView
     }
-    
-    @objc func playButtonTapped(_ sender: UIButton) {
-        if sender.tag == 0 {
-            sender.setImage(UIImage(systemName: "pause.circle.fill"), for: .normal)
-            sender.tag = 1
-            player.play()
-        }
-        else{
-            sender.setImage(UIImage(systemName: "play.circle.fill"), for: .normal)
-            sender.tag = 0
-            player.pause()
-        }
-    }
-        
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if tableView == tblVIdeos {
 //            if self.selectedVideo?.videoUrl ?? "" != "" {
@@ -351,7 +385,6 @@ extension ProfileVC : UITableViewDelegate , UITableViewDataSource {
             return 0
         }
     }
-
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView == tblVIdeos {
             if (responseModel?.count ?? 0) == 0 {
@@ -383,11 +416,9 @@ extension ProfileVC : UITableViewDelegate , UITableViewDataSource {
         }
         
     }
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 120
     }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView == tblMenu {
             let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "MenuDetailPopupVC") as! MenuDetailPopupVC
@@ -399,8 +430,19 @@ extension ProfileVC : UITableViewDelegate , UITableViewDataSource {
         }
     }
     
+    @objc func playButtonTapped(_ sender: UIButton) {
+        if sender.tag == 0 {
+            sender.setImage(UIImage(systemName: "pause.circle.fill"), for: .normal)
+            sender.tag = 1
+            player.play()
+        }
+        else{
+            sender.setImage(UIImage(systemName: "play.circle.fill"), for: .normal)
+            sender.tag = 0
+            player.pause()
+        }
+    }
 }
-
 
 //MARK: - collection view {}
 extension ProfileVC : UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout {
@@ -482,22 +524,22 @@ extension ProfileVC: UIImagePickerControllerDelegate, UINavigationControllerDele
         currentImage = image
         if CurrentTagImg == 0 {
             imgProfile.image = currentImage
+            uploadProfileImg(currentImage, userID: UserDefault.token)
+           
         }
         else {
-            imgBig.image     = currentImage
+            imgCover.image   = currentImage
+            uploadCoverImg(currentImage, userID: UserDefault.token)
         }
     }
 }
 
-//MARK: - Get Videos {}
+//MARK: - Get Videos / profile / change cover / change profile {}
 extension ProfileVC {
-    
-    // Function to fetch the data
     func fetchUserData(userID: String, completion: @escaping (UserProfileModel?) -> Void) {
         self.startAnimating()
         let db = Firestore.firestore()
         db.collection("Users").document(userID).getDocument { (document, error) in
-            self.stopAnimating()
             if let document = document, document.exists {
                 let data = document.data()
                 
@@ -526,6 +568,7 @@ extension ProfileVC {
                                             email: data?["email"] as? String ?? "",
                                             phoneNumber: data?["phoneNumber"] as? String ?? "")
                 completion(user)
+                self.stopAnimating()
             } else {
                 self.stopAnimating()
                 self.showToast(message: "Document does not exist: \(error?.localizedDescription ?? "Unknown error")", seconds: 2, clr: .red)
@@ -541,9 +584,9 @@ extension ProfileVC {
         let videosCollectionRef = db.collection("Videos").document(userToken).collection("VideosData")
         
         videosCollectionRef.addSnapshotListener { querysnap, error in
-            self.stopAnimating()
             guard let document = querysnap?.documents else {
                 print("no document")
+                self.stopAnimating()
                 return
             }
             self.responseModel = document.map  { (QueryDocumentSnapshot) -> ProfileVideosModel in
@@ -561,9 +604,112 @@ extension ProfileVC {
                 
                 return ProfileVideosModel(address: address, Zipcode: ZipCode, city: city, hashTagsModelList: hashTagsList, Title: Title, description: description, language: language, ThumbnailUrl: ThumbnailUrl, videoUrl: videoUrl)
             }
+            self.stopAnimating()
             print(self.responseModel)
             self.collectSwift.reloadData()
             self.tblVIdeos.reloadData()
+        }
+    }
+    func uploadCoverImg(_ img: UIImage, userID: String) {
+        self.startAnimating()
+        if reachability.isReachable {
+            let uniqueID = UUID().uuidString
+            let storageRef = Storage.storage().reference().child("covers/\(uniqueID).png") // Store in "covers" directory
+            guard let imgData = img.pngData() else {
+                self.stopAnimating()
+                print("Error: Could not convert image to PNG data")
+                return
+            }
+            let metadata = StorageMetadata()
+            metadata.contentType = "image/png"
+            
+            storageRef.putData(imgData, metadata: metadata) { metadata, error in
+                self.stopAnimating() // Stop animating when upload is finished
+                if let error = error {
+                    print("Upload error: \(error.localizedDescription)")
+                    return
+                }
+                
+                // Successfully uploaded the image
+                storageRef.downloadURL { url, error in
+                    if let error = error {
+                        print("Error getting download URL: \(error.localizedDescription)")
+                        return
+                    }
+                    
+                    guard let downloadURL = url else {
+                        print("Error: Download URL is nil")
+                        return
+                    }
+                    
+                    print("Download success, URL: \(downloadURL.absoluteString)")
+                    // Update the user's coverUrl in Firestore
+                    let db = Firestore.firestore()
+                    db.collection("Users").document(userID).updateData([
+                        "coverUrl": downloadURL.absoluteString
+                    ]) { err in
+                        if let err = err {
+                            print("Error updating coverUrl: \(err)")
+                        } else {
+                            print("Cover URL successfully updated in Firestore")
+                            self.updateCoverUrlInModel(newCoverUrl: downloadURL.absoluteString)
+                        }
+                    }
+                }
+            }
+        } else {
+            self.showToast(message: "Internet connection is off.", seconds: 2, clr: .red)
+        }
+    }
+    func uploadProfileImg(_ img: UIImage, userID: String) {
+        self.startAnimating()
+        if reachability.isReachable {
+            let uniqueID = UUID().uuidString
+            let storageRef = Storage.storage().reference().child("profiles/\(uniqueID).png") // Store in "covers" directory
+            guard let imgData = img.pngData() else {
+                self.stopAnimating()
+                print("Error: Could not convert image to PNG data")
+                return
+            }
+            let metadata = StorageMetadata()
+            metadata.contentType = "image/png"
+            
+            storageRef.putData(imgData, metadata: metadata) { metadata, error in
+                self.stopAnimating() // Stop animating when upload is finished
+                if let error = error {
+                    print("Upload error: \(error.localizedDescription)")
+                    return
+                }
+                
+                // Successfully uploaded the image
+                storageRef.downloadURL { url, error in
+                    if let error = error {
+                        print("Error getting download URL: \(error.localizedDescription)")
+                        return
+                    }
+                    
+                    guard let downloadURL = url else {
+                        print("Error: Download URL is nil")
+                        return
+                    }
+                    
+                    print("Download success, URL: \(downloadURL.absoluteString)")
+                    // Update the user's coverUrl in Firestore
+                    let db = Firestore.firestore()
+                    db.collection("Users").document(userID).updateData([
+                        "profileUrl": downloadURL.absoluteString
+                    ]) { err in
+                        if let err = err {
+                            print("Error updating coverUrl: \(err)")
+                        } else {
+                            print("Cover URL successfully updated in Firestore")
+                            self.updateProfileUrlInModel(newProfileUrl: downloadURL.absoluteString)
+                        }
+                    }
+                }
+            }
+        } else {
+            self.showToast(message: "Internet connection is off.", seconds: 2, clr: .red)
         }
     }
 }

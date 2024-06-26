@@ -4840,11 +4840,11 @@
                                                     <constraint firstAttribute="height" constant="1" id="Fty-2i-an6"/>
                                                 </constraints>
                                             </view>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0ap-gT-xZQ">
-                                                <rect key="frame" x="0.0" y="1" width="393" height="200"/>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0ap-gT-xZQ">
+                                                <rect key="frame" x="0.0" y="1" width="393" height="240"/>
                                                 <color key="backgroundColor" name="ColorBlack"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="200" id="X3T-sz-SK2"/>
+                                                    <constraint firstAttribute="height" constant="240" id="X3T-sz-SK2"/>
                                                 </constraints>
                                             </imageView>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bIS-KD-wMV">
@@ -4886,7 +4886,7 @@
                                                 </subviews>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tTj-de-ad8">
-                                                <rect key="frame" x="0.0" y="161" width="393" height="120"/>
+                                                <rect key="frame" x="0.0" y="201" width="393" height="120"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OYY-Ez-pMv">
                                                         <rect key="frame" x="16" y="0.0" width="120" height="120"/>
@@ -4989,7 +4989,7 @@
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Jmk-jV-TqD">
-                                                <rect key="frame" x="16" y="297" width="367" height="100.33333333333331"/>
+                                                <rect key="frame" x="16" y="337" width="367" height="100.33333333333331"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amin Kitchen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GXf-sn-7AO">
                                                         <rect key="frame" x="0.0" y="0.0" width="367" height="24.333333333333332"/>
@@ -5083,7 +5083,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="3oa-4G-S5d">
-                                                <rect key="frame" x="16" y="413.33333333333331" width="361" height="43"/>
+                                                <rect key="frame" x="16" y="453.33333333333331" width="361" height="43"/>
                                                 <subviews>
                                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hQu-MU-IP1">
                                                         <rect key="frame" x="0.0" y="0.0" width="361" height="0.0"/>
@@ -5132,7 +5132,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="BgT-aW-R0Y">
-                                                <rect key="frame" x="16" y="472.33333333333331" width="87.333333333333329" height="30"/>
+                                                <rect key="frame" x="16" y="512.33333333333337" width="87.333333333333329" height="30"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gMe-CE-DAg">
                                                         <rect key="frame" x="0.0" y="0.0" width="87.333333333333329" height="30"/>
@@ -5190,7 +5190,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="NNn-P7-YFc">
-                                                <rect key="frame" x="16" y="518.33333333333337" width="371" height="394"/>
+                                                <rect key="frame" x="16" y="558.33333333333337" width="371" height="361"/>
                                                 <subviews>
                                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email : Naveedshabbir@gmail.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uJO-zV-w0L">
                                                         <rect key="frame" x="0.0" y="0.0" width="371" height="0.0"/>
@@ -5211,7 +5211,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="d5J-98-0py">
-                                                        <rect key="frame" x="0.0" y="66" width="371" height="281"/>
+                                                        <rect key="frame" x="0.0" y="66" width="371" height="248"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address : Street 101, Swedan Market" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Cu-qh-7Jd">
                                                                 <rect key="frame" x="0.0" y="0.0" width="371" height="17"/>
@@ -5219,58 +5219,63 @@
                                                                 <color key="textColor" name="ColorWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Opening Hours (Friday) Open" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jQj-uJ-rYB">
-                                                                <rect key="frame" x="0.0" y="33" width="371" height="17"/>
+                                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Opening Hours (Friday) Open" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jQj-uJ-rYB">
+                                                                <rect key="frame" x="0.0" y="25" width="371" height="0.0"/>
                                                                 <fontDescription key="fontDescription" name="Inter-Regular_Medium" family="Inter" pointSize="14"/>
                                                                 <color key="textColor" name="ColorWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Monday                   12:30 - 22 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4fa-Ul-MMj">
-                                                                <rect key="frame" x="0.0" y="66" width="371" height="17"/>
-                                                                <fontDescription key="fontDescription" name="Inter-Regular_Medium" family="Inter" pointSize="14"/>
-                                                                <color key="textColor" name="ColorWhite"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tuesday                   12 - 22 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zeD-Nh-nwB">
-                                                                <rect key="frame" x="0.0" y="99" width="371" height="17"/>
-                                                                <fontDescription key="fontDescription" name="Inter-Regular_Medium" family="Inter" pointSize="14"/>
-                                                                <color key="textColor" name="ColorWhite"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wednesday              12 - 22 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ems-Ku-tq5">
-                                                                <rect key="frame" x="0.0" y="132" width="371" height="17"/>
-                                                                <fontDescription key="fontDescription" name="Inter-Regular_Medium" family="Inter" pointSize="14"/>
-                                                                <color key="textColor" name="ColorWhite"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thursday                  12 - 22 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uds-UB-PRx">
-                                                                <rect key="frame" x="0.0" y="165" width="371" height="17"/>
-                                                                <fontDescription key="fontDescription" name="Inter-Regular_Medium" family="Inter" pointSize="14"/>
-                                                                <color key="textColor" name="ColorWhite"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Friday                        12 - 22 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="52r-VD-ufs">
-                                                                <rect key="frame" x="0.0" y="198" width="371" height="17"/>
-                                                                <fontDescription key="fontDescription" name="Inter-Regular_Medium" family="Inter" pointSize="14"/>
-                                                                <color key="textColor" name="ColorWhite"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Saturday                   12 - 22 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VNP-tN-5iW">
-                                                                <rect key="frame" x="0.0" y="231" width="371" height="17"/>
-                                                                <fontDescription key="fontDescription" name="Inter-Regular_Medium" family="Inter" pointSize="14"/>
-                                                                <color key="textColor" name="ColorWhite"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sunday                      Closed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ciK-BM-6um">
-                                                                <rect key="frame" x="0.0" y="264" width="371" height="17"/>
-                                                                <fontDescription key="fontDescription" name="Inter-Regular_Medium" family="Inter" pointSize="14"/>
-                                                                <color key="textColor" name="ColorWhite"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="2bF-Ae-Gu1">
+                                                                <rect key="frame" x="0.0" y="33" width="371" height="215"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Monday                  " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4fa-Ul-MMj">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="371" height="17"/>
+                                                                        <fontDescription key="fontDescription" name="Inter-Regular_Medium" family="Inter" pointSize="14"/>
+                                                                        <color key="textColor" name="ColorWhite"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tuesday                  " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zeD-Nh-nwB">
+                                                                        <rect key="frame" x="0.0" y="33" width="371" height="17"/>
+                                                                        <fontDescription key="fontDescription" name="Inter-Regular_Medium" family="Inter" pointSize="14"/>
+                                                                        <color key="textColor" name="ColorWhite"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wednesday             " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ems-Ku-tq5">
+                                                                        <rect key="frame" x="0.0" y="66" width="371" height="17"/>
+                                                                        <fontDescription key="fontDescription" name="Inter-Regular_Medium" family="Inter" pointSize="14"/>
+                                                                        <color key="textColor" name="ColorWhite"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thursday              " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uds-UB-PRx">
+                                                                        <rect key="frame" x="0.0" y="99" width="371" height="17"/>
+                                                                        <fontDescription key="fontDescription" name="Inter-Regular_Medium" family="Inter" pointSize="14"/>
+                                                                        <color key="textColor" name="ColorWhite"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Friday                      " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="52r-VD-ufs">
+                                                                        <rect key="frame" x="0.0" y="132" width="371" height="17"/>
+                                                                        <fontDescription key="fontDescription" name="Inter-Regular_Medium" family="Inter" pointSize="14"/>
+                                                                        <color key="textColor" name="ColorWhite"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Saturday             " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VNP-tN-5iW">
+                                                                        <rect key="frame" x="0.0" y="165" width="371" height="17"/>
+                                                                        <fontDescription key="fontDescription" name="Inter-Regular_Medium" family="Inter" pointSize="14"/>
+                                                                        <color key="textColor" name="ColorWhite"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sunday              " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ciK-BM-6um">
+                                                                        <rect key="frame" x="0.0" y="198" width="371" height="17"/>
+                                                                        <fontDescription key="fontDescription" name="Inter-Regular_Medium" family="Inter" pointSize="14"/>
+                                                                        <color key="textColor" name="ColorWhite"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
                                                         </subviews>
                                                     </stackView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pAu-Rj-kam">
-                                                        <rect key="frame" x="0.0" y="363" width="371" height="31"/>
+                                                        <rect key="frame" x="0.0" y="330" width="371" height="31"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" title="View more info">
                                                             <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="14"/>
@@ -5282,7 +5287,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="tWE-gu-VKR">
-                                                <rect key="frame" x="0.0" y="1005.3333333333335" width="393" height="150"/>
+                                                <rect key="frame" x="0.0" y="1012.3333333333335" width="393" height="150"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="7gQ-Dd-DRO">
                                                         <rect key="frame" x="0.0" y="0.0" width="393" height="150"/>
@@ -5644,7 +5649,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="393" height="224"/>
                                                                 <subviews>
                                                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Asl-XU-uDf">
-                                                                        <rect key="frame" x="12" y="12" width="381" height="50"/>
+                                                                        <rect key="frame" x="12" y="11.999999999999886" width="381" height="50"/>
                                                                         <subviews>
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M2g-Ov-Qxu">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="1" height="50"/>
@@ -5660,13 +5665,13 @@
                                                                                         <rect key="frame" x="0.0" y="0.0" width="113.66666666666667" height="40"/>
                                                                                         <subviews>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Popular" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="syC-4g-rSU">
-                                                                                                <rect key="frame" x="8" y="1.9999999999998863" width="97.666666666666671" height="36"/>
+                                                                                                <rect key="frame" x="8" y="2" width="97.666666666666671" height="36"/>
                                                                                                 <fontDescription key="fontDescription" name="Inter-Regular_Medium" family="Inter" pointSize="14"/>
                                                                                                 <color key="textColor" name="ColorDarkBlue"/>
                                                                                                 <nil key="highlightedColor"/>
                                                                                             </label>
                                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KXL-Vh-Vcp">
-                                                                                                <rect key="frame" x="2" y="1.9999999999998863" width="109.66666666666667" height="36"/>
+                                                                                                <rect key="frame" x="2" y="2" width="109.66666666666667" height="36"/>
                                                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                                             </button>
                                                                                         </subviews>
@@ -5692,13 +5697,13 @@
                                                                                         <rect key="frame" x="144.66666666666666" y="0.0" width="113.66666666666666" height="40"/>
                                                                                         <subviews>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pasta" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Qs-yW-8L9">
-                                                                                                <rect key="frame" x="8" y="1.9999999999998863" width="97.666666666666671" height="36"/>
+                                                                                                <rect key="frame" x="8" y="2" width="97.666666666666671" height="36"/>
                                                                                                 <fontDescription key="fontDescription" name="Inter-Regular_Medium" family="Inter" pointSize="14"/>
                                                                                                 <color key="textColor" name="ColorWhite"/>
                                                                                                 <nil key="highlightedColor"/>
                                                                                             </label>
                                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bKD-bs-X6t">
-                                                                                                <rect key="frame" x="2" y="1.9999999999998863" width="109.66666666666667" height="36"/>
+                                                                                                <rect key="frame" x="2" y="2" width="109.66666666666667" height="36"/>
                                                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                                             </button>
                                                                                         </subviews>
@@ -5723,13 +5728,13 @@
                                                                                         <rect key="frame" x="289.33333333333331" y="0.0" width="113.66666666666669" height="40"/>
                                                                                         <subviews>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pasta ala Pana" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Rs-Kv-ccK">
-                                                                                                <rect key="frame" x="8" y="1.9999999999998863" width="97.666666666666671" height="36"/>
+                                                                                                <rect key="frame" x="8" y="2" width="97.666666666666671" height="36"/>
                                                                                                 <fontDescription key="fontDescription" name="Inter-Regular_Medium" family="Inter" pointSize="14"/>
                                                                                                 <color key="textColor" name="ColorWhite"/>
                                                                                                 <nil key="highlightedColor"/>
                                                                                             </label>
                                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ulh-tL-BRz">
-                                                                                                <rect key="frame" x="2" y="1.9999999999998863" width="109.66666666666667" height="36"/>
+                                                                                                <rect key="frame" x="2" y="2" width="109.66666666666667" height="36"/>
                                                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                                             </button>
                                                                                         </subviews>
@@ -5754,13 +5759,13 @@
                                                                                         <rect key="frame" x="434" y="0.0" width="113.66666666666663" height="40"/>
                                                                                         <subviews>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pasta ala Pana" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oTR-9z-App">
-                                                                                                <rect key="frame" x="8" y="1.9999999999998863" width="97.666666666666671" height="36"/>
+                                                                                                <rect key="frame" x="8" y="2" width="97.666666666666671" height="36"/>
                                                                                                 <fontDescription key="fontDescription" name="Inter-Regular_Medium" family="Inter" pointSize="14"/>
                                                                                                 <color key="textColor" name="ColorWhite"/>
                                                                                                 <nil key="highlightedColor"/>
                                                                                             </label>
                                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w5n-VJ-srE">
-                                                                                                <rect key="frame" x="2" y="1.9999999999998863" width="109.66666666666667" height="36"/>
+                                                                                                <rect key="frame" x="2" y="2" width="109.66666666666667" height="36"/>
                                                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                                             </button>
                                                                                         </subviews>
@@ -5820,7 +5825,7 @@
                                                 </subviews>
                                             </stackView>
                                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CLI-S7-tp6">
-                                                <rect key="frame" x="24" y="936.33333333333337" width="369" height="45"/>
+                                                <rect key="frame" x="24" y="943.33333333333337" width="369" height="45"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ENg-ZB-hOk">
                                                         <rect key="frame" x="0.0" y="0.0" width="1" height="45"/>
@@ -6106,12 +6111,14 @@
                         <outlet property="collectSwift" destination="1Jr-CT-ECg" id="sBc-2n-h3F"/>
                         <outlet property="collectSwiftColl" destination="MxZ-pC-PjL" id="2oZ-wr-nC3"/>
                         <outlet property="collectSwiftHeightCons" destination="WLe-zc-8by" id="lXm-vg-VqG"/>
-                        <outlet property="imgBig" destination="0ap-gT-xZQ" id="CDK-gY-UMq"/>
-                        <outlet property="imgProfile" destination="OYY-Ez-pMv" id="tBK-OC-2hO"/>
+                        <outlet property="imgCover" destination="0ap-gT-xZQ" id="bvE-zo-mN6"/>
+                        <outlet property="imgProfile" destination="OYY-Ez-pMv" id="O1B-UN-EUi"/>
                         <outlet property="lblAddress" destination="8Cu-qh-7Jd" id="XxV-ZE-Qi2"/>
                         <outlet property="lblChannelName" destination="GXf-sn-7AO" id="iAL-KZ-3PA"/>
                         <outlet property="lblChannelType" destination="PLS-L5-nqw" id="qtX-RF-uGX"/>
                         <outlet property="lblEmail" destination="fMw-vj-8RQ" id="RhF-ft-Xd0"/>
+                        <outlet property="lblFollowers" destination="G2O-hb-6hY" id="jMh-f1-5gq"/>
+                        <outlet property="lblFollowing" destination="jTa-Mn-OtM" id="A2X-x2-InS"/>
                         <outlet property="lblFridayDuration" destination="52r-VD-ufs" id="hw6-KV-Tfl"/>
                         <outlet property="lblMondayDuration" destination="4fa-Ul-MMj" id="bwL-qS-r3N"/>
                         <outlet property="lblSaturdayDuration" destination="VNP-tN-5iW" id="gAV-yy-KsB"/>
@@ -6125,6 +6132,7 @@
                         <outlet property="stackMore" destination="d5J-98-0py" id="YZp-ET-P4c"/>
                         <outlet property="stackSwift" destination="EBT-r5-uiT" id="t5y-E2-xnY"/>
                         <outlet property="stackVideos" destination="7gQ-Dd-DRO" id="Uvp-ef-48v"/>
+                        <outlet property="stackWeekTimes" destination="2bF-Ae-Gu1" id="WkQ-1x-3z9"/>
                         <outlet property="tblMenu" destination="cKX-h6-qaX" id="wr8-WK-1kX"/>
                         <outlet property="tblMenuHeightCons" destination="N33-cD-tnH" id="cmo-gZ-LVD"/>
                         <outlet property="tblVIdeos" destination="QWR-ja-ETZ" id="Smw-3a-d77"/>
@@ -10337,7 +10345,7 @@ platform be detailed.</string>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="plus.app.fill" catalog="system" width="128" height="114"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
-        <image name="user" width="24" height="24"/>
+        <image name="user" width="24.333333969116211" height="24"/>
         <image name="user-block" width="24" height="24"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <namedColor name="AccentColor">
