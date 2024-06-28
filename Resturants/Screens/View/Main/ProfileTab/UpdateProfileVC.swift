@@ -100,6 +100,7 @@ class UpdateProfileVC: UIViewController , TagPeopleDelegate{
     @IBAction func ontapAccnt(_ sender: UIButton){
         
         let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "UpdateMenuVC") as? UpdateMenuVC
+        vc?.profileModel = self.profileModel
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     @IBAction func ontapSave(_ sender: UIButton){

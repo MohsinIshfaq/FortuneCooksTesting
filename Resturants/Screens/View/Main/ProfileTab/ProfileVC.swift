@@ -239,7 +239,7 @@ extension ProfileVC {
             lblBio.text         = user.bio ?? ""
         }
         if !(user.timings?.isEmpty ?? true) {
-            stackWeekTimes.isHidden    = false
+          //  stackWeekTimes.isHidden    = false
             print("Monday                   \(user.timings?[0] ?? "")")
             lblMondayDuration.text     = user.timings?[0] ?? ""
             lblTuesdayDuration.text    = user.timings?[1] ?? ""
@@ -250,7 +250,7 @@ extension ProfileVC {
             lblSundayDuration.text     = user.timings?[6] ?? ""
         }
         else{
-            stackWeekTimes.isHidden = true
+          //  stackWeekTimes.isHidden = true
         }
         if user.coverUrl != "" {
             vwCover.isHidden = true
