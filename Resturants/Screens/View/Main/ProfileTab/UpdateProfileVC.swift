@@ -321,9 +321,24 @@ extension UpdateProfileVC {
         return (startTime, endTime)
     }
     func getMondaySchedule(_ opening: String,  _ closing: String , switchs: Bool) -> String {
-        
         //MARK: - if switch is hide it means schedule is closed like monday is closed
         return switchs ? "\(txtMondayOpening.text!) : \(txtMondayClosing.text!)" : "Closed"
+    }
+    
+    func updateProfileModel(channel: String , bio: String , email: String , web: String , number: String , address: String , zipCode: String , city: String , timings: [String]) {
+        if var model = self.profileModel {
+            model.channelName = channel
+            model.bio         = bio
+            model.email       = email
+            model.website     = web
+            model.phoneNumber = number
+            model.address     = address
+            model.zipcode     = zipCode
+            model.city        = city
+            model.email       = email
+            model.timings     = timings
+            self.profileModel = model
+        }
     }
 }
 
@@ -554,7 +569,9 @@ extension UpdateProfileVC {
     }
     
     func addProfile(_ userID: String) {
-        var monday = lblMonday.isHidden == false ? "\(txtMondayOpening.text!) : \(txtMondayClosing.text!)" : "Closed"
+        self.startAnimating()
+        var monday = lblMonday.isHidden ? "\(txtMondayOpening.text!) : \(txtMondayClosing.text!)" : "Closed"
+       // print(monday , txtMondayOpening.text! , txtMondayClosing.text!)
         var timings = [getMondaySchedule(txtMondayOpening.text ?? "", txtMondayClosing.text!, switchs: lblMonday.isHidden) ,
                        getMondaySchedule(txtTuesdayOpening.text ?? "", txtTuesdayClosing.text!, switchs: lblTuesday.isHidden) ,
                        getMondaySchedule(txtWednesdayOpening.text ?? "", txtWednesdayClosing.text!, switchs: lblWednesday.isHidden) ,
@@ -565,7 +582,7 @@ extension UpdateProfileVC {
         print(timings)
         let db = Firestore.firestore()
         db.collection("Users").document(userID).updateData([
-            "accountType": txtAccntType.text! ,
+            "channelName": txtChannelNm.text! ,
             "bio": txtViewBio.text!,
             "email": txtAddEmail.text! ,
             "website": txtAddWebsite.text! ,
@@ -576,10 +593,12 @@ extension UpdateProfileVC {
             "timings": timings
         ]) { err in
             if let err = err {
+                self.stopAnimating()
                 print("Error updating coverUrl: \(err)")
             } else {
+                self.stopAnimating()
                 print("Cover URL successfully updated in Firestore")
-                //self.updateCoverUrlInModel(bio: self.txtViewBio.text!)
+                self.updateProfileModel(channel:  self.txtChannelNm.text!, bio: self.txtViewBio.text!, email: self.txtAddEmail.text!, web: self.txtAddWebsite.text!, number: self.txtAddPhoneNUmbr.text!, address: self.txtAddAddressLoc.text!, zipCode: self.txtZipCode.text!, city: self.txtCity.text!, timings: timings)
             }
         }
     }
