@@ -34,6 +34,7 @@ class ProfileVC: UIViewController {
     @IBOutlet weak var stackMenu               : UIStackView!
     @IBOutlet weak var tblMenuHeightCons       : NSLayoutConstraint!
     @IBOutlet weak var btnMore                 : UIButton!
+    @IBOutlet weak var vwAddBio                : UIView!
     
     @IBOutlet weak var lblChannelName          : UILabel!
     @IBOutlet weak var lblChannelType          : UILabel!
@@ -52,7 +53,12 @@ class ProfileVC: UIViewController {
     @IBOutlet weak var imgCover                : UIImageView!
     @IBOutlet weak var imgProfile              : UIImageView!
     @IBOutlet weak var stackWeekTimes          : UIStackView!
-    
+    @IBOutlet weak var lblBio                  : UILabel!
+    @IBOutlet weak var btnAddBio               : UIButton!
+    @IBOutlet weak var lblTagPersons           : UILabel!
+    @IBOutlet weak var btn3dots                : UIButton!
+    @IBOutlet weak var vwCover                 : UIView!
+    @IBOutlet weak var vwProfile               : UIView!
     
     
     //MARK: - Variables and Properties
@@ -96,6 +102,7 @@ class ProfileVC: UIViewController {
     @IBAction func ontapSetting(_ sender: UIButton) {
         let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "SettingsVC") as! SettingsVC
         vc.hidesBottomBarWhenPushed = true
+        vc.profileModel = self.profileModel
         self.navigationController?.pushViewController(vc, animated: true)
     }
     @IBAction func ontapAddBio(_ sender: UIButton) {
@@ -182,17 +189,6 @@ extension ProfileVC {
    
     func onload() {
         setupView()
-        fetchDataFromFirestore()
-        fetchUserData(userID: UserDefault.token) { user in
-            if let user = user {
-                // Use the user model as needed
-                self.setupProfile(user: user)
-                self.profileModel = user
-                print("User data: \(user)")
-            } else {
-                print("Failed to fetch user data.")
-            }
-        }
     }
     
     func updateCoverUrlInModel(newCoverUrl: String) {
@@ -213,12 +209,35 @@ extension ProfileVC {
     
     func setupProfile(user: UserProfileModel) {
         lblChannelName.text = user.channelName ?? ""
-        lblChannelType.text = user.accountType ?? ""
+        lblChannelType.text = "(" + (user.accountType ?? "") + ")"
         lblEmail.text       = user.email ?? ""
         lblWebLInk.text     = user.website ?? ""
         lblAddress.text     = user.address ?? ""
         lblFollowers.text   = "\(user.followers?.count ?? 0) Followers"
         lblFollowing.text   = "\(user.followings?.count ?? 0) Following"
+        if UserDefault.token == user.uid {
+            btn3dots.isHidden = true
+        }
+        else{
+            btn3dots.isHidden = false
+        }
+        if user.tagPersons?.count != 0 {
+            lblTagPersons.text = "\(user.tagPersons?.count ?? 0) person"
+        }
+        else{
+            lblTagPersons.text = "0 person"
+        }
+        if user.bio == "" {
+            btnAddBio.isHidden = false
+            lblBio.isHidden    = true
+            vwAddBio.isHidden  = false
+        }
+        else{
+            lblBio.isHidden     = false
+            btnAddBio.isHidden  = true
+            vwAddBio.isHidden  = true
+            lblBio.text         = user.bio ?? ""
+        }
         if !(user.timings?.isEmpty ?? true) {
             stackWeekTimes.isHidden    = false
             lblMondayDuration.text     = "Monday                   \(user.timings?[0] ?? "")"
@@ -231,6 +250,12 @@ extension ProfileVC {
         }
         else{
             stackWeekTimes.isHidden = true
+        }
+        if user.coverUrl != "" {
+            vwCover.isHidden = true
+        }
+        if user.profileUrl != "" {
+            vwProfile.isHidden = true
         }
         DispatchQueue.main.async {
             if let coverURL = user.coverUrl, let urlCover1 = URL(string: coverURL) {
@@ -280,6 +305,20 @@ extension ProfileVC {
         vwMenu.isHidden          = true
         stackVideos.isHidden     = false
         stackMenu.isHidden       = true
+        
+        fetchDataFromFirestore()
+        fetchUserData(userID: UserDefault.token) { user in
+            self.stopAnimating()
+            if let user = user {
+                // Use the user model as needed
+                self.setupProfile(user: user)
+                self.profileModel = user
+                print("User data: \(user)")
+            } else {
+                print("Failed to fetch user data.")
+            }
+        }
+     
     }
     
     func updateCollectionViewHeight() {
@@ -567,8 +606,8 @@ extension ProfileVC {
                                             dateOfBirth: data?["dateOfBirth"] as? String ?? "",
                                             email: data?["email"] as? String ?? "",
                                             phoneNumber: data?["phoneNumber"] as? String ?? "")
-                completion(user)
                 self.stopAnimating()
+                completion(user)
             } else {
                 self.stopAnimating()
                 self.showToast(message: "Document does not exist: \(error?.localizedDescription ?? "Unknown error")", seconds: 2, clr: .red)
@@ -601,7 +640,6 @@ extension ProfileVC {
                 let language     = data["language"] as? String ?? ""
                 let ThumbnailUrl = data["ThumbnailUrl"] as? String ?? ""
                 let videoUrl     = data["videoUrl"] as? String ?? ""
-                
                 return ProfileVideosModel(address: address, Zipcode: ZipCode, city: city, hashTagsModelList: hashTagsList, Title: Title, description: description, language: language, ThumbnailUrl: ThumbnailUrl, videoUrl: videoUrl)
             }
             self.stopAnimating()

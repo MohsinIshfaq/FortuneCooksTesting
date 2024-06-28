@@ -9,6 +9,8 @@ import UIKit
 
 class SettingsVC: UIViewController {
 
+    var profileModel                       : UserProfileModel? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         onload()
@@ -22,6 +24,7 @@ class SettingsVC: UIViewController {
     @IBAction func ontapProfile(_ sender: UIButton) {
         let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "UpdateProfileVC") as! UpdateProfileVC
         vc.hidesBottomBarWhenPushed = true
+        vc.profileModel = self.profileModel
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

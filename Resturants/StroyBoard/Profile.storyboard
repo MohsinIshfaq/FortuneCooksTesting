@@ -498,7 +498,7 @@
                                                     <constraint firstAttribute="height" constant="1" id="fgd-ZL-Wpp"/>
                                                 </constraints>
                                             </view>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FrameTop" translatesAutoresizingMaskIntoConstraints="NO" id="jJU-Uy-9fQ">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FrameTop" translatesAutoresizingMaskIntoConstraints="NO" id="jJU-Uy-9fQ">
                                                 <rect key="frame" x="0.0" y="1" width="393" height="200"/>
                                                 <color key="backgroundColor" name="ColorDarkBlue"/>
                                                 <constraints>
@@ -2248,6 +2248,9 @@
                                                                 <real key="value" value="8"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="ontapSave:" destination="UaT-i4-q4Q" eventType="touchUpInside" id="Nxh-GE-JYn"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -2299,6 +2302,8 @@
                         <outlet property="collectTagPeople" destination="7ar-Kn-mkb" id="PVe-4N-Aaf"/>
                         <outlet property="imgBig" destination="jJU-Uy-9fQ" id="7bb-6f-l1X"/>
                         <outlet property="imgProfile" destination="TfP-8N-Y1Q" id="uj4-zK-YCp"/>
+                        <outlet property="lblAccntType" destination="3ua-o8-yhe" id="Jv3-Bn-Lbb"/>
+                        <outlet property="lblFollowers" destination="Gb2-eK-Wif" id="3iK-0L-g6z"/>
                         <outlet property="lblFriday" destination="7P5-9j-i40" id="sgN-oa-uOX"/>
                         <outlet property="lblMonday" destination="wGp-ld-UL7" id="jAF-3u-Q3Z"/>
                         <outlet property="lblSaturday" destination="DTA-1e-Qfs" id="4aH-eL-am0"/>
@@ -2314,6 +2319,12 @@
                         <outlet property="stackTuesday" destination="Cb5-qf-EnE" id="c0O-pM-cHZ"/>
                         <outlet property="stackWednesday" destination="5YW-SC-Gib" id="8Hd-Vf-9ni"/>
                         <outlet property="txtAccntType" destination="7mQ-pQ-nB8" id="aIH-92-Prr"/>
+                        <outlet property="txtAddAddressLoc" destination="JLR-Y6-aPC" id="XWb-ua-NRr"/>
+                        <outlet property="txtAddEmail" destination="c2Z-8C-KsT" id="MSz-OX-wiC"/>
+                        <outlet property="txtAddPhoneNUmbr" destination="UBp-mZ-18U" id="OgP-bA-UL3"/>
+                        <outlet property="txtAddWebsite" destination="5vj-uB-3aQ" id="iqw-sp-QyD"/>
+                        <outlet property="txtChannelNm" destination="pRO-hv-LHb" id="DsL-Py-SS8"/>
+                        <outlet property="txtCity" destination="mja-2m-2rB" id="hut-yt-dAz"/>
                         <outlet property="txtFridayClosing" destination="Lab-oz-vsB" id="CmE-NF-r60"/>
                         <outlet property="txtFridayOpening" destination="enc-4z-LFE" id="ZCw-vC-asM"/>
                         <outlet property="txtMondayClosing" destination="M88-tj-DXc" id="wjO-V1-hFy"/>
@@ -2329,6 +2340,7 @@
                         <outlet property="txtViewBio" destination="9w2-iP-jOr" id="V2W-UM-UKm"/>
                         <outlet property="txtWednesdayClosing" destination="vZo-0f-5bS" id="CkP-hV-jog"/>
                         <outlet property="txtWednesdayOpening" destination="wxb-KQ-qS0" id="CJ4-2W-IgA"/>
+                        <outlet property="txtZipCode" destination="S7f-JE-gh7" id="4Q8-1b-hkf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W88-iV-K56" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -4840,7 +4852,7 @@
                                                     <constraint firstAttribute="height" constant="1" id="Fty-2i-an6"/>
                                                 </constraints>
                                             </view>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0ap-gT-xZQ">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0ap-gT-xZQ">
                                                 <rect key="frame" x="0.0" y="1" width="393" height="240"/>
                                                 <color key="backgroundColor" name="ColorBlack"/>
                                                 <constraints>
@@ -5085,7 +5097,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="3oa-4G-S5d">
                                                 <rect key="frame" x="16" y="453.33333333333331" width="361" height="43"/>
                                                 <subviews>
-                                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hQu-MU-IP1">
+                                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hQu-MU-IP1">
                                                         <rect key="frame" x="0.0" y="0.0" width="361" height="0.0"/>
                                                         <string key="text">is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s</string>
                                                         <fontDescription key="fontDescription" name="Inter-Regular_Light" family="Inter" pointSize="14"/>
@@ -6107,6 +6119,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="2Zo-x2-tFe"/>
                     <connections>
+                        <outlet property="btn3dots" destination="yhy-8Y-Sco" id="vCP-Pe-Fm7"/>
+                        <outlet property="btnAddBio" destination="8sr-vO-7Iv" id="jO1-sE-B4a"/>
                         <outlet property="btnMore" destination="pAu-Rj-kam" id="wg4-rk-rPC"/>
                         <outlet property="collectSwift" destination="1Jr-CT-ECg" id="sBc-2n-h3F"/>
                         <outlet property="collectSwiftColl" destination="MxZ-pC-PjL" id="2oZ-wr-nC3"/>
@@ -6114,6 +6128,7 @@
                         <outlet property="imgCover" destination="0ap-gT-xZQ" id="bvE-zo-mN6"/>
                         <outlet property="imgProfile" destination="OYY-Ez-pMv" id="O1B-UN-EUi"/>
                         <outlet property="lblAddress" destination="8Cu-qh-7Jd" id="XxV-ZE-Qi2"/>
+                        <outlet property="lblBio" destination="hQu-MU-IP1" id="cRB-SE-kmc"/>
                         <outlet property="lblChannelName" destination="GXf-sn-7AO" id="iAL-KZ-3PA"/>
                         <outlet property="lblChannelType" destination="PLS-L5-nqw" id="qtX-RF-uGX"/>
                         <outlet property="lblEmail" destination="fMw-vj-8RQ" id="RhF-ft-Xd0"/>
@@ -6123,6 +6138,7 @@
                         <outlet property="lblMondayDuration" destination="4fa-Ul-MMj" id="bwL-qS-r3N"/>
                         <outlet property="lblSaturdayDuration" destination="VNP-tN-5iW" id="gAV-yy-KsB"/>
                         <outlet property="lblSundayDuration" destination="ciK-BM-6um" id="CvN-oi-55c"/>
+                        <outlet property="lblTagPersons" destination="ajI-gE-gXW" id="OKL-hV-rbr"/>
                         <outlet property="lblThursdayDuration" destination="uds-UB-PRx" id="LFi-Ww-Z4s"/>
                         <outlet property="lblTuesdayDuration" destination="zeD-Nh-nwB" id="tnZ-fe-ENk"/>
                         <outlet property="lblWebLInk" destination="FSm-We-ei0" id="XSr-Ou-Fns"/>
@@ -6139,8 +6155,11 @@
                         <outlet property="tblVIdeosColl" destination="ilG-FX-Ja8" id="6yt-wF-cxu"/>
                         <outlet property="tblVideoHeightCons" destination="TWL-vr-Cjx" id="AAb-mB-95M"/>
                         <outlet property="tblVideosCollHeightCons" destination="zEi-Zt-FKO" id="vj0-85-9PI"/>
+                        <outlet property="vwAddBio" destination="h8b-Yk-Gr7" id="T8U-tq-geh"/>
                         <outlet property="vwCollection" destination="XLx-6k-9vr" id="1Pf-to-YXv"/>
+                        <outlet property="vwCover" destination="qGR-G0-O5H" id="s7u-Jm-vRq"/>
                         <outlet property="vwMenu" destination="oh6-NX-aKE" id="3bN-rR-Xd0"/>
+                        <outlet property="vwProfile" destination="mPf-U1-OLg" id="6im-Ra-cId"/>
                         <outlet property="vwSwift" destination="tqd-tt-kl3" id="EYe-EO-eaq"/>
                         <outlet property="vwVideo" destination="lDM-Nm-71s" id="ghO-qP-ric"/>
                     </connections>
@@ -8276,6 +8295,9 @@ Only tap the link if you trust it's safe!</string>
                                                                 <real key="value" value="8"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="ontapSave:" destination="TOn-sz-VTm" eventType="touchUpInside" id="5d3-As-Ude"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -10345,7 +10367,7 @@ platform be detailed.</string>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="plus.app.fill" catalog="system" width="128" height="114"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
-        <image name="user" width="24.333333969116211" height="24"/>
+        <image name="user" width="24" height="24"/>
         <image name="user-block" width="24" height="24"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <namedColor name="AccentColor">
