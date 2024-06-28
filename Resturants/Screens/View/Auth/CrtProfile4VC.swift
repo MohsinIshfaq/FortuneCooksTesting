@@ -214,8 +214,9 @@ extension CrtProfile4VC {
                     self.showToast(message: error.localizedDescription, seconds: 2, clr: .red)
                 } else {
                     print("Document successfully written!")
-                    let vc = Constants.TabControllerStoryBoard.instantiateViewController(withIdentifier: "TabbarController") as? TabbarController
-                    self.navigationController?.pushViewController(vc!, animated: true)
+//                    let vc = Constants.auth.instantiateViewController(withIdentifier: "TabbarController") as? TabbarController
+//                    self.navigationController?.pushViewController(vc!, animated: true)
+                    self.navigationController?.popToRootViewController(animated: true)
                 }
             }
         }

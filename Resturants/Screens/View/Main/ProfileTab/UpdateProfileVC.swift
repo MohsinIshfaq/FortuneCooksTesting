@@ -61,6 +61,14 @@ class UpdateProfileVC: UIViewController , TagPeopleDelegate{
     @IBOutlet weak var txtSundayOpening    : UITextField!
     @IBOutlet weak var txtSundayClosing    : UITextField!
     
+    @IBOutlet weak var switchMonday        : UISwitch!
+    @IBOutlet weak var switchTuesday       : UISwitch!
+    @IBOutlet weak var switchWednesday     : UISwitch!
+    @IBOutlet weak var switchThrusday      : UISwitch!
+    @IBOutlet weak var switchFriday        : UISwitch!
+    @IBOutlet weak var switchSaturday      : UISwitch!
+    @IBOutlet weak var switchSunday        : UISwitch!
+    
     //MARK: - Variables and Properties
     var activeTextField: UITextField?      = nil
     var selectedHrs                        = ""
@@ -194,6 +202,7 @@ extension UpdateProfileVC {
                     self.imgProfile.sd_setImage(with: urlProfile1)
                 }
             }
+            txtAccntType.text     = profile.accountType ?? ""
             txtChannelNm.text     = profile.channelName ?? ""
             txtViewBio.text       = profile.bio ?? ""
             txtAddEmail.text      = profile.email ?? ""
@@ -202,30 +211,52 @@ extension UpdateProfileVC {
             txtAddAddressLoc.text = profile.address ?? ""
             txtZipCode.text       = profile.zipcode ?? ""
             txtCity.text          = profile.city ?? ""
-            lblAccntType.text     = profile.accountType ?? ""
+            lblAccntType.text     = "(\(profile.accountType ?? ""))"
             lblFollowers.text     = "\(profile.followers?.count ?? 0) Followers"
             
             if !(profile.timings?.isEmpty ?? false){
                 txtMondayOpening.text    = profile.timings?[0] == "Closed" ? "Closed" : splitTimeRange(profile.timings?[0] ?? "")?.0
                 txtMondayClosing.text    = profile.timings?[0] == "Closed" ? "Closed" : splitTimeRange(profile.timings?[0] ?? "")?.1
+                lblMonday.isHidden    = profile.timings?[0] == "Closed" ? false : true
+                stackMonday.isHidden  = profile.timings?[0] == "Closed" ? true : false
+                switchMonday.isOn     = profile.timings?[0] == "Closed" ? false : true
                 
                 txtTuesdayOpening.text   = profile.timings?[1] == "Closed" ? "Closed" : splitTimeRange(profile.timings?[1] ?? "")?.0
                 txtTuesdayClosing.text   = profile.timings?[1] == "Closed" ? "Closed" : splitTimeRange(profile.timings?[1] ?? "")?.1
+                lblTuesday.isHidden   = profile.timings?[1] == "Closed" ? false : true
+                stackTuesday.isHidden = profile.timings?[1] == "Closed" ? true : false
+                switchTuesday.isOn    = profile.timings?[1] == "Closed" ? false : true
                 
                 txtWednesdayOpening.text = profile.timings?[2] == "Closed" ? "Closed" : splitTimeRange(profile.timings?[2] ?? "")?.0
                 txtWednesdayClosing.text = profile.timings?[2] == "Closed" ? "Closed" : splitTimeRange(profile.timings?[2] ?? "")?.1
+                lblWednesday.isHidden   = profile.timings?[2] == "Closed" ? false : true
+                stackWednesday.isHidden = profile.timings?[2] == "Closed" ? true : false
+                switchWednesday.isOn    = profile.timings?[2] == "Closed" ? false : true
                 
                 txtThrusdayOpening.text  = profile.timings?[3] == "Closed" ? "Closed" : splitTimeRange(profile.timings?[3] ?? "")?.0
                 txtThrusdayClosing.text  = profile.timings?[3] == "Closed" ? "Closed" : splitTimeRange(profile.timings?[3] ?? "")?.1
+                lblThursday.isHidden   = profile.timings?[3] == "Closed" ? false : true
+                stackThursday.isHidden = profile.timings?[3] == "Closed" ? true : false
+                switchThrusday.isOn    = profile.timings?[3] == "Closed" ? false : true
                 
                 txtFridayOpening.text    = profile.timings?[4] == "Closed" ? "Closed" : splitTimeRange(profile.timings?[4] ?? "")?.0
                 txtFridayClosing.text    = profile.timings?[4] == "Closed" ? "Closed" : splitTimeRange(profile.timings?[4] ?? "")?.1
+                lblFriday.isHidden   = profile.timings?[4] == "Closed" ? false : true
+                stackFriday.isHidden = profile.timings?[4] == "Closed" ? true : false
+                switchFriday.isOn    = profile.timings?[4] == "Closed" ? false : true
                 
                 txtSaturdayOpening.text  = profile.timings?[5] == "Closed" ? "Closed" : splitTimeRange(profile.timings?[5] ?? "")?.0
                 txtSaturdayClosing.text  = profile.timings?[5] == "Closed" ? "Closed" : splitTimeRange(profile.timings?[5] ?? "")?.1
+                lblSaturday.isHidden   = profile.timings?[5] == "Closed" ? false : true
+                stackSaturday.isHidden = profile.timings?[5] == "Closed" ? true : false
+                switchSaturday.isOn    = profile.timings?[5] == "Closed" ? false : true
+                
                 
                 txtSundayOpening.text    = profile.timings?[6] == "Closed" ? "Closed" : splitTimeRange(profile.timings?[6] ?? "")?.0
                 txtSundayClosing.text    = profile.timings?[6] == "Closed" ? "Closed" : splitTimeRange(profile.timings?[6] ?? "")?.1
+                lblSunday.isHidden   = profile.timings?[6] == "Closed" ? false : true
+                stackSunday.isHidden = profile.timings?[6] == "Closed" ? true : false
+                switchSunday.isOn    = profile.timings?[6] == "Closed" ? false : true
             }
         }
     }
@@ -322,7 +353,7 @@ extension UpdateProfileVC {
     }
     func getMondaySchedule(_ opening: String,  _ closing: String , switchs: Bool) -> String {
         //MARK: - if switch is hide it means schedule is closed like monday is closed
-        return switchs ? "\(txtMondayOpening.text!) : \(txtMondayClosing.text!)" : "Closed"
+        return switchs ? "\(txtMondayOpening.text!) - \(txtMondayClosing.text!)" : "Closed"
     }
     
     func updateProfileModel(channel: String , bio: String , email: String , web: String , number: String , address: String , zipCode: String , city: String , timings: [String]) {
@@ -338,6 +369,7 @@ extension UpdateProfileVC {
             model.email       = email
             model.timings     = timings
             self.profileModel = model
+            popRoot()
         }
     }
 }
@@ -567,7 +599,6 @@ extension UpdateProfileVC {
             self.showToast(message: "Internet connection is off.", seconds: 2, clr: .red)
         }
     }
-    
     func addProfile(_ userID: String) {
         self.startAnimating()
         var monday = lblMonday.isHidden ? "\(txtMondayOpening.text!) : \(txtMondayClosing.text!)" : "Closed"

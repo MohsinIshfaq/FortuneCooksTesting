@@ -70,6 +70,7 @@ extension AddBioVC : UITextViewDelegate{
         if var model = self.profileModel {
             model.coverUrl = bio
             self.profileModel = model
+            popup()
         }
     }
 

@@ -240,13 +240,14 @@ extension ProfileVC {
         }
         if !(user.timings?.isEmpty ?? true) {
             stackWeekTimes.isHidden    = false
-            lblMondayDuration.text     = "Monday                   \(user.timings?[0] ?? "")"
-            lblMondayDuration.text     = "Tuesday                  \(user.timings?[1] ?? "")"
-            lblMondayDuration.text     = "Wednesday                \(user.timings?[2] ?? "")"
-            lblMondayDuration.text     = "Thursday                 \(user.timings?[3] ?? "")"
-            lblMondayDuration.text     = "Friday                   \(user.timings?[4] ?? "")"
-            lblMondayDuration.text     = "Saturday                 \(user.timings?[5] ?? "")"
-            lblMondayDuration.text     = "Sunday                   \(user.timings?[6] ?? "")"
+            print("Monday                   \(user.timings?[0] ?? "")")
+            lblMondayDuration.text     = user.timings?[0] ?? ""
+            lblTuesdayDuration.text    = user.timings?[1] ?? ""
+            lblWednesdayDuration.text  = user.timings?[2] ?? ""
+            lblThursdayDuration.text   = user.timings?[3] ?? ""
+            lblFridayDuration.text     = user.timings?[4] ?? ""
+            lblSaturdayDuration.text   = user.timings?[5] ?? ""
+            lblSundayDuration.text     = user.timings?[6] ?? ""
         }
         else{
             stackWeekTimes.isHidden = true
@@ -306,16 +307,18 @@ extension ProfileVC {
         stackVideos.isHidden     = false
         stackMenu.isHidden       = true
         
-        fetchDataFromFirestore()
-        fetchUserData(userID: UserDefault.token) { user in
-            self.stopAnimating()
-            if let user = user {
-                // Use the user model as needed
-                self.setupProfile(user: user)
-                self.profileModel = user
-                print("User data: \(user)")
-            } else {
-                print("Failed to fetch user data.")
+        if UserDefault.isAuthenticated {
+            fetchDataFromFirestore()
+            fetchUserData(userID: UserDefault.token) { user in
+                self.stopAnimating()
+                if let user = user {
+                    // Use the user model as needed
+                    self.setupProfile(user: user)
+                    self.profileModel = user
+                    print("User data: \(user)")
+                } else {
+                    print("Failed to fetch user data.")
+                }
             }
         }
      
