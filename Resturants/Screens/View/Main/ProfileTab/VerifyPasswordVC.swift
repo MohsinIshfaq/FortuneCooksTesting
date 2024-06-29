@@ -25,6 +25,8 @@ class VerifyPasswordVC: UIViewController {
     var profileModel: UserProfileModel?   = nil
     var delegate: verifyPasswordDelegate? = nil
     
+    var isFromChangePsd: Bool             = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         onload()
@@ -130,7 +132,14 @@ extension VerifyPasswordVC {
                 self?.showToast(message: "Re-authentication failed: \(error.localizedDescription)", seconds: 2, clr: .red)
             } else {
                 self?.stopAnimating()
-                self?.delegate?.verified()
+                if ((self?.isFromChangePsd) != nil){
+                    let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "NewPsdVC") as! NewPsdVC
+                    vc.hidesBottomBarWhenPushed = true
+                    self?.navigationController?.pushViewController(vc, animated: true)
+                }
+                else{
+                    self?.delegate?.verified()
+                }
             }
         }
     }

@@ -216,45 +216,45 @@ extension UpdateProfileVC {
             lblFollowers.text     = "\(profile.followers?.count ?? 0) Followers"
             
             if !(profile.timings?.isEmpty ?? false){
-                txtMondayOpening.text    = profile.timings?[0] == "Closed" ? "Closed" : splitTimeRange(profile.timings?[0] ?? "")?.0
-                txtMondayClosing.text    = profile.timings?[0] == "Closed" ? "Closed" : splitTimeRange(profile.timings?[0] ?? "")?.1
+                txtMondayOpening.text    = profile.timings?[0] == "Closed" ? "0:0" : splitTimeRange(profile.timings?[0] ?? "")?.0
+                txtMondayClosing.text    = profile.timings?[0] == "Closed" ? "0:0" : splitTimeRange(profile.timings?[0] ?? "")?.1
                 lblMonday.isHidden    = profile.timings?[0] == "Closed" ? false : true
                 stackMonday.isHidden  = profile.timings?[0] == "Closed" ? true : false
                 switchMonday.isOn     = profile.timings?[0] == "Closed" ? false : true
                 
-                txtTuesdayOpening.text   = profile.timings?[1] == "Closed" ? "Closed" : splitTimeRange(profile.timings?[1] ?? "")?.0
-                txtTuesdayClosing.text   = profile.timings?[1] == "Closed" ? "Closed" : splitTimeRange(profile.timings?[1] ?? "")?.1
+                txtTuesdayOpening.text   = profile.timings?[1] == "Closed" ? "0:0" : splitTimeRange(profile.timings?[1] ?? "")?.0
+                txtTuesdayClosing.text   = profile.timings?[1] == "Closed" ? "0:0" : splitTimeRange(profile.timings?[1] ?? "")?.1
                 lblTuesday.isHidden   = profile.timings?[1] == "Closed" ? false : true
                 stackTuesday.isHidden = profile.timings?[1] == "Closed" ? true : false
                 switchTuesday.isOn    = profile.timings?[1] == "Closed" ? false : true
                 
-                txtWednesdayOpening.text = profile.timings?[2] == "Closed" ? "Closed" : splitTimeRange(profile.timings?[2] ?? "")?.0
-                txtWednesdayClosing.text = profile.timings?[2] == "Closed" ? "Closed" : splitTimeRange(profile.timings?[2] ?? "")?.1
+                txtWednesdayOpening.text = profile.timings?[2] == "Closed" ? "0:0" : splitTimeRange(profile.timings?[2] ?? "")?.0
+                txtWednesdayClosing.text = profile.timings?[2] == "Closed" ? "0:0" : splitTimeRange(profile.timings?[2] ?? "")?.1
                 lblWednesday.isHidden   = profile.timings?[2] == "Closed" ? false : true
                 stackWednesday.isHidden = profile.timings?[2] == "Closed" ? true : false
                 switchWednesday.isOn    = profile.timings?[2] == "Closed" ? false : true
                 
-                txtThrusdayOpening.text  = profile.timings?[3] == "Closed" ? "Closed" : splitTimeRange(profile.timings?[3] ?? "")?.0
-                txtThrusdayClosing.text  = profile.timings?[3] == "Closed" ? "Closed" : splitTimeRange(profile.timings?[3] ?? "")?.1
+                txtThrusdayOpening.text  = profile.timings?[3] == "Closed" ? "0:0" : splitTimeRange(profile.timings?[3] ?? "")?.0
+                txtThrusdayClosing.text  = profile.timings?[3] == "Closed" ? "0:0" : splitTimeRange(profile.timings?[3] ?? "")?.1
                 lblThursday.isHidden   = profile.timings?[3] == "Closed" ? false : true
                 stackThursday.isHidden = profile.timings?[3] == "Closed" ? true : false
                 switchThrusday.isOn    = profile.timings?[3] == "Closed" ? false : true
                 
-                txtFridayOpening.text    = profile.timings?[4] == "Closed" ? "Closed" : splitTimeRange(profile.timings?[4] ?? "")?.0
-                txtFridayClosing.text    = profile.timings?[4] == "Closed" ? "Closed" : splitTimeRange(profile.timings?[4] ?? "")?.1
+                txtFridayOpening.text    = profile.timings?[4] == "Closed" ? "0:0" : splitTimeRange(profile.timings?[4] ?? "")?.0
+                txtFridayClosing.text    = profile.timings?[4] == "Closed" ? "0:0" : splitTimeRange(profile.timings?[4] ?? "")?.1
                 lblFriday.isHidden   = profile.timings?[4] == "Closed" ? false : true
                 stackFriday.isHidden = profile.timings?[4] == "Closed" ? true : false
                 switchFriday.isOn    = profile.timings?[4] == "Closed" ? false : true
                 
-                txtSaturdayOpening.text  = profile.timings?[5] == "Closed" ? "Closed" : splitTimeRange(profile.timings?[5] ?? "")?.0
-                txtSaturdayClosing.text  = profile.timings?[5] == "Closed" ? "Closed" : splitTimeRange(profile.timings?[5] ?? "")?.1
+                txtSaturdayOpening.text  = profile.timings?[5] == "Closed" ? "0:0" : splitTimeRange(profile.timings?[5] ?? "")?.0
+                txtSaturdayClosing.text  = profile.timings?[5] == "Closed" ? "0:0" : splitTimeRange(profile.timings?[5] ?? "")?.1
                 lblSaturday.isHidden   = profile.timings?[5] == "Closed" ? false : true
                 stackSaturday.isHidden = profile.timings?[5] == "Closed" ? true : false
                 switchSaturday.isOn    = profile.timings?[5] == "Closed" ? false : true
                 
                 
-                txtSundayOpening.text    = profile.timings?[6] == "Closed" ? "Closed" : splitTimeRange(profile.timings?[6] ?? "")?.0
-                txtSundayClosing.text    = profile.timings?[6] == "Closed" ? "Closed" : splitTimeRange(profile.timings?[6] ?? "")?.1
+                txtSundayOpening.text    = profile.timings?[6] == "Closed" ? "0:0" : splitTimeRange(profile.timings?[6] ?? "")?.0
+                txtSundayClosing.text    = profile.timings?[6] == "Closed" ? "0:0" : splitTimeRange(profile.timings?[6] ?? "")?.1
                 lblSunday.isHidden   = profile.timings?[6] == "Closed" ? false : true
                 stackSunday.isHidden = profile.timings?[6] == "Closed" ? true : false
                 switchSunday.isOn    = profile.timings?[6] == "Closed" ? false : true

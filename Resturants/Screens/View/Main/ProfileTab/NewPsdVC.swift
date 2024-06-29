@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class NewPsdVC: UIViewController {
 
@@ -50,6 +51,20 @@ class NewPsdVC: UIViewController {
         else if txtConfrmPsd.isSecureTextEntry == true {
             txtConfrmPsd.isSecureTextEntry = false
             btnTogleConPsd.setImage(UIImage(systemName: "eye"), for: .normal)
+        }
+    }
+    
+    @IBAction func ontapNextStep(_ sender: UIButton){
+        if checkvalidPsd {
+            if txtPsd.text == txtConfrmPsd.text{
+                updatePassword(newPassword: self.txtPsd.text!)
+            }
+            else{
+                self.showToast(message: "Password should be same", seconds: 2, clr: .red)
+            }
+        }
+        else{
+            self.showToast(message: "Password is not valid", seconds: 2, clr: .red)
         }
     }
 }
@@ -109,4 +124,27 @@ extension NewPsdVC: UISearchTextFieldDelegate {
             image.tintColor = .red
         }
     }
+}
+
+
+//MARK: - New Password {}
+extension NewPsdVC {
+    
+    func updatePassword(newPassword: String) {
+        self.startAnimating()
+           Auth.auth().currentUser?.updatePassword(to: newPassword) { [weak self] error in
+               guard let strongSelf = self else { return }
+               if let error = error {
+                   self?.stopAnimating()
+                   //strongSelf.statusLabel.text = "Password change failed: \(error.localizedDescription)"
+                   self?.showToast(message: "Password change failed: \(error.localizedDescription)", seconds: 2, clr: .red)
+               } else {
+                  // strongSelf.statusLabel.text = "Password changed successfully."
+                   self?.showToast(message: "Password changed successfully.", seconds: 2, clr: .gray)
+                   DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                       self?.popRoot()
+                   }
+               }
+           }
+       }
 }

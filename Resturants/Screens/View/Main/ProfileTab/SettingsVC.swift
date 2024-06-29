@@ -43,6 +43,7 @@ class SettingsVC: UIViewController {
     @IBAction func ontapAccont(_ sender: UIButton) {
         let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "AccountsVC") as! AccountsVC
         vc.hidesBottomBarWhenPushed = true
+        vc.profileModel = self.profileModel
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

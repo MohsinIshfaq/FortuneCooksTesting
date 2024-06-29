@@ -9,6 +9,9 @@ import UIKit
 
 class AccountsVC: UIViewController {
 
+    
+    var profileModel: UserProfileModel?   = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         onload()
@@ -19,9 +22,10 @@ class AccountsVC: UIViewController {
     }
     
     @IBAction func ontapChangePsd(_ sender: UIButton) {
-//        let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "ChangePsdVC") as! ChangePsdVC
-//        vc.hidesBottomBarWhenPushed = true
-//        self.navigationController?.pushViewController(vc, animated: true)
+        let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "VerifyPasswordVC") as! VerifyPasswordVC
+        vc.hidesBottomBarWhenPushed = true
+        vc.profileModel = self.profileModel
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func ontapDeleteAccnt(_ sender: UIButton) {
