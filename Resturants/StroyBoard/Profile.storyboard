@@ -8747,6 +8747,9 @@ platform be detailed.</string>
                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NV6-oM-dTy">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="345" height="150"/>
                                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                                <connections>
+                                                                                    <action selector="ontapAddAttachement:" destination="K0D-UE-aBu" eventType="touchUpInside" id="OXC-tL-zHI"/>
+                                                                                </connections>
                                                                             </button>
                                                                         </subviews>
                                                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -8797,6 +8800,9 @@ platform be detailed.</string>
                                                         <real key="value" value="8"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="ontapSend:" destination="K0D-UE-aBu" eventType="touchUpInside" id="FJ3-gp-N9r"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -8834,6 +8840,7 @@ platform be detailed.</string>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="imgAttach" destination="UTA-i4-NOK" id="WXo-IY-hW9"/>
                         <outlet property="lblHeader" destination="fxu-c3-nBh" id="Toc-zh-V7m"/>
                         <outlet property="txtViewBio" destination="eYB-Ag-vF0" id="TNE-KU-kb5"/>
                     </connections>
