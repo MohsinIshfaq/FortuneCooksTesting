@@ -118,7 +118,7 @@ class UpdateMenuVC: UIViewController, verifyPasswordDelegate, createAccntDelegat
     @IBAction func ontapChangeAccntType(_ sender: UIButton){
         let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "VerifyPasswordVC") as? VerifyPasswordVC
         vc?.profileModel    = self.profileModel
-        vc?.isFromChangePsd = false
+        vc?.isFromWhere     = "JustVerifyPsd"
         vc?.delegate        = self
         self.navigationController?.pushViewController(vc!, animated: true)
     }

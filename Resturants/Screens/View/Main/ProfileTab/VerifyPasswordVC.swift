@@ -25,7 +25,7 @@ class VerifyPasswordVC: UIViewController {
     var profileModel: UserProfileModel?   = nil
     var delegate: verifyPasswordDelegate? = nil
     
-    var isFromChangePsd: Bool             = false
+    var isFromWhere: String              = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,7 +73,12 @@ extension VerifyPasswordVC {
     }
     
     func onAppear() {
-        self.navigationItem.title = "Change Password"
+        if isFromWhere == "ChangePassword" {
+            self.navigationItem.title = "Change Password"
+        }
+        else if isFromWhere == "JustVerifyPsd" || isFromWhere == "VerifyAndDeleteAccnt"{
+            self.navigationItem.title = "Verify Password"
+        }
     }
 }
 
@@ -132,13 +137,17 @@ extension VerifyPasswordVC {
                 self?.showToast(message: "Re-authentication failed: \(error.localizedDescription)", seconds: 2, clr: .red)
             } else {
                 self?.stopAnimating()
-                if ((self?.isFromChangePsd) != nil){
+                if self?.isFromWhere == "ChangePassword"{
                     let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "NewPsdVC") as! NewPsdVC
                     vc.hidesBottomBarWhenPushed = true
                     self?.navigationController?.pushViewController(vc, animated: true)
                 }
-                else{
+                else if self?.isFromWhere == "JustVerifyPsd"{
                     self?.delegate?.verified()
+                }else if self?.isFromWhere == "VerifyAndDeleteAccnt" {
+                    let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "AccntDeleteReasonVC") as! AccntDeleteReasonVC
+                    vc.hidesBottomBarWhenPushed = true
+                    self?.navigationController?.pushViewController(vc, animated: true)
                 }
             }
         }

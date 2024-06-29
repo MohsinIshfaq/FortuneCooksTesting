@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseFirestoreInternal
 
 class AccntDeleteReasonVC: UIViewController {
     
@@ -36,7 +38,17 @@ class AccntDeleteReasonVC: UIViewController {
         sender.menu = UIMenu(options: .displayInline, children: menuChildren)
         sender.showsMenuAsPrimaryAction = true
     }
-
+    @IBAction func ontapDelete(_ sender: UIButton) {
+        if txtReason.text == "" {
+            self.showToast(message: "Kindly select a reason from the provided options.", seconds: 2, clr: .red)
+        }
+        else if txtViewBio.text != "" || txtViewBio.text != "Enter Issue..." {
+            AccntDelete()
+        }
+        else{
+            self.showToast(message: "Please describe your issue in detail.", seconds: 2, clr: .red)
+        }
+    }
     
 }
 
@@ -74,4 +86,55 @@ extension AccntDeleteReasonVC : UITextViewDelegate{
             setupPlaceholder()
         }
     }
+}
+
+//MARK: - Firebase reason calling {}
+extension AccntDeleteReasonVC {
+    
+    func AccntDelete() {
+        self.startAnimating()
+        var db = Firestore.firestore()
+        let data: [String: Any] = [
+            "reasonType": txtReason.text!,
+            "reasonDescription": txtViewBio.text!
+        ]
+
+        db.collection("Reson").addDocument(data: data) { [weak self] error in
+            guard let strongSelf = self else { return }
+            if let error = error {
+                self?.stopAnimating()
+                self?.showToast(message: "Error adding document: \(error.localizedDescription)", seconds: 2, clr: .red)
+            } else {
+                self?.showToast(message: "Document added successfully.", seconds: 2, clr: .gray)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    self?.deleteUserAccount()
+                }
+            }
+        }
+
+    }
+    
+    func deleteUserAccount() {
+           Auth.auth().currentUser?.delete { [weak self] error in
+               guard let strongSelf = self else { return }
+               if let error = error {
+                   self?.showToast(message: "Account deletion failed: \(error.localizedDescription)", seconds: 2, clr: .red)
+               } else {
+                       self?.showToast(message: "Account deleted successfully.", seconds: 2, clr: .gray)
+                   DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                       UserDefault.isAuthenticated = false
+                       UserDefault.token           = ""
+                       if let loginVC = Constants.authStoryBoard.instantiateViewController(withIdentifier: "LoginVC") as? LoginVC {
+                           let navController = UINavigationController(rootViewController: loginVC)
+                           navController.modalPresentationStyle = .overFullScreen
+                           self?.navigationController?.present(navController, animated: true) {
+                               if let createAccountVC = Constants.authStoryBoard.instantiateViewController(withIdentifier: "CreatAccntVC") as? CreatAccntVC {
+                                   navController.pushViewController(createAccountVC, animated: true)
+                               }
+                           }
+                       }
+                   }
+               }
+           }
+       }
 }

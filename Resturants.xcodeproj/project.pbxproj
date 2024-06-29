@@ -75,7 +75,6 @@
 		46B5CF652BCE0C6F000E5207 /* UpdateMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B5CF642BCE0C6F000E5207 /* UpdateMenuVC.swift */; };
 		46B5CF672BCE1964000E5207 /* AccountsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B5CF662BCE1964000E5207 /* AccountsVC.swift */; };
 		46B5CF692BCE1C2A000E5207 /* VerifyPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B5CF682BCE1C2A000E5207 /* VerifyPasswordVC.swift */; };
-		46B5CF6B2BCE1CE2000E5207 /* DeleteAccntVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B5CF6A2BCE1CE2000E5207 /* DeleteAccntVC.swift */; };
 		46B5CF6D2BCE1DB2000E5207 /* AccntDeleteReasonVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B5CF6C2BCE1DB2000E5207 /* AccntDeleteReasonVC.swift */; };
 		46B5CF6F2BCE20CB000E5207 /* NewPsdVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B5CF6E2BCE20CB000E5207 /* NewPsdVC.swift */; };
 		46B8FDA32BCCEFB10058E80C /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B8FDA22BCCEFB10058E80C /* SettingsVC.swift */; };
@@ -211,7 +210,6 @@
 		46B5CF642BCE0C6F000E5207 /* UpdateMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateMenuVC.swift; sourceTree = "<group>"; };
 		46B5CF662BCE1964000E5207 /* AccountsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsVC.swift; sourceTree = "<group>"; };
 		46B5CF682BCE1C2A000E5207 /* VerifyPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyPasswordVC.swift; sourceTree = "<group>"; };
-		46B5CF6A2BCE1CE2000E5207 /* DeleteAccntVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccntVC.swift; sourceTree = "<group>"; };
 		46B5CF6C2BCE1DB2000E5207 /* AccntDeleteReasonVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccntDeleteReasonVC.swift; sourceTree = "<group>"; };
 		46B5CF6E2BCE20CB000E5207 /* NewPsdVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPsdVC.swift; sourceTree = "<group>"; };
 		46B8FDA22BCCEFB10058E80C /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
@@ -459,7 +457,6 @@
 				46B5CF642BCE0C6F000E5207 /* UpdateMenuVC.swift */,
 				46B5CF662BCE1964000E5207 /* AccountsVC.swift */,
 				46B5CF682BCE1C2A000E5207 /* VerifyPasswordVC.swift */,
-				46B5CF6A2BCE1CE2000E5207 /* DeleteAccntVC.swift */,
 				46B5CF6C2BCE1DB2000E5207 /* AccntDeleteReasonVC.swift */,
 				46B5CF6E2BCE20CB000E5207 /* NewPsdVC.swift */,
 				467441AD2BD78FB700C51D6E /* UpdateProfileVC.swift */,
@@ -979,7 +976,6 @@
 				7144BD542B6EA0CC00767374 /* MenuVC.swift in Sources */,
 				469C7E922BE9F65900D9797D /* MenuTCell.swift in Sources */,
 				468C55322BF1C101005E4333 /* AccountReportVC.swift in Sources */,
-				46B5CF6B2BCE1CE2000E5207 /* DeleteAccntVC.swift in Sources */,
 				46375F9B2BF7271A00730EA5 /* FeedSelectionVC.swift in Sources */,
 				714B0F6C2B696F7800570578 /* SelectionVC.swift in Sources */,
 				468C552E2BF1BF67005E4333 /* InfoVC.swift in Sources */,
