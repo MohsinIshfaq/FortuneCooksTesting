@@ -65,6 +65,7 @@ class CreatAccntVC: UIViewController , createAccntDelegate {
             CollectSpecial.reloadData()
         }
     }
+    
     //MARK: - @IBOutlets
     @IBOutlet weak var txtAccnt           : UITextField!
     @IBOutlet weak var CollectCuisine     : UICollectionView!

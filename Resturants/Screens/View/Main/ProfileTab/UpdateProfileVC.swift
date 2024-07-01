@@ -60,6 +60,7 @@ class UpdateProfileVC: UIViewController , TagPeopleDelegate{
     @IBOutlet weak var txtSaturdayClosing  : UITextField!
     @IBOutlet weak var txtSundayOpening    : UITextField!
     @IBOutlet weak var txtSundayClosing    : UITextField!
+    @IBOutlet weak var stackTimings        : UIStackView!
     
     @IBOutlet weak var switchMonday        : UISwitch!
     @IBOutlet weak var switchTuesday       : UISwitch!
@@ -193,6 +194,7 @@ extension UpdateProfileVC {
     func setupUserData(){
        
         if let profile = self.profileModel {
+            
             DispatchQueue.main.async {
                 if let coverURL = profile.coverUrl, let urlCover1 = URL(string: coverURL) {
                     self.imgBig.sd_setImage(with: urlCover1)
@@ -214,6 +216,13 @@ extension UpdateProfileVC {
             txtCity.text          = profile.city ?? ""
             lblAccntType.text     = "(\(profile.accountType ?? ""))"
             lblFollowers.text     = "\(profile.followers?.count ?? 0) Followers"
+            
+            if profile.accountType == "Private person" || profile.accountType == "Content Creator" {
+                stackTimings.isHidden = true
+            }
+            else{
+                stackTimings.isHidden = false
+            }
             
             if !(profile.timings?.isEmpty ?? false){
                 txtMondayOpening.text    = profile.timings?[0] == "Closed" ? "0:0" : splitTimeRange(profile.timings?[0] ?? "")?.0
@@ -359,6 +368,8 @@ extension UpdateProfileVC {
     
     func updateProfileModel(channel: String , bio: String , email: String , web: String , number: String , address: String , zipCode: String , city: String , timings: [String]) {
         if var model = self.profileModel {
+            print(model)
+            updateUserDocument(img: model.profileUrl ?? ""  , channelNm: channel, followers: model.followers?.count ?? 0 , acountType: model.accountType ?? "")
             model.channelName = channel
             model.bio         = bio
             model.email       = email
@@ -631,6 +642,35 @@ extension UpdateProfileVC {
                 self.stopAnimating()
                 print("Cover URL successfully updated in Firestore")
                 self.updateProfileModel(channel:  self.txtChannelNm.text!, bio: self.txtViewBio.text!, email: self.txtAddEmail.text!, web: self.txtAddWebsite.text!, number: self.txtAddPhoneNUmbr.text!, address: self.txtAddAddressLoc.text!, zipCode: self.txtZipCode.text!, city: self.txtCity.text!, timings: timings)
+            }
+        }
+    }
+    
+    func updateUserDocument(img: String  , channelNm: String , followers: Int , acountType: String) {
+        let db = Firestore.firestore()
+        let userToken = UserDefault.token
+        
+        db.collection("userCollection").whereField("uid", isEqualTo: userToken).getDocuments { (querySnapshot, error) in
+            if let error = error {
+                print("Error getting documents: \(error.localizedDescription)")
+            } else {
+                for document in querySnapshot!.documents {
+                    let documentID = document.documentID
+                    // New data to update the document
+                    let updatedData: [String: Any] = [
+                        "img": img,
+                        "channelName": channelNm,
+                        "followers": followers,
+                        "accountType": acountType
+                    ]
+                    db.collection("userCollection").document(documentID).updateData(updatedData) { error in
+                        if let error = error {
+                            print("Error updating document: \(error.localizedDescription)")
+                        } else {
+                            print("Document successfully updated")
+                        }
+                    }
+                }
             }
         }
     }

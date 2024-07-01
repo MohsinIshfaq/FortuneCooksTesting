@@ -59,6 +59,7 @@ class ProfileVC: UIViewController {
     @IBOutlet weak var btn3dots                : UIButton!
     @IBOutlet weak var vwCover                 : UIView!
     @IBOutlet weak var vwProfile               : UIView!
+    @IBOutlet weak var btnSeeMore              : UIButton!
     
     
     //MARK: - Variables and Properties
@@ -208,6 +209,7 @@ extension ProfileVC {
     }
     
     func setupProfile(user: UserProfileModel) {
+        
         lblChannelName.text = user.channelName ?? ""
         lblChannelType.text = "(" + (user.accountType ?? "") + ")"
         lblEmail.text       = user.email ?? ""
@@ -237,6 +239,12 @@ extension ProfileVC {
             btnAddBio.isHidden  = true
             vwAddBio.isHidden  = true
             lblBio.text         = user.bio ?? ""
+        }
+        if user.accountType == "Private person" || user.accountType == "Content Creator" {
+            btnSeeMore.isUserInteractionEnabled = false
+        }
+        else{
+            btnSeeMore.isUserInteractionEnabled = true
         }
         if !(user.timings?.isEmpty ?? true) {
           //  stackWeekTimes.isHidden    = false
@@ -751,6 +759,31 @@ extension ProfileVC {
             }
         } else {
             self.showToast(message: "Internet connection is off.", seconds: 2, clr: .red)
+        }
+    }
+    func updateUserDocument() {
+        let db = Firestore.firestore()
+        let userToken = UserDefault.token
+        
+        db.collection("userCollection").whereField("uid", isEqualTo: userToken).getDocuments { (querySnapshot, error) in
+            if let error = error {
+                print("Error getting documents: \(error.localizedDescription)")
+            } else {
+                for document in querySnapshot!.documents {
+                    let documentID = document.documentID
+                    // New data to update the document
+                    let updatedData: [String: Any] = [
+                        "img": self.profileModel?.profileUrl ?? "",
+                    ]
+                    db.collection("userCollection").document(documentID).updateData(updatedData) { error in
+                        if let error = error {
+                            print("Error updating document: \(error.localizedDescription)")
+                        } else {
+                            print("Document successfully updated")
+                        }
+                    }
+                }
+            }
         }
     }
 }

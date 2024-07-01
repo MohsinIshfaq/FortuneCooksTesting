@@ -19,6 +19,17 @@ import Foundation
 //        "ThumbnailUrl": "\(thumbnailURL)"      ,
 //        "videoUrl"    : ""]
 
+//Tag Users Model
+struct UserTagModel {
+    let uid: String?
+    let img: String?
+    let channelName: String?
+    let followers: String?
+    let accountType: String?
+    var selected   : Int?
+}
+
+
 // Define the model
 struct UserProfileModel {
     var selectedCuisine: [String]?
