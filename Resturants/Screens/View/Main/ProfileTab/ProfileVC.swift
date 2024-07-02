@@ -592,6 +592,15 @@ extension ProfileVC {
         db.collection("Users").document(userID).getDocument { (document, error) in
             if let document = document, document.exists {
                 let data = document.data()
+                let tagPersonsData = data?["tagPersons"] as? [[String: Any]] ?? []
+                            let tagPersons = tagPersonsData.compactMap { dict -> TagUsers? in
+                                let uid = dict["uid"] as? String
+                                let img = dict["img"] as? String
+                                let channelName = dict["channelName"] as? String
+                                let followers = dict["followers"] as? String
+                                let accountType = dict["accountType"] as? String
+                                return TagUsers(uid: uid, img: img, channelName: channelName, followers: followers, accountType: accountType)
+                            }
                 
                 // Access each field using its key and map to the model
                 let user = UserProfileModel(selectedCuisine: data?["selectedCuisine"] as? [String] ?? [],
@@ -609,7 +618,7 @@ extension ProfileVC {
                                             followers: data?["followers"] as? [String] ?? [],
                                             followings: data?["followings"] as? [String] ?? [],
                                             timings: data?["timings"] as? [String] ?? [],
-                                            tagPersons: data?["tagPersons"] as? [String] ?? [],
+                                            tagPersons: tagPersons,
                                             selectedTypeOfRegion: data?["selectedTypeOfRegion"] as? [String] ?? [],
                                             selectedMeals: data?["selectedMeals"] as? [String] ?? [],
                                             selectedSpecialize: data?["selectedSpecialize"] as? [String] ?? [],

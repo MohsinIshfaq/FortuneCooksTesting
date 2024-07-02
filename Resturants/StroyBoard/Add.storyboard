@@ -2054,6 +2054,12 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qv7-io-iRG">
                                 <rect key="frame" x="0.0" y="202" width="393" height="650"/>
                                 <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tag Persons" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F2k-QV-Uaq">
+                                        <rect key="frame" x="12" y="24" width="369" height="22"/>
+                                        <fontDescription key="fontDescription" name="Inter-Regular_SemiBold" family="Inter" pointSize="18"/>
+                                        <color key="textColor" name="ColorWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8It-01-HWN">
                                         <rect key="frame" x="341" y="12" width="40" height="40"/>
                                         <constraints>
@@ -2111,12 +2117,6 @@
                                             </button>
                                         </subviews>
                                     </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tag Persons" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F2k-QV-Uaq">
-                                        <rect key="frame" x="12" y="24" width="369" height="22"/>
-                                        <fontDescription key="fontDescription" name="Inter-Regular_SemiBold" family="Inter" pointSize="18"/>
-                                        <color key="textColor" name="ColorWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.10980392156862745" green="0.10980392156862745" blue="0.10980392156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -3050,7 +3050,7 @@
         <image name="text" width="24" height="24"/>
         <image name="trash-blank" width="50" height="50"/>
         <image name="unselecPhoto" width="32" height="32"/>
-        <image name="user" width="24" height="24"/>
+        <image name="user" width="24.333333969116211" height="24"/>
         <image name="video" catalog="system" width="128" height="82"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -17,10 +17,14 @@ protocol ReloadDelegate {
 }
 
 class UplaodSwiftVC: UIViewController , ReloadDelegate , UITextViewDelegate , createAccntDelegate , TagPeopleDelegate, UITextFieldDelegate{
-    
-    func reload() {
-        collectTagPeople.reloadData()
+    func reload(data: [UserTagModel]) {
+        print("swiftVC")
     }
+    
+    
+//    func reload() {
+//        collectTagPeople.reloadData()
+//    }
     func collectionData(type: Int) {
         UserManager.shared.selectedCuisine.removeAll()
         arrSelectedContent.removeAll()

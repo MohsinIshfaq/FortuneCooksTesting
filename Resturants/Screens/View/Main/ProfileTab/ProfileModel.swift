@@ -27,6 +27,16 @@ struct UserTagModel {
     let followers: String?
     let accountType: String?
     var selected   : Int?
+    
+    func toDictionary() -> [String: Any] {
+           return [
+               "uid": uid ?? "",
+               "img": img ?? "",
+               "channelName": channelName ?? "",
+               "followers": followers ?? "",
+               "accountType": accountType ?? ""
+           ]
+       }
 }
 
 
@@ -47,7 +57,7 @@ struct UserProfileModel {
     var followers: [String]?
     var followings: [String]?
     var timings: [String]?
-    var tagPersons: [String]?
+    var tagPersons: [TagUsers]?
     var selectedTypeOfRegion: [String]?
     var selectedMeals: [String]?
     var selectedSpecialize: [String]?
@@ -57,6 +67,13 @@ struct UserProfileModel {
     var phoneNumber: String?
 }
 
+struct TagUsers {
+    let uid: String?
+    let img: String?
+    let channelName: String?
+    let followers: String?
+    let accountType: String?
+}
 
 struct UploadVideosModel: Codable {
     

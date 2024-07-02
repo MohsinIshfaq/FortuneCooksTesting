@@ -10,10 +10,26 @@ import FirebaseStorage
 import FirebaseFirestoreInternal
 import Reachability
 
+struct Tags {
+    let uid: String?
+    let img: String?
+    let channelName: String?
+    let followers: String?
+    let accountType: String?
+}
+
 class UpdateProfileVC: UIViewController , TagPeopleDelegate{
-    func reload() {
-        collectTagPeople.reloadData()
+ 
+    func reload(data: [UserTagModel]) {
+        popRoot()
+//        for i in data {
+//            profileModel?.tagPersons?.append(TagUsers(uid: i.uid ?? "", img: i.img ?? "", channelName: i.channelName ?? "", followers: i.followers ?? "", accountType: i.accountType ?? ""))
+//        }
     }
+    
+//    func reload() {
+//        collectTagPeople.reloadData()
+//    }
     
     //MARK: - IBOUtlet
     @IBOutlet weak var txtViewBio       : UITextView!
@@ -268,6 +284,7 @@ extension UpdateProfileVC {
                 stackSunday.isHidden = profile.timings?[6] == "Closed" ? true : false
                 switchSunday.isOn    = profile.timings?[6] == "Closed" ? false : true
             }
+            collectTagPeople.reloadData()
         }
     }
     
@@ -354,6 +371,7 @@ extension UpdateProfileVC {
             return true
         }
     }
+    
     func splitTimeRange(_ timeRange: String) -> (String, String)? {
         let components = timeRange.split(separator: "-")
         guard components.count == 2 else { return nil }
@@ -361,6 +379,7 @@ extension UpdateProfileVC {
         let endTime = String(components[1])
         return (startTime, endTime)
     }
+    
     func getMondaySchedule(_ opening: String,  _ closing: String , switchs: Bool) -> String {
         //MARK: - if switch is hide it means schedule is closed like monday is closed
         return switchs ? "\(txtMondayOpening.text!) - \(txtMondayClosing.text!)" : "Closed"
@@ -400,26 +419,24 @@ extension UpdateProfileVC: UITextFieldDelegate {
 //MARK: - Collection View Setup {}
 extension UpdateProfileVC: UICollectionViewDelegate , UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return UserManager.shared.totalTagPeople
+        print(profileModel?.tagPersons?.count ?? 0)
+        return profileModel?.tagPersons?.count ?? 0
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TagPeopleCCell.identifier, for: indexPath) as! TagPeopleCCell
-        cell.btnDismiss.addTarget(self, action: #selector(removeTapped(sender:)), for: .touchUpInside)
-        cell.btnDismiss.tag = indexPath.row
-        
+        if let users = profileModel?.tagPersons?[indexPath.row]{
+            if let userURL = users.img, let urlUser1 = URL(string: userURL) {
+                cell.img.sd_setImage(with: urlUser1)
+            }
+            cell.lbl.text = users.channelName ?? ""
+            cell.btnDismiss.addTarget(self, action: #selector(removeTapped(sender:)), for: .touchUpInside)
+            cell.btnDismiss.tag = indexPath.row
+        }
         return cell
     }
     
     @objc func removeTapped(sender: UIButton) {
-        if UserManager.shared.arrTagPeoples[sender.tag][1] == "0" {
-            UserManager.shared.arrTagPeoples[sender.tag][1] = "1"
-            UserManager.shared.totalTagPeople += 1
-            print(UserManager.shared.totalTagPeople)
-        }
-        else{
-            UserManager.shared.arrTagPeoples[sender.tag][1] = "0"
-            UserManager.shared.totalTagPeople -= 1
-        }
+        profileModel?.tagPersons?.remove(at: sender.tag)
         collectTagPeople.reloadData()
     }
 }
@@ -645,7 +662,6 @@ extension UpdateProfileVC {
             }
         }
     }
-    
     func updateUserDocument(img: String  , channelNm: String , followers: Int , acountType: String) {
         let db = Firestore.firestore()
         let userToken = UserDefault.token
@@ -674,4 +690,5 @@ extension UpdateProfileVC {
             }
         }
     }
+    
 }
