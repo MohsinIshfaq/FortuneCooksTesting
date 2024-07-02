@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseFirestoreInternal
 
 class FollowersVC: UIViewController {
     
@@ -17,6 +18,7 @@ class FollowersVC: UIViewController {
     
     //MARK: - Variables and Properties
     var isFollowers                  = false
+    var users: [UserTagModel]        = []
     
     
     override func viewDidLoad() {
@@ -57,6 +59,7 @@ extension FollowersVC{
             vwFollowing.isHidden = true
             vwFollowers.isHidden = false
         }
+        getAllUsers()
     }
     
     func setupView(){
@@ -75,7 +78,7 @@ extension FollowersVC{
 //MARK: - TableView {}
 extension FollowersVC: UITableViewDelegate , UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return UserManager.shared.arrTagPeoples.count
+        return users.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -94,10 +97,57 @@ extension FollowersVC: UITableViewDelegate , UITableViewDataSource{
             cell?.btnMore.isHidden                       = false
         }
         cell?.tag = indexPath.row
+        DispatchQueue.main.async {
+            if let profileURL = self.users[indexPath.row].img, let urlProfile1 = URL(string: profileURL) {
+                cell?.img.sd_setImage(with: urlProfile1)
+            }
+            cell?.lblFollowers.text = self.users[indexPath.row].followers ?? "0 Followers"
+            cell?.lblName.text      = self.users[indexPath.row].channelName ?? ""
+            cell?.lblType.text      = self.users[indexPath.row].accountType ?? ""
+        }
+        if self.users[indexPath.row].selected == 0 {
+            cell?.imgSelected.image  = UIImage(systemName: "circle")
+        }
+        else{
+            cell?.imgSelected.image  = UIImage(systemName: "checkmark.circle.fill")
+        }
         return cell!
         
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
+    }
+}
+
+//MARK: - GET User Collection {}
+extension FollowersVC {
+    
+    func getAllUsers() {
+        let db = Firestore.firestore()
+        db.collection("userCollection").getDocuments { (querySnapshot, error) in
+            if let error = error {
+                print("Error getting documents: \(error.localizedDescription)")
+                // Handle the error (e.g., show an alert to the user)
+            } else {
+                self.users.removeAll() // Clear any existing users
+                // Iterate over the documents in the snapshot
+                for document in querySnapshot!.documents {
+                    let data = document.data()
+                    let uid = data["uid"] as? String ?? ""
+                    if uid == UserDefault.token {
+                        continue
+                    }
+                    let img = data["img"] as? String ?? ""
+                    let channelName = data["channelName"] as? String ?? ""
+                    let followers = data["followers"] as? String ?? ""
+                    let accountType = data["accountType"] as? String ?? ""
+                    
+                    let user = UserTagModel(uid: uid, img: img, channelName: channelName, followers: followers, accountType: accountType, selected: 0)
+                    self.users.append(user)
+                    print(user)
+                }
+                self.tblSelection.reloadData()
+            }
+        }
     }
 }

@@ -276,6 +276,7 @@ extension ProfileVC {
                 self.imgProfile.sd_setImage(with: urlProfile1)
             }
         }
+        updateUserDocument()
     }
     
     func setupView() {
@@ -770,6 +771,8 @@ extension ProfileVC {
             self.showToast(message: "Internet connection is off.", seconds: 2, clr: .red)
         }
     }
+    
+    //update user in userCollection for data shoudl be updated everytime. if user change profile
     func updateUserDocument() {
         let db = Firestore.firestore()
         let userToken = UserDefault.token

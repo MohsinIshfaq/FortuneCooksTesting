@@ -664,6 +664,7 @@ extension UpdateProfileVC {
             }
         }
     }
+    //update user in userCollection for data shoudl be updated everytime. if user change profile
     func updateUserDocument(img: String  , channelNm: String , followers: Int , acountType: String) {
         let db = Firestore.firestore()
         let userToken = UserDefault.token
