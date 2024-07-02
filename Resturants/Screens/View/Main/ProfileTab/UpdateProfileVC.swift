@@ -42,6 +42,7 @@ class UpdateProfileVC: UIViewController , TagPeopleDelegate{
     @IBOutlet weak var txtZipCode       : UITextField!
     @IBOutlet weak var txtCity          : UITextField!
     @IBOutlet weak var txtAccntType     : UITextField!
+    @IBOutlet weak var lblChanlNm       : UILabel!
     
     @IBOutlet weak var stackMonday      : UIStackView!
     @IBOutlet weak var lblMonday        : UILabel!
@@ -232,6 +233,7 @@ extension UpdateProfileVC {
             txtCity.text          = profile.city ?? ""
             lblAccntType.text     = "(\(profile.accountType ?? ""))"
             lblFollowers.text     = "\(profile.followers?.count ?? 0) Followers"
+            lblChanlNm.text       = profile.channelName ?? ""
             
             if profile.accountType == "Private person" || profile.accountType == "Content Creator" {
                 stackTimings.isHidden = true
@@ -417,7 +419,7 @@ extension UpdateProfileVC: UITextFieldDelegate {
 }
 
 //MARK: - Collection View Setup {}
-extension UpdateProfileVC: UICollectionViewDelegate , UICollectionViewDataSource {
+extension UpdateProfileVC: UICollectionViewDelegate , UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         print(profileModel?.tagPersons?.count ?? 0)
         return profileModel?.tagPersons?.count ?? 0

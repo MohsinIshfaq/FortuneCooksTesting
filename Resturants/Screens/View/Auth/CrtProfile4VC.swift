@@ -227,7 +227,7 @@ extension CrtProfile4VC {
         let data: [String: Any] = [
             "uid"              : UserDefault.token ,
             "img"              : "",
-            "channelName"      : "",
+            "channelName"      : UserManager.shared.selectedChannelNm,
             "followers"        : "",
             "accountType"      : UserManager.shared.selectedAccountType,
             
