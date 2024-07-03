@@ -19,17 +19,19 @@ class TagPeopleVC: UIViewController , UISearchTextFieldDelegate{
     @IBOutlet weak var btnSubmit   : UIButton!
     @IBOutlet weak var lblHeader   : UILabel!
     
+    
     var delegate: TagPeopleDelegate? = nil
     var showTagUsers: Bool           = false
     var users: [UserTagModel] = []
     var selectedUser: [UserTagModel] = []      //Users to be tag
+    var alreadyTagUsers: [TagUsers]  = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         onLaod()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        getAllUsers()
     }
 
     @IBAction func ontapDone(_ sender: UIButton){
@@ -55,6 +57,7 @@ extension TagPeopleVC{
             lblHeader.textAlignment = .center
             txtSearch.isHidden      = false
             lblHeader.text          = "Tag Persons"
+            getAllUsers()
         }
     }
     
@@ -63,6 +66,22 @@ extension TagPeopleVC{
         tblSelection.register(TagUserTCell.nib, forCellReuseIdentifier: TagUserTCell.identifier)
         tblSelection.delegate   = self
         tblSelection.dataSource = self
+    }
+    
+    //MARK: - i wanna mark already tag user as selected i have key of selected in users
+    func markSelectedAlreadytagData() {
+        
+        for j in 0 ..< alreadyTagUsers.count {
+            for i in 0 ..< users.count{
+                if users[i].uid == alreadyTagUsers[j].uid {
+                    users[i].selected = 1
+                    self.selectedUser.append(users[i])
+                }
+            }
+        }
+        self.tblSelection.reloadData()
+//            if
+//        }
     }
 }
 
@@ -78,15 +97,23 @@ extension TagPeopleVC: UITextFieldDelegate {
 //MARK: - TableView {}
 extension TagPeopleVC: UITableViewDelegate , UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return users.count ?? 0
+        return showTagUsers ? alreadyTagUsers.count : users.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TagUserTCell.identifier) as? TagUserTCell
         cell?.btnMore.isHidden         = true
         if showTagUsers {
-            cell?.btnFollow.isHidden   = false
+            cell?.btnFollow.isHidden   = true
             cell?.imgSelected.isHidden = true
+            DispatchQueue.main.async {
+                if let profileURL = self.alreadyTagUsers[indexPath.row].img, let urlProfile1 = URL(string: profileURL) {
+                        cell?.img.sd_setImage(with: urlProfile1)
+                    }
+                cell?.lblFollowers.text = self.alreadyTagUsers[indexPath.row].followers ?? "0 Followers"
+                cell?.lblName.text      = self.alreadyTagUsers[indexPath.row].channelName ?? ""
+                cell?.lblType.text      = self.alreadyTagUsers[indexPath.row].accountType ?? ""
+            }
         }
         else {
             cell?.btnFollow.isHidden   = true
@@ -119,6 +146,7 @@ extension TagPeopleVC: UITableViewDelegate , UITableViewDataSource{
             }
             else{
                 self.users[indexPath.row].selected = 0
+                self.selectedUser.remove(at: indexPath.row)
             }
             tableView.reloadData()
         }
@@ -152,7 +180,7 @@ extension TagPeopleVC {
                        self.users.append(user)
                        print(user)
                    }
-                   self.tblSelection.reloadData()
+                   self.markSelectedAlreadytagData()
                }
            }
        }

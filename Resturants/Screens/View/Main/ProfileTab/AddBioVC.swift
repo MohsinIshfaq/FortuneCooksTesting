@@ -68,9 +68,8 @@ extension AddBioVC : UITextViewDelegate{
     
     func updateCoverUrlInModel(bio: String) {
         if var model = self.profileModel {
-            model.coverUrl = bio
+            model.bio = bio
             self.profileModel = model
-            popup()
         }
     }
 
@@ -81,15 +80,18 @@ extension AddBioVC {
     
     func addBio(_ userID: String) {
         
+        self.startAnimating()
         let db = Firestore.firestore()
         db.collection("Users").document(userID).updateData([
             "bio": txtViewBio.text!
         ]) { err in
             if let err = err {
+                self.stopAnimating()
                 print("Error updating coverUrl: \(err)")
             } else {
+                self.stopAnimating()
                 print("Cover URL successfully updated in Firestore")
-                self.updateCoverUrlInModel(bio: self.txtViewBio.text!)
+                self.popRoot()
             }
         }
     }

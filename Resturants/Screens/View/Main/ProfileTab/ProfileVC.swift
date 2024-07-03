@@ -129,6 +129,7 @@ class ProfileVC: UIViewController {
         
         let vc = Constants.addStoryBoard.instantiateViewController(withIdentifier: "TagPeopleVC") as? TagPeopleVC
         vc?.showTagUsers = true
+        vc?.alreadyTagUsers = profileModel?.tagPersons ?? []
         self.present(vc!, animated: true)
     }
     @IBAction func ontapTabPressed(_ sender: UIButton){

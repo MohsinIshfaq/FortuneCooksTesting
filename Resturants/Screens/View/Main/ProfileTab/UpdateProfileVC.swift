@@ -165,6 +165,7 @@ class UpdateProfileVC: UIViewController , TagPeopleDelegate{
         let vc = Constants.addStoryBoard.instantiateViewController(withIdentifier: "TagPeopleVC") as? TagPeopleVC
         vc?.delegate = self
        // vc.showTagUsers
+        vc?.alreadyTagUsers = profileModel?.tagPersons ?? []
         self.present(vc!, animated: true)
     }
     
@@ -419,7 +420,7 @@ extension UpdateProfileVC: UITextFieldDelegate {
 }
 
 //MARK: - Collection View Setup {}
-extension UpdateProfileVC: UICollectionViewDelegate , UICollectionViewDataSource{
+extension UpdateProfileVC: UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         print(profileModel?.tagPersons?.count ?? 0)
         return profileModel?.tagPersons?.count ?? 0
@@ -436,6 +437,19 @@ extension UpdateProfileVC: UICollectionViewDelegate , UICollectionViewDataSource
         }
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TagPeopleCCell.identifier, for: indexPath) as! TagPeopleCCell
+        if let users = profileModel?.tagPersons?[indexPath.row]{
+            cell.lbl.text = users.channelName ?? ""
+        }
+        let targetSize = CGSize(width: CGFloat.greatestFiniteMagnitude, height: 30)
+        let fittingSize = cell.contentView.systemLayoutSizeFitting(targetSize,
+                                                                       withHorizontalFittingPriority: .fittingSizeLevel,
+                                                                       verticalFittingPriority: .required)
+        return CGSize(width: fittingSize.width, height: 30)
+    }
+    
     
     @objc func removeTapped(sender: UIButton) {
         profileModel?.tagPersons?.remove(at: sender.tag)
