@@ -19,6 +19,8 @@ class FollowersVC: UIViewController {
     //MARK: - Variables and Properties
     var isFollowers                  = false
     var users: [UserTagModel]        = []
+    var selectedFollowers: [UserTagModel]  = []      //Users to be tag
+    var alreadyFollowersUsers: [TagUsers]  = []
     
     
     override func viewDidLoad() {
@@ -73,6 +75,20 @@ extension FollowersVC{
         let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "RemoveFollowerVC") as! RemoveFollowerVC
         self.present(vc, animated: true)
     }
+    
+    //MARK: - i wanna mark already tag user as selected i have key of selected in users
+    func markSelectedAlreadyFollowersData() {
+        
+        for j in 0 ..< alreadyFollowersUsers.count {
+            for i in 0 ..< users.count{
+                if users[i].uid == alreadyFollowersUsers[j].uid {
+                    users[i].selected = 1
+                    self.selectedFollowers.append(users[i])
+                }
+            }
+        }
+        self.tblSelection.reloadData()
+    }
 }
 
 //MARK: - TableView {}
@@ -117,6 +133,10 @@ extension FollowersVC: UITableViewDelegate , UITableViewDataSource{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        <#code#>
+    }
 }
 
 //MARK: - GET User Collection {}
@@ -147,6 +167,24 @@ extension FollowersVC {
                     print(user)
                 }
                 self.tblSelection.reloadData()
+            }
+        }
+    }
+    
+    func addTagPeoplesList(_ userID: String, tagUser: [UserTagModel]) {
+        self.startAnimating()
+        let db = Firestore.firestore()
+        let tagUserDictionaries = tagUser.map { $0.toDictionary() }
+        db.collection("Users").document(userID).updateData([
+            "followers": tagUserDictionaries
+        ]) { [self] err in
+            if let err = err {
+                self.stopAnimating()
+                print("Error updating tagPersons: \(err)")
+            } else {
+                self.stopAnimating()
+                print("tagPersons successfully updated in Firestore")
+                self.dismiss(animated: true)
             }
         }
     }
