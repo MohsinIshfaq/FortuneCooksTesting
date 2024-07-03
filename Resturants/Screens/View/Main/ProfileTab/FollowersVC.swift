@@ -21,7 +21,7 @@ class FollowersVC: UIViewController {
     var users: [UserTagModel]        = []
     var selectedFollowers: [UserTagModel]  = []      //Users to be tag
     var alreadyFollowersUsers: [TagUsers]  = []
-    
+    var alreadyFollowingsUsers: [TagUsers]  = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,10 +93,10 @@ extension FollowersVC{
 
 //MARK: - TableView {}
 extension FollowersVC: UITableViewDelegate , UITableViewDataSource{
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return users.count ?? 0
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TagUserTCell.identifier) as? TagUserTCell
         cell?.btnFollow.isHidden = false
@@ -133,9 +133,8 @@ extension FollowersVC: UITableViewDelegate , UITableViewDataSource{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
     }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        <#code#>
+      //  self.addFollowersList(UserDefault.token, followesList: selectedFollowers)
     }
 }
 
@@ -171,21 +170,21 @@ extension FollowersVC {
         }
     }
     
-    func addTagPeoplesList(_ userID: String, tagUser: [UserTagModel]) {
-        self.startAnimating()
-        let db = Firestore.firestore()
-        let tagUserDictionaries = tagUser.map { $0.toDictionary() }
-        db.collection("Users").document(userID).updateData([
-            "followers": tagUserDictionaries
-        ]) { [self] err in
-            if let err = err {
-                self.stopAnimating()
-                print("Error updating tagPersons: \(err)")
-            } else {
-                self.stopAnimating()
-                print("tagPersons successfully updated in Firestore")
-                self.dismiss(animated: true)
-            }
-        }
-    }
+//    func addFollowersList(_ userID: String, followesList: [UserTagModel]) {
+//        self.startAnimating()
+//        let db = Firestore.firestore()
+//        let tagUserDictionaries = followesList.map { $0.toDictionary() }
+//        db.collection("Users").document(userID).updateData([
+//            "followers": tagUserDictionaries
+//        ]) { [self] err in
+//            if let err = err {
+//                self.stopAnimating()
+//                print("Error updating tagPersons: \(err)")
+//            } else {
+//                self.stopAnimating()
+//                print("tagPersons successfully updated in Firestore")
+//                self.dismiss(animated: true)
+//            }
+//        }
+//    }
 }

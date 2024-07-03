@@ -603,6 +603,24 @@ extension ProfileVC {
                                 let accountType = dict["accountType"] as? String
                                 return TagUsers(uid: uid, img: img, channelName: channelName, followers: followers, accountType: accountType)
                             }
+                let followersData = data?["followers"] as? [[String: Any]] ?? []
+                            let followersdata = followersData.compactMap { dict -> TagUsers? in
+                                let uid = dict["uid"] as? String
+                                let img = dict["img"] as? String
+                                let channelName = dict["channelName"] as? String
+                                let followers = dict["followers"] as? String
+                                let accountType = dict["accountType"] as? String
+                                return TagUsers(uid: uid, img: img, channelName: channelName, followers: followers, accountType: accountType)
+                            }
+                let followingData = data?["followings"] as? [[String: Any]] ?? []
+                            let followingdata = followingData.compactMap { dict -> TagUsers? in
+                                let uid = dict["uid"] as? String
+                                let img = dict["img"] as? String
+                                let channelName = dict["channelName"] as? String
+                                let followers = dict["followers"] as? String
+                                let accountType = dict["accountType"] as? String
+                                return TagUsers(uid: uid, img: img, channelName: channelName, followers: followers, accountType: accountType)
+                            }
                 
                 // Access each field using its key and map to the model
                 let user = UserProfileModel(selectedCuisine: data?["selectedCuisine"] as? [String] ?? [],
@@ -617,8 +635,8 @@ extension ProfileVC {
                                             zipcode: data?["zipcode"] as? String ?? "",
                                             coverUrl: data?["coverUrl"] as? String ?? "",
                                             profileUrl: data?["profileUrl"] as? String ?? "",
-                                            followers: data?["followers"] as? [String] ?? [],
-                                            followings: data?["followings"] as? [String] ?? [],
+                                            followers: followersdata,
+                                            followings: followingdata,
                                             timings: data?["timings"] as? [String] ?? [],
                                             tagPersons: tagPersons,
                                             selectedTypeOfRegion: data?["selectedTypeOfRegion"] as? [String] ?? [],

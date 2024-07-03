@@ -54,8 +54,8 @@ struct UserProfileModel {
     var zipcode: String?
     var coverUrl: String?
     var profileUrl: String?
-    var followers: [String]?
-    var followings: [String]?
+    var followers: [TagUsers]?
+    var followings: [TagUsers]?
     var timings: [String]?
     var tagPersons: [TagUsers]?
     var selectedTypeOfRegion: [String]?
