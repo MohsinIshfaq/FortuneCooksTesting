@@ -139,6 +139,18 @@ class ProfileVC: UIViewController {
             model.append(UserTagModel(uid: nonProfileModel?.uid ?? "", img: nonProfileModel?.img ?? "", channelName: nonProfileModel?.channelName ?? "", followers: nonProfileModel?.followers ?? "", accountType: nonProfileModel?.accountType ?? ""))
           //  addFollowersPeoplesList(nonProfileModel?.uid ?? "", tagUser: model)
             addFollowingPeoplesList(UserDefault.token, tagUser: model)
+            btnFollow.setTitle("Following", for: .normal)
+        }
+        else {
+            for i in 0 ..< (UserManager.shared.ownerProfileFollowing.count ?? 0) {
+                print(UserManager.shared.ownerProfileFollowing[i])
+                if UserManager.shared.ownerProfileFollowing[i].uid == nonProfileModel?.uid {
+                    UserManager.shared.ownerProfileFollowing.remove(at: i)
+                    var model = UserManager.shared.ownerProfileFollowing
+                    addFollowingPeoplesList(UserDefault.token, tagUser: model)
+                }
+            }
+            btnFollow.setTitle("Follow", for: .normal)
         }
     }
     
