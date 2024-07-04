@@ -8,8 +8,9 @@
 import UIKit
 import FirebaseFirestoreInternal
 import FirebaseAuth
-protocol TagPeopleDelegate {
+ protocol TagPeopleDelegate {
     func reload(data: [UserTagModel])
+    func selectedUser(data: TagUsers)
 }
 
 class TagPeopleVC: UIViewController , UISearchTextFieldDelegate{
@@ -52,11 +53,13 @@ extension TagPeopleVC{
             lblHeader.textAlignment = .left
             txtSearch.isHidden      = true
             lblHeader.text          = "People Taged"
+            btnSubmit.isHidden      = true
         }
         else{
             lblHeader.textAlignment = .center
             txtSearch.isHidden      = false
             lblHeader.text          = "Tag Persons"
+            btnSubmit.isHidden      = false
             getAllUsers()
         }
     }
@@ -150,6 +153,10 @@ extension TagPeopleVC: UITableViewDelegate , UITableViewDataSource{
             }
             tableView.reloadData()
         }
+        else {
+            self.dismiss(animated: true)
+            delegate?.selectedUser(data: alreadyTagUsers[indexPath.row])
+        }
     }
 }
 
@@ -203,4 +210,14 @@ extension TagPeopleVC {
         }
     }
 
+}
+
+extension TagPeopleDelegate{
+    
+    func reload(data: [UserTagModel]) {
+        
+    }
+    func selectedUser(data: TagUsers) {
+        
+    }
 }

@@ -61,6 +61,8 @@ class ProfileVC: UIViewController {
     @IBOutlet weak var vwProfile               : UIView!
     @IBOutlet weak var btnSeeMore              : UIButton!
     
+    @IBOutlet weak var btnSettings             : UIButton!
+    @IBOutlet weak var btnFollow               : UIButton!
     
     //MARK: - Variables and Properties
     let reachability = try! Reachability()
@@ -75,6 +77,8 @@ class ProfileVC: UIViewController {
     var player          : AVPlayer!
     var playerLayer     : AVPlayerLayer!
     var profileModel    : UserProfileModel? = nil
+    var isNonOwner      : Bool              = false  //non authenticated user come here by tag users section
+    var nonProfileModel : TagUsers?         = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -116,12 +120,14 @@ class ProfileVC: UIViewController {
             let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "FollowersVC") as! FollowersVC
             vc.hidesBottomBarWhenPushed = true
             vc.isFollowers = false
+            vc.alreadyFollowingsUsers = profileModel?.followings ?? []
             self.navigationController?.pushViewController(vc, animated: true)
         }
         else{
             let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "FollowersVC") as! FollowersVC
             vc.hidesBottomBarWhenPushed = true
             vc.isFollowers = true
+            vc.alreadyFollowingsUsers = profileModel?.followers ?? []
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
@@ -129,6 +135,7 @@ class ProfileVC: UIViewController {
         
         let vc = Constants.addStoryBoard.instantiateViewController(withIdentifier: "TagPeopleVC") as? TagPeopleVC
         vc?.showTagUsers = true
+        vc?.delegate     = self
         vc?.alreadyTagUsers = profileModel?.tagPersons ?? []
         self.present(vc!, animated: true)
     }
@@ -243,9 +250,11 @@ extension ProfileVC {
         }
         if user.accountType == "Private person" || user.accountType == "Content Creator" {
             btnSeeMore.isUserInteractionEnabled = false
+            btnSeeMore.isHidden                 = true
         }
         else{
             btnSeeMore.isUserInteractionEnabled = true
+            btnSeeMore.isHidden                 = false
         }
         if !(user.timings?.isEmpty ?? true) {
           //  stackWeekTimes.isHidden    = false
@@ -262,7 +271,7 @@ extension ProfileVC {
           //  stackWeekTimes.isHidden = true
         }
         if user.coverUrl != "" {
-            vwCover.isHidden = true
+            vwCover.isHidden =  true
         }
         if user.profileUrl != "" {
             vwProfile.isHidden = true
@@ -277,7 +286,34 @@ extension ProfileVC {
                 self.imgProfile.sd_setImage(with: urlProfile1)
             }
         }
-        updateUserDocument()
+        
+        if isNonOwner { //Means you have visited another person profile you can change image of another profile
+            btnFollow.isHidden   = false
+            btnSettings.isHidden = true
+            vwCover.isHidden     = true
+            vwProfile.isHidden   = true
+        }
+        else{
+            btnFollow.isHidden   = true
+            btnSettings.isHidden = false
+            updateUserDocument()   //updating profile data of tag list to be updated user profile always
+        }
+        for i in 0 ..< (user.followers?.count ?? 0) {
+            if user.followers?[i].uid == nonProfileModel?.uid {
+                btnFollow.setTitle("Follower", for: .normal)
+            }
+            else{
+                btnFollow.setTitle("Follow", for: .normal)
+            }
+        }
+        for i in 0 ..< (user.followings?.count ?? 0) {
+            if user.followings?[i].uid == nonProfileModel?.uid {
+                btnFollow.setTitle("Following", for: .normal)
+            }
+            else{
+                btnFollow.setTitle("Follow", for: .normal)
+            }
+        }
     }
     
     func setupView() {
@@ -319,7 +355,7 @@ extension ProfileVC {
         
         if UserDefault.isAuthenticated {
             fetchDataFromFirestore()
-            fetchUserData(userID: UserDefault.token) { user in
+            fetchUserData(userID: isNonOwner ? nonProfileModel?.uid ?? "" : UserDefault.token) { user in
                 self.stopAnimating()
                 if let user = user {
                     // Use the user model as needed
@@ -331,7 +367,6 @@ extension ProfileVC {
                 }
             }
         }
-     
     }
     
     func updateCollectionViewHeight() {
@@ -790,7 +825,6 @@ extension ProfileVC {
             self.showToast(message: "Internet connection is off.", seconds: 2, clr: .red)
         }
     }
-    
     //update user in userCollection for data shoudl be updated everytime. if user change profile
     func updateUserDocument() {
         let db = Firestore.firestore()
@@ -817,5 +851,34 @@ extension ProfileVC {
             }
         }
     }
+    
+//    func addTagPeoplesList(_ userID: String, tagUser: [TagUsers]) {
+//        self.startAnimating()
+//        let db = Firestore.firestore()
+//        tagUser  = profileModel
+//        let tagUserDictionaries = tagUser.map { $0.toDictionary() }
+//        db.collection("Users").document(userID).updateData([
+//            "tagPersons": tagUserDictionaries
+//        ]) { [self] err in
+//            if let err = err {
+//                self.stopAnimating()
+//                print("Error updating tagPersons: \(err)")
+//            } else {
+//                self.stopAnimating()
+//                print("tagPersons successfully updated in Firestore")
+//            }
+//        }
+//    }
 }
 
+
+//MARK: - call back delegate to be show another person profile {}
+extension ProfileVC: TagPeopleDelegate {
+    func selectedUser(data: TagUsers) {
+        let vc = Constants.ProfileStoryBoard.instantiateViewController(identifier: "ProfileVC") as? ProfileVC
+        vc?.nonProfileModel = data
+        vc?.isNonOwner      = true
+        self.navigationController?.pushViewController(vc!, animated: true)
+    }
+    
+}

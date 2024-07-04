@@ -2835,7 +2835,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="DNr-lP-YGS">
-                                                        <rect key="frame" x="0.0" y="55.666666666666629" width="361" height="552.00000000000011"/>
+                                                        <rect key="frame" x="0.0" y="55.666666666666629" width="361" height="552"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="USF-0P-i7q">
                                                                 <rect key="frame" x="0.0" y="0.0" width="361" height="38"/>
@@ -4967,7 +4967,7 @@
                                                         </constraints>
                                                     </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="cMm-QW-icx">
-                                                        <rect key="frame" x="257" y="80" width="120" height="40"/>
+                                                        <rect key="frame" x="135" y="80" width="242" height="40"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qhs-FK-cZX">
                                                                 <rect key="frame" x="0.0" y="0.0" width="120" height="40"/>
@@ -4990,8 +4990,26 @@
                                                                     <action selector="ontapSetting:" destination="ADG-6d-fWP" eventType="touchUpInside" id="efA-p4-Gt1"/>
                                                                 </connections>
                                                             </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dkp-0x-AQH">
+                                                                <rect key="frame" x="122" y="0.0" width="120" height="40"/>
+                                                                <color key="backgroundColor" name="ColorYellow"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="40" id="pkb-Zl-YcY"/>
+                                                                    <constraint firstAttribute="width" constant="120" id="spN-oX-UME"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" name="Inter-Regular_SemiBold" family="Inter" pointSize="16"/>
+                                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                <state key="normal" title="Follow">
+                                                                    <color key="titleColor" name="ColorWhite"/>
+                                                                </state>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                        <real key="value" value="6"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </button>
                                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QvS-Bl-8G9">
-                                                                <rect key="frame" x="0.0" y="0.0" width="140" height="40"/>
+                                                                <rect key="frame" x="242" y="0.0" width="140" height="40"/>
                                                                 <color key="backgroundColor" name="ColorWhite"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="140" id="53b-Ys-HG1"/>
@@ -6223,8 +6241,10 @@
                     <connections>
                         <outlet property="btn3dots" destination="yhy-8Y-Sco" id="vCP-Pe-Fm7"/>
                         <outlet property="btnAddBio" destination="8sr-vO-7Iv" id="jO1-sE-B4a"/>
+                        <outlet property="btnFollow" destination="Dkp-0x-AQH" id="zWc-4C-eTG"/>
                         <outlet property="btnMore" destination="pAu-Rj-kam" id="wg4-rk-rPC"/>
                         <outlet property="btnSeeMore" destination="pAu-Rj-kam" id="T3c-9J-Vrf"/>
+                        <outlet property="btnSettings" destination="Qhs-FK-cZX" id="wnx-DB-VLF"/>
                         <outlet property="collectSwift" destination="1Jr-CT-ECg" id="sBc-2n-h3F"/>
                         <outlet property="collectSwiftColl" destination="MxZ-pC-PjL" id="2oZ-wr-nC3"/>
                         <outlet property="collectSwiftHeightCons" destination="WLe-zc-8by" id="lXm-vg-VqG"/>
@@ -9025,7 +9045,7 @@ platform be detailed.</string>
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="NoZ-Pa-cHR">
-                                                        <rect key="frame" x="0.0" y="257.00000000000006" width="361" height="84"/>
+                                                        <rect key="frame" x="0.0" y="257" width="361" height="84"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add email" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vJ2-zv-Gi8">
                                                                 <rect key="frame" x="0.0" y="0.0" width="361" height="17"/>
@@ -10506,6 +10526,9 @@ platform be detailed.</string>
         </namedColor>
         <namedColor name="ColorWhite">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ColorYellow">
+            <color red="0.80392156862745101" green="0.86274509803921573" blue="0.22352941176470589" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
