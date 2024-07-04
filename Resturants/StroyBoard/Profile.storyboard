@@ -2835,7 +2835,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="DNr-lP-YGS">
-                                                        <rect key="frame" x="0.0" y="55.666666666666629" width="361" height="552"/>
+                                                        <rect key="frame" x="0.0" y="55.666666666666629" width="361" height="552.00000000000011"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="USF-0P-i7q">
                                                                 <rect key="frame" x="0.0" y="0.0" width="361" height="38"/>
@@ -4967,7 +4967,7 @@
                                                         </constraints>
                                                     </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="cMm-QW-icx">
-                                                        <rect key="frame" x="135" y="80" width="242" height="40"/>
+                                                        <rect key="frame" x="257" y="80" width="120" height="40"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qhs-FK-cZX">
                                                                 <rect key="frame" x="0.0" y="0.0" width="120" height="40"/>
@@ -4990,8 +4990,8 @@
                                                                     <action selector="ontapSetting:" destination="ADG-6d-fWP" eventType="touchUpInside" id="efA-p4-Gt1"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dkp-0x-AQH">
-                                                                <rect key="frame" x="122" y="0.0" width="120" height="40"/>
+                                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dkp-0x-AQH">
+                                                                <rect key="frame" x="0.0" y="0.0" width="120" height="40"/>
                                                                 <color key="backgroundColor" name="ColorYellow"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="40" id="pkb-Zl-YcY"/>
@@ -5007,9 +5007,12 @@
                                                                         <real key="value" value="6"/>
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="ontapFollow:" destination="ADG-6d-fWP" eventType="touchUpInside" id="ZLE-41-iJo"/>
+                                                                </connections>
                                                             </button>
                                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QvS-Bl-8G9">
-                                                                <rect key="frame" x="242" y="0.0" width="140" height="40"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="140" height="40"/>
                                                                 <color key="backgroundColor" name="ColorWhite"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="140" id="53b-Ys-HG1"/>
@@ -9045,7 +9048,7 @@ platform be detailed.</string>
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="NoZ-Pa-cHR">
-                                                        <rect key="frame" x="0.0" y="257" width="361" height="84"/>
+                                                        <rect key="frame" x="0.0" y="257.00000000000006" width="361" height="84"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add email" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vJ2-zv-Gi8">
                                                                 <rect key="frame" x="0.0" y="0.0" width="361" height="17"/>

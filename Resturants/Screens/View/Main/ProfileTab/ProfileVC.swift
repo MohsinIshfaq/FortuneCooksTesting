@@ -131,6 +131,17 @@ class ProfileVC: UIViewController {
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
+    
+    @IBAction func ontapFollow(_ sender: UIButton) {
+        
+        if btnFollow.titleLabel?.text == "Follow" {
+            var model = UserManager.shared.ownerProfileFollowing
+            model.append(UserTagModel(uid: nonProfileModel?.uid ?? "", img: nonProfileModel?.img ?? "", channelName: nonProfileModel?.channelName ?? "", followers: nonProfileModel?.followers ?? "", accountType: nonProfileModel?.accountType ?? ""))
+          //  addFollowersPeoplesList(nonProfileModel?.uid ?? "", tagUser: model)
+            addFollowingPeoplesList(UserDefault.token, tagUser: model)
+        }
+    }
+    
     @IBAction func ontapTagPeople(_ sender: UIButton) {
         
         let vc = Constants.addStoryBoard.instantiateViewController(withIdentifier: "TagPeopleVC") as? TagPeopleVC
@@ -292,28 +303,34 @@ extension ProfileVC {
             btnSettings.isHidden = true
             vwCover.isHidden     = true
             vwProfile.isHidden   = true
+            for i in 0 ..< (UserManager.shared.ownerProfileFollowing.count ?? 0) {
+                print(UserManager.shared.ownerProfileFollowing[i])
+                if UserManager.shared.ownerProfileFollowing[i].uid == nonProfileModel?.uid {
+                    btnFollow.setTitle("Following", for: .normal)
+                    btnFollow.tintColor = UIColor.gray
+                }
+                else{
+                    btnFollow.setTitle("Follow", for: .normal)
+                    btnFollow.tintColor = UIColor.ColorLightGreen
+                }
+            }
         }
         else{
             btnFollow.isHidden   = true
             btnSettings.isHidden = false
+            for i in 0 ..< (user.followings?.count ?? 0){
+                UserManager.shared.ownerProfileFollowing.append(UserTagModel(uid: user.followings?[i].uid ?? "", img: user.followings?[i].img ?? "", channelName: user.followings?[i].channelName ?? "", followers: user.followings?[i].followers ?? "", accountType: user.followings?[i].accountType ?? ""))
+            }
             updateUserDocument()   //updating profile data of tag list to be updated user profile always
         }
-        for i in 0 ..< (user.followers?.count ?? 0) {
-            if user.followers?[i].uid == nonProfileModel?.uid {
-                btnFollow.setTitle("Follower", for: .normal)
-            }
-            else{
-                btnFollow.setTitle("Follow", for: .normal)
-            }
-        }
-        for i in 0 ..< (user.followings?.count ?? 0) {
-            if user.followings?[i].uid == nonProfileModel?.uid {
-                btnFollow.setTitle("Following", for: .normal)
-            }
-            else{
-                btnFollow.setTitle("Follow", for: .normal)
-            }
-        }
+//        for i in 0 ..< (user.followings?.count ?? 0) {
+//            if user.followings?[i].uid == nonProfileModel?.uid {
+//                btnFollow.setTitle("Following", for: .normal)
+//            }
+//            else{
+//                btnFollow.setTitle("Follow", for: .normal)
+//            }
+//        }
     }
     
     func setupView() {
@@ -852,23 +869,40 @@ extension ProfileVC {
         }
     }
     
-//    func addTagPeoplesList(_ userID: String, tagUser: [TagUsers]) {
-//        self.startAnimating()
-//        let db = Firestore.firestore()
-//        tagUser  = profileModel
-//        let tagUserDictionaries = tagUser.map { $0.toDictionary() }
-//        db.collection("Users").document(userID).updateData([
-//            "tagPersons": tagUserDictionaries
-//        ]) { [self] err in
-//            if let err = err {
-//                self.stopAnimating()
-//                print("Error updating tagPersons: \(err)")
-//            } else {
-//                self.stopAnimating()
-//                print("tagPersons successfully updated in Firestore")
-//            }
-//        }
-//    }
+    func addFollowingPeoplesList(_ userID: String, tagUser: [UserTagModel]) {
+        self.startAnimating()
+        let db = Firestore.firestore()
+        let tagUserDictionaries = tagUser.map { $0.toDictionary() }
+        db.collection("Users").document(userID).updateData([
+            "followings": tagUserDictionaries
+        ]) { [self] err in
+            if let err = err {
+                self.stopAnimating()
+                print("Error updating tagPersons: \(err)")
+            } else {
+                self.stopAnimating()
+                print("tagPersons successfully updated in Firestore")
+                self.dismiss(animated: true)
+            }
+        }
+    }
+    func addFollowersPeoplesList(_ userID: String, tagUser: [UserTagModel]) {
+        self.startAnimating()
+        let db = Firestore.firestore()
+        let tagUserDictionaries = tagUser.map { $0.toDictionary() }
+        db.collection("Users").document(userID).updateData([
+            "followers": tagUserDictionaries
+        ]) { [self] err in
+            if let err = err {
+                self.stopAnimating()
+                print("Error updating tagPersons: \(err)")
+            } else {
+                self.stopAnimating()
+                print("tagPersons successfully updated in Firestore")
+                self.dismiss(animated: true)
+            }
+        }
+    }
 }
 
 

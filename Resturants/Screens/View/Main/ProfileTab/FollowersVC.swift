@@ -112,7 +112,8 @@ extension FollowersVC: UITableViewDelegate , UITableViewDataSource{
         else{
             cell?.btnFollow.backgroundColor              = .ColorYellow
             cell?.btnFollow.titleLabel?.textColor        = .black
-            cell?.btnMore.isHidden                       = false
+            cell?.btnMore.isHidden                       = true
+            cell?.btnFollow.isHidden                     = true
             DispatchQueue.main.async {
                 if let profileURL = self.alreadyFollowingsUsers[indexPath.row].img, let urlProfile1 = URL(string: profileURL) {
                     cell?.img.sd_setImage(with: urlProfile1)
