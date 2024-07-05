@@ -108,6 +108,7 @@ extension FollowersVC: UITableViewDelegate , UITableViewDataSource{
             cell?.btnFollow.backgroundColor             = .gray
             cell?.btnFollow.titleLabel?.textColor       = .white
             cell?.btnMore.isHidden                      = true
+            cell?.btnFollow.isHidden                     = true
         }
         else{
             cell?.btnFollow.backgroundColor              = .ColorYellow
