@@ -6,13 +6,13 @@
 //
 
 import UIKit
-protocol AccountReportDelete{
+protocol AccountActionPopupDelegate{
     func action(call : String)
 }
 
 class AccountActionPopupVC: UIViewController {
 
-    var delegate: AccountReportDelete?  = nil
+    var delegate: AccountActionPopupDelegate?  = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()

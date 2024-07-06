@@ -11,7 +11,8 @@ class BlockedAccntVC: UIViewController {
 
     @IBOutlet weak var tblSelection: UITableView!
     
-    var showTagUsers: Bool           = false
+    var showTagUsers: Bool                = false
+    var profileModel: UserProfileModel?   = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +40,7 @@ extension BlockedAccntVC{
 //MARK: - TableView {}
 extension BlockedAccntVC: UITableViewDelegate , UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return UserManager.shared.arrTagPeoples.count
+        return profileModel?.blockUsers?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -51,12 +52,14 @@ extension BlockedAccntVC: UITableViewDelegate , UITableViewDataSource{
         }
         else {
             cell?.btnFollow.isHidden   = true
-            if UserManager.shared.arrTagPeoples[indexPath.row][1] == "0" {
-                cell?.imgSelected.image  = UIImage(systemName: "circle")
-            }
-            else{
-                cell?.imgSelected.image  = UIImage(systemName: "checkmark.circle.fill")
-            }
+            DispatchQueue.main.async {
+                if let profileURL = self.profileModel?.blockUsers?[indexPath.row].img, let urlProfile1 = URL(string: profileURL) {
+                        cell?.img.sd_setImage(with: urlProfile1)
+                    }
+                cell?.lblFollowers.text = self.profileModel?.blockUsers?[indexPath.row].followers ?? "0 Followers"
+                cell?.lblName.text      = self.profileModel?.blockUsers?[indexPath.row].channelName ?? ""
+                cell?.lblType.text      = self.profileModel?.blockUsers?[indexPath.row].accountType ?? ""
+            }    
         }
         return cell!
             
@@ -64,18 +67,18 @@ extension BlockedAccntVC: UITableViewDelegate , UITableViewDataSource{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
     }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if !showTagUsers {
-            if UserManager.shared.arrTagPeoples[indexPath.row][1] == "0" {
-                UserManager.shared.arrTagPeoples[indexPath.row][1] = "1"
-                UserManager.shared.totalTagPeople += 1
-                print(UserManager.shared.totalTagPeople)
-            }
-            else{
-                UserManager.shared.arrTagPeoples[indexPath.row][1] = "0"
-                UserManager.shared.totalTagPeople -= 1
-            }
-            tableView.reloadData()
-        }
-    }
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        if !showTagUsers {
+//            if UserManager.shared.arrTagPeoples[indexPath.row][1] == "0" {
+//                UserManager.shared.arrTagPeoples[indexPath.row][1] = "1"
+//                UserManager.shared.totalTagPeople += 1
+//                print(UserManager.shared.totalTagPeople)
+//            }
+//            else{
+//                UserManager.shared.arrTagPeoples[indexPath.row][1] = "0"
+//                UserManager.shared.totalTagPeople -= 1
+//            }
+//            tableView.reloadData()
+//        }
+//    }
 }

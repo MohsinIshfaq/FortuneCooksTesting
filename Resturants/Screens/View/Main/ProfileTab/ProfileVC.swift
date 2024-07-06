@@ -618,7 +618,7 @@ extension ProfileVC : UICollectionViewDelegate , UICollectionViewDataSource , UI
 }
 
 //MARK: - Protocol of AccountreportDelete
-extension ProfileVC: AccountReportDelete {
+extension ProfileVC: AccountActionPopupDelegate {
     func action(call: String) {
         if call == "Report" {
             let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "AccountReportVC") as! AccountReportVC
@@ -693,6 +693,15 @@ extension ProfileVC {
                                 let accountType = dict["accountType"] as? String
                                 return TagUsers(uid: uid, img: img, channelName: channelName, followers: followers, accountType: accountType)
                             }
+                let blockUsers = data?["blockUsers"] as? [[String: Any]] ?? []
+                            let blocked = blockUsers.compactMap { dict -> TagUsers? in
+                                let uid = dict["uid"] as? String
+                                let img = dict["img"] as? String
+                                let channelName = dict["channelName"] as? String
+                                let followers = dict["followers"] as? String
+                                let accountType = dict["accountType"] as? String
+                                return TagUsers(uid: uid, img: img, channelName: channelName, followers: followers, accountType: accountType)
+                            }
                 
                 
                 
@@ -714,6 +723,7 @@ extension ProfileVC {
                                             followings: followingdata,
                                             timings: data?["timings"] as? [String] ?? [],
                                             tagPersons: tagPersons,
+                                            blockUsers: blocked,
                                             selectedTypeOfRegion: data?["selectedTypeOfRegion"] as? [String] ?? [],
                                             selectedMeals: data?["selectedMeals"] as? [String] ?? [],
                                             selectedSpecialize: data?["selectedSpecialize"] as? [String] ?? [],

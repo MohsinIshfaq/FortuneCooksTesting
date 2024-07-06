@@ -58,6 +58,7 @@ struct UserProfileModel {
     var followings: [TagUsers]?
     var timings: [String]?
     var tagPersons: [TagUsers]?
+    var blockUsers: [TagUsers]?
     var selectedTypeOfRegion: [String]?
     var selectedMeals: [String]?
     var selectedSpecialize: [String]?

@@ -55,6 +55,7 @@ class SettingsVC: UIViewController {
     
     @IBAction func ontapBlockUsers(_ sender: UIButton) {
         let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "BlockedAccntVC") as! BlockedAccntVC
+        vc.profileModel = self.profileModel
         vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
     }

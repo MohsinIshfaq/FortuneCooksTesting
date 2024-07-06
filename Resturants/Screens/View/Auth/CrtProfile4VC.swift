@@ -198,6 +198,7 @@ extension CrtProfile4VC {
                  "profileUrl"                     : "",
                  "isFoundedVisible"               : false,
                  "followers"                      : [],
+                 "blockUsers"                     : [],
                  "followings"                     : [],
                  "timings"                        : [],
                  "tagPersons"                     : [],
