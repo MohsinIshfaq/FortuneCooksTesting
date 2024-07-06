@@ -338,19 +338,17 @@ extension ProfileVC {
         else{
             btnFollow.isHidden   = true
             btnSettings.isHidden = false
+            UserManager.shared.ownerProfileFollowing.removeAll()
             for i in 0 ..< (user.followings?.count ?? 0){
                 UserManager.shared.ownerProfileFollowing.append(UserTagModel(uid: user.followings?[i].uid ?? "", img: user.followings?[i].img ?? "", channelName: user.followings?[i].channelName ?? "", followers: user.followings?[i].followers ?? "", accountType: user.followings?[i].accountType ?? ""))
             }
+            print(UserManager.shared.ownerTagPeoples.count ?? 0)
+            UserManager.shared.ownerTagPeoples.removeAll()
+            for i in 0 ..< (user.tagPersons?.count ?? 0){
+                UserManager.shared.ownerTagPeoples.append(TagUsers(uid: user.tagPersons?[i].uid ?? "", img: user.tagPersons?[i].img ?? "", channelName: user.tagPersons?[i].channelName ?? "", followers: user.tagPersons?[i].followers ?? "", accountType: user.tagPersons?[i].accountType ?? ""))
+            }
             updateUserDocument()   //updating profile data of tag list to be updated user profile always
         }
-//        for i in 0 ..< (user.followings?.count ?? 0) {
-//            if user.followings?[i].uid == nonProfileModel?.uid {
-//                btnFollow.setTitle("Following", for: .normal)
-//            }
-//            else{
-//                btnFollow.setTitle("Follow", for: .normal)
-//            }
-//        }
     }
     
     func setupView() {
@@ -626,6 +624,8 @@ extension ProfileVC: AccountActionPopupDelegate {
         }
         else{
             let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "BlockUserPopUpVC") as! BlockUserPopUpVC
+            vc.nonProfileModel = self.nonProfileModel
+            vc.profileModel    = self.profileModel
             self.present(vc, animated: true)
         }
     }

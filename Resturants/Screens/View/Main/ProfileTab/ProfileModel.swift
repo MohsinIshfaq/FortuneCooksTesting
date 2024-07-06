@@ -75,6 +75,17 @@ struct TagUsers {
     let channelName: String?
     let followers: String?
     let accountType: String?
+    var selected   : Int?
+    
+    func toDictionary() -> [String: Any] {
+           return [
+               "uid": uid ?? "",
+               "img": img ?? "",
+               "channelName": channelName ?? "",
+               "followers": followers ?? "",
+               "accountType": accountType ?? ""
+           ]
+       }
 }
 
 struct UploadVideosModel: Codable {

@@ -165,6 +165,7 @@ class UpdateProfileVC: UIViewController , TagPeopleDelegate{
         let vc = Constants.addStoryBoard.instantiateViewController(withIdentifier: "TagPeopleVC") as? TagPeopleVC
         vc?.delegate = self
        // vc.showTagUsers
+        vc?.blockUsers      = profileModel?.blockUsers ?? []
         vc?.alreadyTagUsers = profileModel?.tagPersons ?? []
         self.present(vc!, animated: true)
     }

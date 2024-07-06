@@ -7966,7 +7966,7 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
-                                                            <action selector="ontapOK:" destination="mVc-ip-M6B" eventType="touchUpInside" id="R0t-gB-vVq"/>
+                                                            <action selector="ontapOK:" destination="mVc-ip-M6B" eventType="touchUpInside" id="k24-J8-qBw"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -8525,6 +8525,9 @@ Only tap the link if you trust it's safe!</string>
                                                         <real key="value" value="8"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="ontapUnblock:" destination="BcN-5c-NUp" eventType="touchUpInside" id="5wo-po-5Gl"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.10980392160000001" green="0.10980392160000001" blue="0.10980392160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -10516,7 +10519,7 @@ platform be detailed.</string>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="plus.app.fill" catalog="system" width="128" height="114"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
-        <image name="user" width="24.333333969116211" height="24"/>
+        <image name="user" width="24" height="24"/>
         <image name="user-block" width="24" height="24"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <namedColor name="AccentColor">

@@ -23,7 +23,8 @@ class TagPeopleVC: UIViewController , UISearchTextFieldDelegate{
     
     var delegate: TagPeopleDelegate? = nil
     var showTagUsers: Bool           = false
-    var users: [UserTagModel] = []
+    var blockUsers: [TagUsers]       = []
+    var users: [UserTagModel]        = []
     var selectedUser: [UserTagModel] = []      //Users to be tag
     var alreadyTagUsers: [TagUsers]  = []
     
@@ -36,6 +37,14 @@ class TagPeopleVC: UIViewController , UISearchTextFieldDelegate{
     }
 
     @IBAction func ontapDone(_ sender: UIButton){
+        for i in 0 ..< selectedUser.count {
+            for j in 0 ..< blockUsers.count{
+                if selectedUser[i].uid == blockUsers[i].uid {
+                    self.showToast(message: "You Can't Tag Blocked User.", seconds: 1, clr: .red)
+                   return
+                }
+            }
+        }
         addTagPeoplesList(UserDefault.token, tagUser: selectedUser)
     }
     

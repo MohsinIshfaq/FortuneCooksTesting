@@ -15,6 +15,7 @@ final class UserManager {
     private init () {}
     
     var ownerProfileFollowing: [UserTagModel]  = []
+    var ownerTagPeoples      : [TagUsers]      = []
     
     var totalTagPeople             : Int              = 0
     var finalURL                   : URL?             = nil

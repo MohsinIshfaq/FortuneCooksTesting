@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseFirestoreInternal
 
 class BlockedAccntVC: UIViewController {
 
@@ -13,10 +14,24 @@ class BlockedAccntVC: UIViewController {
     
     var showTagUsers: Bool                = false
     var profileModel: UserProfileModel?   = nil
+    var selectedBlockUsers: [TagUsers]    = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         onLaod()
+    }
+    
+    @IBAction func ontapUnblock(_ sender: UIButton) {
+        for i in 0 ..< (profileModel?.blockUsers?.count ?? 0) {
+            if profileModel?.blockUsers?[i].selected == 0 {
+                if var data = profileModel?.blockUsers?[i]{
+                    self.selectedBlockUsers.append(data)
+                }
+            }
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            self.addBlockPeopleList(UserDefault.token, tagUser: self.selectedBlockUsers)
+        }
     }
 
 }
@@ -59,7 +74,14 @@ extension BlockedAccntVC: UITableViewDelegate , UITableViewDataSource{
                 cell?.lblFollowers.text = self.profileModel?.blockUsers?[indexPath.row].followers ?? "0 Followers"
                 cell?.lblName.text      = self.profileModel?.blockUsers?[indexPath.row].channelName ?? ""
                 cell?.lblType.text      = self.profileModel?.blockUsers?[indexPath.row].accountType ?? ""
-            }    
+            }
+            if self.profileModel?.blockUsers?[indexPath.row].selected == 1 {
+                cell?.imgSelected.image = UIImage(systemName: "circle.fill")
+            }
+            else {
+                cell?.imgSelected.image = UIImage(systemName: "circle")
+            }
+            
         }
         return cell!
             
@@ -67,18 +89,34 @@ extension BlockedAccntVC: UITableViewDelegate , UITableViewDataSource{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
     }
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        if !showTagUsers {
-//            if UserManager.shared.arrTagPeoples[indexPath.row][1] == "0" {
-//                UserManager.shared.arrTagPeoples[indexPath.row][1] = "1"
-//                UserManager.shared.totalTagPeople += 1
-//                print(UserManager.shared.totalTagPeople)
-//            }
-//            else{
-//                UserManager.shared.arrTagPeoples[indexPath.row][1] = "0"
-//                UserManager.shared.totalTagPeople -= 1
-//            }
-//            tableView.reloadData()
-//        }
-//    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if self.profileModel?.blockUsers?[indexPath.row].selected == 0 {
+            self.profileModel?.blockUsers?[indexPath.row].selected = 1
+        }
+        else {
+            self.profileModel?.blockUsers?[indexPath.row].selected = 0
+        }
+        tblSelection.reloadData()
+    }
+    
+}
+
+extension BlockedAccntVC {
+    func addBlockPeopleList(_ userID: String, tagUser: [TagUsers]) {
+        self.startAnimating()
+        let db = Firestore.firestore()
+        let tagUserDictionaries = tagUser.map { $0.toDictionary() }
+        db.collection("Users").document(userID).updateData([
+            "blockUsers": tagUserDictionaries
+        ]) { [self] err in
+            if let err = err {
+                self.stopAnimating()
+                print("Error updating tagPersons: \(err)")
+            } else {
+                self.stopAnimating()
+                print("tagPersons successfully updated in Firestore")
+                popRoot()
+            }
+        }
+    }
 }
