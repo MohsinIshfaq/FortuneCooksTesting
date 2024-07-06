@@ -63,6 +63,7 @@ class ProfileVC: UIViewController {
     
     @IBOutlet weak var btnSettings             : UIButton!
     @IBOutlet weak var btnFollow               : UIButton!
+    @IBOutlet weak var lblFounded              : UILabel!
     
     //MARK: - Variables and Properties
     let reachability = try! Reachability()
@@ -245,9 +246,16 @@ extension ProfileVC {
         lblChannelType.text = "(" + (user.accountType ?? "") + ")"
         lblEmail.text       = user.email ?? ""
         lblWebLInk.text     = user.website ?? ""
-        lblAddress.text     = user.address ?? ""
+        lblAddress.text     = "\(user.address ?? "") \(user.zipcode ?? "") \(user.city ?? "")"
         lblFollowers.text   = "\(user.followers?.count ?? 0) Followers"
         lblFollowing.text   = "\(user.followings?.count ?? 0) Following"
+        lblFounded.text     = "Founded: \(user.dateOfBirth ?? "")"
+        if user.isFoundedVisible ?? false {
+            lblFounded.isHidden = false
+        }
+        else{
+            lblFounded.isHidden = true
+        }
         if UserDefault.token == user.uid {
             btn3dots.isHidden = true
         }
@@ -686,6 +694,8 @@ extension ProfileVC {
                                 return TagUsers(uid: uid, img: img, channelName: channelName, followers: followers, accountType: accountType)
                             }
                 
+                
+                
                 // Access each field using its key and map to the model
                 let user = UserProfileModel(selectedCuisine: data?["selectedCuisine"] as? [String] ?? [],
                                             selectedEnvironment: data?["selectedEnvironment"] as? [String] ?? [],
@@ -700,6 +710,7 @@ extension ProfileVC {
                                             coverUrl: data?["coverUrl"] as? String ?? "",
                                             profileUrl: data?["profileUrl"] as? String ?? "",
                                             followers: followersdata,
+                                            //isFoundedVisible: data?["isFoundedVisible"] as? Bool ?? false,
                                             followings: followingdata,
                                             timings: data?["timings"] as? [String] ?? [],
                                             tagPersons: tagPersons,
@@ -709,7 +720,8 @@ extension ProfileVC {
                                             channelName: data?["channelName"] as? String ?? "",
                                             dateOfBirth: data?["dateOfBirth"] as? String ?? "",
                                             email: data?["email"] as? String ?? "",
-                                            phoneNumber: data?["phoneNumber"] as? String ?? "")
+                                            phoneNumber: data?["phoneNumber"] as? String ?? "" ,
+                                            isFoundedVisible: data?["isFoundedVisible"] as? Bool ?? false)
                 self.stopAnimating()
                 completion(user)
             } else {

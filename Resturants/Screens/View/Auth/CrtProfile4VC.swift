@@ -196,6 +196,7 @@ extension CrtProfile4VC {
                  "zipcode"                        : "",
                  "coverUrl"                       : "",
                  "profileUrl"                     : "",
+                 "isFoundedVisible"               : false,
                  "followers"                      : [],
                  "followings"                     : [],
                  "timings"                        : [],

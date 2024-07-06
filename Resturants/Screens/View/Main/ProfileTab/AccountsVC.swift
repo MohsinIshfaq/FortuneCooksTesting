@@ -6,11 +6,13 @@
 //
 
 import UIKit
+import FirebaseFirestoreInternal
 
 class AccountsVC: UIViewController {
 
     @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var txtPhone: UITextField!
+    @IBOutlet weak var switchfounded: UISwitch!
     
     var profileModel: UserProfileModel?   = nil
     
@@ -38,6 +40,10 @@ class AccountsVC: UIViewController {
         vc.isFromWhere  = "VerifyAndDeleteAccnt"
         self.navigationController?.pushViewController(vc, animated: true)
     }
+    
+    @IBAction func ontapSave(_ sender: UIButton){
+        updateStatus(UserDefault.token)
+    }
 }
 
 //MARK: - Setup Profile {}
@@ -47,6 +53,7 @@ extension AccountsVC {
         
         removeNavBackbuttonTitle()
         setupProfileData()
+        switchfounded.isOn = profileModel?.isFoundedVisible ?? false
     }
     
     func onAppear() {
@@ -57,5 +64,27 @@ extension AccountsVC {
         
         self.txtEmail.text = profileModel?.email ?? ""
         self.txtPhone.text = profileModel?.phoneNumber ?? ""
+    }
+}
+
+//MARK: - Save Bio in Profile {}
+extension AccountsVC {
+    
+    func updateStatus(_ userID: String) {
+        print(switchfounded.isOn)
+        self.startAnimating()
+        let db = Firestore.firestore()
+        db.collection("Users").document(userID).updateData([
+            "isFoundedVisible": switchfounded.isOn
+        ]) { err in
+            if let err = err {
+                self.stopAnimating()
+                print("Error updating coverUrl: \(err)")
+            } else {
+                self.stopAnimating()
+                print("Cover URL successfully updated in Firestore")
+                self.popRoot()
+            }
+        }
     }
 }

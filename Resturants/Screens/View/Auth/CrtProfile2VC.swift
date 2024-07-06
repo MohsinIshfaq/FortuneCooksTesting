@@ -76,7 +76,7 @@ extension CrtProfile2VC {
     }
     func formatDate(date:Date) -> String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "MMM dd yyyy"
+        formatter.dateFormat = "dd MMM yyyy"
         return formatter.string(from: date)
     }
 
