@@ -21,11 +21,11 @@ class BaseClass : UIViewController {
         })
         // Create Cancel button with action handlder
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
-
+            completion?( true)
         }
         //Add OK and Cancel button to an Alert object
         dialogMessage.addAction(ok)
-        dialogMessage.addAction(cancel)
+       // dialogMessage.addAction(cancel)
         // Present alert message to user
         self.present(dialogMessage, animated: true, completion: nil)
         

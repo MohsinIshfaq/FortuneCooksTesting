@@ -12,7 +12,7 @@ import Reachability
 import FirebaseStorage
 
 
-class ProfileVC: UIViewController {
+class ProfileVC: BaseClass {
      
     //MARK: - IBOUtlet
     @IBOutlet weak var vwVideo                 : UIView!
@@ -399,6 +399,14 @@ extension ProfileVC {
                     print("User data: \(user)")
                 } else {
                     print("Failed to fetch user data.")
+                }
+            }
+        }
+        else{
+           
+            showAlertCOmpletion(withTitle: "", message: "Access to the profile screen is restricted due to authentication requirements.") { status in
+                if status {
+                    self.tabBarController?.selectedIndex = 0
                 }
             }
         }

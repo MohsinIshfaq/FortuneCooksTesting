@@ -34,17 +34,17 @@ open class FilterCamViewController: UIViewController, AVAudioRecorderDelegate {
     private var secLabel                       : UILabel!
     var recordingSession                       : AVAudioSession!
     var audioRecorder                          : AVAudioRecorder!
-
+    
     public var filters: [CIFilter] = [] {
         didSet {
             recorder.filters = filters
         }
     }
-
+    
     public var hasTorch: Bool {
         return recorder.hasTorch
     }
-
+    
     public var torchLevel: Float {
         set {
             recorder.torchLevel = newValue
@@ -53,31 +53,31 @@ open class FilterCamViewController: UIViewController, AVAudioRecorderDelegate {
             return recorder.torchLevel
         }
     }
-
+    
     public var shouldShowDebugLabels: Bool = false {
         didSet {
             fpsLabel.isHidden = !shouldShowDebugLabels
             secLabel.isHidden = !shouldShowDebugLabels
         }
     }
-
+    
     private var isRecording: Bool {
         return recorder.assetWriter != nil
     }
-
+    
     open override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .portrait
     }
-
+    
     open override var shouldAutorotate: Bool {
         return false
     }
-
+    
     public init(previewViewRect: CGRect) {
         self.previewViewRect = previewViewRect
         super.init(nibName: nil, bundle: nil)
     }
-
+    
     public required init?(coder aDecoder: NSCoder) {
         previewViewRect = UIScreen.main.bounds
         super.init(coder: aDecoder)
@@ -86,48 +86,56 @@ open class FilterCamViewController: UIViewController, AVAudioRecorderDelegate {
     func muteAudio(_ isMuted: Bool) {
         recorder.muteAudio(isMuted)
     }
-
+    
     open override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.backgroundColor = .clear
-        videoPreviewContainerView = UIView(frame: previewViewRect)
-        videoPreviewContainerView.backgroundColor = .black
-        view.addSubview(videoPreviewContainerView)
-        view.sendSubviewToBack(videoPreviewContainerView)
-        
-        // setup the GLKView for video/image preview
-        guard let eaglContext = EAGLContext(api: .openGLES2) else {
-            fatalError("Could not create EAGLContext")
+        if UserDefault.isAuthenticated {
+            view.backgroundColor = .clear
+            videoPreviewContainerView = UIView(frame: previewViewRect)
+            videoPreviewContainerView.backgroundColor = .black
+            view.addSubview(videoPreviewContainerView)
+            view.sendSubviewToBack(videoPreviewContainerView)
+            
+            // setup the GLKView for video/image preview
+            guard let eaglContext = EAGLContext(api: .openGLES2) else {
+                fatalError("Could not create EAGLContext")
+            }
+            if eaglContext != EAGLContext.current() {
+                EAGLContext.setCurrent(eaglContext)
+            }
+            videoPreviewView = GLKView(frame: CGRect(x: 0,
+                                                     y: 0,
+                                                     width: previewViewRect.height,
+                                                     height: previewViewRect.width),
+                                       context: eaglContext)
+            videoPreviewContainerView.addSubview(videoPreviewView)
+            
+            // because the native video image from the back camera is in UIDeviceOrientationLandscapeLeft (i.e. the home button is on the right), we need to apply a clockwise 90 degree transform so that we can draw the video preview as if we were in a landscape-oriented view; if you're using the front camera and you want to have a mirrored preview (so that the user is seeing themselves in the mirror), you need to apply an additional horizontal flip (by concatenating CGAffineTransformMakeScale(-1.0, 1.0) to the rotation transform)
+            videoPreviewView.transform = CGAffineTransform(rotationAngle: .pi / 2)
+            videoPreviewView.center = CGPoint(x: previewViewRect.width * 0.5, y: previewViewRect.height * 0.5)
+            videoPreviewView.enableSetNeedsDisplay = false
+            
+            // bind the frame buffer to get the frame buffer width and height; the bounds used by CIContext when drawing to a GLKView are in pixels (not points), hence the need to read from the frame buffer's width and height; in addition, since we will be accessing the bounds in another queue (_captureSessionQueue), we want to obtain this piece of information so that we won't be accessing _videoPreviewView's properties from another thread/queue
+            videoPreviewView.bindDrawable()
+            videoPreviewViewBounds.size.width = CGFloat(videoPreviewView.drawableWidth)
+            videoPreviewViewBounds.size.height = CGFloat(videoPreviewView.drawableHeight)
+            
+            // create the CIContext instance, note that this must be done after _videoPreviewView is properly set up
+            ciContext = CIContext(eaglContext: eaglContext, options: [CIContextOption.workingColorSpace: NSNull()])
+            recorder = Recorder(ciContext: ciContext, devicePosition: devicePosition, preset: videoQuality)
+            recorder.delegate = self
+            setupDebugLabels()
+            addGestureRecognizers()
         }
-        if eaglContext != EAGLContext.current() {
-            EAGLContext.setCurrent(eaglContext)
+        else{
+            showAlertCOmpletion(withTitle: "", message: "Access to the profile screen is restricted due to authentication requirements.") { status in
+                if status {
+                    self.dismiss(animated: true)
+                }
+            }
         }
-        videoPreviewView = GLKView(frame: CGRect(x: 0,
-                                                 y: 0,
-                                                 width: previewViewRect.height,
-                                                 height: previewViewRect.width),
-                                   context: eaglContext)
-        videoPreviewContainerView.addSubview(videoPreviewView)
-        
-        // because the native video image from the back camera is in UIDeviceOrientationLandscapeLeft (i.e. the home button is on the right), we need to apply a clockwise 90 degree transform so that we can draw the video preview as if we were in a landscape-oriented view; if you're using the front camera and you want to have a mirrored preview (so that the user is seeing themselves in the mirror), you need to apply an additional horizontal flip (by concatenating CGAffineTransformMakeScale(-1.0, 1.0) to the rotation transform)
-        videoPreviewView.transform = CGAffineTransform(rotationAngle: .pi / 2)
-        videoPreviewView.center = CGPoint(x: previewViewRect.width * 0.5, y: previewViewRect.height * 0.5)
-        videoPreviewView.enableSetNeedsDisplay = false
-        
-        // bind the frame buffer to get the frame buffer width and height; the bounds used by CIContext when drawing to a GLKView are in pixels (not points), hence the need to read from the frame buffer's width and height; in addition, since we will be accessing the bounds in another queue (_captureSessionQueue), we want to obtain this piece of information so that we won't be accessing _videoPreviewView's properties from another thread/queue
-        videoPreviewView.bindDrawable()
-        videoPreviewViewBounds.size.width = CGFloat(videoPreviewView.drawableWidth)
-        videoPreviewViewBounds.size.height = CGFloat(videoPreviewView.drawableHeight)
-        
-        // create the CIContext instance, note that this must be done after _videoPreviewView is properly set up
-        ciContext = CIContext(eaglContext: eaglContext, options: [CIContextOption.workingColorSpace: NSNull()])
-        recorder = Recorder(ciContext: ciContext, devicePosition: devicePosition, preset: videoQuality)
-        recorder.delegate = self
-        setupDebugLabels()
-        addGestureRecognizers()
     }
-
+    
     // MARK: - Private
     // Modify the toggleCamera method to wait for configuration completion
     public func toggleCamera() {
@@ -147,7 +155,7 @@ open class FilterCamViewController: UIViewController, AVAudioRecorderDelegate {
             }
         }
     }
-
+    
     private func setupDebugLabels() {
         
         fpsLabel = UILabel()
@@ -167,14 +175,14 @@ open class FilterCamViewController: UIViewController, AVAudioRecorderDelegate {
         secLabel.text = ""
         secLabel.textColor = .white
     }
-
+    
     private func addGestureRecognizers() {
         
         let singleTapGesture = UITapGestureRecognizer(target: self, action: #selector(singleTapGesture(tap:)))
         singleTapGesture.numberOfTapsRequired = 1
         view.addGestureRecognizer(singleTapGesture)
     }
-
+    
     @objc private func singleTapGesture(tap: UITapGestureRecognizer) {
         
         let screenSize = view.bounds.size
@@ -188,7 +196,7 @@ open class FilterCamViewController: UIViewController, AVAudioRecorderDelegate {
             self.cameraDelegate?.filterCam(self, didFocusAtPoint: tapPoint)
         }
     }
-
+    
     private func calculateDrawRect(for image: CIImage) -> CGRect {
         
         let sourceExtent = image.extent
@@ -207,19 +215,39 @@ open class FilterCamViewController: UIViewController, AVAudioRecorderDelegate {
         }
         return drawRect
     }
-
+    
     // MARK: - Public
-
+    
     public func startRecording() {
         if !isRecording {
             recorder.startRecording()
         }
     }
-
+    
     public func stopRecording() {
         if isRecording {
             recorder.stopRecording()
         }
+    }
+    func showAlertCOmpletion(withTitle title : String?, message : String, completion: ((_ status: Bool) -> Void)? = nil)
+    
+    {
+        // Create Alert
+        var dialogMessage = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        // Create OK button with action handler
+        let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+            completion?( true)
+        })
+        // Create Cancel button with action handlder
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+            completion?( true)
+        }
+        //Add OK and Cancel button to an Alert object
+        dialogMessage.addAction(ok)
+       // dialogMessage.addAction(cancel)
+        // Present alert message to user
+        self.present(dialogMessage, animated: true, completion: nil)
+        
     }
 }
 

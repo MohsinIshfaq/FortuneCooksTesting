@@ -171,17 +171,20 @@ class CameraVC: FilterCamViewController{
 //MARK: - Extension of setup Data{}
 extension CameraVC {
     func onLoad() {
-        removeNavBackbuttonTitle()
-        setupFilterCollection()
-        cameraDelegate             = self
-        self.stackEditOpt.isHidden = true
-        btnRemove.isHidden         = true
-        btnUpload.isHidden         = true
-        self.view.layer.opacity    = 0
-        toggleCamera()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
-            self.view.layer.opacity = 1
+        if  UserDefault.isAuthenticated {
+            removeNavBackbuttonTitle()
+            setupFilterCollection()
+            cameraDelegate             = self
+            self.stackEditOpt.isHidden = true
+            btnRemove.isHidden         = true
+            btnUpload.isHidden         = true
+            self.view.layer.opacity    = 0
+            toggleCamera()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+                self.view.layer.opacity = 1
+            }
         }
+       
     }
     
     func onAppear() {
@@ -413,6 +416,7 @@ extension CameraVC: UIImagePickerControllerDelegate, UINavigationControllerDeleg
             self.navigationController?.pushViewController(vc!, animated: true)
         }
     }
+    
 }
 
 //                self.saveVideoToLibrary(at: url!) { error in
