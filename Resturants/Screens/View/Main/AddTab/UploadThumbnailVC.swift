@@ -33,11 +33,9 @@ class UploadThumbnailVC: UIViewController {
         delegate?.reload(img: thumImg)
         self.dismiss(animated: true)
     }
-    
     @IBAction func ontapDismiss(_ sender: UIButton){
         self.dismiss(animated: true)
     }
-
     @IBAction func ontapPickImg(_ sender: UIButton){
         
         if sender.tag == 0 {
@@ -87,6 +85,8 @@ class UploadThumbnailVC: UIViewController {
         do {
             let cgImage = try imageGenerator.copyCGImage(at: cmTime, actualTime: nil)
             let thumbnail = UIImage(cgImage: cgImage)
+            
+            self.thumImg       = nil
             imgThumbnail.image = thumbnail
             self.thumImg       = thumbnail
         } catch {
@@ -97,7 +97,7 @@ class UploadThumbnailVC: UIViewController {
 extension UploadThumbnailVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let pickedImage = info[.originalImage] as? UIImage {
+        if let pickedImage = info[.editedImage] as? UIImage {
             self.imgThumbnail.image = pickedImage
             self.thumImg             = pickedImage
         }

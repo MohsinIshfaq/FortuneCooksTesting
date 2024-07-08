@@ -121,5 +121,36 @@ class UploadingVC: UIViewController {
             }
         }
     }
+    
+    func SaveVideosData() {
+        var db = Firestore.firestore()
+        
+        let data: [String: Any] = [
+            "uid"              : "" ,
+            "address"          : "",
+            "zipcode"          : "",
+            "city"             : "",
+            "title"            : "",
+            "tagPersons"       : [],
+            "description"      : "" ,
+            "categories"       : [] ,
+            "Hastages"         : [],
+            "language"         : "",
+            "videoPath"        : "",
+            "imagePath"        : ""
+        ]
+        db.collection("Videos/Swifts").addDocument(data: data) { [weak self] error in
+            guard let strongSelf = self else { return }
+            if let error = error {
+                self?.stopAnimating()
+                self?.showToast(message: "Error adding document: \(error.localizedDescription)", seconds: 2, clr: .red)
+            } else {
+                self?.showToast(message: "Document added successfully.", seconds: 2, clr: .gray)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    self?.popRoot()
+                }
+            }
+        }
+    }
 }
 
