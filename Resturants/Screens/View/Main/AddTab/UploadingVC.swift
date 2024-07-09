@@ -103,32 +103,32 @@ class UploadingVC: UIViewController {
         }
     }
 
-    func uploadDataToFirestore() {
-        self.startAnimating()
-        let userToken = UserDefaults.standard.string(forKey: "token") ?? "defaultToken1"
-        let videosCollectionRef = db.collection("Videos").document(userToken).collection("VideosData")
-        let newDocumentRef = videosCollectionRef.addDocument(data:
-                                                                
-        UploadVideoModel
-        ) { error in
-            self.stopAnimating()
-            if let error = error {
-                print("Error writing document: \(error)")
-                self.showToast(message: error.localizedDescription, seconds: 2, clr: .red)
-            } else {
-                print("Document successfully written!")
-                let vc = Constants.TabControllerStoryBoard.instantiateViewController(withIdentifier: "TabbarController") as? TabbarController
-                self.navigationController?.pushViewController(vc!, animated: true)
-            }
-        }
-    }
+//    func uploadDataToFirestore() {
+//        self.startAnimating()
+//        let userToken = UserDefaults.standard.string(forKey: "token") ?? "defaultToken1"
+//        let videosCollectionRef = db.collection("Videos").document(userToken).collection("VideosData")
+//        let newDocumentRef = videosCollectionRef.addDocument(data:
+//                                                                
+//        UploadVideoModel
+//        ) { error in
+//            self.stopAnimating()
+//            if let error = error {
+//                print("Error writing document: \(error)")
+//                self.showToast(message: error.localizedDescription, seconds: 2, clr: .red)
+//            } else {
+//                print("Document successfully written!")
+//                let vc = Constants.TabControllerStoryBoard.instantiateViewController(withIdentifier: "TabbarController") as? TabbarController
+//                self.navigationController?.pushViewController(vc!, animated: true)
+//            }
+//        }
+//    }
     
     func SaveVideosData() {
         var db = Firestore.firestore()
         let tagUsers: [UserTagModel] = self.UploadVideoModel["tagPersons"] as! [UserTagModel]
         let tagUserDictionaries = tagUsers.map { $0.toDictionary() }
         let data: [String: Any] = [
-            "uid"              : self.UploadVideoModel["videoUrl"] as! String ,
+            "uid"              : self.UploadVideoModel["uid"] as! String ,
             "address"          : self.UploadVideoModel["address"] as! String,
             "zipcode"          : self.UploadVideoModel["zipcode"] as! String,
             "city"             : self.UploadVideoModel["city"] as! String,
@@ -139,10 +139,15 @@ class UploadingVC: UIViewController {
             "hashtages"        : self.UploadVideoModel["hashtages"] as! [String],
             "language"         : self.UploadVideoModel["language"] as! String,
             "videoUrl"         : self.UploadVideoModel["videoUrl"] as! String,
-            "thumbnailUrl"     : self.UploadVideoModel["thumbnailUrl"] as! String
+            "thumbnailUrl"     : self.UploadVideoModel["thumbnailUrl"] as! String,
+            "likes"            : self.UploadVideoModel["Likes"] as! Bool,
+            "comments"         : self.UploadVideoModel["comments"] as! Bool,
+            "views"            : self.UploadVideoModel["views"] as! Bool,
+            "paidCollab"       : self.UploadVideoModel["paidCollab"] as! Bool,
+            "introVideos"      : self.UploadVideoModel["introVideos"] as! Bool
         ]
         print(data)
-        db.collection("Videos/Swifts").addDocument(data: data) { [weak self] error in
+        db.collection("Videos&Swifts").addDocument(data: data) { [weak self] error in
             guard let strongSelf = self else { return }
             if let error = error {
                 self?.stopAnimating()

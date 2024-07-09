@@ -57,7 +57,7 @@ class SwiftVC: UIViewController {
     func setUpVideos() {
         if let response = responseModel {
             for i in response {
-                let video = Videos(identifier: UUID().uuidString, address: i.address ?? "", Zipcode: i.Zipcode ?? "", city: i.city ?? "", hashTagsModelList: i.hashTagsModelList ?? [], Title: i.Title ?? "", description: i.description ?? "", language: i.language ?? "", ThumbnailUrl: i.ThumbnailUrl ?? "", videoUrl: i.videoUrl ?? "")
+                let video = Videos(identifier: UUID().uuidString, address: i.address ?? "", Zipcode: i.Zipcode ?? "", city: i.city ?? "", hashTagsModelList: i.hashtages ?? [], Title: i.Title ?? "", description: i.description ?? "", language: i.language ?? "", ThumbnailUrl: i.thumbnailUrl ?? "", videoUrl: i.videoUrl ?? "")
                 self.videos.append(video)
             }
             self.adapter.reloadData(completion: nil)

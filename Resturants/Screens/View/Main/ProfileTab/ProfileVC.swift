@@ -132,7 +132,6 @@ class ProfileVC: BaseClass {
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
-    
     @IBAction func ontapFollow(_ sender: UIButton) {
         
         if btnFollow.titleLabel?.text == "Follow" {
@@ -154,7 +153,6 @@ class ProfileVC: BaseClass {
             btnFollow.setTitle("Follow", for: .normal)
         }
     }
-    
     @IBAction func ontapTagPeople(_ sender: UIButton) {
         
         let vc = Constants.addStoryBoard.instantiateViewController(withIdentifier: "TagPeopleVC") as? TagPeopleVC
@@ -223,7 +221,6 @@ extension ProfileVC {
     func onload() {
         setupView()
     }
-    
     func updateCoverUrlInModel(newCoverUrl: String) {
         if var model = self.profileModel {
             model.coverUrl = newCoverUrl
@@ -231,7 +228,6 @@ extension ProfileVC {
             self.setupProfile(user: model)
         }
     }
-    
     func updateProfileUrlInModel(newProfileUrl: String) {
         if var model = self.profileModel {
             model.profileUrl = newProfileUrl
@@ -239,7 +235,6 @@ extension ProfileVC {
             self.setupProfile(user: model)
         }
     }
-    
     func setupProfile(user: UserProfileModel) {
         
         lblChannelName.text = user.channelName ?? ""
@@ -350,7 +345,6 @@ extension ProfileVC {
             updateUserDocument()   //updating profile data of tag list to be updated user profile always
         }
     }
-    
     func setupView() {
         tblVIdeos.register(VideoTCell.nib, forCellReuseIdentifier: VideoTCell.identifier)
         tblVIdeos.delegate            = self
@@ -378,7 +372,6 @@ extension ProfileVC {
         tblMenu.delegate           = self
         tblMenu.dataSource         = self
     }
-    
     func onAppear() {
         
         vwVideo.isHidden         = false
@@ -389,7 +382,7 @@ extension ProfileVC {
         stackMenu.isHidden       = true
         
         if UserDefault.isAuthenticated {
-            fetchDataFromFirestore()
+            fetchVideosFromFirestore()
             fetchUserData(userID: isNonOwner ? nonProfileModel?.uid ?? "" : UserDefault.token) { user in
                 self.stopAnimating()
                 if let user = user {
@@ -411,14 +404,12 @@ extension ProfileVC {
             }
         }
     }
-    
     func updateCollectionViewHeight() {
         let numberOfItems = responseModel?.count ?? 0
         let numberOfRows = ceil(Double(numberOfItems) / Double(itemsPerColumn))
         let newHeight = numberOfRows * Double(itemHeight)
         collectSwiftHeightCons.constant = CGFloat(newHeight)
     }
-    
     func setupAVPlayer(with url: URL , vw: UIView) -> AVPlayerLayer {
 
         player = AVPlayer(url: url)
@@ -430,7 +421,6 @@ extension ProfileVC {
         //self.view.layer.addSublayer(playerLayer)
        //
     }
-    
     @objc func playerItemDidReachEnd(notification: Notification) {
             player.seek(to: .zero) {
                 _ in self.player.play()
@@ -527,7 +517,7 @@ extension ProfileVC : UITableViewDelegate , UITableViewDataSource {
                 cell.lblName.text    = responseModel?[indexPath.row].Title ?? ""
                 cell.lblDateViews.text    = "3 October 2002 / 200 views"
                 DispatchQueue.main.async {
-                    guard let url = self.responseModel?[indexPath.row].ThumbnailUrl else {
+                    guard let url = self.responseModel?[indexPath.row].thumbnailUrl else {
                         return
                     }
                     let url1 = URL(string: url)!
@@ -573,7 +563,6 @@ extension ProfileVC : UITableViewDelegate , UITableViewDataSource {
         }
     }
 }
-
 //MARK: - collection view {}
 extension ProfileVC : UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -593,7 +582,7 @@ extension ProfileVC : UICollectionViewDelegate , UICollectionViewDataSource , UI
             cell.lblDescrip.text = responseModel?[indexPath.row].description ?? ""
             cell.lblName.text    = responseModel?[indexPath.row].Title ?? ""
             DispatchQueue.main.async {
-                guard let url = self.responseModel?[indexPath.row].ThumbnailUrl else {
+                guard let url = self.responseModel?[indexPath.row].thumbnailUrl else {
                     return
                 }
                 let url1 = URL(string: url)!
@@ -621,49 +610,6 @@ extension ProfileVC : UICollectionViewDelegate , UICollectionViewDataSource , UI
         return CGSize(width: 120, height: 250)
     }
     
-}
-
-//MARK: - Protocol of AccountreportDelete
-extension ProfileVC: AccountActionPopupDelegate {
-    func action(call: String) {
-        if call == "Report" {
-            let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "AccountReportVC") as! AccountReportVC
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
-        else{
-            let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "BlockUserPopUpVC") as! BlockUserPopUpVC
-            vc.nonProfileModel = self.nonProfileModel
-            vc.profileModel    = self.profileModel
-            self.present(vc, animated: true)
-        }
-    }
-    
-}
-
-//MARK: - Protocol Image Picker {}
-extension ProfileVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
-    func pickImg() {
-        let picker = UIImagePickerController()
-        picker.allowsEditing = true
-        picker.delegate = self
-        present(picker, animated: true)
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let image = info[.editedImage] as? UIImage else { return }
-        dismiss(animated: true)
-        currentImage = image
-        if CurrentTagImg == 0 {
-            imgProfile.image = currentImage
-            uploadProfileImg(currentImage, userID: UserDefault.token)
-           
-        }
-        else {
-            imgCover.image   = currentImage
-            uploadCoverImg(currentImage, userID: UserDefault.token)
-        }
-    }
 }
 
 //MARK: - Get Videos / profile / change cover / change profile {}
@@ -750,14 +696,14 @@ extension ProfileVC {
             }
         }
     }
-    func fetchDataFromFirestore() {
+    func fetchVideosFromFirestore() {
     
         self.startAnimating()
-        let userToken = UserDefaults.standard.string(forKey: "token") ?? "defaultToken1"
-        let videosCollectionRef = db.collection("Videos").document(userToken).collection("VideosData")
+        let userToken = UserDefault.token
+        let collectionRef = db.collection("Videos&Swifts")
         
-        videosCollectionRef.addSnapshotListener { querysnap, error in
-            guard let document = querysnap?.documents else {
+        collectionRef.getDocuments { (querySnapshot, error) in
+            guard let document = querySnapshot?.documents else {
                 print("no document")
                 self.stopAnimating()
                 return
@@ -765,16 +711,35 @@ extension ProfileVC {
             self.responseModel = document.map  { (QueryDocumentSnapshot) -> ProfileVideosModel in
                 
                 let data         =  QueryDocumentSnapshot.data()
+                
+                let tagPersonsData = data["tagPersons"] as? [[String: Any]] ?? []
+                let tagPersons = tagPersonsData.compactMap { dict -> UserTagModel? in
+                    let uid = dict["uid"] as? String
+                    let img = dict["img"] as? String
+                    let channelName = dict["channelName"] as? String
+                    let followers = dict["followers"] as? String
+                    let accountType = dict["accountType"] as? String
+                    return UserTagModel(uid: uid, img: img, channelName: channelName, followers: followers, accountType: accountType)
+                }
+                let uid          = data["uid"] as? String ?? ""
                 let address      = data["address"] as? String ?? ""
-                let ZipCode      = data["Zipcode"] as? String ?? ""
+                let zipcode      = data["zipcode"] as? String ?? ""
                 let city         = data["city"] as? String ?? ""
-                let hashTagsList = data["hashTagsModelList"] as? [String] ?? []
-                let Title        = data["Title"] as? String ?? ""
+                let title        = data["title"] as? String ?? ""
+                let TagPersons   = tagPersons
                 let description  = data["description"] as? String ?? ""
+                let categories   = data["categories"] as? [String] ?? []
+                let hashtages    = data["hashtages"] as? [String] ?? []
                 let language     = data["language"] as? String ?? ""
-                let ThumbnailUrl = data["ThumbnailUrl"] as? String ?? ""
                 let videoUrl     = data["videoUrl"] as? String ?? ""
-                return ProfileVideosModel(address: address, Zipcode: ZipCode, city: city, hashTagsModelList: hashTagsList, Title: Title, description: description, language: language, ThumbnailUrl: ThumbnailUrl, videoUrl: videoUrl)
+                let thumbnailUrl = data["thumbnailUrl"] as? String ?? ""
+                let likes        = data["likes"] as? Bool ?? false
+                let comments     = data["comments"] as? Bool ?? false
+                let views        = data["views"] as? Bool ?? false
+                let paidCollab   = data["paidCollab"] as? Bool ?? false
+                let introVideos  = data["introVideos"] as? Bool ?? false
+                
+                return ProfileVideosModel(uid: uid, address: address, Zipcode: zipcode, city: city, Title: title, tagPersons: TagPersons, description: description, categories: categories, hashtages: hashtages, language: language, thumbnailUrl: thumbnailUrl, videoUrl: videoUrl, likes: likes, comments: comments, views: views, paidCollab: paidCollab, introVideos: introVideos)
             }
             self.stopAnimating()
             print(self.responseModel)
@@ -910,7 +875,6 @@ extension ProfileVC {
             }
         }
     }
-    
     func addFollowingPeoplesList(_ userID: String, tagUser: [UserTagModel]) {
         self.startAnimating()
         let db = Firestore.firestore()
@@ -947,7 +911,31 @@ extension ProfileVC {
     }
 }
 
-
+//MARK: - Protocol Image Picker {}
+extension ProfileVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func pickImg() {
+        let picker = UIImagePickerController()
+        picker.allowsEditing = true
+        picker.delegate = self
+        present(picker, animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[.editedImage] as? UIImage else { return }
+        dismiss(animated: true)
+        currentImage = image
+        if CurrentTagImg == 0 {
+            imgProfile.image = currentImage
+            uploadProfileImg(currentImage, userID: UserDefault.token)
+           
+        }
+        else {
+            imgCover.image   = currentImage
+            uploadCoverImg(currentImage, userID: UserDefault.token)
+        }
+    }
+}
 //MARK: - call back delegate to be show another person profile {}
 extension ProfileVC: TagPeopleDelegate {
     func selectedUser(data: TagUsers) {
@@ -958,3 +946,20 @@ extension ProfileVC: TagPeopleDelegate {
     }
     
 }
+//MARK: - Protocol of AccountreportDelete
+extension ProfileVC: AccountActionPopupDelegate {
+    func action(call: String) {
+        if call == "Report" {
+            let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "AccountReportVC") as! AccountReportVC
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        else{
+            let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "BlockUserPopUpVC") as! BlockUserPopUpVC
+            vc.nonProfileModel = self.nonProfileModel
+            vc.profileModel    = self.profileModel
+            self.present(vc, animated: true)
+        }
+    }
+    
+}
+

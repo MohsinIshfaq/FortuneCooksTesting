@@ -102,17 +102,24 @@ struct UploadVideosModel: Codable {
 }
 
 
-struct ProfileVideosModel:  Identifiable,Decodable {
-    let id: String   = UUID().uuidString
+struct ProfileVideosModel {
+    let uid          : String?
     let address      : String?
     let Zipcode      : String?
     let city         : String?
-    let hashTagsModelList: [String]?
     let Title        : String?
+    let tagPersons   : [UserTagModel]?
     let description  : String?
+    let categories   : [String]?
+    let hashtages    : [String]?
     let language     : String?
-    let ThumbnailUrl : String?
+    let thumbnailUrl : String?
     let videoUrl     : String?
+    let likes        : Bool?
+    let comments     : Bool?
+    let views        : Bool?
+    let paidCollab   : Bool?
+    let introVideos  : Bool?
 }
 
 
