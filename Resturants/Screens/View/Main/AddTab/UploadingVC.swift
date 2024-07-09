@@ -74,7 +74,8 @@ class UploadingVC: UIViewController {
                     if error == nil {
                         //WE WILL GOT VIDEO FROM THIS URL
                         self.UploadVideoModel["videoUrl"] = "\(url!)"
-                        self.uploadDataToFirestore()
+                       // self.uploadDataToFirestore()
+                        self.SaveVideosData()
                     }
                     else{
                         self.showToast(message: error?.localizedDescription ?? "", seconds: 2, clr: .red)
@@ -124,21 +125,23 @@ class UploadingVC: UIViewController {
     
     func SaveVideosData() {
         var db = Firestore.firestore()
-        
+        let tagUsers: [UserTagModel] = self.UploadVideoModel["tagPersons"] as! [UserTagModel]
+        let tagUserDictionaries = tagUsers.map { $0.toDictionary() }
         let data: [String: Any] = [
-            "uid"              : "" ,
-            "address"          : "",
-            "zipcode"          : "",
-            "city"             : "",
-            "title"            : "",
-            "tagPersons"       : [],
-            "description"      : "" ,
-            "categories"       : [] ,
-            "Hastages"         : [],
-            "language"         : "",
-            "videoPath"        : "",
-            "imagePath"        : ""
+            "uid"              : self.UploadVideoModel["videoUrl"] as! String ,
+            "address"          : self.UploadVideoModel["address"] as! String,
+            "zipcode"          : self.UploadVideoModel["zipcode"] as! String,
+            "city"             : self.UploadVideoModel["city"] as! String,
+            "title"            : self.UploadVideoModel["title"] as! String,
+            "tagPersons"       : tagUserDictionaries,
+            "description"      : self.UploadVideoModel["description"] as! String,
+            "categories"       : self.UploadVideoModel["categories"] as! [String],
+            "hashtages"        : self.UploadVideoModel["hashtages"] as! [String],
+            "language"         : self.UploadVideoModel["language"] as! String,
+            "videoUrl"         : self.UploadVideoModel["videoUrl"] as! String,
+            "thumbnailUrl"     : self.UploadVideoModel["thumbnailUrl"] as! String
         ]
+        print(data)
         db.collection("Videos/Swifts").addDocument(data: data) { [weak self] error in
             guard let strongSelf = self else { return }
             if let error = error {

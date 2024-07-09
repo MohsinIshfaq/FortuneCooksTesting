@@ -18,13 +18,9 @@ protocol ReloadDelegate {
 
 class UplaodSwiftVC: UIViewController , ReloadDelegate , UITextViewDelegate , createAccntDelegate , TagPeopleDelegate, UITextFieldDelegate{
     func reload(data: [UserTagModel]) {
-        print("swiftVC")
+        selectedTagPersons = data
+        collectTagPeople.reloadData()
     }
-    
-    
-//    func reload() {
-//        collectTagPeople.reloadData()
-//    }
     func collectionData(type: Int) {
         UserManager.shared.selectedCuisine.removeAll()
         arrSelectedContent.removeAll()
@@ -76,23 +72,27 @@ class UplaodSwiftVC: UIViewController , ReloadDelegate , UITextViewDelegate , cr
     let storage = Storage.storage().reference()
     var gotSelectedThumbnail: Bool         = false
     let reachability = try! Reachability()
+    var selectedTagPersons: [UserTagModel]? = nil
     
     lazy var UploadVideoModel              : [String: Any] =  {
-        return ["address": txtAddress.text! as String  ,
-                "Zipcode": txtZipCode.text! as String  ,
-                "city"   : txtCity.text! as String     ,
-                "hashTagsModelList": arrHastag         ,
-                "Title":   txtTitle.text! as String    ,
-                "description": txtView.text! as String ,
-                "categories": arrSelectedContent       ,
-                "language": txtLang.text! as String    ,
-                "ThumbnailUrl": "\(thumbnailURL!)"     ,
-                "videoUrl"    : ""                     ,
-                "Likes"       : false                  ,
-                "comments"    : false                  ,
-                "views"       : false                  ,
-                "paidCollab"  : false                  ,
-                "introVideos" : false                  ]
+        return [
+            "uid": UserDefault.token as String  ,
+            "address": txtAddress.text! as String  ,
+            "zipcode": txtZipCode.text! as String  ,
+            "city"   : txtCity.text! as String     ,
+            "title":   txtTitle.text! as String    ,
+            "tagPersons": self.selectedTagPersons! as [UserTagModel],
+            "description": txtView.text! as String ,
+            "categories": arrSelectedContent       ,
+            "hashtages": arrHastag         ,
+            "language": txtLang.text! as String    ,
+            "thumbnailUrl": "\(thumbnailURL!)"     ,
+            "videoUrl"    : ""                     ,
+            "Likes"       : false                  ,
+            "comments"    : false                  ,
+            "views"       : false                  ,
+            "paidCollab"  : false                  ,
+            "introVideos" : false                  ]
     }()
     
     
@@ -278,7 +278,7 @@ extension UplaodSwiftVC {
 extension UplaodSwiftVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 }
 //MARK: - Collection View Setup {}
-extension UplaodSwiftVC: UICollectionViewDelegate , UICollectionViewDataSource {
+extension UplaodSwiftVC: UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == collectContent {
@@ -294,7 +294,7 @@ extension UplaodSwiftVC: UICollectionViewDelegate , UICollectionViewDataSource {
             }
         }
         else if collectionView == collectTagPeople {
-            return UserManager.shared.totalTagPeople
+            return selectedTagPersons?.count ?? 0
         }
         else{
             lblhastag.text = "\(arrHastag.count)/10"
@@ -318,7 +318,7 @@ extension UplaodSwiftVC: UICollectionViewDelegate , UICollectionViewDataSource {
         arrHastag.remove(at: sender.tag)
         collectHastag.reloadData()
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == collectContent {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionCell.identifier, for: indexPath) as! CollectionCell
@@ -331,6 +331,12 @@ extension UplaodSwiftVC: UICollectionViewDelegate , UICollectionViewDataSource {
         }
         else if collectionView == collectTagPeople {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TagPeopleCCell.identifier, for: indexPath) as! TagPeopleCCell
+            DispatchQueue.main.async {
+                if let profileURL = self.selectedTagPersons?[indexPath.row].img, let urlProfile1 = URL(string: profileURL) {
+                    cell.img.sd_setImage(with: urlProfile1)
+                }
+                cell.lbl.text      = self.selectedTagPersons?[indexPath.row].channelName ?? ""
+            }
             cell.btnDismiss.addTarget(self, action: #selector(removeTapped(sender:)), for: .touchUpInside)
             cell.btnDismiss.tag = indexPath.row
             return cell
@@ -344,16 +350,34 @@ extension UplaodSwiftVC: UICollectionViewDelegate , UICollectionViewDataSource {
         }
     }
     
-    @objc func removeTapped(sender: UIButton) {
-        if UserManager.shared.arrTagPeoples[sender.tag][1] == "0" {
-            UserManager.shared.arrTagPeoples[sender.tag][1] = "1"
-            UserManager.shared.totalTagPeople += 1
-            print(UserManager.shared.totalTagPeople)
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if collectionView == collectTagPeople {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TagPeopleCCell.identifier, for: indexPath) as! TagPeopleCCell
+            if let users = self.selectedTagPersons?[indexPath.row]{
+                cell.lbl.text = users.channelName ?? ""
+            }
+            let targetSize = CGSize(width: CGFloat.greatestFiniteMagnitude, height: 30)
+            let fittingSize = cell.contentView.systemLayoutSizeFitting(targetSize,
+                                                                       withHorizontalFittingPriority: .fittingSizeLevel,
+                                                                       verticalFittingPriority: .required)
+            return CGSize(width: fittingSize.width, height: 30)
+        }
+        else if collectionView == collectContent {
+            return CGSize(width: 110, height: 40)
         }
         else{
-            UserManager.shared.arrTagPeoples[sender.tag][1] = "0"
-            UserManager.shared.totalTagPeople -= 1
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HastagCCell.identifier, for: indexPath) as! HastagCCell
+            cell.lbl.text  = arrHastag[indexPath.row]
+            let targetSize = CGSize(width: CGFloat.greatestFiniteMagnitude, height: 30)
+            let fittingSize = cell.contentView.systemLayoutSizeFitting(targetSize,
+                                                                       withHorizontalFittingPriority: .fittingSizeLevel,
+                                                                       verticalFittingPriority: .required)
+            return CGSize(width: fittingSize.width, height: 30)
         }
+    }
+    
+    @objc func removeTapped(sender: UIButton) {
+        self.selectedTagPersons?.remove(at: sender.tag)
         collectTagPeople.reloadData()
     }
 }

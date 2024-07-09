@@ -408,8 +408,8 @@
             filePath = "Resturants/Screens/View/Main/AddTab/UplaodSwiftVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "367"
-            endingLineNumber = "367"
+            startingLineNumber = "391"
+            endingLineNumber = "391"
             landmarkName = "uplaodThumbnail(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -475,22 +475,6 @@
             startingLineNumber = "394"
             endingLineNumber = "394"
             landmarkName = "updateProfileModel(channel:bio:email:web:number:address:zipCode:city:timings:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "0A17248F-4DEC-4AB7-8890-9C7092108786"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Resturants/Screens/View/Main/AddTab/UplaodSwiftVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "21"
-            endingLineNumber = "21"
-            landmarkName = "reload(data:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -568,8 +552,8 @@
             filePath = "Resturants/Screens/View/Main/AddTab/TagPeopleVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "211"
-            endingLineNumber = "211"
+            startingLineNumber = "215"
+            endingLineNumber = "215"
             landmarkName = "addTagPeoplesList(_:tagUser:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -584,8 +568,8 @@
             filePath = "Resturants/Screens/View/Main/AddTab/TagPeopleVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "214"
-            endingLineNumber = "214"
+            startingLineNumber = "218"
+            endingLineNumber = "218"
             landmarkName = "addTagPeoplesList(_:tagUser:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -705,38 +689,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "75A31064-FBFA-4B1F-AE6B-A8BFC2B2D637"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Resturants/Screens/View/Main/AddTab/UploadThumbnailVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "58AC1B94-074F-4CC3-A4C6-B9EAA8A447CE"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Resturants/Screens/View/Main/AddTab/UplaodSwiftVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "101"
-            endingLineNumber = "101"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "85D97C40-BAAB-43CC-8238-584A350E3770"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -763,22 +715,6 @@
             startingLineNumber = "86"
             endingLineNumber = "86"
             landmarkName = "generateThumbnail(for:at:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "593E42D2-C124-4F3C-975F-60CD68C7E44D"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Resturants/Screens/View/Main/AddTab/UplaodSwiftVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
-            landmarkName = "ontapTagPeople(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

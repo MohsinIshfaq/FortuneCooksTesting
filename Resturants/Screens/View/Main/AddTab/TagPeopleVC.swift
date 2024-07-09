@@ -37,15 +37,21 @@ class TagPeopleVC: UIViewController , UISearchTextFieldDelegate{
     }
 
     @IBAction func ontapDone(_ sender: UIButton){
-        for i in 0 ..< selectedUser.count {
-            for j in 0 ..< blockUsers.count{
-                if selectedUser[i].uid == blockUsers[i].uid {
-                    self.showToast(message: "You Can't Tag Blocked User.", seconds: 1, clr: .red)
-                   return
+        if showTagUsers {
+            for i in 0 ..< selectedUser.count {
+                for j in 0 ..< blockUsers.count{
+                    if selectedUser[i].uid == blockUsers[i].uid {
+                        self.showToast(message: "You Can't Tag Blocked User.", seconds: 1, clr: .red)
+                        return
+                    }
                 }
             }
+            addTagPeoplesList(UserDefault.token, tagUser: selectedUser)
         }
-        addTagPeoplesList(UserDefault.token, tagUser: selectedUser)
+        else{
+            self.dismiss(animated: true)
+            delegate?.reload(data: selectedUser)
+        }
     }
     
     @IBAction func ontapDismis(_ sender: UIButton){
@@ -92,8 +98,6 @@ extension TagPeopleVC{
             }
         }
         self.tblSelection.reloadData()
-//            if
-//        }
     }
 }
 
