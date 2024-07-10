@@ -72,6 +72,8 @@ class ProfileVC: BaseClass {
     var CurrentTagImg   : Int?
     var db = Firestore.firestore()
     var responseModel   : [ProfileVideosModel]? = []
+    var reelsModel      : [ProfileVideosModel]? = []
+    var videosModel     : [ProfileVideosModel]? = []
     let itemsPerColumn  : Int = 2
     let itemHeight      : CGFloat = 250.0 // Example item height
     var selectedVideo   : ProfileVideosModel? = nil
@@ -404,6 +406,27 @@ extension ProfileVC {
             }
         }
     }
+    
+    func reelsAndVideosCollectionMaking() {
+        self.reelsModel?.removeAll()
+        self.videosModel?.removeAll()
+        for i in 0 ..< (self.responseModel?.count ?? 0) {
+            if var url  = URL(string: self.responseModel?[i].videoUrl ?? "") {
+                if isReel(url: url) {
+                    if var data = self.responseModel?[i] {
+                        self.reelsModel?.append(data)
+                    }
+                }
+                else{
+                    if var data = self.responseModel?[i] {
+                        self.videosModel?.append(data)
+                    }
+                }
+            }
+        }
+        self.collectSwift.reloadData()
+        self.tblVIdeos.reloadData()
+    }
     func updateCollectionViewHeight() {
         let numberOfItems = responseModel?.count ?? 0
         let numberOfRows = ceil(Double(numberOfItems) / Double(itemsPerColumn))
@@ -450,13 +473,12 @@ extension ProfileVC : UITableViewDelegate , UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == tblVIdeos {
-            if (responseModel?.count ?? 0) == 0 {
+            if (videosModel?.count ?? 0) == 0 {
                 return 1
             }
             else{
-                tblVideoHeightCons.constant = CGFloat(300 + ((responseModel?.count ?? 0) * 140))
-                //return arr.count
-                return responseModel?.count ?? 0
+                tblVideoHeightCons.constant = CGFloat(300 + ((videosModel?.count ?? 0) * 140))
+                return videosModel?.count ?? 0
             }
         }
         if tableView == tblMenu {
@@ -479,11 +501,11 @@ extension ProfileVC : UITableViewDelegate , UITableViewDataSource {
             player.pause()
             
         }
-        else if responseModel?.count != 0{
+        else if videosModel?.count != 0{
             headerView.btnPlay.setImage(UIImage(systemName: "play.circle.fill"), for: .normal)
-            headerView.vwVideo.layer.addSublayer(setupAVPlayer(with: URL(string: self.responseModel?[0].videoUrl ?? "")!, vw: headerView.vwVideo))
+            headerView.vwVideo.layer.addSublayer(setupAVPlayer(with: URL(string: self.videosModel?[0].videoUrl ?? "")!, vw: headerView.vwVideo))
             headerView.btnPlay.addTarget(self, action: #selector(playButtonTapped), for: .touchUpInside)
-            headerView.lblTitle.text = self.responseModel?[0].description ?? ""
+            headerView.lblTitle.text = self.videosModel?[0].description ?? ""
             headerView.lblViews.text = "3/10/2002 / 200 views"
             player.pause()
         }
@@ -491,12 +513,9 @@ extension ProfileVC : UITableViewDelegate , UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if tableView == tblVIdeos {
-//            if self.selectedVideo?.videoUrl ?? "" != "" {
-//                return 300
-//            }
-           // else{
+            if videosModel?.count != 0 {
                 return 300
-          //  }
+            }
         }
         if tableView == tblMenu {
             return 0
@@ -507,17 +526,17 @@ extension ProfileVC : UITableViewDelegate , UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView == tblVIdeos {
-            if (responseModel?.count ?? 0) == 0 {
+            if (videosModel?.count ?? 0) == 0 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: NoPostTCell.identifier, for: indexPath) as! NoPostTCell
                 return cell
             }
             else{
                 let cell = tableView.dequeueReusableCell(withIdentifier: VideoTCell.identifier, for: indexPath) as! VideoTCell
-                cell.lblDEscrip.text = responseModel?[indexPath.row].description ?? ""
-                cell.lblName.text    = responseModel?[indexPath.row].Title ?? ""
+                cell.lblDEscrip.text = videosModel?[indexPath.row].description ?? ""
+                cell.lblName.text    = videosModel?[indexPath.row].Title ?? ""
                 cell.lblDateViews.text    = "3 October 2002 / 200 views"
                 DispatchQueue.main.async {
-                    guard let url = self.responseModel?[indexPath.row].thumbnailUrl else {
+                    guard let url = self.videosModel?[indexPath.row].thumbnailUrl else {
                         return
                     }
                     let url1 = URL(string: url)!
@@ -545,8 +564,11 @@ extension ProfileVC : UITableViewDelegate , UITableViewDataSource {
             self.present(vc, animated: true)
         }
         else if tableView == tblVIdeos {
-            self.selectedVideo = responseModel?[indexPath.row]
+            self.selectedVideo = videosModel?[indexPath.row]
             tblVIdeos.reloadData()
+        }
+        else{
+            
         }
     }
     
@@ -569,7 +591,7 @@ extension ProfileVC : UICollectionViewDelegate , UICollectionViewDataSource , UI
         if collectionView == collectSwift {
             //collectSwiftHeightCons.constant = 250 * 3
             updateCollectionViewHeight()
-            return responseModel?.count ?? 0
+            return reelsModel?.count ?? 0
         }
         else{
            return 3
@@ -579,10 +601,10 @@ extension ProfileVC : UICollectionViewDelegate , UICollectionViewDataSource , UI
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == collectSwift {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SwiftCCell.identifier, for: indexPath) as! SwiftCCell
-            cell.lblDescrip.text = responseModel?[indexPath.row].description ?? ""
-            cell.lblName.text    = responseModel?[indexPath.row].Title ?? ""
+            cell.lblDescrip.text = reelsModel?[indexPath.row].description ?? ""
+            cell.lblName.text    = reelsModel?[indexPath.row].Title ?? ""
             DispatchQueue.main.async {
-                guard let url = self.responseModel?[indexPath.row].thumbnailUrl else {
+                guard let url = self.reelsModel?[indexPath.row].thumbnailUrl else {
                     return
                 }
                 let url1 = URL(string: url)!
@@ -592,7 +614,6 @@ extension ProfileVC : UICollectionViewDelegate , UICollectionViewDataSource , UI
         }
         else{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SwiftCCell.identifier, for: indexPath) as! SwiftCCell
-            // let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NoPostCCell.identifier, for: indexPath) as! NoPostCCell
             return cell
         }
     }
@@ -601,7 +622,7 @@ extension ProfileVC : UICollectionViewDelegate , UICollectionViewDataSource , UI
         if collectionView == collectSwift {
             
             let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "SwiftVC") as? SwiftVC
-            vc?.responseModel = self.responseModel
+            vc?.responseModel = self.reelsModel
             self.navigationController?.pushViewController(vc!, animated: true)
         }
     }
@@ -743,10 +764,10 @@ extension ProfileVC {
             }
             self.stopAnimating()
             print(self.responseModel)
-            self.collectSwift.reloadData()
-            self.tblVIdeos.reloadData()
+            self.reelsAndVideosCollectionMaking()
         }
     }
+    
     func uploadCoverImg(_ img: UIImage, userID: String) {
         self.startAnimating()
         if reachability.isReachable {

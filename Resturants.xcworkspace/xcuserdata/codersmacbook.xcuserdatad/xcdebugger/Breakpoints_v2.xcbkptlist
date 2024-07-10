@@ -50,6 +50,36 @@
             endingLineNumber = "80"
             landmarkName = "verifyPhoneNUmber()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "55017042-39D8-4EEA-BC46-15C5A9E6C494 - 88ace81e3d79d993"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Resturants.CrtProfile3VC.verifyPhoneNUmber() -&gt; ()"
+                  moduleName = "Resturants"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/codersmacbook/Documents/FortuneCooksIOS/Resturants/Screens/View/Auth/CrtProfile3VC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "80"
+                  endingLineNumber = "80">
+               </Location>
+               <Location
+                  uuid = "55017042-39D8-4EEA-BC46-15C5A9E6C494 - 9d84cdfd84d1acec"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.String&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Resturants.CrtProfile3VC.verifyPhoneNUmber() -&gt; ()"
+                  moduleName = "Resturants"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/codersmacbook/Documents/FortuneCooksIOS/Resturants/Screens/View/Auth/CrtProfile3VC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "81"
+                  endingLineNumber = "81">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -146,6 +176,36 @@
             endingLineNumber = "70"
             landmarkName = "filterContentForSearchText(_:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "DAD8F7BF-AF74-4AD2-A9F1-90CDADD2AD62 - 986e0256c2fb4b0d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Resturants.FeedSelectionVC.filterContentForSearchText(Swift.String) -&gt; ()"
+                  moduleName = "Resturants"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/codersmacbook/Documents/FortuneCooksIOS/Resturants/Screens/View/Main/ProfileTab/FeedSelectionVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "70"
+                  endingLineNumber = "70">
+               </Location>
+               <Location
+                  uuid = "DAD8F7BF-AF74-4AD2-A9F1-90CDADD2AD62 - 4db74bef7e612307"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #3 (Swift.Array&lt;Swift.String&gt;) -&gt; Swift.Bool in Resturants.FeedSelectionVC.filterContentForSearchText(Swift.String) -&gt; ()"
+                  moduleName = "Resturants"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/codersmacbook/Documents/FortuneCooksIOS/Resturants/Screens/View/Main/ProfileTab/FeedSelectionVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "70"
+                  endingLineNumber = "70">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -199,22 +259,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "C4E5A58B-9A14-49DC-A164-8206AB8B6770"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Resturants/Cell/BixtokCell/IGBizTokVideoCell.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "356"
-            endingLineNumber = "356"
-            landmarkName = "playVideo(videoPlayer:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "A1F2AD3A-C87D-46DC-BA32-0400ABE4B5FB"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -226,54 +270,36 @@
             endingLineNumber = "188"
             landmarkName = "viewAgainAppeared()"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "D3C12ED2-5556-4FC0-8028-7EB30BC91C85"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Resturants/Cell/BixtokCell/IGBizTokVideoCell.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "377"
-            endingLineNumber = "377"
-            landmarkName = "playPause()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "541A024E-7F5D-436D-9DC4-04F2C8628C51"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Resturants/Cell/BixtokCell/IGBizTokVideoCell.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "366"
-            endingLineNumber = "366"
-            landmarkName = "startVideo()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "83C2E04E-0763-45EA-BAFE-33E985470D11"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Resturants/Screens/View/Main/ProfileTab/VideosSectionController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "205"
-            endingLineNumber = "205"
-            landmarkName = "listAdapter(_:willDisplay:)"
-            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "A1F2AD3A-C87D-46DC-BA32-0400ABE4B5FB - f5f3f6347932abdc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Resturants.IGBizTokVideoCell.viewAgainAppeared() -&gt; ()"
+                  moduleName = "Resturants"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/codersmacbook/Documents/FortuneCooksIOS/Resturants/Cell/BixtokCell/IGBizTokVideoCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "188"
+                  endingLineNumber = "188">
+               </Location>
+               <Location
+                  uuid = "A1F2AD3A-C87D-46DC-BA32-0400ABE4B5FB - efa79abc4c37932a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Foundation.Notification) -&gt; () in Resturants.IGBizTokVideoCell.viewAgainAppeared() -&gt; ()"
+                  moduleName = "Resturants"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/codersmacbook/Documents/FortuneCooksIOS/Resturants/Cell/BixtokCell/IGBizTokVideoCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "189"
+                  endingLineNumber = "189">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -318,8 +344,8 @@
             filePath = "Resturants/Screens/View/Main/ProfileTab/ProfileVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "208"
-            endingLineNumber = "208"
+            startingLineNumber = "210"
+            endingLineNumber = "210"
             landmarkName = "ontapSeeMore(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -478,8 +504,8 @@
             filePath = "Resturants/Screens/View/Main/ProfileTab/ProfileVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "322"
-            endingLineNumber = "322"
+            startingLineNumber = "324"
+            endingLineNumber = "324"
             landmarkName = "setupProfile(user:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -599,22 +625,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "9E2C000C-D59B-4AB6-B861-4CC264D769F2"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Resturants/Screens/View/Main/ProfileTab/ProfileVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "745"
-            endingLineNumber = "745"
-            landmarkName = "fetchVideosFromFirestore()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "E19C50B2-8A6E-4259-A39C-FAA8F2D3DBAE"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -658,6 +668,52 @@
             endingLineNumber = "392"
             landmarkName = "uplaodThumbnail(_:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "26EF5FF4-F696-4FD8-92C5-115BB14C67A8"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Resturants/Screens/View/Main/ProfileTab/ProfileVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "571"
+            endingLineNumber = "571"
+            landmarkName = "tableView(_:didSelectRowAt:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "26EF5FF4-F696-4FD8-92C5-115BB14C67A8 - d9433e1d6b31f65e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Resturants.ProfileVC.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "Resturants"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/codersmacbook/Documents/FortuneCooksIOS/Resturants/Screens/View/Main/ProfileTab/ProfileVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "571"
+                  endingLineNumber = "571">
+               </Location>
+               <Location
+                  uuid = "26EF5FF4-F696-4FD8-92C5-115BB14C67A8 - d9433e1d6b31f67d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Resturants.ProfileVC.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "Resturants"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/codersmacbook/Documents/FortuneCooksIOS/Resturants/Screens/View/Main/ProfileTab/ProfileVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "572"
+                  endingLineNumber = "572">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

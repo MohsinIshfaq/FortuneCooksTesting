@@ -95,6 +95,26 @@ extension UIViewController {
         }
     }
     
+    func getVideoDimensions(url: URL) -> (width: Int, height: Int)? {
+        let asset = AVAsset(url: url)
+        guard let track = asset.tracks(withMediaType: .video).first else {
+            return nil
+        }
+        let size = track.naturalSize.applying(track.preferredTransform)
+        let width = abs(size.width)
+        let height = abs(size.height)
+        return (width: Int(width), height: Int(height))
+    }
+    
+    func isReel(url: URL) -> Bool {
+        guard let dimensions = getVideoDimensions(url: url) else {
+            print("Unable to get video dimensions.")
+            return false
+        }
+        
+        return dimensions.height > dimensions.width
+    }
+    
     //MARK: - Navigation Title large Animation {}
     func scroll(_ scrollView: UIScrollView, _ title: String) {
         let scrollOffset = scrollView.contentOffset.y
