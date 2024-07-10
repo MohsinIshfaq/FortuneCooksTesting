@@ -389,14 +389,15 @@ extension UplaodSwiftVC {
         // self.startAnimating()
         if reachability.isReachable {
             let uniqueID = UUID().uuidString
-            let storageRef = Storage.storage().reference().child("\(uniqueID).png")
+            print(uniqueID)
+            let storageRef = Storage.storage().reference().child("thumbnails/\(uniqueID).png")
             let imgData = img.pngData()
             let metadata = StorageMetadata()
             metadata.contentType = "image/png"
             storageRef.putData(imgData!,metadata: metadata) { metadata, error in
                 //  self.stopAnimating()
                 if error == nil {
-                    let storage = Storage.storage().reference(withPath: "MyImg.png")
+                    let storage = storageRef
                     storage.downloadURL { (url, error) in
                         if error != nil {
                             self.stopAnimating()

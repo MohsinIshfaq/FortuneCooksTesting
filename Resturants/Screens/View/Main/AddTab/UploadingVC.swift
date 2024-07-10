@@ -102,26 +102,6 @@ class UploadingVC: UIViewController {
             self.showToast(message: "Successfully Uploaded", seconds: 2, clr: .gray)
         }
     }
-
-//    func uploadDataToFirestore() {
-//        self.startAnimating()
-//        let userToken = UserDefaults.standard.string(forKey: "token") ?? "defaultToken1"
-//        let videosCollectionRef = db.collection("Videos").document(userToken).collection("VideosData")
-//        let newDocumentRef = videosCollectionRef.addDocument(data:
-//                                                                
-//        UploadVideoModel
-//        ) { error in
-//            self.stopAnimating()
-//            if let error = error {
-//                print("Error writing document: \(error)")
-//                self.showToast(message: error.localizedDescription, seconds: 2, clr: .red)
-//            } else {
-//                print("Document successfully written!")
-//                let vc = Constants.TabControllerStoryBoard.instantiateViewController(withIdentifier: "TabbarController") as? TabbarController
-//                self.navigationController?.pushViewController(vc!, animated: true)
-//            }
-//        }
-//    }
     
     func SaveVideosData() {
         var db = Firestore.firestore()
