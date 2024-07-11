@@ -108,13 +108,13 @@ class AddCaptionVC: AudioViewController , UITextViewDelegate {
                                       y: initialFrame.origin.y + deltaY,
                                       width: initialFrame.size.width,
                                       height: initialFrame.size.height)
-
+            
             // Determine the position of the text field based on the y-axis
             let viewHeight = self.view.bounds.height
             let ySpacing = viewHeight / 12 // Equal spacing for y-axis
-
+            
             let yPosition: Int
-
+            
             if touchPoint.y < ySpacing {
                 yPosition = 0 // Topmost
             } else if touchPoint.y < 2 * ySpacing {
@@ -140,10 +140,26 @@ class AddCaptionVC: AudioViewController , UITextViewDelegate {
             } else {
                 yPosition = 11 // Bottommost
             }
-
+            
+            let viewWidth = self.view.bounds.width
+            let xSpacing = viewWidth / 3 // Divided into three segments (leading, center, trailing)
+            
+            var xPosition: Int
+            
+            if touchPoint.x < xSpacing {
+                xPosition = 0 // Leading side
+            } else if touchPoint.x < 2 * xSpacing {
+                xPosition = 1 // Center
+            } else {
+                xPosition = 2 // Trailing side
+            }
+            
+            
             // Now you can use the 'yPosition' variable as needed.
             print("Y Position: \(yPosition)")
+            print("X Position: \(xPosition)")
             self.posotionTxtFld = yPosition
+            self.xPosition      = xPosition
             
         default:
             break

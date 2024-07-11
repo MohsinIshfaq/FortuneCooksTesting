@@ -362,16 +362,22 @@ open class AudioViewController: UIViewController, AVAudioRecorderDelegate {
                 textY = 200 //max(20, (renderHeight - textHeight) / 2) // Default to center if position is out of range
             }
 
+            // Determine textX based on the 3 x-axis positions (leading, center, trailing)
+            // Determine textX based on the 3 x-axis positions (leading, center, trailing)
+            let viewWidth = self.view.bounds.width
+           // let xSpacing = viewWidth / 3 // Divide width into three equal parts
+
             let textX: CGFloat
+            print(xPosition)
             switch xPosition {
             case 0:
-                textX = max(20, padding) // Leading side, adjust as needed
+                textX = 10 // Leading side, 10 points from the leading edge
             case 1:
-                textX = max(20, (renderWidth - textWidth) / 2) // Center
+                textX = (viewWidth - textWidth) / 2 + 350 // Center, text layer is centered horizontally
             case 2:
-                textX = max(20, renderWidth - textWidth - padding) // Trailing side, adjust as needed
+                textX = (viewWidth - textWidth) / 2 + 500 // Trailing side, 10 points from the trailing edge
             default:
-                textX = max(20, (renderWidth - textWidth) / 2) // Default to center if position is out of range
+                textX = (viewWidth - textWidth) / 2 // Default to center if position is out of range
             }
 
             // Ensure text doesn't cross the top border
