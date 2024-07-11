@@ -314,8 +314,28 @@ open class AudioViewController: UIViewController, AVAudioRecorderDelegate {
             let textWidth = textSize.width + (2 * padding)
             let textHeight = textSize.height + (2 * padding)
             let textX = (renderWidth - textWidth) / 2
-            let textY = position == 0 ? max(20, renderHeight - textHeight - 80) : position == 1 ? max(20, (renderHeight - textHeight) / 2) : 20
-            
+
+            // Determine textY based on the 6 positions
+            let spacing = renderHeight / 6 // Equal spacing
+
+            let textY: CGFloat
+            switch position {
+            case 0:
+                textY = max(20, spacing - textHeight / 2) // Topmost
+            case 1:
+                textY = max(20, renderHeight - spacing - textHeight / 2) // Bottommost
+            case 2:
+                textY = max(20, 4 * spacing - textHeight / 2) // Middle bottom
+            case 3:
+                textY = max(20, 3 * spacing - textHeight / 2) // Middle top
+            case 4:
+                textY = 60
+            case 5:
+                textY = 20
+            default:
+                textY = max(20, (renderHeight - textHeight) / 2) // Default to center if position is out of range
+            }
+
             // Ensure text doesn't cross the top border
             textLayer.frame = CGRect(x: textX, y: textY, width: textWidth, height: textHeight)
             

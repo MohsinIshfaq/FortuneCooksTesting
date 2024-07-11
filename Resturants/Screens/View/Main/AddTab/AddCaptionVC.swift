@@ -107,21 +107,25 @@ class AddCaptionVC: AudioViewController , UITextViewDelegate {
                                       y: initialFrame.origin.y + deltaY,
                                       width: initialFrame.size.width,
                                       height: initialFrame.size.height)
-            
+
             // Determine the position of the text field based on the yAxis
             let viewHeight = self.view.bounds.height
-            let spacing = viewHeight / 3 // Equal spacing
-            
-            let topThreshold = spacing // Top
-            let bottomThreshold = viewHeight - spacing // Bottom
+            let spacing = viewHeight / 6 // Equal spacing
+
             let position: Int
-            
-            if touchPoint.y < topThreshold {
-                position = 0 // Top
-            } else if touchPoint.y > topThreshold && touchPoint.y < bottomThreshold {
-                position = 1 // Center
+
+            if touchPoint.y < spacing {
+                position = 0 // Topmost
+            } else if touchPoint.y < 2 * spacing {
+                position = 1 // Upper middle
+            } else if touchPoint.y < 3 * spacing {
+                position = 2 // Middle top
+            } else if touchPoint.y < 4 * spacing {
+                position = 3 // Middle bottom
+            } else if touchPoint.y < 5 * spacing {
+                position = 4 // Lower middle
             } else {
-                position = 2 // Bottom
+                position = 5 // Bottommost
             }
             
             // Now you can use the 'position' variable as needed.
@@ -320,7 +324,7 @@ class AddCaptionVC: AudioViewController , UITextViewDelegate {
         else{
           //  DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.startAnimating()
-                if var string = addNewlineIfNeeded(to: txtCaption.text, textViewWidth: txtCaption.frame.width, font: txtCaption.font ?? UIFont.systemFont(ofSize: 17)) {
+                if var string = addNewlineIfNeeded(to: txtCaption.text, textViewWidth: txtCaption.frame.width - 10, font: txtCaption.font ?? UIFont.systemFont(ofSize: 17)) {
                     print(string)
                     self.addStickerorTexttoVideo(textBgClr: self.txtBGcolor
                                             , textForeClr: self.txtForcolor
