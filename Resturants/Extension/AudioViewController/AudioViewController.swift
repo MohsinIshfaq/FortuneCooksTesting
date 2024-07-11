@@ -199,7 +199,7 @@ open class AudioViewController: UIViewController, AVAudioRecorderDelegate {
         }
     }
     
-    func addStickerorTexttoVideo(textBgClr: UIColor , textForeClr: UIColor , fontNm: Int , videoUrl: URL, watermarkText text : String, imageName name : String, position : Int,  success: @escaping ((URL) -> Void), failure: @escaping ((String?) -> Void)) {
+    func addStickerorTexttoVideo(textBgClr: UIColor , textForeClr: UIColor , fontNm: Int , videoUrl: URL, watermarkText text : String, imageName name : String, position : Int , xPosition : Int ,  success: @escaping ((URL) -> Void), failure: @escaping ((String?) -> Void)) {
         
         
         let asset = AVURLAsset(url: videoUrl)
@@ -313,32 +313,101 @@ open class AudioViewController: UIViewController, AVAudioRecorderDelegate {
             let padding: CGFloat = 10
             let textWidth = textSize.width + (2 * padding)
             let textHeight = textSize.height + (2 * padding)
-            let textX = (renderWidth - textWidth) / 2
 
-            // Determine textY based on the 6 positions
-            let spacing = renderHeight / 6 // Equal spacing
+            // Determine textX based on the 3 positions (left, center, right)
+            let xSpacing = renderWidth / 3 // Equal spacing for x-axis
+
+//            let textX: CGFloat
+//            switch xPosition {
+//            case 0:
+//                textX = max(20, xSpacing - textWidth / 2) // Left
+//            case 1:
+//                textX = max(20, 2 * xSpacing - textWidth / 2) // Center
+//            case 2:
+//                textX = max(20, renderWidth - xSpacing - textWidth / 2) // Right
+//            default:
+//                textX = max(20, (renderWidth - textWidth) / 2) // Default to center if position is out of range
+//            }
+
+            // Determine textY based on the 12 vertical positions
+            let ySpacing = renderHeight / 12 // Equal spacing for y-axis
 
             let textY: CGFloat
             switch position {
             case 0:
-                textY = max(20, spacing - textHeight / 2) // Topmost
+                textY = max(20, ySpacing - textHeight / 2) // Topmost
             case 1:
-                textY = max(20, renderHeight - spacing - textHeight / 2) // Bottommost
+                textY = 1600 // Second position   //275
             case 2:
-                textY = max(20, 4 * spacing - textHeight / 2) // Middle bottom
+                textY = 1400
             case 3:
-                textY = max(20, 3 * spacing - textHeight / 2) // Middle top
+                textY = 1200
             case 4:
-                textY = 60
+                textY = 1100
             case 5:
-                textY = 20
+                textY = max(20, 6 * ySpacing - textHeight / 2) // Sixth position 915
+            case 6:
+                textY = 800 //max(20, 7 * ySpacing - textHeight / 2) // Seventh position
+            case 7:
+                textY = 700 //max(20, 8 * ySpacing - textHeight / 2) // Eighth position
+            case 8:
+                textY = 600 //max(20, 9 * ySpacing - textHeight / 2) // Ninth position
+            case 9:
+                textY = 400 //max(20, 10 * ySpacing - textHeight / 2) // Tenth position
+            case 10:
+                textY = 400 //max(20, 11 * ySpacing - textHeight / 2) // Eleventh position
+            case 11:
+                textY = 300 //max(20, renderHeight - ySpacing - textHeight / 2) // Bottommost
             default:
-                textY = max(20, (renderHeight - textHeight) / 2) // Default to center if position is out of range
+                textY = 200 //max(20, (renderHeight - textHeight) / 2) // Default to center if position is out of range
+            }
+
+            let textX: CGFloat
+            switch xPosition {
+            case 0:
+                textX = max(20, padding) // Leading side, adjust as needed
+            case 1:
+                textX = max(20, (renderWidth - textWidth) / 2) // Center
+            case 2:
+                textX = max(20, renderWidth - textWidth - padding) // Trailing side, adjust as needed
+            default:
+                textX = max(20, (renderWidth - textWidth) / 2) // Default to center if position is out of range
             }
 
             // Ensure text doesn't cross the top border
             textLayer.frame = CGRect(x: textX, y: textY, width: textWidth, height: textHeight)
+
             
+//            // Adjust text layer size and position
+//            let padding: CGFloat = 10
+//            let textWidth = textSize.width + (2 * padding)
+//            let textHeight = textSize.height + (2 * padding)
+//            let textX = (renderWidth - textWidth) / 2
+//
+//            // Determine textY based on the 6 positions
+//            let spacing = renderHeight / 6 // Equal spacing
+//
+//            let textY: CGFloat
+//            switch position {
+//            case 0:
+//                textY = max(20, spacing - textHeight / 2) // Topmost
+//            case 1:
+//                textY = max(20, renderHeight - spacing - textHeight / 2) // Bottommost
+//            case 2:
+//                textY = max(20, 4 * spacing - textHeight / 2) // Middle bottom
+//            case 3:
+//                textY = max(20, 3 * spacing - textHeight / 2) // Middle top
+//            case 4:
+//                textY = 150
+//            case 5:
+//                textY = 20
+//            default:
+//                textY = max(20, (renderHeight - textHeight) / 2) // Default to center if position is out of range
+//            }
+//
+//            // Ensure text doesn't cross the top border
+//            textLayer.frame = CGRect(x: textX, y: textY, width: textWidth, height: textHeight)
+//            
             textLayer.opacity = 1.0 // Set opacity to 1.0 to ensure full visibility
             textLayer.backgroundColor = textBgClr.cgColor
             textLayer.foregroundColor = textForeClr.cgColor

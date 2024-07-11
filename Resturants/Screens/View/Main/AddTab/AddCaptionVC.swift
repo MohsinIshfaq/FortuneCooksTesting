@@ -61,6 +61,7 @@ class AddCaptionVC: AudioViewController , UITextViewDelegate {
     var initialTouchPoint      : CGPoint     = CGPoint(x: 0, y: 0)
     var initialFrame           : CGRect      = CGRect.zero
     var posotionTxtFld         : Int         = 1
+    var xPosition              : Int         = 1
     var txtBGcolor             : UIColor     = .clear
     var txtForcolor            : UIColor     = .white
     var fontNum                : Int         = 0
@@ -108,34 +109,94 @@ class AddCaptionVC: AudioViewController , UITextViewDelegate {
                                       width: initialFrame.size.width,
                                       height: initialFrame.size.height)
 
-            // Determine the position of the text field based on the yAxis
+            // Determine the position of the text field based on the y-axis
             let viewHeight = self.view.bounds.height
-            let spacing = viewHeight / 6 // Equal spacing
+            let ySpacing = viewHeight / 12 // Equal spacing for y-axis
 
-            let position: Int
+            let yPosition: Int
 
-            if touchPoint.y < spacing {
-                position = 0 // Topmost
-            } else if touchPoint.y < 2 * spacing {
-                position = 1 // Upper middle
-            } else if touchPoint.y < 3 * spacing {
-                position = 2 // Middle top
-            } else if touchPoint.y < 4 * spacing {
-                position = 3 // Middle bottom
-            } else if touchPoint.y < 5 * spacing {
-                position = 4 // Lower middle
+            if touchPoint.y < ySpacing {
+                yPosition = 0 // Topmost
+            } else if touchPoint.y < 2 * ySpacing {
+                yPosition = 1 // Second position
+            } else if touchPoint.y < 3 * ySpacing {
+                yPosition = 2 // Third position
+            } else if touchPoint.y < 4 * ySpacing {
+                yPosition = 3 // Fourth position
+            } else if touchPoint.y < 5 * ySpacing {
+                yPosition = 4 // Fifth position
+            } else if touchPoint.y < 6 * ySpacing {
+                yPosition = 5 // Sixth position
+            } else if touchPoint.y < 7 * ySpacing {
+                yPosition = 6 // Seventh position
+            } else if touchPoint.y < 8 * ySpacing {
+                yPosition = 7 // Eighth position
+            } else if touchPoint.y < 9 * ySpacing {
+                yPosition = 8 // Ninth position
+            } else if touchPoint.y < 10 * ySpacing {
+                yPosition = 9 // Tenth position
+            } else if touchPoint.y < 11 * ySpacing {
+                yPosition = 10 // Eleventh position
             } else {
-                position = 5 // Bottommost
+                yPosition = 11 // Bottommost
             }
-            
-            // Now you can use the 'position' variable as needed.
-            print("Position: \(position)")
-            self.posotionTxtFld = position
+
+            // Now you can use the 'yPosition' variable as needed.
+            print("Y Position: \(yPosition)")
+            self.posotionTxtFld = yPosition
             
         default:
             break
         }
     }
+
+
+
+//    @objc func handlePanGesture(_ recognizer: UIPanGestureRecognizer) {
+//        let touchPoint = recognizer.location(in: self.view)
+//        
+//        switch recognizer.state {
+//        case .began:
+//            // Store initial touch point and initial frame
+//            initialTouchPoint = touchPoint
+//            initialFrame = txtCaption.frame
+//        case .changed:
+//            // Calculate new frame based on the difference between the initial touch point and current touch point
+//            let deltaX = touchPoint.x - initialTouchPoint.x
+//            let deltaY = touchPoint.y - initialTouchPoint.y
+//            txtCaption.frame = CGRect(x: initialFrame.origin.x + deltaX,
+//                                      y: initialFrame.origin.y + deltaY,
+//                                      width: initialFrame.size.width,
+//                                      height: initialFrame.size.height)
+//
+//            // Determine the position of the text field based on the yAxis
+//            let viewHeight = self.view.bounds.height
+//            let spacing = viewHeight / 6 // Equal spacing
+//
+//            let position: Int
+//
+//            if touchPoint.y < spacing {
+//                position = 0 // Topmost
+//            } else if touchPoint.y < 2 * spacing {
+//                position = 1 // Upper middle
+//            } else if touchPoint.y < 3 * spacing {
+//                position = 2 // Middle top
+//            } else if touchPoint.y < 4 * spacing {
+//                position = 3 // Middle bottom
+//            } else if touchPoint.y < 5 * spacing {
+//                position = 4 // Lower middle
+//            } else {
+//                position = 5 // Bottommost
+//            }
+//            
+//            // Now you can use the 'position' variable as needed.
+//            print("Position: \(position)")
+//            self.posotionTxtFld = position
+//            
+//        default:
+//            break
+//        }
+//    }
 
     @IBAction func ontapFontsChanging(_ sender: UIButton){
         if sender.tag == 0{
@@ -332,7 +393,7 @@ class AddCaptionVC: AudioViewController , UITextViewDelegate {
                                             , videoUrl: self.outputURL!
                                             , watermarkText: string
                                             , imageName: ""
-                                            , position: self.posotionTxtFld) { url in
+                                                 , position: self.posotionTxtFld, xPosition: self.xPosition) { url in
                         DispatchQueue.main.async {
                             self.stopAnimating()
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
