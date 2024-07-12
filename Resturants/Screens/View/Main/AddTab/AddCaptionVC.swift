@@ -74,7 +74,7 @@ class AddCaptionVC: AudioViewController , UITextViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         onAppear()
-        txtCaption.backgroundColor = .clear
+       // txtCaption.backgroundColor = .clear
     }
     
     @IBAction func ontapDismiss(_ sender: UIButton){
@@ -410,24 +410,33 @@ class AddCaptionVC: AudioViewController , UITextViewDelegate {
                                             , watermarkText: string
                                             , imageName: ""
                                                  , position: self.posotionTxtFld, xPosition: self.xPosition) { url in
-                        DispatchQueue.main.async {
-                            self.stopAnimating()
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                                UserManager.shared.finalURL  = url
-                                if let url = UserManager.shared.finalURL {
-                                    let player = AVPlayer(url: url)
-                                    let playerViewController = AVPlayerViewController()
-                                    playerViewController.player = player
-                                    
-                                    self.present(playerViewController, animated: true) {
-                                        player.play()
+                        self.getVideoDuration(from: url) { endtime in
+                            if endtime != nil {
+                                
+                                self.trimVideo(sourceURL: url, startTime: 1 , endTime: endtime!) { url in
+                                    DispatchQueue.main.async {
+                                        self.stopAnimating()
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                            UserManager.shared.finalURL  = url
+                                            if let url = UserManager.shared.finalURL {
+                                                let player = AVPlayer(url: url)
+                                                let playerViewController = AVPlayerViewController()
+                                                playerViewController.player = player
+                                                
+                                                self.present(playerViewController, animated: true) {
+                                                    player.play()
+                                                }
+                                            }
+            //                                self.showToast(message: "Caption added successfully.", seconds: 2, clr: .gray)
+            //                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            //                                    self.stopAnimating()
+            //                                    self.popRoot()
+            //                                }
+                                        }
                                     }
+                                } failure: { msg in
+                                    print(msg)
                                 }
-//                                self.showToast(message: "Caption added successfully.", seconds: 2, clr: .gray)
-//                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-//                                    self.stopAnimating()
-//                                    self.popRoot()
-//                                }
                             }
                         }
                     } failure: { msg in
