@@ -28,7 +28,7 @@ class CameraVC: FilterCamViewController{
     private var selected                 : Bool = false
     private var selectedRecord           : Bool = false
     private var timer                    : Timer?
-    private let totalTime                : Float = 30.0 // Total time in seconds
+    private let totalTime                : Float = 180.0 // Total time in seconds
     private var elapsedTime              : Float = 0.0 // Elapsed time
     private var progress_value           = 0.1
     private var outputURL: URL?          = nil
