@@ -418,20 +418,20 @@ class AddCaptionVC: AudioViewController , UITextViewDelegate {
                                         self.stopAnimating()
                                         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                                             UserManager.shared.finalURL  = url
-                                            if let url = UserManager.shared.finalURL {
-                                                let player = AVPlayer(url: url)
-                                                let playerViewController = AVPlayerViewController()
-                                                playerViewController.player = player
-                                                
-                                                self.present(playerViewController, animated: true) {
-                                                    player.play()
-                                                }
+//                                            if let url = UserManager.shared.finalURL {
+//                                                let player = AVPlayer(url: url)
+//                                                let playerViewController = AVPlayerViewController()
+//                                                playerViewController.player = player
+//                                                
+//                                                self.present(playerViewController, animated: true) {
+//                                                    player.play()
+//                                                }
+//                                            }
+                                            self.showToast(message: "Caption added successfully.", seconds: 2, clr: .gray)
+                                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                                self.stopAnimating()
+                                                self.popRoot()
                                             }
-            //                                self.showToast(message: "Caption added successfully.", seconds: 2, clr: .gray)
-            //                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            //                                    self.stopAnimating()
-            //                                    self.popRoot()
-            //                                }
                                         }
                                     }
                                 } failure: { msg in
