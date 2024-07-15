@@ -214,7 +214,9 @@ extension AudioRecordVC : ConfirmationAutionsDelegate{
             elapsedTime                = 0
             progress_value             = 0
             mergedVideoURL             = nil
+            audioRecorder              = nil
             btnNext.isHidden           = true
+            playVideo()
         }
         else{
             self.dismiss(animated: true)

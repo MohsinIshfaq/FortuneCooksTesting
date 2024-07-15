@@ -99,7 +99,7 @@ extension AccntDeleteReasonVC {
             "reasonDescription": txtViewBio.text!
         ]
 
-        db.collection("Reson").addDocument(data: data) { [weak self] error in
+        db.collection("Reason").addDocument(data: data) { [weak self] error in
             guard let strongSelf = self else { return }
             if let error = error {
                 self?.stopAnimating()

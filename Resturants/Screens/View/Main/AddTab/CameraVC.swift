@@ -25,10 +25,12 @@ class CameraVC: FilterCamViewController{
     @IBOutlet weak var btnUpload         : UIButton!
     
     //MARK: - variables and Properties
+    var player                           : AVPlayer!   = nil
+    var playerLayer                      : AVPlayerLayer? = nil
     private var selected                 : Bool = false
     private var selectedRecord           : Bool = false
     private var timer                    : Timer?
-    private let totalTime                : Float = 180.0 // Total time in seconds
+    private var totalTime                : Float = 180.0 // Total time in seconds
     private var elapsedTime              : Float = 0.0 // Elapsed time
     private var progress_value           = 0.1
     private var outputURL: URL?          = nil
@@ -70,7 +72,7 @@ class CameraVC: FilterCamViewController{
     }
     
     @IBAction func ontapAddCap(_ sender: UIButton){
-        
+        //self.removeVideo()
         let vc = Constants.addStoryBoard.instantiateViewController(withIdentifier: "AddCaptionVC") as! AddCaptionVC
         vc.outputURL              = outputURL
         vc.modalPresentationStyle = .overFullScreen
@@ -93,6 +95,7 @@ class CameraVC: FilterCamViewController{
     }
     
     @IBAction func ontapVoiceOver(_ sender: UIButton){
+        self.removeVideo()
         let vc = Constants.addStoryBoard.instantiateViewController(withIdentifier: "AudioRecordVC") as! AudioRecordVC
         vc.outputURL              = outputURL
         vc.totalTime              = elapsedTime
@@ -109,16 +112,30 @@ class CameraVC: FilterCamViewController{
     }
     
     @IBAction func ontapMute(_ sender: UIButton){
+        self.startAnimating()
+        removeVideo()
         guard let url = self.outputURL else {
             return
         }
         removeAudioFromVideo(url) { url , error in
             if error != nil {
+                self.stopAnimating()
                 self.showToast(message: "\(error)", seconds: 2, clr: .red)
             }
             else {
+                self.stopAnimating()
+               // self.removeVideo()
                 DispatchQueue.main.async {
                     UserManager.shared.finalURL = url
+                    self.getVideoDuration(from: url!) { endtime in
+                        if endtime != nil {
+                            self.playVideo(url: url!)
+                            self.totalTime      = Float(endtime!)
+                            self.elapsedTime    = 0
+                            self.progress_value = 0
+                            self.startProgress4TrailVideo()
+                        }
+                    }
                     self.showToast(message: "Video got muted successfully.", seconds: 2, clr: .gray)
                 }
             }
@@ -149,6 +166,17 @@ class CameraVC: FilterCamViewController{
         self.pickVideo()
     }
     
+    @objc func updateProgress4TrialVideo() {
+        elapsedTime                   += 0.1 // Update elapsed time
+        let progress                   = elapsedTime / totalTime
+        progressRecording.progress     = progress
+        self.progress_value           += 0.1
+        lblProgress.text               = "\(Int(self.progress_value))"
+        if elapsedTime >= totalTime {
+            timer?.invalidate()
+        }
+    }
+    
     @objc func updateProgress() {
         elapsedTime                   += 0.1 // Update elapsed time
         let progress                   = elapsedTime / totalTime
@@ -165,6 +193,13 @@ class CameraVC: FilterCamViewController{
             self.stopRecording()
             seesionGoing               = false
         }
+    }
+    
+    func getVideoDuration(from url: URL, completion: @escaping (Double?) -> Void) {
+        let asset = AVAsset(url: url)
+        let duration = asset.duration
+        let durationInSeconds = CMTimeGetSeconds(duration)
+        completion(durationInSeconds)
     }
 }
 
@@ -189,6 +224,7 @@ extension CameraVC {
     
     func onAppear() {
         self.hideNavBar()
+        self.totalTime = 180
     }
     
     func setupFilterCollection(){
@@ -207,6 +243,10 @@ extension CameraVC {
     
     func startProgress() {
         timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updateProgress), userInfo: nil, repeats: true)
+    }
+    
+    func startProgress4TrailVideo() {
+        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updateProgress4TrialVideo), userInfo: nil, repeats: true)
     }
 }
 
@@ -279,17 +319,54 @@ extension CameraVC: FilterCamViewControllerDelegate{
             self.stackEditOpt.isHidden   = false
             self.btnUpload.isHidden      = false
             if let url = UserManager.shared.finalURL {
-                let player = AVPlayer(url: url)
-                let playerViewController = AVPlayerViewController()
-                playerViewController.player = player
-                
-                self.present(playerViewController, animated: true) {
-                    player.play()
+                self.getVideoDuration(from: url) { endtime in
+                    if endtime != nil {
+                        self.playVideo(url: url)
+                        self.totalTime      = Float(endtime!)
+                        self.elapsedTime    = 0
+                        self.progress_value = 0
+                        self.startProgress4TrailVideo()
+                    }
                 }
+//                let player = AVPlayer(url: url)
+//                let playerViewController = AVPlayerViewController()
+//                playerViewController.player = player
+//                
+//                self.present(playerViewController, animated: true) {
+//                    player.play()
+//                }
             }
         }
     }
 
+    func playVideo(url: URL) {
+        
+        player = AVPlayer(url: url)
+        playerLayer = AVPlayerLayer(player: player)
+        playerLayer?.frame = self.view.bounds
+        playerLayer?.videoGravity = .resizeAspectFill
+       // self.view.layer.addSublayer(playerLayer!)
+        if let playerLayer = playerLayer {
+            self.view.layer.addSublayer(playerLayer)
+        }
+        player?.play()
+        self.view.bringSubviewToFront(btnRecord)
+        self.view.bringSubviewToFront(progressRecording)
+        self.view.bringSubviewToFront(btnUpload)
+        self.view.bringSubviewToFront(stackEditOpt)
+        self.view.bringSubviewToFront(btnRemove)
+        self.view.bringSubviewToFront(lblProgress)
+    }
+    
+    func removeVideo() {
+        player?.pause()
+        while playerLayer?.superlayer != nil {
+            playerLayer?.removeFromSuperlayer()
+        }
+        player = nil
+        playerLayer = nil
+    }
+    
     func filterCam(_ filterCam: FilterCamViewController, didFocusAtPoint tapPoint: CGPoint) {
     }
 }
@@ -373,6 +450,7 @@ extension CameraVC : ConfirmationAutionsDelegate{
     func willDelete(_ condition: Bool) {
         if condition{
             self.dismiss(animated: true)
+            self.removeVideo()
             progressRecording.progress = 0
             self.lblProgress.text      = "0"
             progress_value             = 0
@@ -386,6 +464,7 @@ extension CameraVC : ConfirmationAutionsDelegate{
             btnRemove.isHidden         = true
             stackVideoPicker.isHidden  = false
             CollectFilter.isHidden     = false
+            self.totalTime             = 180
             
         }
         else{
