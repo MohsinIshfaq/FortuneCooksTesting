@@ -247,27 +247,27 @@ extension UplaodSwiftVC {
         if !gotSelectedThumbnail {
             return "Thumbnail is not selected."
         }
-         if txtAddress.text == "" {
-            return "Field Address shouldn't empty."
-        }
-        else if txtZipCode.text == "" {
-            return "Field ZipCode shouldn't empty."
-        }
-        else if txtCity.text == "" {
-            return "Field city shouldn't empty."
-        }
+//         if txtAddress.text == "" {
+//            return "Field Address shouldn't empty."
+//        }
+//        else if txtZipCode.text == "" {
+//            return "Field ZipCode shouldn't empty."
+//        }
+//        else if txtCity.text == "" {
+//            return "Field city shouldn't empty."
+//        }
         else if txtTitle.text == "" {
             return "Field Title shouldn't empty."
         }
         else if txtView.text == "" {
             return "Field city shouldn't empty."
         }
-        else if UserManager.shared.selectedContent.count == 0 {
-            return "Content is not added."
-        }
-        else if arrHastag.count == 0 {
-            return "Hastag is not added."
-        }
+//        else if UserManager.shared.selectedContent.count == 0 {
+//            return "Content is not added."
+//        }
+//        else if arrHastag.count == 0 {
+//            return "Hastag is not added."
+//        }
         else if txtLang.text == "" {
             return "Field Language shouldn't empty."
         }
