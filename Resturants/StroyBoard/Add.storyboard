@@ -64,10 +64,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="bottom" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="V0B-2b-FJX">
-                                <rect key="frame" x="187.33333333333337" y="229.33333333333337" width="197.66666666666663" height="138"/>
+                                <rect key="frame" x="179" y="229.33333333333337" width="206" height="138"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7bc-Qc-Fn4">
-                                        <rect key="frame" x="87.333333333333343" y="0.0" width="110.33333333333334" height="38"/>
+                                        <rect key="frame" x="90.666666666666686" y="0.0" width="115.33333333333331" height="38"/>
                                         <color key="tintColor" name="ColorWhite"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" imagePlacement="trailing" title="Voice over" imagePadding="6">
@@ -80,7 +80,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gxv-Hv-e7h">
-                                        <rect key="frame" x="0.0" y="49.999999999999972" width="197.66666666666666" height="38"/>
+                                        <rect key="frame" x="0.0" y="49.999999999999972" width="206" height="38"/>
                                         <color key="tintColor" name="ColorWhite"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" imagePlacement="trailing" title="Mute Original Sound" imagePadding="6">
@@ -93,7 +93,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RGi-K6-e8e">
-                                        <rect key="frame" x="53.333333333333314" y="99.999999999999972" width="144.33333333333334" height="38"/>
+                                        <rect key="frame" x="56.666666666666643" y="99.999999999999972" width="149.33333333333337" height="38"/>
                                         <color key="tintColor" name="ColorWhite"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" imagePlacement="trailing" title="Add Caption" imagePadding="6">
@@ -186,7 +186,7 @@
                                 </subviews>
                             </stackView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ob-D1-J65">
-                                <rect key="frame" x="294.33333333333331" y="662" width="82.666666666666686" height="35"/>
+                                <rect key="frame" x="291" y="662" width="86" height="35"/>
                                 <color key="backgroundColor" name="ColorWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="pKq-w6-myv"/>
@@ -247,7 +247,7 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swift" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="afp-I0-hTC">
-                                <rect key="frame" x="178.66666666666666" y="120.33333333333333" width="36" height="18.666666666666671"/>
+                                <rect key="frame" x="177" y="119.33333333333333" width="39.333333333333343" height="19.666666666666671"/>
                                 <fontDescription key="fontDescription" name="Inter-Regular_Medium" family="Inter" pointSize="16"/>
                                 <color key="textColor" name="ColorWhite"/>
                                 <nil key="highlightedColor"/>
@@ -948,13 +948,18 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Hello world" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="6L4-l8-Mpu">
-                                <rect key="frame" x="58" y="325" width="240" height="41"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="6L4-l8-Mpu">
+                                <rect key="frame" x="58" y="325" width="280" height="41"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </textView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="yQK-fu-Sp5"/>
@@ -3050,7 +3055,7 @@
         <image name="text" width="24" height="24"/>
         <image name="trash-blank" width="50" height="50"/>
         <image name="unselecPhoto" width="32" height="32"/>
-        <image name="user" width="24.333333969116211" height="24"/>
+        <image name="user" width="24" height="24"/>
         <image name="video" catalog="system" width="128" height="82"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

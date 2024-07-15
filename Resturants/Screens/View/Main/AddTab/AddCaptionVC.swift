@@ -61,10 +61,13 @@ class AddCaptionVC: AudioViewController , UITextViewDelegate {
     var initialTouchPoint      : CGPoint     = CGPoint(x: 0, y: 0)
     var initialFrame           : CGRect      = CGRect.zero
     var posotionTxtFld         : Int         = 1
-    var xPosition              : Int         = 1
+    var xPosition              : Int         = 3
     var txtBGcolor             : UIColor     = .clear
     var txtForcolor            : UIColor     = .white
     var fontNum                : Int         = 0
+    
+    let placeholder                        = "Enter Caption..."
+    let placeholderColor                   = UIColor.lightGray
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -338,51 +341,86 @@ class AddCaptionVC: AudioViewController , UITextViewDelegate {
         txtCaption.backgroundColor   = .clear
     }
     
-//    func addNewlineIfNeeded(to text: String, maxWordsPerLine: Int) -> String? {
-//        let words = text.components(separatedBy: .whitespacesAndNewlines)
-//        var newText = ""
-//        var wordCount = 0
-//        
-//        for word in words {
-//            if wordCount + 1 <= maxWordsPerLine {
-//                newText += word + " "
-//                wordCount += 1
-//            } else {
-//                newText += "\n" + word + " "
-//                wordCount = 1
-//            }
-//        }
-//        return "  " + newText.trimmingCharacters(in: .whitespacesAndNewlines) + " "
-//    }
-    
     func addNewlineIfNeeded(to text: String, textViewWidth: CGFloat, font: UIFont) -> String? {
         let words = text.components(separatedBy: .whitespacesAndNewlines)
         var newText = ""
         var currentLine = ""
         let spaceWidth = " ".size(withAttributes: [.font: font]).width
-
+        
         for word in words {
             let wordWidth = word.size(withAttributes: [.font: font]).width
             let currentLineWidth = currentLine.size(withAttributes: [.font: font]).width
-
-            if currentLineWidth + wordWidth + spaceWidth <= textViewWidth {
-                if !currentLine.isEmpty {
-                    currentLine += " " + word
+            
+            if wordWidth > textViewWidth {
+                // Break the word into smaller parts that fit the textViewWidth
+                var remainingWord = word
+                while remainingWord.size(withAttributes: [.font: font]).width > textViewWidth {
+                    var part = ""
+                    for char in remainingWord {
+                        let testPart = part + String(char)
+                        if testPart.size(withAttributes: [.font: font]).width > textViewWidth {
+                            break
+                        }
+                        part = testPart
+                    }
+                    if !part.isEmpty {
+                        newText += part + "\n"
+                        remainingWord = String(remainingWord.dropFirst(part.count))
+                    } else {
+                        break
+                    }
+                }
+                newText += remainingWord + "\n"
+                currentLine = ""
+            } else {
+                if currentLineWidth + wordWidth + spaceWidth <= textViewWidth {
+                    if !currentLine.isEmpty {
+                        currentLine += " " + word
+                    } else {
+                        currentLine = word
+                    }
                 } else {
+                    newText += currentLine + "\n"
                     currentLine = word
                 }
-            } else {
-                newText += currentLine + "\n"
-                currentLine = word
             }
         }
-
+        
         if !currentLine.isEmpty {
             newText += currentLine
         }
-
+        
         return newText
     }
+
+//    func addNewlineIfNeeded(to text: String, textViewWidth: CGFloat, font: UIFont) -> String? {
+//        let words = text.components(separatedBy: .whitespacesAndNewlines)
+//        var newText = ""
+//        var currentLine = ""
+//        let spaceWidth = " ".size(withAttributes: [.font: font]).width
+//
+//        for word in words {
+//            let wordWidth = word.size(withAttributes: [.font: font]).width
+//            let currentLineWidth = currentLine.size(withAttributes: [.font: font]).width
+//
+//            if currentLineWidth + wordWidth + spaceWidth <= textViewWidth {
+//                if !currentLine.isEmpty {
+//                    currentLine += " " + word
+//                } else {
+//                    currentLine = word
+//                }
+//            } else {
+//                newText += currentLine + "\n"
+//                currentLine = word
+//            }
+//        }
+//
+//        if !currentLine.isEmpty {
+//            newText += currentLine
+//        }
+//
+//        return newText
+//    }
 
     
     @objc func longPressed(_ gestureRecognizer: UILongPressGestureRecognizer) {
@@ -448,6 +486,23 @@ class AddCaptionVC: AudioViewController , UITextViewDelegate {
     }
 }
 
+// MARK: - UITextViewDelegate {}
+extension AddCaptionVC{
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == placeholderColor {
+            textView.text      = nil
+            textView.textColor = UIColor.white
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            setupPlaceholder()
+        }
+    }
+}
+
 //MARK: - setup View {}
 extension AddCaptionVC {
     
@@ -472,7 +527,15 @@ extension AddCaptionVC {
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(longPressed(_:)))
         txtCaption.addGestureRecognizer(longPressGesture)
         txtCaption.delegate = self
+        setupPlaceholder()
     }
+    
+    func setupPlaceholder() {
+        txtCaption.text      = placeholder
+        txtCaption.textColor = placeholderColor
+    }
+    
+    
     
     func onAppear() {
         

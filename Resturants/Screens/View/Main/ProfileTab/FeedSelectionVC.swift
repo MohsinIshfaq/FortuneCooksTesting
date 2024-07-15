@@ -32,6 +32,9 @@ class FeedSelectionVC: UIViewController , UISearchTextFieldDelegate{
         onAppear()
     }
     
+    @IBAction func ontapDismiss(_ sender: UIButton){
+        self.dismiss(animated: true)
+    }
     @IBAction func ontapDone(_ sender: UIButton){
         self.dismiss(animated: true)
         
