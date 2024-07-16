@@ -80,25 +80,25 @@ class BaseViewModel {
         }
     }
     
-    func isValidString(string : String) -> String {
-        
-        if string == "" {
-            
-           return  "Name Field is Empty"
-        }
-        else if string.count < 3 {
-           
-            return  "Name count should be greater than 3"
-        }
-        
-        else if string.isValidNameRegex == false {
-            
-            return "Special Character and Space is not Allowed in Name Field"
-        }
-        else {
-            
-            return ""
-        }
-    }
+//    func isValidString(string : String) -> String {
+//        
+//        if string == "" {
+//            
+//           return  "Name Field is Empty"
+//        }
+//        else if string.count < 3 {
+//           
+//            return  "Name count should be greater than 3"
+//        }
+//        
+//        else if string.isValidNameRegex == false {
+//            
+//            return "Special Character and Space is not Allowed in Name Field"
+//        }
+//        else {
+//            
+//            return ""
+//        }
+//    }
     
 }

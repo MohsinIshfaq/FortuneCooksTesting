@@ -108,10 +108,15 @@ class ProfileVC: BaseClass {
         self.present(vc, animated: true)
     }
     @IBAction func ontapSetting(_ sender: UIButton) {
+        sender.isEnabled = false
         let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "SettingsVC") as! SettingsVC
         vc.hidesBottomBarWhenPushed = true
         vc.profileModel = self.profileModel
         self.navigationController?.pushViewController(vc, animated: true)
+        // Perform the action
+        performAction {
+            sender.isEnabled = true
+        }
     }
     @IBAction func ontapAddBio(_ sender: UIButton) {
         let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "AddBioVC") as! AddBioVC

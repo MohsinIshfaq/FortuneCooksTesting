@@ -10,12 +10,15 @@ import UIKit
 //MARK: - Regex for User Name
 extension String {
     
-    var isValidNameRegex : Bool {
-        let userNameRegEx = "^[a-z0-9_-]{1,13}$"
-        
-        let userNameChecker = NSPredicate(format:"SELF MATCHES[c] %@", userNameRegEx)
-        return userNameChecker.evaluate(with: self)
-    }
+    var isValidUsername: Bool {
+            // Regular expression pattern to match usernames containing uppercase or lowercase letters, numbers, underscores, or hyphens, between 1 to 13 characters long
+            // Excludes spaces and periods
+            let userNameRegEx = "^[a-zA-Z0-9_-]{1,13}$"
+            // Create an NSPredicate to evaluate the string against the regex pattern
+            let userNameChecker = NSPredicate(format: "SELF MATCHES %@", userNameRegEx)
+            // Return the result of the evaluation
+            return userNameChecker.evaluate(with: self)
+        }
     
     func isValidEmailRegex(_ email: String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"

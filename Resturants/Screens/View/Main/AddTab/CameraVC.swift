@@ -50,6 +50,7 @@ class CameraVC: FilterCamViewController{
     @IBAction func ontapUpload(_ sender: UIButton){
         
         let vc = Constants.addStoryBoard.instantiateViewController(withIdentifier: "UplaodSwiftVC") as? UplaodSwiftVC
+        vc?.isVideoPicked = false
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     
@@ -473,6 +474,7 @@ extension CameraVC : ConfirmationAutionsDelegate{
     }
 }
 
+//Pick Video From Gallery
 extension CameraVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func pickVideo() {
@@ -492,6 +494,7 @@ extension CameraVC: UIImagePickerControllerDelegate, UINavigationControllerDeleg
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             UserManager.shared.finalURL  = videoURL
             let vc = Constants.addStoryBoard.instantiateViewController(withIdentifier: "UplaodSwiftVC") as? UplaodSwiftVC
+            vc?.isVideoPicked = true
             self.navigationController?.pushViewController(vc!, animated: true)
         }
     }

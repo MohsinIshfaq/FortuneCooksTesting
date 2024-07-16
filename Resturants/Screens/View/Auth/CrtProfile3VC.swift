@@ -31,7 +31,7 @@ class CrtProfile3VC: UIViewController  {
 
     @IBAction func ontapNextStep(_ sender: UIButton){
         
-        UserManager.shared.selectedPhone = txtPhoneNumbr.text!
+        UserManager.shared.selectedPhone = cpv.selectedCountry.phoneCode + txtPhoneNumbr.text!
         UserManager.shared.selectedEmail = txtEmailAddress.text!
         if checkCredentials(txtEmailAddress.text!) {
             if "".validPhoneRegex(value: txtPhoneNumbr.text!){

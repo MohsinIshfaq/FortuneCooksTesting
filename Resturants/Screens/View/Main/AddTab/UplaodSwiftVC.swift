@@ -61,6 +61,7 @@ class UplaodSwiftVC: UIViewController , ReloadDelegate , UITextViewDelegate , cr
     @IBOutlet weak var lblhastag     : UILabel!
     @IBOutlet weak var collectTagPeople : UICollectionView!
     @IBOutlet weak var btnAddHastag  : UIButton!
+    @IBOutlet weak var stackDescrip  : UIStackView!
     
     //MARK: - Variables and Properties
     private var outputURL: URL?            = nil
@@ -73,6 +74,7 @@ class UplaodSwiftVC: UIViewController , ReloadDelegate , UITextViewDelegate , cr
     var gotSelectedThumbnail: Bool         = false
     let reachability = try! Reachability()
     var selectedTagPersons: [UserTagModel]? = nil
+    var isVideoPicked: Bool                 = false    //checking video picked or recorded to handle description
     
     lazy var UploadVideoModel              : [String: Any] =  {
         return [
@@ -95,12 +97,10 @@ class UplaodSwiftVC: UIViewController , ReloadDelegate , UITextViewDelegate , cr
             "introVideos" : false                  ]
     }()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         onLoad()
     }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         onAppear()
@@ -111,7 +111,6 @@ class UplaodSwiftVC: UIViewController , ReloadDelegate , UITextViewDelegate , cr
         vc.delegate = self
         self.navigationController?.present(vc, animated: true)
     }
-    
     @IBAction func ontapPickVideo(_ sender: UIButton){
         DispatchQueue.main.async {
             if let url = UserManager.shared.finalURL {
@@ -125,7 +124,6 @@ class UplaodSwiftVC: UIViewController , ReloadDelegate , UITextViewDelegate , cr
             }
         }
     }
-    
     @IBAction func ontapTagPeople(_ sender: UIButton) {
         
         let vc = Constants.addStoryBoard.instantiateViewController(withIdentifier: "TagPeopleVC") as? TagPeopleVC
@@ -133,13 +131,11 @@ class UplaodSwiftVC: UIViewController , ReloadDelegate , UITextViewDelegate , cr
         vc?.showTagUsers = false
         self.present(vc!, animated: true)
     }
-    
     @IBAction func ontapThumbnail(_ sender: UIButton){
         let vc = Constants.addStoryBoard.instantiateViewController(withIdentifier: "UploadThumbnailVC") as? UploadThumbnailVC
         vc?.delegate  = self
         self.present(vc!, animated: true)
     }
-    
     @IBAction func ontapAddHastag(_ sender : UIButton) {
         
         if txtHastag.text             != "" {
@@ -152,7 +148,6 @@ class UplaodSwiftVC: UIViewController , ReloadDelegate , UITextViewDelegate , cr
             }
         }
     }
-    
     @IBAction func ontapLang(_ sender: UIButton){
         let actionClosure = { (action: UIAction) in
             self.txtLang.text = action.title // Update text field with selected option title
@@ -164,7 +159,6 @@ class UplaodSwiftVC: UIViewController , ReloadDelegate , UITextViewDelegate , cr
         sender.menu = UIMenu(options: .displayInline, children: menuChildren)
         sender.showsMenuAsPrimaryAction = true
     }
-    
     @IBAction func ontapNext(_ sender: UIButton){
         if checkFields() == "" {
             let vc = Constants.addStoryBoard.instantiateViewController(withIdentifier: "UploadSwift2VC") as! UploadSwift2VC
@@ -191,6 +185,13 @@ extension UplaodSwiftVC {
         txtHastag.delegate = self
         setupPlaceholder()
         setupViews()
+        
+        if isVideoPicked {
+            stackDescrip.isHidden = false
+        }
+        else{
+            stackDescrip.isHidden = true
+        }
     }
     
     func onAppear() {

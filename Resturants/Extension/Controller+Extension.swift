@@ -16,39 +16,44 @@ extension UIViewController {
     
     //MARK: - Navigation Handling {}
     func hideNavBar(){
-        
         self.navigationController?.navigationBar.isHidden = true
     }
     
     func showNavBar(){
-        
         self.navigationController?.navigationBar.isHidden = false
     }
     
     func removeNavBackbuttonTitle() {
-        
         self.navigationController?.navigationBar.topItem?.title = " "
     }
     
     func hideNavBackButton() {
-        
         self.navigationItem.hidesBackButton = true
     }
     
     func popRoot() {
-        
         self.navigationController?.popToRootViewController(animated: true)
     }
     
     func popup() {
-        
         self.navigationController?.popViewController(animated: true)
     }
 
+    func performAction(completion: @escaping () -> Void) {
+            // Simulate a network request or any other action that takes time
+            DispatchQueue.global().async {
+                // Simulate a delay
+                sleep(2)
+                
+                // Once the action is complete, call the completion handler
+                DispatchQueue.main.async {
+                    completion()
+                }
+            }
+        }
     
     //MARK: - Button Animation {}
     func buttonaAnimation(Ontap:UIButton , completion: @escaping ((Bool)->Void)) {
-        
         UIButton.animate(withDuration: 0.2,
                          animations: {
             Ontap.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
@@ -64,7 +69,6 @@ extension UIViewController {
     }
     
     func viewBounceAnimation(Ontap:UIView , completion: @escaping ((Bool)->Void)) {
-        
         UIView.animate(withDuration: 0.2,
                          animations: {
             Ontap.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)

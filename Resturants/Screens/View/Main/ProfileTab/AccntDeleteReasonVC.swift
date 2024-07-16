@@ -105,7 +105,7 @@ extension AccntDeleteReasonVC {
                 self?.stopAnimating()
                 self?.showToast(message: "Error adding document: \(error.localizedDescription)", seconds: 2, clr: .red)
             } else {
-                self?.showToast(message: "Document added successfully.", seconds: 2, clr: .gray)
+              //  self?.showToast(message: "Document added successfully.", seconds: 2, clr: .gray)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                     self?.deleteUserAccount()
                 }
@@ -118,21 +118,25 @@ extension AccntDeleteReasonVC {
            Auth.auth().currentUser?.delete { [weak self] error in
                guard let strongSelf = self else { return }
                if let error = error {
+                   self?.stopAnimating()
                    self?.showToast(message: "Account deletion failed: \(error.localizedDescription)", seconds: 2, clr: .red)
                } else {
-                       self?.showToast(message: "Account deleted successfully.", seconds: 2, clr: .gray)
+                   self?.stopAnimating()
+                   self?.showToast(message: "Account deleted successfully.", seconds: 2, clr: .gray)
                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                        UserDefault.isAuthenticated = false
                        UserDefault.token           = ""
-                       if let loginVC = Constants.authStoryBoard.instantiateViewController(withIdentifier: "LoginVC") as? LoginVC {
-                           let navController = UINavigationController(rootViewController: loginVC)
-                           navController.modalPresentationStyle = .overFullScreen
-                           self?.navigationController?.present(navController, animated: true) {
-                               if let createAccountVC = Constants.authStoryBoard.instantiateViewController(withIdentifier: "CreatAccntVC") as? CreatAccntVC {
-                                   navController.pushViewController(createAccountVC, animated: true)
-                               }
-                           }
-                       }
+                       self?.popRoot()
+                       self?.tabBarController?.selectedIndex = 0
+//                       if let loginVC = Constants.authStoryBoard.instantiateViewController(withIdentifier: "LoginVC") as? LoginVC {
+//                           let navController = UINavigationController(rootViewController: loginVC)
+//                           navController.modalPresentationStyle = .overFullScreen
+//                           self?.navigationController?.present(navController, animated: true) {
+//                               if let createAccountVC = Constants.authStoryBoard.instantiateViewController(withIdentifier: "CreatAccntVC") as? CreatAccntVC {
+//                                   navController.pushViewController(createAccountVC, animated: true)
+//                               }
+//                           }
+//                       }
                    }
                }
            }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseFirestoreInternal
 
 class CrtProfile2VC: UIViewController {
     
@@ -19,6 +20,7 @@ class CrtProfile2VC: UIViewController {
     private var birthYears      = Array(1950...2024)
     let datePicker              = UIDatePicker()
     private var genderPicker    = UIPickerView(frame: CGRect(x: 0, y: 0, width:UIScreen.main.bounds.width, height: 200))
+    var users: [UserTagModel]   = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,10 +38,25 @@ class CrtProfile2VC: UIViewController {
     @IBAction func ontapNextStep(_ sender: UIButton){
         
         if txtChannelNm.text != "" {
-            UserManager.shared.selectedChannelNm = txtChannelNm.text!
-            UserManager.shared.selectedDOB       = txtYear.text!
-            let vc = Constants.authStoryBoard.instantiateViewController(withIdentifier: "CrtProfile3VC") as? CrtProfile3VC
-            self.navigationController?.pushViewController(vc!, animated: true)
+            if txtChannelNm.text?.isValidUsername ?? false{
+                
+                if let channelText = txtChannelNm.text {
+                    let containsChannel = users.contains { user in
+                        user.channelName?.contains(channelText) ?? false
+                    }
+                    if containsChannel {
+                        self.showToast(message: "This username is already used.", seconds: 2, clr: .red)
+                    } else {
+                        UserManager.shared.selectedChannelNm = txtChannelNm.text!
+                        UserManager.shared.selectedDOB       = txtYear.text!
+                        let vc = Constants.authStoryBoard.instantiateViewController(withIdentifier: "CrtProfile3VC") as? CrtProfile3VC
+                        self.navigationController?.pushViewController(vc!, animated: true)
+                    }
+                }
+            }
+            else{
+                self.showToast(message: "channel Name is not valid.", seconds: 2, clr: .red)
+            }
         }
         else{
             self.showToast(message: "Please enter a channel name.", seconds: 2, clr: .red)
@@ -58,6 +75,7 @@ extension CrtProfile2VC {
         
        // setupView()
         showDatePicker()
+        getAllUsers()
     }
     func onAppear(){
         removeNavBackbuttonTitle()
@@ -88,6 +106,38 @@ extension CrtProfile2VC {
 //        txtYear.delegate        = self
 //        genderPicker.backgroundColor = .white
 //    }
+    
+    func getAllUsers() {
+        self.startAnimating()
+           let db = Firestore.firestore()
+           db.collection("userCollection").getDocuments { (querySnapshot, error) in
+               if let error = error {
+                   self.stopAnimating()
+                   self.showToast(message: "Error getting documents: \(error.localizedDescription)", seconds: 2, clr: .red)
+                   print("Error getting documents: \(error.localizedDescription)")
+                   // Handle the error (e.g., show an alert to the user)
+               } else {
+                   self.stopAnimating()
+                   self.users.removeAll() // Clear any existing users
+                   // Iterate over the documents in the snapshot
+                   for document in querySnapshot!.documents {
+                       let data = document.data()
+                       let uid = data["uid"] as? String ?? ""
+                       if uid == UserDefault.token {
+                           continue
+                       }
+                       let img = data["img"] as? String ?? ""
+                       let channelName = data["channelName"] as? String ?? ""
+                       let followers = data["followers"] as? String ?? ""
+                       let accountType = data["accountType"] as? String ?? ""
+
+                       let user = UserTagModel(uid: uid, img: img, channelName: channelName, followers: followers, accountType: accountType, selected: 0)
+                       self.users.append(user)
+                       print(user)
+                   }
+               }
+           }
+       }
 }
 
    //MARK: - Gender Picker View Setup

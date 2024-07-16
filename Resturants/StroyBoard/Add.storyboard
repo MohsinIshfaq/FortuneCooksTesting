@@ -1793,6 +1793,7 @@
                         <outlet property="imgThumbnail" destination="rz1-3p-SxR" id="WbQ-FR-8bs"/>
                         <outlet property="imgVideoThumb" destination="qU1-9o-X46" id="1XQ-K7-osr"/>
                         <outlet property="lblhastag" destination="Lka-LG-Ppp" id="KOY-lb-b18"/>
+                        <outlet property="stackDescrip" destination="QfU-uj-f3h" id="zli-V0-6Bj"/>
                         <outlet property="txtAddress" destination="uMg-rn-MD2" id="NPx-sq-zXC"/>
                         <outlet property="txtCity" destination="EUp-KB-XQR" id="JO3-Li-lSM"/>
                         <outlet property="txtHastag" destination="Dtq-c4-MFZ" id="L6M-kw-7Qf"/>

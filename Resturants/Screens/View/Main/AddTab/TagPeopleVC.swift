@@ -177,12 +177,16 @@ extension TagPeopleVC: UITableViewDelegate , UITableViewDataSource{
 extension TagPeopleVC {
     
     func getAllUsers() {
+        self.startAnimating()
            let db = Firestore.firestore()
            db.collection("userCollection").getDocuments { (querySnapshot, error) in
                if let error = error {
+                   self.stopAnimating()
+                   self.showToast(message: "Error getting documents: \(error.localizedDescription)", seconds: 2, clr: .red)
                    print("Error getting documents: \(error.localizedDescription)")
                    // Handle the error (e.g., show an alert to the user)
                } else {
+                   self.stopAnimating()
                    self.users.removeAll() // Clear any existing users
                    // Iterate over the documents in the snapshot
                    for document in querySnapshot!.documents {
