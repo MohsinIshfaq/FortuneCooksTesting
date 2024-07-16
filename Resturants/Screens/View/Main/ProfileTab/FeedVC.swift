@@ -64,6 +64,7 @@ class FeedVC: UIViewController , FeedDelegate , UITextFieldDelegate {
     @IBAction func ontapLangs(_ sender: UIButton){
         let actionClosure = { (action: UIAction) in
            // self.txtLang.text = action.title // Update text field with selected option title
+            self.arrSelectedLang.removeAll()
             self.arrSelectedLang.append(action.title)
             self.collectLangs.reloadData()
         }

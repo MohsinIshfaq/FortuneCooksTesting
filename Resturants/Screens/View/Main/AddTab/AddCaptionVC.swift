@@ -433,8 +433,8 @@ class AddCaptionVC: AudioViewController , UITextViewDelegate {
 
     @objc func ontapDone() {
        
-        if txtCaption.text == "Hello world"{
-            showToast(message: "Please change your caption", seconds: 2, clr: .red)
+        if txtCaption.text == "Enter Caption..."{
+            showToast(message: "Please add your caption", seconds: 2, clr: .red)
         }
         else{
           //  DispatchQueue.main.asyncAfter(deadline: .now() + 1) {

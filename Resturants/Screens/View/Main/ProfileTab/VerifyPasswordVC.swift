@@ -20,6 +20,8 @@ class VerifyPasswordVC: UIViewController {
     @IBOutlet weak var img1Upper    : UIImageView!
     @IBOutlet weak var img1Lower    : UIImageView!
     @IBOutlet weak var img1number   : UIImageView!
+    @IBOutlet weak var lblTitleFld  : UILabel!
+    @IBOutlet weak var stackChecking: UIStackView!
     
     var checkvalidPsd: Bool               = false
     var profileModel: UserProfileModel?   = nil
@@ -54,7 +56,10 @@ class VerifyPasswordVC: UIViewController {
     }
     
     @IBAction func ontapConfirm(_ sender: UIButton){
-        if checkvalidPsd {
+        if isFromWhere == "ChangePassword"{
+            verifyPassword()
+        }
+        else if checkvalidPsd {
             verifyPassword()
         }
         else{
@@ -69,15 +74,20 @@ extension VerifyPasswordVC {
    
     func onload() {
         removeNavBackbuttonTitle()
-        txtPsd.delegate                          = self
+        if isFromWhere != "ChangePassword"{
+            txtPsd.delegate                          = self
+        }
     }
     
     func onAppear() {
         if isFromWhere == "ChangePassword" {
             self.navigationItem.title = "Change Password"
+            lblTitleFld.text = "Change Password"
+            stackChecking.isHidden = true
         }
         else if isFromWhere == "JustVerifyPsd" || isFromWhere == "VerifyAndDeleteAccnt"{
             self.navigationItem.title = "Verify Password"
+            stackChecking.isHidden = false
         }
     }
 }

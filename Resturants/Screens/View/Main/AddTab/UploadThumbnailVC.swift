@@ -24,9 +24,7 @@ class UploadThumbnailVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        videoSlider.minimumValue = 0
-        videoSlider.maximumValue = 1
-        
+        onLoad()
     }
     @IBAction func ontapSave(_ sender: UIButton){
         //UserManager.shared.thumbnail = thumImg
@@ -94,6 +92,28 @@ class UploadThumbnailVC: UIViewController {
         }
     }
 }
+
+//MARK: - Setup View {}
+extension UploadThumbnailVC {
+   
+    func onLoad(){
+        videoSlider.minimumValue = 0
+        videoSlider.maximumValue = 1
+        videoSlider.isHidden    = false
+        
+        imgPickFromVideo.image  = UIImage(named: "selecPhoto")
+        imgPickOwn.image        = UIImage(named: "unselecPhoto")
+        lblFromVideo.textColor  = .ColorDarkBlue
+        lblOwn.textColor        = .white
+        if let url = UserManager.shared.finalURL {
+            if let img = generateThumbnail(path: url) {
+                self.imgThumbnail.image  = img
+                self.thumImg             = img
+            }
+        }
+    }
+}
+
 extension UploadThumbnailVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {

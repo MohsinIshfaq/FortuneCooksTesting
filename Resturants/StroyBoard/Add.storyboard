@@ -1199,7 +1199,7 @@
                                                                                         <color key="tintColor" name="ColorLightGray"/>
                                                                                         <color key="textColor" name="ColorWhite"/>
                                                                                         <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="14"/>
-                                                                                        <textInputTraits key="textInputTraits"/>
+                                                                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                                                         <userDefinedRuntimeAttributes>
                                                                                             <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
                                                                                                 <color key="value" name="ColorLightGray"/>

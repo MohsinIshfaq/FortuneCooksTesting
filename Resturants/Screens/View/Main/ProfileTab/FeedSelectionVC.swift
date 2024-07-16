@@ -60,8 +60,11 @@ extension FeedSelectionVC: UITextFieldDelegate {
     
     func filterContentForSearchText(_ searchText: String) {
         if type == 0{
-            UserManager.shared.filteredContent = UserManager.shared.arrContent.filter { $0[0].localizedCaseInsensitiveContains(searchText) }
-            // Filter the selection status based on the filtered cuisine items
+            // Filter content based on the starting character
+            UserManager.shared.filteredContent = UserManager.shared.arrContent.filter {
+                $0[0].lowercased().hasPrefix(searchText.lowercased())
+            }
+            // Filter the selection status based on the filtered content
             for i in 0..<UserManager.shared.filteredContent.count {
                 if let index = UserManager.shared.arrContent.firstIndex(where: { $0[0] == UserManager.shared.filteredContent[i][0] }) {
                     UserManager.shared.filteredContent[i][1] = UserManager.shared.arrContent[index][1]
@@ -70,8 +73,13 @@ extension FeedSelectionVC: UITextFieldDelegate {
             tblSelection.reloadData()
         }
         else{
-            UserManager.shared.filteredAccntType = UserManager.shared.arrAccntType.filter { $0[0].localizedCaseInsensitiveContains(searchText) }
-            // Filter the selection status based on the filtered cuisine items
+            print(searchText.lowercased())
+            // Filter account type based on the starting character in a case-insensitive manner
+            UserManager.shared.filteredAccntType = UserManager.shared.arrAccntType.filter {
+                $0[0].lowercased().hasPrefix(searchText.lowercased())
+            }
+            print(UserManager.shared.filteredAccntType)
+            // Filter the selection status based on the filtered account type items
             for i in 0..<UserManager.shared.filteredAccntType.count {
                 if let index = UserManager.shared.arrAccntType.firstIndex(where: { $0[0] == UserManager.shared.filteredAccntType[i][0] }) {
                     UserManager.shared.filteredAccntType[i][1] = UserManager.shared.arrAccntType[index][1]
@@ -155,7 +163,7 @@ extension FeedSelectionVC: UITableViewDelegate , UITableViewDataSource{
         if type == 0 {
             let cell = tableView.cellForRow(at: indexPath) as! SelectioTCell
             let cuisineName: String
-            if UserManager.shared.filteredCuisine.isEmpty {
+            if UserManager.shared.filteredContent.isEmpty {
                 cuisineName = UserManager.shared.arrContent[indexPath.row][0]
             } else {
                 cuisineName = UserManager.shared.filteredContent[indexPath.row][0]

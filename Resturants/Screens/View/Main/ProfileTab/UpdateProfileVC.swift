@@ -417,6 +417,7 @@ extension UpdateProfileVC: UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         activeTextField = nil
+        
     }
 }
 
