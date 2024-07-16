@@ -156,6 +156,7 @@ class CameraVC: FilterCamViewController{
             self.startRecording()
         }
         else{
+            self.startAnimating()
             stopProgress()
             self.stopRecording()
             seesionGoing               = false
@@ -172,7 +173,10 @@ class CameraVC: FilterCamViewController{
         let progress                   = elapsedTime / totalTime
         progressRecording.progress     = progress
         self.progress_value           += 0.1
-        lblProgress.text               = "\(Int(self.progress_value))"
+        let minutes = Int(elapsedTime) / 60
+        let seconds = Int(elapsedTime) % 60
+        lblProgress.text = String(format: "%02d:%02d", minutes, seconds)
+       // lblProgress.text               = "\(Int(self.progress_value))"
         if elapsedTime >= totalTime {
             timer?.invalidate()
         }
@@ -183,7 +187,11 @@ class CameraVC: FilterCamViewController{
         let progress                   = elapsedTime / totalTime
         progressRecording.progress     = progress
         self.progress_value           += 0.1
-        lblProgress.text               = "\(Int(self.progress_value))"
+        // Format the elapsed time as mm:ss
+            let minutes = Int(elapsedTime) / 60
+            let seconds = Int(elapsedTime) % 60
+            lblProgress.text = String(format: "%02d:%02d", minutes, seconds)
+      //  lblProgress.text               = "\(Int(self.progress_value))"
         if elapsedTime >= totalTime {
             timer?.invalidate()
             timer                      = nil
@@ -314,6 +322,7 @@ extension CameraVC: FilterCamViewControllerDelegate{
     }
 
     func filterCam(_ filterCam: FilterCamViewController, didFinishWriting outputURL: URL) {
+        self.stopAnimating()
         DispatchQueue.main.async {
             self.outputURL               = outputURL
             UserManager.shared.finalURL  = outputURL

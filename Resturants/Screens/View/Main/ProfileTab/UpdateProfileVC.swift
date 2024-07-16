@@ -21,10 +21,11 @@ struct Tags {
 class UpdateProfileVC: UIViewController , TagPeopleDelegate{
  
     func reload(data: [UserTagModel]) {
-        popRoot()
-//        for i in data {
-//            profileModel?.tagPersons?.append(TagUsers(uid: i.uid ?? "", img: i.img ?? "", channelName: i.channelName ?? "", followers: i.followers ?? "", accountType: i.accountType ?? ""))
-//        }
+       // popRoot()
+        for i in data {
+            profileModel?.tagPersons?.append(TagUsers(uid: i.uid ?? "", img: i.img ?? "", channelName: i.channelName ?? "", followers: i.followers ?? "", accountType: i.accountType ?? ""))
+        }
+        collectTagPeople.reloadData()
     }
     
 //    func reload() {
@@ -163,8 +164,8 @@ class UpdateProfileVC: UIViewController , TagPeopleDelegate{
     @IBAction func ontapTagPeople(_ sender: UIButton) {
         
         let vc = Constants.addStoryBoard.instantiateViewController(withIdentifier: "TagPeopleVC") as? TagPeopleVC
-        vc?.delegate = self
-       // vc.showTagUsers
+        vc?.delegate        = self
+        vc?.showTagUsers    = false
         vc?.blockUsers      = profileModel?.blockUsers ?? []
         vc?.alreadyTagUsers = profileModel?.tagPersons ?? []
         self.present(vc!, animated: true)
@@ -659,10 +660,24 @@ extension UpdateProfileVC {
                        getMondaySchedule(txtSundayOpening.text ?? "", txtSundayClosing.text!, switchs: lblSunday.isHidden)]
         print(timings)
         let db = Firestore.firestore()
+        var tagUsersArray: [[String: Any]] = []
+
+        if let tagPersons = profileModel?.tagPersons {
+            for person in tagPersons {
+                var userDict: [String: Any] = [:]
+                userDict["uid"] = person.uid
+                userDict["img"] = person.img
+                userDict["channelName"] = person.channelName
+                userDict["followers"] = person.followers
+                userDict["accountType"] = person.accountType
+                tagUsersArray.append(userDict)
+            }
+        }
         db.collection("Users").document(userID).updateData([
             "channelName": txtChannelNm.text! ,
             "bio": txtViewBio.text!,
             "email": txtAddEmail.text! ,
+            "tagPersons": tagUsersArray ,
             "website": txtAddWebsite.text! ,
             "phoneNumber": txtAddPhoneNUmbr.text! ,
             "address": txtAddAddressLoc.text! ,

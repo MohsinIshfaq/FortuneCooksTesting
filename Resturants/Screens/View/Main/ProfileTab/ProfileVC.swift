@@ -228,6 +228,75 @@ extension ProfileVC {
     func onload() {
         setupView()
     }
+    func setupView() {
+        tblVIdeos.register(VideoTCell.nib, forCellReuseIdentifier: VideoTCell.identifier)
+        tblVIdeos.delegate            = self
+        tblVIdeos.dataSource          = self
+        
+        tblVIdeos.register(NoPostTCell.nib, forCellReuseIdentifier: NoPostTCell.identifier)
+        tblVIdeos.delegate            = self
+        tblVIdeos.dataSource          = self
+        
+        tblVIdeos.register(VideosHeaderView.nib, forHeaderFooterViewReuseIdentifier: VideosHeaderView.identifier)
+        
+        collectSwift.register(SwiftCCell.nib, forCellWithReuseIdentifier: SwiftCCell.identifier)
+        collectSwift.delegate        = self
+        collectSwift.dataSource      = self
+        
+        collectSwiftColl.register(SwiftCCell.nib, forCellWithReuseIdentifier: SwiftCCell.identifier)
+        collectSwiftColl.delegate   = self
+        collectSwiftColl.dataSource = self
+        
+        tblVIdeosColl.register(VideoTCell.nib, forCellReuseIdentifier: VideoTCell.identifier)
+        tblVIdeosColl.delegate     = self
+        tblVIdeosColl.dataSource   = self
+        
+        tblMenu.register(MenuTCell.nib, forCellReuseIdentifier: MenuTCell.identifier)
+        tblMenu.delegate           = self
+        tblMenu.dataSource         = self
+    }
+    func onAppear() {
+            
+        vwVideo.isHidden         = false
+        vwSwift.isHidden         = true
+        vwCollection.isHidden    = true
+        vwMenu.isHidden          = true
+        stackVideos.isHidden     = false
+        stackMenu.isHidden       = true
+        
+        vwVideo.isHidden         = false
+        vwSwift.isHidden         = true
+        vwCollection.isHidden    = true
+        vwMenu.isHidden          = true
+        stackVideos.isHidden     = false
+        stackSwift.isHidden      = true
+        stackCollection.isHidden = true
+        stackMenu.isHidden       = true
+
+        
+        if UserDefault.isAuthenticated {
+            fetchVideosFromFirestore()
+            fetchUserData(userID: isNonOwner ? nonProfileModel?.uid ?? "" : UserDefault.token) { user in
+                self.stopAnimating()
+                if let user = user {
+                    // Use the user model as needed
+                    self.setupProfile(user: user)
+                    self.profileModel = user
+                    print("User data: \(user)")
+                } else {
+                    print("Failed to fetch user data.")
+                }
+            }
+        }
+        else{
+           
+            showAlertCOmpletion(withTitle: "", message: "Access to the profile screen is restricted due to authentication requirements.") { status in
+                if status {
+                    self.tabBarController?.selectedIndex = 0
+                }
+            }
+        }
+    }
     func updateCoverUrlInModel(newCoverUrl: String) {
         if var model = self.profileModel {
             model.coverUrl = newCoverUrl
@@ -352,66 +421,6 @@ extension ProfileVC {
             updateUserDocument()   //updating profile data of tag list to be updated user profile always
         }
     }
-    func setupView() {
-        tblVIdeos.register(VideoTCell.nib, forCellReuseIdentifier: VideoTCell.identifier)
-        tblVIdeos.delegate            = self
-        tblVIdeos.dataSource          = self
-        
-        tblVIdeos.register(NoPostTCell.nib, forCellReuseIdentifier: NoPostTCell.identifier)
-        tblVIdeos.delegate            = self
-        tblVIdeos.dataSource          = self
-        
-        tblVIdeos.register(VideosHeaderView.nib, forHeaderFooterViewReuseIdentifier: VideosHeaderView.identifier)
-        
-        collectSwift.register(SwiftCCell.nib, forCellWithReuseIdentifier: SwiftCCell.identifier)
-        collectSwift.delegate        = self
-        collectSwift.dataSource      = self
-        
-        collectSwiftColl.register(SwiftCCell.nib, forCellWithReuseIdentifier: SwiftCCell.identifier)
-        collectSwiftColl.delegate   = self
-        collectSwiftColl.dataSource = self
-        
-        tblVIdeosColl.register(VideoTCell.nib, forCellReuseIdentifier: VideoTCell.identifier)
-        tblVIdeosColl.delegate     = self
-        tblVIdeosColl.dataSource   = self
-        
-        tblMenu.register(MenuTCell.nib, forCellReuseIdentifier: MenuTCell.identifier)
-        tblMenu.delegate           = self
-        tblMenu.dataSource         = self
-    }
-    func onAppear() {
-        
-        vwVideo.isHidden         = false
-        vwSwift.isHidden         = true
-        vwCollection.isHidden    = true
-        vwMenu.isHidden          = true
-        stackVideos.isHidden     = false
-        stackMenu.isHidden       = true
-        
-        if UserDefault.isAuthenticated {
-            fetchVideosFromFirestore()
-            fetchUserData(userID: isNonOwner ? nonProfileModel?.uid ?? "" : UserDefault.token) { user in
-                self.stopAnimating()
-                if let user = user {
-                    // Use the user model as needed
-                    self.setupProfile(user: user)
-                    self.profileModel = user
-                    print("User data: \(user)")
-                } else {
-                    print("Failed to fetch user data.")
-                }
-            }
-        }
-        else{
-           
-            showAlertCOmpletion(withTitle: "", message: "Access to the profile screen is restricted due to authentication requirements.") { status in
-                if status {
-                    self.tabBarController?.selectedIndex = 0
-                }
-            }
-        }
-    }
-    
     func reelsAndVideosCollectionMaking() {
         self.reelsModel?.removeAll()
         self.videosModel?.removeAll()
