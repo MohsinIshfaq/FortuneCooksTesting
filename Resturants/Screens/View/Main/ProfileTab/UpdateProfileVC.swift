@@ -21,6 +21,7 @@ struct Tags {
 class UpdateProfileVC: UIViewController , TagPeopleDelegate{
  
     func reload(data: [UserTagModel]) {
+        profileModel?.tagPersons?.removeAll()
        // popRoot()
         for i in data {
             profileModel?.tagPersons?.append(TagUsers(uid: i.uid ?? "", img: i.img ?? "", channelName: i.channelName ?? "", followers: i.followers ?? "", accountType: i.accountType ?? ""))

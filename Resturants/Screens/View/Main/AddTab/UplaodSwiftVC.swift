@@ -83,7 +83,7 @@ class UplaodSwiftVC: UIViewController , ReloadDelegate , UITextViewDelegate , cr
             "zipcode": txtZipCode.text! as String  ,
             "city"   : txtCity.text! as String     ,
             "title":   txtTitle.text! as String    ,
-            "tagPersons": self.selectedTagPersons! as [UserTagModel],
+            "tagPersons": (self.selectedTagPersons ?? []) as [UserTagModel],
             "description": txtView.text! as String ,
             "categories": arrSelectedContent       ,
             "hashtages": arrHastag         ,
