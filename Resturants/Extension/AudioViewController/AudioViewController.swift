@@ -567,9 +567,27 @@ open class AudioViewController: UIViewController, AVAudioRecorderDelegate {
         // Create text layer
         if !text.isEmpty {
             let textLayer = CATextLayer()
+            
+            // Determine font based on fontNm
+            let font: UIFont
+            switch fontNm {
+            case 0:
+                font = UIFont.systemFont(ofSize: 60)
+            case 1:
+                font = UIFont.boldSystemFont(ofSize: 60)
+            case 2:
+                font = UIFont.italicSystemFont(ofSize: 60)
+            case 3:
+                font = UIFont(name: "TimesNewRomanPSMT", size: 60) ?? UIFont.systemFont(ofSize: 60)
+            case 4:
+                font = UIFont.systemFont(ofSize: 60)
+            default:
+                font = UIFont.systemFont(ofSize: 60)
+            }
+            
             textLayer.string = text
-            textLayer.font = UIFont(name: "HelveticaNeue", size: 60) ?? UIFont.systemFont(ofSize: 60)
-            textLayer.fontSize = 60
+            textLayer.font = font
+            textLayer.fontSize = font.pointSize
             textLayer.foregroundColor = textForeClr.cgColor
             textLayer.backgroundColor = textBgClr.cgColor
             textLayer.alignmentMode = .center
@@ -578,7 +596,7 @@ open class AudioViewController: UIViewController, AVAudioRecorderDelegate {
             
             // Calculate text size
             let attributes: [NSAttributedString.Key: Any] = [
-                .font: UIFont(name: "HelveticaNeue", size: 60) ?? UIFont.systemFont(ofSize: 60),
+                .font: font,
                 .foregroundColor: textForeClr
             ]
             let attributedString = NSAttributedString(string: text, attributes: attributes)
@@ -682,6 +700,169 @@ open class AudioViewController: UIViewController, AVAudioRecorderDelegate {
             }
         }
     }
+
+    
+//    func addStickerorTexttoVideo(
+//        textBgClr: UIColor,
+//        textForeClr: UIColor,
+//        fontNm: Int,
+//        videoUrl: URL,
+//        watermarkText text: String,
+//        imageName name: String,
+//        position: Int,
+//        xPosition: Int,
+//        success: @escaping ((URL) -> Void),
+//        failure: @escaping ((String?) -> Void)
+//    ) {
+//        let asset = AVURLAsset(url: videoUrl)
+//        let composition = AVMutableComposition()
+//        let videoTrack = asset.tracks(withMediaType: .video)[0]
+//        
+//        let videoComposition = AVMutableVideoComposition()
+//        videoComposition.renderSize = videoTrack.naturalSize
+//        videoComposition.frameDuration = CMTimeMake(value: 1, timescale: 30)
+//        
+//        // Create a video layer and a parent layer
+//        let parentLayer = CALayer()
+//        let videoLayer = CALayer()
+//        
+//        parentLayer.frame = CGRect(origin: .zero, size: videoTrack.naturalSize)
+//        videoLayer.frame = CGRect(origin: .zero, size: videoTrack.naturalSize)
+//        parentLayer.addSublayer(videoLayer)
+//        
+//        // Add sticker if provided
+//        if !name.isEmpty {
+//            let sticker = UIImageView(image: UIImage(named: name))
+//            sticker.contentMode = .scaleAspectFit
+//            let stickerWidth = videoComposition.renderSize.width / 6
+//            let stickerX = videoComposition.renderSize.width * CGFloat(5 * (position % 3)) / 12
+//            let stickerY = (videoComposition.renderSize.height - (videoComposition.renderSize.height * CGFloat(position / 3) / 3)) - 150
+//            sticker.frame = CGRect(x: stickerX, y: stickerY, width: stickerWidth, height: stickerWidth)
+//            
+//            let stickerLayer = CALayer()
+//            stickerLayer.contents = sticker.image?.cgImage
+//            stickerLayer.frame = sticker.frame
+//            parentLayer.addSublayer(stickerLayer)
+//        }
+//        
+//        // Create text layer
+//        if !text.isEmpty {
+//            let textLayer = CATextLayer()
+//            textLayer.string = text
+//            textLayer.font = UIFont(name: "HelveticaNeue", size: 60) ?? UIFont.systemFont(ofSize: 60)
+//            textLayer.fontSize = 60
+//            textLayer.foregroundColor = textForeClr.cgColor
+//            textLayer.backgroundColor = textBgClr.cgColor
+//            textLayer.alignmentMode = .center
+//            textLayer.cornerRadius = 6
+//            textLayer.isWrapped = true
+//            
+//            // Calculate text size
+//            let attributes: [NSAttributedString.Key: Any] = [
+//                .font: UIFont(name: "HelveticaNeue", size: 60) ?? UIFont.systemFont(ofSize: 60),
+//                .foregroundColor: textForeClr
+//            ]
+//            let attributedString = NSAttributedString(string: text, attributes: attributes)
+//            let textSize = attributedString.size()
+//            let padding: CGFloat = 10
+//            let textWidth = textSize.width + (2 * padding)
+//            let textHeight = textSize.height + (2 * padding)
+//            
+//            // Determine text position
+//            let xSpacing = videoComposition.renderSize.width / 3
+//            let ySpacing = videoComposition.renderSize.height / 12
+//            let textX: CGFloat
+//            switch xPosition {
+//            case 0:
+//                textX = 10
+//            case 1:
+//                textX = (videoComposition.renderSize.width - textWidth) / 2
+//            case 2:
+//                textX = videoComposition.renderSize.width - textWidth - 10
+//            default:
+//                textX = (videoComposition.renderSize.width - textWidth) / 2
+//            }
+//            
+//            let textY: CGFloat
+//            switch position {
+//            case 0:
+//                textY = max(20, ySpacing - textHeight / 2)
+//            case 1:
+//                textY = 1600
+//            case 2:
+//                textY = 1400
+//            case 3:
+//                textY = 1200
+//            case 4:
+//                textY = 1100
+//            case 5:
+//                textY = max(20, 6 * ySpacing - textHeight / 2)
+//            case 6:
+//                textY = 800
+//            case 7:
+//                textY = 700
+//            case 8:
+//                textY = 600
+//            case 9:
+//                textY = 400
+//            case 10:
+//                textY = 400
+//            case 11:
+//                textY = 300
+//            default:
+//                textY = 200
+//            }
+//            
+//            textLayer.frame = CGRect(x: textX, y: textY, width: textWidth, height: textHeight)
+//            textLayer.opacity = 1.0 // Set opacity to 1.0 to ensure full visibility
+//            parentLayer.addSublayer(textLayer)
+//            
+//            print("Text Layer Frame: \(textLayer.frame)")  // Debugging log
+//            print("Text Layer Start Time: \(CMTime.zero)") // Log the start time of the text layer
+//        }
+//        
+//        // Add animation tool
+//        videoComposition.animationTool = AVVideoCompositionCoreAnimationTool(postProcessingAsVideoLayers: [videoLayer], in: parentLayer)
+//        
+//        // Create video composition instruction
+//        let instruction = AVMutableVideoCompositionInstruction()
+//        instruction.timeRange = CMTimeRange(start: .zero, duration: asset.duration)
+//        
+//        let transformer = AVMutableVideoCompositionLayerInstruction(assetTrack: videoTrack)
+//        transformer.setTransform(videoTrack.preferredTransform, at: .zero)
+//        instruction.layerInstructions = [transformer]
+//        videoComposition.instructions = [instruction]
+//        
+//        // Export the video
+//        let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+//        var outputURL = documentDirectory.appendingPathComponent("StickerVideo")
+//        do {
+//            try FileManager.default.createDirectory(at: outputURL, withIntermediateDirectories: true, attributes: nil)
+//            outputURL = outputURL.appendingPathComponent("\(outputURL.lastPathComponent).m4v")
+//        } catch let error {
+//            print(error)
+//        }
+//        
+//        deleteFile(outputURL)
+//        
+//        let exporter = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetHighestQuality)
+//        exporter?.outputFileType = .mov
+//        exporter?.outputURL = outputURL
+//        exporter?.videoComposition = videoComposition
+//        
+//        exporter?.exportAsynchronously {
+//            switch exporter?.status {
+//            case .completed:
+//                success(outputURL)
+//            case .failed:
+//                failure(exporter?.error?.localizedDescription)
+//            case .cancelled:
+//                failure(exporter?.error?.localizedDescription)
+//            default:
+//                failure(exporter?.error?.localizedDescription)
+//            }
+//        }
+//    }
 
 
     func deleteFile(_ filePath:URL) {
