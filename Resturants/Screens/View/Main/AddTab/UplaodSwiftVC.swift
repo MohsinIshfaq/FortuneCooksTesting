@@ -387,7 +387,7 @@ extension UplaodSwiftVC: UICollectionViewDelegate , UICollectionViewDataSource ,
 extension UplaodSwiftVC {
     
     func uplaodThumbnail(_ img: UIImage) {
-        // self.startAnimating()
+         self.startAnimating()
         if reachability.isReachable {
             let uniqueID = UUID().uuidString
             print(uniqueID)
@@ -396,7 +396,7 @@ extension UplaodSwiftVC {
             let metadata = StorageMetadata()
             metadata.contentType = "image/png"
             storageRef.putData(imgData!,metadata: metadata) { metadata, error in
-                //  self.stopAnimating()
+                  self.stopAnimating()
                 if error == nil {
                     let storage = storageRef
                     storage.downloadURL { (url, error) in
