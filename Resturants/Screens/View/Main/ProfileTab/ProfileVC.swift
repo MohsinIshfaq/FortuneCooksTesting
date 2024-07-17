@@ -85,11 +85,25 @@ class ProfileVC: BaseClass {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        onload()
+        if !UserDefault.isAuthenticated {
+            let vc  = Constants.authStoryBoard.instantiateViewController(withIdentifier: "LoginNC") as? LoginNC
+            vc?.modalPresentationStyle = .overFullScreen
+            self.navigationController?.present(vc!, animated: true)
+        }
+        else{
+            onload()
+        }
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        onAppear()
+        if !UserDefault.isAuthenticated {
+            let vc  = Constants.authStoryBoard.instantiateViewController(withIdentifier: "LoginNC") as? LoginNC
+            vc?.modalPresentationStyle = .overFullScreen
+            self.navigationController?.present(vc!, animated: true)
+        }
+        else{
+            onAppear()
+        }
     }
     
     //MARK: IBActions {}
@@ -289,7 +303,7 @@ extension ProfileVC {
             }
         }
         else{
-           
+            
             showAlertCOmpletion(withTitle: "", message: "Access to the profile screen is restricted due to authentication requirements.") { status in
                 if status {
                     self.tabBarController?.selectedIndex = 0

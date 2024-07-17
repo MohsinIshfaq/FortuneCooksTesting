@@ -25,7 +25,8 @@ class LoginVC: UIViewController {
     
     @IBAction func ontapDismiss(_ sender: UIButton){
         
-        self.navigationController?.dismiss(animated: true)
+        let vc = Constants.TabControllerStoryBoard.instantiateViewController(withIdentifier: "TabbarController") as? TabbarController
+        self.navigationController?.pushViewController(vc!, animated: true)
     }
     
     @objc func CrtAccnt(){

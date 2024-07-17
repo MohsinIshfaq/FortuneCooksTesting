@@ -39,12 +39,22 @@ class CameraVC: FilterCamViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        onLoad()
+        if !UserDefault.isAuthenticated {
+            self.dismiss(animated: true)
+        }
+        else{
+            onLoad()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        onAppear()
+        if !UserDefault.isAuthenticated {
+            self.dismiss(animated: true)
+        }
+        else{
+            onAppear()
+        }
     }
     
     @IBAction func ontapUpload(_ sender: UIButton){
