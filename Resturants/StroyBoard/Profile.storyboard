@@ -847,7 +847,7 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kkc-2v-H6N">
                                                                 <rect key="frame" x="0.0" y="29" width="361" height="55"/>
                                                                 <subviews>
-                                                                    <textField opaque="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="248" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Add email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c2Z-8C-KsT">
+                                                                    <textField opaque="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Add email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c2Z-8C-KsT">
                                                                         <rect key="frame" x="16" y="0.0" width="339" height="55"/>
                                                                         <color key="tintColor" name="ColorLightGray"/>
                                                                         <color key="textColor" name="ColorWhite"/>
@@ -5265,34 +5265,34 @@
                                                 </userDefinedRuntimeAttributes>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="NNn-P7-YFc">
-                                                <rect key="frame" x="16" y="652" width="371" height="130"/>
+                                                <rect key="frame" x="16" y="652" width="371" height="163"/>
                                                 <subviews>
-                                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email : Naveedshabbir@gmail.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uJO-zV-w0L">
-                                                        <rect key="frame" x="0.0" y="0.0" width="371" height="0.0"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uJO-zV-w0L">
+                                                        <rect key="frame" x="0.0" y="0.0" width="371" height="17"/>
                                                         <fontDescription key="fontDescription" name="Inter-Regular_Medium" family="Inter" pointSize="14"/>
                                                         <color key="textColor" name="ColorWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Http://aminkitchen.co" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FSm-We-ei0">
-                                                        <rect key="frame" x="0.0" y="0.0" width="371" height="17"/>
+                                                        <rect key="frame" x="0.0" y="33" width="371" height="17"/>
                                                         <fontDescription key="fontDescription" name="Inter-Regular_Medium" family="Inter" pointSize="14"/>
                                                         <color key="textColor" name="ColorDarkBlue"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email : " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fMw-vj-8RQ">
-                                                        <rect key="frame" x="0.0" y="33" width="371" height="17"/>
-                                                        <fontDescription key="fontDescription" name="Inter-Regular_Medium" family="Inter" pointSize="14"/>
-                                                        <color key="textColor" name="ColorWhite"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Cu-qh-7Jd">
                                                         <rect key="frame" x="0.0" y="66" width="371" height="17"/>
                                                         <fontDescription key="fontDescription" name="Inter-Regular_Medium" family="Inter" pointSize="14"/>
                                                         <color key="textColor" name="ColorWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Cu-qh-7Jd">
+                                                        <rect key="frame" x="0.0" y="99" width="371" height="17"/>
+                                                        <fontDescription key="fontDescription" name="Inter-Regular_Medium" family="Inter" pointSize="14"/>
+                                                        <color key="textColor" name="ColorWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                     <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="d5J-98-0py">
-                                                        <rect key="frame" x="0.0" y="91" width="371" height="112"/>
+                                                        <rect key="frame" x="0.0" y="124" width="371" height="112"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Opening Hours (Friday) Open" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jQj-uJ-rYB">
                                                                 <rect key="frame" x="0.0" y="0.0" width="371" height="0.0"/>
@@ -5427,7 +5427,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pAu-Rj-kam">
-                                                        <rect key="frame" x="0.0" y="99" width="371" height="31"/>
+                                                        <rect key="frame" x="0.0" y="132" width="371" height="31"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" title="View more info">
                                                             <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="14"/>
@@ -5439,7 +5439,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="tWE-gu-VKR">
-                                                <rect key="frame" x="0.0" y="875" width="393" height="150"/>
+                                                <rect key="frame" x="0.0" y="908" width="393" height="150"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="7gQ-Dd-DRO">
                                                         <rect key="frame" x="0.0" y="0.0" width="393" height="150"/>
@@ -5977,7 +5977,7 @@
                                                 </subviews>
                                             </stackView>
                                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CLI-S7-tp6">
-                                                <rect key="frame" x="24" y="806" width="369" height="45"/>
+                                                <rect key="frame" x="24" y="839" width="369" height="45"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ENg-ZB-hOk">
                                                         <rect key="frame" x="0.0" y="0.0" width="1" height="45"/>
@@ -6280,6 +6280,7 @@
                         <outlet property="lblFounded" destination="qQB-yT-CTQ" id="Ko3-NF-rlk"/>
                         <outlet property="lblFridayDuration" destination="52r-VD-ufs" id="hw6-KV-Tfl"/>
                         <outlet property="lblMondayDuration" destination="4fa-Ul-MMj" id="bwL-qS-r3N"/>
+                        <outlet property="lblPhoneNumbr" destination="uJO-zV-w0L" id="Yvi-2g-r6v"/>
                         <outlet property="lblSaturdayDuration" destination="VNP-tN-5iW" id="gAV-yy-KsB"/>
                         <outlet property="lblSundayDuration" destination="ciK-BM-6um" id="CvN-oi-55c"/>
                         <outlet property="lblTagPersons" destination="ajI-gE-gXW" id="OKL-hV-rbr"/>

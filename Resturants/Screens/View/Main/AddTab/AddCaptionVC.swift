@@ -169,8 +169,6 @@ class AddCaptionVC: AudioViewController , UITextViewDelegate {
         }
     }
 
-
-
 //    @objc func handlePanGesture(_ recognizer: UIPanGestureRecognizer) {
 //        let touchPoint = recognizer.location(in: self.view)
 //        
@@ -422,7 +420,6 @@ class AddCaptionVC: AudioViewController , UITextViewDelegate {
 //        return newText
 //    }
 
-    
     @objc func longPressed(_ gestureRecognizer: UILongPressGestureRecognizer) {
             if gestureRecognizer.state == .began {
                 // Long press gesture recognized
@@ -486,12 +483,33 @@ class AddCaptionVC: AudioViewController , UITextViewDelegate {
     }
 }
 
-// MARK: - UITextViewDelegate {}
-extension AddCaptionVC{
+//// MARK: - UITextViewDelegate {}
+//extension AddCaptionVC{
+//    
+//    func textViewDidBeginEditing(_ textView: UITextView) {
+//        if textView.textColor == placeholderColor {
+//            textView.text      = nil
+//            textView.textColor = UIColor.white
+//        }
+//    }
+//    
+//    func textViewDidEndEditing(_ textView: UITextView) {
+//        if textView.text.isEmpty {
+//            setupPlaceholder()
+//        }
+//    }
+//}
+
+extension AddCaptionVC {
+
+    func textViewDidChange(_ textView: UITextView) {
+        adjustTextViewWidth(textView)
+        checkIfTextViewWentToSecondLine(textView: textView)
+    }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == placeholderColor {
-            textView.text      = nil
+            textView.text = nil
             textView.textColor = UIColor.white
         }
     }
@@ -501,7 +519,32 @@ extension AddCaptionVC{
             setupPlaceholder()
         }
     }
+    
+    private func adjustTextViewWidth(_ textView: UITextView) {
+        let maxWidth: CGFloat = 280.0
+        let size = textView.sizeThatFits(CGSize(width: CGFloat.greatestFiniteMagnitude, height: textView.frame.height))
+        var newWidth = size.width
+        
+        if newWidth > maxWidth {
+            newWidth = maxWidth
+        }
+        
+        // Update the text view's width constraint
+        textView.constraints.forEach { constraint in
+            if constraint.firstAttribute == .width {
+                constraint.constant = newWidth
+            }
+        }
+        
+        // Update the frame directly if no width constraint is set
+        if textView.constraints.isEmpty {
+            var frame = textView.frame
+            frame.size.width = newWidth
+            textView.frame = frame
+        }
+    }
 }
+
 
 //MARK: - setup View {}
 extension AddCaptionVC {
@@ -529,16 +572,11 @@ extension AddCaptionVC {
         txtCaption.delegate = self
         setupPlaceholder()
     }
-    
     func setupPlaceholder() {
         txtCaption.text      = placeholder
         txtCaption.textColor = placeholderColor
     }
-    
-    
-    
     func onAppear() {
-        
         showNavBar()
         removeNavBackbuttonTitle()
         lblFont1.font = fonts[0]
@@ -547,9 +585,7 @@ extension AddCaptionVC {
         lblFont4.font = fonts[3]
         lblFont5.font = fonts[4]
     }
-    
     func playVideo() {
-        
         if let url = outputURL {
              player = AVPlayer(url: url)
             let playerLayer = AVPlayerLayer(player: player)
@@ -570,40 +606,61 @@ extension AddCaptionVC {
         btnDone.tintColor = .white
         navigationItem.rightBarButtonItem = btnDone
     }
+//    
+//    func textViewDidChange(_ textView: UITextView) {
+//    }
     
-    func textViewDidChange(_ textView: UITextView) {
-        checkIfTextViewWentToSecondLine(textView: textView)
-    }
+//    func checkIfTextViewWentToSecondLine(textView: UITextView) {
+//        guard let font = textView.font else { return }
+//        
+//        // Calculate the width of the text view's visible content area
+//        let textViewWidth = textView.bounds.width - textView.textContainerInset.left - textView.textContainerInset.right
+//        
+//        // Calculate the width of the current text
+//        let textWidth = (textView.text as NSString).boundingRect(
+//            with: CGSize(width: CGFloat.greatestFiniteMagnitude, height: font.lineHeight),
+//            options: .usesLineFragmentOrigin,
+//            attributes: [.font: font],
+//            context: nil
+//        ).width
+//        
+//        // Calculate the number of lines needed for the text
+//        let numberOfLines = ceil(textWidth / textViewWidth)
+//        
+//        // Check if the number of lines is greater than 1
+//        if numberOfLines > 1 {
+//            print("TextView went to second line or more")
+//            // Increase the height of the text view by 40 points
+//            if textView.frame.height < textView.contentSize.height {
+//                textView.frame.size.height += 40
+//            }
+//        } else {
+//            print("TextView is within a single line")
+//        }
+//    }
     
     func checkIfTextViewWentToSecondLine(textView: UITextView) {
-        guard let font = textView.font else { return }
-        
-        // Calculate the width of the text view's visible content area
-        let textViewWidth = textView.bounds.width - textView.textContainerInset.left - textView.textContainerInset.right
-        
-        // Calculate the width of the current text
-        let textWidth = (textView.text as NSString).boundingRect(
-            with: CGSize(width: CGFloat.greatestFiniteMagnitude, height: font.lineHeight),
-            options: .usesLineFragmentOrigin,
-            attributes: [.font: font],
-            context: nil
-        ).width
-        
-        // Calculate the number of lines needed for the text
-        let numberOfLines = ceil(textWidth / textViewWidth)
-        
-        // Check if the number of lines is greater than 1
-        if numberOfLines > 1 {
-            print("TextView went to second line or more")
-            // Increase the height of the text view by 40 points
-            if textView.frame.height < textView.contentSize.height {
-                textView.frame.size.height += 40
-            }
-        } else {
-            print("TextView is within a single line")
-        }
-    }
-    
+           guard let font = textView.font else { return }
+
+           // Calculate the width of the text view's visible content area
+           let textViewWidth = textView.bounds.width - textView.textContainerInset.left - textView.textContainerInset.right
+
+           // Calculate the height of the current text
+           let textHeight = (textView.text as NSString).boundingRect(
+               with: CGSize(width: textViewWidth, height: CGFloat.greatestFiniteMagnitude),
+               options: .usesLineFragmentOrigin,
+               attributes: [.font: font],
+               context: nil
+           ).height
+
+           // Calculate the total height needed, including padding
+           let totalHeight = textHeight + textView.textContainerInset.top + textView.textContainerInset.bottom
+
+           // Adjust the height of the text view
+           if textView.frame.height != totalHeight {
+               textView.frame.size.height = totalHeight
+           }
+       }
 
 
 }

@@ -229,9 +229,9 @@ extension UpdateProfileVC {
             txtAccntType.text     = profile.accountType ?? ""
             txtChannelNm.text     = profile.channelName ?? ""
             txtViewBio.text       = profile.bio ?? ""
-            txtAddEmail.text      = profile.email ?? ""
+            txtAddEmail.text      = profile.businessEmail ?? ""
             txtAddWebsite.text    = profile.website ?? ""
-            txtAddPhoneNUmbr.text = profile.phoneNumber ?? ""
+            txtAddPhoneNUmbr.text = profile.businessphoneNumber ?? ""
             txtAddAddressLoc.text = profile.address ?? ""
             txtZipCode.text       = profile.zipcode ?? ""
             txtCity.text          = profile.city ?? ""
@@ -391,21 +391,20 @@ extension UpdateProfileVC {
         return switchs ? "\(txtMondayOpening.text!) - \(txtMondayClosing.text!)" : "Closed"
     }
     
-    func updateProfileModel(channel: String , bio: String , email: String , web: String , number: String , address: String , zipCode: String , city: String , timings: [String]) {
+    func updateProfileModel(channel: String , bio: String , businessEmail: String , web: String , businessNumber: String , address: String , zipCode: String , city: String , timings: [String]) {
         if var model = self.profileModel {
             print(model)
             updateUserDocument(img: model.profileUrl ?? ""  , channelNm: channel, followers: model.followers?.count ?? 0 , acountType: model.accountType ?? "")
-            model.channelName = channel
-            model.bio         = bio
-            model.email       = email
-            model.website     = web
-            model.phoneNumber = number
-            model.address     = address
-            model.zipcode     = zipCode
-            model.city        = city
-            model.email       = email
-            model.timings     = timings
-            self.profileModel = model
+            model.channelName         = channel
+            model.bio                 = bio
+            model.businessEmail       = businessEmail
+            model.website             = web
+            model.businessphoneNumber = businessNumber
+            model.address             = address
+            model.zipcode             = zipCode
+            model.city                = city
+            model.timings             = timings
+            self.profileModel         = model
             popRoot()
         }
     }
@@ -677,10 +676,10 @@ extension UpdateProfileVC {
         db.collection("Users").document(userID).updateData([
             "channelName": txtChannelNm.text! ,
             "bio": txtViewBio.text!,
-            "email": txtAddEmail.text! ,
+            "businessEmail": txtAddEmail.text! ,
             "tagPersons": tagUsersArray ,
             "website": txtAddWebsite.text! ,
-            "phoneNumber": txtAddPhoneNUmbr.text! ,
+            "businessNumber": txtAddPhoneNUmbr.text! ,
             "address": txtAddAddressLoc.text! ,
             "zipcode": txtZipCode.text! ,
             "city": txtCity.text! ,
@@ -692,7 +691,7 @@ extension UpdateProfileVC {
             } else {
                 self.stopAnimating()
                 print("Cover URL successfully updated in Firestore")
-                self.updateProfileModel(channel:  self.txtChannelNm.text!, bio: self.txtViewBio.text!, email: self.txtAddEmail.text!, web: self.txtAddWebsite.text!, number: self.txtAddPhoneNUmbr.text!, address: self.txtAddAddressLoc.text!, zipCode: self.txtZipCode.text!, city: self.txtCity.text!, timings: timings)
+                self.updateProfileModel(channel:  self.txtChannelNm.text!, bio: self.txtViewBio.text!, businessEmail: self.txtAddEmail.text!, web: self.txtAddWebsite.text!, businessNumber: self.txtAddPhoneNUmbr.text!, address: self.txtAddAddressLoc.text!, zipCode: self.txtZipCode.text!, city: self.txtCity.text!, timings: timings)
             }
         }
     }

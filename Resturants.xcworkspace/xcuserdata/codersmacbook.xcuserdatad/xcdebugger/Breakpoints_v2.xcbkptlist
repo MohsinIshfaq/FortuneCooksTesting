@@ -158,8 +158,8 @@
             filePath = "Resturants/Screens/View/Main/ProfileTab/ProfileVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "229"
-            endingLineNumber = "229"
+            startingLineNumber = "230"
+            endingLineNumber = "230"
             landmarkName = "ontapSeeMore(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -190,8 +190,8 @@
             filePath = "Resturants/Screens/View/Main/ProfileTab/UpdateProfileVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "709"
-            endingLineNumber = "709"
+            startingLineNumber = "708"
+            endingLineNumber = "708"
             landmarkName = "updateUserDocument(img:channelNm:followers:acountType:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -208,7 +208,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "396"
             endingLineNumber = "396"
-            landmarkName = "updateProfileModel(channel:bio:email:web:number:address:zipCode:city:timings:)"
+            landmarkName = "updateProfileModel(channel:bio:businessEmail:web:businessNumber:address:zipCode:city:timings:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -318,8 +318,8 @@
             filePath = "Resturants/Screens/View/Main/ProfileTab/ProfileVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "412"
-            endingLineNumber = "412"
+            startingLineNumber = "414"
+            endingLineNumber = "414"
             landmarkName = "setupProfile(user:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -478,8 +478,8 @@
             filePath = "Resturants/Screens/View/Main/ProfileTab/ProfileVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "599"
-            endingLineNumber = "599"
+            startingLineNumber = "601"
+            endingLineNumber = "601"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -638,8 +638,8 @@
             filePath = "Resturants/Screens/View/Main/ProfileTab/UpdateProfileVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "677"
-            endingLineNumber = "677"
+            startingLineNumber = "676"
+            endingLineNumber = "676"
             landmarkName = "addProfile(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -679,32 +679,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "67E6B9E1-1B86-4C6B-9575-512B93B412CE"
+            uuid = "00405FB7-459C-4E70-A6EA-A28E5FFB6C5E"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Resturants/Screens/View/Main/ProfileTab/ProfileVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "1B7C06E7-0BC6-4893-BC41-E78335899787"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Resturants/Screens/View/Main/ProfileTab/ProfileVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
-            landmarkName = "viewWillAppear(_:)"
+            startingLineNumber = "331"
+            endingLineNumber = "331"
+            landmarkName = "setupProfile(user:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

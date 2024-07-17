@@ -208,7 +208,9 @@ extension CrtProfile4VC {
                  "channelName"                    : UserManager.shared.selectedChannelNm,
                  "dateOfBirth"                    : UserManager.shared.selectedDOB,
                  "email"                          : UserManager.shared.selectedEmail,
-                 "phoneNumber"                    : UserManager.shared.selectedPhone]
+                 "phoneNumber"                    : UserManager.shared.selectedPhone,
+                 "businessEmail"                  : "",
+                 "businessNumber"                 : ""]
             ) { error in
                 if let error = error {
                     print("Error writing document: \(error)")

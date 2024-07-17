@@ -66,6 +66,8 @@ struct UserProfileModel {
     var dateOfBirth: String?
     var email: String?
     var phoneNumber: String?
+    var businessEmail: String?
+    var businessphoneNumber: String?
     var isFoundedVisible: Bool?
 }
 

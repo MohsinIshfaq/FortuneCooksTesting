@@ -64,6 +64,7 @@ class ProfileVC: BaseClass {
     @IBOutlet weak var btnSettings             : UIButton!
     @IBOutlet weak var btnFollow               : UIButton!
     @IBOutlet weak var lblFounded              : UILabel!
+    @IBOutlet weak var lblPhoneNumbr           : UILabel!
     
     //MARK: - Variables and Properties
     let reachability = try! Reachability()
@@ -329,8 +330,9 @@ extension ProfileVC {
         
         lblChannelName.text = user.channelName ?? ""
         lblChannelType.text = "(" + (user.accountType ?? "") + ")"
-        lblEmail.text       = user.email ?? ""
-        lblWebLInk.text     = user.website ?? ""
+        lblEmail.text       = "Email: \(user.businessEmail ?? "")"
+        lblPhoneNumbr.text  = "Phone Number: \(user.businessphoneNumber ?? "")"
+        lblWebLInk.text     = "Website: \(user.website ?? "")"
         lblAddress.text     = "\(user.address ?? "") \(user.zipcode ?? "") \(user.city ?? "")"
         lblFollowers.text   = "\(user.followers?.count ?? 0) Followers"
         lblFollowing.text   = "\(user.followings?.count ?? 0) Following"
@@ -734,6 +736,8 @@ extension ProfileVC {
                                             dateOfBirth: data?["dateOfBirth"] as? String ?? "",
                                             email: data?["email"] as? String ?? "",
                                             phoneNumber: data?["phoneNumber"] as? String ?? "" ,
+                                            businessEmail: data?["businessEmail"] as? String ?? "",
+                                            businessphoneNumber: data?["businessNumber"] as? String ?? "",
                                             isFoundedVisible: data?["isFoundedVisible"] as? Bool ?? false)
                 self.stopAnimating()
                 completion(user)
