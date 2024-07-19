@@ -38,6 +38,21 @@ extension UIViewController {
     func popup() {
         self.navigationController?.popViewController(animated: true)
     }
+    
+    func getCurrentDayOfWeek() -> (String, Int) {
+        let date = Date()
+        let calendar = Calendar.current
+        let dayOfWeek = calendar.component(.weekday, from: date)
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE"
+        let dayName = dateFormatter.string(from: date)
+        
+        // Adjusting to make Sunday = 6
+        let dayIndex = (dayOfWeek + 5) % 7
+
+        return (dayName, dayIndex)
+    }
 
     func performAction(completion: @escaping () -> Void) {
             // Simulate a network request or any other action that takes time

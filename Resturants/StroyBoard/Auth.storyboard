@@ -414,7 +414,7 @@
                                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="semibold"/>
                                                         </state>
                                                     </button>
-                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Select account" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1BC-R2-uGh">
+                                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Select account" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1BC-R2-uGh">
                                                         <rect key="frame" x="16" y="0.0" width="299" height="55"/>
                                                         <color key="tintColor" name="ColorLightGray"/>
                                                         <color key="textColor" name="ColorWhite"/>

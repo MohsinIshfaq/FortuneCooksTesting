@@ -124,7 +124,17 @@ class UpdateProfileVC: UIViewController , TagPeopleDelegate{
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     @IBAction func ontapSave(_ sender: UIButton){
-        addProfile(UserDefault.token)
+        if "".isValidEmailRegex(self.txtAddEmail.text ?? "") {
+            if "".isValidWebsite(url: self.txtAddWebsite.text ?? ""){
+                addProfile(UserDefault.token)
+            }
+            else{
+                self.showToast(message: "web URL is not valid", seconds: 2, clr: .red)
+            }
+        }
+        else{
+            self.showToast(message: "Email is not valid", seconds: 2, clr: .red)
+        }
     }
     
     @IBAction func ontapScheduleSwitch(_ sender: UISwitch){
@@ -388,7 +398,7 @@ extension UpdateProfileVC {
     
     func getMondaySchedule(_ opening: String,  _ closing: String , switchs: Bool) -> String {
         //MARK: - if switch is hide it means schedule is closed like monday is closed
-        return switchs ? "\(txtMondayOpening.text!) - \(txtMondayClosing.text!)" : "Closed"
+        return switchs ? "\(opening) - \(closing)" : "Closed"
     }
     
     func updateProfileModel(channel: String , bio: String , businessEmail: String , web: String , businessNumber: String , address: String , zipCode: String , city: String , timings: [String]) {

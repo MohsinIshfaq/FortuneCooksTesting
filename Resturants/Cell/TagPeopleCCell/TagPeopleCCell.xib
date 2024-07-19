@@ -26,8 +26,8 @@
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="X8X-52-Dfl">
                         <rect key="frame" x="6" y="2" width="412" height="46"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="hkL-cX-dsW">
-                                <rect key="frame" x="0.0" y="1" width="20" height="44.666666666666671"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hkL-cX-dsW">
+                                <rect key="frame" x="0.0" y="0.0" width="20" height="46"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="20" id="vYf-u2-khi"/>
                                 </constraints>
@@ -85,7 +85,6 @@
     </objects>
     <resources>
         <image name="multiply.circle.fill" catalog="system" width="128" height="123"/>
-        <image name="person.circle" catalog="system" width="128" height="123"/>
         <namedColor name="ColorLightGray">
             <color red="0.63529411764705879" green="0.63529411764705879" blue="0.63529411764705879" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

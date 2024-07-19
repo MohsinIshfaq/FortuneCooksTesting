@@ -65,6 +65,12 @@ class ProfileVC: BaseClass {
     @IBOutlet weak var btnFollow               : UIButton!
     @IBOutlet weak var lblFounded              : UILabel!
     @IBOutlet weak var lblPhoneNumbr           : UILabel!
+    @IBOutlet weak var lblCurrnetDay           : UILabel!
+    
+    @IBOutlet weak var vwPhone             : UIView!
+    @IBOutlet weak var vwWeb               : UIView!
+    @IBOutlet weak var vwEmail             : UIView!
+    @IBOutlet weak var vwAddress           : UIView!
     
     //MARK: - Variables and Properties
     let reachability = try! Reachability()
@@ -406,10 +412,41 @@ extension ProfileVC {
         }
     }
     func setupProfile(user: UserProfileModel) {
-        
+        if user.timings?.count != 0 {
+            lblCurrnetDay.text  = "Opening Hours (\(getCurrentDayOfWeek().0)) \(user.timings?[getCurrentDayOfWeek().1] != "Closed" ? "Open" : "Closed")"
+        }
+        else{
+            lblCurrnetDay.text  = "Opening Hours (\(getCurrentDayOfWeek().0)) Closed"
+        }
         lblChannelName.text = user.channelName ?? ""
         lblChannelType.text = "(" + (user.accountType ?? "") + ")"
         lblEmail.text       = user.businessEmail != nil ?? "" ? "Email: \(user.businessEmail ?? "")" : ""
+        if user.businessphoneNumber == "" {
+            vwPhone.isHidden = true
+        }
+        else{
+            vwPhone.isHidden = false
+        }
+        
+        if user.website == "" {
+            vwWeb.isHidden = true
+        }
+        else{
+            vwWeb.isHidden = false
+        }
+        
+        if user.businessEmail == "" {
+            vwEmail.isHidden = true
+        }
+        else{
+            vwEmail.isHidden = false
+        }
+        if user.address == "" {
+            vwAddress.isHidden = true
+        }
+        else{
+            vwAddress.isHidden = false
+        }
         lblPhoneNumbr.text  = user.businessphoneNumber != nil ?? "" ? "Phone Number: \(user.businessphoneNumber ?? "")" : ""
         lblWebLInk.text     = user.website != nil ?? "" ? "Website: \(user.website ?? "")" : ""
         lblAddress.text     = "\(user.address ?? "") \(user.zipcode ?? "") \(user.city ?? "")"

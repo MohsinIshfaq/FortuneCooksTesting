@@ -108,8 +108,8 @@
             filePath = "Resturants/Screens/View/Main/ProfileTab/UpdateProfileVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "159"
-            endingLineNumber = "159"
+            startingLineNumber = "169"
+            endingLineNumber = "169"
             landmarkName = "ontapScheduleSwitch(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -124,8 +124,8 @@
             filePath = "Resturants/Screens/View/Main/ProfileTab/UpdateProfileVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
+            startingLineNumber = "165"
+            endingLineNumber = "165"
             landmarkName = "ontapScheduleSwitch(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -211,22 +211,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "70CBF9D8-0DA3-4198-8ECC-A4C71D07BFA7"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Resturants/Screens/View/Main/ProfileTab/ProfileVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "309"
-            endingLineNumber = "309"
-            landmarkName = "ontapSeeMore(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "2948BAFB-5D25-41B3-AA5B-5F6AA1AFD3D0"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -237,22 +221,6 @@
             startingLineNumber = "477"
             endingLineNumber = "477"
             landmarkName = "addProfile(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "C8269CDA-1ABD-4DF3-9103-6F45F47A4D0D"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Resturants/Screens/View/Main/ProfileTab/UpdateProfileVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "396"
-            endingLineNumber = "396"
-            landmarkName = "updateProfileModel(channel:bio:businessEmail:web:businessNumber:address:zipCode:city:timings:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -362,8 +330,8 @@
             filePath = "Resturants/Screens/View/Main/ProfileTab/ProfileVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "493"
-            endingLineNumber = "493"
+            startingLineNumber = "530"
+            endingLineNumber = "530"
             landmarkName = "setupProfile(user:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -522,40 +490,10 @@
             filePath = "Resturants/Screens/View/Main/ProfileTab/ProfileVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "681"
-            endingLineNumber = "681"
+            startingLineNumber = "718"
+            endingLineNumber = "718"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "26EF5FF4-F696-4FD8-92C5-115BB14C67A8 - d9433e1d6b31e488"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Resturants.ProfileVC.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
-                  moduleName = "Resturants"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/codersmacbook/Documents/FortuneCooksIOS/Resturants/Screens/View/Main/ProfileTab/ProfileVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "681"
-                  endingLineNumber = "681">
-               </Location>
-               <Location
-                  uuid = "26EF5FF4-F696-4FD8-92C5-115BB14C67A8 - d9433e1d6b31e4af"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Resturants.ProfileVC.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
-                  moduleName = "Resturants"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/codersmacbook/Documents/FortuneCooksIOS/Resturants/Screens/View/Main/ProfileTab/ProfileVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "682"
-                  endingLineNumber = "682">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -713,38 +651,6 @@
             startingLineNumber = "81"
             endingLineNumber = "81"
             landmarkName = "filterContentForSearchText(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "4E69245D-28E6-48CA-8A9A-54D02F38C891"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Resturants/Screens/View/Main/ProfileTab/UpdateProfileVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "127"
-            endingLineNumber = "127"
-            landmarkName = "ontapSave(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "BE11356A-46CC-408D-AB9A-C8E0AB955250"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Resturants/Screens/View/Main/ProfileTab/UpdateProfileVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "676"
-            endingLineNumber = "676"
-            landmarkName = "addProfile(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

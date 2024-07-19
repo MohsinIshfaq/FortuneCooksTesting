@@ -134,6 +134,7 @@ class CreatAccntVC: UIViewController , createAccntDelegate {
         self.navigationController?.present(vc, animated: true)
     }
     @IBAction func ontapEnviorment(_ sender: UIButton){
+        
         let vc = Constants.authStoryBoard.instantiateViewController(withIdentifier: "SelectionVC") as! SelectionVC
         vc.type     = 1
         self.type   = 1

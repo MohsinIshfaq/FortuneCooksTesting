@@ -27,6 +27,12 @@ extension String {
         return emailPred.evaluate(with: email)
     }
     
+    func isValidWebsite(url: String) -> Bool {
+        let regex = "^(https?://)?(www\\.)?[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}(/.*)?$"
+        let predicate = NSPredicate(format:"SELF MATCHES %@", regex)
+        return predicate.evaluate(with: url)
+    }
+    
     func validPhoneRegex(value: String) -> Bool {
         let PHONE_REGEX = "^(\\+?\\d{1,3}\\s?)?0?\\d{1,12}$"
         let phoneTest = NSPredicate(format: "SELF MATCHES %@", PHONE_REGEX)
