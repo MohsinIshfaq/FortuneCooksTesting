@@ -156,6 +156,7 @@ extension VerifyPasswordVC {
                     self?.delegate?.verified()
                 }else if self?.isFromWhere == "VerifyAndDeleteAccnt" {
                     let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "AccntDeleteReasonVC") as! AccntDeleteReasonVC
+                    vc.channelName = self?.profileModel?.channelName ?? ""
                     vc.hidesBottomBarWhenPushed = true
                     self?.navigationController?.pushViewController(vc, animated: true)
                 }

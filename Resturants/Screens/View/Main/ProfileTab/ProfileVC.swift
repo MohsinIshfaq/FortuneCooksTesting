@@ -107,11 +107,90 @@ class ProfileVC: BaseClass {
         }
     }
     
+    
     //MARK: IBActions {}
     @IBAction func ontapAddProfileImg(_ sender: UIButton){
         CurrentTagImg = sender.tag
         pickImg()
     }
+    
+    @IBAction func ontapWeb(_ sender: UIButton) {
+        guard let website = self.profileModel?.website, let url = URL(string: website) else {
+            return
+        }
+        // Check if the device can open the URL
+        if UIApplication.shared.canOpenURL(url) {
+            // Open the URL in the default web browser
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        } else {
+            // Handle the case where the device cannot open the URL
+            print("Cannot open website URL")
+        }
+    }
+
+    
+    @IBAction func ontapEmail(_ sender: UIButton) {
+        guard let email = self.profileModel?.businessEmail else {
+            return
+        }
+        let mailto = "mailto:\(email)"
+        if let mailURL = URL(string: mailto) {
+            // Check if the device can open the mailto URL
+            if UIApplication.shared.canOpenURL(mailURL) {
+                // Open the mailto URL to compose an email
+                UIApplication.shared.open(mailURL, options: [:], completionHandler: nil)
+            } else {
+                // Handle the case where the device cannot open the mailto URL
+                print("Cannot open mail client")
+            }
+        } else {
+            // Handle the case where the mailto URL could not be created
+            print("Invalid email address URL")
+        }
+    }
+
+    
+    @IBAction func ontapAddress(_ sender: UIButton) {
+        guard let address = self.profileModel?.address else {
+            return
+        }
+
+        let query = address.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        let mapsURLString = "http://maps.apple.com/?q=\(query ?? "")"
+        if let mapsURL = URL(string: mapsURLString) {
+            if UIApplication.shared.canOpenURL(mapsURL) {
+                // Open the address in the Maps app
+                UIApplication.shared.open(mapsURL, options: [:], completionHandler: nil)
+            } else {
+                // Handle the case where the device cannot open the maps URL
+                print("Cannot open Maps app")
+            }
+        } else {
+            // Handle the case where the maps URL could not be created
+            print("Invalid address URL")
+        }
+    }
+
+    
+    @IBAction func ontapNumber(_ sender: UIButton) {
+        guard let number = self.profileModel?.businessphoneNumber else {
+            // Handle the case where the phone number is not available
+            return
+        }
+        // Create a URL with the "tel" scheme
+        if let phoneURL = URL(string: "tel://\(number)") {
+            // Check if the device can open the URL
+            if UIApplication.shared.canOpenURL(phoneURL) {
+                UIApplication.shared.open(phoneURL, options: [:], completionHandler: nil)
+            } else {
+                print("Device cannot make phone calls")
+            }
+        } else {
+            print("Invalid phone number URL")
+        }
+    }
+
+    
     @IBAction func ontapMenuDots(_ sender: UIButton){
         let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "AccountActionPopupVC") as! AccountActionPopupVC
         vc.delegate  = self
@@ -330,9 +409,9 @@ extension ProfileVC {
         
         lblChannelName.text = user.channelName ?? ""
         lblChannelType.text = "(" + (user.accountType ?? "") + ")"
-        lblEmail.text       = "Email: \(user.businessEmail ?? "")"
-        lblPhoneNumbr.text  = "Phone Number: \(user.businessphoneNumber ?? "")"
-        lblWebLInk.text     = "Website: \(user.website ?? "")"
+        lblEmail.text       = user.businessEmail != nil ?? "" ? "Email: \(user.businessEmail ?? "")" : ""
+        lblPhoneNumbr.text  = user.businessphoneNumber != nil ?? "" ? "Phone Number: \(user.businessphoneNumber ?? "")" : ""
+        lblWebLInk.text     = user.website != nil ?? "" ? "Website: \(user.website ?? "")" : ""
         lblAddress.text     = "\(user.address ?? "") \(user.zipcode ?? "") \(user.city ?? "")"
         lblFollowers.text   = "\(user.followers?.count ?? 0) Followers"
         lblFollowing.text   = "\(user.followings?.count ?? 0) Following"
@@ -558,6 +637,7 @@ extension ProfileVC : UITableViewDelegate , UITableViewDataSource {
         if tableView == tblVIdeos {
             if (videosModel?.count ?? 0) == 0 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: NoPostTCell.identifier, for: indexPath) as! NoPostTCell
+                cell.btnPost.isHidden = true
                 return cell
             }
             else{

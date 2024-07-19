@@ -17,6 +17,8 @@ class AccntDeleteReasonVC: UIViewController {
     
     let placeholder                        = "Enter Issue..."
     let placeholderColor                   = UIColor.lightGray
+    var users: [UserTagModel]              = []
+    var channelName                        = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -107,11 +109,53 @@ extension AccntDeleteReasonVC {
             } else {
               //  self?.showToast(message: "Document added successfully.", seconds: 2, clr: .gray)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                    self?.deleteUserAccount()
+                    self?.getAllUsers()
                 }
             }
         }
 
+    }
+    
+    //Get User and Channel As name
+    func getAllUsers() {
+        self.startAnimating()
+        let db = Firestore.firestore()
+        db.collection("userCollection").getDocuments { (querySnapshot, error) in
+            if let error = error {
+                self.stopAnimating()
+                self.showToast(message: "Error getting documents: \(error.localizedDescription)", seconds: 2, clr: .red)
+                print("Error getting documents: \(error.localizedDescription)")
+                // Handle the error (e.g., show an alert to the user)
+            } else {
+                self.stopAnimating()
+                self.users.removeAll() // Clear any existing users
+                // Iterate over the documents in the snapshot
+                for document in querySnapshot!.documents {
+                    let data = document.data()
+                    let uid = data["uid"] as? String ?? ""
+                    let img = data["img"] as? String ?? ""
+                    let channelName = data["channelName"] as? String ?? ""
+                    let followers = data["followers"] as? String ?? ""
+                    let accountType = data["accountType"] as? String ?? ""
+
+                    if channelName == self.channelName {
+                        // Remove the document if channelName matches
+                        db.collection("userCollection").document(document.documentID).delete { error in
+                            if let error = error {
+                                print("Error removing document: \(error)")
+                            } else {
+                                print("Document successfully removed!")
+                                self.deleteUserAccount()
+                            }
+                        }
+                    } else {
+//                        let user = UserTagModel(uid: uid, img: img, channelName: channelName, followers: followers, accountType: accountType, selected: 0)
+//                        self.users.append(user)
+//                        print(user)
+                    }
+                }
+            }
+        }
     }
     
     func deleteUserAccount() {
