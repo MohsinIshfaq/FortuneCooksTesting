@@ -56,10 +56,7 @@ class VerifyPasswordVC: UIViewController {
     }
     
     @IBAction func ontapConfirm(_ sender: UIButton){
-        if isFromWhere == "ChangePassword"{
-            verifyPassword()
-        }
-        else if checkvalidPsd {
+        if isFromWhere == "ChangePassword" || isFromWhere == "JustVerifyPsd" || isFromWhere == "VerifyAndDeleteAccnt"{
             verifyPassword()
         }
         else{
@@ -74,65 +71,62 @@ extension VerifyPasswordVC {
    
     func onload() {
         removeNavBackbuttonTitle()
-        if isFromWhere != "ChangePassword"{
-            txtPsd.delegate                          = self
-        }
     }
     
     func onAppear() {
         if isFromWhere == "ChangePassword" {
             self.navigationItem.title = "Change Password"
             lblTitleFld.text = "Change Password"
-            stackChecking.isHidden = true
+            //stackChecking.isHidden = true
         }
         else if isFromWhere == "JustVerifyPsd" || isFromWhere == "VerifyAndDeleteAccnt"{
             self.navigationItem.title = "Verify Password"
-            stackChecking.isHidden = false
+           // stackChecking.isHidden = false
         }
     }
 }
 
 //MARK: - Password Validation {}
-extension VerifyPasswordVC: UISearchTextFieldDelegate {
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let updatedText = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) ?? ""
-        validateTextField(updatedText)
-        return true
-    }
-    func validateTextField(_ txtfld: String) {
-        if txtfld.count >= 8 {
-            updateValidationStatus(true, message: "8 characters done", image: img8Charac)
-        } else {
-            updateValidationStatus(false, message: "At least 8 characters required", image: img8Charac)
-        }
-        let uppercasePredicate = NSPredicate(format: "SELF MATCHES %@", ".*[A-Z]+.*")
-        updateValidationStatus(uppercasePredicate.evaluate(with: txtfld),
-                               message: "Minimum 1 uppercase letter done",
-                               image: img1Upper)
-        let lowercasePredicate = NSPredicate(format: "SELF MATCHES %@", ".*[a-z]+.*")
-        updateValidationStatus(lowercasePredicate.evaluate(with: txtfld),
-                               message: "Minimum 1 lowercase letter done",
-                               image: img1Lower)
-        let numberPredicate = NSPredicate(format: "SELF MATCHES %@", ".*[0-9]+.*")
-        updateValidationStatus(numberPredicate.evaluate(with: txtfld),
-                               message: "Minimum 1 number done",
-                               image: img1number)
-        if uppercasePredicate.evaluate(with: txtfld) && lowercasePredicate.evaluate(with: txtfld) && numberPredicate.evaluate(with: txtfld) && txtfld.count >= 8 {
-            checkvalidPsd = true
-        }
-    }
-    func updateValidationStatus(_ isValid: Bool, message: String, image: UIImageView) {
-        print(message)
-        if isValid {
-            image.image = UIImage(systemName: "checkmark.circle")
-            image.tintColor = UIColor.ColorDarkGreen
-        } else {
-            image.image = UIImage(systemName: "multiply.circle")
-            image.tintColor = .red
-        }
-    }
-
-}
+//extension VerifyPasswordVC: UISearchTextFieldDelegate {
+//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//        let updatedText = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) ?? ""
+//        validateTextField(updatedText)
+//        return true
+//    }
+//    func validateTextField(_ txtfld: String) {
+//        if txtfld.count >= 8 {
+//            updateValidationStatus(true, message: "8 characters done", image: img8Charac)
+//        } else {
+//            updateValidationStatus(false, message: "At least 8 characters required", image: img8Charac)
+//        }
+//        let uppercasePredicate = NSPredicate(format: "SELF MATCHES %@", ".*[A-Z]+.*")
+//        updateValidationStatus(uppercasePredicate.evaluate(with: txtfld),
+//                               message: "Minimum 1 uppercase letter done",
+//                               image: img1Upper)
+//        let lowercasePredicate = NSPredicate(format: "SELF MATCHES %@", ".*[a-z]+.*")
+//        updateValidationStatus(lowercasePredicate.evaluate(with: txtfld),
+//                               message: "Minimum 1 lowercase letter done",
+//                               image: img1Lower)
+//        let numberPredicate = NSPredicate(format: "SELF MATCHES %@", ".*[0-9]+.*")
+//        updateValidationStatus(numberPredicate.evaluate(with: txtfld),
+//                               message: "Minimum 1 number done",
+//                               image: img1number)
+//        if uppercasePredicate.evaluate(with: txtfld) && lowercasePredicate.evaluate(with: txtfld) && numberPredicate.evaluate(with: txtfld) && txtfld.count >= 8 {
+//            checkvalidPsd = true
+//        }
+//    }
+//    func updateValidationStatus(_ isValid: Bool, message: String, image: UIImageView) {
+//        print(message)
+//        if isValid {
+//            image.image = UIImage(systemName: "checkmark.circle")
+//            image.tintColor = UIColor.ColorDarkGreen
+//        } else {
+//            image.image = UIImage(systemName: "multiply.circle")
+//            image.tintColor = .red
+//        }
+//    }
+//
+//}
 
 //MARK: - Verify Password {}
 extension VerifyPasswordVC {
