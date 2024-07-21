@@ -60,14 +60,16 @@ class AddCaptionVC: AudioViewController , UITextViewDelegate {
     var typeSelected           : Int         = 0
     var initialTouchPoint      : CGPoint     = CGPoint(x: 0, y: 0)
     var initialFrame           : CGRect      = CGRect.zero
-    var posotionTxtFld         : Int         = 1
-    var xPosition              : Int         = 3
+    var posotionTxtFld         : Int         = 5
+    var xPosition              : Int         = 1
     var txtBGcolor             : UIColor     = .clear
     var txtForcolor            : UIColor     = .white
     var fontNum                : Int         = 0
+    var totalTime              : Float       = 0.0 // Total time in seconds
     
     let placeholder                        = "Enter Caption..."
     let placeholderColor                   = UIColor.lightGray
+    var delegate : AudioRecordDelegate?    = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -428,57 +430,58 @@ class AddCaptionVC: AudioViewController , UITextViewDelegate {
             }
         }
 
+    @objc func customButtonTapped() {
+        // Handle button tap
+        print("Custom button tapped!")
+        /*popup*/()
+        delegate?.popupfromAudioRecordVC(elapsedTime: self.totalTime, totalTime: self.totalTime)
+    }
+    
     @objc func ontapDone() {
-       
+        
         if txtCaption.text == "Enter Caption..."{
             showToast(message: "Please add your caption", seconds: 2, clr: .red)
         }
         else{
-          //  DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            //  DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.startAnimating()
-                if var string = addNewlineIfNeeded(to: txtCaption.text, textViewWidth: txtCaption.frame.width - 10, font: txtCaption.font ?? UIFont.systemFont(ofSize: 17)) {
-                    print(string)
-                    self.addStickerorTexttoVideo(textBgClr: self.txtBGcolor
-                                            , textForeClr: self.txtForcolor
-                                            , fontNm: self.fontNum
-                                            , videoUrl: self.outputURL!
-                                            , watermarkText: string
-                                            , imageName: ""
-                                                 , position: self.posotionTxtFld, xPosition: self.xPosition) { url in
-                        self.getVideoDuration(from: url) { endtime in
-                            if endtime != nil {
-                                
-                                self.trimVideo(sourceURL: url, startTime: 1 , endTime: endtime!) { url in
-                                    DispatchQueue.main.async {
-                                        self.stopAnimating()
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                                            UserManager.shared.finalURL  = url
-//                                            if let url = UserManager.shared.finalURL {
-//                                                let player = AVPlayer(url: url)
-//                                                let playerViewController = AVPlayerViewController()
-//                                                playerViewController.player = player
-//                                                
-//                                                self.present(playerViewController, animated: true) {
-//                                                    player.play()
-//                                                }
-//                                            }
-                                            self.showToast(message: "Caption added successfully.", seconds: 2, clr: .gray)
-                                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                                                self.stopAnimating()
-                                                self.popRoot()
-                                            }
-                                        }
-                                    }
-                                } failure: { msg in
-                                    print(msg)
-                                }
-                            }
+            if var string = addNewlineIfNeeded(to: txtCaption.text, textViewWidth: txtCaption.frame.width - 10, font: txtCaption.font ?? UIFont.systemFont(ofSize: 17)) {
+                print(string)
+                self.addStickerorTexttoVideo(textBgClr: self.txtBGcolor
+                                             , textForeClr: self.txtForcolor
+                                             , fontNm: self.fontNum
+                                             , videoUrl: self.outputURL!
+                                             , watermarkText: string
+                                             , imageName: ""
+                                             , position: self.posotionTxtFld, xPosition: self.xPosition) { url in
+                    //self.getVideoDuration(from: url) { endtime in
+                    //                            if endtime != nil {
+                    //
+                    //                                self.trimVideo(sourceURL: url, startTime: 1 , endTime: endtime!) { url in
+                    //                                    DispatchQueue.main.async {
+                    //                                        self.stopAnimating()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        UserManager.shared.finalURL  = url
+                        //if let url = UserManager.shared.finalURL {
+                        //                                                let player = AVPlayer(url: url)
+                        //                                                let playerViewController = AVPlayerViewController()
+                        //                                                playerViewController.player = player
+                        //
+                        //                                                self.present(playerViewController, animated: true) {
+                        //                                                    player.play()
+                        //                                                }
+                        //                                            }
+                        self.showToast(message: "Caption added successfully.", seconds: 2, clr: .gray)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                            self.stopAnimating()
+                            self.popRoot()
                         }
-                    } failure: { msg in
-                        print(msg)
                     }
+                } failure: { error in
+                    self.showToast(message: error ?? "", seconds: 2, clr: .red)
                 }
-          //  }
+                //  }
+            }
         }
     }
 }
@@ -584,6 +587,17 @@ extension AddCaptionVC {
         lblFont3.font = fonts[2]
         lblFont4.font = fonts[3]
         lblFont5.font = fonts[4]
+        hideNavBackButton()
+        NavBackButton()
+    }
+    
+    func NavBackButton() {
+        let customButton = UIButton(type: .system)
+        customButton.setImage(UIImage(systemName: "chevron.left"), for: .normal)
+        customButton.addTarget(self, action: #selector(customButtonTapped), for: .touchUpInside)
+        customButton.frame = CGRect(x: 0, y: 0, width: 50, height: 44)
+        let customBarButtonItem = UIBarButtonItem(customView: customButton)
+        self.navigationItem.leftBarButtonItem = customBarButtonItem
     }
     func playVideo() {
         if let url = outputURL {

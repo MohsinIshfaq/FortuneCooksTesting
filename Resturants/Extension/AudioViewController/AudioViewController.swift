@@ -20,13 +20,14 @@ open class AudioViewController: UIViewController, AVAudioRecorderDelegate {
     
     //MARK: - Func {}
     func setupAudioRecording(){
-        
+        self.startAnimating()
         recordingSession = AVAudioSession.sharedInstance()
 
         do {
             try recordingSession.setCategory(.playAndRecord, mode: .default)
             try recordingSession.setActive(true)
             recordingSession.requestRecordPermission() { [unowned self] allowed in
+                self.stopAnimating()
                 DispatchQueue.main.async {
                     if allowed {
                     } else {
@@ -35,6 +36,7 @@ open class AudioViewController: UIViewController, AVAudioRecorderDelegate {
                 }
             }
         } catch {
+            self.stopAnimating()
             self.showAlertWith(title: "Error", message: "failed to record!")
             // failed to record!
         }
@@ -652,6 +654,16 @@ open class AudioViewController: UIViewController, AVAudioRecorderDelegate {
             
             textLayer.frame = CGRect(x: textX, y: textY, width: textWidth, height: textHeight)
             textLayer.opacity = 1.0 // Set opacity to 1.0 to ensure full visibility
+
+            // Set beginTime and duration to match the video duration
+            textLayer.beginTime = AVCoreAnimationBeginTimeAtZero
+            textLayer.duration = CFTimeInterval(asset.duration.seconds)
+            
+            // Force the layer to render its contents immediately
+            DispatchQueue.main.async {
+                textLayer.displayIfNeeded()
+            }
+            
             parentLayer.addSublayer(textLayer)
             
             print("Text Layer Frame: \(textLayer.frame)")  // Debugging log
@@ -663,7 +675,7 @@ open class AudioViewController: UIViewController, AVAudioRecorderDelegate {
         
         // Create video composition instruction
         let instruction = AVMutableVideoCompositionInstruction()
-        instruction.timeRange = CMTimeRange(start: .zero, duration: asset.duration)
+        instruction.timeRange = CMTimeRangeMake(start: CMTime.zero, duration: asset.duration)
         
         let transformer = AVMutableVideoCompositionLayerInstruction(assetTrack: videoTrack)
         transformer.setTransform(videoTrack.preferredTransform, at: .zero)
@@ -700,6 +712,7 @@ open class AudioViewController: UIViewController, AVAudioRecorderDelegate {
             }
         }
     }
+
 
     
 //    func addStickerorTexttoVideo(

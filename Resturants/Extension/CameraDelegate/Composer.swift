@@ -16,7 +16,7 @@ struct Composer {
         composition.addMutableTrack(withMediaType: .video, preferredTrackID: kCMPersistentTrackID_Invalid)
 
         guard let clipVideoTrack = asset.tracks(withMediaType: .video).first else {
-            fatalError("failed to get track.")
+             fatalError("failed to get track.")
         }
 
         let videoComposition = AVMutableVideoComposition()

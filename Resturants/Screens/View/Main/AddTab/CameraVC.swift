@@ -30,6 +30,7 @@ class CameraVC: FilterCamViewController{
     private var selected                 : Bool = false
     private var selectedRecord           : Bool = false
     private var timer                    : Timer?
+    private var timer1                    : Timer?
     private var totalTime                : Float = 180.0 // Total time in seconds
     private var elapsedTime              : Float = 0.0 // Elapsed time
     private var progress_value           = 0.1
@@ -58,7 +59,7 @@ class CameraVC: FilterCamViewController{
     }
     
     @IBAction func ontapUpload(_ sender: UIButton){
-        
+        self.removeVideo()
         let vc = Constants.addStoryBoard.instantiateViewController(withIdentifier: "UplaodSwiftVC") as? UplaodSwiftVC
         vc?.isVideoPicked = false
         self.navigationController?.pushViewController(vc!, animated: true)
@@ -83,9 +84,11 @@ class CameraVC: FilterCamViewController{
     }
     
     @IBAction func ontapAddCap(_ sender: UIButton){
-        //self.removeVideo()
+        self.removeVideo()
         let vc = Constants.addStoryBoard.instantiateViewController(withIdentifier: "AddCaptionVC") as! AddCaptionVC
         vc.outputURL              = outputURL
+        vc.totalTime              = totalTime
+        vc.delegate               = self
         vc.modalPresentationStyle = .overFullScreen
         self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -109,7 +112,8 @@ class CameraVC: FilterCamViewController{
         self.removeVideo()
         let vc = Constants.addStoryBoard.instantiateViewController(withIdentifier: "AudioRecordVC") as! AudioRecordVC
         vc.outputURL              = outputURL
-        vc.totalTime              = elapsedTime
+        vc.totalTime              = totalTime
+        vc.delegate               = self
         vc.modalPresentationStyle = .overFullScreen
         self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -124,6 +128,11 @@ class CameraVC: FilterCamViewController{
     
     @IBAction func ontapMute(_ sender: UIButton){
         self.startAnimating()
+        self.timer?.invalidate()
+        self.timer          = nil
+        self.timer1?.invalidate()
+        self.timer1          = nil
+        self.elapsedTime    = totalTime
         removeVideo()
         guard let url = self.outputURL else {
             return
@@ -188,7 +197,8 @@ class CameraVC: FilterCamViewController{
         lblProgress.text = String(format: "%02d:%02d", minutes, seconds)
        // lblProgress.text               = "\(Int(self.progress_value))"
         if elapsedTime >= totalTime {
-            timer?.invalidate()
+            timer1?.invalidate()
+            timer1         = nil
         }
     }
     
@@ -243,7 +253,7 @@ extension CameraVC {
     
     func onAppear() {
         self.hideNavBar()
-        self.totalTime = 180
+      //  self.totalTime = 180
     }
     
     func setupFilterCollection(){
@@ -265,7 +275,7 @@ extension CameraVC {
     }
     
     func startProgress4TrailVideo() {
-        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updateProgress4TrialVideo), userInfo: nil, repeats: true)
+        timer1 = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updateProgress4TrialVideo), userInfo: nil, repeats: true)
     }
 }
 
@@ -379,12 +389,14 @@ extension CameraVC: FilterCamViewControllerDelegate{
     }
     
     func removeVideo() {
+        self.startAnimating()
         player?.pause()
         while playerLayer?.superlayer != nil {
             playerLayer?.removeFromSuperlayer()
         }
         player = nil
         playerLayer = nil
+        self.stopAnimating()
     }
     
     func filterCam(_ filterCam: FilterCamViewController, didFocusAtPoint tapPoint: CGPoint) {
@@ -474,6 +486,8 @@ extension CameraVC : ConfirmationAutionsDelegate{
             progressRecording.progress = 0
             self.lblProgress.text      = "0"
             progress_value             = 0
+            timer1?.invalidate()
+            timer1                     = nil
             timer?.invalidate()
             timer                      = nil
             btnRecord.backgroundColor  = .ColorDarkBlue
@@ -520,23 +534,14 @@ extension CameraVC: UIImagePickerControllerDelegate, UINavigationControllerDeleg
     
 }
 
-//                self.saveVideoToLibrary(at: url!) { error in
-//                    if error != nil {
-//                        //self.showToast(message: "\(error)", seconds: 2, clr: .red)
-//                        print(error?.localizedDescription)
-//                    }
-//                    else{
-//                       // self.showToast(message: "Saved Successfully", seconds: 2, clr: .gray)
-//                        print("saved")
-//                    }
-//                }
-
-//        if let url = UserManager.shared.finalURL {
-//            let player = AVPlayer(url: url)
-//            let playerViewController = AVPlayerViewController()
-//            playerViewController.player = player
-//
-//            self.present(playerViewController, animated: true) {
-//                player.play()
-//            }
-//        }
+//MARK: - protocol from audio Recorded {}
+extension CameraVC: AudioRecordDelegate {
+    func popupfromAudioRecordVC(elapsedTime: Float, totalTime: Float) {
+        self.popup()
+        self.elapsedTime = totalTime
+        self.totalTime   = totalTime
+        let minutes = Int(totalTime) / 60
+        let seconds = Int(totalTime) % 60
+        lblProgress.text = String(format: "%02d:%02d", minutes, seconds)
+    }
+}

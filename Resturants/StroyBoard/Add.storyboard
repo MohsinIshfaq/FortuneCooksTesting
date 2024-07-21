@@ -334,7 +334,7 @@
         <scene sceneID="nlj-fD-huP">
             <objects>
                 <viewController storyboardIdentifier="AudioRecordVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="f5z-t5-fMu" customClass="AudioRecordVC" customModule="Resturants" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="dxq-IF-iKh">
+                    <view key="view" contentMode="scaleAspectFit" id="dxq-IF-iKh">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -419,7 +419,7 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Xmo-ST-csC"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="ColorBlack"/>
                         <constraints>
                             <constraint firstItem="9o2-of-zAS" firstAttribute="top" secondItem="cAn-eX-pV6" secondAttribute="bottom" constant="24" id="3wX-Pd-2K7"/>
                             <constraint firstItem="Xmo-ST-csC" firstAttribute="trailing" secondItem="tib-Q8-wjA" secondAttribute="trailing" constant="24" id="6zD-dy-7Ip"/>
@@ -3056,7 +3056,7 @@
         <image name="text" width="24" height="24"/>
         <image name="trash-blank" width="50" height="50"/>
         <image name="unselecPhoto" width="32" height="32"/>
-        <image name="user" width="24.333333969116211" height="24"/>
+        <image name="user" width="24" height="24"/>
         <image name="video" catalog="system" width="128" height="82"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

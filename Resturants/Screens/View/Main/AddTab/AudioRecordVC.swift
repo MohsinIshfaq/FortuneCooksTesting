@@ -8,6 +8,9 @@
 import UIKit
 import AVFoundation
 import AVKit
+protocol AudioRecordDelegate {
+    func popupfromAudioRecordVC(elapsedTime: Float , totalTime: Float)
+}
 
 class AudioRecordVC: AudioViewController {
 
@@ -28,6 +31,7 @@ class AudioRecordVC: AudioViewController {
     private var elapsedTime    : Float       = 0.0 // Elapsed time
     private var progress_value               = 0.1
     private var mergedVideoURL : URL?        = nil
+    var delegate : AudioRecordDelegate?      = nil
     
     //MARK: - View LifeCycle
     override func viewDidLoad() {
@@ -62,6 +66,7 @@ class AudioRecordVC: AudioViewController {
                     let player = AVPlayer(url: mergedURL)
                     let playerViewController = AVPlayerViewController()
                     playerViewController.player = player
+                    playerViewController.videoGravity = .resizeAspect // Change from .resizeAspectFill to .resizeAspect
                     
                     self.present(playerViewController, animated: true) {
                         player.play()
@@ -84,12 +89,24 @@ class AudioRecordVC: AudioViewController {
                 startAudioRecording()
             }
             player.play()
-            btnRecord.isHidden = true
+           // btnRecord.isHidden = true
         }
         else{
             stopProgress()
+            btnDismiss.isHidden        = false
+            selectedRecord             = false
+            btnRecord.isHidden         = true
             finishAudioRecording(success: true)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.mergeVideo()
+            }
         }
+    }
+    @objc func customButtonTapped() {
+        // Handle button tap
+        print("Custom button tapped!")
+        /*popup*/()
+        delegate?.popupfromAudioRecordVC(elapsedTime: self.totalTime, totalTime: self.totalTime)
     }
 }
 
@@ -97,16 +114,28 @@ class AudioRecordVC: AudioViewController {
 extension AudioRecordVC{
     
     func onLoad(){
+        self.startAnimating()
         self.outputURL        = UserManager.shared.finalURL
         self.showNavBar()
         setupAudioRecording()
         muteVideo()
         removeNavBackbuttonTitle()
+        hideNavBackButton()
         btnDismiss.isHidden   = true
         btnNext.isHidden      = true
+        NavBackButton()
     }
     func onAppear(){
         
+    }
+    
+    func NavBackButton() {
+        let customButton = UIButton(type: .system)
+        customButton.setImage(UIImage(systemName: "chevron.left"), for: .normal)
+        customButton.addTarget(self, action: #selector(customButtonTapped), for: .touchUpInside)
+        customButton.frame = CGRect(x: 0, y: 0, width: 50, height: 44)
+        let customBarButtonItem = UIBarButtonItem(customView: customButton)
+        self.navigationItem.leftBarButtonItem = customBarButtonItem
     }
     
     func playVideo() {
@@ -115,7 +144,7 @@ extension AudioRecordVC{
              player = AVPlayer(url: url)
             let playerLayer = AVPlayerLayer(player: player)
             playerLayer.frame = view.bounds
-            playerLayer.videoGravity = .resizeAspectFill
+            playerLayer.videoGravity = .resizeAspect // Change from .resizeAspectFill to .resizeAspect
             view.layer.addSublayer(playerLayer)
             if mergedVideoURL != nil{
                 player.play()
@@ -129,14 +158,17 @@ extension AudioRecordVC{
     }
     
     func muteVideo() {
+        self.startAnimating()
         guard let url = self.outputURL else {
             return
         }
         removeAudioFromVideo(url) { url , error in
             DispatchQueue.main.async { // Ensure UI updates are done on the main thread
                 if let error = error {
+                    self.stopAnimating()
                     self.showToast(message: "\(error)", seconds: 2, clr: .red)
                 } else {
+                    self.stopAnimating()
                     self.outputURL = url
                     self.playVideo()
                 }
@@ -154,11 +186,10 @@ extension AudioRecordVC{
         progressRecording.progress     = progress
         self.progress_value           += 0.05
         if elapsedTime >= totalTime {
-            timer?.invalidate()
-            timer                      = nil
+            stopProgress()
+            self.btnRecord.isHidden    = true
             btnDismiss.isHidden        = false
             selectedRecord             = false
-            stopProgress()
             finishAudioRecording(success: true)
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 self.mergeVideo()
@@ -178,7 +209,6 @@ extension AudioRecordVC{
                 self.mergedVideoURL = mergedURL
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     self.playVideo()
-                    self.btnNext.isHidden = false
                 }
             } else {
                 // Failed to merge video with audio
