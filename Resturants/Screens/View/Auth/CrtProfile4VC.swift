@@ -217,9 +217,8 @@ extension CrtProfile4VC {
                     self.showToast(message: error.localizedDescription, seconds: 2, clr: .red)
                 } else {
                     print("Document successfully written!")
-//                    let vc = Constants.auth.instantiateViewController(withIdentifier: "TabbarController") as? TabbarController
-//                    self.navigationController?.pushViewController(vc!, animated: true)
                     self.SaveUserForOthers()
+                    self.FeedSet()
                 }
             }
         }
@@ -246,6 +245,26 @@ extension CrtProfile4VC {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                     self?.popRoot()
                 }
+            }
+        }
+    }
+    
+    func FeedSet() {
+        self.startAnimating()
+        var db = Firestore.firestore()
+        db.collection("Users_Feed").document("\(UserDefault.token)").setData(
+            ["selectedAcountType" : []  ,
+             "selectedCuisine"    : []  ,
+             "selectedLanguages"  : []  ,
+             "selectedHashtags"   : []  ]
+        ) { error in
+            if let error = error {
+                self.stopAnimating()
+                print("Error writing document: \(error)")
+                self.showToast(message: error.localizedDescription, seconds: 2, clr: .red)
+            } else {
+                self.stopAnimating()
+                print("Document successfully written!")
             }
         }
     }

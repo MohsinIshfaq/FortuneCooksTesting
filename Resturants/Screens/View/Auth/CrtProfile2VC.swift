@@ -40,7 +40,7 @@ class CrtProfile2VC: UIViewController {
         if txtChannelNm.text != "" {
             if txtChannelNm.text?.isValidUsername ?? false{
                 
-                if let channelText = txtChannelNm.text {
+                if let channelText = txtChannelNm.text?.lowercased() {
                     let containsChannel = users.contains { user in
                         user.channelName?.contains(channelText) ?? false
                     }

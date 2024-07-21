@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseFirestoreInternal
 
 class FeedVC: UIViewController , FeedDelegate , UITextFieldDelegate {
     func collectionData(type: Int) {
@@ -30,6 +31,7 @@ class FeedVC: UIViewController , FeedDelegate , UITextFieldDelegate {
             CollectAccntType.reloadData()
         }
     }
+    
     //MARK: - IBOUtlets
     @IBOutlet weak var CollectAccntType      : UICollectionView!
     @IBOutlet weak var CollectContent        : UICollectionView!
@@ -44,13 +46,14 @@ class FeedVC: UIViewController , FeedDelegate , UITextFieldDelegate {
     @IBOutlet weak var collectHastag         : UICollectionView!
     @IBOutlet weak var lblhastag             : UILabel!
     
-    
     //MARK: - Variables and Properties
     var type                                = -1
     var arrSelectedAccntType  : [String]    = []
     var arrSelectedContent    : [String]    = []
     var arrSelectedLang       : [String]    = []
     var arrHastag             : [String]    = []
+    let db                    = Firestore.firestore()
+    var feedsModel            : UserFeedModel? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -104,9 +107,11 @@ class FeedVC: UIViewController , FeedDelegate , UITextFieldDelegate {
             }
         }
     }
-
+    
+    @IBAction func ontapSave(_ sender: UIButton){
+        FeedUpdate()
+    }
 }
-
 
 //MARK: - Setup Profile {}
 extension FeedVC {
@@ -150,6 +155,19 @@ extension FeedVC {
     
     func onAppear() {
        
+        getFeeds { feeds in
+            if let feed = feeds {
+                self.feedsModel = feed
+                self.arrSelectedLang = self.feedsModel?.selectedLanguages ?? []
+                self.arrSelectedContent = self.feedsModel?.selectedCuisine ?? []
+                self.arrSelectedAccntType = self.feedsModel?.selectedAcountType ?? []
+                self.arrHastag            = self.feedsModel?.selectedHashtags ?? []
+                self.collectLangs.reloadData()
+                self.collectHastag.reloadData()
+                self.CollectContent.reloadData()
+                self.CollectAccntType.reloadData()
+            }
+        }
     }
 }
 
@@ -247,6 +265,46 @@ extension FeedVC: UICollectionViewDelegate , UICollectionViewDataSource {
             cell.btn.tag = indexPath.row
             UserManager.shared.selectedFeedAccnt.append(arrSelectedAccntType[indexPath.row])
             return cell
+        }
+    }
+}
+
+//MARK: - APi Calling {}
+extension FeedVC {
+    
+    func getFeeds(completion: @escaping (UserFeedModel?) -> Void) {
+        self.startAnimating()
+        
+        db.collection("Users_Feed").document(UserDefault.token).getDocument { (document, error) in
+            if let document = document, document.exists {
+                let data = document.data()
+                // Access each field using its key and map to the model
+                let user = UserFeedModel(selectedAcountType: data?["selectedAcountType"] as? [String] ?? [],
+                                        selectedCuisine: data?["selectedCuisine"] as? [String] ?? [],
+                                        selectedLanguages: data?["selectedLanguages"] as? [String] ?? [],
+                                        selectedHashtags: data?["selectedHashtags"] as? [String] ?? [])
+                self.stopAnimating()
+                completion(user)
+            }
+        }
+    }
+    
+    func FeedUpdate() {
+        self.startAnimating()
+        db.collection("Users_Feed").document("\(UserDefault.token)").updateData(
+            ["selectedAcountType" : arrSelectedAccntType ,
+             "selectedCuisine"    : arrSelectedContent   ,
+             "selectedLanguages"  : arrSelectedLang      ,
+             "selectedHashtags"   : arrHastag            ]
+        ) { error in
+            if let error = error {
+                print("Error writing document: \(error)")
+                self.showToast(message: error.localizedDescription, seconds: 2, clr: .red)
+            } else {
+                self.stopAnimating()
+                print("Document successfully written!")
+                self.popRoot()
+            }
         }
     }
 }

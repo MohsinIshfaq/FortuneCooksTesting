@@ -124,6 +124,15 @@ struct ProfileVideosModel {
     let introVideos  : Bool?
 }
 
+struct UserFeedModel {
+    let selectedAcountType : [String]?
+    let selectedCuisine    : [String]?
+    let selectedLanguages  : [String]?
+    let selectedHashtags   : [String]?
+}
+
+
+
 
 import Foundation
 import IGListKit
