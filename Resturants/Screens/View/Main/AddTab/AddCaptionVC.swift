@@ -604,7 +604,7 @@ extension AddCaptionVC {
              player = AVPlayer(url: url)
             let playerLayer = AVPlayerLayer(player: player)
             playerLayer.frame = view.bounds
-            playerLayer.videoGravity = .resizeAspectFill
+            playerLayer.videoGravity = .resizeAspect
             view.layer.addSublayer(playerLayer)
             view.bringSubviewToFront(collectColors)
             view.bringSubviewToFront(scrollFonts)

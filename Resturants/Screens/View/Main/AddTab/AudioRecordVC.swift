@@ -93,6 +93,7 @@ class AudioRecordVC: AudioViewController {
         }
         else{
             stopProgress()
+            btnNext.isHidden           = false
             btnDismiss.isHidden        = false
             selectedRecord             = false
             btnRecord.isHidden         = true
@@ -117,8 +118,6 @@ extension AudioRecordVC{
         self.startAnimating()
         self.outputURL        = UserManager.shared.finalURL
         self.showNavBar()
-        setupAudioRecording()
-        muteVideo()
         removeNavBackbuttonTitle()
         hideNavBackButton()
         btnDismiss.isHidden   = true
@@ -126,7 +125,8 @@ extension AudioRecordVC{
         NavBackButton()
     }
     func onAppear(){
-        
+        muteVideo()
+        setupAudioRecording()
     }
     
     func NavBackButton() {

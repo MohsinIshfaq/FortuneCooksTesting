@@ -134,7 +134,11 @@ class CameraVC: FilterCamViewController{
         self.timer1          = nil
         self.elapsedTime    = totalTime
         removeVideo()
-        guard let url = self.outputURL else {
+//        guard let url = self.outputURL else {
+//            return
+//        }
+        var url = UserManager.shared.finalURL == nil ? self.outputURL : UserManager.shared.finalURL
+        guard let url = url else {
             return
         }
         removeAudioFromVideo(url) { url , error in
@@ -483,23 +487,23 @@ extension CameraVC : ConfirmationAutionsDelegate{
         if condition{
             self.dismiss(animated: true)
             self.removeVideo()
-            progressRecording.progress = 0
-            self.lblProgress.text      = "0"
-            progress_value             = 0
+            progressRecording.progress  = 0
+            self.lblProgress.text       = "0"
+            progress_value              = 0
             timer1?.invalidate()
-            timer1                     = nil
+            timer1                      = nil
             timer?.invalidate()
-            timer                      = nil
-            btnRecord.backgroundColor  = .ColorDarkBlue
-            btnRecord.isHidden         = false
-            stackEditOpt.isHidden      = true
-            btnUpload.isHidden         = true
-            outputURL                  = nil
-            btnRemove.isHidden         = true
-            stackVideoPicker.isHidden  = false
-            CollectFilter.isHidden     = false
-            self.totalTime             = 180
-            
+            timer                       = nil
+            btnRecord.backgroundColor   = .ColorDarkBlue
+            btnRecord.isHidden          = false
+            stackEditOpt.isHidden       = true
+            btnUpload.isHidden          = true
+            outputURL                   = nil
+            btnRemove.isHidden          = true
+            stackVideoPicker.isHidden   = false
+            CollectFilter.isHidden      = false
+            self.totalTime              = 180
+            UserManager.shared.finalURL = nil
         }
         else{
             self.dismiss(animated: true)

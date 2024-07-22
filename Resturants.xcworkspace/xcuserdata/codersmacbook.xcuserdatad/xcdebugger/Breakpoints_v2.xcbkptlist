@@ -622,8 +622,8 @@
             filePath = "Resturants/Screens/View/Main/AddTab/CameraVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "152"
-            endingLineNumber = "152"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
             landmarkName = "ontapMute(_:)"
             landmarkType = "7">
          </BreakpointContent>
