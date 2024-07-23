@@ -15,27 +15,6 @@ import FirebaseStorage
 class ProfileVC: BaseClass , UpdateUserProfileFrmSettingDelegate{
     func callAPI() {
         popup()
-        if UserDefault.isAuthenticated {
-            fetchUserData(userID: isNonOwner ? nonProfileModel?.uid ?? "" : UserDefault.token) { user in
-                self.stopAnimating()
-                if let user = user {
-                    // Use the user model as needed
-                    self.setupProfile(user: user)
-                    self.profileModel = user
-//                    self.fetchVideosFromFirestore()
-                    print("User data: \(user)")
-                } else {
-                    print("Failed to fetch user data.")
-                }
-            }
-        }
-        else{
-            showAlertCOmpletion(withTitle: "", message: "Access to the profile screen is restricted due to authentication requirements.") { status in
-                if status {
-                    self.tabBarController?.selectedIndex = 0
-                }
-            }
-        }
     }
     
     //MARK: - IBOUtlet
@@ -113,6 +92,7 @@ class ProfileVC: BaseClass , UpdateUserProfileFrmSettingDelegate{
     var profileModel    : UserProfileModel? = nil
     var isNonOwner      : Bool              = false  //non authenticated user come here by tag users section
     var nonProfileModel : TagUsers?         = nil
+    var isfirstTime     : Bool              = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -137,13 +117,11 @@ class ProfileVC: BaseClass , UpdateUserProfileFrmSettingDelegate{
         }
     }
     
-    
     //MARK: IBActions {}
     @IBAction func ontapAddProfileImg(_ sender: UIButton){
         CurrentTagImg = sender.tag
         pickImg()
     }
-    
     @IBAction func ontapWeb(_ sender: UIButton) {
         guard let website = self.profileModel?.website, let url = URL(string: website) else {
             return
@@ -157,8 +135,6 @@ class ProfileVC: BaseClass , UpdateUserProfileFrmSettingDelegate{
             print("Cannot open website URL")
         }
     }
-
-    
     @IBAction func ontapEmail(_ sender: UIButton) {
         guard let email = self.profileModel?.businessEmail else {
             return
@@ -178,8 +154,6 @@ class ProfileVC: BaseClass , UpdateUserProfileFrmSettingDelegate{
             print("Invalid email address URL")
         }
     }
-
-    
     @IBAction func ontapAddress(_ sender: UIButton) {
         guard let address = self.profileModel?.address else {
             return
@@ -200,8 +174,6 @@ class ProfileVC: BaseClass , UpdateUserProfileFrmSettingDelegate{
             print("Invalid address URL")
         }
     }
-
-    
     @IBAction func ontapNumber(_ sender: UIButton) {
         guard let number = self.profileModel?.businessphoneNumber else {
             // Handle the case where the phone number is not available
@@ -219,8 +191,6 @@ class ProfileVC: BaseClass , UpdateUserProfileFrmSettingDelegate{
             print("Invalid phone number URL")
         }
     }
-
-    
     @IBAction func ontapMenuDots(_ sender: UIButton){
         let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "AccountActionPopupVC") as! AccountActionPopupVC
         vc.delegate  = self
@@ -351,8 +321,8 @@ class ProfileVC: BaseClass , UpdateUserProfileFrmSettingDelegate{
 extension ProfileVC {
    
     func onload() {
-        setupView()
         if UserDefault.isAuthenticated {
+            setupView()
             fetchUserData(userID: isNonOwner ? nonProfileModel?.uid ?? "" : UserDefault.token) { user in
                 self.stopAnimating()
                 if let user = user {
@@ -402,7 +372,29 @@ extension ProfileVC {
         tblMenu.dataSource         = self
     }
     func onAppear() {
-            
+        if isfirstTime {
+            if UserDefault.isAuthenticated {
+                fetchUserData(userID: isNonOwner ? nonProfileModel?.uid ?? "" : UserDefault.token) { user in
+                    self.stopAnimating()
+                    if let user = user {
+                        // Use the user model as needed
+                        self.setupProfile(user: user)
+                        self.profileModel = user
+                        // self.fetchVideosFromFirestore()
+                        print("User data: \(user)")
+                    } else {
+                        print("Failed to fetch user data.")
+                    }
+                }
+            }
+            else{
+                showAlertCOmpletion(withTitle: "", message: "Access to the profile screen is restricted due to authentication requirements.") { status in
+                    if status {
+                        self.tabBarController?.selectedIndex = 0
+                    }
+                }
+            }
+        }
         vwVideo.isHidden         = false
         vwSwift.isHidden         = true
         vwCollection.isHidden    = true
@@ -935,6 +927,7 @@ extension ProfileVC {
             }
             self.stopAnimating()
             print(self.responseModel)
+            self.isfirstTime = true
             self.reelsAndVideosCollectionMaking()
         }
     }

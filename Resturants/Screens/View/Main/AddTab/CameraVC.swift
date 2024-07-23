@@ -41,7 +41,9 @@ class CameraVC: FilterCamViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         if !UserDefault.isAuthenticated {
-            self.dismiss(animated: true)
+            let vc  = Constants.authStoryBoard.instantiateViewController(withIdentifier: "LoginNC") as? LoginNC
+            vc?.modalPresentationStyle = .overFullScreen
+            self.navigationController?.present(vc!, animated: true)
         }
         else{
             onLoad()
@@ -51,7 +53,9 @@ class CameraVC: FilterCamViewController{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if !UserDefault.isAuthenticated {
-            self.dismiss(animated: true)
+            let vc  = Constants.authStoryBoard.instantiateViewController(withIdentifier: "LoginNC") as? LoginNC
+            vc?.modalPresentationStyle = .overFullScreen
+            self.navigationController?.present(vc!, animated: true)
         }
         else{
             onAppear()

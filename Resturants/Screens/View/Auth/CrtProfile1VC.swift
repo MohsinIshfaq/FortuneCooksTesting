@@ -52,7 +52,6 @@ class CrtProfile1VC: UIViewController {
 extension CrtProfile1VC {
     
     func onlaod(){
-      
         setupView()
     }
     func onAppear(){
