@@ -60,8 +60,8 @@ class AddCaptionVC: AudioViewController , UITextViewDelegate {
     var typeSelected           : Int         = 0
     var initialTouchPoint      : CGPoint     = CGPoint(x: 0, y: 0)
     var initialFrame           : CGRect      = CGRect.zero
-    var posotionTxtFld         : Int         = 5
-    var xPosition              : Int         = 1
+    var posotionTxtFld         : CGFloat     = 5
+    var xPosition              : CGFloat     = 1
     var txtBGcolor             : UIColor     = .clear
     var txtForcolor            : UIColor     = .white
     var fontNum                : Int         = 0
@@ -163,9 +163,11 @@ class AddCaptionVC: AudioViewController , UITextViewDelegate {
             // Now you can use the 'yPosition' variable as needed.
             print("Y Position: \(yPosition)")
             print("X Position: \(xPosition)")
-            self.posotionTxtFld = yPosition
-            self.xPosition      = xPosition
+            self.posotionTxtFld = CGFloat(yPosition)
+            self.xPosition      = CGFloat(xPosition)
             
+//        case .ended: break
+//           // printButtonEdges()
         default:
             break
         }
@@ -612,6 +614,14 @@ extension AddCaptionVC {
             view.bringSubviewToFront(btnDismiss)
             view.bringSubviewToFront(btnTrash)
         }
+    }
+    func printButtonEdges() {
+        let leadingEdge = txtCaption.frame.origin.x
+        let trailingEdge = txtCaption.frame.origin.x + txtCaption.frame.size.width
+        print("Leading edge: \(leadingEdge)")
+        self.xPosition      = leadingEdge
+        self.posotionTxtFld = trailingEdge
+        print("Trailing edge: \(trailingEdge)")
     }
     
     func NavigationRightBtn() {

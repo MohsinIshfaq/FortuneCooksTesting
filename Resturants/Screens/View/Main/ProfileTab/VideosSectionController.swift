@@ -68,6 +68,7 @@ class VideosSectionController: ListSectionController {
         
     }
     
+    
     override func numberOfItems() -> Int {
         return 1 // One hero will be represented by one cell
     }
@@ -185,8 +186,8 @@ extension VideosSectionController: ListWorkingRangeDelegate {
     
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerDidExitWorkingRange sectionController: ListSectionController) {
         
-        //let cell = sectionController.cellForItem(at: section) as! IGBizTokVideoCell
-//        cell.videoPlayer?.pause()
+        let cell = sectionController.cellForItem(at: section) as! IGBizTokVideoCell
+        cell.videoPlayer?.pause()
         print("Exit")
     }
     

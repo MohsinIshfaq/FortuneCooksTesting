@@ -44,6 +44,10 @@ class SwiftVC: UIViewController {
         setUpVideos()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
@@ -96,7 +100,6 @@ extension SwiftVC : ListAdapterDataSource {
 
 //MARK: - Share
 extension SwiftVC {
-    
     func sharePost(code: String){
 //        // Setting description
 //        let firstActivityItem = "Check this Post"
@@ -207,6 +210,7 @@ extension SwiftVC: sectionControllerDelegate {
     }
     
     func endDisplayingSection(videoURL: String, videoID: String, videoThumb: String) {
+        print("end")
 //        if self.displayingVideoID != videoID {
 //            setOptionsAndReportBtn(id: self.displayingProfile.user_id ?? "")
 //        }

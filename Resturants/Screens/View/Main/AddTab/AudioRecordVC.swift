@@ -187,6 +187,7 @@ extension AudioRecordVC{
         self.progress_value           += 0.05
         if elapsedTime >= totalTime {
             stopProgress()
+            btnNext.isHidden           = false
             self.btnRecord.isHidden    = true
             btnDismiss.isHidden        = false
             selectedRecord             = false

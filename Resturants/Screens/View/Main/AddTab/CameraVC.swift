@@ -30,7 +30,7 @@ class CameraVC: FilterCamViewController{
     private var selected                 : Bool = false
     private var selectedRecord           : Bool = false
     private var timer                    : Timer?
-    private var timer1                    : Timer?
+    private var timer1                   : Timer?
     private var totalTime                : Float = 180.0 // Total time in seconds
     private var elapsedTime              : Float = 0.0 // Elapsed time
     private var progress_value           = 0.1
@@ -86,6 +86,7 @@ class CameraVC: FilterCamViewController{
     @IBAction func ontapAddCap(_ sender: UIButton){
         self.removeVideo()
         let vc = Constants.addStoryBoard.instantiateViewController(withIdentifier: "AddCaptionVC") as! AddCaptionVC
+       // var url = UserManager.shared.finalURL == nil ? self.outputURL : UserManager.shared.finalURL
         vc.outputURL              = outputURL
         vc.totalTime              = totalTime
         vc.delegate               = self

@@ -530,8 +530,8 @@ open class AudioViewController: UIViewController, AVAudioRecorderDelegate {
         videoUrl: URL,
         watermarkText text: String,
         imageName name: String,
-        position: Int,
-        xPosition: Int,
+        position: CGFloat,
+        xPosition: CGFloat,
         success: @escaping ((URL) -> Void),
         failure: @escaping ((String?) -> Void)
     ) {
@@ -552,19 +552,19 @@ open class AudioViewController: UIViewController, AVAudioRecorderDelegate {
         parentLayer.addSublayer(videoLayer)
         
         // Add sticker if provided
-        if !name.isEmpty {
-            let sticker = UIImageView(image: UIImage(named: name))
-            sticker.contentMode = .scaleAspectFit
-            let stickerWidth = videoComposition.renderSize.width / 6
-            let stickerX = videoComposition.renderSize.width * CGFloat(5 * (position % 3)) / 12
-            let stickerY = (videoComposition.renderSize.height - (videoComposition.renderSize.height * CGFloat(position / 3) / 3)) - 150
-            sticker.frame = CGRect(x: stickerX, y: stickerY, width: stickerWidth, height: stickerWidth)
-            
-            let stickerLayer = CALayer()
-            stickerLayer.contents = sticker.image?.cgImage
-            stickerLayer.frame = sticker.frame
-            parentLayer.addSublayer(stickerLayer)
-        }
+//        if !name.isEmpty {
+//            let sticker = UIImageView(image: UIImage(named: name))
+//            sticker.contentMode = .scaleAspectFit
+//            let stickerWidth = videoComposition.renderSize.width / 6
+//            let stickerX = videoComposition.renderSize.width * CGFloat(5 * (position % 3)) / 12
+//            let stickerY = (videoComposition.renderSize.height - (videoComposition.renderSize.height * CGFloat(position / 3) / 3)) - 150
+//            sticker.frame = CGRect(x: stickerX, y: stickerY, width: stickerWidth, height: stickerWidth)
+//            
+//            let stickerLayer = CALayer()
+//            stickerLayer.contents = sticker.image?.cgImage
+//            stickerLayer.frame = sticker.frame
+//            parentLayer.addSublayer(stickerLayer)
+//        }
         
         // Create text layer
         if !text.isEmpty {

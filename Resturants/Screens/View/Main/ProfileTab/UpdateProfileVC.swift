@@ -124,16 +124,8 @@ class UpdateProfileVC: UIViewController , TagPeopleDelegate{
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     @IBAction func ontapSave(_ sender: UIButton){
-        if "".isValidEmailRegex(self.txtAddEmail.text ?? "") {
-            if "".isValidWebsite(url: self.txtAddWebsite.text ?? ""){
-                addProfile(UserDefault.token)
-            }
-            else{
-                self.showToast(message: "web URL is not valid", seconds: 2, clr: .red)
-            }
-        }
-        else{
-            self.showToast(message: "Email is not valid", seconds: 2, clr: .red)
+        if validateFields(email: txtAddEmail.text, web: txtAddWebsite.text) {
+            addProfile(UserDefault.token)
         }
     }
     
@@ -220,6 +212,25 @@ extension UpdateProfileVC {
     
     func onAppear() {
         setupUserData()
+    }
+    
+    func validateFields(email: String?, web: String?) -> Bool  {
+        if let email = email, !email.isEmpty {
+            guard "".isValidEmailRegex(email) else {
+                self.showToast(message: "Email is not valid", seconds: 2, clr: .red)
+                print("Invalid email address")
+                return false
+            }
+        }
+        
+        if let web = web, !web.isEmpty {
+            guard "".isValidWebsite(url: web) else {
+                self.showToast(message: "web URL is not valid", seconds: 2, clr: .red)
+                return false
+            }
+        }
+        
+        return true
     }
     
     func setupUserData(){
