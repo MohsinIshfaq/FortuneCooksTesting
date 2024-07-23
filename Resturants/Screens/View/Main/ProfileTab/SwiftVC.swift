@@ -43,11 +43,6 @@ class SwiftVC: UIViewController {
         adapter.dataSource = self
         setUpVideos()
     }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        
-    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
@@ -68,9 +63,20 @@ class SwiftVC: UIViewController {
         }
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        stopAllVideoPlayback()
+    }
+
+    func stopAllVideoPlayback() {
+        if let visibleSectionControllers = adapter.visibleSectionControllers() as? [VideosSectionController] {
+            for sectionController in visibleSectionControllers {
+                sectionController.stopVideoPlayback()
+            }
+        }
+    }
     
     @IBAction func onTapCancel(_ sender: Any) {
-        
         self.dismiss(animated: true)
     }
     @objc func refresh(_ sender: AnyObject) {

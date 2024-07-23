@@ -68,6 +68,10 @@ class VideosSectionController: ListSectionController {
         
     }
     
+    func stopVideoPlayback() {
+        videoPlayer?.pause()
+        videoPlayer = nil
+    }
     
     override func numberOfItems() -> Int {
         return 1 // One hero will be represented by one cell

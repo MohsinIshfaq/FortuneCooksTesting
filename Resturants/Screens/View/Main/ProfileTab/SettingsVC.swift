@@ -6,11 +6,14 @@
 //
 
 import UIKit
+protocol UpdateUserProfileFrmSettingDelegate {
+    func callAPI()
+}
 
 class SettingsVC: UIViewController {
 
     var profileModel                       : UserProfileModel? = nil
-    
+    var delegate                           : UpdateUserProfileFrmSettingDelegate? = nil
     override func viewDidLoad() {
         super.viewDidLoad()
         onload()
@@ -65,6 +68,12 @@ class SettingsVC: UIViewController {
         vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
     }
+    
+    @objc func customButtonTapped() {
+        // Handle button tap
+        print("Custom button tapped!")
+        delegate?.callAPI()
+    }
 }
 
 //MARK: - Setup Profile {}
@@ -77,6 +86,18 @@ extension SettingsVC {
     
     func onAppear() {
         hidesBottomBarWhenPushed = false
+        hideNavBackButton()
+        NavBackButton()
+    }
+    
+    func NavBackButton() {
+        let customButton = UIButton(type: .system)
+        customButton.setImage(UIImage(systemName: "chevron.left"), for: .normal)
+        customButton.addTarget(self, action: #selector(customButtonTapped), for: .touchUpInside)
+        customButton.frame = CGRect(x: 0, y: 0, width: 50, height: 44)
+        let customBarButtonItem = UIBarButtonItem(customView: customButton)
+        self.navigationItem.leftBarButtonItem = customBarButtonItem
     }
 }
+
 

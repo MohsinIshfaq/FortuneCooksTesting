@@ -12,8 +12,32 @@ import Reachability
 import FirebaseStorage
 
 
-class ProfileVC: BaseClass {
-     
+class ProfileVC: BaseClass , UpdateUserProfileFrmSettingDelegate{
+    func callAPI() {
+        popup()
+        if UserDefault.isAuthenticated {
+            fetchUserData(userID: isNonOwner ? nonProfileModel?.uid ?? "" : UserDefault.token) { user in
+                self.stopAnimating()
+                if let user = user {
+                    // Use the user model as needed
+                    self.setupProfile(user: user)
+                    self.profileModel = user
+//                    self.fetchVideosFromFirestore()
+                    print("User data: \(user)")
+                } else {
+                    print("Failed to fetch user data.")
+                }
+            }
+        }
+        else{
+            showAlertCOmpletion(withTitle: "", message: "Access to the profile screen is restricted due to authentication requirements.") { status in
+                if status {
+                    self.tabBarController?.selectedIndex = 0
+                }
+            }
+        }
+    }
+    
     //MARK: - IBOUtlet
     @IBOutlet weak var vwVideo                 : UIView!
     @IBOutlet weak var vwSwift                 : UIView!
@@ -211,6 +235,7 @@ class ProfileVC: BaseClass {
         sender.isEnabled = false
         let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "SettingsVC") as! SettingsVC
         vc.hidesBottomBarWhenPushed = true
+        vc.delegate = self
         vc.profileModel = self.profileModel
         self.navigationController?.pushViewController(vc, animated: true)
         // Perform the action
@@ -327,6 +352,27 @@ extension ProfileVC {
    
     func onload() {
         setupView()
+        if UserDefault.isAuthenticated {
+            fetchUserData(userID: isNonOwner ? nonProfileModel?.uid ?? "" : UserDefault.token) { user in
+                self.stopAnimating()
+                if let user = user {
+                    // Use the user model as needed
+                    self.setupProfile(user: user)
+                    self.profileModel = user
+                    self.fetchVideosFromFirestore()
+                    print("User data: \(user)")
+                } else {
+                    print("Failed to fetch user data.")
+                }
+            }
+        }
+        else{
+            showAlertCOmpletion(withTitle: "", message: "Access to the profile screen is restricted due to authentication requirements.") { status in
+                if status {
+                    self.tabBarController?.selectedIndex = 0
+                }
+            }
+        }
     }
     func setupView() {
         tblVIdeos.register(VideoTCell.nib, forCellReuseIdentifier: VideoTCell.identifier)
@@ -372,30 +418,6 @@ extension ProfileVC {
         stackSwift.isHidden      = true
         stackCollection.isHidden = true
         stackMenu.isHidden       = true
-
-        
-        if UserDefault.isAuthenticated {
-            fetchVideosFromFirestore()
-            fetchUserData(userID: isNonOwner ? nonProfileModel?.uid ?? "" : UserDefault.token) { user in
-                self.stopAnimating()
-                if let user = user {
-                    // Use the user model as needed
-                    self.setupProfile(user: user)
-                    self.profileModel = user
-                    print("User data: \(user)")
-                } else {
-                    print("Failed to fetch user data.")
-                }
-            }
-        }
-        else{
-            
-            showAlertCOmpletion(withTitle: "", message: "Access to the profile screen is restricted due to authentication requirements.") { status in
-                if status {
-                    self.tabBarController?.selectedIndex = 0
-                }
-            }
-        }
     }
     func updateCoverUrlInModel(newCoverUrl: String) {
         if var model = self.profileModel {

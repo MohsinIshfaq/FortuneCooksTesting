@@ -159,7 +159,6 @@ class AddCaptionVC: AudioViewController , UITextViewDelegate {
                 xPosition = 2 // Trailing side
             }
             
-            
             // Now you can use the 'yPosition' variable as needed.
             print("Y Position: \(yPosition)")
             print("X Position: \(xPosition)")
