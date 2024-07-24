@@ -91,8 +91,8 @@ class UpdateProfileVC: UIViewController , TagPeopleDelegate{
     
     //MARK: - Variables and Properties
     var activeTextField: UITextField?      = nil
-    var selectedHrs                        = ""
-    var selectedMins                       = ""
+    var selectedHrs                        = "00"
+    var selectedMins                       = "00"
     let placeholder                        = "Enter Bio..."
     let placeholderColor                   = UIColor.lightGray
     var currentImage                       : UIImage!
@@ -438,6 +438,7 @@ extension UpdateProfileVC: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
+        activeTextField?.text = "\(selectedHrs) : \(selectedMins)"
         activeTextField = nil
         
     }
@@ -497,6 +498,7 @@ extension UpdateProfileVC : UITextViewDelegate{
         }
     }
 }
+
 
 //MARK: - Protocol Image Picker {}
 extension UpdateProfileVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
