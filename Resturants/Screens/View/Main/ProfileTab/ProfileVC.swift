@@ -123,9 +123,19 @@ class ProfileVC: BaseClass , UpdateUserProfileFrmSettingDelegate{
         pickImg()
     }
     @IBAction func ontapWeb(_ sender: UIButton) {
-        guard let website = self.profileModel?.website, let url = URL(string: website) else {
+        guard var website = self.profileModel?.website else {
             return
         }
+
+        // Add "https://" if the URL does not already have a scheme
+        if !website.lowercased().hasPrefix("http://") && !website.lowercased().hasPrefix("https://") {
+            website = "https://\(website)"
+        }
+
+        guard let url = URL(string: website) else {
+            return
+        }
+
         // Check if the device can open the URL
         if UIApplication.shared.canOpenURL(url) {
             // Open the URL in the default web browser
@@ -609,6 +619,9 @@ extension ProfileVC {
                 _ in self.player.play()
             }
         }
+    @objc func ontapUplaod(_ sender: UIButton) {
+        self.tabBarController?.selectedIndex = 2
+    }
 }
 
 //MARK: - TableVew {}
@@ -688,7 +701,8 @@ extension ProfileVC : UITableViewDelegate , UITableViewDataSource {
         if tableView == tblVIdeos {
             if (videosModel?.count ?? 0) == 0 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: NoPostTCell.identifier, for: indexPath) as! NoPostTCell
-                cell.btnPost.isHidden = true
+               // cell.btnPost.isHidden = true
+                cell.btnPost.addTarget(self, action: #selector(ontapUplaod), for: .touchUpInside)
                 return cell
             }
             else{

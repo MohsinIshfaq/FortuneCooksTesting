@@ -63,18 +63,18 @@ class SwiftVC: UIViewController {
         }
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        stopAllVideoPlayback()
-    }
-
-    func stopAllVideoPlayback() {
-        if let visibleSectionControllers = adapter.visibleSectionControllers() as? [VideosSectionController] {
-            for sectionController in visibleSectionControllers {
-                sectionController.stopVideoPlayback()
-            }
-        }
-    }
+//    override func viewDidDisappear(_ animated: Bool) {
+//        super.viewDidDisappear(animated)
+//        stopAllVideoPlayback()
+//    }
+//
+//    func stopAllVideoPlayback() {
+//        if let visibleSectionControllers = adapter.visibleSectionControllers() as? [VideosSectionController] {
+//            for sectionController in visibleSectionControllers {
+//                sectionController.stopVideoPlayback()
+//            }
+//        }
+//    }
     
     @IBAction func onTapCancel(_ sender: Any) {
         self.dismiss(animated: true)
