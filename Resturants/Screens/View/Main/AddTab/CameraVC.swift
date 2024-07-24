@@ -222,6 +222,7 @@ class CameraVC: FilterCamViewController{
             lblProgress.text = String(format: "%02d:%02d", minutes, seconds)
       //  lblProgress.text               = "\(Int(self.progress_value))"
         if elapsedTime >= totalTime {
+            self.startAnimating()
             timer?.invalidate()
             timer                      = nil
             btnRemove.isHidden         = false

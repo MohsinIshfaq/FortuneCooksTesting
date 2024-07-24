@@ -420,6 +420,8 @@ extension ProfileVC {
         stackSwift.isHidden      = true
         stackCollection.isHidden = true
         stackMenu.isHidden       = true
+        
+        hidesBottomBarWhenPushed = false
     }
     func updateCoverUrlInModel(newCoverUrl: String) {
         if var model = self.profileModel {
@@ -798,6 +800,7 @@ extension ProfileVC : UICollectionViewDelegate , UICollectionViewDataSource , UI
             
             let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "SwiftVC") as? SwiftVC
             vc?.responseModel = self.reelsModel
+            vc?.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc!, animated: true)
         }
     }

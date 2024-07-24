@@ -164,7 +164,7 @@ extension TagPeopleVC: UITableViewDelegate , UITableViewDataSource{
                 self.users[indexPath.row].selected = 0
                 self.selectedUser.remove(at: indexPath.row)
             }
-            tableView.reloadData()
+            tableView.reloadRows(at: [indexPath], with: .automatic)
         }
         else {
             self.dismiss(animated: true)

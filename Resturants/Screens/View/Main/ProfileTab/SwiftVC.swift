@@ -9,6 +9,9 @@ import UIKit
 import IGListKit
 import CloudKit
 import FirebaseStorage
+import AVFoundation
+import AVKit
+
 
 protocol IGBizTokDelegate {
     func didDeletedVideo(index: Int)
@@ -59,22 +62,24 @@ class SwiftVC: UIViewController {
                 let video = Videos(identifier: UUID().uuidString, address: i.address ?? "", Zipcode: i.Zipcode ?? "", city: i.city ?? "", hashTagsModelList: i.hashtages ?? [], Title: i.Title ?? "", description: i.description ?? "", language: i.language ?? "", ThumbnailUrl: i.thumbnailUrl ?? "", videoUrl: i.videoUrl ?? "")
                 self.videos.append(video)
             }
+//            guard let url = URL(string: (responseModel?[0].videoUrl)!) else {
+//                return
+//            }
+//            let player = AVPlayer(url: url)
+//            let playerViewController = AVPlayerViewController()
+//            playerViewController.player = player
+//            
+//            self.present(playerViewController, animated: true) {
+//                player.play()
+//            }
             self.adapter.reloadData(completion: nil)
         }
     }
     
-//    override func viewDidDisappear(_ animated: Bool) {
-//        super.viewDidDisappear(animated)
-//        stopAllVideoPlayback()
-//    }
-//
-//    func stopAllVideoPlayback() {
-//        if let visibleSectionControllers = adapter.visibleSectionControllers() as? [VideosSectionController] {
-//            for sectionController in visibleSectionControllers {
-//                sectionController.stopVideoPlayback()
-//            }
-//        }
-//    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        NotificationCenter.default.post(name: NSNotification.Name("ViewDisappears"), object: nil)
+    }
     
     @IBAction func onTapCancel(_ sender: Any) {
         self.dismiss(animated: true)
