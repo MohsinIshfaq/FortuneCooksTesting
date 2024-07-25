@@ -91,7 +91,7 @@ class UpdateProfileVC: UIViewController , TagPeopleDelegate{
     
     //MARK: - Variables and Properties
     var activeTextField: UITextField?      = nil
-    var selectedHrs                        = "00"
+    var selectedHrs                        = "01"
     var selectedMins                       = "00"
     let placeholder                        = "Enter Bio..."
     let placeholderColor                   = UIColor.lightGray
@@ -177,23 +177,18 @@ class UpdateProfileVC: UIViewController , TagPeopleDelegate{
     @IBAction func ontapAccountType(_ sender: UIButton){
         
     }
-    
     @IBAction func ontapSelectDay(_ sender: UIButton){
         
     }
-    
     @IBAction func ontapOpeningtime(_ sender: UIButton){
         
     }
-    
     @IBAction func ontapClosingTime(_ sender: UIButton){
         
     }
-    
     @IBAction func ontapOpeningMidday(_ sender: UIButton){
         
     }
-    
     @IBAction func ontapClosingMidday(_ sender: UIButton){
         
     }
@@ -566,7 +561,7 @@ extension UpdateProfileVC : UIPickerViewDelegate, UIPickerViewDataSource {
         }
     }
 }
-
+//MARK: - API'S
 extension UpdateProfileVC {
     func uploadCoverImg(_ img: UIImage, userID: String) {
         self.startAnimating()
@@ -673,7 +668,6 @@ extension UpdateProfileVC {
     func addProfile(_ userID: String) {
         self.startAnimating()
         var monday = lblMonday.isHidden ? "\(txtMondayOpening.text!) : \(txtMondayClosing.text!)" : "Closed"
-       // print(monday , txtMondayOpening.text! , txtMondayClosing.text!)
         var timings = [getMondaySchedule(txtMondayOpening.text ?? "", txtMondayClosing.text!, switchs: lblMonday.isHidden) ,
                        getMondaySchedule(txtTuesdayOpening.text ?? "", txtTuesdayClosing.text!, switchs: lblTuesday.isHidden) ,
                        getMondaySchedule(txtWednesdayOpening.text ?? "", txtWednesdayClosing.text!, switchs: lblWednesday.isHidden) ,
@@ -718,7 +712,7 @@ extension UpdateProfileVC {
             }
         }
     }
-    //update user in userCollection for data shoudl be updated everytime. if user change profile
+    //update user in userCollection for data should be updated everytime. if user change profile
     func updateUserDocument(img: String  , channelNm: String , followers: Int , acountType: String) {
         let db = Firestore.firestore()
         let userToken = UserDefault.token

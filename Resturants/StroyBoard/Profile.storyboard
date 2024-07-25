@@ -2867,7 +2867,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="DNr-lP-YGS">
-                                                        <rect key="frame" x="0.0" y="55.666666666666629" width="361" height="552.00000000000011"/>
+                                                        <rect key="frame" x="0.0" y="55.666666666666629" width="361" height="552"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="USF-0P-i7q">
                                                                 <rect key="frame" x="0.0" y="0.0" width="361" height="38"/>
@@ -9239,7 +9239,7 @@ platform be detailed.</string>
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="NoZ-Pa-cHR">
-                                                        <rect key="frame" x="0.0" y="257.00000000000006" width="361" height="84"/>
+                                                        <rect key="frame" x="0.0" y="257" width="361" height="84"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add email" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vJ2-zv-Gi8">
                                                                 <rect key="frame" x="0.0" y="0.0" width="361" height="17"/>
@@ -10679,16 +10679,16 @@ platform be detailed.</string>
         <image name="Report Acnt" width="24" height="24"/>
         <image name="arrow-right" width="20" height="20"/>
         <image name="bookmark" catalog="system" width="110" height="128"/>
-        <image name="chevron.down" catalog="system" width="128" height="70"/>
-        <image name="eye" catalog="system" width="128" height="79"/>
+        <image name="chevron.down" catalog="system" width="32" height="32"/>
+        <image name="eye" catalog="system" width="32" height="32"/>
         <image name="eye.slash" catalog="system" width="128" height="95"/>
         <image name="location-pin" width="24" height="24"/>
         <image name="multiply" catalog="system" width="128" height="111"/>
         <image name="multiply.circle" catalog="system" width="128" height="123"/>
         <image name="person.circle.fill" catalog="system" width="128" height="123"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
-        <image name="plus" catalog="system" width="128" height="113"/>
-        <image name="plus.app.fill" catalog="system" width="128" height="114"/>
+        <image name="plus" catalog="system" width="32" height="32"/>
+        <image name="plus.app.fill" catalog="system" width="32" height="32"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
         <image name="user" width="24.333333969116211" height="24"/>
         <image name="user-block" width="24" height="24"/>

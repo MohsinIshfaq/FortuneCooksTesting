@@ -31,6 +31,27 @@ class BaseClass : UIViewController {
         
     }
     
+    func showAlertCOmpletion2Options(withTitle title : String?, message : String, completion: ((_ status: Bool) -> Void)? = nil)
+    
+    {
+        // Create Alert
+        var dialogMessage = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        // Create OK button with action handler
+        let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+            completion?( true)
+        })
+        // Create Cancel button with action handlder
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+            completion?( false)
+        }
+        //Add OK and Cancel button to an Alert object
+        dialogMessage.addAction(ok)
+        dialogMessage.addAction(cancel)
+        // Present alert message to user
+        self.present(dialogMessage, animated: true, completion: nil)
+        
+    }
+    
     func logoutApp() {
      
     }

@@ -123,65 +123,73 @@ class ProfileVC: BaseClass , UpdateUserProfileFrmSettingDelegate{
         pickImg()
     }
     @IBAction func ontapWeb(_ sender: UIButton) {
-        guard var website = self.profileModel?.website else {
-            return
-        }
+        
+        self.showAlertCOmpletion2Options(withTitle: "FortuneCooks", message: "You are about to leave the app and visit an external website. Do you wish to continue?") { status in
+            if status{
+                guard var website = self.profileModel?.website else {
+                    return
+                }
+                // Add "https://" if the URL does not already have a scheme
+                if !website.lowercased().hasPrefix("http://") && !website.lowercased().hasPrefix("https://") {
+                    website = "https://\(website)"
+                }
 
-        // Add "https://" if the URL does not already have a scheme
-        if !website.lowercased().hasPrefix("http://") && !website.lowercased().hasPrefix("https://") {
-            website = "https://\(website)"
-        }
+                guard let url = URL(string: website) else {
+                    return
+                }
 
-        guard let url = URL(string: website) else {
-            return
-        }
-
-        // Check if the device can open the URL
-        if UIApplication.shared.canOpenURL(url) {
-            // Open the URL in the default web browser
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-        } else {
-            // Handle the case where the device cannot open the URL
-            print("Cannot open website URL")
+                // Check if the device can open the URL
+                if UIApplication.shared.canOpenURL(url) {
+                    // Open the URL in the default web browser
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                } else {
+                    // Handle the case where the device cannot open the URL
+                    print("Cannot open website URL")
+                }
+            }
         }
     }
     @IBAction func ontapEmail(_ sender: UIButton) {
-        guard let email = self.profileModel?.businessEmail else {
-            return
-        }
-        let mailto = "mailto:\(email)"
-        if let mailURL = URL(string: mailto) {
-            // Check if the device can open the mailto URL
-            if UIApplication.shared.canOpenURL(mailURL) {
-                // Open the mailto URL to compose an email
-                UIApplication.shared.open(mailURL, options: [:], completionHandler: nil)
-            } else {
-                // Handle the case where the device cannot open the mailto URL
-                print("Cannot open mail client")
+        self.showAlertCOmpletion2Options(withTitle: "FortuneCooks", message: "You are about to leave the app and visit an external email. Do you wish to continue?") { status in
+            guard let email = self.profileModel?.businessEmail else {
+                return
             }
-        } else {
-            // Handle the case where the mailto URL could not be created
-            print("Invalid email address URL")
+            let mailto = "mailto:\(email)"
+            if let mailURL = URL(string: mailto) {
+                // Check if the device can open the mailto URL
+                if UIApplication.shared.canOpenURL(mailURL) {
+                    // Open the mailto URL to compose an email
+                    UIApplication.shared.open(mailURL, options: [:], completionHandler: nil)
+                } else {
+                    // Handle the case where the device cannot open the mailto URL
+                    print("Cannot open mail client")
+                }
+            } else {
+                // Handle the case where the mailto URL could not be created
+                print("Invalid email address URL")
+            }
         }
     }
     @IBAction func ontapAddress(_ sender: UIButton) {
-        guard let address = self.profileModel?.address else {
-            return
-        }
-
-        let query = address.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-        let mapsURLString = "http://maps.apple.com/?q=\(query ?? "")"
-        if let mapsURL = URL(string: mapsURLString) {
-            if UIApplication.shared.canOpenURL(mapsURL) {
-                // Open the address in the Maps app
-                UIApplication.shared.open(mapsURL, options: [:], completionHandler: nil)
-            } else {
-                // Handle the case where the device cannot open the maps URL
-                print("Cannot open Maps app")
+        self.showAlertCOmpletion2Options(withTitle: "FortuneCooks", message: "You are about to leave the app and visit an external mapz. Do you wish to continue?") { status in
+            guard let address = self.profileModel?.address else {
+                return
             }
-        } else {
-            // Handle the case where the maps URL could not be created
-            print("Invalid address URL")
+            
+            let query = address.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+            let mapsURLString = "http://maps.apple.com/?q=\(query ?? "")"
+            if let mapsURL = URL(string: mapsURLString) {
+                if UIApplication.shared.canOpenURL(mapsURL) {
+                    // Open the address in the Maps app
+                    UIApplication.shared.open(mapsURL, options: [:], completionHandler: nil)
+                } else {
+                    // Handle the case where the device cannot open the maps URL
+                    print("Cannot open Maps app")
+                }
+            } else {
+                // Handle the case where the maps URL could not be created
+                print("Invalid address URL")
+            }
         }
     }
     @IBAction func ontapNumber(_ sender: UIButton) {
@@ -390,7 +398,9 @@ extension ProfileVC {
                         // Use the user model as needed
                         self.setupProfile(user: user)
                         self.profileModel = user
-                        // self.fetchVideosFromFirestore()
+                        if  UserManager.shared.gothroughUploading {
+                             self.fetchVideosFromFirestore()
+                        }
                         print("User data: \(user)")
                     } else {
                         print("Failed to fetch user data.")
@@ -439,7 +449,8 @@ extension ProfileVC {
     }
     func setupProfile(user: UserProfileModel) {
         if user.timings?.count != 0 {
-            lblCurrnetDay.text  = "Opening Hours (\(getCurrentDayOfWeek().0)) \(user.timings?[getCurrentDayOfWeek().1] != "Closed" ? "Open" : "Closed")"
+            var range = user.timings?[getCurrentDayOfWeek().1]
+            lblCurrnetDay.text  = "Opening Hours (\(getCurrentDayOfWeek().0)) \(isRestaurantOpen(timeRange:range ?? "") ? "Open" : "Closed")"
         }
         else{
             lblCurrnetDay.text  = "Opening Hours (\(getCurrentDayOfWeek().0)) Closed"
@@ -622,7 +633,9 @@ extension ProfileVC {
             }
         }
     @objc func ontapUplaod(_ sender: UIButton) {
-        self.tabBarController?.selectedIndex = 2
+        let vc = Constants.addStoryBoard.instantiateViewController(withIdentifier: "CameraNC") as? CameraNC
+        vc?.modalPresentationStyle = .overFullScreen
+        self.present(vc!, animated: true)
     }
 }
 

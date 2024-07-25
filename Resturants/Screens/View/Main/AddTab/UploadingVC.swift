@@ -27,6 +27,7 @@ class UploadingVC: UIViewController {
         hideNavBar()
     }
     @IBAction func ontapopUp(_ sender: UIButton){
+        UserManager.shared.gothroughUploading = true
         popRoot()
     }
     @IBAction func ontapCancelUplaod(_ sender: UIButton) {

@@ -20,6 +20,7 @@ final class UserManager {
     var totalTagPeople             : Int              = 0
     var finalURL                   : URL?             = nil
     var thumbnail                  : UIImage?         = nil
+    var gothroughUploading         : Bool             = false
     
     var filteredCuisine            : [[String]]       = []
     var filteredEnviorment         : [[String]]       = []

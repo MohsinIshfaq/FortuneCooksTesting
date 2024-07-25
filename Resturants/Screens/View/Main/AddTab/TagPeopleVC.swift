@@ -162,7 +162,9 @@ extension TagPeopleVC: UITableViewDelegate , UITableViewDataSource{
             }
             else{
                 self.users[indexPath.row].selected = 0
-                self.selectedUser.remove(at: indexPath.row)
+                self.selectedUser.removeAll { selected in
+                    selected.uid == self.users[indexPath.row].uid
+                }
             }
             tableView.reloadRows(at: [indexPath], with: .automatic)
         }
