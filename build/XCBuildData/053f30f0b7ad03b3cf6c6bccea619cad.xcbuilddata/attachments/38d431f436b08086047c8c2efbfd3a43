@@ -1,0 +1,11 @@
+framework module CachingPlayerItem {
+  umbrella header "CachingPlayerItem-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module CachingPlayerItem.Swift {
+  header "CachingPlayerItem-Swift.h"
+  requires objc
+}

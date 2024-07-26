@@ -1,0 +1,10 @@
+framework module CachingPlayerItem {
+  umbrella header "CachingPlayerItem-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module CachingPlayerItem.__Swift {
+  exclude header "CachingPlayerItem-Swift.h"
+}

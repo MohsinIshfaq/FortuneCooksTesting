@@ -1,0 +1,95 @@
+{
+  "" : {
+    "const-values" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/MediaWatermark.build/Objects-normal/arm64/MediaWatermark-master.swiftconstvalues",
+    "dependencies" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/MediaWatermark.build/Objects-normal/arm64/MediaWatermark-master.d",
+    "diagnostics" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/MediaWatermark.build/Objects-normal/arm64/MediaWatermark-master.dia",
+    "emit-module-dependencies" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/MediaWatermark.build/Objects-normal/arm64/MediaWatermark-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/MediaWatermark.build/Objects-normal/arm64/MediaWatermark-master-emit-module.dia",
+    "swift-dependencies" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/MediaWatermark.build/Objects-normal/arm64/MediaWatermark-master.swiftdeps"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/MediaWatermark/Sources/Classes/Core/MediaElement.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/MediaWatermark.build/Objects-normal/arm64/MediaElement.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/MediaWatermark.build/Objects-normal/arm64/MediaElement.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/MediaWatermark.build/Objects-normal/arm64/MediaElement.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/MediaWatermark/Sources/Classes/Core/MediaImageProcessor.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/MediaWatermark.build/Objects-normal/arm64/MediaImageProcessor.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/MediaWatermark.build/Objects-normal/arm64/MediaImageProcessor.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/MediaWatermark.build/Objects-normal/arm64/MediaImageProcessor.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/MediaWatermark/Sources/Classes/Core/MediaItem.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/MediaWatermark.build/Objects-normal/arm64/MediaItem.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/MediaWatermark.build/Objects-normal/arm64/MediaItem.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/MediaWatermark.build/Objects-normal/arm64/MediaItem.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/MediaWatermark/Sources/Classes/Core/MediaProcessor.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/MediaWatermark.build/Objects-normal/arm64/MediaProcessor.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/MediaWatermark.build/Objects-normal/arm64/MediaProcessor.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/MediaWatermark.build/Objects-normal/arm64/MediaProcessor.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/MediaWatermark/Sources/Classes/Core/MediaVideoProcessor.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/MediaWatermark.build/Objects-normal/arm64/MediaVideoProcessor.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/MediaWatermark.build/Objects-normal/arm64/MediaVideoProcessor.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/MediaWatermark.build/Objects-normal/arm64/MediaVideoProcessor.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/MediaWatermark/Sources/Classes/Extensions/Assets.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/MediaWatermark.build/Objects-normal/arm64/Assets.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/MediaWatermark.build/Objects-normal/arm64/Assets.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/MediaWatermark.build/Objects-normal/arm64/Assets.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/MediaWatermark/Sources/Classes/Extensions/Images.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/MediaWatermark.build/Objects-normal/arm64/Images.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/MediaWatermark.build/Objects-normal/arm64/Images.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/MediaWatermark.build/Objects-normal/arm64/Images.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/MediaWatermark/Sources/Classes/Filters/Effects/BlurFilter.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/MediaWatermark.build/Objects-normal/arm64/BlurFilter.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/MediaWatermark.build/Objects-normal/arm64/BlurFilter.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/MediaWatermark.build/Objects-normal/arm64/BlurFilter.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/MediaWatermark/Sources/Classes/Filters/Effects/ColorFilter.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/MediaWatermark.build/Objects-normal/arm64/ColorFilter.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/MediaWatermark.build/Objects-normal/arm64/ColorFilter.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/MediaWatermark.build/Objects-normal/arm64/ColorFilter.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/MediaWatermark/Sources/Classes/Filters/Effects/FilterShaderParamManager.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/MediaWatermark.build/Objects-normal/arm64/FilterShaderParamManager.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/MediaWatermark.build/Objects-normal/arm64/FilterShaderParamManager.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/MediaWatermark.build/Objects-normal/arm64/FilterShaderParamManager.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/MediaWatermark/Sources/Classes/Filters/Effects/FilterShaderProvider.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/MediaWatermark.build/Objects-normal/arm64/FilterShaderProvider.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/MediaWatermark.build/Objects-normal/arm64/FilterShaderProvider.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/MediaWatermark.build/Objects-normal/arm64/FilterShaderProvider.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/MediaWatermark/Sources/Classes/Filters/Effects/SepiaFilter.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/MediaWatermark.build/Objects-normal/arm64/SepiaFilter.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/MediaWatermark.build/Objects-normal/arm64/SepiaFilter.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/MediaWatermark.build/Objects-normal/arm64/SepiaFilter.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/MediaWatermark/Sources/Classes/Filters/Effects/SobelFilter.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/MediaWatermark.build/Objects-normal/arm64/SobelFilter.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/MediaWatermark.build/Objects-normal/arm64/SobelFilter.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/MediaWatermark.build/Objects-normal/arm64/SobelFilter.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/MediaWatermark/Sources/Classes/Filters/Effects/ThresholdFilter.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/MediaWatermark.build/Objects-normal/arm64/ThresholdFilter.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/MediaWatermark.build/Objects-normal/arm64/ThresholdFilter.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/MediaWatermark.build/Objects-normal/arm64/ThresholdFilter.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/MediaWatermark/Sources/Classes/Filters/FilterProcessor.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/MediaWatermark.build/Objects-normal/arm64/FilterProcessor.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/MediaWatermark.build/Objects-normal/arm64/FilterProcessor.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/MediaWatermark.build/Objects-normal/arm64/FilterProcessor.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/MediaWatermark/Sources/Classes/Filters/GraphicContext.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/MediaWatermark.build/Objects-normal/arm64/GraphicContext.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/MediaWatermark.build/Objects-normal/arm64/GraphicContext.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/MediaWatermark.build/Objects-normal/arm64/GraphicContext.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/MediaWatermark/Sources/Classes/Filters/MediaFilter.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/MediaWatermark.build/Objects-normal/arm64/MediaFilter.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/MediaWatermark.build/Objects-normal/arm64/MediaFilter.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/MediaWatermark.build/Objects-normal/arm64/MediaFilter.o"
+  }
+}

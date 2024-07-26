@@ -1,0 +1,5 @@
+ extern const unsigned char IGListDiffKitVersionString[];
+ extern const double IGListDiffKitVersionNumber;
+
+ const unsigned char IGListDiffKitVersionString[] __attribute__ ((used)) = "@(#)PROGRAM:IGListDiffKit  PROJECT:Pods-1" "\n";
+ const double IGListDiffKitVersionNumber __attribute__ ((used)) = (double)1.;

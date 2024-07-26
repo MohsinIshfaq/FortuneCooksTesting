@@ -1,0 +1,5 @@
+ extern const unsigned char CachingPlayerItemVersionString[];
+ extern const double CachingPlayerItemVersionNumber;
+
+ const unsigned char CachingPlayerItemVersionString[] __attribute__ ((used)) = "@(#)PROGRAM:CachingPlayerItem  PROJECT:Pods-1" "\n";
+ const double CachingPlayerItemVersionNumber __attribute__ ((used)) = (double)1.;

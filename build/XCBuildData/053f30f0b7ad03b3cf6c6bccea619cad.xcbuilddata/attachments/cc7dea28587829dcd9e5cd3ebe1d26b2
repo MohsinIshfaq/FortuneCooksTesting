@@ -1,0 +1,35 @@
+{
+  "" : {
+    "const-values" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/CachingPlayerItem.build/Objects-normal/arm64/CachingPlayerItem-master.swiftconstvalues",
+    "dependencies" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/CachingPlayerItem.build/Objects-normal/arm64/CachingPlayerItem-master.d",
+    "diagnostics" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/CachingPlayerItem.build/Objects-normal/arm64/CachingPlayerItem-master.dia",
+    "emit-module-dependencies" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/CachingPlayerItem.build/Objects-normal/arm64/CachingPlayerItem-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/CachingPlayerItem.build/Objects-normal/arm64/CachingPlayerItem-master-emit-module.dia",
+    "swift-dependencies" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/CachingPlayerItem.build/Objects-normal/arm64/CachingPlayerItem-master.swiftdeps"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/CachingPlayerItem/Source/CachingPlayerItem.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/CachingPlayerItem.build/Objects-normal/arm64/CachingPlayerItem.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/CachingPlayerItem.build/Objects-normal/arm64/CachingPlayerItem.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/CachingPlayerItem.build/Objects-normal/arm64/CachingPlayerItem.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/CachingPlayerItem/Source/CachingPlayerItemConfiguration.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/CachingPlayerItem.build/Objects-normal/arm64/CachingPlayerItemConfiguration.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/CachingPlayerItem.build/Objects-normal/arm64/CachingPlayerItemConfiguration.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/CachingPlayerItem.build/Objects-normal/arm64/CachingPlayerItemConfiguration.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/CachingPlayerItem/Source/MediaFileHandle.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/CachingPlayerItem.build/Objects-normal/arm64/MediaFileHandle.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/CachingPlayerItem.build/Objects-normal/arm64/MediaFileHandle.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/CachingPlayerItem.build/Objects-normal/arm64/MediaFileHandle.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/CachingPlayerItem/Source/ResourceLoaderDelegate.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/CachingPlayerItem.build/Objects-normal/arm64/ResourceLoaderDelegate.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/CachingPlayerItem.build/Objects-normal/arm64/ResourceLoaderDelegate.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/CachingPlayerItem.build/Objects-normal/arm64/ResourceLoaderDelegate.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/CachingPlayerItem/Source/URLExtension.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/CachingPlayerItem.build/Objects-normal/arm64/URLExtension.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/CachingPlayerItem.build/Objects-normal/arm64/URLExtension.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/CachingPlayerItem.build/Objects-normal/arm64/URLExtension.o"
+  }
+}

@@ -1,0 +1,97 @@
+Target dependency graph (32 targets)
+Target 'Pods-Resturants' in project 'Pods'
+➜ Explicit dependency on target 'BoringSSL-GRPC' in project 'Pods'
+➜ Explicit dependency on target 'CachingPlayerItem' in project 'Pods'
+➜ Explicit dependency on target 'CountryPickerView' in project 'Pods'
+➜ Explicit dependency on target 'Firebase' in project 'Pods'
+➜ Explicit dependency on target 'FirebaseAppCheckInterop' in project 'Pods'
+➜ Explicit dependency on target 'FirebaseAuth' in project 'Pods'
+➜ Explicit dependency on target 'FirebaseAuthInterop' in project 'Pods'
+➜ Explicit dependency on target 'FirebaseCore' in project 'Pods'
+➜ Explicit dependency on target 'FirebaseCoreExtension' in project 'Pods'
+➜ Explicit dependency on target 'FirebaseCoreInternal' in project 'Pods'
+➜ Explicit dependency on target 'FirebaseFirestore' in project 'Pods'
+➜ Explicit dependency on target 'FirebaseFirestoreInternal' in project 'Pods'
+➜ Explicit dependency on target 'FirebaseSharedSwift' in project 'Pods'
+➜ Explicit dependency on target 'FirebaseStorage' in project 'Pods'
+➜ Explicit dependency on target 'GTMSessionFetcher' in project 'Pods'
+➜ Explicit dependency on target 'GoogleUtilities' in project 'Pods'
+➜ Explicit dependency on target 'IGListDiffKit' in project 'Pods'
+➜ Explicit dependency on target 'IGListKit' in project 'Pods'
+➜ Explicit dependency on target 'IQKeyboardManager' in project 'Pods'
+➜ Explicit dependency on target 'MediaWatermark' in project 'Pods'
+➜ Explicit dependency on target 'NVActivityIndicatorView' in project 'Pods'
+➜ Explicit dependency on target 'PromisesObjC' in project 'Pods'
+➜ Explicit dependency on target 'RecaptchaInterop' in project 'Pods'
+➜ Explicit dependency on target 'SDWebImage' in project 'Pods'
+➜ Explicit dependency on target 'abseil' in project 'Pods'
+➜ Explicit dependency on target 'gRPC-C++' in project 'Pods'
+➜ Explicit dependency on target 'gRPC-Core' in project 'Pods'
+➜ Explicit dependency on target 'leveldb-library' in project 'Pods'
+➜ Explicit dependency on target 'nanopb' in project 'Pods'
+Target 'SDWebImage' in project 'Pods' (no dependencies)
+Target 'NVActivityIndicatorView' in project 'Pods' (no dependencies)
+Target 'MediaWatermark' in project 'Pods' (no dependencies)
+Target 'IQKeyboardManager' in project 'Pods' (no dependencies)
+Target 'IGListKit' in project 'Pods'
+➜ Explicit dependency on target 'IGListDiffKit' in project 'Pods'
+Target 'IGListDiffKit' in project 'Pods' (no dependencies)
+Target 'FirebaseFirestore' in project 'Pods'
+➜ Explicit dependency on target 'FirebaseCore' in project 'Pods'
+➜ Explicit dependency on target 'FirebaseCoreExtension' in project 'Pods'
+➜ Explicit dependency on target 'FirebaseFirestoreInternal' in project 'Pods'
+➜ Explicit dependency on target 'FirebaseSharedSwift' in project 'Pods'
+Target 'FirebaseSharedSwift' in project 'Pods' (no dependencies)
+Target 'FirebaseFirestoreInternal' in project 'Pods'
+➜ Explicit dependency on target 'FirebaseAppCheckInterop' in project 'Pods'
+➜ Explicit dependency on target 'FirebaseCore' in project 'Pods'
+➜ Explicit dependency on target 'abseil' in project 'Pods'
+➜ Explicit dependency on target 'gRPC-C++' in project 'Pods'
+➜ Explicit dependency on target 'leveldb-library' in project 'Pods'
+➜ Explicit dependency on target 'nanopb' in project 'Pods'
+Target 'nanopb' in project 'Pods' (no dependencies)
+Target 'leveldb-library' in project 'Pods' (no dependencies)
+Target 'gRPC-C++' in project 'Pods'
+➜ Explicit dependency on target 'abseil' in project 'Pods'
+➜ Explicit dependency on target 'gRPC-C++-gRPCCertificates-Cpp' in project 'Pods'
+➜ Explicit dependency on target 'gRPC-Core' in project 'Pods'
+Target 'gRPC-Core' in project 'Pods'
+➜ Explicit dependency on target 'BoringSSL-GRPC' in project 'Pods'
+➜ Explicit dependency on target 'abseil' in project 'Pods'
+Target 'gRPC-C++-gRPCCertificates-Cpp' in project 'Pods' (no dependencies)
+Target 'abseil' in project 'Pods' (no dependencies)
+Target 'Firebase' in project 'Pods'
+➜ Explicit dependency on target 'FirebaseAuth' in project 'Pods'
+➜ Explicit dependency on target 'FirebaseCore' in project 'Pods'
+➜ Explicit dependency on target 'FirebaseStorage' in project 'Pods'
+Target 'FirebaseStorage' in project 'Pods'
+➜ Explicit dependency on target 'FirebaseAppCheckInterop' in project 'Pods'
+➜ Explicit dependency on target 'FirebaseAuthInterop' in project 'Pods'
+➜ Explicit dependency on target 'FirebaseCore' in project 'Pods'
+➜ Explicit dependency on target 'FirebaseCoreExtension' in project 'Pods'
+➜ Explicit dependency on target 'GTMSessionFetcher' in project 'Pods'
+Target 'FirebaseCoreExtension' in project 'Pods'
+➜ Explicit dependency on target 'FirebaseCore' in project 'Pods'
+Target 'FirebaseAuthInterop' in project 'Pods' (no dependencies)
+Target 'FirebaseAuth' in project 'Pods'
+➜ Explicit dependency on target 'FirebaseAppCheckInterop' in project 'Pods'
+➜ Explicit dependency on target 'FirebaseCore' in project 'Pods'
+➜ Explicit dependency on target 'GTMSessionFetcher' in project 'Pods'
+➜ Explicit dependency on target 'GoogleUtilities' in project 'Pods'
+➜ Explicit dependency on target 'RecaptchaInterop' in project 'Pods'
+Target 'RecaptchaInterop' in project 'Pods' (no dependencies)
+Target 'GTMSessionFetcher' in project 'Pods' (no dependencies)
+Target 'FirebaseCore' in project 'Pods'
+➜ Explicit dependency on target 'FirebaseCoreInternal' in project 'Pods'
+➜ Explicit dependency on target 'GoogleUtilities' in project 'Pods'
+Target 'FirebaseCoreInternal' in project 'Pods'
+➜ Explicit dependency on target 'GoogleUtilities' in project 'Pods'
+Target 'GoogleUtilities' in project 'Pods'
+➜ Explicit dependency on target 'PromisesObjC' in project 'Pods'
+Target 'PromisesObjC' in project 'Pods' (no dependencies)
+Target 'FirebaseAppCheckInterop' in project 'Pods' (no dependencies)
+Target 'CountryPickerView' in project 'Pods'
+➜ Explicit dependency on target 'CountryPickerView-CountryPickerView_CountryPickerView' in project 'Pods'
+Target 'CountryPickerView-CountryPickerView_CountryPickerView' in project 'Pods' (no dependencies)
+Target 'CachingPlayerItem' in project 'Pods' (no dependencies)
+Target 'BoringSSL-GRPC' in project 'Pods' (no dependencies)

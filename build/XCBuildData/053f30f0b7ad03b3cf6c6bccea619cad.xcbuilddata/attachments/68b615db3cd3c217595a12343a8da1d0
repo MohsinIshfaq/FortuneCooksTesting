@@ -1,0 +1,11 @@
+framework module MediaWatermark {
+  umbrella header "MediaWatermark-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module MediaWatermark.Swift {
+  header "MediaWatermark-Swift.h"
+  requires objc
+}

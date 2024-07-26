@@ -1,0 +1,5 @@
+ extern const unsigned char MediaWatermarkVersionString[];
+ extern const double MediaWatermarkVersionNumber;
+
+ const unsigned char MediaWatermarkVersionString[] __attribute__ ((used)) = "@(#)PROGRAM:MediaWatermark  PROJECT:Pods-1" "\n";
+ const double MediaWatermarkVersionNumber __attribute__ ((used)) = (double)1.;

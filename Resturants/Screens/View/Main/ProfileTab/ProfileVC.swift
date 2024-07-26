@@ -597,12 +597,12 @@ extension ProfileVC {
             if var url  = URL(string: self.responseModel?[i].videoUrl ?? "") {
                 if isReel(url: url) {
                     if var data = self.responseModel?[i] {
-                        self.reelsModel?.append(data)
+                        self.videosModel?.append(data)
                     }
                 }
                 else{
                     if var data = self.responseModel?[i] {
-                        self.videosModel?.append(data)
+                        self.reelsModel?.append(data)
                     }
                 }
             }

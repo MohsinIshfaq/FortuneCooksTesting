@@ -135,8 +135,8 @@ extension TagPeopleVC: UITableViewDelegate , UITableViewDataSource{
             cell?.btnFollow.isHidden   = true
             DispatchQueue.main.async {
                 if let profileURL = self.users[indexPath.row].img, let urlProfile1 = URL(string: profileURL) {
-                        cell?.img.sd_setImage(with: urlProfile1)
-                    }
+                    cell?.img.sd_setImage(with: urlProfile1 , placeholderImage: UIImage(named: "loading"))
+                }
                 cell?.lblFollowers.text = self.users[indexPath.row].followers ?? "0 Followers"
                 cell?.lblName.text      = self.users[indexPath.row].channelName ?? ""
                 cell?.lblType.text      = self.users[indexPath.row].accountType ?? ""

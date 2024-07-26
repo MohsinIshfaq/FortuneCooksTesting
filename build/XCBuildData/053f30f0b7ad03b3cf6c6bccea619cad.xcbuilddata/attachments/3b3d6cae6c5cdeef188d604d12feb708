@@ -1,0 +1,205 @@
+{
+  "" : {
+    "const-values" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorView-master.swiftconstvalues",
+    "dependencies" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorView-master.d",
+    "diagnostics" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorView-master.dia",
+    "emit-module-dependencies" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorView-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorView-master-emit-module.dia",
+    "swift-dependencies" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorView-master.swiftdeps"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationAudioEqualizer.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationAudioEqualizer.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationAudioEqualizer.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationAudioEqualizer.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationBallBeat.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallBeat.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallBeat.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallBeat.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationBallClipRotate.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallClipRotate.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallClipRotate.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallClipRotate.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationBallClipRotateMultiple.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallClipRotateMultiple.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallClipRotateMultiple.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallClipRotateMultiple.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationBallClipRotatePulse.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallClipRotatePulse.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallClipRotatePulse.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallClipRotatePulse.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationBallDoubleBounce.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallDoubleBounce.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallDoubleBounce.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallDoubleBounce.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationBallGridBeat.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallGridBeat.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallGridBeat.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallGridBeat.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationBallGridPulse.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallGridPulse.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallGridPulse.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallGridPulse.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationBallPulse.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallPulse.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallPulse.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallPulse.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationBallPulseRise.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallPulseRise.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallPulseRise.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallPulseRise.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationBallPulseSync.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallPulseSync.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallPulseSync.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallPulseSync.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationBallRotate.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallRotate.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallRotate.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallRotate.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationBallRotateChase.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallRotateChase.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallRotateChase.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallRotateChase.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationBallScale.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallScale.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallScale.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallScale.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationBallScaleMultiple.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallScaleMultiple.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallScaleMultiple.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallScaleMultiple.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationBallScaleRipple.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallScaleRipple.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallScaleRipple.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallScaleRipple.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationBallScaleRippleMultiple.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallScaleRippleMultiple.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallScaleRippleMultiple.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallScaleRippleMultiple.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationBallSpinFadeLoader.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallSpinFadeLoader.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallSpinFadeLoader.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallSpinFadeLoader.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationBallTrianglePath.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallTrianglePath.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallTrianglePath.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallTrianglePath.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationBallZigZag.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallZigZag.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallZigZag.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallZigZag.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationBallZigZagDeflect.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallZigZagDeflect.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallZigZagDeflect.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBallZigZagDeflect.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationBlank.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBlank.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBlank.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationBlank.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationCircleStrokeSpin.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationCircleStrokeSpin.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationCircleStrokeSpin.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationCircleStrokeSpin.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationCubeTransition.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationCubeTransition.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationCubeTransition.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationCubeTransition.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationLineScale.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationLineScale.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationLineScale.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationLineScale.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationLineScaleParty.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationLineScaleParty.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationLineScaleParty.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationLineScaleParty.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationLineScalePulseOut.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationLineScalePulseOut.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationLineScalePulseOut.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationLineScalePulseOut.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationLineScalePulseOutRapid.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationLineScalePulseOutRapid.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationLineScalePulseOutRapid.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationLineScalePulseOutRapid.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationLineSpinFadeLoader.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationLineSpinFadeLoader.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationLineSpinFadeLoader.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationLineSpinFadeLoader.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationOrbit.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationOrbit.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationOrbit.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationOrbit.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationPacman.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationPacman.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationPacman.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationPacman.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationSemiCircleSpin.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationSemiCircleSpin.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationSemiCircleSpin.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationSemiCircleSpin.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationSquareSpin.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationSquareSpin.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationSquareSpin.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationSquareSpin.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Animations/NVActivityIndicatorAnimationTriangleSkewSpin.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationTriangleSkewSpin.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationTriangleSkewSpin.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationTriangleSkewSpin.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/NVActivityIndicatorAnimationDelegate.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationDelegate.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationDelegate.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorAnimationDelegate.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/NVActivityIndicatorShape.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorShape.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorShape.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorShape.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/NVActivityIndicatorView.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorView.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorView.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorView.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Presenter/NVActivityIndicatorPresenter.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorPresenter.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorPresenter.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorPresenter.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/NVActivityIndicatorView/Source/NVActivityIndicatorView/Presenter/NVActivityIndicatorViewable.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorViewable.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorViewable.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/Objects-normal/arm64/NVActivityIndicatorViewable.o"
+  }
+}

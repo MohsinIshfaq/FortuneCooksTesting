@@ -1,0 +1,40 @@
+{
+  "" : {
+    "const-values" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/CountryPickerView.build/Objects-normal/arm64/CountryPickerView-master.swiftconstvalues",
+    "dependencies" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/CountryPickerView.build/Objects-normal/arm64/CountryPickerView-master.d",
+    "diagnostics" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/CountryPickerView.build/Objects-normal/arm64/CountryPickerView-master.dia",
+    "emit-module-dependencies" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/CountryPickerView.build/Objects-normal/arm64/CountryPickerView-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/CountryPickerView.build/Objects-normal/arm64/CountryPickerView-master-emit-module.dia",
+    "swift-dependencies" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/CountryPickerView.build/Objects-normal/arm64/CountryPickerView-master.swiftdeps"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/CountryPickerView/CountryPickerView/Bundle.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/CountryPickerView.build/Objects-normal/arm64/Bundle.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/CountryPickerView.build/Objects-normal/arm64/Bundle.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/CountryPickerView.build/Objects-normal/arm64/Bundle.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/CountryPickerView/CountryPickerView/CountryPickerView.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/CountryPickerView.build/Objects-normal/arm64/CountryPickerView.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/CountryPickerView.build/Objects-normal/arm64/CountryPickerView.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/CountryPickerView.build/Objects-normal/arm64/CountryPickerView.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/CountryPickerView/CountryPickerView/CountryPickerViewController.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/CountryPickerView.build/Objects-normal/arm64/CountryPickerViewController.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/CountryPickerView.build/Objects-normal/arm64/CountryPickerViewController.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/CountryPickerView.build/Objects-normal/arm64/CountryPickerViewController.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/CountryPickerView/CountryPickerView/Delegate+DataSource.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/CountryPickerView.build/Objects-normal/arm64/Delegate+DataSource.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/CountryPickerView.build/Objects-normal/arm64/Delegate+DataSource.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/CountryPickerView.build/Objects-normal/arm64/Delegate+DataSource.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/CountryPickerView/CountryPickerView/Extensions.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/CountryPickerView.build/Objects-normal/arm64/Extensions.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/CountryPickerView.build/Objects-normal/arm64/Extensions.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/CountryPickerView.build/Objects-normal/arm64/Extensions.o"
+  },
+  "/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/CountryPickerView/CountryPickerView/NibView.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/CountryPickerView.build/Objects-normal/arm64/NibView.o",
+    "llvm-bc" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/CountryPickerView.build/Objects-normal/arm64/NibView.bc",
+    "object" : "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/CountryPickerView.build/Objects-normal/arm64/NibView.o"
+  }
+}

@@ -1,0 +1,17 @@
+/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/MediaWatermark/Sources/Classes/Extensions/Assets.swift
+/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/MediaWatermark/Sources/Classes/Filters/Effects/BlurFilter.swift
+/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/MediaWatermark/Sources/Classes/Filters/Effects/ColorFilter.swift
+/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/MediaWatermark/Sources/Classes/Filters/FilterProcessor.swift
+/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/MediaWatermark/Sources/Classes/Filters/Effects/FilterShaderParamManager.swift
+/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/MediaWatermark/Sources/Classes/Filters/Effects/FilterShaderProvider.swift
+/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/MediaWatermark/Sources/Classes/Filters/GraphicContext.swift
+/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/MediaWatermark/Sources/Classes/Extensions/Images.swift
+/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/MediaWatermark/Sources/Classes/Core/MediaElement.swift
+/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/MediaWatermark/Sources/Classes/Filters/MediaFilter.swift
+/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/MediaWatermark/Sources/Classes/Core/MediaImageProcessor.swift
+/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/MediaWatermark/Sources/Classes/Core/MediaItem.swift
+/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/MediaWatermark/Sources/Classes/Core/MediaProcessor.swift
+/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/MediaWatermark/Sources/Classes/Core/MediaVideoProcessor.swift
+/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/MediaWatermark/Sources/Classes/Filters/Effects/SepiaFilter.swift
+/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/MediaWatermark/Sources/Classes/Filters/Effects/SobelFilter.swift
+/Users/codersmacbook/Documents/FortuneCooksIOS/Pods/MediaWatermark/Sources/Classes/Filters/Effects/ThresholdFilter.swift

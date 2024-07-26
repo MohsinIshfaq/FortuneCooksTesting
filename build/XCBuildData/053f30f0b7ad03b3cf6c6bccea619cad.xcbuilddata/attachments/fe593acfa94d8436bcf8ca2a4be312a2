@@ -1,0 +1,23 @@
+{
+  'version': 0,
+  'use-external-names': 'false',
+  'case-sensitive': 'false',
+  'roots': [{
+    'type': 'directory',
+    'name': "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Release-iphoneos/CachingPlayerItem/CachingPlayerItem.framework/Modules"
+    'contents': [{
+      'type': 'file',
+      'name': "module.modulemap",
+      'external-contents': "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/CachingPlayerItem.build/unextended-module.modulemap",
+    }]
+    },
+    {
+    'type': 'directory',
+    'name': "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Release-iphoneos/CachingPlayerItem/CachingPlayerItem.framework/Headers"
+    'contents': [{
+      'type': 'file',
+      'name': "CachingPlayerItem-Swift.h",
+      'external-contents': "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/CachingPlayerItem.build/unextended-interface-header.h",
+    }]
+    }]
+}

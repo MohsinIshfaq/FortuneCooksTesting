@@ -1,0 +1,23 @@
+{
+  'version': 0,
+  'use-external-names': 'false',
+  'case-sensitive': 'false',
+  'roots': [{
+    'type': 'directory',
+    'name': "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Release-iphoneos/NVActivityIndicatorView/NVActivityIndicatorView.framework/Modules"
+    'contents': [{
+      'type': 'file',
+      'name': "module.modulemap",
+      'external-contents': "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/unextended-module.modulemap",
+    }]
+    },
+    {
+    'type': 'directory',
+    'name': "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Release-iphoneos/NVActivityIndicatorView/NVActivityIndicatorView.framework/Headers"
+    'contents': [{
+      'type': 'file',
+      'name': "NVActivityIndicatorView-Swift.h",
+      'external-contents': "/Users/codersmacbook/Documents/FortuneCooksIOS/build/Pods.build/Release-iphoneos/NVActivityIndicatorView.build/unextended-interface-header.h",
+    }]
+    }]
+}
