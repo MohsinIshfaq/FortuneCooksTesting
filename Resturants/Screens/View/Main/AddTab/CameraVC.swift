@@ -37,6 +37,7 @@ class CameraVC: FilterCamViewController{
     private var outputURL: URL?          = nil
     private var mutableVideoURL          = NSURL() //final video url
     private var seesionGoing             = false
+    private var navigatePressed          = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -177,6 +178,7 @@ class CameraVC: FilterCamViewController{
         CollectFilter.isHidden         = true
         stackVideoPicker.isHidden      = true
         if selectedRecord{
+            navigatePressed            = false
             btnRecord.backgroundColor  = .red
             elapsedTime                = 0
             seesionGoing               = true
@@ -208,6 +210,14 @@ class CameraVC: FilterCamViewController{
         if elapsedTime >= totalTime {
             timer1?.invalidate()
             timer1         = nil
+            if !navigatePressed {
+                player.seek(to: CMTime.zero)
+                player.play()
+                self.progress_value   = 0
+                self.lblProgress.text = "0"
+                self.elapsedTime      = 0
+                self.startProgress4TrailVideo()
+            }
         }
     }
     
@@ -400,6 +410,7 @@ extension CameraVC: FilterCamViewControllerDelegate{
     
     func removeVideo() {
         self.startAnimating()
+        navigatePressed = true
         player?.pause()
         while playerLayer?.superlayer != nil {
             playerLayer?.removeFromSuperlayer()
