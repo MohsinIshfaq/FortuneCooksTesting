@@ -18,41 +18,43 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="SwiftCCell" customModule="Resturants" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="171" height="267"/>
+            <rect key="frame" x="0.0" y="0.0" width="171" height="300"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="171" height="267"/>
+                <rect key="frame" x="0.0" y="0.0" width="171" height="300"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GlO-6T-qzZ">
-                        <rect key="frame" x="0.0" y="0.0" width="171" height="267"/>
+                        <rect key="frame" x="0.0" y="0.0" width="171" height="300"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Video 1" translatesAutoresizingMaskIntoConstraints="NO" id="O3o-ny-BDt">
-                                <rect key="frame" x="0.0" y="0.0" width="171" height="200"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="EbU-q3-lZz"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="6"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="XPP-nY-EcP">
-                                <rect key="frame" x="2" y="206" width="167" height="55"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="LjI-d9-lxw">
+                                <rect key="frame" x="0.0" y="0.0" width="171" height="294"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Does Swedan have *These Best * Snacks?!  - This with them" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CTY-r8-ImX">
-                                        <rect key="frame" x="0.0" y="0.0" width="167" height="26.666666666666668"/>
-                                        <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="11"/>
-                                        <color key="textColor" name="ColorWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amin Kitchen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2uJ-RU-4HP">
-                                        <rect key="frame" x="0.0" y="28.666666666666657" width="167" height="26.333333333333329"/>
-                                        <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="10"/>
-                                        <color key="textColor" name="ColorLightGray"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="XPP-nY-EcP">
+                                        <rect key="frame" x="0.0" y="0.0" width="171" height="294"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Video 1" translatesAutoresizingMaskIntoConstraints="NO" id="O3o-ny-BDt">
+                                                <rect key="frame" x="0.0" y="0.0" width="171" height="217"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="6"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </imageView>
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Does Swedan have *These Best * Snacks?!  - This with them" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CTY-r8-ImX">
+                                                <rect key="frame" x="0.0" y="218" width="171" height="0.0"/>
+                                                <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="11"/>
+                                                <color key="textColor" name="ColorWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Amin Kitchen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2uJ-RU-4HP">
+                                                <rect key="frame" x="0.0" y="219" width="171" height="75"/>
+                                                <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="12"/>
+                                                <color key="textColor" name="ColorWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Ah-Ok-gBa">
@@ -82,15 +84,12 @@
                         </subviews>
                         <color key="backgroundColor" name="ColorBlack"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="XPP-nY-EcP" secondAttribute="bottom" constant="6" id="06g-wj-Ml9"/>
-                            <constraint firstItem="XPP-nY-EcP" firstAttribute="leading" secondItem="GlO-6T-qzZ" secondAttribute="leading" constant="2" id="71M-Nm-hZD"/>
+                            <constraint firstAttribute="trailing" secondItem="LjI-d9-lxw" secondAttribute="trailing" id="4dY-4u-NKT"/>
                             <constraint firstItem="7Ah-Ok-gBa" firstAttribute="leading" secondItem="GlO-6T-qzZ" secondAttribute="leading" constant="8" id="ADa-tk-iw7"/>
-                            <constraint firstItem="XPP-nY-EcP" firstAttribute="top" secondItem="O3o-ny-BDt" secondAttribute="bottom" constant="6" id="NnZ-GV-O8q"/>
-                            <constraint firstItem="O3o-ny-BDt" firstAttribute="leading" secondItem="GlO-6T-qzZ" secondAttribute="leading" id="Q8K-Pf-hr8"/>
-                            <constraint firstAttribute="trailing" secondItem="XPP-nY-EcP" secondAttribute="trailing" constant="2" id="gCx-yb-wfZ"/>
+                            <constraint firstItem="LjI-d9-lxw" firstAttribute="leading" secondItem="GlO-6T-qzZ" secondAttribute="leading" id="HJV-9D-wIL"/>
+                            <constraint firstAttribute="bottom" secondItem="LjI-d9-lxw" secondAttribute="bottom" constant="6" id="O1D-u7-Cad"/>
                             <constraint firstItem="7Ah-Ok-gBa" firstAttribute="top" secondItem="GlO-6T-qzZ" secondAttribute="top" constant="16" id="j2u-VC-jN2"/>
-                            <constraint firstItem="O3o-ny-BDt" firstAttribute="top" secondItem="GlO-6T-qzZ" secondAttribute="top" id="qar-t2-e5D"/>
-                            <constraint firstAttribute="trailing" secondItem="O3o-ny-BDt" secondAttribute="trailing" id="zwj-Nb-Hav"/>
+                            <constraint firstItem="LjI-d9-lxw" firstAttribute="top" secondItem="GlO-6T-qzZ" secondAttribute="top" id="m4K-UH-uOU"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -121,9 +120,6 @@
         <image name="Video 1" width="374" height="217"/>
         <namedColor name="ColorBlack">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="ColorLightGray">
-            <color red="0.63529411764705879" green="0.63529411764705879" blue="0.63529411764705879" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="ColorWhite">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

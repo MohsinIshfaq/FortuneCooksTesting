@@ -91,7 +91,7 @@ class UpdateProfileVC: UIViewController , TagPeopleDelegate{
     
     //MARK: - Variables and Properties
     var activeTextField: UITextField?      = nil
-    var selectedHrs                        = "01"
+    var selectedHrs                        = "00"
     var selectedMins                       = "00"
     let placeholder                        = "Enter Bio..."
     let placeholderColor                   = UIColor.lightGray

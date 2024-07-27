@@ -85,7 +85,7 @@ class ProfileVC: BaseClass , UpdateUserProfileFrmSettingDelegate{
     var reelsModel      : [ProfileVideosModel]? = []
     var videosModel     : [ProfileVideosModel]? = []
     let itemsPerColumn  : Int = 2
-    let itemHeight      : CGFloat = 250.0 // Example item height
+    let itemHeight      : CGFloat = 300.0 // Example item height
     var selectedVideo   : ProfileVideosModel? = nil
     var player          : AVPlayer!
     var playerLayer     : AVPlayerLayer!
@@ -597,12 +597,12 @@ extension ProfileVC {
             if var url  = URL(string: self.responseModel?[i].videoUrl ?? "") {
                 if isReel(url: url) {
                     if var data = self.responseModel?[i] {
-                        self.videosModel?.append(data)
+                        self.reelsModel?.append(data)
                     }
                 }
                 else{
                     if var data = self.responseModel?[i] {
-                        self.reelsModel?.append(data)
+                        self.videosModel?.append(data)
                     }
                 }
             }
@@ -791,7 +791,7 @@ extension ProfileVC : UICollectionViewDelegate , UICollectionViewDataSource , UI
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == collectSwift {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SwiftCCell.identifier, for: indexPath) as! SwiftCCell
-            cell.lblDescrip.text = reelsModel?[indexPath.row].description ?? ""
+            //cell.lblDescrip.text = reelsModel?[indexPath.row].description ?? ""
             cell.lblName.text    = reelsModel?[indexPath.row].Title ?? ""
             DispatchQueue.main.async {
                 guard let url = self.reelsModel?[indexPath.row].thumbnailUrl else {
@@ -819,7 +819,7 @@ extension ProfileVC : UICollectionViewDelegate , UICollectionViewDataSource , UI
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 120, height: 250)
+        return CGSize(width: (collectionView.frame.size.width / 2) - 10, height: 300)
     }
     
 }
