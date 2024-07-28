@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseFirestoreInternal
 import FirebaseAuth
+import SDWebImage
  protocol TagPeopleDelegate {
     func reload(data: [UserTagModel])
     func selectedUser(data: TagUsers)
@@ -134,8 +135,16 @@ extension TagPeopleVC: UITableViewDelegate , UITableViewDataSource{
         else {
             cell?.btnFollow.isHidden   = true
             DispatchQueue.main.async {
-                if let profileURL = self.users[indexPath.row].img, let urlProfile1 = URL(string: profileURL) {
-                    cell?.img.sd_setImage(with: urlProfile1 , placeholderImage: UIImage(named: "loading"))
+                if let profileURL = self.users[indexPath.row].img , let urlProfile1 = URL(string: profileURL) {
+                    cell?.img.sd_setImage(with: urlProfile1, placeholderImage: UIImage(named: "loading"), options: [.refreshCached]) { image, error, cacheType, url in
+                        if error != nil {
+                            cell?.img.image = UIImage(named: "user")
+                        } else {
+                            cell?.img.image = image
+                        }
+                    }
+                } else {
+                    cell?.img.image = UIImage(named: "user")
                 }
                 cell?.lblFollowers.text = self.users[indexPath.row].followers ?? "0 Followers"
                 cell?.lblName.text      = self.users[indexPath.row].channelName ?? ""
