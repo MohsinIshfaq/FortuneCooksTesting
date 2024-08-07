@@ -85,7 +85,7 @@ class ProfileVC: BaseClass , UpdateUserProfileFrmSettingDelegate{
     var reelsModel      : [ProfileVideosModel]? = []
     var videosModel     : [ProfileVideosModel]? = []
     let itemsPerColumn  : Int = 2
-    let itemHeight      : CGFloat = 300.0 // Example item height
+    let itemHeight      : CGFloat = 305.0 // Example item height
     var selectedVideo   : ProfileVideosModel? = nil
     var player          : AVPlayer!
     var playerLayer     : AVPlayerLayer!

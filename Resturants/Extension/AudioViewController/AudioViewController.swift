@@ -251,278 +251,6 @@ open class AudioViewController: UIViewController, AVAudioRecorderDelegate {
             }
         }
     }
-    
-//    func addStickerorTexttoVideo(textBgClr: UIColor , textForeClr: UIColor , fontNm: Int , videoUrl: URL, watermarkText text : String, imageName name : String, position : Int , xPosition : Int ,  success: @escaping ((URL) -> Void), failure: @escaping ((String?) -> Void)) {
-//        
-//        
-//        let asset = AVURLAsset(url: videoUrl)
-//        let composition = AVMutableComposition()
-//        composition.addMutableTrack(withMediaType: .video, preferredTrackID: kCMPersistentTrackID_Invalid)
-//        let clipVideoTrack = asset.tracks(withMediaType: .video)[0]
-//        
-//        // Rotate to portrait
-//        let transformer = AVMutableVideoCompositionLayerInstruction(assetTrack: clipVideoTrack)
-//        let videoTransform = clipVideoTrack.preferredTransform
-//        
-//        // Fix orientation
-//        var videoAssetOrientation = UIImage.Orientation.up
-//        var isVideoAssetPortrait = false
-//        
-//        if videoTransform.a == 0 && videoTransform.b == 1.0 && videoTransform.c == -1.0 && videoTransform.d == 0 {
-//            videoAssetOrientation = UIImage.Orientation.right
-//            isVideoAssetPortrait = true
-//        }
-//        if videoTransform.a == 0 && videoTransform.b == -1.0 && videoTransform.c == 1.0 && videoTransform.d == 0 {
-//            videoAssetOrientation = UIImage.Orientation.left
-//            isVideoAssetPortrait = true
-//        }
-//        if videoTransform.a == 1.0 && videoTransform.b == 0 && videoTransform.c == 0 && videoTransform.d == 1.0 {
-//            videoAssetOrientation = UIImage.Orientation.up
-//        }
-//        if videoTransform.a == -1.0 && videoTransform.b == 0 && videoTransform.c == 0 && videoTransform.d == -1.0 {
-//            videoAssetOrientation = UIImage.Orientation.down
-//        }
-//        
-//        transformer.setTransform(clipVideoTrack.preferredTransform, at: CMTime.zero)
-//        transformer.setOpacity(0.0, at: asset.duration)
-//        
-//        // Adjust the render size if necessary
-//        var naturalSize: CGSize
-//        if isVideoAssetPortrait {
-//            naturalSize = CGSize(width: clipVideoTrack.naturalSize.height, height: clipVideoTrack.naturalSize.width)
-//        } else {
-//            naturalSize = clipVideoTrack.naturalSize
-//        }
-//        
-//        var renderWidth: CGFloat!
-//        var renderHeight: CGFloat!
-//        
-//        renderWidth = naturalSize.width
-//        renderHeight = naturalSize.height
-//        
-//        let parentlayer = CALayer()
-//        let videoLayer = CALayer()
-//        
-//        let videoComposition = AVMutableVideoComposition()
-//        videoComposition.renderSize = CGSize(width: renderWidth, height: renderHeight)
-//        videoComposition.frameDuration = CMTimeMake(value: 1, timescale: 30)
-//        videoComposition.renderScale = 1.0
-//        
-//        parentlayer.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: naturalSize)
-//        videoLayer.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: naturalSize)
-//        parentlayer.addSublayer(videoLayer)
-//        
-//        if name != "" {
-//            let stickerView = UIView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: naturalSize))
-//            let sticker = UIImageView()
-//            sticker.image = UIImage(named: name)
-//            sticker.contentMode = .scaleAspectFit
-//            let stickerWidth = renderWidth / 6
-//            let stickerX = renderWidth * CGFloat(5 * (position % 3)) / 12
-//            let stickerY = (renderHeight - (renderHeight * CGFloat(position / 3) / 3)) - 150
-//            sticker.frame = CGRect(x:stickerX, y: stickerY, width: stickerWidth, height: stickerWidth)
-//            stickerView.addSubview(sticker)
-//            videoLayer.addSublayer(stickerView.layer)
-//        }
-//        
-//        // Create textFont variable
-//        let textFont: UIFont
-//        
-//        switch fontNm {
-//        case 0:
-//            textFont = UIFont(name: "HelveticaNeue", size: 60) ?? UIFont.systemFont(ofSize: 60)
-//        case 1:
-//            textFont = UIFont(name: "Helvetica-Bold", size: 60) ?? UIFont.systemFont(ofSize: 60)
-//        case 2:
-//            textFont = UIFont(name: "Helvetica-Oblique", size: 60) ?? UIFont.systemFont(ofSize: 60)
-//        case 3:
-//            textFont = UIFont(name: "TimesNewRomanPSMT", size: 60) ?? UIFont.systemFont(ofSize: 60)
-//        default:
-//            textFont = UIFont.systemFont(ofSize: 60)
-//        }
-//        
-//        if text != "" {
-//            // Remove any existing text layers
-//            parentlayer.sublayers?.forEach { layer in
-//                if layer is CATextLayer {
-//                    layer.removeFromSuperlayer()
-//                }
-//            }
-//            
-//            // Create text layer
-//            let textLayer = CATextLayer()
-//            
-//            let attributes: [NSAttributedString.Key: Any] = [
-//                .font: textFont,
-//                .foregroundColor: textForeClr
-//            ]
-//            let attributedString = NSAttributedString(string: text, attributes: attributes)
-//            textLayer.string = attributedString
-//            
-//            // Calculate text size
-//            let textSize = attributedString.size()
-//            
-//            // Adjust text layer size and position
-//            let padding: CGFloat = 10
-//            let textWidth = textSize.width + (2 * padding)
-//            let textHeight = textSize.height + (2 * padding)
-//
-//            // Determine textX based on the 3 positions (left, center, right)
-//            let xSpacing = renderWidth / 3 // Equal spacing for x-axis
-//
-////            let textX: CGFloat
-////            switch xPosition {
-////            case 0:
-////                textX = max(20, xSpacing - textWidth / 2) // Left
-////            case 1:
-////                textX = max(20, 2 * xSpacing - textWidth / 2) // Center
-////            case 2:
-////                textX = max(20, renderWidth - xSpacing - textWidth / 2) // Right
-////            default:
-////                textX = max(20, (renderWidth - textWidth) / 2) // Default to center if position is out of range
-////            }
-//
-//            // Determine textY based on the 12 vertical positions
-//            let ySpacing = renderHeight / 12 // Equal spacing for y-axis
-//
-//            let textY: CGFloat
-//            switch position {
-//            case 0:
-//                textY = max(20, ySpacing - textHeight / 2) // Topmost
-//            case 1:
-//                textY = 1600 // Second position   //275
-//            case 2:
-//                textY = 1400
-//            case 3:
-//                textY = 1200
-//            case 4:
-//                textY = 1100
-//            case 5:
-//                textY = max(20, 6 * ySpacing - textHeight / 2) // Sixth position 915
-//            case 6:
-//                textY = 800 //max(20, 7 * ySpacing - textHeight / 2) // Seventh position
-//            case 7:
-//                textY = 700 //max(20, 8 * ySpacing - textHeight / 2) // Eighth position
-//            case 8:
-//                textY = 600 //max(20, 9 * ySpacing - textHeight / 2) // Ninth position
-//            case 9:
-//                textY = 400 //max(20, 10 * ySpacing - textHeight / 2) // Tenth position
-//            case 10:
-//                textY = 400 //max(20, 11 * ySpacing - textHeight / 2) // Eleventh position
-//            case 11:
-//                textY = 300 //max(20, renderHeight - ySpacing - textHeight / 2) // Bottommost
-//            default:
-//                textY = 200 //max(20, (renderHeight - textHeight) / 2) // Default to center if position is out of range
-//            }
-//
-//            // Determine textX based on the 3 x-axis positions (leading, center, trailing)
-//            // Determine textX based on the 3 x-axis positions (leading, center, trailing)
-//            let viewWidth = self.view.bounds.width
-//           // let xSpacing = viewWidth / 3 // Divide width into three equal parts
-//
-//            let textX: CGFloat
-//            print(xPosition)
-//            switch xPosition {
-//            case 0:
-//                textX = 10 // Leading side, 10 points from the leading edge
-//            case 1:
-//                textX = (viewWidth - textWidth) / 2 + 350 // Center, text layer is centered horizontally
-//            case 2:
-//                textX = (viewWidth - textWidth) / 2 + 500 // Trailing side, 10 points from the trailing edge
-//            default:
-//                textX = (viewWidth - textWidth) / 2 // Default to center if position is out of range
-//            }
-//
-//            // Ensure text doesn't cross the top border
-//            textLayer.frame = CGRect(x: textX, y: textY, width: textWidth, height: textHeight)
-//
-//            
-////            // Adjust text layer size and position
-////            let padding: CGFloat = 10
-////            let textWidth = textSize.width + (2 * padding)
-////            let textHeight = textSize.height + (2 * padding)
-////            let textX = (renderWidth - textWidth) / 2
-////
-////            // Determine textY based on the 6 positions
-////            let spacing = renderHeight / 6 // Equal spacing
-////
-////            let textY: CGFloat
-////            switch position {
-////            case 0:
-////                textY = max(20, spacing - textHeight / 2) // Topmost
-////            case 1:
-////                textY = max(20, renderHeight - spacing - textHeight / 2) // Bottommost
-////            case 2:
-////                textY = max(20, 4 * spacing - textHeight / 2) // Middle bottom
-////            case 3:
-////                textY = max(20, 3 * spacing - textHeight / 2) // Middle top
-////            case 4:
-////                textY = 150
-////            case 5:
-////                textY = 20
-////            default:
-////                textY = max(20, (renderHeight - textHeight) / 2) // Default to center if position is out of range
-////            }
-////
-////            // Ensure text doesn't cross the top border
-////            textLayer.frame = CGRect(x: textX, y: textY, width: textWidth, height: textHeight)
-////            
-//            textLayer.opacity = 1.0 // Set opacity to 1.0 to ensure full visibility
-//            textLayer.backgroundColor = textBgClr.cgColor
-//            textLayer.foregroundColor = textForeClr.cgColor
-//            textLayer.cornerRadius = 6
-//            
-//            parentlayer.addSublayer(textLayer)
-//        }
-//        
-//        // Create Directory path for Save
-//        let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-//        var outputURL = documentDirectory.appendingPathComponent("StickerVideo")
-//        do {
-//            try FileManager.default.createDirectory(at: outputURL, withIntermediateDirectories: true, attributes: nil)
-//            outputURL = outputURL.appendingPathComponent("\(outputURL.lastPathComponent).m4v")
-//        } catch let error {
-//            print(error)
-//        }
-//        
-//        // Remove existing file
-//        self.deleteFile(outputURL)
-//        
-//        // Add watermark to video
-//        videoComposition.animationTool = AVVideoCompositionCoreAnimationTool(postProcessingAsVideoLayers: [videoLayer], in: parentlayer)
-//        
-//        let instruction = AVMutableVideoCompositionInstruction()
-//        instruction.timeRange = CMTimeRangeMake(start: CMTime.zero, duration: CMTimeMakeWithSeconds(60, preferredTimescale: 30))
-//        
-//        instruction.layerInstructions = [transformer]
-//        videoComposition.instructions = [instruction]
-//        
-//        let exporter = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetHighestQuality)
-//        exporter?.outputFileType = AVFileType.mov
-//        exporter?.outputURL = outputURL
-//        exporter?.videoComposition = videoComposition
-//        
-//        exporter?.exportAsynchronously(completionHandler: {() -> Void in
-//            
-//            switch exporter!.status {
-//            case .completed :
-//                success(outputURL)
-//            case .failed:
-//                if let _error = exporter?.error?.localizedDescription {
-//                    failure(_error)
-//                }
-//            case .cancelled:
-//                if let _error = exporter?.error?.localizedDescription {
-//                    failure(_error)
-//                }
-//            default:
-//                if let _error = exporter?.error?.localizedDescription {
-//                    failure(_error)
-//                }
-//            }
-//        })
-//    }
-
     func addStickerorTexttoVideo(
         textBgClr: UIColor,
         textForeClr: UIColor,
@@ -592,7 +320,7 @@ open class AudioViewController: UIViewController, AVAudioRecorderDelegate {
             textLayer.fontSize = font.pointSize
             textLayer.foregroundColor = textForeClr.cgColor
             textLayer.backgroundColor = textBgClr.cgColor
-            textLayer.alignmentMode = .center
+            textLayer.alignmentMode = .center // Center alignment by default
             textLayer.cornerRadius = 6
             textLayer.isWrapped = true
             
@@ -607,54 +335,60 @@ open class AudioViewController: UIViewController, AVAudioRecorderDelegate {
             let textWidth = textSize.width + (2 * padding)
             let textHeight = textSize.height + (2 * padding)
             
-            // Determine text position
-            let xSpacing = videoComposition.renderSize.width / 3
-            let ySpacing = videoComposition.renderSize.height / 12
-            let textX: CGFloat
+            // Determine text position based on xPosition and position
+            let maxTextX = videoComposition.renderSize.width - textWidth
+            var textX: CGFloat
+            
             switch xPosition {
-            case 0:
-                textX = 10
-            case 1:
+            case 0: // Leading
+                textX = 0
+               // textLayer.alignmentMode = .left
+            case 1: // Center
                 textX = (videoComposition.renderSize.width - textWidth) / 2
-            case 2:
-                textX = videoComposition.renderSize.width - textWidth - 10
+              //  textLayer.alignmentMode = .center
+            case 2: // Trailing
+                textX = maxTextX
+               // textLayer.alignmentMode = .right
             default:
-                textX = (videoComposition.renderSize.width - textWidth) / 2
+                textX = 0
+               // textLayer.alignmentMode = .left
             }
             
+            let ySpacing = videoComposition.renderSize.height / 12
             let textY: CGFloat
             switch position {
             case 0:
-                textY = max(20, ySpacing - textHeight / 2)
+                textY = max(20, 12 * ySpacing - textHeight / 2)
             case 1:
-                textY = 1600
+                textY = 1700
             case 2:
-                textY = 1400
+                textY = 1600
             case 3:
-                textY = 1200
+                textY = 1400
             case 4:
-                textY = 1100
+                textY = 1200
             case 5:
-                textY = max(20, 6 * ySpacing - textHeight / 2)
+                textY = 1000
             case 6:
                 textY = 800
             case 7:
-                textY = 700
-            case 8:
                 textY = 600
+            case 8:
+                textY = 400
             case 9:
-                textY = 400
+                textY = 330
             case 10:
-                textY = 400
-            case 11:
-                textY = 300
-            default:
                 textY = 200
+            case 11:
+                textY = 10
+            default:
+                textY = 10
             }
             
+            // Set the frame of the textLayer
             textLayer.frame = CGRect(x: textX, y: textY, width: textWidth, height: textHeight)
             textLayer.opacity = 1.0 // Set opacity to 1.0 to ensure full visibility
-
+            
             // Set beginTime and duration to match the video duration
             textLayer.beginTime = AVCoreAnimationBeginTimeAtZero
             textLayer.duration = CFTimeInterval(asset.duration.seconds)
@@ -669,6 +403,8 @@ open class AudioViewController: UIViewController, AVAudioRecorderDelegate {
             print("Text Layer Frame: \(textLayer.frame)")  // Debugging log
             print("Text Layer Start Time: \(CMTime.zero)") // Log the start time of the text layer
         }
+
+
         
         // Add animation tool
         videoComposition.animationTool = AVVideoCompositionCoreAnimationTool(postProcessingAsVideoLayers: [videoLayer], in: parentLayer)
@@ -712,171 +448,6 @@ open class AudioViewController: UIViewController, AVAudioRecorderDelegate {
             }
         }
     }
-
-
-    
-//    func addStickerorTexttoVideo(
-//        textBgClr: UIColor,
-//        textForeClr: UIColor,
-//        fontNm: Int,
-//        videoUrl: URL,
-//        watermarkText text: String,
-//        imageName name: String,
-//        position: Int,
-//        xPosition: Int,
-//        success: @escaping ((URL) -> Void),
-//        failure: @escaping ((String?) -> Void)
-//    ) {
-//        let asset = AVURLAsset(url: videoUrl)
-//        let composition = AVMutableComposition()
-//        let videoTrack = asset.tracks(withMediaType: .video)[0]
-//        
-//        let videoComposition = AVMutableVideoComposition()
-//        videoComposition.renderSize = videoTrack.naturalSize
-//        videoComposition.frameDuration = CMTimeMake(value: 1, timescale: 30)
-//        
-//        // Create a video layer and a parent layer
-//        let parentLayer = CALayer()
-//        let videoLayer = CALayer()
-//        
-//        parentLayer.frame = CGRect(origin: .zero, size: videoTrack.naturalSize)
-//        videoLayer.frame = CGRect(origin: .zero, size: videoTrack.naturalSize)
-//        parentLayer.addSublayer(videoLayer)
-//        
-//        // Add sticker if provided
-//        if !name.isEmpty {
-//            let sticker = UIImageView(image: UIImage(named: name))
-//            sticker.contentMode = .scaleAspectFit
-//            let stickerWidth = videoComposition.renderSize.width / 6
-//            let stickerX = videoComposition.renderSize.width * CGFloat(5 * (position % 3)) / 12
-//            let stickerY = (videoComposition.renderSize.height - (videoComposition.renderSize.height * CGFloat(position / 3) / 3)) - 150
-//            sticker.frame = CGRect(x: stickerX, y: stickerY, width: stickerWidth, height: stickerWidth)
-//            
-//            let stickerLayer = CALayer()
-//            stickerLayer.contents = sticker.image?.cgImage
-//            stickerLayer.frame = sticker.frame
-//            parentLayer.addSublayer(stickerLayer)
-//        }
-//        
-//        // Create text layer
-//        if !text.isEmpty {
-//            let textLayer = CATextLayer()
-//            textLayer.string = text
-//            textLayer.font = UIFont(name: "HelveticaNeue", size: 60) ?? UIFont.systemFont(ofSize: 60)
-//            textLayer.fontSize = 60
-//            textLayer.foregroundColor = textForeClr.cgColor
-//            textLayer.backgroundColor = textBgClr.cgColor
-//            textLayer.alignmentMode = .center
-//            textLayer.cornerRadius = 6
-//            textLayer.isWrapped = true
-//            
-//            // Calculate text size
-//            let attributes: [NSAttributedString.Key: Any] = [
-//                .font: UIFont(name: "HelveticaNeue", size: 60) ?? UIFont.systemFont(ofSize: 60),
-//                .foregroundColor: textForeClr
-//            ]
-//            let attributedString = NSAttributedString(string: text, attributes: attributes)
-//            let textSize = attributedString.size()
-//            let padding: CGFloat = 10
-//            let textWidth = textSize.width + (2 * padding)
-//            let textHeight = textSize.height + (2 * padding)
-//            
-//            // Determine text position
-//            let xSpacing = videoComposition.renderSize.width / 3
-//            let ySpacing = videoComposition.renderSize.height / 12
-//            let textX: CGFloat
-//            switch xPosition {
-//            case 0:
-//                textX = 10
-//            case 1:
-//                textX = (videoComposition.renderSize.width - textWidth) / 2
-//            case 2:
-//                textX = videoComposition.renderSize.width - textWidth - 10
-//            default:
-//                textX = (videoComposition.renderSize.width - textWidth) / 2
-//            }
-//            
-//            let textY: CGFloat
-//            switch position {
-//            case 0:
-//                textY = max(20, ySpacing - textHeight / 2)
-//            case 1:
-//                textY = 1600
-//            case 2:
-//                textY = 1400
-//            case 3:
-//                textY = 1200
-//            case 4:
-//                textY = 1100
-//            case 5:
-//                textY = max(20, 6 * ySpacing - textHeight / 2)
-//            case 6:
-//                textY = 800
-//            case 7:
-//                textY = 700
-//            case 8:
-//                textY = 600
-//            case 9:
-//                textY = 400
-//            case 10:
-//                textY = 400
-//            case 11:
-//                textY = 300
-//            default:
-//                textY = 200
-//            }
-//            
-//            textLayer.frame = CGRect(x: textX, y: textY, width: textWidth, height: textHeight)
-//            textLayer.opacity = 1.0 // Set opacity to 1.0 to ensure full visibility
-//            parentLayer.addSublayer(textLayer)
-//            
-//            print("Text Layer Frame: \(textLayer.frame)")  // Debugging log
-//            print("Text Layer Start Time: \(CMTime.zero)") // Log the start time of the text layer
-//        }
-//        
-//        // Add animation tool
-//        videoComposition.animationTool = AVVideoCompositionCoreAnimationTool(postProcessingAsVideoLayers: [videoLayer], in: parentLayer)
-//        
-//        // Create video composition instruction
-//        let instruction = AVMutableVideoCompositionInstruction()
-//        instruction.timeRange = CMTimeRange(start: .zero, duration: asset.duration)
-//        
-//        let transformer = AVMutableVideoCompositionLayerInstruction(assetTrack: videoTrack)
-//        transformer.setTransform(videoTrack.preferredTransform, at: .zero)
-//        instruction.layerInstructions = [transformer]
-//        videoComposition.instructions = [instruction]
-//        
-//        // Export the video
-//        let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-//        var outputURL = documentDirectory.appendingPathComponent("StickerVideo")
-//        do {
-//            try FileManager.default.createDirectory(at: outputURL, withIntermediateDirectories: true, attributes: nil)
-//            outputURL = outputURL.appendingPathComponent("\(outputURL.lastPathComponent).m4v")
-//        } catch let error {
-//            print(error)
-//        }
-//        
-//        deleteFile(outputURL)
-//        
-//        let exporter = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetHighestQuality)
-//        exporter?.outputFileType = .mov
-//        exporter?.outputURL = outputURL
-//        exporter?.videoComposition = videoComposition
-//        
-//        exporter?.exportAsynchronously {
-//            switch exporter?.status {
-//            case .completed:
-//                success(outputURL)
-//            case .failed:
-//                failure(exporter?.error?.localizedDescription)
-//            case .cancelled:
-//                failure(exporter?.error?.localizedDescription)
-//            default:
-//                failure(exporter?.error?.localizedDescription)
-//            }
-//        }
-//    }
-
 
     func deleteFile(_ filePath:URL) {
         guard FileManager.default.fileExists(atPath: filePath.path) else {

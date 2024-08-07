@@ -9087,12 +9087,34 @@ platform be detailed.</string>
                                 <rect key="frame" x="0.0" y="59" width="393" height="793"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ueG-F2-tfe">
-                                        <rect key="frame" x="0.0" y="24" width="393" height="747"/>
+                                        <rect key="frame" x="0.0" y="24" width="393" height="635"/>
                                         <color key="backgroundColor" name="ColorBlack"/>
                                     </tableView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DgZ-xj-lw8">
+                                        <rect key="frame" x="16" y="692" width="361" height="55"/>
+                                        <color key="backgroundColor" name="ColorWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="55" id="od0-UA-NTz"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Add Location">
+                                            <fontDescription key="titleFontDescription" name="Inter-Regular_Medium" family="Inter" pointSize="18"/>
+                                            <color key="baseForegroundColor" name="ColorBlack"/>
+                                        </buttonConfiguration>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="ontapAddNewLocation:" destination="aHA-TE-byd" eventType="touchUpInside" id="MZD-cX-o51"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" name="ColorBlack"/>
                                 <constraints>
+                                    <constraint firstItem="DgZ-xj-lw8" firstAttribute="leading" secondItem="MiH-tm-UyO" secondAttribute="leading" constant="16" id="HBa-Qg-uEo"/>
+                                    <constraint firstAttribute="trailing" secondItem="DgZ-xj-lw8" secondAttribute="trailing" constant="16" id="To0-oy-L85"/>
                                     <constraint firstItem="ueG-F2-tfe" firstAttribute="leading" secondItem="MiH-tm-UyO" secondAttribute="leading" id="WPC-9F-60t"/>
                                     <constraint firstItem="ueG-F2-tfe" firstAttribute="top" secondItem="MiH-tm-UyO" secondAttribute="top" constant="24" id="kc2-Bg-qkh"/>
                                     <constraint firstAttribute="trailing" secondItem="ueG-F2-tfe" secondAttribute="trailing" id="qbR-UY-M2O"/>
@@ -9109,8 +9131,9 @@ platform be detailed.</string>
                             <constraint firstAttribute="trailing" secondItem="1qz-fe-FWL" secondAttribute="trailing" id="U3S-42-glQ"/>
                             <constraint firstItem="1qz-fe-FWL" firstAttribute="leading" secondItem="on2-jW-XaP" secondAttribute="leading" id="Ug9-mO-EAf"/>
                             <constraint firstItem="MiH-tm-UyO" firstAttribute="top" secondItem="1qz-fe-FWL" secondAttribute="bottom" id="W9k-Sy-eVq"/>
+                            <constraint firstItem="Fn4-qh-scU" firstAttribute="bottom" secondItem="ueG-F2-tfe" secondAttribute="bottom" constant="100" id="e61-fd-ogk"/>
                             <constraint firstAttribute="bottom" secondItem="MiH-tm-UyO" secondAttribute="bottom" id="lcU-GT-2EH"/>
-                            <constraint firstItem="ueG-F2-tfe" firstAttribute="bottom" secondItem="Fn4-qh-scU" secondAttribute="bottom" constant="12" id="mzl-79-Jd6"/>
+                            <constraint firstItem="Fn4-qh-scU" firstAttribute="bottom" secondItem="DgZ-xj-lw8" secondAttribute="bottom" constant="12" id="uOL-uO-b6c"/>
                         </constraints>
                     </view>
                     <connections>

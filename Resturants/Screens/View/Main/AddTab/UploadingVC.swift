@@ -136,7 +136,7 @@ class UploadingVC: UIViewController {
             } else {
                 self?.showToast(message: "Document added successfully.", seconds: 2, clr: .gray)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                    self?.popRoot()
+                    self?.dismiss(animated: true)
                 }
             }
         }

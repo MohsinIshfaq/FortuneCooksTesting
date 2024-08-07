@@ -17,6 +17,17 @@ class ManageMenuVC: UIViewController {
         super.viewDidLoad()
         onLoad()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        onAppear()
+    }
+    
+    @IBAction func ontapAddNewLocation(_ sender: UIButton){
+        let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "ManageInfoVC") as! ManageInfoVC
+        vc.isFromNewLocation        = true
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 
 }
 
@@ -25,16 +36,14 @@ extension ManageMenuVC {
     
     func onLoad() {
         setupView()
-        self.navigationItem.title = "Add or manage"
         removeNavBackbuttonTitle()
     }
     
     func onAppear() {
-        
+        self.navigationItem.title = "Add or manage"
     }
     
     func setupView() {
-        
         tblLocation.register(LocationTCell.nib, forCellReuseIdentifier: LocationTCell.identifier)
         tblLocation.delegate   = self
         tblLocation.dataSource = self
@@ -55,11 +64,12 @@ extension ManageMenuVC : UITableViewDelegate , UITableViewDataSource {
     
     @objc func ontapMangeInfo(sender: UIButton) {
         let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "ManageInfoVC") as! ManageInfoVC
+        vc.isFromNewLocation        = false
         vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 130
+        return 150
     }
 }

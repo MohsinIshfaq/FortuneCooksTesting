@@ -109,15 +109,25 @@ class AddCaptionVC: AudioViewController , UITextViewDelegate {
             // Calculate new frame based on the difference between the initial touch point and current touch point
             let deltaX = touchPoint.x - initialTouchPoint.x
             let deltaY = touchPoint.y - initialTouchPoint.y
-            txtCaption.frame = CGRect(x: initialFrame.origin.x + deltaX,
-                                      y: initialFrame.origin.y + deltaY,
+            var newX = initialFrame.origin.x + deltaX
+            var newY = initialFrame.origin.y + deltaY
+            
+            // Get the boundaries of the parent view
+            let safeAreaInsets = self.view.safeAreaInsets
+            let maxX = self.view.bounds.width - initialFrame.size.width
+            let maxY = self.view.bounds.height - initialFrame.size.height - safeAreaInsets.bottom
+            
+            // Ensure the new frame stays within the bounds of the parent view's safe area
+            newX = max(0, min(newX, maxX))
+            newY = max(safeAreaInsets.top, min(newY, maxY))
+            
+            txtCaption.frame = CGRect(x: newX,
+                                      y: newY,
                                       width: initialFrame.size.width,
                                       height: initialFrame.size.height)
             
-            // Determine the position of the text field based on the y-axis
-            let viewHeight = self.view.bounds.height
+            let viewHeight = maxY
             let ySpacing = viewHeight / 12 // Equal spacing for y-axis
-            
             let yPosition: Int
             
             if touchPoint.y < ySpacing {
@@ -159,64 +169,17 @@ class AddCaptionVC: AudioViewController , UITextViewDelegate {
                 xPosition = 2 // Trailing side
             }
             
-            // Now you can use the 'yPosition' variable as needed.
-            print("Y Position: \(yPosition)")
-            print("X Position: \(xPosition)")
+            // Use the exact x and y coordinates for direct positioning
             self.posotionTxtFld = CGFloat(yPosition)
-            self.xPosition      = CGFloat(xPosition)
+            self.xPosition = CGFloat(xPosition)
             
-//        case .ended: break
-//           // printButtonEdges()
+            print("Y Position: \(self.posotionTxtFld)")
+            print("X Position: \(self.xPosition)")
+            
         default:
             break
         }
     }
-
-//    @objc func handlePanGesture(_ recognizer: UIPanGestureRecognizer) {
-//        let touchPoint = recognizer.location(in: self.view)
-//        
-//        switch recognizer.state {
-//        case .began:
-//            // Store initial touch point and initial frame
-//            initialTouchPoint = touchPoint
-//            initialFrame = txtCaption.frame
-//        case .changed:
-//            // Calculate new frame based on the difference between the initial touch point and current touch point
-//            let deltaX = touchPoint.x - initialTouchPoint.x
-//            let deltaY = touchPoint.y - initialTouchPoint.y
-//            txtCaption.frame = CGRect(x: initialFrame.origin.x + deltaX,
-//                                      y: initialFrame.origin.y + deltaY,
-//                                      width: initialFrame.size.width,
-//                                      height: initialFrame.size.height)
-//
-//            // Determine the position of the text field based on the yAxis
-//            let viewHeight = self.view.bounds.height
-//            let spacing = viewHeight / 6 // Equal spacing
-//
-//            let position: Int
-//
-//            if touchPoint.y < spacing {
-//                position = 0 // Topmost
-//            } else if touchPoint.y < 2 * spacing {
-//                position = 1 // Upper middle
-//            } else if touchPoint.y < 3 * spacing {
-//                position = 2 // Middle top
-//            } else if touchPoint.y < 4 * spacing {
-//                position = 3 // Middle bottom
-//            } else if touchPoint.y < 5 * spacing {
-//                position = 4 // Lower middle
-//            } else {
-//                position = 5 // Bottommost
-//            }
-//            
-//            // Now you can use the 'position' variable as needed.
-//            print("Position: \(position)")
-//            self.posotionTxtFld = position
-//            
-//        default:
-//            break
-//        }
-//    }
 
     @IBAction func ontapFontsChanging(_ sender: UIButton){
         if sender.tag == 0{
@@ -394,35 +357,6 @@ class AddCaptionVC: AudioViewController , UITextViewDelegate {
         return newText
     }
 
-//    func addNewlineIfNeeded(to text: String, textViewWidth: CGFloat, font: UIFont) -> String? {
-//        let words = text.components(separatedBy: .whitespacesAndNewlines)
-//        var newText = ""
-//        var currentLine = ""
-//        let spaceWidth = " ".size(withAttributes: [.font: font]).width
-//
-//        for word in words {
-//            let wordWidth = word.size(withAttributes: [.font: font]).width
-//            let currentLineWidth = currentLine.size(withAttributes: [.font: font]).width
-//
-//            if currentLineWidth + wordWidth + spaceWidth <= textViewWidth {
-//                if !currentLine.isEmpty {
-//                    currentLine += " " + word
-//                } else {
-//                    currentLine = word
-//                }
-//            } else {
-//                newText += currentLine + "\n"
-//                currentLine = word
-//            }
-//        }
-//
-//        if !currentLine.isEmpty {
-//            newText += currentLine
-//        }
-//
-//        return newText
-//    }
-
     @objc func longPressed(_ gestureRecognizer: UILongPressGestureRecognizer) {
             if gestureRecognizer.state == .began {
                 // Long press gesture recognized
@@ -486,23 +420,6 @@ class AddCaptionVC: AudioViewController , UITextViewDelegate {
         }
     }
 }
-
-//// MARK: - UITextViewDelegate {}
-//extension AddCaptionVC{
-//    
-//    func textViewDidBeginEditing(_ textView: UITextView) {
-//        if textView.textColor == placeholderColor {
-//            textView.text      = nil
-//            textView.textColor = UIColor.white
-//        }
-//    }
-//    
-//    func textViewDidEndEditing(_ textView: UITextView) {
-//        if textView.text.isEmpty {
-//            setupPlaceholder()
-//        }
-//    }
-//}
 
 extension AddCaptionVC {
 
@@ -602,7 +519,7 @@ extension AddCaptionVC {
     }
     func playVideo() {
         if let url = outputURL {
-             player = AVPlayer(url: url)
+            player = AVPlayer(url: url)
             let playerLayer = AVPlayerLayer(player: player)
             playerLayer.frame = view.bounds
             playerLayer.videoGravity = .resizeAspect
@@ -629,63 +546,29 @@ extension AddCaptionVC {
         btnDone.tintColor = .white
         navigationItem.rightBarButtonItem = btnDone
     }
-//    
-//    func textViewDidChange(_ textView: UITextView) {
-//    }
-    
-//    func checkIfTextViewWentToSecondLine(textView: UITextView) {
-//        guard let font = textView.font else { return }
-//        
-//        // Calculate the width of the text view's visible content area
-//        let textViewWidth = textView.bounds.width - textView.textContainerInset.left - textView.textContainerInset.right
-//        
-//        // Calculate the width of the current text
-//        let textWidth = (textView.text as NSString).boundingRect(
-//            with: CGSize(width: CGFloat.greatestFiniteMagnitude, height: font.lineHeight),
-//            options: .usesLineFragmentOrigin,
-//            attributes: [.font: font],
-//            context: nil
-//        ).width
-//        
-//        // Calculate the number of lines needed for the text
-//        let numberOfLines = ceil(textWidth / textViewWidth)
-//        
-//        // Check if the number of lines is greater than 1
-//        if numberOfLines > 1 {
-//            print("TextView went to second line or more")
-//            // Increase the height of the text view by 40 points
-//            if textView.frame.height < textView.contentSize.height {
-//                textView.frame.size.height += 40
-//            }
-//        } else {
-//            print("TextView is within a single line")
-//        }
-//    }
     
     func checkIfTextViewWentToSecondLine(textView: UITextView) {
-           guard let font = textView.font else { return }
-
-           // Calculate the width of the text view's visible content area
-           let textViewWidth = textView.bounds.width - textView.textContainerInset.left - textView.textContainerInset.right
-
-           // Calculate the height of the current text
-           let textHeight = (textView.text as NSString).boundingRect(
-               with: CGSize(width: textViewWidth, height: CGFloat.greatestFiniteMagnitude),
-               options: .usesLineFragmentOrigin,
-               attributes: [.font: font],
-               context: nil
-           ).height
-
-           // Calculate the total height needed, including padding
-           let totalHeight = textHeight + textView.textContainerInset.top + textView.textContainerInset.bottom
-
-           // Adjust the height of the text view
-           if textView.frame.height != totalHeight {
-               textView.frame.size.height = totalHeight
-           }
-       }
-
-
+        guard let font = textView.font else { return }
+        
+        // Calculate the width of the text view's visible content area
+        let textViewWidth = textView.bounds.width - textView.textContainerInset.left - textView.textContainerInset.right
+        
+        // Calculate the height of the current text
+        let textHeight = (textView.text as NSString).boundingRect(
+            with: CGSize(width: textViewWidth, height: CGFloat.greatestFiniteMagnitude),
+            options: .usesLineFragmentOrigin,
+            attributes: [.font: font],
+            context: nil
+        ).height
+        
+        // Calculate the total height needed, including padding
+        let totalHeight = textHeight + textView.textContainerInset.top + textView.textContainerInset.bottom
+        
+        // Adjust the height of the text view
+        if textView.frame.height != totalHeight {
+            textView.frame.size.height = totalHeight
+        }
+    }
 }
 
 //MARK: - setup Collection View {}

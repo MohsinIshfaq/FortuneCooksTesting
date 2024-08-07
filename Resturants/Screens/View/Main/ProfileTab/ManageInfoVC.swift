@@ -45,6 +45,8 @@ class ManageInfoVC: UIViewController {
     let placeholderColor                   = UIColor.lightGray
     private var AccntPicker                = UIPickerView(frame: CGRect(x: 0, y: 0, width:UIScreen.main.bounds.width, height: 150))
     var activeTextField: UITextField?      = nil
+    var isFromNewLocation: Bool            = false
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,7 +98,12 @@ class ManageInfoVC: UIViewController {
 extension ManageInfoVC {
    
     func onload() {
-        self.navigationItem.title = "Manage information"
+        if isFromNewLocation {
+            self.navigationItem.title = "Add Location"
+        }
+        else{
+            self.navigationItem.title = "Manage information"
+        }
         removeNavBackbuttonTitle()
         txtViewBio.delegate   = self
         setupPlaceholder()
