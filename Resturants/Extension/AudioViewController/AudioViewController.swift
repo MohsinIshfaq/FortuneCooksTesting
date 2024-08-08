@@ -340,19 +340,22 @@ open class AudioViewController: UIViewController, AVAudioRecorderDelegate {
             var textX: CGFloat
             
             switch xPosition {
-            case 0: // Leading
+            case 0: // Leading edge
                 textX = 0
-               // textLayer.alignmentMode = .left
-            case 1: // Center
+            case 1: // Leading center
+                textX = (videoComposition.renderSize.width / 6)
+            case 2: // Center-left
+                textX = (videoComposition.renderSize.width / 3)
+            case 3: // Center
                 textX = (videoComposition.renderSize.width - textWidth) / 2
-              //  textLayer.alignmentMode = .center
-            case 2: // Trailing
+            case 4: // Center-right
+                textX = 2 * (videoComposition.renderSize.width / 3)
+            case 5: // Trailing edge
                 textX = maxTextX
-               // textLayer.alignmentMode = .right
             default:
                 textX = 0
-               // textLayer.alignmentMode = .left
             }
+
             
             let ySpacing = videoComposition.renderSize.height / 12
             let textY: CGFloat
@@ -386,7 +389,7 @@ open class AudioViewController: UIViewController, AVAudioRecorderDelegate {
             }
             
             // Set the frame of the textLayer
-            textLayer.frame = CGRect(x: textX, y: textY, width: textWidth, height: textHeight)
+            textLayer.frame = CGRect(x: xPosition, y: textY, width: textWidth, height: textHeight)
             textLayer.opacity = 1.0 // Set opacity to 1.0 to ensure full visibility
             
             // Set beginTime and duration to match the video duration

@@ -156,22 +156,40 @@ class AddCaptionVC: AudioViewController , UITextViewDelegate {
                 yPosition = 11 // Bottommost
             }
             
-            let viewWidth = self.view.bounds.width
-            let xSpacing = viewWidth / 3 // Divided into three segments (leading, center, trailing)
+            //            let viewWidth = self.view.bounds.width
+            //            let threshold: CGFloat = 10 // Threshold value to consider the view as attached to the edge
+            //            
+            //            let xPosition: Int
+            //            if newX <= threshold {
+            //                xPosition = 0 // Attached to leading side
+            //            } else if newX >= maxX - threshold {
+            //                xPosition = 2 // Attached to trailing side
+            //            } else {
+            //                xPosition = 1 // Center
+            //            }
             
-            var xPosition: Int
+            let viewWidth = self.view.bounds.width
+            let xSpacing = viewWidth / 6 // Divided into six segments
+            
+            let xPosition: Int
             
             if touchPoint.x < xSpacing {
-                xPosition = 0 // Leading side
+                xPosition = 0 // Leading edge
             } else if touchPoint.x < 2 * xSpacing {
-                xPosition = 1 // Center
+                xPosition = 1 // Leading center
+            } else if touchPoint.x < 3 * xSpacing {
+                xPosition = 2 // Center-left
+            } else if touchPoint.x < 4 * xSpacing {
+                xPosition = 3 // Center
+            } else if touchPoint.x < 5 * xSpacing {
+                xPosition = 4 // Center-right
             } else {
-                xPosition = 2 // Trailing side
+                xPosition = 5 // Trailing edge
             }
             
             // Use the exact x and y coordinates for direct positioning
             self.posotionTxtFld = CGFloat(yPosition)
-            self.xPosition = CGFloat(xPosition)
+            self.xPosition = CGFloat(newX)
             
             print("Y Position: \(self.posotionTxtFld)")
             print("X Position: \(self.xPosition)")
