@@ -51,7 +51,7 @@ class SettingsVC: UIViewController {
     }
     
     @IBAction func ontapMenu(_ sender: UIButton) {
-        let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "ManageMenuVC") as! ManageMenuVC
+        let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "MenuesVC") as! MenuesVC
         vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
     }

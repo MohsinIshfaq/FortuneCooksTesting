@@ -123,6 +123,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="btnManageMenu" destination="fJW-9U-VbV" id="BHm-9O-odR"/>
                 <outlet property="btnManangeInfo" destination="YWN-68-Yza" id="Tjp-I5-00M"/>
                 <outlet property="lblLoc" destination="VFg-ge-SSL" id="gBm-va-35Q"/>
                 <outlet property="lblName" destination="rf3-oG-Kjm" id="8FQ-LY-2fc"/>

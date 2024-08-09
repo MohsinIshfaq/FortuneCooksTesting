@@ -16,6 +16,7 @@ class LocationTCell: UITableViewCell {
     @IBOutlet weak var lblSchedule: UILabel!
     @IBOutlet weak var stackBtns: UIStackView!
     @IBOutlet weak var btnManangeInfo: UIButton!
+    @IBOutlet weak var btnManageMenu: UIButton!
     
     
     //MARK: - Variables and Properties

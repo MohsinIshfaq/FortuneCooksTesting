@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Inter-VariableFont_slnt,wght.ttf">
+            <string>Inter-Regular_Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="MenuCCell" id="gTV-IL-0wX" customClass="MenuCCell" customModule="Resturants" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="205" height="40"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="205" height="40"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sS1-4Q-noM">
+                        <rect key="frame" x="6" y="0.0" width="193" height="40"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mru-iL-BkV">
+                                <rect key="frame" x="0.0" y="0.0" width="193" height="40"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Popular" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sSw-vV-cDe">
+                                        <rect key="frame" x="24" y="2" width="145" height="36"/>
+                                        <fontDescription key="fontDescription" name="Inter-Regular_Medium" family="Inter" pointSize="14"/>
+                                        <color key="textColor" name="ColorWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" name="ColorLightGray"/>
+                                <constraints>
+                                    <constraint firstItem="sSw-vV-cDe" firstAttribute="top" secondItem="Mru-iL-BkV" secondAttribute="top" constant="2" id="2B1-wK-gDx"/>
+                                    <constraint firstAttribute="bottom" secondItem="sSw-vV-cDe" secondAttribute="bottom" constant="2" id="Tde-TH-2OV"/>
+                                    <constraint firstItem="sSw-vV-cDe" firstAttribute="leading" secondItem="Mru-iL-BkV" secondAttribute="leading" constant="24" id="lFF-kJ-sQs"/>
+                                    <constraint firstAttribute="height" constant="40" id="o0A-3T-ROW"/>
+                                    <constraint firstAttribute="trailing" secondItem="sSw-vV-cDe" secondAttribute="trailing" constant="24" id="pnO-Ig-Aj7"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                    </stackView>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="sS1-4Q-noM" secondAttribute="trailing" constant="6" id="6Yj-U3-dI8"/>
+                <constraint firstAttribute="bottom" secondItem="sS1-4Q-noM" secondAttribute="bottom" id="EDp-At-Xna"/>
+                <constraint firstItem="sS1-4Q-noM" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="QKG-7H-A23"/>
+                <constraint firstItem="sS1-4Q-noM" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="6" id="frs-NM-gMn"/>
+            </constraints>
+            <size key="customSize" width="205" height="40"/>
+            <connections>
+                <outlet property="lbl" destination="sSw-vV-cDe" id="cmd-nv-HDa"/>
+                <outlet property="vwBack" destination="Mru-iL-BkV" id="h6L-ec-0Nx"/>
+            </connections>
+            <point key="canvasLocation" x="38.931297709923662" y="11.971830985915494"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <namedColor name="ColorLightGray">
+            <color red="0.63529411764705879" green="0.63529411764705879" blue="0.63529411764705879" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ColorWhite">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

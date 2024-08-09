@@ -2,7 +2,7 @@
 //  ManageMenuVC.swift
 //  Resturants
 //
-//  Created by Coder Crew on 24/06/2024.
+//  Created by Coder Crew on 08/08/2024.
 //
 
 import UIKit
@@ -10,8 +10,21 @@ import UIKit
 class ManageMenuVC: UIViewController {
 
     //MARK: - IBOUtlets
-    @IBOutlet weak var tblLocation: UITableView!
+    @IBOutlet weak var vwCollect   : UICollectionView!
+    @IBOutlet weak var btnCreateGrp: UIButton!
+    @IBOutlet weak var btnCreate   : UIButton!
+    @IBOutlet weak var btnAddItem  : UIButton!
+    @IBOutlet weak var stackEdit   : UIStackView!
+    @IBOutlet weak var stackGrpNm  : UIStackView!
+    @IBOutlet weak var stackListNum: UIStackView!
+    @IBOutlet weak var txtGrpNm    : UITextField!
+    @IBOutlet weak var txtListNum  : UITextField!
     
+    
+    //MARK: - Variables and Properties
+    var arr = [["Popular" , 0] ]
+    var menuChildren: [UIMenuElement] = []
+    var selectedMenuIndex: Int        = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,54 +35,154 @@ class ManageMenuVC: UIViewController {
         onAppear()
     }
     
-    @IBAction func ontapAddNewLocation(_ sender: UIButton){
-        let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "ManageInfoVC") as! ManageInfoVC
-        vc.isFromNewLocation        = true
-        vc.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(vc, animated: true)
+    @IBAction func ontapList(_ sender: UIButton){
+         var actionClosure = { (action: UIAction) in
+            self.txtListNum.text = action.title
+             self.menuChildren.removeAll()
+             sender.menu = nil
+        }
+        
+        // Regenerate the menu children
+        for i in 0..<arr.count {
+            menuChildren.append(UIAction(title: "#\(i)", handler: actionClosure))
+        }
+        
+        // Assign the new menu
+        sender.menu = UIMenu(options: .displayInline, children: menuChildren)
+        sender.showsMenuAsPrimaryAction = true
+        
     }
-
+    @IBAction func ontapEdit(_ sender: UIButton) {
+        if selectedMenuIndex  != 0 {
+            btnCreateGrp.isHidden = true
+            btnAddItem.isHidden   = true
+            stackGrpNm.isHidden   = false
+            stackListNum.isHidden = false
+            btnCreate.isHidden    = false
+            txtGrpNm.text         = arr[self.selectedMenuIndex][0] as! String
+            txtListNum.text       = "#\(self.selectedMenuIndex)"
+        }
+    }
+    
+    @IBAction func ontapNewGrp(_ sender: UIButton){
+        btnCreateGrp.isHidden = true
+        stackGrpNm.isHidden   = false
+        btnCreate.isHidden    = false
+        if arr.count          > 1 {
+            stackListNum.isHidden = false
+        }
+    }
+    
+    @IBAction func ontapCreate(_ sender: UIButton){
+        if selectedMenuIndex != 0 {
+            var a = ["\(txtGrpNm.text!)" , 0] as [Any]
+            if txtListNum.text != "" {
+                let array = Array(txtListNum.text!) // ["#", "3"]
+                if Int(String(array[1])) == 0 {
+                    arr.remove(at: self.selectedMenuIndex)
+                    arr.insert( a , at: self.selectedMenuIndex)
+                }
+                else {
+                    arr.remove(at: self.selectedMenuIndex)
+                    var place = Int(String(array[1]))!
+                    arr.insert(a, at: place)
+                }
+            }
+        }
+        else {
+            if txtGrpNm.text != "" {
+                var a = ["\(txtGrpNm.text!)" , 0] as [Any]
+                if txtListNum.text != "" {
+                    let array = Array(txtListNum.text!) // ["#", "3"]
+                    if Int(String(array[1])) == 0 {
+                        arr.append(a)
+                    }
+                    else {
+                        var place = Int(String(array[1]))!
+                        arr.insert(a, at: place)
+                    }
+                }
+                else{
+                    arr.append(a)
+                }
+            }
+        }
+        vwCollect.reloadData()
+        onAppear()
+        txtGrpNm.text   = ""
+        txtListNum.text = ""
+        self.selectedMenuIndex  = 0
+    }
 }
 
-//MARK: - Custom Implementation {}
-extension ManageMenuVC {
+//MARK: - Collection View {}
+extension ManageMenuVC{
     
     func onLoad() {
-        setupView()
-        removeNavBackbuttonTitle()
+        setupCollectionView()
+    }
+    
+    func setupCollectionView(){
+        vwCollect.register(MenuCCell.nib, forCellWithReuseIdentifier: MenuCCell.identifier)
+        vwCollect.delegate   = self
+        vwCollect.dataSource = self
     }
     
     func onAppear() {
-        self.navigationItem.title = "Add or manage"
-    }
-    
-    func setupView() {
-        tblLocation.register(LocationTCell.nib, forCellReuseIdentifier: LocationTCell.identifier)
-        tblLocation.delegate   = self
-        tblLocation.dataSource = self
+        self.navigationItem.title  = "Vnista Pizza"
+        
+        if arr.count <= 1 {
+            btnCreate.isHidden    = true
+            btnCreateGrp.isHidden = false
+            btnAddItem.isHidden   = true
+            stackEdit.isHidden    = false
+            stackGrpNm.isHidden   = true
+            stackListNum.isHidden = true
+        }
+        else{
+            btnCreate.isHidden    = true
+            btnCreateGrp.isHidden = false
+            btnAddItem.isHidden   = false
+            stackGrpNm.isHidden   = true
+            stackListNum.isHidden = true
+            
+        }
     }
 }
 
-//MARK: - TableView {}
-extension ManageMenuVC : UITableViewDelegate , UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+
+//MARK: - Collection View {}
+extension ManageMenuVC: UICollectionViewDelegate , UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return arr.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: LocationTCell.identifier, for: indexPath) as? LocationTCell
-        cell?.btnManangeInfo.addTarget(self, action: #selector(ontapMangeInfo(sender:)), for: .touchUpInside)
-        return cell!
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell  = vwCollect.dequeueReusableCell(withReuseIdentifier: MenuCCell.identifier, for: indexPath) as! MenuCCell
+            cell.vwBack.isHidden = false
+            cell.lbl.text = arr[indexPath.row][0] as! String
+            if arr[indexPath.row][1] as! Int == 0 {
+                cell.vwBack.backgroundColor = UIColor.ColorDarkBlack
+                cell.lbl.textColor          = UIColor.white
+            }
+            else{
+                cell.vwBack.backgroundColor = UIColor.white
+                cell.lbl.textColor          = UIColor.black
+            }
+        return cell
     }
     
-    @objc func ontapMangeInfo(sender: UIButton) {
-        let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "ManageInfoVC") as! ManageInfoVC
-        vc.isFromNewLocation        = false
-        vc.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(vc, animated: true)
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        for i in 0..<arr.count {
+            arr[i][1] = 0
+        }
+        
+        // Set the selected element to 1
+        arr[indexPath.row][1] = 1
+        selectedMenuIndex = indexPath.row
+        
+        // Reload the collection view to reflect the changes (optional)
+        collectionView.reloadData()
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
-    }
 }
