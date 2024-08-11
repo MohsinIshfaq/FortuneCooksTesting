@@ -10870,19 +10870,19 @@ platform be detailed.</string>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="4wh-2M-HoF">
-                                        <rect key="frame" x="16" y="83.999999999999986" width="361" height="174.66666666666663"/>
+                                        <rect key="frame" x="16" y="84" width="361" height="176"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="10I-u9-Rmi">
-                                                <rect key="frame" x="0.0" y="0.0" width="361" height="83.333333333333329"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="361" height="84"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a3Y-h3-jsx">
-                                                        <rect key="frame" x="0.0" y="0.0" width="361" height="16.333333333333332"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="361" height="17"/>
                                                         <fontDescription key="fontDescription" name="Inter-Regular_Medium" family="Inter" pointSize="14"/>
                                                         <color key="textColor" name="ColorWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rhF-Av-324">
-                                                        <rect key="frame" x="0.0" y="28.333333333333343" width="361" height="55"/>
+                                                        <rect key="frame" x="0.0" y="29" width="361" height="55"/>
                                                         <subviews>
                                                             <textField opaque="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Pizza" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BK0-5O-sD2">
                                                                 <rect key="frame" x="16" y="0.0" width="339" height="55"/>
@@ -10920,16 +10920,16 @@ platform be detailed.</string>
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="cJD-oe-kba">
-                                                <rect key="frame" x="0.0" y="91.333333333333343" width="361" height="83.333333333333343"/>
+                                                <rect key="frame" x="0.0" y="92" width="361" height="84"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="List number" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e7A-Dg-yja">
-                                                        <rect key="frame" x="0.0" y="0.0" width="361" height="16.333333333333332"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="361" height="17"/>
                                                         <fontDescription key="fontDescription" name="Inter-Regular_Medium" family="Inter" pointSize="14"/>
                                                         <color key="textColor" name="ColorWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zVq-Qa-boy">
-                                                        <rect key="frame" x="0.0" y="28.333333333333343" width="361" height="55"/>
+                                                        <rect key="frame" x="0.0" y="29" width="361" height="55"/>
                                                         <subviews>
                                                             <textField opaque="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="#3" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tgx-BG-hXr">
                                                                 <rect key="frame" x="16" y="0.0" width="339" height="55"/>
@@ -11591,7 +11591,7 @@ platform be detailed.</string>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="plus.app.fill" catalog="system" width="128" height="114"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
-        <image name="user" width="24.333333969116211" height="24"/>
+        <image name="user" width="24" height="24"/>
         <image name="user-block" width="24" height="24"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <namedColor name="AccentColor">

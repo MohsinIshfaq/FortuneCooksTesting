@@ -783,22 +783,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "BE56A271-78C8-4AB7-B4C5-5632A39ED710"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Resturants/Screens/View/Main/ProfileTab/ManageMenuVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
-            landmarkName = "ontapList(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "E0573B6C-131C-40CF-A863-0B4CC1ABE2D1"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -831,16 +815,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "89F21405-C347-4840-82C0-2ED58D0E66EC"
+            uuid = "1B4C8C86-1D55-46C4-AAE6-4D0468BD542E"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Resturants/Screens/View/Main/ProfileTab/ManageMenuVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "250"
-            endingLineNumber = "250"
-            landmarkName = "getMenuGroup(id:)"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
+            landmarkName = "ontapCreate(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

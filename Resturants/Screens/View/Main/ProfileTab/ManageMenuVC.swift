@@ -27,6 +27,7 @@ class ManageMenuVC: UIViewController {
     var arr = [["Popular" , 0] ]
     var menuChildren: [UIMenuElement]      = []
     var selectedMenuIndex: Int             = 0
+    var selectedUniqueID                   = ""
     var location : RestaurantLocation?     = nil
     var groups: [GroupsModel]              = []
     let uniqueID = UUID().uuidString
@@ -49,7 +50,7 @@ class ManageMenuVC: UIViewController {
         }
         
         // Regenerate the menu children
-        for i in 1..<arr.count {
+        for i in 1..<groups.count {
             menuChildren.append(UIAction(title: "#\(i)", handler: actionClosure))
         }
         
@@ -60,13 +61,15 @@ class ManageMenuVC: UIViewController {
     }
     @IBAction func ontapEdit(_ sender: UIButton) {
         if selectedMenuIndex  != 0 {
+            vwTblView.isHidden    = true
             btnCreateGrp.isHidden = true
             btnAddItem.isHidden   = true
             stackGrpNm.isHidden   = false
             stackListNum.isHidden = false
             btnCreate.isHidden    = false
-            txtGrpNm.text         = arr[self.selectedMenuIndex][0] as! String
+            txtGrpNm.text         = groups[self.selectedMenuIndex].groupName
             txtListNum.text       = "#\(self.selectedMenuIndex)"
+            self.selectedUniqueID = groups[self.selectedMenuIndex].id
         }
     }
     @IBAction func ontapAddItem(_ sender: UIButton){
@@ -79,7 +82,7 @@ class ManageMenuVC: UIViewController {
         btnCreateGrp.isHidden = true
         stackGrpNm.isHidden   = false
         btnCreate.isHidden    = false
-        if arr.count          > 1 {
+        if groups.count          > 1 {
             stackListNum.isHidden = false
         }
     }
@@ -90,13 +93,14 @@ class ManageMenuVC: UIViewController {
             if txtListNum.text != "" {
                 let array = Array(txtListNum.text!) // ["#", "3"]
                 if Int(String(array[1])) == 0 {
-                    arr.remove(at: self.selectedMenuIndex)
-                    arr.insert( a , at: self.selectedMenuIndex)
+                    groups.remove(at: self.selectedMenuIndex)
+                    groups.insert(GroupsModel(id: self.selectedUniqueID, groupName: "\(txtGrpNm.text!)", selected: 0) , at: self.selectedMenuIndex)
                 }
                 else {
-                    arr.remove(at: self.selectedMenuIndex)
+                    groups.remove(at: self.selectedMenuIndex)
                     var place = Int(String(array[1]))!
-                    arr.insert(a, at: place)
+//                    arr.insert(a, at: place)
+                    groups.insert(GroupsModel(id: self.selectedUniqueID, groupName: "\(txtGrpNm.text!)", selected: 0) , at: place)
                 }
             }
         }
@@ -110,12 +114,15 @@ class ManageMenuVC: UIViewController {
                     }
                     else {
                         var place = Int(String(array[1]))!
-                        arr.insert(a, at: place)
+//                        arr.insert(a, at: place)
+//                        self.groups.append(GroupsModel(id: uniqueID, groupName: "\(txtGrpNm.text!)", selected: 0))
+                        self.groups.insert(GroupsModel(id: uniqueID, groupName: "\(txtGrpNm.text!)", selected: 0), at: place)
                     }
                 }
                 else{
-                    arr.append(a)
-                    self.groups.append(GroupsModel(id: uniqueID, groupName: "\(a)", selected: 0))
+                   // arr.append(a)
+                    self.groups.append(GroupsModel(id: uniqueID, groupName: "\(txtGrpNm.text!)", selected: 0))
+                    print(groups)
 
                 }
             }
@@ -134,6 +141,7 @@ extension ManageMenuVC{
     
     func onLoad() {
         setupCollectionView()
+        getMenuGroup(id: location?.id ?? "")
     }
     
     func setupCollectionView(){
@@ -164,7 +172,6 @@ extension ManageMenuVC{
             stackGrpNm.isHidden   = true
             stackListNum.isHidden = true
         }
-        getMenuGroup(id: location?.id ?? "")
     }
 }
 
