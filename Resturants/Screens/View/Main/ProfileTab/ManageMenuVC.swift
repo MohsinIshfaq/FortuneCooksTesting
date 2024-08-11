@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseFirestoreInternal
 
 class ManageMenuVC: UIViewController {
 
@@ -19,16 +20,21 @@ class ManageMenuVC: UIViewController {
     @IBOutlet weak var stackListNum: UIStackView!
     @IBOutlet weak var txtGrpNm    : UITextField!
     @IBOutlet weak var txtListNum  : UITextField!
+    @IBOutlet weak var vwTblView   : UITableView!
     
     
     //MARK: - Variables and Properties
     var arr = [["Popular" , 0] ]
-    var menuChildren: [UIMenuElement] = []
-    var selectedMenuIndex: Int        = 0
+    var menuChildren: [UIMenuElement]      = []
+    var selectedMenuIndex: Int             = 0
+    var location : RestaurantLocation?     = nil
+    var groups: [GroupsModel]              = []
+    let uniqueID = UUID().uuidString
     
     override func viewDidLoad() {
         super.viewDidLoad()
         onLoad()
+//        menuGroups()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -43,7 +49,7 @@ class ManageMenuVC: UIViewController {
         }
         
         // Regenerate the menu children
-        for i in 0..<arr.count {
+        for i in 1..<arr.count {
             menuChildren.append(UIAction(title: "#\(i)", handler: actionClosure))
         }
         
@@ -63,8 +69,13 @@ class ManageMenuVC: UIViewController {
             txtListNum.text       = "#\(self.selectedMenuIndex)"
         }
     }
-    
+    @IBAction func ontapAddItem(_ sender: UIButton){
+        let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "AddORUpdateItemVC") as! AddORUpdateItemVC
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     @IBAction func ontapNewGrp(_ sender: UIButton){
+        vwTblView.isHidden    = true
         btnCreateGrp.isHidden = true
         stackGrpNm.isHidden   = false
         btnCreate.isHidden    = false
@@ -104,6 +115,8 @@ class ManageMenuVC: UIViewController {
                 }
                 else{
                     arr.append(a)
+                    self.groups.append(GroupsModel(id: uniqueID, groupName: "\(a)", selected: 0))
+
                 }
             }
         }
@@ -112,6 +125,7 @@ class ManageMenuVC: UIViewController {
         txtGrpNm.text   = ""
         txtListNum.text = ""
         self.selectedMenuIndex  = 0
+        vwTblView.isHidden    = false
     }
 }
 
@@ -126,6 +140,10 @@ extension ManageMenuVC{
         vwCollect.register(MenuCCell.nib, forCellWithReuseIdentifier: MenuCCell.identifier)
         vwCollect.delegate   = self
         vwCollect.dataSource = self
+        
+        vwTblView.register(MenuDishTCell.nib, forCellReuseIdentifier: MenuDishTCell.identifier)
+        vwTblView.delegate   = self
+        vwTblView.dataSource = self
     }
     
     func onAppear() {
@@ -145,44 +163,92 @@ extension ManageMenuVC{
             btnAddItem.isHidden   = false
             stackGrpNm.isHidden   = true
             stackListNum.isHidden = true
-            
         }
+        getMenuGroup(id: location?.id ?? "")
     }
 }
 
+//MARK: - Table View {}
+extension ManageMenuVC: UITableViewDelegate , UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 6
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: MenuDishTCell.identifier, for: indexPath) as? MenuDishTCell
+        return cell!
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 169
+    }
+    
+}
 
 //MARK: - Collection View {}
 extension ManageMenuVC: UICollectionViewDelegate , UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return arr.count
+        return groups.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell  = vwCollect.dequeueReusableCell(withReuseIdentifier: MenuCCell.identifier, for: indexPath) as! MenuCCell
-            cell.vwBack.isHidden = false
-            cell.lbl.text = arr[indexPath.row][0] as! String
-            if arr[indexPath.row][1] as! Int == 0 {
-                cell.vwBack.backgroundColor = UIColor.ColorDarkBlack
-                cell.lbl.textColor          = UIColor.white
-            }
-            else{
-                cell.vwBack.backgroundColor = UIColor.white
-                cell.lbl.textColor          = UIColor.black
-            }
+        cell.vwBack.isHidden = false
+        cell.lbl.text = groups[indexPath.row].groupName
+        if groups[indexPath.row].selected == 0 {
+            cell.vwBack.backgroundColor = UIColor.ColorDarkBlack
+            cell.lbl.textColor          = UIColor.white
+        }
+        else{
+            cell.vwBack.backgroundColor = UIColor.white
+            cell.lbl.textColor          = UIColor.black
+        }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        for i in 0..<arr.count {
-            arr[i][1] = 0
+        for i in 0..<groups.count {
+            groups[i].selected = 0
         }
         
         // Set the selected element to 1
-        arr[indexPath.row][1] = 1
+        groups[indexPath.row].selected = 1
         selectedMenuIndex = indexPath.row
         
         // Reload the collection view to reflect the changes (optional)
         collectionView.reloadData()
     }
     
+}
+
+//MARK: - Get Videos / profile / change cover / change profile {}
+extension ManageMenuVC {
+
+    func getMenuGroup(id: String) {
+        let db = Firestore.firestore()
+        self.startAnimating()
+        
+        db.collection("groupsNames").document(id).getDocument { (document, error) in
+            self.stopAnimating()
+            if let error = error {
+                print("Error retrieving document: \(error.localizedDescription)")
+                return
+            }
+            
+            if let document = document, document.exists {
+                let data = document.data()
+                let uniqueID = data?["uniqueID"] as? String ?? ""
+                let groupName = data?["groupName"] as? String ?? ""
+                
+                print("Unique ID: \(uniqueID)")
+                print("Group Name: \(groupName)")
+                self.groups.append(GroupsModel(id: uniqueID, groupName: groupName, selected: 0))
+                // Use the retrieved data as needed
+            } else {
+                print("Document does not exist")
+            }
+            print(self.groups)
+            self.vwCollect.reloadData()
+        }
+    }
 }

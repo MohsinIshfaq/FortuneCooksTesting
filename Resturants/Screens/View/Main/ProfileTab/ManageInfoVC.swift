@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseFirestoreInternal
 
 class ManageInfoVC: UIViewController {
 
@@ -38,14 +39,31 @@ class ManageInfoVC: UIViewController {
     @IBOutlet weak var stackSunday         : UIStackView!
     @IBOutlet weak var lblSunday           : UILabel!
     @IBOutlet weak var txtViewBio          : UITextView!
+    @IBOutlet weak var txtChannelNm        : UITextField!
+    @IBOutlet weak var txtEmail            : UITextField!
+    @IBOutlet weak var txtWeb              : UITextField!
+    @IBOutlet weak var txtNumber           : UITextField!
+    @IBOutlet weak var txtAddress          : UITextField!
+    @IBOutlet weak var txtZip              : UITextField!
+    @IBOutlet weak var txtCity             : UITextField!
     
-    var selectedHrs                        = ""
-    var selectedMins                       = ""
+    @IBOutlet weak var switchMonday        : UISwitch!
+    @IBOutlet weak var switchTuesday       : UISwitch!
+    @IBOutlet weak var switchWednesday     : UISwitch!
+    @IBOutlet weak var switchThrusday      : UISwitch!
+    @IBOutlet weak var switchFriday        : UISwitch!
+    @IBOutlet weak var switchSaturday      : UISwitch!
+    @IBOutlet weak var switchSunday        : UISwitch!
+    @IBOutlet weak var btnSave             : UIButton!
+    
+    var selectedHrs                        = "00"
+    var selectedMins                       = "00"
     let placeholder                        = "Enter Bio..."
     let placeholderColor                   = UIColor.lightGray
     private var AccntPicker                = UIPickerView(frame: CGRect(x: 0, y: 0, width:UIScreen.main.bounds.width, height: 150))
     var activeTextField: UITextField?      = nil
     var isFromNewLocation: Bool            = false
+    var location : RestaurantLocation?     = nil
     
     
     override func viewDidLoad() {
@@ -55,6 +73,19 @@ class ManageInfoVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         onAppear()
+    }
+    
+    @IBAction func ontapSave(_ sender: UIButton) {
+        if isFromNewLocation {
+            if validateFields(email: txtEmail.text, web: txtWeb.text) {
+                addLocationOfResturant()
+            }
+        }
+        else{
+            if validateFields(email: txtEmail.text, web: txtWeb.text) {
+                UpdateLocation()
+            }
+        }
     }
 
     @IBAction func ontapScheduleSwitch(_ sender: UISwitch){
@@ -94,7 +125,7 @@ class ManageInfoVC: UIViewController {
     
 }
 
-//MARK: - Setup Profile {}
+//MARK: - Setup location? {}
 extension ManageInfoVC {
    
     func onload() {
@@ -111,6 +142,14 @@ extension ManageInfoVC {
     }
     
     func onAppear() {
+        
+        if !isFromNewLocation{
+            setupData()
+            btnSave.setTitle("Update", for: .normal)
+        }
+        else{
+            btnSave.setTitle("Save", for: .normal)
+        }
     }
     
     func setupPlaceholder() {
@@ -173,6 +212,94 @@ extension ManageInfoVC {
         else{
             return true
         }
+    }
+    
+    func getMondaySchedule(_ opening: String,  _ closing: String , switchs: Bool) -> String {
+        //MARK: - if switch is hide it means schedule is closed like monday is closed
+        return switchs ? "\(opening) - \(closing)" : "Closed"
+    }
+    
+    func validateFields(email: String?, web: String?) -> Bool  {
+        if let email = email, !email.isEmpty {
+            guard "".isValidEmailRegex(email) else {
+                self.showToast(message: "Email is not valid", seconds: 2, clr: .red)
+                print("Invalid email address")
+                return false
+            }
+        }
+        
+        if let web = web, !web.isEmpty {
+            guard "".isValidWebsite(url: web) else {
+                self.showToast(message: "web URL is not valid", seconds: 2, clr: .red)
+                return false
+            }
+        }
+        
+        return true
+    }
+    
+    func setupData() {
+        txtChannelNm.text = location?.channalNm ?? ""
+        txtViewBio.text   = location?.bio ?? ""
+        txtEmail.text     = location?.email ?? ""
+        txtWeb.text       = location?.website ?? ""
+        txtNumber.text    = location?.telephoneNumber ?? ""
+        txtAddress.text   = location?.address ?? ""
+        txtZip.text       = location?.zipCode ?? ""
+        txtCity.text      = location?.City ?? ""
+        txtAddress.text   = location?.address ?? ""
+        if !(location?.timings?.isEmpty ?? false){
+            txtMondayOpening.text    = location?.timings?[0] == "Closed" ? "0:0" : splitTimeRange(location?.timings?[0] ?? "")?.0
+            txtMondayClosing.text    = location?.timings?[0] == "Closed" ? "0:0" : splitTimeRange(location?.timings?[0] ?? "")?.1
+            lblMonday.isHidden    = location?.timings?[0] == "Closed" ? false : true
+            stackMonday.isHidden  = location?.timings?[0] == "Closed" ? true : false
+            switchMonday.isOn     = location?.timings?[0] == "Closed" ? false : true
+            
+            txtTuesdayOpening.text   = location?.timings?[1] == "Closed" ? "0:0" : splitTimeRange(location?.timings?[1] ?? "")?.0
+            txtTuesdayClosing.text   = location?.timings?[1] == "Closed" ? "0:0" : splitTimeRange(location?.timings?[1] ?? "")?.1
+            lblTuesday.isHidden   = location?.timings?[1] == "Closed" ? false : true
+            stackTuesday.isHidden = location?.timings?[1] == "Closed" ? true : false
+            switchTuesday.isOn    = location?.timings?[1] == "Closed" ? false : true
+            
+            txtWednesdayOpening.text = location?.timings?[2] == "Closed" ? "0:0" : splitTimeRange(location?.timings?[2] ?? "")?.0
+            txtWednesdayClosing.text = location?.timings?[2] == "Closed" ? "0:0" : splitTimeRange(location?.timings?[2] ?? "")?.1
+            lblWednesday.isHidden   = location?.timings?[2] == "Closed" ? false : true
+            stackWednesday.isHidden = location?.timings?[2] == "Closed" ? true : false
+            switchWednesday.isOn    = location?.timings?[2] == "Closed" ? false : true
+            
+            txtThrusdayOpening.text  = location?.timings?[3] == "Closed" ? "0:0" : splitTimeRange(location?.timings?[3] ?? "")?.0
+            txtThrusdayClosing.text  = location?.timings?[3] == "Closed" ? "0:0" : splitTimeRange(location?.timings?[3] ?? "")?.1
+            lblThursday.isHidden   = location?.timings?[3] == "Closed" ? false : true
+            stackThursday.isHidden = location?.timings?[3] == "Closed" ? true : false
+            switchThrusday.isOn    = location?.timings?[3] == "Closed" ? false : true
+            
+            txtFridayOpening.text    = location?.timings?[4] == "Closed" ? "0:0" : splitTimeRange(location?.timings?[4] ?? "")?.0
+            txtFridayClosing.text    = location?.timings?[4] == "Closed" ? "0:0" : splitTimeRange(location?.timings?[4] ?? "")?.1
+            lblFriday.isHidden   = location?.timings?[4] == "Closed" ? false : true
+            stackFriday.isHidden = location?.timings?[4] == "Closed" ? true : false
+            switchFriday.isOn    = location?.timings?[4] == "Closed" ? false : true
+            
+            txtSaturdayOpening.text  = location?.timings?[5] == "Closed" ? "0:0" : splitTimeRange(location?.timings?[5] ?? "")?.0
+            txtSaturdayClosing.text  = location?.timings?[5] == "Closed" ? "0:0" : splitTimeRange(location?.timings?[5] ?? "")?.1
+            lblSaturday.isHidden   = location?.timings?[5] == "Closed" ? false : true
+            stackSaturday.isHidden = location?.timings?[5] == "Closed" ? true : false
+            switchSaturday.isOn    = location?.timings?[5] == "Closed" ? false : true
+            
+            
+            txtSundayOpening.text    = location?.timings?[6] == "Closed" ? "0:0" : splitTimeRange(location?.timings?[6] ?? "")?.0
+            txtSundayClosing.text    = location?.timings?[6] == "Closed" ? "0:0" : splitTimeRange(location?.timings?[6] ?? "")?.1
+            lblSunday.isHidden   = location?.timings?[6] == "Closed" ? false : true
+            stackSunday.isHidden = location?.timings?[6] == "Closed" ? true : false
+            switchSunday.isOn    = location?.timings?[6] == "Closed" ? false : true
+        }
+    }
+    
+    func splitTimeRange(_ timeRange: String) -> (String, String)? {
+        let components = timeRange.split(separator: "-")
+        guard components.count == 2 else { return nil }
+        let startTime = String(components[0])
+        let endTime = String(components[1])
+        return (startTime, endTime)
     }
 }
 
@@ -241,4 +368,118 @@ extension ManageInfoVC : UIPickerViewDelegate, UIPickerViewDataSource {
             activeTextField.text = "\(selectedHrs) : \(selectedMins)"
         }
     }
+}
+
+//get menus
+extension ManageInfoVC  {
+    
+    func addLocationOfResturant() {
+        self.startAnimating()
+        var timings = [
+            getMondaySchedule(txtMondayOpening.text ?? "", txtMondayClosing.text!, switchs: lblMonday.isHidden) ,
+            getMondaySchedule(txtTuesdayOpening.text ?? "", txtTuesdayClosing.text!, switchs: lblTuesday.isHidden) ,
+            getMondaySchedule(txtWednesdayOpening.text ?? "", txtWednesdayClosing.text!, switchs: lblWednesday.isHidden) ,
+            getMondaySchedule(txtThrusdayOpening.text ?? "", txtThrusdayClosing.text!, switchs: lblThursday.isHidden) ,
+            getMondaySchedule(txtFridayOpening.text ?? "", txtFridayClosing.text!, switchs: lblFriday.isHidden) ,
+            getMondaySchedule(txtSaturdayOpening.text ?? "", txtSaturdayClosing.text!, switchs: lblSaturday.isHidden) ,
+            getMondaySchedule(txtSundayOpening.text ?? "", txtSundayClosing.text!, switchs: lblSunday.isHidden)]
+        print(timings)
+        let uniqueID = UUID().uuidString
+        let db = Firestore.firestore()
+        let restaurantLocation = RestaurantLocation(
+            id: uniqueID , channalNm: txtChannelNm.text!, bio: txtViewBio.text, email: txtEmail.text!, website: txtWeb.text!, telephoneNumber: txtNumber.text!, address: txtAddress.text!, zipCode: txtZip.text!, City: txtCity.text!, timings: timings)
+        
+        let collectionPath = "restaurants_Locations/\(UserDefault.token)/locations"
+        db.collection(collectionPath).addDocument(data: restaurantLocation.toDictionary()) { error in
+            if let error = error {
+                print("Error saving location: \(error.localizedDescription)")
+            } else {
+                self.stopAnimating()
+                self.menuGroups(id: uniqueID)
+            }
+        }
+    }
+    
+    func menuGroups(id: String) {
+        let uniqueID = UUID().uuidString
+        let groupName = "Popular"
+        
+        let db = Firestore.firestore()
+        self.startAnimating()
+        
+        let data: [String: Any] = [
+            "uniqueID": uniqueID,
+            "groupName": groupName
+        ]
+        
+        db.collection("groupsNames").document(id).setData(data) { error in
+            self.stopAnimating()
+            if let error = error {
+                print("Error saving document: \(error.localizedDescription)")
+            } else {
+                self.showToast(message: "Group successfully saved!", seconds: 2, clr: .gray)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    self.popup()
+                }
+            }
+        }
+    }
+    
+    func UpdateLocation() {
+        self.startAnimating()
+        
+        // Prepare the timings array
+        let timings = [
+            getMondaySchedule(txtMondayOpening.text ?? "", txtMondayClosing.text!, switchs: lblMonday.isHidden),
+            getMondaySchedule(txtTuesdayOpening.text ?? "", txtTuesdayClosing.text!, switchs: lblTuesday.isHidden),
+            getMondaySchedule(txtWednesdayOpening.text ?? "", txtWednesdayClosing.text!, switchs: lblWednesday.isHidden),
+            getMondaySchedule(txtThrusdayOpening.text ?? "", txtThrusdayClosing.text!, switchs: lblThursday.isHidden),
+            getMondaySchedule(txtFridayOpening.text ?? "", txtFridayClosing.text!, switchs: lblFriday.isHidden),
+            getMondaySchedule(txtSaturdayOpening.text ?? "", txtSaturdayClosing.text!, switchs: lblSaturday.isHidden),
+            getMondaySchedule(txtSundayOpening.text ?? "", txtSundayClosing.text!, switchs: lblSunday.isHidden)
+        ]
+        
+        let db = Firestore.firestore()
+        
+        // Create the restaurant location object
+        let restaurantLocation = RestaurantLocation(
+            id: location?.id ?? "",
+            channalNm: txtChannelNm.text ?? "",
+            bio: txtViewBio.text,
+            email: txtEmail.text ?? "",
+            website: txtWeb.text ?? "",
+            telephoneNumber: txtNumber.text ?? "",
+            address: txtAddress.text ?? "",
+            zipCode: txtZip.text ?? "",
+            City: txtCity.text ?? "",
+            timings: timings
+        )
+        
+        // Firestore collection path
+        let collectionPath = "restaurants_Locations/\(UserDefault.token)/locations"
+        
+        // Query for the document with the matching channel name
+        db.collection(collectionPath)
+            .whereField("id", isEqualTo: location?.id ?? "")
+            .getDocuments { (querySnapshot, error) in
+                if let error = error {
+                    print("Error finding document: \(error.localizedDescription)")
+                    self.stopAnimating()
+                } else if let document = querySnapshot?.documents.first {
+                    // Document exists, update it
+                    db.collection(collectionPath).document(document.documentID).updateData(restaurantLocation.toDictionary()) { error in
+                        if let error = error {
+                            print("Error updating document: \(error.localizedDescription)")
+                        } else {
+                            self.stopAnimating()
+                            self.showToast(message: "Location successfully updated!", seconds: 2, clr: .gray)
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                self.popup()
+                            }
+                        }
+                    }
+                }
+            }
+    }
+    
 }

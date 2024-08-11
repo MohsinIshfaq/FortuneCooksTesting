@@ -30,7 +30,30 @@ final class UserManager {
     var filteredContent            : [[String]]       = []
     var filteredAccntType          : [[String]]       = []
     
-    var arrReason                  : [String]         = 
+    let currencies = [
+        "USD", // US Dollar
+        "EUR", // Euro
+        "JPY", // Japanese Yen
+        "GBP", // British Pound
+        "AUD", // Australian Dollar
+        "CAD", // Canadian Dollar
+        "CHF", // Swiss Franc
+        "CNY", // Chinese Yuan
+        "INR", // Indian Rupee
+        "BRL", // Brazilian Real
+        "RUB", // Russian Ruble
+        "ZAR", // South African Rand
+        "SGD", // Singapore Dollar
+        "MXN", // Mexican Peso
+        "HKD", // Hong Kong Dollar
+        "KRW", // South Korean Won
+        "TRY", // Turkish Lira
+        "NOK", // Norwegian Krone
+        "SEK", // Swedish Krona
+        "NZD"  // New Zealand Dollar
+    ]
+    
+    var arrReason                  : [String]         =
     ["I do not have time" ,
      "Health issue" ,
      "Too much advertising" ,

@@ -226,7 +226,6 @@ extension CrtProfile4VC {
     
     //Saving user for to be tag or follow {}
     func SaveUserForOthers() {
-        var db = Firestore.firestore()
         let data: [String: Any] = [
             "uid"              : UserDefault.token ,
             "img"              : "",
@@ -251,7 +250,6 @@ extension CrtProfile4VC {
     
     func FeedSet() {
         self.startAnimating()
-        var db = Firestore.firestore()
         db.collection("Users_Feed").document("\(UserDefault.token)").setData(
             ["selectedAcountType" : []  ,
              "selectedCuisine"    : []  ,

@@ -29,10 +29,6 @@ class UpdateProfileVC: UIViewController , TagPeopleDelegate{
         collectTagPeople.reloadData()
     }
     
-//    func reload() {
-//        collectTagPeople.reloadData()
-//    }
-    
     //MARK: - IBOUtlet
     @IBOutlet weak var txtViewBio       : UITextView!
     @IBOutlet weak var collectTagPeople : UICollectionView!
@@ -668,7 +664,8 @@ extension UpdateProfileVC {
     func addProfile(_ userID: String) {
         self.startAnimating()
         var monday = lblMonday.isHidden ? "\(txtMondayOpening.text!) : \(txtMondayClosing.text!)" : "Closed"
-        var timings = [getMondaySchedule(txtMondayOpening.text ?? "", txtMondayClosing.text!, switchs: lblMonday.isHidden) ,
+        var timings = [
+                       getMondaySchedule(txtMondayOpening.text ?? "", txtMondayClosing.text!, switchs: lblMonday.isHidden) ,
                        getMondaySchedule(txtTuesdayOpening.text ?? "", txtTuesdayClosing.text!, switchs: lblTuesday.isHidden) ,
                        getMondaySchedule(txtWednesdayOpening.text ?? "", txtWednesdayClosing.text!, switchs: lblWednesday.isHidden) ,
                        getMondaySchedule(txtThrusdayOpening.text ?? "", txtThrusdayClosing.text!, switchs: lblThursday.isHidden) ,
