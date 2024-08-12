@@ -227,6 +227,7 @@ extension ManageMenuVC: UICollectionViewDelegate , UICollectionViewDataSource {
         // Set the selected element to 1
         groups[indexPath.row].selected = 1
         selectedMenuIndex = indexPath.row
+        self.selectedUniqueID = groups[indexPath.row].id
         
         // Reload the collection view to reflect the changes (optional)
         collectionView.reloadData()

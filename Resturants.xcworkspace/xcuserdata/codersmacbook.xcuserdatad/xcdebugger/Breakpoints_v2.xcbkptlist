@@ -822,27 +822,13 @@
             filePath = "Resturants/Screens/View/Main/ProfileTab/ManageMenuVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "287"
-            endingLineNumber = "287"
+            startingLineNumber = "288"
+            endingLineNumber = "288"
             landmarkName = "updateMenuGroups(id:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "DDE9D75F-0EFC-4E19-A421-5C26C5B8B803 - 2a98b410570ee7f4"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Resturants.ManageMenuVC.updateMenuGroups(id: Swift.String) -&gt; ()"
-                  moduleName = "Resturants"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/codersmacbook/Documents/FortuneCooksIOS/Resturants/Screens/View/Main/ProfileTab/ManageMenuVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "287"
-                  endingLineNumber = "287">
-               </Location>
-               <Location
-                  uuid = "DDE9D75F-0EFC-4E19-A421-5C26C5B8B803 - 37960a44f1bcf0bd"
+                  uuid = "DDE9D75F-0EFC-4E19-A421-5C26C5B8B803 - 37960a44f1bcf35c"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -852,10 +838,40 @@
                   urlString = "file:///Users/codersmacbook/Documents/FortuneCooksIOS/Resturants/Screens/View/Main/ProfileTab/ManageMenuVC.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "287"
-                  endingLineNumber = "287">
+                  startingLineNumber = "288"
+                  endingLineNumber = "288">
+               </Location>
+               <Location
+                  uuid = "DDE9D75F-0EFC-4E19-A421-5C26C5B8B803 - 2a98b410570ee436"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Resturants.ManageMenuVC.updateMenuGroups(id: Swift.String) -&gt; ()"
+                  moduleName = "Resturants"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/codersmacbook/Documents/FortuneCooksIOS/Resturants/Screens/View/Main/ProfileTab/ManageMenuVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "289"
+                  endingLineNumber = "289">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "40AA0DB9-6E14-4E94-8EB6-534D3DB50DA3"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Resturants/Screens/View/Main/ProfileTab/ManageMenuVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "ontapAddItem(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
