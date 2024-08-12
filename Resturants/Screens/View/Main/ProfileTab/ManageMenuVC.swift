@@ -24,7 +24,7 @@ class ManageMenuVC: UIViewController {
     
     
     //MARK: - Variables and Properties
-    var arr = [["Popular" , 0] ]
+   // var arr = [["Popular" , 0] ]
     var menuChildren: [UIMenuElement]      = []
     var selectedMenuIndex: Int             = 0
     var selectedUniqueID                   = ""
@@ -71,11 +71,16 @@ class ManageMenuVC: UIViewController {
             txtListNum.text       = "#\(self.selectedMenuIndex)"
             self.selectedUniqueID = groups[self.selectedMenuIndex].id
         }
+        else{
+            self.selectedUniqueID = groups[self.selectedMenuIndex].id
+        }
     }
     @IBAction func ontapAddItem(_ sender: UIButton){
-        let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "AddORUpdateItemVC") as! AddORUpdateItemVC
-        vc.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(vc, animated: true)
+        if !(selectedUniqueID == "") {
+            let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "AddORUpdateItemVC") as! AddORUpdateItemVC
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     @IBAction func ontapNewGrp(_ sender: UIButton){
         vwTblView.isHidden    = true
@@ -110,7 +115,7 @@ class ManageMenuVC: UIViewController {
                 if txtListNum.text != "" {
                     let array = Array(txtListNum.text!) // ["#", "3"]
                     if Int(String(array[1])) == 0 {
-                        arr.append(a)
+                      //  arr.append(a)
                     }
                     else {
                         var place = Int(String(array[1]))!
@@ -133,6 +138,7 @@ class ManageMenuVC: UIViewController {
         txtListNum.text = ""
         self.selectedMenuIndex  = 0
         vwTblView.isHidden    = false
+        updateMenuGroups(id: location?.id ?? "")
     }
 }
 
@@ -157,7 +163,7 @@ extension ManageMenuVC{
     func onAppear() {
         self.navigationItem.title  = "Vnista Pizza"
         
-        if arr.count <= 1 {
+        if groups.count <= 1 {
             btnCreate.isHidden    = true
             btnCreateGrp.isHidden = false
             btnAddItem.isHidden   = true
@@ -244,18 +250,49 @@ extension ManageMenuVC {
             
             if let document = document, document.exists {
                 let data = document.data()
-                let uniqueID = data?["uniqueID"] as? String ?? ""
-                let groupName = data?["groupName"] as? String ?? ""
+                let groupsData = data?["groups"] as? [[String: Any]] ?? []
                 
-                print("Unique ID: \(uniqueID)")
-                print("Group Name: \(groupName)")
-                self.groups.append(GroupsModel(id: uniqueID, groupName: groupName, selected: 0))
-                // Use the retrieved data as needed
+                for groupData in groupsData {
+                    let uniqueID = groupData["uniqueID"] as? String ?? ""
+                    let groupName = groupData["groupName"] as? String ?? ""
+                    self.groups.append(GroupsModel(id: uniqueID, groupName: groupName, selected: 0))
+                }
+                
+                print(self.groups)
+                self.vwCollect.reloadData()
+                self.onAppear()
             } else {
                 print("Document does not exist")
             }
-            print(self.groups)
-            self.vwCollect.reloadData()
         }
     }
+    
+    func updateMenuGroups(id: String) {
+        let db = Firestore.firestore()
+        self.startAnimating()
+        
+        // Prepare the array of groups to be saved
+        var groupArray: [[String: Any]] = []
+        
+        for group in groups {
+            let groupDict: [String: Any] = [
+                "uniqueID": group.id,
+                "groupName": group.groupName
+            ]
+            groupArray.append(groupDict)
+        }
+        
+        // Update the document with the new array of groups
+        let updatedData: [String: Any] = ["groups": groupArray]
+        print(updatedData)
+        db.collection("groupsNames").document(id).setData(updatedData) { error in
+            self.stopAnimating()
+            if let error = error {
+                print("Error updating document with ID \(id): \(error.localizedDescription)")
+            } else {
+                print("Document with ID \(id) successfully updated!")
+            }
+        }
+    }
+
 }

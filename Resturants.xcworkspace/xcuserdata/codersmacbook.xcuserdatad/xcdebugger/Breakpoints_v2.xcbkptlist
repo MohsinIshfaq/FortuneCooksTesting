@@ -799,22 +799,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "C68EEC02-07DB-479D-A9C3-7E25E4E0C7AF"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Resturants/Screens/View/Main/ProfileTab/ManageInfoVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "387"
-            endingLineNumber = "387"
-            landmarkName = "addLocationOfResturant()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "1B4C8C86-1D55-46C4-AAE6-4D0468BD542E"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -822,10 +806,56 @@
             filePath = "Resturants/Screens/View/Main/ProfileTab/ManageMenuVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
             landmarkName = "ontapCreate(_:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DDE9D75F-0EFC-4E19-A421-5C26C5B8B803"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Resturants/Screens/View/Main/ProfileTab/ManageMenuVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "287"
+            endingLineNumber = "287"
+            landmarkName = "updateMenuGroups(id:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "DDE9D75F-0EFC-4E19-A421-5C26C5B8B803 - 2a98b410570ee7f4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Resturants.ManageMenuVC.updateMenuGroups(id: Swift.String) -&gt; ()"
+                  moduleName = "Resturants"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/codersmacbook/Documents/FortuneCooksIOS/Resturants/Screens/View/Main/ProfileTab/ManageMenuVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "287"
+                  endingLineNumber = "287">
+               </Location>
+               <Location
+                  uuid = "DDE9D75F-0EFC-4E19-A421-5C26C5B8B803 - 37960a44f1bcf0bd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Resturants.ManageMenuVC.updateMenuGroups(id: Swift.String) -&gt; ()"
+                  moduleName = "Resturants"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/codersmacbook/Documents/FortuneCooksIOS/Resturants/Screens/View/Main/ProfileTab/ManageMenuVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "287"
+                  endingLineNumber = "287">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
