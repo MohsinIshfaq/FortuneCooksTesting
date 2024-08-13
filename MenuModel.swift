@@ -48,3 +48,26 @@ struct GroupsModel {
         ]
     }
 }
+
+
+struct GroupsItemModel {
+    let id         : String
+    let title      : String
+    let img        : String
+    let descrip    : String
+    let price      : String
+    let currency   : String
+    let mostLiked  : String
+    
+    func toDictionary() -> [String: Any] {
+        return [
+            "uniqueID"    : id,
+            "title"       : title,
+            "img"         : img,
+            "description" : descrip,
+            "price"       : price,
+            "currency"    : currency,
+            "mostLiked"   : mostLiked,
+        ]
+    }
+}

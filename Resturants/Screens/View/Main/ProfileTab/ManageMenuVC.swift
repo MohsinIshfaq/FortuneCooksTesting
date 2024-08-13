@@ -31,6 +31,7 @@ class ManageMenuVC: UIViewController {
     var location : RestaurantLocation?     = nil
     var groups: [GroupsModel]              = []
     let uniqueID = UUID().uuidString
+    var groupItems: [GroupsItemModel?]    = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,6 +79,8 @@ class ManageMenuVC: UIViewController {
     @IBAction func ontapAddItem(_ sender: UIButton){
         if !(selectedUniqueID == "") {
             let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "AddORUpdateItemVC") as! AddORUpdateItemVC
+            vc.id                       = selectedUniqueID
+            vc.addNewItem               = true
             vc.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc, animated: true)
         }
@@ -184,11 +187,19 @@ extension ManageMenuVC{
 //MARK: - Table View {}
 extension ManageMenuVC: UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return groupItems.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: MenuDishTCell.identifier, for: indexPath) as? MenuDishTCell
+        cell?.lblName.text      = groupItems[indexPath.row]?.title ?? ""
+        cell?.lblDescrip.text   = groupItems[indexPath.row]?.descrip ?? ""
+        cell?.lblMostLiked.text = "#\(groupItems[indexPath.row]?.mostLiked ?? "") most liked"
+        DispatchQueue.main.async {
+            if let profileURL = self.groupItems[indexPath.row]?.img, let urlProfile1 = URL(string: profileURL) {
+                cell?.imgDish.sd_setImage(with: urlProfile1)
+            }
+        }
         return cell!
     }
     
@@ -228,6 +239,7 @@ extension ManageMenuVC: UICollectionViewDelegate , UICollectionViewDataSource {
         groups[indexPath.row].selected = 1
         selectedMenuIndex = indexPath.row
         self.selectedUniqueID = groups[indexPath.row].id
+        self.fetchGroupItems()
         
         // Reload the collection view to reflect the changes (optional)
         collectionView.reloadData()
@@ -295,5 +307,39 @@ extension ManageMenuVC {
             }
         }
     }
+    
+    func fetchGroupItems() {
+        self.startAnimating()
+        let db = Firestore.firestore()
+        
+        let collectionPath = "group_Items/\(self.selectedUniqueID)/Items"
+        db.collection(collectionPath).getDocuments { (querySnapshot, error) in
+            self.stopAnimating()
+            
+            if let error = error {
+                print("Error getting documents: \(error.localizedDescription)")
+            } else if let documents = querySnapshot?.documents, !documents.isEmpty {
+                // If documents exist, process them
+                for document in documents {
+                    let data = document.data()
+                    let id           = data["uniqueID"] as? String ?? ""
+                    let title        = data["title"] as? String ?? ""
+                    let img          = data["img"] as? String ?? ""
+                    let description  = data["description"] as? String ?? ""
+                    let price        = data["price"] as? String ?? ""
+                    let currency     = data["currency"] as? String ?? ""
+                    let mostLiked    = data["mostLiked"] as? String ?? ""
+                    
+                    self.groupItems.append(GroupsItemModel(id: id, title: title, img: img, descrip: description, price: price, currency: currency, mostLiked: mostLiked))
+                }
+                self.vwTblView.reloadData()
+            } else {
+                // No documents exist in the collection
+                print("No items found for this group.")
+            }
+        }
+    }
+
+
 
 }
