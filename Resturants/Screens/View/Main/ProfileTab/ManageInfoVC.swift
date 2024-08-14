@@ -407,9 +407,14 @@ extension ManageInfoVC  {
         let db = Firestore.firestore()
         self.startAnimating()
         
-        let data: [String: Any] = [
+        let group: [String: Any] = [
             "uniqueID": uniqueID,
             "groupName": groupName
+        ]
+        
+        // Creating an array of groups, even if it's just one for now
+        let data: [String: Any] = [
+            "groups": [group] // Storing the group in an array
         ]
         
         db.collection("groupsNames").document(id).setData(data) { error in
@@ -424,6 +429,7 @@ extension ManageInfoVC  {
             }
         }
     }
+
     
     func UpdateLocation() {
         self.startAnimating()

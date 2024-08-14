@@ -11077,7 +11077,7 @@ platform be detailed.</string>
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="2K8-p5-ARm">
-                                                <rect key="frame" x="16" y="1" width="361" height="693.33333333333337"/>
+                                                <rect key="frame" x="16" y="1" width="361" height="696"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Wx-eD-CAr">
                                                         <rect key="frame" x="0.0" y="0.0" width="361" height="180"/>
@@ -11119,16 +11119,16 @@ platform be detailed.</string>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="UKO-v1-rQw">
-                                                        <rect key="frame" x="0.0" y="192" width="361" height="83.333333333333314"/>
+                                                        <rect key="frame" x="0.0" y="192" width="361" height="84"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bnd-Iv-BV0">
-                                                                <rect key="frame" x="0.0" y="0.0" width="361" height="16.333333333333332"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="361" height="17"/>
                                                                 <fontDescription key="fontDescription" name="Inter-Regular_Medium" family="Inter" pointSize="14"/>
                                                                 <color key="textColor" name="ColorWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="71w-rK-HlZ">
-                                                                <rect key="frame" x="0.0" y="28.333333333333314" width="361" height="55"/>
+                                                                <rect key="frame" x="0.0" y="29" width="361" height="55"/>
                                                                 <subviews>
                                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title of the video" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jGp-xI-hTI">
                                                                         <rect key="frame" x="16" y="0.0" width="329" height="55"/>
@@ -11166,16 +11166,16 @@ platform be detailed.</string>
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="b9c-9N-zSQ">
-                                                        <rect key="frame" x="0.0" y="287.33333333333331" width="361" height="148.33333333333331"/>
+                                                        <rect key="frame" x="0.0" y="288" width="361" height="149"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jNl-vM-qmo">
-                                                                <rect key="frame" x="0.0" y="0.0" width="361" height="16.333333333333332"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="361" height="17"/>
                                                                 <fontDescription key="fontDescription" name="Inter-Regular_Medium" family="Inter" pointSize="14"/>
                                                                 <color key="textColor" name="ColorWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VNG-tm-rf6">
-                                                                <rect key="frame" x="0.0" y="28.333333333333371" width="361" height="120"/>
+                                                                <rect key="frame" x="0.0" y="29" width="361" height="120"/>
                                                                 <subviews>
                                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Write Here" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="P54-3e-oBb">
                                                                         <rect key="frame" x="16" y="0.0" width="329" height="120"/>
@@ -11208,16 +11208,16 @@ platform be detailed.</string>
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="X6w-Jd-vSj">
-                                                        <rect key="frame" x="0.0" y="447.66666666666663" width="361" height="83.333333333333371"/>
+                                                        <rect key="frame" x="0.0" y="449" width="361" height="84"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BCS-rr-hJZ">
-                                                                <rect key="frame" x="0.0" y="0.0" width="361" height="16.333333333333332"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="361" height="17"/>
                                                                 <fontDescription key="fontDescription" name="Inter-Regular_Medium" family="Inter" pointSize="14"/>
                                                                 <color key="textColor" name="ColorWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fco-Vb-OaH">
-                                                                <rect key="frame" x="0.0" y="28.333333333333371" width="361" height="55"/>
+                                                                <rect key="frame" x="0.0" y="29" width="361" height="55"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="hOi-D4-ytG">
                                                                         <rect key="frame" x="16" y="0.0" width="299" height="55"/>
@@ -11227,7 +11227,7 @@ platform be detailed.</string>
                                                                                 <color key="tintColor" name="ColorLightGray"/>
                                                                                 <color key="textColor" name="ColorWhite"/>
                                                                                 <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="14"/>
-                                                                                <textInputTraits key="textInputTraits"/>
+                                                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                                                 <userDefinedRuntimeAttributes>
                                                                                     <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
                                                                                         <color key="value" name="ColorLightGray"/>
@@ -11300,16 +11300,16 @@ platform be detailed.</string>
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="yBM-jz-2ub">
-                                                        <rect key="frame" x="0.0" y="543" width="361" height="83.333333333333371"/>
+                                                        <rect key="frame" x="0.0" y="545" width="361" height="84"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Most liked" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mQr-o6-bKP">
-                                                                <rect key="frame" x="0.0" y="0.0" width="361" height="16.333333333333332"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="361" height="17"/>
                                                                 <fontDescription key="fontDescription" name="Inter-Regular_Medium" family="Inter" pointSize="14"/>
                                                                 <color key="textColor" name="ColorWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZP7-zW-ZQb">
-                                                                <rect key="frame" x="0.0" y="28.333333333333371" width="361" height="55"/>
+                                                                <rect key="frame" x="0.0" y="29" width="361" height="55"/>
                                                                 <subviews>
                                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="popular product" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1GD-D7-yBz">
                                                                         <rect key="frame" x="16" y="0.0" width="329" height="55"/>
@@ -11365,7 +11365,7 @@ platform be detailed.</string>
                                                         </subviews>
                                                     </stackView>
                                                     <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="M7B-Le-pE3">
-                                                        <rect key="frame" x="0.0" y="632.33333333333337" width="361" height="67"/>
+                                                        <rect key="frame" x="0.0" y="635" width="361" height="67"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="List Number" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ayl-X2-bgN">
                                                                 <rect key="frame" x="0.0" y="0.0" width="361" height="0.0"/>
@@ -11430,7 +11430,7 @@ platform be detailed.</string>
                                                         </subviews>
                                                     </stackView>
                                                     <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="vZd-s6-dRK">
-                                                        <rect key="frame" x="0.0" y="632.33333333333337" width="361" height="67"/>
+                                                        <rect key="frame" x="0.0" y="635" width="361" height="67"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qJe-7y-r6K">
                                                                 <rect key="frame" x="0.0" y="0.0" width="361" height="0.0"/>
@@ -11495,7 +11495,7 @@ platform be detailed.</string>
                                                         </subviews>
                                                     </stackView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oRv-Fo-QPh">
-                                                        <rect key="frame" x="0.0" y="638.33333333333337" width="361" height="55"/>
+                                                        <rect key="frame" x="0.0" y="641" width="361" height="55"/>
                                                         <color key="backgroundColor" name="ColorWhite"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="55" id="oZE-fq-Xqh"/>
@@ -11591,7 +11591,7 @@ platform be detailed.</string>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="plus.app.fill" catalog="system" width="128" height="114"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
-        <image name="user" width="24.333333969116211" height="24"/>
+        <image name="user" width="24" height="24"/>
         <image name="user-block" width="24" height="24"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <namedColor name="AccentColor">

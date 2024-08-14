@@ -36,7 +36,6 @@ class ManageMenuVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         onLoad()
-//        menuGroups()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -150,7 +149,6 @@ extension ManageMenuVC{
     
     func onLoad() {
         setupCollectionView()
-        getMenuGroup(id: location?.id ?? "")
     }
     
     func setupCollectionView(){
@@ -165,22 +163,8 @@ extension ManageMenuVC{
     
     func onAppear() {
         self.navigationItem.title  = "Vnista Pizza"
-        
-        if groups.count <= 1 {
-            btnCreate.isHidden    = true
-            btnCreateGrp.isHidden = false
-            btnAddItem.isHidden   = true
-            stackEdit.isHidden    = false
-            stackGrpNm.isHidden   = true
-            stackListNum.isHidden = true
-        }
-        else{
-            btnCreate.isHidden    = true
-            btnCreateGrp.isHidden = false
-            btnAddItem.isHidden   = false
-            stackGrpNm.isHidden   = true
-            stackListNum.isHidden = true
-        }
+        getMenuGroup(id: location?.id ?? "")
+       
     }
 }
 
@@ -231,6 +215,7 @@ extension ManageMenuVC: UICollectionViewDelegate , UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        groupItems.removeAll()
         for i in 0..<groups.count {
             groups[i].selected = 0
         }
@@ -243,6 +228,7 @@ extension ManageMenuVC: UICollectionViewDelegate , UICollectionViewDataSource {
         
         // Reload the collection view to reflect the changes (optional)
         collectionView.reloadData()
+        vwTblView.reloadData()
     }
     
 }
@@ -251,6 +237,7 @@ extension ManageMenuVC: UICollectionViewDelegate , UICollectionViewDataSource {
 extension ManageMenuVC {
 
     func getMenuGroup(id: String) {
+        self.groups.removeAll()
         let db = Firestore.firestore()
         self.startAnimating()
         
@@ -273,7 +260,21 @@ extension ManageMenuVC {
                 
                 print(self.groups)
                 self.vwCollect.reloadData()
-                self.onAppear()
+                if self.groups.count <= 1 {
+                    self.btnCreate.isHidden    = true
+                    self.btnCreateGrp.isHidden = false
+                    self.btnAddItem.isHidden   = true
+                    self.stackEdit.isHidden    = false
+                    self.stackGrpNm.isHidden   = true
+                    self.stackListNum.isHidden = true
+                }
+                else{
+                    self.btnCreate.isHidden    = true
+                    self.btnCreateGrp.isHidden = false
+                    self.btnAddItem.isHidden   = false
+                    self.stackGrpNm.isHidden   = true
+                    self.stackListNum.isHidden = true
+                }
             } else {
                 print("Document does not exist")
             }

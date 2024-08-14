@@ -30,8 +30,6 @@ class AddORUpdateItemVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-       
     }
     
     @IBAction func ontapSave(_ sender: UIButton){
