@@ -21,19 +21,32 @@ class AddORUpdateItemVC: UIViewController {
     @IBOutlet weak var txtListNumber : UITextField!
     @IBOutlet weak var txtGroup      : UITextField!
     
-    var arr = [1,2,3]
-    var id  = ""
-    let reachability = try! Reachability()
+    var arr            = [1,2,3]
+    var id             = ""
+    let reachability   = try! Reachability()
     var newSelectedImg = ""
     var addNewItem     = false
-    let uniqueID = UUID().uuidString
+    let uniqueID       = UUID().uuidString
+    var GroupsItem: GroupsItemModel? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if !addNewItem{
+            setupView()
+        }
+    }
+    
     @IBAction func ontapSave(_ sender: UIButton){
-       addgroupItem()
+        if addNewItem{
+            addgroupItem()
+        }
+        else{
+            updateGroupItem()
+        }
     }
     
     @IBAction func ontapGetImage(_ sender: UIButton){
@@ -158,5 +171,59 @@ extension AddORUpdateItemVC {
             }
         }
     }
+    
+    func updateGroupItem() {
+        self.startAnimating()
+        let db = Firestore.firestore()
+        let restaurantLocation = GroupsItemModel(id: addNewItem ? self.uniqueID : GroupsItem?.id ?? "", title: self.txtName.text!, img: self.newSelectedImg, descrip: txtDescrip.text!, price: txtPrice.text!, currency: txtCurrency.text!, mostLiked: txtMostLiked.text!)
+        
+        let collectionPath = "group_Items/\(self.id)/Items"
+        
+        // Query for the document where location.id matches self.id
+        db.collection(collectionPath)
+            .whereField("uniqueID", isEqualTo: self.GroupsItem?.id ?? "")
+            .getDocuments { (querySnapshot, error) in
+                if let error = error {
+                    print("Error finding location: \(error.localizedDescription)")
+                    self.stopAnimating()
+                    return
+                }
+                
+                guard let documents = querySnapshot?.documents, let document = documents.first else {
+                    print("Document not found")
+                    self.stopAnimating()
+                    return
+                }
+                
+                // Update the document with the new data
+                document.reference.updateData(restaurantLocation.toDictionary()) { error in
+                    self.stopAnimating()
+                    if let error = error {
+                        print("Error updating location: \(error.localizedDescription)")
+                    } else {
+                        print("Location successfully updated!")
+                        self.popup()
+                    }
+                }
+            }
+    }
+
 }
 
+//MARK: - Setup View {}
+extension AddORUpdateItemVC {
+    
+    func setupView(){
+        DispatchQueue.main.async {
+            if let profileURL = self.GroupsItem?.img, let urlProfile1 = URL(string: profileURL) {
+                self.imgItem?.sd_setImage(with: urlProfile1)
+            }
+        }
+        self.txtName.text      = GroupsItem?.title ?? ""
+        self.txtDescrip.text   = GroupsItem?.descrip ?? ""
+        self.txtPrice.text     = GroupsItem?.price ?? ""
+        self.txtCurrency.text  = GroupsItem?.currency ?? ""
+        self.txtMostLiked.text = GroupsItem?.mostLiked ?? ""
+        self.newSelectedImg    = self.GroupsItem?.img ?? ""
+    }
+}

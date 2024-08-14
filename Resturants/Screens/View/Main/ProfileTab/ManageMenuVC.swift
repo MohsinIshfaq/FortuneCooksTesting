@@ -164,6 +164,8 @@ extension ManageMenuVC{
     func onAppear() {
         self.navigationItem.title  = "Vnista Pizza"
         getMenuGroup(id: location?.id ?? "")
+        groupItems.removeAll()
+        vwTblView.reloadData()
        
     }
 }
@@ -184,11 +186,24 @@ extension ManageMenuVC: UITableViewDelegate , UITableViewDataSource {
                 cell?.imgDish.sd_setImage(with: urlProfile1)
             }
         }
+        cell?.btnEdit.addTarget(self, action: #selector(ontapEditItem(_ :)), for: .touchUpInside)
+        cell?.btnEdit.tag = indexPath.row
         return cell!
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 169
+    }
+    
+    @objc func ontapEditItem(_ sender: UIButton){
+        if !(selectedUniqueID == "") {
+            let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "AddORUpdateItemVC") as! AddORUpdateItemVC
+            vc.id                       = selectedUniqueID
+            vc.addNewItem               = false
+            vc.GroupsItem               = self.groupItems[sender.tag]
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
 }
