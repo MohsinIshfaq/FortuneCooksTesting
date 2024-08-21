@@ -28,9 +28,13 @@ class AddORUpdateItemVC: UIViewController {
     var addNewItem     = false
     let uniqueID       = UUID().uuidString
     var GroupsItem: GroupsItemModel? = nil
+    let placeholder    = "Enter Description..."
+    let placeholderColor = UIColor.lightGray
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        txtDescrip.delegate   = self
+        setupPlaceholder()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -210,8 +214,31 @@ extension AddORUpdateItemVC {
 
 }
 
+// MARK: - UITextViewDelegate {}
+extension AddORUpdateItemVC : UITextViewDelegate{
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == placeholderColor {
+            textView.text      = nil
+            textView.textColor = UIColor.white
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            setupPlaceholder()
+        }
+    }
+}
+
+
 //MARK: - Setup View {}
 extension AddORUpdateItemVC {
+    
+    func setupPlaceholder() {
+        txtDescrip.text      = placeholder
+        txtDescrip.textColor = placeholderColor
+    }
     
     func setupView(){
         DispatchQueue.main.async {

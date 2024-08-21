@@ -38,6 +38,7 @@ class ProfileVC: BaseClass , UpdateUserProfileFrmSettingDelegate{
     @IBOutlet weak var tblMenuHeightCons       : NSLayoutConstraint!
     @IBOutlet weak var btnMore                 : UIButton!
     @IBOutlet weak var vwAddBio                : UIView!
+    @IBOutlet weak var vwCollect               : UICollectionView!
     
     @IBOutlet weak var lblChannelName          : UILabel!
     @IBOutlet weak var lblChannelType          : UILabel!
@@ -93,6 +94,7 @@ class ProfileVC: BaseClass , UpdateUserProfileFrmSettingDelegate{
     var isNonOwner      : Bool              = false  //non authenticated user come here by tag users section
     var nonProfileModel : TagUsers?         = nil
     var isfirstTime     : Bool              = false
+    var groups: [GroupsModel]               = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -353,6 +355,7 @@ extension ProfileVC {
                     print("Failed to fetch user data.")
                 }
             }
+            getMenuGroup(id: "31BDC636-879D-4260-A2A9-30A69562C6AB")
         }
         else{
             showAlertCOmpletion(withTitle: "", message: "Access to the profile screen is restricted due to authentication requirements.") { status in
@@ -388,6 +391,10 @@ extension ProfileVC {
         tblMenu.register(MenuTCell.nib, forCellReuseIdentifier: MenuTCell.identifier)
         tblMenu.delegate           = self
         tblMenu.dataSource         = self
+        
+        vwCollect.register(MenuCCell.nib, forCellWithReuseIdentifier: MenuCCell.identifier)
+        vwCollect.delegate   = self
+        vwCollect.dataSource = self
     }
     func onAppear() {
         if isfirstTime {
@@ -783,6 +790,9 @@ extension ProfileVC : UICollectionViewDelegate , UICollectionViewDataSource , UI
             updateCollectionViewHeight()
             return reelsModel?.count ?? 0
         }
+        else if collectionView == vwCollect {
+            return groups.count
+        }
         else{
            return 3
         }
@@ -802,6 +812,20 @@ extension ProfileVC : UICollectionViewDelegate , UICollectionViewDataSource , UI
             }
             return cell
         }
+        else if collectionView == vwCollect {
+            let cell  = vwCollect.dequeueReusableCell(withReuseIdentifier: MenuCCell.identifier, for: indexPath) as! MenuCCell
+            cell.vwBack.isHidden = false
+            cell.lbl.text = groups[indexPath.row].groupName
+            if groups[indexPath.row].selected == 0 {
+                cell.vwBack.backgroundColor = UIColor.ColorDarkBlack
+                cell.lbl.textColor          = UIColor.white
+            }
+            else{
+                cell.vwBack.backgroundColor = UIColor.white
+                cell.lbl.textColor          = UIColor.black
+            }
+            return cell
+        }
         else{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SwiftCCell.identifier, for: indexPath) as! SwiftCCell
             return cell
@@ -816,10 +840,27 @@ extension ProfileVC : UICollectionViewDelegate , UICollectionViewDataSource , UI
             vc?.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc!, animated: true)
         }
+        else if collectionView == vwCollect {
+           // groupItems.removeAll()
+            for i in 0..<groups.count {
+                groups[i].selected = 0
+            }
+            
+            // Set the selected element to 1
+            groups[indexPath.row].selected = 1
+//            selectedMenuIndex = indexPath.row
+//            self.selectedUniqueID = groups[indexPath.row].id
+//            self.fetchGroupItems()
+            
+            // Reload the collection view to reflect the changes (optional)
+            collectionView.reloadData()
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (collectionView.frame.size.width / 2) - 10, height: 300)
+       
+        return  collectionView != vwCollect ? CGSize(width: (collectionView.frame.size.width / 2) - 10, height: 300) : CGSize(width: 100, height: 40)
+        
     }
     
 }
@@ -961,7 +1002,6 @@ extension ProfileVC {
             self.reelsAndVideosCollectionMaking()
         }
     }
-    
     func uploadCoverImg(_ img: UIImage, userID: String) {
         self.startAnimating()
         if reachability.isReachable {
@@ -1121,6 +1161,34 @@ extension ProfileVC {
                 self.stopAnimating()
                 print("tagPersons successfully updated in Firestore")
                 self.dismiss(animated: true)
+            }
+        }
+    }
+    
+    func getMenuGroup(id: String) {
+        self.groups.removeAll()
+        let db = Firestore.firestore()
+        self.startAnimating()
+        
+        db.collection("groupsNames").document(id).getDocument { (document, error) in
+            self.stopAnimating()
+            if let error = error {
+                print("Error retrieving document: \(error.localizedDescription)")
+                return
+            }
+            
+            if let document = document, document.exists {
+                let data = document.data()
+                let groupsData = data?["groups"] as? [[String: Any]] ?? []
+                
+                for groupData in groupsData {
+                    let uniqueID = groupData["uniqueID"] as? String ?? ""
+                    let groupName = groupData["groupName"] as? String ?? ""
+                    self.groups.append(GroupsModel(id: uniqueID, groupName: groupName, selected: 0))
+                }
+                self.vwCollect.reloadData()
+            } else {
+                print("Document does not exist")
             }
         }
     }

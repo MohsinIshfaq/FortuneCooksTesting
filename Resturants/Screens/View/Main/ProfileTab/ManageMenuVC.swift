@@ -135,7 +135,7 @@ class ManageMenuVC: UIViewController {
             }
         }
         vwCollect.reloadData()
-        onAppear()
+       // onAppear()
         txtGrpNm.text   = ""
         txtListNum.text = ""
         self.selectedMenuIndex  = 0
@@ -304,7 +304,7 @@ extension ManageMenuVC {
         var groupArray: [[String: Any]] = []
         
         for group in groups {
-            let groupDict: [String: Any] = [
+            var groupDict: [String: Any] = [
                 "uniqueID": group.id,
                 "groupName": group.groupName
             ]
@@ -320,6 +320,7 @@ extension ManageMenuVC {
                 print("Error updating document with ID \(id): \(error.localizedDescription)")
             } else {
                 print("Document with ID \(id) successfully updated!")
+                self.onAppear()
             }
         }
     }
