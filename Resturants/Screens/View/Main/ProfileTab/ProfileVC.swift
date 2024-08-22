@@ -95,6 +95,7 @@ class ProfileVC: BaseClass , UpdateUserProfileFrmSettingDelegate{
     var nonProfileModel : TagUsers?         = nil
     var isfirstTime     : Bool              = false
     var groups: [GroupsModel]               = []
+    var groupItems: [GroupsItemModel?]      = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -355,7 +356,6 @@ extension ProfileVC {
                     print("Failed to fetch user data.")
                 }
             }
-            getMenuGroup(id: "31BDC636-879D-4260-A2A9-30A69562C6AB")
         }
         else{
             showAlertCOmpletion(withTitle: "", message: "Access to the profile screen is restricted due to authentication requirements.") { status in
@@ -421,6 +421,9 @@ extension ProfileVC {
                     }
                 }
             }
+        }
+        if UserDefault.isAuthenticated {
+            getMenuGroup(id: "821ACC7A-D858-47B3-9E71-187DC482CE21")
         }
         vwVideo.isHidden         = false
         vwSwift.isHidden         = true
@@ -677,8 +680,8 @@ extension ProfileVC : UITableViewDelegate , UITableViewDataSource {
             }
         }
         if tableView == tblMenu {
-            tblMenuHeightCons.constant = CGFloat(arr.count * 105)
-            return arr.count
+            tblMenuHeightCons.constant = CGFloat(groupItems.count * 170)
+            return groupItems.count
         }
         else{
             tblVideosCollHeightCons.constant = CGFloat(arr.count * 105)
@@ -744,6 +747,14 @@ extension ProfileVC : UITableViewDelegate , UITableViewDataSource {
         }
         if tableView == tblMenu {
             let cell = tableView.dequeueReusableCell(withIdentifier: MenuTCell.identifier, for: indexPath) as! MenuTCell
+            DispatchQueue.main.async {
+                if let profileURL = self.groupItems[indexPath.row]?.img, let urlProfile1 = URL(string: profileURL) {
+                    cell.imgMain.sd_setImage(with: urlProfile1)
+                }
+            }
+            cell.lblName.text    = groupItems[indexPath.row]?.title ?? ""
+            cell.lblDescrip.text = groupItems[indexPath.row]?.descrip ?? ""
+            cell.lblPrice.text   = "\(groupItems[indexPath.row]?.price ?? "") \(groupItems[indexPath.row]?.currency ?? "")"
             return cell
         }
         else{
@@ -758,6 +769,7 @@ extension ProfileVC : UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView == tblMenu {
             let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "MenuDetailPopupVC") as! MenuDetailPopupVC
+            vc.selectedItem = groupItems[indexPath.row]
             self.present(vc, animated: true)
         }
         else if tableView == tblVIdeos {
@@ -841,7 +853,7 @@ extension ProfileVC : UICollectionViewDelegate , UICollectionViewDataSource , UI
             self.navigationController?.pushViewController(vc!, animated: true)
         }
         else if collectionView == vwCollect {
-           // groupItems.removeAll()
+            groupItems.removeAll()
             for i in 0..<groups.count {
                 groups[i].selected = 0
             }
@@ -851,6 +863,7 @@ extension ProfileVC : UICollectionViewDelegate , UICollectionViewDataSource , UI
 //            selectedMenuIndex = indexPath.row
 //            self.selectedUniqueID = groups[indexPath.row].id
 //            self.fetchGroupItems()
+            self.fetchGroupItems(selectedId: groups[indexPath.row].id)
             
             // Reload the collection view to reflect the changes (optional)
             collectionView.reloadData()
@@ -1189,6 +1202,38 @@ extension ProfileVC {
                 self.vwCollect.reloadData()
             } else {
                 print("Document does not exist")
+            }
+        }
+    }
+    
+    func fetchGroupItems(selectedId: String) {
+        self.startAnimating()
+        let db = Firestore.firestore()
+        
+        let collectionPath = "group_Items/\(selectedId)/Items"
+        db.collection(collectionPath).getDocuments { (querySnapshot, error) in
+            self.stopAnimating()
+            
+            if let error = error {
+                print("Error getting documents: \(error.localizedDescription)")
+            } else if let documents = querySnapshot?.documents, !documents.isEmpty {
+                // If documents exist, process them
+                for document in documents {
+                    let data = document.data()
+                    let id           = data["uniqueID"] as? String ?? ""
+                    let title        = data["title"] as? String ?? ""
+                    let img          = data["img"] as? String ?? ""
+                    let description  = data["description"] as? String ?? ""
+                    let price        = data["price"] as? String ?? ""
+                    let currency     = data["currency"] as? String ?? ""
+                    let mostLiked    = data["mostLiked"] as? String ?? ""
+                    
+                    self.groupItems.append(GroupsItemModel(id: id, title: title, img: img, descrip: description, price: price, currency: currency, mostLiked: mostLiked))
+                }
+                self.tblMenu.reloadData()
+            } else {
+                // No documents exist in the collection
+                print("No items found for this group.")
             }
         }
     }

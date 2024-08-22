@@ -21,7 +21,7 @@ class AddORUpdateItemVC: UIViewController {
     @IBOutlet weak var txtListNumber : UITextField!
     @IBOutlet weak var txtGroup      : UITextField!
     
-    var arr            = [1,2,3]
+    var totalCount:Int = 0
     var id             = ""
     let reachability   = try! Reachability()
     var newSelectedImg = ""
@@ -78,7 +78,7 @@ class AddORUpdateItemVC: UIViewController {
             self.txtMostLiked.text = action.title // Update text field with selected option title
         }
         var menuChildren: [UIMenuElement] = []
-        for i in 1 ... arr.count {
+        for i in 1 ... totalCount {
             menuChildren.append(UIAction(title: "\(i)", handler: actionClosure))
         }
         sender.menu = UIMenu(options: .displayInline, children: menuChildren)
@@ -90,7 +90,7 @@ class AddORUpdateItemVC: UIViewController {
             self.txtListNumber.text = action.title // Update text field with selected option title
         }
         var menuChildren: [UIMenuElement] = []
-        for i in 0 ..< arr.count {
+        for i in 0 ..< totalCount {
             menuChildren.append(UIAction(title: "\(i)", handler: actionClosure))
         }
         sender.menu = UIMenu(options: .displayInline, children: menuChildren)
@@ -102,7 +102,7 @@ class AddORUpdateItemVC: UIViewController {
             self.txtGroup.text = action.title // Update text field with selected option title
         }
         var menuChildren: [UIMenuElement] = []
-        for i in 0 ..< arr.count {
+        for i in 0 ..< totalCount {
             menuChildren.append(UIAction(title: "\(i)", handler: actionClosure))
         }
         sender.menu = UIMenu(options: .displayInline, children: menuChildren)

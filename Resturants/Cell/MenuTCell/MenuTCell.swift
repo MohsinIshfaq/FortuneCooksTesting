@@ -9,6 +9,11 @@ import UIKit
 
 class MenuTCell: UITableViewCell {
 
+    @IBOutlet weak var lblName     : UILabel!
+    @IBOutlet weak var lblDescrip  : UILabel!
+    @IBOutlet weak var lblPrice    : UILabel!
+    @IBOutlet weak var imgMain     : UIImageView!
+    
     //MARK: - Variables and Properties
     static var identifier: String { return String(describing: self) }
     static var nib: UINib { return UINib(nibName: identifier, bundle: nil) }

@@ -5956,13 +5956,13 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="jTf-db-gW1">
-                                                        <rect key="frame" x="0.0" y="0.0" width="393" height="234"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="393" height="216"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hSM-TL-qJO">
-                                                                <rect key="frame" x="0.0" y="0.0" width="393" height="234"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="393" height="216"/>
                                                                 <subviews>
                                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="oS2-C5-CO6">
-                                                                        <rect key="frame" x="8" y="12" width="385" height="60"/>
+                                                                        <rect key="frame" x="8" y="0.0" width="385" height="60"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="60" id="72Z-Pv-t6q"/>
@@ -5976,7 +5976,7 @@
                                                                         <cells/>
                                                                     </collectionView>
                                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="cKX-h6-qaX">
-                                                                        <rect key="frame" x="0.0" y="84" width="393" height="150"/>
+                                                                        <rect key="frame" x="0.0" y="66" width="393" height="150"/>
                                                                         <color key="backgroundColor" name="ColorBlack"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="150" id="N33-cD-tnH"/>
@@ -5987,9 +5987,9 @@
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="trailing" secondItem="cKX-h6-qaX" secondAttribute="trailing" id="1id-0G-CUi"/>
-                                                                    <constraint firstItem="oS2-C5-CO6" firstAttribute="top" secondItem="hSM-TL-qJO" secondAttribute="top" constant="12" id="KiV-Gc-Sp0"/>
+                                                                    <constraint firstItem="oS2-C5-CO6" firstAttribute="top" secondItem="hSM-TL-qJO" secondAttribute="top" id="KiV-Gc-Sp0"/>
                                                                     <constraint firstItem="cKX-h6-qaX" firstAttribute="leading" secondItem="hSM-TL-qJO" secondAttribute="leading" id="OrS-gG-BE8"/>
-                                                                    <constraint firstItem="cKX-h6-qaX" firstAttribute="top" secondItem="oS2-C5-CO6" secondAttribute="bottom" constant="12" id="Q7m-97-96q"/>
+                                                                    <constraint firstItem="cKX-h6-qaX" firstAttribute="top" secondItem="oS2-C5-CO6" secondAttribute="bottom" constant="6" id="Q7m-97-96q"/>
                                                                     <constraint firstAttribute="bottom" secondItem="cKX-h6-qaX" secondAttribute="bottom" id="Sf4-BF-H1u"/>
                                                                     <constraint firstItem="oS2-C5-CO6" firstAttribute="leading" secondItem="hSM-TL-qJO" secondAttribute="leading" constant="8" id="Th3-F7-cT2"/>
                                                                     <constraint firstAttribute="trailing" secondItem="oS2-C5-CO6" secondAttribute="trailing" id="dJE-My-4cz"/>
@@ -8219,6 +8219,12 @@ Only tap the link if you trust it's safe!</string>
                             <constraint firstAttribute="trailing" secondItem="PDw-4K-ubn" secondAttribute="trailing" id="qln-91-xwq"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="imgMain" destination="fnP-gX-W7G" id="jox-4Q-5OT"/>
+                        <outlet property="lblDescrip" destination="9aJ-cG-BkP" id="mkB-ZS-5da"/>
+                        <outlet property="lblName" destination="6z0-q2-YgM" id="Prr-x5-moj"/>
+                        <outlet property="lblPrice" destination="gM0-hj-ggx" id="AaH-Nj-ddH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ly9-22-Cwc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -11454,7 +11460,7 @@ platform be detailed.</string>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="plus.app.fill" catalog="system" width="128" height="114"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
-        <image name="user" width="24.333333969116211" height="24"/>
+        <image name="user" width="24" height="24"/>
         <image name="user-block" width="24" height="24"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <namedColor name="AccentColor">

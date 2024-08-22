@@ -78,6 +78,7 @@ class ManageMenuVC: UIViewController {
     @IBAction func ontapAddItem(_ sender: UIButton){
         if !(selectedUniqueID == "") {
             let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "AddORUpdateItemVC") as! AddORUpdateItemVC
+            vc.totalCount               = self.groupItems.count
             vc.id                       = selectedUniqueID
             vc.addNewItem               = true
             vc.hidesBottomBarWhenPushed = true
@@ -162,10 +163,12 @@ extension ManageMenuVC{
     }
     
     func onAppear() {
-        self.navigationItem.title  = "Vnista Pizza"
+        self.navigationItem.title  = "Add Item"
         getMenuGroup(id: location?.id ?? "")
         groupItems.removeAll()
         vwTblView.reloadData()
+        removeNavBackbuttonTitle()
+        
        
     }
 }
@@ -181,6 +184,7 @@ extension ManageMenuVC: UITableViewDelegate , UITableViewDataSource {
         cell?.lblName.text      = groupItems[indexPath.row]?.title ?? ""
         cell?.lblDescrip.text   = groupItems[indexPath.row]?.descrip ?? ""
         cell?.lblMostLiked.text = "#\(groupItems[indexPath.row]?.mostLiked ?? "") most liked"
+        cell?.lblSek.text       = "\(groupItems[indexPath.row]?.price ?? "") \(groupItems[indexPath.row]?.currency ?? "")"
         DispatchQueue.main.async {
             if let profileURL = self.groupItems[indexPath.row]?.img, let urlProfile1 = URL(string: profileURL) {
                 cell?.imgDish.sd_setImage(with: urlProfile1)
@@ -198,6 +202,7 @@ extension ManageMenuVC: UITableViewDelegate , UITableViewDataSource {
     @objc func ontapEditItem(_ sender: UIButton){
         if !(selectedUniqueID == "") {
             let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "AddORUpdateItemVC") as! AddORUpdateItemVC
+            vc.totalCount               = self.groupItems.count
             vc.id                       = selectedUniqueID
             vc.addNewItem               = false
             vc.GroupsItem               = self.groupItems[sender.tag]
@@ -295,7 +300,6 @@ extension ManageMenuVC {
             }
         }
     }
-    
     func updateMenuGroups(id: String) {
         let db = Firestore.firestore()
         self.startAnimating()
@@ -324,7 +328,6 @@ extension ManageMenuVC {
             }
         }
     }
-    
     func fetchGroupItems() {
         self.startAnimating()
         let db = Firestore.firestore()
@@ -356,7 +359,4 @@ extension ManageMenuVC {
             }
         }
     }
-
-
-
 }
