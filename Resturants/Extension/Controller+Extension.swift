@@ -53,7 +53,7 @@ extension UIViewController {
         // Split the input string into opening and closing times
         let times = timeRange.split(separator: "-")
         guard times.count == 2 else {
-            print("Invalid time range format")
+            Swift.print("Invalid time range format")
             return false
         }
         
@@ -62,7 +62,7 @@ extension UIViewController {
         
         guard let openTime = dateFormatter.date(from: openingTimeString),
               let closeTime = dateFormatter.date(from: closingTimeString) else {
-            print("Invalid time format")
+            Swift.print("Invalid time format")
             return false
         }
         
@@ -72,7 +72,7 @@ extension UIViewController {
         let currentMinute = calendar.component(.minute, from: currentDate)
         
         guard let currentTime = dateFormatter.date(from: String(format: "%02d:%02d", currentHour, currentMinute)) else {
-            print("Could not form current time")
+            Swift.print("Could not form current time")
             return false
         }
         
@@ -82,43 +82,55 @@ extension UIViewController {
             return false
         }
     }
-//    func isRestaurantOpen(timeRange: String) -> Bool {
-//        let times = timeRange.split(separator: "-").map { $0.trimmingCharacters(in: .whitespaces) }
-//        
-//        guard times.count == 2 else {
-//            print("Invalid time range format")
-//            return false
-//        }
-//        
-//        let openingTime = times[0]
-//        let closingTime = times[1]
-//        
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "HH:mm"
-//        
-//        guard let openTime = dateFormatter.date(from: openingTime),
-//              let closeTime = dateFormatter.date(from: closingTime) else {
-//            print("Invalid time format")
-//            return false
-//        }
-//        
-//        let currentDate = Date()
-//        let calendar = Calendar.current
-//        let currentHour = calendar.component(.hour, from: currentDate)
-//        let currentMinute = calendar.component(.minute, from: currentDate)
-//        
-//        guard let currentTime = dateFormatter.date(from: String(format: "%02d:%02d", currentHour, currentMinute)) else {
-//            print("Could not form current time")
-//            return false
-//        }
-//        
-//        if currentTime >= openTime && currentTime <= closeTime {
-//            return true
-//        } else {
-//            return false
-//        }
-//    }
     
+    func isOneHourOrLessLeft(timeRange: String) -> Bool {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        
+        // Remove any extra spaces in the time range
+        let trimmedRange = timeRange.replacingOccurrences(of: " ", with: "")
+        
+        // Split the input string into opening and closing times
+        let times = trimmedRange.split(separator: "-")
+        guard times.count == 2 else {
+            Swift.print("Invalid time range format")
+            return false
+        }
+        
+        let closingTimeString = String(times[1])
+        
+        guard let closeTime = dateFormatter.date(from: closingTimeString) else {
+            Swift.print("Invalid time format for closing time: \(closingTimeString)")
+            return false
+        }
+        
+        let currentDate = Date()
+        let calendar = Calendar.current
+        
+        // Get the current time components
+        let currentHour = calendar.component(.hour, from: currentDate)
+        let currentMinute = calendar.component(.minute, from: currentDate)
+        let currentTimeString = String(format: "%02d:%02d", currentHour, currentMinute)
+        
+        guard let currentTime = dateFormatter.date(from: currentTimeString) else {
+            Swift.print("Invalid time format for current time: \(currentTimeString)")
+            return false
+        }
+        
+        // Debug prints
+        Swift.print("Current time: \(currentTimeString)")
+        Swift.print("Closing time: \(closingTimeString)")
+        
+        // Calculate the time difference in minutes
+        let timeDifference = closeTime.timeIntervalSince(currentTime) / 60
+        
+        // Debug prints
+        Swift.print("Time difference in minutes: \(timeDifference)")
+        
+        // Return true if there is 60 minutes or less left before closing
+        return timeDifference <= 60 && timeDifference >= 0
+    }
+
     func getCurrentDayOfWeek() -> (String, Int) {
         let date = Date()
         let calendar = Calendar.current

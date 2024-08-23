@@ -77,13 +77,19 @@ class ManageInfoVC: UIViewController {
     
     @IBAction func ontapSave(_ sender: UIButton) {
         if isFromNewLocation {
-            if validateFields(email: txtEmail.text, web: txtWeb.text) {
+            if validateFields(email: txtEmail.text, web: txtWeb.text , name: txtChannelNm.text , descrip: txtViewBio.text , number: txtNumber.text , address: txtAddress.text , zipCode: txtZip.text , city: txtCity.text) && txtViewBio.text != "" {
                 addLocationOfResturant()
+            }
+            else{
+                self.showToast(message: "Bio is not valid.", seconds: 2, clr: .red)
             }
         }
         else{
-            if validateFields(email: txtEmail.text, web: txtWeb.text) {
+            if validateFields(email: txtEmail.text, web: txtWeb.text , name: txtChannelNm.text , descrip: txtViewBio.text , number: txtNumber.text , address: txtAddress.text , zipCode: txtZip.text , city: txtCity.text) && txtViewBio.text != "" {
                 UpdateLocation()
+            }
+            else{
+                self.showToast(message: "Bio is not valid.", seconds: 2, clr: .red)
             }
         }
     }
@@ -219,10 +225,10 @@ extension ManageInfoVC {
         return switchs ? "\(opening) - \(closing)" : "Closed"
     }
     
-    func validateFields(email: String?, web: String?) -> Bool  {
+    func validateFields(email: String?, web: String? , name: String? , descrip: String? , number: String? , address: String? , zipCode: String? , city: String?) -> Bool  {
         if let email = email, !email.isEmpty {
             guard "".isValidEmailRegex(email) else {
-                self.showToast(message: "Email is not valid", seconds: 2, clr: .red)
+                self.showToast(message: "Email is not valid.", seconds: 2, clr: .red)
                 print("Invalid email address")
                 return false
             }
@@ -230,9 +236,34 @@ extension ManageInfoVC {
         
         if let web = web, !web.isEmpty {
             guard "".isValidWebsite(url: web) else {
-                self.showToast(message: "web URL is not valid", seconds: 2, clr: .red)
+                self.showToast(message: "web URL is not valid.", seconds: 2, clr: .red)
                 return false
             }
+        }
+        
+        if let name = name , !name.isEmpty{
+            self.showToast(message: "channel name should'nt empty. ", seconds: 2, clr: .red)
+            return false
+        }
+        if let descrip = descrip , !descrip.isEmpty{
+            self.showToast(message: "Bio should'nt empty. ", seconds: 2, clr: .red)
+            return false
+        }
+        if let number = number , !number.isEmpty{
+            self.showToast(message: "number should'nt empty. ", seconds: 2, clr: .red)
+            return false
+        }
+        if let address = address , !address.isEmpty{
+            self.showToast(message: "Address should'nt empty. ", seconds: 2, clr: .red)
+            return false
+        }
+        if let zipCode = zipCode , !zipCode.isEmpty{
+            self.showToast(message: "ZipCode should'nt empty. ", seconds: 2, clr: .red)
+            return false
+        }
+        if let city = city , !city.isEmpty{
+            self.showToast(message: "City should'nt empty. ", seconds: 2, clr: .red)
+            return false
         }
         
         return true
@@ -249,45 +280,45 @@ extension ManageInfoVC {
         txtCity.text      = location?.City ?? ""
         txtAddress.text   = location?.address ?? ""
         if !(location?.timings?.isEmpty ?? false){
-            txtMondayOpening.text    = location?.timings?[0] == "Closed" ? "0:0" : splitTimeRange(location?.timings?[0] ?? "")?.0
-            txtMondayClosing.text    = location?.timings?[0] == "Closed" ? "0:0" : splitTimeRange(location?.timings?[0] ?? "")?.1
+            txtMondayOpening.text    = location?.timings?[0] == "Closed" ? "00:00" : splitTimeRange(location?.timings?[0] ?? "")?.0
+            txtMondayClosing.text    = location?.timings?[0] == "Closed" ? "00:00" : splitTimeRange(location?.timings?[0] ?? "")?.1
             lblMonday.isHidden    = location?.timings?[0] == "Closed" ? false : true
             stackMonday.isHidden  = location?.timings?[0] == "Closed" ? true : false
             switchMonday.isOn     = location?.timings?[0] == "Closed" ? false : true
             
-            txtTuesdayOpening.text   = location?.timings?[1] == "Closed" ? "0:0" : splitTimeRange(location?.timings?[1] ?? "")?.0
-            txtTuesdayClosing.text   = location?.timings?[1] == "Closed" ? "0:0" : splitTimeRange(location?.timings?[1] ?? "")?.1
+            txtTuesdayOpening.text   = location?.timings?[1] == "Closed" ? "00:00" : splitTimeRange(location?.timings?[1] ?? "")?.0
+            txtTuesdayClosing.text   = location?.timings?[1] == "Closed" ? "00:00" : splitTimeRange(location?.timings?[1] ?? "")?.1
             lblTuesday.isHidden   = location?.timings?[1] == "Closed" ? false : true
             stackTuesday.isHidden = location?.timings?[1] == "Closed" ? true : false
             switchTuesday.isOn    = location?.timings?[1] == "Closed" ? false : true
             
-            txtWednesdayOpening.text = location?.timings?[2] == "Closed" ? "0:0" : splitTimeRange(location?.timings?[2] ?? "")?.0
-            txtWednesdayClosing.text = location?.timings?[2] == "Closed" ? "0:0" : splitTimeRange(location?.timings?[2] ?? "")?.1
+            txtWednesdayOpening.text = location?.timings?[2] == "Closed" ? "00:00" : splitTimeRange(location?.timings?[2] ?? "")?.0
+            txtWednesdayClosing.text = location?.timings?[2] == "Closed" ? "00:00" : splitTimeRange(location?.timings?[2] ?? "")?.1
             lblWednesday.isHidden   = location?.timings?[2] == "Closed" ? false : true
             stackWednesday.isHidden = location?.timings?[2] == "Closed" ? true : false
             switchWednesday.isOn    = location?.timings?[2] == "Closed" ? false : true
             
-            txtThrusdayOpening.text  = location?.timings?[3] == "Closed" ? "0:0" : splitTimeRange(location?.timings?[3] ?? "")?.0
-            txtThrusdayClosing.text  = location?.timings?[3] == "Closed" ? "0:0" : splitTimeRange(location?.timings?[3] ?? "")?.1
+            txtThrusdayOpening.text  = location?.timings?[3] == "Closed" ? "00:00" : splitTimeRange(location?.timings?[3] ?? "")?.0
+            txtThrusdayClosing.text  = location?.timings?[3] == "Closed" ? "00:00" : splitTimeRange(location?.timings?[3] ?? "")?.1
             lblThursday.isHidden   = location?.timings?[3] == "Closed" ? false : true
             stackThursday.isHidden = location?.timings?[3] == "Closed" ? true : false
             switchThrusday.isOn    = location?.timings?[3] == "Closed" ? false : true
             
-            txtFridayOpening.text    = location?.timings?[4] == "Closed" ? "0:0" : splitTimeRange(location?.timings?[4] ?? "")?.0
-            txtFridayClosing.text    = location?.timings?[4] == "Closed" ? "0:0" : splitTimeRange(location?.timings?[4] ?? "")?.1
+            txtFridayOpening.text    = location?.timings?[4] == "Closed" ? "00:00" : splitTimeRange(location?.timings?[4] ?? "")?.0
+            txtFridayClosing.text    = location?.timings?[4] == "Closed" ? "00:00" : splitTimeRange(location?.timings?[4] ?? "")?.1
             lblFriday.isHidden   = location?.timings?[4] == "Closed" ? false : true
             stackFriday.isHidden = location?.timings?[4] == "Closed" ? true : false
             switchFriday.isOn    = location?.timings?[4] == "Closed" ? false : true
             
-            txtSaturdayOpening.text  = location?.timings?[5] == "Closed" ? "0:0" : splitTimeRange(location?.timings?[5] ?? "")?.0
-            txtSaturdayClosing.text  = location?.timings?[5] == "Closed" ? "0:0" : splitTimeRange(location?.timings?[5] ?? "")?.1
+            txtSaturdayOpening.text  = location?.timings?[5] == "Closed" ? "00:00" : splitTimeRange(location?.timings?[5] ?? "")?.0
+            txtSaturdayClosing.text  = location?.timings?[5] == "Closed" ? "00:00" : splitTimeRange(location?.timings?[5] ?? "")?.1
             lblSaturday.isHidden   = location?.timings?[5] == "Closed" ? false : true
             stackSaturday.isHidden = location?.timings?[5] == "Closed" ? true : false
             switchSaturday.isOn    = location?.timings?[5] == "Closed" ? false : true
             
             
-            txtSundayOpening.text    = location?.timings?[6] == "Closed" ? "0:0" : splitTimeRange(location?.timings?[6] ?? "")?.0
-            txtSundayClosing.text    = location?.timings?[6] == "Closed" ? "0:0" : splitTimeRange(location?.timings?[6] ?? "")?.1
+            txtSundayOpening.text    = location?.timings?[6] == "Closed" ? "00:00" : splitTimeRange(location?.timings?[6] ?? "")?.0
+            txtSundayClosing.text    = location?.timings?[6] == "Closed" ? "00:00" : splitTimeRange(location?.timings?[6] ?? "")?.1
             lblSunday.isHidden   = location?.timings?[6] == "Closed" ? false : true
             stackSunday.isHidden = location?.timings?[6] == "Closed" ? true : false
             switchSunday.isOn    = location?.timings?[6] == "Closed" ? false : true

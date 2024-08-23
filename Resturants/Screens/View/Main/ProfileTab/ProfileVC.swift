@@ -70,6 +70,7 @@ class ProfileVC: BaseClass , UpdateUserProfileFrmSettingDelegate{
     @IBOutlet weak var lblFounded              : UILabel!
     @IBOutlet weak var lblPhoneNumbr           : UILabel!
     @IBOutlet weak var lblCurrnetDay           : UILabel!
+    @IBOutlet weak var lblCurrentDayStatus     : UILabel!
     
     @IBOutlet weak var vwPhone             : UIView!
     @IBOutlet weak var vwWeb               : UIView!
@@ -460,7 +461,13 @@ extension ProfileVC {
     func setupProfile(user: UserProfileModel) {
         if user.timings?.count != 0 {
             var range = user.timings?[getCurrentDayOfWeek().1]
-            lblCurrnetDay.text  = "Opening Hours (\(getCurrentDayOfWeek().0)) \(isRestaurantOpen(timeRange:range ?? "") ? "Open" : "Closed")"
+            lblCurrnetDay.text  = "Opening Hours (\(getCurrentDayOfWeek().0))"
+            lblCurrentDayStatus.text = "\(isRestaurantOpen(timeRange:range ?? "") ? "Open" : "Closed")"
+            lblCurrentDayStatus.textColor = lblCurrentDayStatus.text == "Open" ? .green : .red
+            if lblCurrentDayStatus.text == "Open" {
+                lblCurrentDayStatus.text = "\(isOneHourOrLessLeft(timeRange:range ?? "") ? "Closing Soon" : "Open")"
+                lblCurrentDayStatus.textColor = lblCurrentDayStatus.text == "Closing Soon" ? .yellow : .green
+            }
         }
         else{
             lblCurrnetDay.text  = "Opening Hours (\(getCurrentDayOfWeek().0)) Closed"

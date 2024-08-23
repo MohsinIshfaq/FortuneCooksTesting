@@ -2867,7 +2867,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="DNr-lP-YGS">
-                                                        <rect key="frame" x="0.0" y="55.666666666666629" width="361" height="552"/>
+                                                        <rect key="frame" x="0.0" y="55.666666666666629" width="361" height="552.00000000000011"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="USF-0P-i7q">
                                                                 <rect key="frame" x="0.0" y="0.0" width="361" height="38"/>
@@ -5455,12 +5455,23 @@
                                                     <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="d5J-98-0py">
                                                         <rect key="frame" x="0.0" y="0.0" width="371" height="112"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Opening Hours (Friday) Open" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jQj-uJ-rYB">
+                                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="ITR-yK-kzZ">
                                                                 <rect key="frame" x="0.0" y="0.0" width="371" height="0.0"/>
-                                                                <fontDescription key="fontDescription" name="Inter-Regular_Medium" family="Inter" pointSize="14"/>
-                                                                <color key="textColor" name="ColorWhite"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Opening Hours (Friday)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jQj-uJ-rYB">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="156" height="0.0"/>
+                                                                        <fontDescription key="fontDescription" name="Inter-Regular_Medium" family="Inter" pointSize="14"/>
+                                                                        <color key="textColor" name="ColorWhite"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="sdfsd" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vgD-vz-4Rz">
+                                                                        <rect key="frame" x="158" y="0.0" width="213" height="0.0"/>
+                                                                        <fontDescription key="fontDescription" name="Inter-Regular_Medium" family="Inter" pointSize="14"/>
+                                                                        <color key="textColor" name="ColorWhite"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="2bF-Ae-Gu1">
                                                                 <rect key="frame" x="0.0" y="16" width="371" height="96"/>
                                                                 <subviews>
@@ -6297,6 +6308,7 @@
                         <outlet property="lblBio" destination="hQu-MU-IP1" id="cRB-SE-kmc"/>
                         <outlet property="lblChannelName" destination="GXf-sn-7AO" id="iAL-KZ-3PA"/>
                         <outlet property="lblChannelType" destination="PLS-L5-nqw" id="qtX-RF-uGX"/>
+                        <outlet property="lblCurrentDayStatus" destination="vgD-vz-4Rz" id="Nc1-BY-sr7"/>
                         <outlet property="lblCurrnetDay" destination="jQj-uJ-rYB" id="L1b-Ev-sKu"/>
                         <outlet property="lblEmail" destination="fMw-vj-8RQ" id="RhF-ft-Xd0"/>
                         <outlet property="lblFollowers" destination="G2O-hb-6hY" id="jMh-f1-5gq"/>
@@ -9131,7 +9143,7 @@ platform be detailed.</string>
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="NoZ-Pa-cHR">
-                                                        <rect key="frame" x="0.0" y="257" width="361" height="84"/>
+                                                        <rect key="frame" x="0.0" y="257.00000000000006" width="361" height="84"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add email" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vJ2-zv-Gi8">
                                                                 <rect key="frame" x="0.0" y="0.0" width="361" height="17"/>
