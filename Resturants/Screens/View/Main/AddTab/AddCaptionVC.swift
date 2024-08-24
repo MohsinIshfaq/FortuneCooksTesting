@@ -70,6 +70,7 @@ class AddCaptionVC: AudioViewController , UITextViewDelegate {
     let placeholder                        = "Enter Caption..."
     let placeholderColor                   = UIColor.lightGray
     var delegate : AudioRecordDelegate?    = nil
+    var delegate2: UploadSwiftDelegate?    = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -387,7 +388,9 @@ class AddCaptionVC: AudioViewController , UITextViewDelegate {
         // Handle button tap
         print("Custom button tapped!")
         /*popup*/()
+        self.delegate2?.comeBackFromUplaod()
         delegate?.popupfromAudioRecordVC(elapsedTime: self.totalTime, totalTime: self.totalTime)
+        
     }
     
     @objc func ontapDone() {
@@ -428,6 +431,7 @@ class AddCaptionVC: AudioViewController , UITextViewDelegate {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                             self.stopAnimating()
                             self.popRoot()
+                            
                         }
                     }
                 } failure: { error in

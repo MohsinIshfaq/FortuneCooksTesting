@@ -8,6 +8,9 @@
 import UIKit
 import AVFoundation
 import AVKit
+import Reachability
+
+
 protocol AudioRecordDelegate {
     func popupfromAudioRecordVC(elapsedTime: Float , totalTime: Float)
 }
@@ -32,6 +35,7 @@ class AudioRecordVC: AudioViewController {
     private var progress_value               = 0.1
     private var mergedVideoURL : URL?        = nil
     var delegate : AudioRecordDelegate?      = nil
+    let reachability = try! Reachability()
     
     //MARK: - View LifeCycle
     override func viewDidLoad() {
@@ -81,26 +85,31 @@ class AudioRecordVC: AudioViewController {
     
     @IBAction func ontapRecord(_ sender: UIButton){
         
-        selectedRecord.toggle()
-        btnRecord.backgroundColor = selectedRecord == true ? .red : .ColorDarkBlue
-        if selectedRecord{
-            startProgress()
-            if audioRecorder == nil {
-                startAudioRecording()
+        if reachability.isReachable {
+            selectedRecord.toggle()
+            btnRecord.backgroundColor = selectedRecord == true ? .red : .ColorDarkBlue
+            if selectedRecord{
+                startProgress()
+                if audioRecorder == nil {
+                    startAudioRecording()
+                }
+                player.play()
+                // btnRecord.isHidden = true
             }
-            player.play()
-           // btnRecord.isHidden = true
+            else{
+                stopProgress()
+                btnNext.isHidden           = false
+                btnDismiss.isHidden        = false
+                selectedRecord             = false
+                btnRecord.isHidden         = true
+                finishAudioRecording(success: true)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    self.mergeVideo()
+                }
+            }
         }
         else{
-            stopProgress()
-            btnNext.isHidden           = false
-            btnDismiss.isHidden        = false
-            selectedRecord             = false
-            btnRecord.isHidden         = true
-            finishAudioRecording(success: true)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                self.mergeVideo()
-            }
+            self.showToast(message: "Connect to the Internet and exit the screen and come back again.", seconds: 2, clr: .red)
         }
     }
     @objc func customButtonTapped() {
@@ -125,8 +134,17 @@ extension AudioRecordVC{
         NavBackButton()
     }
     func onAppear(){
-        muteVideo()
-        setupAudioRecording()
+        if reachability.isReachable {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
+                self.startAnimating()
+                self.muteVideo()
+                self.setupAudioRecording()
+            }
+        }
+        else {
+            self.stopAnimating()
+            self.showToast(message: "Internet connection is off.", seconds: 2, clr: .red)
+        }
     }
     
     func NavBackButton() {

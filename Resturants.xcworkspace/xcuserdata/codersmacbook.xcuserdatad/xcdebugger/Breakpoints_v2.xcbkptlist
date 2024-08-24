@@ -156,8 +156,8 @@
             filePath = "Resturants/Screens/View/Main/AddTab/UplaodSwiftVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "249"
-            endingLineNumber = "249"
+            startingLineNumber = "271"
+            endingLineNumber = "271"
             landmarkName = "checkFields()"
             landmarkType = "7">
          </BreakpointContent>
@@ -444,13 +444,13 @@
             filePath = "Resturants/Screens/View/Main/AddTab/AudioRecordVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "61"
-            endingLineNumber = "61"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
             landmarkName = "ontapPlay(_:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "D21C6FA3-27C3-46DD-B3BE-C7DDFC8A8196 - 5d9766b6e8018017"
+                  uuid = "D21C6FA3-27C3-46DD-B3BE-C7DDFC8A8196 - 5d9766b6e801809b"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -460,11 +460,11 @@
                   urlString = "file:///Users/codersmacbook/Documents/FortuneCooksIOS/Resturants/Screens/View/Main/AddTab/AudioRecordVC.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "61"
-                  endingLineNumber = "61">
+                  startingLineNumber = "65"
+                  endingLineNumber = "65">
                </Location>
                <Location
-                  uuid = "D21C6FA3-27C3-46DD-B3BE-C7DDFC8A8196 - c10a83c0c65b92d5"
+                  uuid = "D21C6FA3-27C3-46DD-B3BE-C7DDFC8A8196 - c10a83c0c65b9251"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -474,8 +474,8 @@
                   urlString = "file:///Users/codersmacbook/Documents/FortuneCooksIOS/Resturants/Screens/View/Main/AddTab/AudioRecordVC.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "62"
-                  endingLineNumber = "62">
+                  startingLineNumber = "66"
+                  endingLineNumber = "66">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -563,22 +563,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "527D8548-FCDD-45A5-A806-93C5622B67CC"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Resturants/Screens/View/Main/AddTab/CameraVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "162"
-            endingLineNumber = "162"
-            landmarkName = "ontapMute(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "E21D9EF8-AB32-4A66-B57F-EA6DFB70E80C"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -648,8 +632,8 @@
             filePath = "Resturants/Screens/View/Main/AddTab/CameraVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -664,8 +648,8 @@
             filePath = "Resturants/Screens/View/Main/AddTab/CameraVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
             landmarkName = "viewWillAppear(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -699,22 +683,6 @@
             startingLineNumber = "81"
             endingLineNumber = "81"
             landmarkName = "viewWillDisappear(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "F7EA933A-F2E8-4ED3-BE9D-17EECD4F2E72"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Resturants/Screens/View/Main/AddTab/CameraVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "236"
-            endingLineNumber = "236"
-            landmarkName = "updateProgress()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

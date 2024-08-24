@@ -11,7 +11,29 @@ import AVFoundation
 import AVKit
 import MobileCoreServices
 
-class CameraVC: FilterCamViewController{
+
+protocol UploadSwiftDelegate {
+    func comeBackFromUplaod()
+}
+class CameraVC: FilterCamViewController , UploadSwiftDelegate{
+    
+    func comeBackFromUplaod() {
+        if let url =  UserManager.shared.finalURL {
+            self.getVideoDuration(from: url) { endtime in
+                if endtime != nil {
+                    self.timer1?.invalidate()
+                    self.timer1          = nil
+                    self.playVideo(url: url)
+                    self.totalTime       = Float(endtime!)
+                    self.elapsedTime     = 0
+                    self.progress_value  = 0
+                    self.navigatePressed = false
+                    self.startProgress4TrailVideo()
+                }
+            }
+        }
+    }
+    
 
     //MARK: - IBOUtlets
     @IBOutlet weak var btnRecord         : UIButton!
@@ -66,6 +88,7 @@ class CameraVC: FilterCamViewController{
     @IBAction func ontapUpload(_ sender: UIButton){
         self.removeVideo()
         let vc = Constants.addStoryBoard.instantiateViewController(withIdentifier: "UplaodSwiftVC") as? UplaodSwiftVC
+        vc?.delegate      = self
         vc?.isVideoPicked = false
         self.navigationController?.pushViewController(vc!, animated: true)
     }
@@ -95,6 +118,7 @@ class CameraVC: FilterCamViewController{
         vc.outputURL              = outputURL
         vc.totalTime              = totalTime
         vc.delegate               = self
+        vc.delegate2              = self
         vc.modalPresentationStyle = .overFullScreen
         self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -378,13 +402,6 @@ extension CameraVC: FilterCamViewControllerDelegate{
                         self.startProgress4TrailVideo()
                     }
                 }
-//                let player = AVPlayer(url: url)
-//                let playerViewController = AVPlayerViewController()
-//                playerViewController.player = player
-//                
-//                self.present(playerViewController, animated: true) {
-//                    player.play()
-//                }
             }
         }
     }

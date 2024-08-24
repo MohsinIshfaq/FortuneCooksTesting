@@ -75,6 +75,7 @@ class UplaodSwiftVC: UIViewController , ReloadDelegate , UITextViewDelegate , cr
     let reachability = try! Reachability()
     var selectedTagPersons: [UserTagModel]? = nil
     var isVideoPicked: Bool                 = false    //checking video picked or recorded to handle description
+    var delegate: UploadSwiftDelegate?      = nil
     
     lazy var UploadVideoModel              : [String: Any] =  {
         return [
@@ -106,6 +107,13 @@ class UplaodSwiftVC: UIViewController , ReloadDelegate , UITextViewDelegate , cr
         onAppear()
     }
     
+    // Action when back button is tapped
+    @objc func backButtonTapped() {
+        
+        delegate?.comeBackFromUplaod()
+        print("Back button tapped!")
+        navigationController?.popViewController(animated: true)
+    }
     @IBAction func ontapAddContent(_ sender: UIButton){
         let vc = Constants.addStoryBoard.instantiateViewController(withIdentifier: "ContentSelectionVC") as! ContentSelectionVC
         vc.delegate = self
@@ -175,7 +183,7 @@ class UplaodSwiftVC: UIViewController , ReloadDelegate , UITextViewDelegate , cr
 //MARK: - Extension of setup Data{}
 extension UplaodSwiftVC {
     func onLoad() {
-        removeNavBackbuttonTitle()
+        hideNavBar()
         if let url = UserManager.shared.finalURL {
             if let img = generateThumbnail(path: url) {
                 self.imgVideoThumb.image  = img
@@ -194,8 +202,22 @@ extension UplaodSwiftVC {
         }
     }
     
+    func navBackButton() {
+        // Create a custom button
+           let backButton = UIButton(type: .system)
+           backButton.setImage(UIImage(systemName: "chevron.left"), for: .normal)
+           backButton.sizeToFit()
+           
+           // Add action to the button
+           backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+           
+           // Set the custom button as the left bar button item
+           navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+    }
+    
     func onAppear() {
         self.showNavBar()
+        navBackButton()
     }
     
     func setupPlaceholder() {
