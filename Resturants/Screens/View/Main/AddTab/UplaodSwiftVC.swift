@@ -171,6 +171,7 @@ class UplaodSwiftVC: UIViewController , ReloadDelegate , UITextViewDelegate , cr
         if checkFields() == "" {
             let vc = Constants.addStoryBoard.instantiateViewController(withIdentifier: "UploadSwift2VC") as! UploadSwift2VC
             vc.UploadVideoModel = self.UploadVideoModel
+            vc.isVideoPicked    = self.isVideoPicked
             print(UploadVideoModel)
             self.navigationController?.pushViewController(vc, animated: true)
         }

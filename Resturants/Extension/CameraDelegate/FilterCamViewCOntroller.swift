@@ -87,6 +87,13 @@ open class FilterCamViewController: UIViewController, AVAudioRecorderDelegate {
         recorder.muteAudio(isMuted)
     }
     
+    func wannaHideView() {
+        videoPreviewView.isHidden = true
+    }
+    func wannaShowView() {
+        videoPreviewView.isHidden = false
+    }
+    
     open override func viewDidLoad() {
         super.viewDidLoad()
         if UserDefault.isAuthenticated {

@@ -31,6 +31,7 @@ class UploadSwift2VC: UIViewController {
     //MARK: - Variables and Properties
     var uploadTask          : StorageUploadTask?
     var UploadVideoModel    : [String: Any] = [:]
+    var isVideoPicked: Bool                 = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,6 +91,7 @@ class UploadSwift2VC: UIViewController {
         self.UploadVideoModel["introVideos"] = switchLike.isOn
         let vc = Constants.addStoryBoard.instantiateViewController(withIdentifier: "UploadingVC") as! UploadingVC
         vc.UploadVideoModel = UploadVideoModel
+        vc.isVideoPicked    = self.isVideoPicked
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

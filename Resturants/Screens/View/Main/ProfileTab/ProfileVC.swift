@@ -351,7 +351,8 @@ extension ProfileVC {
                     // Use the user model as needed
                     self.setupProfile(user: user)
                     self.profileModel = user
-                    self.fetchVideosFromFirestore()
+                    self.fetchReels()
+                    self.fetchVideos()
                     print("User data: \(user)")
                 } else {
                     print("Failed to fetch user data.")
@@ -407,7 +408,8 @@ extension ProfileVC {
                         self.setupProfile(user: user)
                         self.profileModel = user
                         if  UserManager.shared.gothroughUploading {
-                             self.fetchVideosFromFirestore()
+                            self.fetchReels()
+                            self.fetchVideos()
                         }
                         print("User data: \(user)")
                     } else {
@@ -607,28 +609,8 @@ extension ProfileVC {
             updateUserDocument()   //updating profile data of tag list to be updated user profile always
         }
     }
-    func reelsAndVideosCollectionMaking() {
-        self.reelsModel?.removeAll()
-        self.videosModel?.removeAll()
-        for i in 0 ..< (self.responseModel?.count ?? 0) {
-            if var url  = URL(string: self.responseModel?[i].videoUrl ?? "") {
-                if isReel(url: url) {
-                    if var data = self.responseModel?[i] {
-                        self.reelsModel?.append(data)
-                    }
-                }
-                else{
-                    if var data = self.responseModel?[i] {
-                        self.videosModel?.append(data)
-                    }
-                }
-            }
-        }
-        self.collectSwift.reloadData()
-        self.tblVIdeos.reloadData()
-    }
     func updateCollectionViewHeight() {
-        let numberOfItems = responseModel?.count ?? 0
+        let numberOfItems = reelsModel?.count ?? 0
         let numberOfRows = ceil(Double(numberOfItems) / Double(itemsPerColumn))
         let newHeight = numberOfRows * Double(itemHeight)
         collectSwiftHeightCons.constant = CGFloat(newHeight)
@@ -661,7 +643,7 @@ extension ProfileVC : UITableViewDelegate , UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         if tableView == tblVIdeos {
-            if (responseModel?.count ?? 0) == 0 {
+            if (videosModel?.count ?? 0) == 0 {
                 return 1
             }
             else{
@@ -708,11 +690,13 @@ extension ProfileVC : UITableViewDelegate , UITableViewDataSource {
         }
         else if videosModel?.count != 0{
             headerView.btnPlay.setImage(UIImage(systemName: "play.circle.fill"), for: .normal)
-            headerView.vwVideo.layer.addSublayer(setupAVPlayer(with: URL(string: self.videosModel?[0].videoUrl ?? "")!, vw: headerView.vwVideo))
-            headerView.btnPlay.addTarget(self, action: #selector(playButtonTapped), for: .touchUpInside)
-            headerView.lblTitle.text = self.videosModel?[0].description ?? ""
-            headerView.lblViews.text = "3/10/2002 / 200 views"
-            player.pause()
+            if self.videosModel?[0].videoUrl ?? "" != "" {
+                headerView.vwVideo.layer.addSublayer(setupAVPlayer(with: URL(string: self.videosModel?[0].videoUrl ?? "")!, vw: headerView.vwVideo))
+                headerView.btnPlay.addTarget(self, action: #selector(playButtonTapped), for: .touchUpInside)
+                headerView.lblTitle.text = self.videosModel?[0].description ?? ""
+                headerView.lblViews.text = "3/10/2002 / 200 views"
+                player.pause()
+            }
         }
         return headerView
     }
@@ -971,19 +955,21 @@ extension ProfileVC {
             }
         }
     }
-    func fetchVideosFromFirestore() {
+    func fetchVideos() {
     
         self.startAnimating()
+        self.videosModel?.removeAll()
         let userToken = UserDefault.token
-        let collectionRef = db.collection("Videos&Swifts")
+        let collectionPath = "Videos/\(UserDefault.token)/VideosData"
+        let documentRef = db.collection(collectionPath)
         
-        collectionRef.getDocuments { (querySnapshot, error) in
+        documentRef.getDocuments { (querySnapshot, error) in
             guard let document = querySnapshot?.documents else {
                 print("no document")
                 self.stopAnimating()
                 return
             }
-            self.responseModel = document.map  { (QueryDocumentSnapshot) -> ProfileVideosModel in
+            self.videosModel = document.map  { (QueryDocumentSnapshot) -> ProfileVideosModel in
                 
                 let data         =  QueryDocumentSnapshot.data()
                 
@@ -1017,11 +1003,75 @@ extension ProfileVC {
                 return ProfileVideosModel(uid: uid, address: address, Zipcode: zipcode, city: city, Title: title, tagPersons: TagPersons, description: description, categories: categories, hashtages: hashtages, language: language, thumbnailUrl: thumbnailUrl, videoUrl: videoUrl, likes: likes, comments: comments, views: views, paidCollab: paidCollab, introVideos: introVideos)
             }
             self.stopAnimating()
-            print(self.responseModel)
             self.isfirstTime = true
-            self.reelsAndVideosCollectionMaking()
+            self.tblVIdeos.reloadData()
         }
     }
+    
+    func fetchReels() {
+        self.startAnimating()
+        self.reelsModel?.removeAll()
+        
+        let collectionPath = "Swifts/\(UserDefault.token)/VideosData"
+        
+        // Reference to the collection and document for the user
+        let documentRef = db.collection(collectionPath)
+        
+        documentRef.getDocuments { (querySnapshot, error) in
+            self.stopAnimating()  // Ensure the animation stops if an error occurs
+            
+            if let error = error {
+                print("Error getting documents: \(error.localizedDescription)")
+                return
+            }
+
+            guard let documents = querySnapshot?.documents, !documents.isEmpty else {
+                print("No documents found.")
+                return
+            }
+            for document in documents {
+                let data = document.data()
+                
+                // Map the document data to ProfileVideosModel
+                let tagPersonsData = data["tagPersons"] as? [[String: Any]] ?? []
+                let tagPersons = tagPersonsData.compactMap { dict -> UserTagModel? in
+                    let uid = dict["uid"] as? String
+                    let img = dict["img"] as? String
+                    let channelName = dict["channelName"] as? String
+                    let followers = dict["followers"] as? String
+                    let accountType = dict["accountType"] as? String
+                    return UserTagModel(uid: uid, img: img, channelName: channelName, followers: followers, accountType: accountType)
+                }
+                
+                let uid          = data["uid"] as? String ?? ""
+                let address      = data["address"] as? String ?? ""
+                let zipcode      = data["zipcode"] as? String ?? ""
+                let city         = data["city"] as? String ?? ""
+                let title        = data["title"] as? String ?? ""
+                let TagPersons   = tagPersons
+                let description  = data["description"] as? String ?? ""
+                let categories   = data["categories"] as? [String] ?? []
+                let hashtages    = data["hashtages"] as? [String] ?? []
+                let language     = data["language"] as? String ?? ""
+                let videoUrl     = data["videoUrl"] as? String ?? ""
+                let thumbnailUrl = data["thumbnailUrl"] as? String ?? ""
+                let likes        = data["likes"] as? Bool ?? false
+                let comments     = data["comments"] as? Bool ?? false
+                let views        = data["views"] as? Bool ?? false
+                let paidCollab   = data["paidCollab"] as? Bool ?? false
+                let introVideos  = data["introVideos"] as? Bool ?? false
+                
+                // Create a new ProfileVideosModel and add it to reelsModel
+                let profileVideo = ProfileVideosModel(uid: uid, address: address, Zipcode: zipcode, city: city, Title: title, tagPersons: TagPersons, description: description, categories: categories, hashtages: hashtages, language: language, thumbnailUrl: thumbnailUrl, videoUrl: videoUrl, likes: likes, comments: comments, views: views, paidCollab: paidCollab, introVideos: introVideos)
+                
+                self.reelsModel?.append(profileVideo)
+            }
+            // Reload the collection view
+            self.isfirstTime = true
+            self.collectSwift.reloadData()
+        }
+    }
+
     func uploadCoverImg(_ img: UIImage, userID: String) {
         self.startAnimating()
         if reachability.isReachable {
