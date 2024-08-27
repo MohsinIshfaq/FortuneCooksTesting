@@ -225,49 +225,61 @@ extension ManageInfoVC {
         return switchs ? "\(opening) - \(closing)" : "Closed"
     }
     
-    func validateFields(email: String?, web: String? , name: String? , descrip: String? , number: String? , address: String? , zipCode: String? , city: String?) -> Bool  {
-        if let email = email, !email.isEmpty {
-            guard "".isValidEmailRegex(email) else {
-                self.showToast(message: "Email is not valid.", seconds: 2, clr: .red)
-                print("Invalid email address")
+    func validateFields(email: String?, web: String?, name: String?, descrip: String?, number: String?, address: String?, zipCode: String?, city: String?) -> Bool  {
+
+        // Validate Name
+        if let name = name, name.isEmpty {
+            self.showToast(message: "Channel name shouldn't be empty.", seconds: 2, clr: .red)
+            return false
+        }
+        if let descrip = descrip, descrip.isEmpty {
+            self.showToast(message: "Bio shouldn't be empty.", seconds: 2, clr: .red)
+            return false
+        }
+        
+        // Validate Email
+        if let email = email, email.isEmpty {
+            if !email.isValidEmailRegex(email) {
+                self.showToast(message: "Invalid email address.", seconds: 2, clr: .red)
                 return false
             }
         }
-        
-        if let web = web, !web.isEmpty {
-            guard "".isValidWebsite(url: web) else {
-                self.showToast(message: "web URL is not valid.", seconds: 2, clr: .red)
+
+        // Validate Website URL
+        if let web = web, web.isEmpty {
+            if !web.isValidWebsite(url: web) {
+                self.showToast(message: "Invalid web URL.", seconds: 2, clr: .red)
                 return false
             }
         }
-        
-        if let name = name , !name.isEmpty{
-            self.showToast(message: "channel name should'nt empty. ", seconds: 2, clr: .red)
+
+        // Validate Number
+        if let number = number, number.isEmpty {
+            self.showToast(message: "Number shouldn't be empty.", seconds: 2, clr: .red)
             return false
         }
-        if let descrip = descrip , !descrip.isEmpty{
-            self.showToast(message: "Bio should'nt empty. ", seconds: 2, clr: .red)
+
+        // Validate Address
+        if let address = address, address.isEmpty {
+            self.showToast(message: "Address shouldn't be empty.", seconds: 2, clr: .red)
             return false
         }
-        if let number = number , !number.isEmpty{
-            self.showToast(message: "number should'nt empty. ", seconds: 2, clr: .red)
+
+        // Validate ZipCode
+        if let zipCode = zipCode, zipCode.isEmpty {
+            self.showToast(message: "Zip code shouldn't be empty.", seconds: 2, clr: .red)
             return false
         }
-        if let address = address , !address.isEmpty{
-            self.showToast(message: "Address should'nt empty. ", seconds: 2, clr: .red)
+
+        // Validate City
+        if let city = city, city.isEmpty {
+            self.showToast(message: "City shouldn't be empty.", seconds: 2, clr: .red)
             return false
         }
-        if let zipCode = zipCode , !zipCode.isEmpty{
-            self.showToast(message: "ZipCode should'nt empty. ", seconds: 2, clr: .red)
-            return false
-        }
-        if let city = city , !city.isEmpty{
-            self.showToast(message: "City should'nt empty. ", seconds: 2, clr: .red)
-            return false
-        }
-        
+
         return true
     }
+
     
     func setupData() {
         txtChannelNm.text = location?.channalNm ?? ""
