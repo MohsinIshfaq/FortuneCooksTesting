@@ -432,6 +432,36 @@
             endingLineNumber = "771"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "26EF5FF4-F696-4FD8-92C5-115BB14C67A8 - d9433e1d6b31e826"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Resturants.ProfileVC.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "Resturants"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/codersmacbook/Documents/FortuneCooksIOS/Resturants/Screens/View/Main/ProfileTab/ProfileVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "771"
+                  endingLineNumber = "771">
+               </Location>
+               <Location
+                  uuid = "26EF5FF4-F696-4FD8-92C5-115BB14C67A8 - d9433e1d6b31e845"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Resturants.ProfileVC.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "Resturants"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/codersmacbook/Documents/FortuneCooksIOS/Resturants/Screens/View/Main/ProfileTab/ProfileVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "772"
+                  endingLineNumber = "772">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -591,6 +621,20 @@
             landmarkName = "onload()"
             landmarkType = "7">
             <Locations>
+               <Location
+                  uuid = "10616E97-4B9E-4C30-B113-9B36FF38AD00 - 6e64730f991b2244"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Swift.Bool) -&gt; () in Resturants.ProfileVC.onload() -&gt; ()"
+                  moduleName = "Resturants"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/codersmacbook/Documents/FortuneCooksIOS/Resturants/Screens/View/Main/ProfileTab/ProfileVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "363"
+                  endingLineNumber = "363">
+               </Location>
                <Location
                   uuid = "10616E97-4B9E-4C30-B113-9B36FF38AD00 - 1f04ec01924f6496"
                   shouldBeEnabled = "Yes"

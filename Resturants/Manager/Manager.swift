@@ -14,6 +14,9 @@ final class UserManager {
     static let shared     = UserManager()
     private init () {}
     
+    var reelsModel      : [ProfileVideosModel]? = []
+    var videosModel     : [ProfileVideosModel]? = []
+    
     var ownerProfileFollowing: [UserTagModel]  = []
     var ownerTagPeoples      : [TagUsers]      = []
     

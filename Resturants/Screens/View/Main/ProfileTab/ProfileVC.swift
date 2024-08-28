@@ -84,8 +84,6 @@ class ProfileVC: BaseClass , UpdateUserProfileFrmSettingDelegate{
     var CurrentTagImg   : Int?
     var db = Firestore.firestore()
     var responseModel   : [ProfileVideosModel]? = []
-    var reelsModel      : [ProfileVideosModel]? = []
-    var videosModel     : [ProfileVideosModel]? = []
     let itemsPerColumn  : Int = 2
     let itemHeight      : CGFloat = 305.0 // Example item height
     var selectedVideo   : ProfileVideosModel? = nil
@@ -295,6 +293,7 @@ class ProfileVC: BaseClass , UpdateUserProfileFrmSettingDelegate{
             stackSwift.isHidden      = true
             stackCollection.isHidden = true
             stackMenu.isHidden       = true
+            tblVIdeos.reloadData()
         }
         else if sender.tag == 1 {
             vwVideo.isHidden         = true
@@ -305,6 +304,7 @@ class ProfileVC: BaseClass , UpdateUserProfileFrmSettingDelegate{
             stackSwift.isHidden      = false
             stackCollection.isHidden = true
             stackMenu.isHidden       = true
+            collectSwift.reloadData()
         }
         else if sender.tag == 2 {
             vwVideo.isHidden         = true
@@ -610,7 +610,7 @@ extension ProfileVC {
         }
     }
     func updateCollectionViewHeight() {
-        let numberOfItems = reelsModel?.count ?? 0
+        let numberOfItems = UserManager.shared.reelsModel?.count ?? 0
         let numberOfRows = ceil(Double(numberOfItems) / Double(itemsPerColumn))
         let newHeight = numberOfRows * Double(itemHeight)
         collectSwiftHeightCons.constant = CGFloat(newHeight)
@@ -643,7 +643,7 @@ extension ProfileVC : UITableViewDelegate , UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         if tableView == tblVIdeos {
-            if (videosModel?.count ?? 0) == 0 {
+            if (UserManager.shared.videosModel?.count ?? 0) == 0 {
                 return 1
             }
             else{
@@ -660,12 +660,12 @@ extension ProfileVC : UITableViewDelegate , UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == tblVIdeos {
-            if (videosModel?.count ?? 0) == 0 {
+            if (UserManager.shared.videosModel?.count ?? 0) == 0 {
                 return 1
             }
             else{
-                tblVideoHeightCons.constant = CGFloat(300 + ((videosModel?.count ?? 0) * 140))
-                return videosModel?.count ?? 0
+                tblVideoHeightCons.constant = CGFloat(300 + ((UserManager.shared.videosModel?.count ?? 0) * 140))
+                return UserManager.shared.videosModel?.count ?? 0
             }
         }
         if tableView == tblMenu {
@@ -688,12 +688,12 @@ extension ProfileVC : UITableViewDelegate , UITableViewDataSource {
             player.pause()
             
         }
-        else if videosModel?.count != 0{
+        else if UserManager.shared.videosModel?.count != 0{
             headerView.btnPlay.setImage(UIImage(systemName: "play.circle.fill"), for: .normal)
-            if self.videosModel?[0].videoUrl ?? "" != "" {
-                headerView.vwVideo.layer.addSublayer(setupAVPlayer(with: URL(string: self.videosModel?[0].videoUrl ?? "")!, vw: headerView.vwVideo))
+            if UserManager.shared.videosModel?[0].videoUrl ?? "" != "" {
+                headerView.vwVideo.layer.addSublayer(setupAVPlayer(with: URL(string: UserManager.shared.videosModel?[0].videoUrl ?? "")!, vw: headerView.vwVideo))
                 headerView.btnPlay.addTarget(self, action: #selector(playButtonTapped), for: .touchUpInside)
-                headerView.lblTitle.text = self.videosModel?[0].description ?? ""
+                headerView.lblTitle.text = UserManager.shared.videosModel?[0].description ?? ""
                 headerView.lblViews.text = "3/10/2002 / 200 views"
                 player.pause()
             }
@@ -702,7 +702,7 @@ extension ProfileVC : UITableViewDelegate , UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if tableView == tblVIdeos {
-            if videosModel?.count != 0 {
+            if UserManager.shared.videosModel?.count != 0 {
                 return 300
             }
         }
@@ -715,7 +715,7 @@ extension ProfileVC : UITableViewDelegate , UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView == tblVIdeos {
-            if (videosModel?.count ?? 0) == 0 {
+            if (UserManager.shared.videosModel?.count ?? 0) == 0 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: NoPostTCell.identifier, for: indexPath) as! NoPostTCell
                // cell.btnPost.isHidden = true
                 cell.btnPost.addTarget(self, action: #selector(ontapUplaod), for: .touchUpInside)
@@ -723,11 +723,11 @@ extension ProfileVC : UITableViewDelegate , UITableViewDataSource {
             }
             else{
                 let cell = tableView.dequeueReusableCell(withIdentifier: VideoTCell.identifier, for: indexPath) as! VideoTCell
-                cell.lblDEscrip.text = videosModel?[indexPath.row].description ?? ""
-                cell.lblName.text    = videosModel?[indexPath.row].Title ?? ""
+                cell.lblDEscrip.text = UserManager.shared.videosModel?[indexPath.row].description ?? ""
+                cell.lblName.text    = UserManager.shared.videosModel?[indexPath.row].Title ?? ""
                 cell.lblDateViews.text    = "3 October 2002 / 200 views"
                 DispatchQueue.main.async {
-                    guard let url = self.videosModel?[indexPath.row].thumbnailUrl else {
+                    guard let url = UserManager.shared.videosModel?[indexPath.row].thumbnailUrl else {
                         return
                     }
                     let url1 = URL(string: url)!
@@ -764,7 +764,7 @@ extension ProfileVC : UITableViewDelegate , UITableViewDataSource {
             self.present(vc, animated: true)
         }
         else if tableView == tblVIdeos {
-            self.selectedVideo = videosModel?[indexPath.row]
+            self.selectedVideo = UserManager.shared.videosModel?[indexPath.row]
             tblVIdeos.reloadData()
         }
         else{
@@ -791,7 +791,7 @@ extension ProfileVC : UICollectionViewDelegate , UICollectionViewDataSource , UI
         if collectionView == collectSwift {
             //collectSwiftHeightCons.constant = 250 * 3
             updateCollectionViewHeight()
-            return reelsModel?.count ?? 0
+            return UserManager.shared.reelsModel?.count ?? 0
         }
         else if collectionView == vwCollect {
             return groups.count
@@ -805,9 +805,9 @@ extension ProfileVC : UICollectionViewDelegate , UICollectionViewDataSource , UI
         if collectionView == collectSwift {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SwiftCCell.identifier, for: indexPath) as! SwiftCCell
             //cell.lblDescrip.text = reelsModel?[indexPath.row].description ?? ""
-            cell.lblName.text    = reelsModel?[indexPath.row].Title ?? ""
+            cell.lblName.text    = UserManager.shared.reelsModel?[indexPath.row].Title ?? ""
             DispatchQueue.main.async {
-                guard let url = self.reelsModel?[indexPath.row].thumbnailUrl else {
+                guard let url = UserManager.shared.reelsModel?[indexPath.row].thumbnailUrl else {
                     return
                 }
                 let url1 = URL(string: url)!
@@ -839,7 +839,7 @@ extension ProfileVC : UICollectionViewDelegate , UICollectionViewDataSource , UI
         if collectionView == collectSwift {
             
             let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "SwiftVC") as? SwiftVC
-            vc?.responseModel = self.reelsModel
+            vc?.responseModel = UserManager.shared.reelsModel
             vc?.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc!, animated: true)
         }
@@ -955,10 +955,11 @@ extension ProfileVC {
             }
         }
     }
+    
     func fetchVideos() {
     
         self.startAnimating()
-        self.videosModel?.removeAll()
+        UserManager.shared.videosModel?.removeAll()
         let userToken = UserDefault.token
         let collectionPath = "Videos/\(UserDefault.token)/VideosData"
         let documentRef = db.collection(collectionPath)
@@ -969,7 +970,7 @@ extension ProfileVC {
                 self.stopAnimating()
                 return
             }
-            self.videosModel = document.map  { (QueryDocumentSnapshot) -> ProfileVideosModel in
+            UserManager.shared.videosModel = document.map  { (QueryDocumentSnapshot) -> ProfileVideosModel in
                 
                 let data         =  QueryDocumentSnapshot.data()
                 
@@ -1010,7 +1011,7 @@ extension ProfileVC {
     
     func fetchReels() {
         self.startAnimating()
-        self.reelsModel?.removeAll()
+        UserManager.shared.reelsModel?.removeAll()
         
         let collectionPath = "Swifts/\(UserDefault.token)/VideosData"
         
@@ -1064,7 +1065,7 @@ extension ProfileVC {
                 // Create a new ProfileVideosModel and add it to reelsModel
                 let profileVideo = ProfileVideosModel(uid: uid, address: address, Zipcode: zipcode, city: city, Title: title, tagPersons: TagPersons, description: description, categories: categories, hashtages: hashtages, language: language, thumbnailUrl: thumbnailUrl, videoUrl: videoUrl, likes: likes, comments: comments, views: views, paidCollab: paidCollab, introVideos: introVideos)
                 
-                self.reelsModel?.append(profileVideo)
+                UserManager.shared.reelsModel?.append(profileVideo)
             }
             // Reload the collection view
             self.isfirstTime = true
