@@ -298,6 +298,10 @@ extension CameraVC {
     func onAppear() {
         self.hideNavBar()
       //  self.totalTime = 180
+        if UserManager.shared.isFromVideos {
+            self.pickVideo()
+            UserManager.shared.isFromVideos = false
+        }
     }
     
     func setupFilterCollection(){

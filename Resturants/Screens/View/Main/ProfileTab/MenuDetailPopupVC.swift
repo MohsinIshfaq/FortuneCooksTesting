@@ -13,6 +13,7 @@ class MenuDetailPopupVC: UIViewController {
     @IBOutlet weak var lblName    : UILabel!
     @IBOutlet weak var lblPrice   : UILabel!
     @IBOutlet weak var lblDescrip : UILabel!
+   
     
     var selectedItem: GroupsItemModel?      = nil
     

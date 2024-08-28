@@ -70,6 +70,11 @@ class MenuesVC: UIViewController {
               var range = locations[indexPath.row].timings?[getCurrentDayOfWeek().1]
               cell?.lblStatus.text    = "\(isRestaurantOpen(timeRange:range ?? "") ? "Open" : "Closed")"
               cell?.lblSchedule.text  = locations[indexPath.row].timings?[getCurrentDayOfWeek().1]
+              cell?.lblStatus.textColor = cell?.lblStatus.text == "Open" ? .green : .red
+              if cell?.lblStatus.text == "Open" {
+                  cell?.lblStatus.text = "\(isOneHourOrLessLeft(timeRange:range ?? "") ? "Closing Soon" : "Open")"
+                  cell?.lblStatus.textColor = cell?.lblStatus.text == "Closing Soon" ? .yellow : .green
+              }
           }
           cell?.btnManangeInfo.addTarget(self, action: #selector(ontapMangeInfo(sender:)), for: .touchUpInside)
           cell?.btnManangeInfo.tag = indexPath.row

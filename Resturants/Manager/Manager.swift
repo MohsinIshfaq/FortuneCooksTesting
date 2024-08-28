@@ -14,6 +14,8 @@ final class UserManager {
     static let shared     = UserManager()
     private init () {}
     
+    var isFromVideos = false     // to handle videos and swift when click upload in profile
+    
     var reelsModel      : [ProfileVideosModel]? = []
     var videosModel     : [ProfileVideosModel]? = []
     

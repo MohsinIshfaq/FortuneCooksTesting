@@ -382,6 +382,10 @@ extension ProfileVC {
         collectSwift.delegate        = self
         collectSwift.dataSource      = self
         
+        collectSwift.register(NoPostCCell.nib, forCellWithReuseIdentifier: NoPostCCell.identifier)
+        collectSwift.delegate        = self
+        collectSwift.dataSource      = self
+        
         collectSwiftColl.register(SwiftCCell.nib, forCellWithReuseIdentifier: SwiftCCell.identifier)
         collectSwiftColl.delegate   = self
         collectSwiftColl.dataSource = self
@@ -428,11 +432,6 @@ extension ProfileVC {
         if UserDefault.isAuthenticated {
             getMenuGroup(id: "821ACC7A-D858-47B3-9E71-187DC482CE21")
         }
-        vwVideo.isHidden         = false
-        vwSwift.isHidden         = true
-        vwCollection.isHidden    = true
-        vwMenu.isHidden          = true
-        stackVideos.isHidden     = false
         stackMenu.isHidden       = true
         
         vwVideo.isHidden         = false
@@ -443,7 +442,6 @@ extension ProfileVC {
         stackSwift.isHidden      = true
         stackCollection.isHidden = true
         stackMenu.isHidden       = true
-        
         hidesBottomBarWhenPushed = false
     }
     func updateCoverUrlInModel(newCoverUrl: String) {
@@ -632,6 +630,7 @@ extension ProfileVC {
             }
         }
     @objc func ontapUplaod(_ sender: UIButton) {
+        UserManager.shared.isFromVideos = true
         let vc = Constants.addStoryBoard.instantiateViewController(withIdentifier: "CameraNC") as? CameraNC
         vc?.modalPresentationStyle = .overFullScreen
         self.present(vc!, animated: true)
@@ -789,9 +788,22 @@ extension ProfileVC : UITableViewDelegate , UITableViewDataSource {
 extension ProfileVC : UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == collectSwift {
-            //collectSwiftHeightCons.constant = 250 * 3
-            updateCollectionViewHeight()
-            return UserManager.shared.reelsModel?.count ?? 0
+            if UserManager.shared.reelsModel?.count ?? 0 == 0{
+                if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+                    layout.scrollDirection = .vertical
+                 
+                }
+                collectSwiftHeightCons.constant = CGFloat(200)
+                return 1
+            }
+            else{
+                if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+                    layout.scrollDirection = .horizontal
+                  
+                }
+                updateCollectionViewHeight()
+                return UserManager.shared.reelsModel?.count ?? 0
+            }
         }
         else if collectionView == vwCollect {
             return groups.count
@@ -803,17 +815,23 @@ extension ProfileVC : UICollectionViewDelegate , UICollectionViewDataSource , UI
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == collectSwift {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SwiftCCell.identifier, for: indexPath) as! SwiftCCell
-            //cell.lblDescrip.text = reelsModel?[indexPath.row].description ?? ""
-            cell.lblName.text    = UserManager.shared.reelsModel?[indexPath.row].Title ?? ""
-            DispatchQueue.main.async {
-                guard let url = UserManager.shared.reelsModel?[indexPath.row].thumbnailUrl else {
-                    return
+            if UserManager.shared.reelsModel?.count ?? 0 != 0{
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SwiftCCell.identifier, for: indexPath) as! SwiftCCell
+                //cell.lblDescrip.text = reelsModel?[indexPath.row].description ?? ""
+                cell.lblName.text    = UserManager.shared.reelsModel?[indexPath.row].Title ?? ""
+                DispatchQueue.main.async {
+                    guard let url = UserManager.shared.reelsModel?[indexPath.row].thumbnailUrl else {
+                        return
+                    }
+                    let url1 = URL(string: url)!
+                    cell.imgMain?.sd_setImage(with: url1)
                 }
-                let url1 = URL(string: url)!
-                cell.imgMain?.sd_setImage(with: url1)
+                return cell
+            }else{
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NoPostCCell.identifier, for: indexPath) as! NoPostCCell
+                cell.btnPost.addTarget(self, action: #selector(ontapUplaodSwift), for: .touchUpInside)
+                return cell
             }
-            return cell
         }
         else if collectionView == vwCollect {
             let cell  = vwCollect.dequeueReusableCell(withReuseIdentifier: MenuCCell.identifier, for: indexPath) as! MenuCCell
@@ -835,13 +853,28 @@ extension ProfileVC : UICollectionViewDelegate , UICollectionViewDataSource , UI
         }
     }
     
+    @objc func ontapUplaodSwift(_ sender: UIButton) {
+        UserManager.shared.isFromVideos = false
+        let vc = Constants.addStoryBoard.instantiateViewController(withIdentifier: "CameraNC") as? CameraNC
+        vc?.modalPresentationStyle = .overFullScreen
+        self.present(vc!, animated: true)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == collectSwift {
             
-            let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "SwiftVC") as? SwiftVC
-            vc?.responseModel = UserManager.shared.reelsModel
-            vc?.hidesBottomBarWhenPushed = true
-            self.navigationController?.pushViewController(vc!, animated: true)
+            if UserManager.shared.reelsModel?.count ?? 0 != 0{
+                
+                let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "SwiftVC") as? SwiftVC
+                vc?.responseModel = UserManager.shared.reelsModel
+                vc?.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc!, animated: true)
+            }
+            else{
+                let vc = Constants.addStoryBoard.instantiateViewController(withIdentifier: "CameraNC") as? CameraNC
+                vc?.modalPresentationStyle = .overFullScreen
+                self.present(vc!, animated: true)
+            }
         }
         else if collectionView == vwCollect {
             groupItems.removeAll()
@@ -863,7 +896,12 @@ extension ProfileVC : UICollectionViewDelegate , UICollectionViewDataSource , UI
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
        
-        return  collectionView != vwCollect ? CGSize(width: (collectionView.frame.size.width / 2) - 10, height: 300) : CGSize(width: 100, height: 40)
+        if collectionView == collectSwift  && UserManager.shared.reelsModel?.count ?? 0 == 0{
+           return CGSize(width: 300, height: 200)
+        }
+        else{
+            return  collectionView != vwCollect ? CGSize(width: (collectionView.frame.size.width / 2) - 10, height: 300) : CGSize(width: 100, height: 40)
+        }
         
     }
     
