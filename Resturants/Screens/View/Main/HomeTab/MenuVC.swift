@@ -62,5 +62,10 @@ class MenuVC: UIViewController {
         self.dismiss(animated: true)
         delegate?.crtAccnt(pressed: "VideoRecording")
     }
+    
+    @IBAction func ontapCollection(_ sender: UIButton) {
+        self.dismiss(animated: true)
+        delegate?.crtAccnt(pressed: "MyCollection")
+    }
 
 }

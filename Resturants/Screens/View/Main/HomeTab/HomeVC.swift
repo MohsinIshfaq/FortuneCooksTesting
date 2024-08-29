@@ -31,10 +31,10 @@ class HomeVC: UIViewController , MenuVCDelegate {
         else if pressed == "VideoRecording" {
             pickVideo()
         }
-        else{
-//            let vc = Constants.homehStoryBoard.instantiateViewController(withIdentifier: "CameraVC") as? CameraVC
-//            vc?.hidesBottomBarWhenPushed = true
-//            self.navigationController?.pushViewController(vc!, animated: true)
+        else if pressed == "MyCollection"{
+            let vc = Constants.homehStoryBoard.instantiateViewController(withIdentifier: "MyCollectionVC") as? MyCollectionVC
+            vc?.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc!, animated: true)
         }
     }
     //MARK: - @IBOutlets
