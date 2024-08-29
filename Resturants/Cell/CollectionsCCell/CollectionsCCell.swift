@@ -16,6 +16,7 @@ class CollectionsCCell: UICollectionViewCell {
     //MARK: - IBOutlets
     @IBOutlet weak var imgCollection: UIImageView!
     @IBOutlet weak var lblTitle     : UILabel!
+    @IBOutlet weak var vwBack       : UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

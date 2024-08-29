@@ -97,6 +97,8 @@
 		46C4A0982B93245300F27C8F /* FilterCCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46C4A0962B93245300F27C8F /* FilterCCell.xib */; };
 		46C4A09A2B93290100F27C8F /* VideoEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C4A0992B93290100F27C8F /* VideoEditor.swift */; };
 		46C820F92B930179007E543F /* EditVideoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C820F82B930179007E543F /* EditVideoVC.swift */; };
+		46CA6FDA2C80942E00CAC42B /* CreateCollectionPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CA6FD92C80942E00CAC42B /* CreateCollectionPopupVC.swift */; };
+		46CA6FDC2C80AA6000CAC42B /* CollectionsActionPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CA6FDB2C80AA6000CAC42B /* CollectionsActionPopupVC.swift */; };
 		46DCFC772BC39E3200EF3FA3 /* UploadingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DCFC762BC39E3200EF3FA3 /* UploadingVC.swift */; };
 		46E9F21D2BEC7D320058CC30 /* RemoveFollowerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E9F21C2BEC7D320058CC30 /* RemoveFollowerVC.swift */; };
 		46FAF52F2BEC671900518C0D /* FollowersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FAF52E2BEC671900518C0D /* FollowersVC.swift */; };
@@ -243,6 +245,8 @@
 		46C4A0962B93245300F27C8F /* FilterCCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterCCell.xib; sourceTree = "<group>"; };
 		46C4A0992B93290100F27C8F /* VideoEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoEditor.swift; sourceTree = "<group>"; };
 		46C820F82B930179007E543F /* EditVideoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditVideoVC.swift; sourceTree = "<group>"; };
+		46CA6FD92C80942E00CAC42B /* CreateCollectionPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCollectionPopupVC.swift; sourceTree = "<group>"; };
+		46CA6FDB2C80AA6000CAC42B /* CollectionsActionPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsActionPopupVC.swift; sourceTree = "<group>"; };
 		46DCFC762BC39E3200EF3FA3 /* UploadingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadingVC.swift; sourceTree = "<group>"; };
 		46E9F21C2BEC7D320058CC30 /* RemoveFollowerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveFollowerVC.swift; sourceTree = "<group>"; };
 		46FAF52E2BEC671900518C0D /* FollowersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersVC.swift; sourceTree = "<group>"; };
@@ -571,6 +575,8 @@
 				7119F6392B8B7DFF00FA8579 /* VideoRecordingVC.swift */,
 				46C820F82B930179007E543F /* EditVideoVC.swift */,
 				46A8772B2C800D8A00EC0F17 /* MyCollectionVC.swift */,
+				46CA6FD92C80942E00CAC42B /* CreateCollectionPopupVC.swift */,
+				46CA6FDB2C80AA6000CAC42B /* CollectionsActionPopupVC.swift */,
 			);
 			path = HomeTab;
 			sourceTree = "<group>";
@@ -1057,6 +1063,8 @@
 				46A508BF2BB3BDFD00493310 /* UploadThumbnailVC.swift in Sources */,
 				4626306F2B99632900A4E7D1 /* CameraVC.swift in Sources */,
 				46C296982C2872BE00715CB3 /* AddBioVC.swift in Sources */,
+				46CA6FDC2C80AA6000CAC42B /* CollectionsActionPopupVC.swift in Sources */,
+				46CA6FDA2C80942E00CAC42B /* CreateCollectionPopupVC.swift in Sources */,
 				46A8772C2C800D8A00EC0F17 /* MyCollectionVC.swift in Sources */,
 				469AD6142BC0FA9B00469F6B /* TagPeopleCCell.swift in Sources */,
 				46B8FDA32BCCEFB10058E80C /* SettingsVC.swift in Sources */,
