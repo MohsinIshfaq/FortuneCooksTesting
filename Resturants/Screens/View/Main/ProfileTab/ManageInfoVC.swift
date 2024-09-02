@@ -238,26 +238,30 @@ extension ManageInfoVC {
         }
         
         // Validate Email
-        if let email = email, email.isEmpty {
-            if !email.isValidEmailRegex(email) {
-                self.showToast(message: "Invalid email address.", seconds: 2, clr: .red)
-                return false
+        if email != "" {
+            if let email  = email {
+                if !email.isValidEmailRegex(email) {
+                    self.showToast(message: "Invalid email address.", seconds: 2, clr: .red)
+                    return false
+                }
             }
         }
 
         // Validate Website URL
-        if let web = web, web.isEmpty {
-            if !web.isValidWebsite(url: web) {
-                self.showToast(message: "Invalid web URL.", seconds: 2, clr: .red)
-                return false
+            if web != "" {
+                if let web = web {
+                    if !web.isValidWebsite(url: web) {
+                        self.showToast(message: "Invalid web URL.", seconds: 2, clr: .red)
+                        return false
+                    }
+                }
             }
-        }
 
         // Validate Number
-        if let number = number, number.isEmpty {
-            self.showToast(message: "Number shouldn't be empty.", seconds: 2, clr: .red)
-            return false
-        }
+//        if let number = number, number.isEmpty {
+//            self.showToast(message: "Number shouldn't be empty.", seconds: 2, clr: .red)
+//            return false
+//        }
 
         // Validate Address
         if let address = address, address.isEmpty {
@@ -430,7 +434,7 @@ extension ManageInfoVC  {
         let uniqueID = UUID().uuidString
         let db = Firestore.firestore()
         let restaurantLocation = RestaurantLocation(
-            id: uniqueID , channalNm: txtChannelNm.text!, bio: txtViewBio.text, email: txtEmail.text!, website: txtWeb.text!, telephoneNumber: txtNumber.text!, address: txtAddress.text!, zipCode: txtZip.text!, City: txtCity.text!, timings: timings)
+            id: uniqueID , channalNm: txtChannelNm.text!, bio: txtViewBio.text, email: txtEmail.text!, website: txtWeb.text!, telephoneNumber: txtNumber.text!, address: txtAddress.text!, zipCode: txtZip.text!, City: txtCity.text!, timings: timings , locType: "")
         
         let collectionPath = "restaurants_Locations/\(UserDefault.token)/locations"
         db.collection(collectionPath).addDocument(data: restaurantLocation.toDictionary()) { error in
@@ -501,7 +505,8 @@ extension ManageInfoVC  {
             address: txtAddress.text ?? "",
             zipCode: txtZip.text ?? "",
             City: txtCity.text ?? "",
-            timings: timings
+            timings: timings ,
+            locType: ""
         )
         
         // Firestore collection path

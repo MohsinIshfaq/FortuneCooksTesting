@@ -18,6 +18,7 @@ struct RestaurantLocation {
     let zipCode    : String
     let City       : String
     let timings    : [String]?
+    let locType    : String
     
     func toDictionary() -> [String: Any] {
         return [
@@ -30,7 +31,8 @@ struct RestaurantLocation {
             "address": address,
             "zipCode": zipCode,
             "City": City,
-            "timings": timings
+            "timings": timings,
+            "locType": locType
             
         ]
     }

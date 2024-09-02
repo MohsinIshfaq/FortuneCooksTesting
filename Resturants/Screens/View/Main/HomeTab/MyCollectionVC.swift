@@ -137,7 +137,7 @@ extension MyCollectionVC {
     
     func NavigationRightBtn() {
         
-        let moreImg = UIImage(systemName: "More")?.withRenderingMode(.automatic)
+        let moreImg = UIImage(named: "More")?.withRenderingMode(.automatic)
         var moreBtn = UIBarButtonItem(image: moreImg, style: .plain, target: self, action: #selector(ontapMore))
         
         let editImg = UIImage(systemName: "plus")?.withRenderingMode(.automatic)

@@ -45,11 +45,13 @@ class AddORUpdateItemVC: UIViewController {
     }
     
     @IBAction func ontapSave(_ sender: UIButton){
-        if addNewItem{
-            addgroupItem()
-        }
-        else{
-            updateGroupItem()
+        if checkCredentials() {
+            if addNewItem{
+                addgroupItem()
+            }
+            else{
+                updateGroupItem()
+            }
         }
     }
     
@@ -78,11 +80,20 @@ class AddORUpdateItemVC: UIViewController {
             self.txtMostLiked.text = action.title // Update text field with selected option title
         }
         var menuChildren: [UIMenuElement] = []
-        for i in 1 ... totalCount {
-            menuChildren.append(UIAction(title: "\(i)", handler: actionClosure))
+        if totalCount  != 0 {
+            for i in 1 ... totalCount {
+                menuChildren.append(UIAction(title: "\(i)", handler: actionClosure))
+            }
+            sender.menu = UIMenu(options: .displayInline, children: menuChildren)
+            sender.showsMenuAsPrimaryAction = true
         }
-        sender.menu = UIMenu(options: .displayInline, children: menuChildren)
-        sender.showsMenuAsPrimaryAction = true
+        else{
+            for i in 1 ... 1 {
+                menuChildren.append(UIAction(title: "\(i)", handler: actionClosure))
+            }
+            sender.menu = UIMenu(options: .displayInline, children: menuChildren)
+            sender.showsMenuAsPrimaryAction = true
+        }
     }
 
     @IBAction func ontapListNumbr(_ sender: UIButton){
@@ -252,5 +263,28 @@ extension AddORUpdateItemVC {
         self.txtCurrency.text  = GroupsItem?.currency ?? ""
         self.txtMostLiked.text = GroupsItem?.mostLiked ?? ""
         self.newSelectedImg    = self.GroupsItem?.img ?? ""
+    }
+    
+    func checkCredentials() -> Bool{
+        
+        if newSelectedImg == "" {
+            self.showToast(message: "Select Item Image", seconds: 2, clr: .red)
+            return false
+        }
+        else if txtName.text == "" {
+            self.showToast(message: "Title shouldn't be empty", seconds: 2, clr: .red)
+            return false
+        }
+        else if txtDescrip.text == "" || txtDescrip.text == placeholder{
+            self.showToast(message: "Description shouldn't be empty", seconds: 2, clr: .red)
+            return false
+        }
+        else if txtPrice.text == "" && txtCurrency.text == "" {
+            self.showToast(message: "Price and their currency shouldn't empty.", seconds: 2, clr: .red)
+            return false
+        }
+        else{
+            return true
+        }
     }
 }

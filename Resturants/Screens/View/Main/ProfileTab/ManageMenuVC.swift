@@ -21,6 +21,7 @@ class ManageMenuVC: UIViewController {
     @IBOutlet weak var txtGrpNm    : UITextField!
     @IBOutlet weak var txtListNum  : UITextField!
     @IBOutlet weak var vwTblView   : UITableView!
+    @IBOutlet weak var btnDelete   : UIButton!
     
     
     //MARK: - Variables and Properties
@@ -42,6 +43,11 @@ class ManageMenuVC: UIViewController {
         onAppear()
     }
     
+    @IBAction func ontapDelete(_ sender: UIButton) {
+        groups.remove(at: self.selectedMenuIndex)
+        updateMenuGroups(id: location?.id ?? "")
+        btnDelete.isHidden = true
+    }
     @IBAction func ontapList(_ sender: UIButton){
          var actionClosure = { (action: UIAction) in
             self.txtListNum.text = action.title
@@ -67,6 +73,7 @@ class ManageMenuVC: UIViewController {
             stackGrpNm.isHidden   = false
             stackListNum.isHidden = false
             btnCreate.isHidden    = false
+            btnDelete.isHidden    = false
             txtGrpNm.text         = groups[self.selectedMenuIndex].groupName
             txtListNum.text       = "#\(self.selectedMenuIndex)"
             self.selectedUniqueID = groups[self.selectedMenuIndex].id
@@ -94,10 +101,9 @@ class ManageMenuVC: UIViewController {
             stackListNum.isHidden = false
         }
     }
-    
     @IBAction func ontapCreate(_ sender: UIButton){
         if selectedMenuIndex != 0 {
-            var a = ["\(txtGrpNm.text!)" , 0] as [Any]
+            _ = ["\(txtGrpNm.text!)" , 0] as [Any]
             if txtListNum.text != "" {
                 let array = Array(txtListNum.text!) // ["#", "3"]
                 if Int(String(array[1])) == 0 {
@@ -106,7 +112,7 @@ class ManageMenuVC: UIViewController {
                 }
                 else {
                     groups.remove(at: self.selectedMenuIndex)
-                    var place = Int(String(array[1]))!
+                    let place = Int(String(array[1]))!
 //                    arr.insert(a, at: place)
                     groups.insert(GroupsModel(id: self.selectedUniqueID, groupName: "\(txtGrpNm.text!)", selected: 0) , at: place)
                 }
@@ -114,14 +120,14 @@ class ManageMenuVC: UIViewController {
         }
         else {
             if txtGrpNm.text != "" {
-                var a = ["\(txtGrpNm.text!)" , 0] as [Any]
+                _ = ["\(txtGrpNm.text!)" , 0] as [Any]
                 if txtListNum.text != "" {
                     let array = Array(txtListNum.text!) // ["#", "3"]
                     if Int(String(array[1])) == 0 {
                       //  arr.append(a)
                     }
                     else {
-                        var place = Int(String(array[1]))!
+                        let place = Int(String(array[1]))!
 //                        arr.insert(a, at: place)
 //                        self.groups.append(GroupsModel(id: uniqueID, groupName: "\(txtGrpNm.text!)", selected: 0))
                         self.groups.insert(GroupsModel(id: uniqueID, groupName: "\(txtGrpNm.text!)", selected: 0), at: place)
@@ -143,6 +149,7 @@ class ManageMenuVC: UIViewController {
         vwTblView.isHidden    = false
         updateMenuGroups(id: location?.id ?? "")
     }
+    
 }
 
 //MARK: - Collection View {}

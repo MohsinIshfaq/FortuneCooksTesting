@@ -2867,7 +2867,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="DNr-lP-YGS">
-                                                        <rect key="frame" x="0.0" y="55.666666666666629" width="361" height="552"/>
+                                                        <rect key="frame" x="0.0" y="55.666666666666629" width="361" height="552.00000000000011"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="USF-0P-i7q">
                                                                 <rect key="frame" x="0.0" y="0.0" width="361" height="38"/>
@@ -10700,6 +10700,26 @@ platform be detailed.</string>
                                                     <action selector="ontapNewGrp:" destination="zcp-QK-MJB" eventType="touchUpInside" id="bo2-nm-SYm"/>
                                                 </connections>
                                             </button>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QTw-4V-bYK">
+                                                <rect key="frame" x="0.0" y="63" width="361" height="55"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="55" id="fe4-eW-BUJ"/>
+                                                </constraints>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Delete Group">
+                                                    <fontDescription key="titleFontDescription" name="Inter-Regular_Medium" family="Inter" pointSize="18"/>
+                                                    <color key="baseForegroundColor" systemColor="systemRedColor"/>
+                                                </buttonConfiguration>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="ontapDelete:" destination="zcp-QK-MJB" eventType="touchUpInside" id="HJZ-Ky-6Ut"/>
+                                                </connections>
+                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wU3-5U-oQW">
                                                 <rect key="frame" x="0.0" y="71" width="361" height="55"/>
                                                 <color key="backgroundColor" name="ColorWhite"/>
@@ -10900,6 +10920,7 @@ platform be detailed.</string>
                         <outlet property="btnAddItem" destination="Zax-ou-wxl" id="dbB-k9-MDi"/>
                         <outlet property="btnCreate" destination="wU3-5U-oQW" id="MI9-p5-5wg"/>
                         <outlet property="btnCreateGrp" destination="f54-pH-Mlq" id="VeM-UU-guO"/>
+                        <outlet property="btnDelete" destination="QTw-4V-bYK" id="wT8-XT-whf"/>
                         <outlet property="stackEdit" destination="Ejv-eQ-nLX" id="ROb-Ik-OS5"/>
                         <outlet property="stackGrpNm" destination="10I-u9-Rmi" id="dlX-WV-Oyk"/>
                         <outlet property="stackListNum" destination="cJD-oe-kba" id="Iip-7z-a6u"/>
