@@ -534,7 +534,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="mNq-ee-PXD">
-                                                        <rect key="frame" x="12" y="16.000000000000004" width="20" height="16.666666666666654"/>
+                                                        <rect key="frame" x="12" y="15.999999999999998" width="20" height="16.666666666666657"/>
                                                         <color key="tintColor" name="ColorBlack"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="PX1-JF-rIh"/>
@@ -1583,6 +1583,9 @@
                                                         <real key="value" value="8"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="ontapCrtCollection:" destination="U0r-Ec-nea" eventType="touchUpInside" id="WXs-B8-PGD"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -1612,6 +1615,7 @@
                         <outlet property="lblAll" destination="cgy-Kj-xFx" id="qJ4-Ja-cDw"/>
                         <outlet property="lblMyFollowers" destination="PxF-Ea-dDx" id="9Bn-cE-TSw"/>
                         <outlet property="lblOnlyMe" destination="mhs-tC-NBd" id="zXb-FY-cEo"/>
+                        <outlet property="lblTop" destination="Stq-yG-dyW" id="9lR-aJ-2j5"/>
                         <outlet property="txtTitle" destination="HNf-vj-HYM" id="wz7-3I-7hl"/>
                         <outlet property="vwAll" destination="4av-Mr-2xL" id="xVC-Cj-Ood"/>
                         <outlet property="vwMyFollowers" destination="079-Iy-zGh" id="A2b-Fq-lGp"/>

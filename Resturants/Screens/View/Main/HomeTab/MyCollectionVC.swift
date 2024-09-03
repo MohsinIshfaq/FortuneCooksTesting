@@ -6,11 +6,20 @@
 //
 
 import UIKit
+import FirebaseFirestoreInternal
 
-class MyCollectionVC: UIViewController , CollectionActionsDelegate, ConfirmationAutionsDelegate {
+class MyCollectionVC: UIViewController , CollectionActionsDelegate, ConfirmationAutionsDelegate, CollectionCreationDelegate {
+    func reloadCollection(model: CollectionModel) {
+        self.collections.append(model)
+        vwCOllections.reloadData()
+    }
+    
     func willDelete(_ condition: Bool) {
         if condition {
             self.dismiss(animated: true)
+            deleteCollection(withId: collections[selectedIndex]?.id ?? "")
+            collections.remove(at: selectedIndex)
+            vwCOllections.reloadData()
         }
         else{
             self.dismiss(animated: true)
@@ -20,6 +29,10 @@ class MyCollectionVC: UIViewController , CollectionActionsDelegate, Confirmation
     func collectionAction(_ type: String) {
         if type == "Edit" {
             self.dismiss(animated: true)
+            let vc = Constants.homehStoryBoard.instantiateViewController(withIdentifier: "CreateCollectionPopupVC") as? CreateCollectionPopupVC
+            vc?.selected_in    = self.selectedIndex
+            vc?.selected_Model = collections[selectedIndex]
+            self.present(vc!, animated: true)
         }
         else{
             self.dismiss(animated: true)
@@ -29,20 +42,22 @@ class MyCollectionVC: UIViewController , CollectionActionsDelegate, Confirmation
         }
     }
     
-
+    
     //MARK: - IBOUtlets
     @IBOutlet weak var stackAddCollection : UIStackView!
     @IBOutlet weak var vwCOllections      : UICollectionView!
-     
     @IBOutlet weak var vwAll              : UIView!
     @IBOutlet weak var vwVidos            : UIView!
     @IBOutlet weak var vwSwift            : UIView!
-           
     @IBOutlet weak var lblAll             : UILabel!
     @IBOutlet weak var lblVidos           : UILabel!
     @IBOutlet weak var lblSwift           : UILabel!
-     
     @IBOutlet weak var stackTypeCollect   : UIStackView!
+    
+    var selectedIndex                     = -1
+    let db                                = Firestore.firestore()
+    var collections                       : [CollectionModel?]   = []
+    
     
     //MARK: - Variables and Properties
     override func viewDidLoad() {
@@ -55,27 +70,31 @@ class MyCollectionVC: UIViewController , CollectionActionsDelegate, Confirmation
     }
     
     @IBAction func ontapAddCollection(_ : UIButton) {
-       
+        
         let vc = Constants.homehStoryBoard.instantiateViewController(withIdentifier: "CreateCollectionPopupVC") as? CreateCollectionPopupVC
+        vc?.delegate = self
         self.present(vc!, animated: true)
     }
     
     @objc func ontapMore(_ : UIButton) {
         
-        let vc = Constants.homehStoryBoard.instantiateViewController(withIdentifier: "CollectionsActionPopupVC") as? CollectionsActionPopupVC
-        vc?.delegate = self
-        self.present(vc!, animated: true)
+        if selectedIndex != -1 {
+            let vc = Constants.homehStoryBoard.instantiateViewController(withIdentifier: "CollectionsActionPopupVC") as? CollectionsActionPopupVC
+            vc?.delegate = self
+            self.present(vc!, animated: true)
+        }
     }
     
     @objc func ontapAdd(_ : UIButton) {
         
         let vc = Constants.homehStoryBoard.instantiateViewController(withIdentifier: "CreateCollectionPopupVC") as? CreateCollectionPopupVC
+        vc?.delegate = self
         self.present(vc!, animated: true)
     }
     
     
     @IBAction func ontapTypeCollection(_ sender: UIButton) {
-      
+        
         if sender.tag == 0 {
             vwAll.backgroundColor   = .white
             vwVidos.backgroundColor = .black
@@ -104,14 +123,14 @@ class MyCollectionVC: UIViewController , CollectionActionsDelegate, Confirmation
             lblSwift.textColor      = .black
         }
     }
-
+    
 }
 
 //MARK: - Setup Profile {}
 extension MyCollectionVC {
     
     func onload() {
-        
+        getCollection()
     }
     
     func onAppear() {
@@ -150,17 +169,83 @@ extension MyCollectionVC {
 //MARK: - Setup Collection {}
 extension MyCollectionVC: UICollectionViewDelegate , UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 6
+        return collections.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionsCCell.identifier, for: indexPath) as? CollectionsCCell
-        cell?.vwBack.borderWidth  = 1
-        cell?.vwBack.borderColor  = .ColorDarkBlue
-        cell?.lblTitle.textColor  = .ColorDarkBlue
-        cell?.imgCollection.image = UIImage(named: "SelectedCollection")
+        cell?.lblTitle.text = collections[indexPath.row]?.collectionName ?? ""
+        if collections[indexPath.row]?.selected ?? 0 == 1 {
+            cell?.vwBack.borderWidth  = 1
+            cell?.vwBack.borderColor  = .ColorDarkBlue
+            cell?.lblTitle.textColor  = .ColorDarkBlue
+            cell?.imgCollection.image = UIImage(named: "SelectedCollection")
+        }
+        else{
+            cell?.vwBack.borderWidth  = 0
+            cell?.lblTitle.textColor  = .white
+            cell?.imgCollection.image = UIImage(named: "SavedCollection")
+        }
         return cell!
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        for i in 0 ..< self.collections.count {
+            self.collections[i]?.selected = 0
+        }
+        self.selectedIndex        = indexPath.row
+        self.collections[indexPath.row]?.selected = 1
+        collectionView.reloadData()
+    }
     
+    
+}
+
+//MARK: - Firebase call for collection {}
+extension MyCollectionVC {
+    
+    func getCollection() {
+        collections.removeAll()
+        self.startAnimating()
+        let collectionPath = "Collections/WYCwmlT06AdWW8K56833NT0e9E12/UserCollections"
+        db.collection(collectionPath).getDocuments { (querySnapshot, error) in
+            self.stopAnimating() // Ensure animation stops whether there's an error or not
+            
+            if let error = error {
+                print("Error getting documents: \(error.localizedDescription)")
+                return
+            }
+            
+            guard let documents = querySnapshot?.documents, !documents.isEmpty else {
+                print("No documents found.")
+                return
+            }
+            
+            for document in documents {
+                let data = document.data()
+                let id                    = data["id"] as? String ?? ""
+                let collectionName        = data["collectionName"] as? String ?? ""
+                let swiftIds              = data["swiftIds"] as? [String] ?? []
+                let videosIds             = data["videosIds"] as? [String] ?? []
+                let visibility            = data["visibility"] as? String ?? ""
+                self.collections.append(CollectionModel(collectionName: collectionName, id: id, swiftIds: swiftIds, videosIds: videosIds, visibility: visibility, selected: 0))
+            }
+            print(self.collections)
+            self.vwCOllections.reloadData()
+        }
+    }
+    
+    func deleteCollection(withId id: String) {
+        let collectionPath = "Collections/WYCwmlT06AdWW8K56833NT0e9E12/UserCollections"
+        let documentRef = db.collection(collectionPath).document(id)
+        
+        documentRef.delete { error in
+            if let error = error {
+                print("Error deleting document: \(error.localizedDescription)")
+            } else {
+                print("Document successfully deleted")
+            }
+        }
+    }
 }

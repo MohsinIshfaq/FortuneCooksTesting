@@ -73,3 +73,24 @@ struct GroupsItemModel {
         ]
     }
 }
+
+
+struct CollectionModel {
+    let collectionName  : String
+    let id              : String
+    let swiftIds        : [String]
+    let videosIds       : [String]
+    let visibility      : String
+    var selected        : Int
+   
+    
+    func toDictionary() -> [String: Any] {
+        return [
+            "collectionName" : collectionName,
+            "id"             : id,
+            "swiftIds"       : swiftIds,
+            "videosIds"      : videosIds,
+            "visibility"     : visibility
+        ]
+    }
+}
