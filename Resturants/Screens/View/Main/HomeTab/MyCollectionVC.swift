@@ -8,7 +8,12 @@
 import UIKit
 import FirebaseFirestoreInternal
 
-class MyCollectionVC: UIViewController , CollectionActionsDelegate, ConfirmationAutionsDelegate, CollectionCreationDelegate {
+class MyCollectionVC: UIViewController , CollectionActionsDelegate, ConfirmationAutionsDelegate, CollectionCreationDelegate, CollectionUpdateDelegate {
+    func reloadForUpdateCollection() {
+        self.dismiss(animated: true)
+        getCollection()
+    }
+    
     func reloadCollection(model: CollectionModel) {
         self.collections.append(model)
         vwCOllections.reloadData()
@@ -31,6 +36,7 @@ class MyCollectionVC: UIViewController , CollectionActionsDelegate, Confirmation
             self.dismiss(animated: true)
             let vc = Constants.homehStoryBoard.instantiateViewController(withIdentifier: "CreateCollectionPopupVC") as? CreateCollectionPopupVC
             vc?.selected_in    = self.selectedIndex
+            vc?.delegateUpdate = self
             vc?.selected_Model = collections[selectedIndex]
             self.present(vc!, animated: true)
         }
@@ -90,6 +96,8 @@ class MyCollectionVC: UIViewController , CollectionActionsDelegate, Confirmation
         let vc = Constants.homehStoryBoard.instantiateViewController(withIdentifier: "CreateCollectionPopupVC") as? CreateCollectionPopupVC
         vc?.delegate = self
         self.present(vc!, animated: true)
+        //        let vc = Constants.homehStoryBoard.instantiateViewController(withIdentifier: "AddOrRemoveCollectVC") as? AddOrRemoveCollectVC
+        //        self.present(vc!, animated: true)
     }
     
     

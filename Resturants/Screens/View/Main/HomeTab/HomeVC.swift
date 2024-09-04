@@ -55,6 +55,11 @@ class HomeVC: UIViewController , MenuVCDelegate {
         self.present(vc, animated: true)
     }
     @objc func ontapNavLFT() {}
+    
+    @IBAction func ontapComments(_ sender: UIButton){
+        let vc = Constants.homehStoryBoard.instantiateViewController(withIdentifier: "CommentsVC") as! CommentsVC
+        self.present(vc, animated: true)
+    }
 
 }
 

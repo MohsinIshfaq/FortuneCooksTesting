@@ -13,6 +13,12 @@ protocol CollectionCreationDelegate {
     func reloadCollection(model: CollectionModel)
 }
 
+protocol CollectionUpdateDelegate {
+    
+    func reloadForUpdateCollection()
+}
+
+
 class CreateCollectionPopupVC: UIViewController {
 
     
@@ -24,11 +30,13 @@ class CreateCollectionPopupVC: UIViewController {
     @IBOutlet weak var lblMyFollowers     : UILabel!
     @IBOutlet weak var lblOnlyMe          : UILabel!
     @IBOutlet weak var lblTop             : UILabel!
+    @IBOutlet weak var btnCreate          : UIButton!
     
     @IBOutlet weak var txtTitle           : UITextField!
     
     var visibility                       = "All"
     var delegate                         : CollectionCreationDelegate? = nil
+    var delegateUpdate                   : CollectionUpdateDelegate?   = nil
     var selected_in                      : Int   = -1
     var selected_Model                   : CollectionModel? = nil
     let db                               = Firestore.firestore()
@@ -84,7 +92,13 @@ class CreateCollectionPopupVC: UIViewController {
     @IBAction func ontapCrtCollection(_ sender: UIButton) {
         
         if txtTitle.text != "" {
-            addCollection()
+            if sender.currentTitle == "Create Collection" {
+                addCollection()
+            }
+            else{
+                var model = CollectionModel(collectionName: txtTitle.text!, id: selected_Model?.id ?? "", swiftIds: [], videosIds: [], visibility: visibility, selected: 0)
+                updateCollection(for: model)
+            }
         }
         else{
             self.showToast(message: "Please add group name", seconds: 2, clr: .red)
@@ -131,9 +145,11 @@ extension CreateCollectionPopupVC {
                 visibility                    = "Only me"
             }
             lblTop.text    = "Update Collection"
+            btnCreate.setTitle("Update Collection", for: .normal)
         }
         else{
             lblTop.text    = "Create Collection"
+            btnCreate.setTitle("Create Collection", for: .normal)
         }
     }
     
@@ -168,17 +184,44 @@ extension CreateCollectionPopupVC {
         }
     }
     
-    func updateCollection(withId id: String, updatedData: [String: Any]) {
+    func updateCollection(for selectedModel: CollectionModel) {
         let collectionPath = "Collections/WYCwmlT06AdWW8K56833NT0e9E12/UserCollections"
-        let documentRef = db.collection(collectionPath).document(id)
         
-        documentRef.updateData(updatedData) { error in
+        db.collection(collectionPath).getDocuments { (querySnapshot, error) in
             if let error = error {
-                print("Error updating document: \(error.localizedDescription)")
-            } else {
-                print("Document successfully updated")
+                print("Error getting documents: \(error.localizedDescription)")
+                return
+            }
+            
+            guard let documents = querySnapshot?.documents, !documents.isEmpty else {
+                print("No documents found.")
+                return
+            }
+            
+            // Iterate over the documents to find the one with the matching id
+            for document in documents {
+                let data = document.data()
+                let id = data["id"] as? String ?? ""
+                
+                // Check if the document id matches the selected model's id
+                if id == selectedModel.id {
+                    // Update the document
+                    let documentRef = document.reference
+                    let updatedData = selectedModel.toDictionary()
+                    
+                    documentRef.updateData(updatedData) { error in
+                        if let error = error {
+                            print("Error updating document: \(error.localizedDescription)")
+                        } else {
+                            print("Document successfully updated")
+                            self.delegateUpdate?.reloadForUpdateCollection()
+                        }
+                    }
+                }
             }
         }
     }
+
+
 
 }

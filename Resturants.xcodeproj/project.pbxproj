@@ -10,6 +10,9 @@
 		28E0884F7B0D98691A6FD7BF /* Pods_Resturants.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 338B6AC4DD0531F5E7268D31 /* Pods_Resturants.framework */; };
 		46195D3B2BCCF94B00FC8B1D /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46195D3A2BCCF94B00FC8B1D /* ProfileVC.swift */; };
 		461C01062C00EE5F00A78FA7 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461C01052C00EE5F00A78FA7 /* ProfileModel.swift */; };
+		461D41C22C87619A0072EA82 /* CommentsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461D41C12C87619A0072EA82 /* CommentsVC.swift */; };
+		461D41C62C8762720072EA82 /* CommentsTCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461D41C42C8762720072EA82 /* CommentsTCell.swift */; };
+		461D41C72C8762720072EA82 /* CommentsTCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 461D41C52C8762720072EA82 /* CommentsTCell.xib */; };
 		4625A17D2B98D8B000C763DD /* FrameFilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4625A17B2B98D8B000C763DD /* FrameFilterCell.swift */; };
 		4625A17E2B98D8B000C763DD /* FrameFilterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4625A17C2B98D8B000C763DD /* FrameFilterCell.xib */; };
 		4626306D2B995E5D00A4E7D1 /* CameraLiveCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4626306C2B995E5D00A4E7D1 /* CameraLiveCapture.swift */; };
@@ -39,6 +42,7 @@
 		46472E452C05972000505AE4 /* IGBizTokVideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46472E422C05972000505AE4 /* IGBizTokVideoCell.swift */; };
 		46472E472C0598F300505AE4 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46472E462C0598F300505AE4 /* PlayerView.swift */; };
 		464BC8842BF3BD4B0066C486 /* MenuDetailPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464BC8832BF3BD4B0066C486 /* MenuDetailPopupVC.swift */; };
+		464FA81B2C8805E9007A7E4F /* AddOrRemoveCollectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464FA81A2C8805E9007A7E4F /* AddOrRemoveCollectVC.swift */; };
 		465493FC2BD7B77000EF5111 /* ProfileNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465493FB2BD7B77000EF5111 /* ProfileNC.swift */; };
 		465493FF2BD7D56700EF5111 /* SwiftCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465493FD2BD7D56700EF5111 /* SwiftCCell.swift */; };
 		465494002BD7D56700EF5111 /* SwiftCCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 465493FE2BD7D56700EF5111 /* SwiftCCell.xib */; };
@@ -158,6 +162,9 @@
 		338B6AC4DD0531F5E7268D31 /* Pods_Resturants.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Resturants.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		46195D3A2BCCF94B00FC8B1D /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		461C01052C00EE5F00A78FA7 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileModel.swift; path = Resturants/Screens/View/Main/ProfileTab/ProfileModel.swift; sourceTree = SOURCE_ROOT; };
+		461D41C12C87619A0072EA82 /* CommentsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsVC.swift; sourceTree = "<group>"; };
+		461D41C42C8762720072EA82 /* CommentsTCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsTCell.swift; sourceTree = "<group>"; };
+		461D41C52C8762720072EA82 /* CommentsTCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentsTCell.xib; sourceTree = "<group>"; };
 		4625A17B2B98D8B000C763DD /* FrameFilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameFilterCell.swift; sourceTree = "<group>"; };
 		4625A17C2B98D8B000C763DD /* FrameFilterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FrameFilterCell.xib; sourceTree = "<group>"; };
 		4626306C2B995E5D00A4E7D1 /* CameraLiveCapture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraLiveCapture.swift; sourceTree = "<group>"; };
@@ -187,6 +194,7 @@
 		46472E432C05972000505AE4 /* IGBizTokVideoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IGBizTokVideoCell.xib; sourceTree = "<group>"; };
 		46472E462C0598F300505AE4 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		464BC8832BF3BD4B0066C486 /* MenuDetailPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDetailPopupVC.swift; sourceTree = "<group>"; };
+		464FA81A2C8805E9007A7E4F /* AddOrRemoveCollectVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOrRemoveCollectVC.swift; sourceTree = "<group>"; };
 		465493FB2BD7B77000EF5111 /* ProfileNC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNC.swift; sourceTree = "<group>"; };
 		465493FD2BD7D56700EF5111 /* SwiftCCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftCCell.swift; sourceTree = "<group>"; };
 		465493FE2BD7D56700EF5111 /* SwiftCCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwiftCCell.xib; sourceTree = "<group>"; };
@@ -332,6 +340,15 @@
 				99FFE8AA8B5C10B05EE45574 /* Pods-Resturants.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		461D41C32C87623E0072EA82 /* CommentsTCell */ = {
+			isa = PBXGroup;
+			children = (
+				461D41C42C8762720072EA82 /* CommentsTCell.swift */,
+				461D41C52C8762720072EA82 /* CommentsTCell.xib */,
+			);
+			path = CommentsTCell;
 			sourceTree = "<group>";
 		};
 		462630792B9AA2F600A4E7D1 /* CameraDelegate */ = {
@@ -577,6 +594,8 @@
 				46A8772B2C800D8A00EC0F17 /* MyCollectionVC.swift */,
 				46CA6FD92C80942E00CAC42B /* CreateCollectionPopupVC.swift */,
 				46CA6FDB2C80AA6000CAC42B /* CollectionsActionPopupVC.swift */,
+				461D41C12C87619A0072EA82 /* CommentsVC.swift */,
+				464FA81A2C8805E9007A7E4F /* AddOrRemoveCollectVC.swift */,
 			);
 			path = HomeTab;
 			sourceTree = "<group>";
@@ -781,6 +800,7 @@
 		71C6A9C52B694CA000E19808 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				461D41C32C87623E0072EA82 /* CommentsTCell */,
 				46A8772D2C801CB400EC0F17 /* CollectionsCCell */,
 				462D9B6E2C672C2400A79DA3 /* MenuDishTCell */,
 				467FE8E22C6476EF0099DA4E /* MenuCCell */,
@@ -917,6 +937,7 @@
 				714B0F712B69703B00570578 /* SelectioTCell.xib in Resources */,
 				71B3DC792B55A94000A3615F /* Assets.xcassets in Resources */,
 				468155432BAFE08800DF5DBC /* ColorCCell.xib in Resources */,
+				461D41C72C8762720072EA82 /* CommentsTCell.xib in Resources */,
 				46C4A0982B93245300F27C8F /* FilterCCell.xib in Resources */,
 				715388952B59A3E1006D682F /* Video.storyboard in Resources */,
 				71C6A9CF2B695F3300E19808 /* AddDataCell.xib in Resources */,
@@ -978,6 +999,7 @@
 				469FC43D2BC1847000952EA5 /* UploadSwift2VC.swift in Sources */,
 				4635E1352BA69E3C00C149ED /* AudioRecordVC.swift in Sources */,
 				469AD60D2BC0EC5200469F6B /* HastagCCell.swift in Sources */,
+				464FA81B2C8805E9007A7E4F /* AddOrRemoveCollectVC.swift in Sources */,
 				468D10BA2BEDF01B009C61CB /* LocationTCell.swift in Sources */,
 				462D9B712C672C6000A79DA3 /* MenuDishTCell.swift in Sources */,
 				4654940B2BDF3B5300EF5111 /* NoPostTCell.swift in Sources */,
@@ -998,6 +1020,7 @@
 				461C01062C00EE5F00A78FA7 /* ProfileModel.swift in Sources */,
 				714B0F702B69703B00570578 /* SelectioTCell.swift in Sources */,
 				7144BD512B6E983100767374 /* HomeVC.swift in Sources */,
+				461D41C22C87619A0072EA82 /* CommentsVC.swift in Sources */,
 				7153888B2B5998BC006D682F /* CreatAccntVC.swift in Sources */,
 				46B5CF6D2BCE1DB2000E5207 /* AccntDeleteReasonVC.swift in Sources */,
 				467158142BEDF2AA00F934C6 /* OtherLocVC.swift in Sources */,
@@ -1023,6 +1046,7 @@
 				462630852B9AA40700A4E7D1 /* FrameRateCalculator.swift in Sources */,
 				462D9B762C67724D00A79DA3 /* ManageMenuModel.swift in Sources */,
 				465493FC2BD7B77000EF5111 /* ProfileNC.swift in Sources */,
+				461D41C62C8762720072EA82 /* CommentsTCell.swift in Sources */,
 				7131D9952B92CCC4005DE42E /* CameraConfiguration.swift in Sources */,
 				4626307F2B9AA3B800A4E7D1 /* Capture.swift in Sources */,
 				7151664C2B598989007CE092 /* CrtProfile5VC.swift in Sources */,
