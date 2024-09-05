@@ -57,7 +57,7 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="rsM-ag-Zrs">
-                                <rect key="frame" x="313" y="177.33333333333334" width="50" height="312.66666666666663"/>
+                                <rect key="frame" x="313" y="153.33333333333334" width="50" height="360.66666666666663"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="qMP-Hg-AWv">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="0.0"/>
@@ -98,7 +98,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="7vR-Qy-Lmo">
-                                        <rect key="frame" x="0.0" y="92.333333333333343" width="50" height="44.333333333333343"/>
+                                        <rect key="frame" x="0.0" y="92.333333333333314" width="50" height="44.333333333333343"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Jd-Ud-y2b">
                                                 <rect key="frame" x="13" y="0.0" width="24" height="24"/>
@@ -113,7 +113,7 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="28k" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dI6-xu-mgL">
-                                                <rect key="frame" x="13.666666666666686" y="28" width="23" height="16.333333333333329"/>
+                                                <rect key="frame" x="13.666666666666686" y="28.000000000000028" width="23" height="16.333333333333329"/>
                                                 <fontDescription key="fontDescription" name="PlusJakartaDisplay-Regular" family="Plus Jakarta Display" pointSize="14"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -143,8 +143,31 @@
                                             </label>
                                         </subviews>
                                     </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="qMA-Dd-dB0">
+                                        <rect key="frame" x="0.0" y="208.66666666666666" width="50" height="24"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VTb-XG-fWn">
+                                                <rect key="frame" x="13" y="0.0" width="24" height="24"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="24" id="7GF-G3-d4d"/>
+                                                    <constraint firstAttribute="width" secondItem="VTb-XG-fWn" secondAttribute="height" multiplier="1:1" id="MeU-dw-YrP"/>
+                                                </constraints>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" image="Collection"/>
+                                                <connections>
+                                                    <action selector="onTapCommentsBtn:" destination="Gfu-Yq-wFy" eventType="touchUpInside" id="1ro-df-mSu"/>
+                                                </connections>
+                                            </button>
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YB3-xU-LJH">
+                                                <rect key="frame" x="-3.3333333333333144" y="0.0" width="57" height="0.0"/>
+                                                <fontDescription key="fontDescription" name="PlusJakartaDisplay-Medium" family="Plus Jakarta Display" pointSize="14"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="p3o-dR-aEK">
-                                        <rect key="frame" x="0.0" y="208.66666666666666" width="50" height="30"/>
+                                        <rect key="frame" x="0.0" y="256.66666666666663" width="50" height="30"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lrR-HH-CHi">
                                                 <rect key="frame" x="10" y="0.0" width="30" height="30"/>
@@ -170,7 +193,7 @@
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MXq-q0-UKr">
-                                        <rect key="frame" x="0.0" y="262.66666666666663" width="50" height="50"/>
+                                        <rect key="frame" x="0.0" y="310.66666666666663" width="50" height="50"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="whatsapp" translatesAutoresizingMaskIntoConstraints="NO" id="wku-a5-XAq">
                                                 <rect key="frame" x="2" y="2" width="46" height="46"/>
@@ -395,6 +418,7 @@
             </constraints>
             <size key="customSize" width="375" height="667"/>
             <connections>
+                <outlet property="btnAddtoCollect" destination="VTb-XG-fWn" id="XZ6-yc-NMd"/>
                 <outlet property="btnComment" destination="rIh-Wl-lhy" id="o4B-21-3Lt"/>
                 <outlet property="btnContactInfo" destination="vmU-W2-l9b" id="EmK-HC-9s3"/>
                 <outlet property="btnLike" destination="5Jd-Ud-y2b" id="4ey-Az-nFm"/>
@@ -429,6 +453,7 @@
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="Collection" width="16" height="19.333333969116211"/>
         <image name="Icon feather-eye" width="27" height="20"/>
         <image name="bgImg" width="428" height="289"/>
         <image name="comment_icon" width="25" height="24"/>

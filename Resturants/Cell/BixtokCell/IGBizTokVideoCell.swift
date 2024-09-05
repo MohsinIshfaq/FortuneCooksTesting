@@ -44,6 +44,7 @@ class IGBizTokVideoCell: UICollectionViewCell, VideosModelUpdatable {
     @IBOutlet weak var consDescriptionHeight: NSLayoutConstraint!
     @IBOutlet weak var consBottomView: NSLayoutConstraint!
     @IBOutlet weak var viewUserInfo: UIView!
+    @IBOutlet weak var btnAddtoCollect: UIButton!
     
     @IBOutlet weak var viewContactInfo: UIView!
     @IBOutlet weak var imgContactInfo: UIImageView!

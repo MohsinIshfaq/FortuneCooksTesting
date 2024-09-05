@@ -9,16 +9,15 @@ import UIKit
 import FirebaseFirestoreInternal
 
 class MyCollectionVC: UIViewController , CollectionActionsDelegate, ConfirmationAutionsDelegate, CollectionCreationDelegate, CollectionUpdateDelegate {
+    
     func reloadForUpdateCollection() {
         self.dismiss(animated: true)
         getCollection()
     }
-    
     func reloadCollection(model: CollectionModel) {
         self.collections.append(model)
         vwCOllections.reloadData()
     }
-    
     func willDelete(_ condition: Bool) {
         if condition {
             self.dismiss(animated: true)
@@ -30,7 +29,6 @@ class MyCollectionVC: UIViewController , CollectionActionsDelegate, Confirmation
             self.dismiss(animated: true)
         }
     }
-    
     func collectionAction(_ type: String) {
         if type == "Edit" {
             self.dismiss(animated: true)
@@ -52,6 +50,8 @@ class MyCollectionVC: UIViewController , CollectionActionsDelegate, Confirmation
     //MARK: - IBOUtlets
     @IBOutlet weak var stackAddCollection : UIStackView!
     @IBOutlet weak var vwCOllections      : UICollectionView!
+    @IBOutlet weak var vwSwiftCollect     : UICollectionView!
+    @IBOutlet weak var vwVideosCollect    : UITableView!
     @IBOutlet weak var vwAll              : UIView!
     @IBOutlet weak var vwVidos            : UIView!
     @IBOutlet weak var vwSwift            : UIView!
@@ -59,10 +59,14 @@ class MyCollectionVC: UIViewController , CollectionActionsDelegate, Confirmation
     @IBOutlet weak var lblVidos           : UILabel!
     @IBOutlet weak var lblSwift           : UILabel!
     @IBOutlet weak var stackTypeCollect   : UIStackView!
+    @IBOutlet weak var tblVideoHeightCons : NSLayoutConstraint!
+    @IBOutlet weak var collectSwiftHeightCons: NSLayoutConstraint!
     
     var selectedIndex                     = -1
     let db                                = Firestore.firestore()
     var collections                       : [CollectionModel?]   = []
+    let itemsPerColumn  : Int = 2
+    let itemHeight      : CGFloat = 250.0 // Example item height
     
     
     //MARK: - Variables and Properties
@@ -111,6 +115,13 @@ class MyCollectionVC: UIViewController , CollectionActionsDelegate, Confirmation
             lblAll.textColor        = .black
             lblVidos.textColor      = .white
             lblSwift.textColor      = .white
+            vwSwiftCollect.isHidden  = false
+            vwVideosCollect.isHidden = false
+            if let layout = vwSwiftCollect.collectionViewLayout as? UICollectionViewFlowLayout {
+                layout.scrollDirection = .vertical
+             
+            }
+            collectSwiftHeightCons.constant = CGFloat(250)
         }
         else if sender.tag == 1 {
             vwAll.backgroundColor   = .black
@@ -120,6 +131,8 @@ class MyCollectionVC: UIViewController , CollectionActionsDelegate, Confirmation
             lblAll.textColor        = .white
             lblVidos.textColor      = .black
             lblSwift.textColor      = .white
+            vwSwiftCollect.isHidden  = true
+            vwVideosCollect.isHidden = false
         }
         else{
             vwAll.backgroundColor   = .black
@@ -129,6 +142,14 @@ class MyCollectionVC: UIViewController , CollectionActionsDelegate, Confirmation
             lblAll.textColor        = .white
             lblVidos.textColor      = .white
             lblSwift.textColor      = .black
+            vwSwiftCollect.isHidden  = false
+            vwVideosCollect.isHidden = true
+            if let layout = vwSwiftCollect.collectionViewLayout as? UICollectionViewFlowLayout {
+                layout.scrollDirection = .horizontal
+              
+            }
+            updateCollectionViewHeight()
+            
         }
     }
     
@@ -156,10 +177,25 @@ extension MyCollectionVC {
         lblSwift.textColor      = .white
     }
     
+    func updateCollectionViewHeight() {
+        let numberOfItems = UserManager.shared.reelsModel?.count ?? 0
+        let numberOfRows = ceil(Double(numberOfItems) / Double(itemsPerColumn))
+        let newHeight = numberOfRows * Double(itemHeight)
+        collectSwiftHeightCons.constant = CGFloat(newHeight)
+    }
+    
     func setupCell() {
         vwCOllections.register(CollectionsCCell.nib, forCellWithReuseIdentifier: CollectionsCCell.identifier)
-        vwCOllections.delegate   = self
-        vwCOllections.dataSource = self
+        vwCOllections.delegate    = self
+        vwCOllections.dataSource  = self
+        
+        vwVideosCollect.register(VideoTCell.nib, forCellReuseIdentifier: VideoTCell.identifier)
+        vwVideosCollect.delegate   = self
+        vwVideosCollect.dataSource = self
+        
+        vwSwiftCollect.register(SwiftCCell.nib, forCellWithReuseIdentifier: SwiftCCell.identifier)
+        vwSwiftCollect.delegate   = self
+        vwSwiftCollect.dataSource = self
     }
     
     func NavigationRightBtn() {
@@ -175,36 +211,106 @@ extension MyCollectionVC {
 }
 
 //MARK: - Setup Collection {}
-extension MyCollectionVC: UICollectionViewDelegate , UICollectionViewDataSource {
+extension MyCollectionVC: UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return collections.count
+        if  collectionView == vwCOllections {
+            return collections.count
+        }
+        else {
+            return UserManager.shared.reelsModel?.count ?? 0
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionsCCell.identifier, for: indexPath) as? CollectionsCCell
-        cell?.lblTitle.text = collections[indexPath.row]?.collectionName ?? ""
-        if collections[indexPath.row]?.selected ?? 0 == 1 {
-            cell?.vwBack.borderWidth  = 1
-            cell?.vwBack.borderColor  = .ColorDarkBlue
-            cell?.lblTitle.textColor  = .ColorDarkBlue
-            cell?.imgCollection.image = UIImage(named: "SelectedCollection")
+        if collectionView == vwCOllections {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionsCCell.identifier, for: indexPath) as? CollectionsCCell
+            cell?.lblTitle.text = collections[indexPath.row]?.collectionName ?? ""
+            if collections[indexPath.row]?.selected ?? 0 == 1 {
+                cell?.vwBack.borderWidth  = 1
+                cell?.vwBack.borderColor  = .ColorDarkBlue
+                cell?.lblTitle.textColor  = .ColorDarkBlue
+                cell?.imgCollection.image = UIImage(named: "SelectedCollection")
+            }
+            else{
+                cell?.vwBack.borderWidth  = 0
+                cell?.lblTitle.textColor  = .white
+                cell?.imgCollection.image = UIImage(named: "SavedCollection")
+            }
+            return cell!
         }
         else{
-            cell?.vwBack.borderWidth  = 0
-            cell?.lblTitle.textColor  = .white
-            cell?.imgCollection.image = UIImage(named: "SavedCollection")
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SwiftCCell.identifier, for: indexPath) as! SwiftCCell
+            //cell.lblDescrip.text = reelsModel?[indexPath.row].description ?? ""
+            cell.lblName.text    = UserManager.shared.reelsModel?[indexPath.row].Title ?? ""
+            DispatchQueue.main.async {
+                guard let url = UserManager.shared.reelsModel?[indexPath.row].thumbnailUrl else {
+                    return
+                }
+                let url1 = URL(string: url)!
+                cell.imgMain?.sd_setImage(with: url1)
+            }
+            return cell
         }
-        return cell!
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        for i in 0 ..< self.collections.count {
-            self.collections[i]?.selected = 0
+        if collectionView == vwCOllections {
+            for i in 0 ..< self.collections.count {
+                self.collections[i]?.selected = 0
+            }
+            self.selectedIndex        = indexPath.row
+            self.collections[indexPath.row]?.selected = 1
+            collectionView.reloadData()
         }
-        self.selectedIndex        = indexPath.row
-        self.collections[indexPath.row]?.selected = 1
-        collectionView.reloadData()
+        else{
+            
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if collectionView == vwCOllections {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionsCCell.identifier, for: indexPath) as! CollectionsCCell
+            if let users = collections[indexPath.row]{
+                cell.lblTitle.text = users.collectionName
+            }
+            let targetSize = CGSize(width: CGFloat.greatestFiniteMagnitude, height: 30)
+            let fittingSize = cell.contentView.systemLayoutSizeFitting(targetSize,
+                                                                           withHorizontalFittingPriority: .fittingSizeLevel,
+                                                                           verticalFittingPriority: .required)
+            return CGSize(width: 120, height: 40)
+        }
+        else{
+            return CGSize(width: (vwSwiftCollect.frame.size.width / 2) - 10, height: 300)
+        }
+    }
+    
+    
+}
+
+//MARK: - Setup TableView {}
+extension MyCollectionVC: UITableViewDelegate , UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        tblVideoHeightCons.constant = CGFloat(300 + ((UserManager.shared.videosModel?.count ?? 0) * 140))
+        return UserManager.shared.videosModel?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: VideoTCell.identifier, for: indexPath) as! VideoTCell
+        cell.lblDEscrip.text = UserManager.shared.videosModel?[indexPath.row].description ?? ""
+        cell.lblName.text    = UserManager.shared.videosModel?[indexPath.row].Title ?? ""
+        cell.lblDateViews.text    = "3 October 2002 / 200 views"
+        DispatchQueue.main.async {
+            guard let url = UserManager.shared.videosModel?[indexPath.row].thumbnailUrl else {
+                return
+            }
+            let url1 = URL(string: url)!
+            cell.imgVideo?.sd_setImage(with: url1)
+        }
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 120
     }
     
     
@@ -240,6 +346,12 @@ extension MyCollectionVC {
                 self.collections.append(CollectionModel(collectionName: collectionName, id: id, swiftIds: swiftIds, videosIds: videosIds, visibility: visibility, selected: 0))
             }
             print(self.collections)
+            if self.collections.count != 0 {
+                self.stackAddCollection.isHidden = true
+            }
+            else{
+                self.stackAddCollection.isHidden = false
+            }
             self.vwCOllections.reloadData()
         }
     }

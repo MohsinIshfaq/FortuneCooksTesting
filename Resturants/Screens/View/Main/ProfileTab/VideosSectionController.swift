@@ -93,6 +93,9 @@ class VideosSectionController: ListSectionController {
         
         thisCell.cellDelegate = self
         thisCell.btnComment.tag = index
+        thisCell.btnAddtoCollect.addTarget(self, action: #selector(addCollection), for: .touchUpInside)
+        thisCell.btnAddtoCollect.tag = index
+        
         
         if let cell2 = self.collectionContext?.cellForItem(at: index, sectionController: self) as? IGBizTokVideoCell {
             
@@ -118,6 +121,11 @@ class VideosSectionController: ListSectionController {
     func visibleSectionControllers() -> [ListSectionController]{
         
         return visibleSectionControllers()
+    }
+    
+    @objc func addCollection(_ sender: UIButton) {
+        
+        print(currentVideo?.id ?? "")
     }
     
     

@@ -1022,6 +1022,7 @@ extension ProfileVC {
                     return UserTagModel(uid: uid, img: img, channelName: channelName, followers: followers, accountType: accountType)
                 }
                 let uid          = data["uid"] as? String ?? ""
+                let id           = data["id"] as? String ?? ""
                 let address      = data["address"] as? String ?? ""
                 let zipcode      = data["zipcode"] as? String ?? ""
                 let city         = data["city"] as? String ?? ""
@@ -1039,7 +1040,7 @@ extension ProfileVC {
                 let paidCollab   = data["paidCollab"] as? Bool ?? false
                 let introVideos  = data["introVideos"] as? Bool ?? false
                 
-                return ProfileVideosModel(uid: uid, address: address, Zipcode: zipcode, city: city, Title: title, tagPersons: TagPersons, description: description, categories: categories, hashtages: hashtages, language: language, thumbnailUrl: thumbnailUrl, videoUrl: videoUrl, likes: likes, comments: comments, views: views, paidCollab: paidCollab, introVideos: introVideos)
+                return ProfileVideosModel(uid: uid, id: id, address: address, Zipcode: zipcode, city: city, Title: title, tagPersons: TagPersons, description: description, categories: categories, hashtages: hashtages, language: language, thumbnailUrl: thumbnailUrl, videoUrl: videoUrl, likes: likes, comments: comments, views: views, paidCollab: paidCollab, introVideos: introVideos)
             }
             self.stopAnimating()
             self.isfirstTime = true
@@ -1083,6 +1084,7 @@ extension ProfileVC {
                 }
                 
                 let uid          = data["uid"] as? String ?? ""
+                let id           = data["id"] as? String ?? ""
                 let address      = data["address"] as? String ?? ""
                 let zipcode      = data["zipcode"] as? String ?? ""
                 let city         = data["city"] as? String ?? ""
@@ -1101,7 +1103,7 @@ extension ProfileVC {
                 let introVideos  = data["introVideos"] as? Bool ?? false
                 
                 // Create a new ProfileVideosModel and add it to reelsModel
-                let profileVideo = ProfileVideosModel(uid: uid, address: address, Zipcode: zipcode, city: city, Title: title, tagPersons: TagPersons, description: description, categories: categories, hashtages: hashtages, language: language, thumbnailUrl: thumbnailUrl, videoUrl: videoUrl, likes: likes, comments: comments, views: views, paidCollab: paidCollab, introVideos: introVideos)
+                let profileVideo = ProfileVideosModel(uid: uid, id: id, address: address, Zipcode: zipcode, city: city, Title: title, tagPersons: TagPersons, description: description, categories: categories, hashtages: hashtages, language: language, thumbnailUrl: thumbnailUrl, videoUrl: videoUrl, likes: likes, comments: comments, views: views, paidCollab: paidCollab, introVideos: introVideos)
                 
                 UserManager.shared.reelsModel?.append(profileVideo)
             }
