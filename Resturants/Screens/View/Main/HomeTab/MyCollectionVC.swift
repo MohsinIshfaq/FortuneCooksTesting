@@ -61,6 +61,7 @@ class MyCollectionVC: UIViewController , CollectionActionsDelegate, Confirmation
     @IBOutlet weak var stackTypeCollect   : UIStackView!
     @IBOutlet weak var tblVideoHeightCons : NSLayoutConstraint!
     @IBOutlet weak var collectSwiftHeightCons: NSLayoutConstraint!
+    @IBOutlet weak var scrollCollection   : UIScrollView!
     
     var selectedIndex                     = -1
     let db                                = Firestore.firestore()
@@ -78,14 +79,12 @@ class MyCollectionVC: UIViewController , CollectionActionsDelegate, Confirmation
         super.viewWillAppear(animated)
         onAppear()
     }
-    
     @IBAction func ontapAddCollection(_ : UIButton) {
         
         let vc = Constants.homehStoryBoard.instantiateViewController(withIdentifier: "CreateCollectionPopupVC") as? CreateCollectionPopupVC
         vc?.delegate = self
         self.present(vc!, animated: true)
     }
-    
     @objc func ontapMore(_ : UIButton) {
         
         if selectedIndex != -1 {
@@ -94,7 +93,6 @@ class MyCollectionVC: UIViewController , CollectionActionsDelegate, Confirmation
             self.present(vc!, animated: true)
         }
     }
-    
     @objc func ontapAdd(_ : UIButton) {
         
         let vc = Constants.homehStoryBoard.instantiateViewController(withIdentifier: "CreateCollectionPopupVC") as? CreateCollectionPopupVC
@@ -103,8 +101,6 @@ class MyCollectionVC: UIViewController , CollectionActionsDelegate, Confirmation
         //        let vc = Constants.homehStoryBoard.instantiateViewController(withIdentifier: "AddOrRemoveCollectVC") as? AddOrRemoveCollectVC
         //        self.present(vc!, animated: true)
     }
-    
-    
     @IBAction func ontapTypeCollection(_ sender: UIButton) {
         
         if sender.tag == 0 {
@@ -175,6 +171,16 @@ extension MyCollectionVC {
         lblAll.textColor        = .black
         lblVidos.textColor      = .white
         lblSwift.textColor      = .white
+        
+        if collections.count == 0 {
+            scrollCollection.isHidden   = true
+            stackAddCollection.isHidden = false
+        }
+        else{
+            scrollCollection.isHidden   = false
+            stackAddCollection.isHidden = true
+        }
+        getCollection()
     }
     
     func updateCollectionViewHeight() {
@@ -322,7 +328,7 @@ extension MyCollectionVC {
     func getCollection() {
         collections.removeAll()
         self.startAnimating()
-        let collectionPath = "Collections/WYCwmlT06AdWW8K56833NT0e9E12/UserCollections"
+        let collectionPath = "Collections/\(UserDefault.token)/UserCollections"
         db.collection(collectionPath).getDocuments { (querySnapshot, error) in
             self.stopAnimating() // Ensure animation stops whether there's an error or not
             
@@ -357,7 +363,7 @@ extension MyCollectionVC {
     }
     
     func deleteCollection(withId id: String) {
-        let collectionPath = "Collections/WYCwmlT06AdWW8K56833NT0e9E12/UserCollections"
+        let collectionPath = "Collections/\(UserDefault.token)/UserCollections"
         let documentRef = db.collection(collectionPath).document(id)
         
         documentRef.delete { error in

@@ -31,6 +31,7 @@ protocol sectionControllerDelegate {
     
     func willDisplayingSection(videoURL: String, videoID: String, videoThumb: String)
     func endDisplayingSection(videoURL: String, videoID: String, videoThumb: String)
+    func addToCollection(_ id : String)
 }
 
 class VideosSectionController: ListSectionController {
@@ -125,8 +126,11 @@ class VideosSectionController: ListSectionController {
     
     @objc func addCollection(_ sender: UIButton) {
         
-        print(currentVideo?.id ?? "")
+        self.sectionDelegate?.addToCollection(currentVideo?.id ?? "")
+//        print(currentVideo?.id ?? "")
     }
+    
+    
     
     
 }

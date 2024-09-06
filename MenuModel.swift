@@ -78,8 +78,8 @@ struct GroupsItemModel {
 struct CollectionModel {
     let collectionName  : String
     let id              : String
-    let swiftIds        : [String]
-    let videosIds       : [String]
+    var swiftIds        : [String]
+    var videosIds       : [String]
     let visibility      : String
     var selected        : Int
    

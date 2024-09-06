@@ -151,6 +151,12 @@ extension SwiftVC {
 
 //MARK: - My Custom Delegates
 extension SwiftVC: sectionControllerDelegate {
+    func addToCollection(_ id: String) {
+        let vc = Constants.homehStoryBoard.instantiateViewController(withIdentifier: "AddOrRemoveCollectVC") as? AddOrRemoveCollectVC
+        vc?.id = id
+        self.present(vc!, animated: true)
+    }
+    
     
     func didTappedComments(sender: String, id: String, thumbnail: String, title: String) {
         

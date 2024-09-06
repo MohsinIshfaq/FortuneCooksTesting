@@ -534,7 +534,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="mNq-ee-PXD">
-                                                        <rect key="frame" x="12" y="16.000000000000004" width="20" height="16.666666666666654"/>
+                                                        <rect key="frame" x="12" y="15.999999999999998" width="20" height="16.666666666666657"/>
                                                         <color key="tintColor" name="ColorBlack"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="PX1-JF-rIh"/>
@@ -1426,6 +1426,7 @@
                         <outlet property="lblAll" destination="6cW-a8-vRq" id="B4T-TV-qm9"/>
                         <outlet property="lblSwift" destination="EhU-VT-sLa" id="ttf-ke-Zfe"/>
                         <outlet property="lblVidos" destination="L4I-j5-x5Q" id="kB1-yD-nn5"/>
+                        <outlet property="scrollCollection" destination="cRp-TV-9eb" id="Bwg-mo-p27"/>
                         <outlet property="stackAddCollection" destination="ngj-M2-6dA" id="pjo-qG-tmw"/>
                         <outlet property="stackTypeCollect" destination="R5H-Jb-fVv" id="nUm-Do-gPl"/>
                         <outlet property="tblVideoHeightCons" destination="PRC-Me-wdh" id="OK4-fE-y76"/>

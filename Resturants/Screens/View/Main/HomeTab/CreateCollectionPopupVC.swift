@@ -171,7 +171,7 @@ extension CreateCollectionPopupVC {
         let uniqueID = UUID().uuidString
         let collection = CollectionModel(collectionName: txtTitle.text!, id: uniqueID, swiftIds: [], videosIds: [], visibility: self.visibility, selected: 0)
         
-        let collectionPath = "Collections/WYCwmlT06AdWW8K56833NT0e9E12/UserCollections"
+        let collectionPath = "Collections/\(UserDefault.token)/UserCollections"
         db.collection(collectionPath).addDocument(data: collection.toDictionary()) { error in
             if let error = error {
                 print("Error saving location: \(error.localizedDescription)")
@@ -185,7 +185,7 @@ extension CreateCollectionPopupVC {
     }
     
     func updateCollection(for selectedModel: CollectionModel) {
-        let collectionPath = "Collections/WYCwmlT06AdWW8K56833NT0e9E12/UserCollections"
+        let collectionPath = "Collections/\(UserDefault.token)/UserCollections"
         
         db.collection(collectionPath).getDocuments { (querySnapshot, error) in
             if let error = error {
