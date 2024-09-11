@@ -126,7 +126,7 @@ class VideosSectionController: ListSectionController {
     
     @objc func addCollection(_ sender: UIButton) {
         
-        self.sectionDelegate?.addToCollection(currentVideo?.id ?? "")
+        self.sectionDelegate?.addToCollection(currentVideo?.uid ?? "")
 //        print(currentVideo?.id ?? "")
     }
     

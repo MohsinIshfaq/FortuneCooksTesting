@@ -65,7 +65,8 @@ class MyCollectionVC: UIViewController , CollectionActionsDelegate, Confirmation
     
     var selectedIndex                     = -1
     let db                                = Firestore.firestore()
-    var collections                       : [CollectionModel?]   = []
+    var collections                       : [CollectionModel?]    = []
+    var collectionReelsModel              : [ProfileVideosModel]? = []
     let itemsPerColumn  : Int = 2
     let itemHeight      : CGFloat = 250.0 // Example item height
     
@@ -223,7 +224,7 @@ extension MyCollectionVC: UICollectionViewDelegate , UICollectionViewDataSource 
             return collections.count
         }
         else {
-            return UserManager.shared.reelsModel?.count ?? 0
+            return collectionReelsModel?.count ?? 0
         }
     }
     
@@ -247,9 +248,9 @@ extension MyCollectionVC: UICollectionViewDelegate , UICollectionViewDataSource 
         else{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SwiftCCell.identifier, for: indexPath) as! SwiftCCell
             //cell.lblDescrip.text = reelsModel?[indexPath.row].description ?? ""
-            cell.lblName.text    = UserManager.shared.reelsModel?[indexPath.row].Title ?? ""
+            cell.lblName.text    = collectionReelsModel?[indexPath.row].Title ?? ""
             DispatchQueue.main.async {
-                guard let url = UserManager.shared.reelsModel?[indexPath.row].thumbnailUrl else {
+                guard let url = self.collectionReelsModel?[indexPath.row].thumbnailUrl else {
                     return
                 }
                 let url1 = URL(string: url)!
@@ -260,6 +261,7 @@ extension MyCollectionVC: UICollectionViewDelegate , UICollectionViewDataSource 
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.collectionReelsModel?.removeAll()
         if collectionView == vwCOllections {
             for i in 0 ..< self.collections.count {
                 self.collections[i]?.selected = 0
@@ -267,6 +269,29 @@ extension MyCollectionVC: UICollectionViewDelegate , UICollectionViewDataSource 
             self.selectedIndex        = indexPath.row
             self.collections[indexPath.row]?.selected = 1
             collectionView.reloadData()
+            
+            if let reelsModel = UserManager.shared.reelsModel, !reelsModel.isEmpty {
+                // Get the collection for the specific indexPath.row
+                let collection = collections[indexPath.row]
+                
+                // Loop over all swiftIds in the collection at indexPath.row
+                for arr in 0 ..< (collection?.swiftIds.count ?? 0) {
+                    let swiftId = collection?.swiftIds[arr]
+                    let reelsUid = reelsModel[arr].uid
+                    
+                    // Compare swiftId with reelsUid
+                    if swiftId == reelsUid {
+                        // Append the corresponding reelsModel element if a match is found
+                        self.collectionReelsModel?.append(reelsModel[arr])
+                    }
+                }
+            }
+
+
+
+            vwSwiftCollect.reloadData()
+            scrollCollection.isHidden   = false
+            stackAddCollection.isHidden = true
         }
         else{
             
@@ -297,7 +322,7 @@ extension MyCollectionVC: UICollectionViewDelegate , UICollectionViewDataSource 
 extension MyCollectionVC: UITableViewDelegate , UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         tblVideoHeightCons.constant = CGFloat(300 + ((UserManager.shared.videosModel?.count ?? 0) * 140))
-        return UserManager.shared.videosModel?.count ?? 0
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -359,6 +384,7 @@ extension MyCollectionVC {
                 self.stackAddCollection.isHidden = false
             }
             self.vwCOllections.reloadData()
+            self.vwSwiftCollect.reloadData()
         }
     }
     

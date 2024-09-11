@@ -30,7 +30,6 @@ class AddOrRemoveCollectVC: UIViewController {
     }
     
     @IBAction func ontapSave(_ sender: UIButton) {
-       // updateCollection(for: self.collections)
         self.dismiss(animated: true)
     }
 
@@ -85,6 +84,7 @@ extension AddOrRemoveCollectVC: UICollectionViewDelegate , UICollectionViewDataS
         } else {
             self.collections[indexPath.row]?.swiftIds.append(self.id)
         }
+        updateCollection(for: self.collections[indexPath.row]!)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -136,41 +136,42 @@ extension AddOrRemoveCollectVC {
         }
     }
     
-//    func updateCollection(for selectedModel: CollectionModel) {
-//        let collectionPath = "Collections/\(UserDefault.token)/UserCollections"
-//        
-//        db.collection(collectionPath).getDocuments { (querySnapshot, error) in
-//            if let error = error {
-//                print("Error getting documents: \(error.localizedDescription)")
-//                return
-//            }
-//            
-//            guard let documents = querySnapshot?.documents, !documents.isEmpty else {
-//                print("No documents found.")
-//                return
-//            }
-//            
-//            // Iterate over the documents to find the one with the matching id
-//            for document in documents {
-//                let data = document.data()
-//                let id = data["id"] as? String ?? ""
-//                
-//                // Check if the document id matches the selected model's id
-//                if id == selectedModel.id {
-//                    // Update the document
-//                    let documentRef = document.reference
-//                    let updatedData = selectedModel.toDictionary()
-//                    
-//                    documentRef.updateData(updatedData) { error in
-//                        if let error = error {
-//                            print("Error updating document: \(error.localizedDescription)")
-//                        } else {
-//                            print("Document successfully updated")
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//    }
+    func updateCollection(for selectedModel: CollectionModel) {
+        let collectionPath = "Collections/\(UserDefault.token)/UserCollections"
+        
+        db.collection(collectionPath).getDocuments { (querySnapshot, error) in
+            if let error = error {
+                print("Error getting documents: \(error.localizedDescription)")
+                return
+            }
+            
+            guard let documents = querySnapshot?.documents, !documents.isEmpty else {
+                print("No documents found.")
+                return
+            }
+            
+            // Iterate over the documents to find the one with the matching id
+            for document in documents {
+                let data = document.data()
+                let id = data["id"] as? String ?? ""
+                
+                // Check if the document id matches the selected model's id
+                if id == selectedModel.id {
+                    // Update the document
+                    let documentRef = document.reference
+                    let updatedData = selectedModel.toDictionary()
+                    
+                    documentRef.updateData(updatedData) { error in
+                        if let error = error {
+                            print("Error updating document: \(error.localizedDescription)")
+                        } else {
+                            print("Document successfully updated")
+                            self.dismiss(animated: true)
+                        }
+                    }
+                }
+            }
+        }
+    }
     
 }
