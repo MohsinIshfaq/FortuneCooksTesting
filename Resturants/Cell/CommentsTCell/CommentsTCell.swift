@@ -9,6 +9,12 @@ import UIKit
 
 class CommentsTCell: UITableViewCell {
 
+    @IBOutlet weak var imgImage: UIImageView!
+    @IBOutlet weak var lblDetail: UILabel!
+    @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak var imgFavorite: UIImageView!
+    @IBOutlet weak var lblCount: UILabel!
+    @IBOutlet weak var btnReply: UIButton!
     
     //MARK: - Variables and Properties
     static var identifier: String { return String(describing: self) }
@@ -18,11 +24,13 @@ class CommentsTCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    func config(comments: CommentModel?) {
+        if let comments {
+            lblTitle.text = trim(comments.text)
+            lblCount.text = trim(comments.likes?.count)
+        }
+        
     }
     
 }

@@ -8,7 +8,7 @@ target 'Resturants' do
   # Pods for Resturants
     pod 'SDWebImage'
     pod 'NVActivityIndicatorView', '4.8.0'
-    pod 'IQKeyboardManager' , '6.5'
+    pod 'IQKeyboardManager'
     pod 'Firebase/Auth'
     pod 'FirebaseFirestore'
     pod 'CountryPickerView'

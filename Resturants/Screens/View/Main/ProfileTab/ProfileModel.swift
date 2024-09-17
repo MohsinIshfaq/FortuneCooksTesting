@@ -119,10 +119,50 @@ struct ProfileVideosModel {
     let thumbnailUrl : String?
     let videoUrl     : String?
     let likes        : Bool?
-    let comments     : Bool?
+    let comments     : [CommentModel]?
     let views        : Bool?
     let paidCollab   : Bool?
     let introVideos  : Bool?
+}
+
+struct CommentModel {
+    let id: String?
+    let likes: [String]?
+    let replies: [ReplyModel]?
+    let text: String?
+    let timestamp: Double?
+    let uid: String?
+}
+
+struct ReplyModel {
+    let id: String?
+    let likes: [String]?
+    let text: String?
+    let timestamp: Double?
+    let uid: String?
+}
+
+func parseCommentData(data: [String: Any]) -> CommentModel {
+    let id = data["id"] as? String ?? ""
+    let likes = data["likes"] as? [String] ?? []
+    let repliesData = data["replies"] as? [[String: Any]] ?? []
+    
+    // Parse replies into an array of ReplyModel
+    let replies = repliesData.map { replyData -> ReplyModel in
+        let replyId = replyData["id"] as? String ?? ""
+        let replyLikes = replyData["likes"] as? [String] ?? []
+        let replyText = replyData["text"] as? String ?? ""
+        let replyTimestamp = replyData["timestamp"] as? Double ?? 0.0
+        let replyUid = replyData["uid"] as? String ?? ""
+        
+        return ReplyModel(id: replyId, likes: replyLikes, text: replyText, timestamp: replyTimestamp, uid: replyUid)
+    }
+    
+    let text = data["text"] as? String ?? ""
+    let timestamp = data["timestamp"] as? Double ?? 0.0
+    let uid = data["uid"] as? String ?? ""
+    
+    return CommentModel(id: id, likes: likes, replies: replies, text: text, timestamp: timestamp, uid: uid)
 }
 
 struct UserFeedModel {

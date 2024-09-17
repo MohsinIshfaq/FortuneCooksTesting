@@ -114,6 +114,10 @@ class UploadingVC: UIViewController {
         var db = Firestore.firestore()
         let tagUsers: [UserTagModel] = self.UploadVideoModel["tagPersons"] as! [UserTagModel]
         let tagUserDictionaries = tagUsers.map { $0.toDictionary() }
+        var comments: [CommentModel] = []
+        if let commentsData = self.UploadVideoModel["comments"] as? [[String: Any]] {
+            comments = commentsData.map { parseCommentData(data: $0) }
+        }
         let data: [String: Any] = [
             "uid"              : self.UploadVideoModel["uid"] as! String ,
             "address"          : self.UploadVideoModel["address"] as! String,
@@ -128,7 +132,7 @@ class UploadingVC: UIViewController {
             "videoUrl"         : self.UploadVideoModel["videoUrl"] as! String,
             "thumbnailUrl"     : self.UploadVideoModel["thumbnailUrl"] as! String,
             "likes"            : self.UploadVideoModel["Likes"] as! Bool,
-            "comments"         : self.UploadVideoModel["comments"] as! Bool,
+            "comments"         : comments,
             "views"            : self.UploadVideoModel["views"] as! Bool,
             "paidCollab"       : self.UploadVideoModel["paidCollab"] as! Bool,
             "introVideos"      : self.UploadVideoModel["introVideos"] as! Bool
@@ -143,7 +147,7 @@ class UploadingVC: UIViewController {
                 self?.stopAnimating()
                 self?.showToast(message: "Error adding document: \(error.localizedDescription)", seconds: 2, clr: .red)
             } else {
-                UserManager.shared.reelsModel?.append(ProfileVideosModel(uid: self?.UploadVideoModel["uid"] as! String, id: "", address: self?.UploadVideoModel["address"] as! String, Zipcode: self?.UploadVideoModel["zipcode"] as! String, city: self?.UploadVideoModel["city"] as! String, Title:  self?.UploadVideoModel["title"] as! String, tagPersons: tagUsers, description: self?.UploadVideoModel["description"] as! String, categories: self?.UploadVideoModel["categories"] as! [String], hashtages: self?.UploadVideoModel["hashtages"] as! [String], language:  self?.UploadVideoModel["language"] as! String, thumbnailUrl: self?.UploadVideoModel["thumbnailUrl"] as! String, videoUrl: self?.UploadVideoModel["videoUrl"] as! String, likes:  self?.UploadVideoModel["Likes"] as! Bool, comments: self?.UploadVideoModel["comments"] as! Bool, views: self?.UploadVideoModel["views"] as! Bool, paidCollab: self?.UploadVideoModel["paidCollab"] as! Bool, introVideos: self?.UploadVideoModel["introVideos"] as! Bool))
+                UserManager.shared.reelsModel?.append(ProfileVideosModel(uid: self?.UploadVideoModel["uid"] as! String, id: "", address: self?.UploadVideoModel["address"] as! String, Zipcode: self?.UploadVideoModel["zipcode"] as! String, city: self?.UploadVideoModel["city"] as! String, Title:  self?.UploadVideoModel["title"] as! String, tagPersons: tagUsers, description: self?.UploadVideoModel["description"] as! String, categories: self?.UploadVideoModel["categories"] as! [String], hashtages: self?.UploadVideoModel["hashtages"] as! [String], language:  self?.UploadVideoModel["language"] as! String, thumbnailUrl: self?.UploadVideoModel["thumbnailUrl"] as! String, videoUrl: self?.UploadVideoModel["videoUrl"] as! String, likes:  self?.UploadVideoModel["Likes"] as! Bool, comments: comments, views: self?.UploadVideoModel["views"] as! Bool, paidCollab: self?.UploadVideoModel["paidCollab"] as! Bool, introVideos: self?.UploadVideoModel["introVideos"] as! Bool))
                 self?.showToast(message: "Document added successfully.", seconds: 2, clr: .gray)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                     self?.dismiss(animated: true)
@@ -156,6 +160,10 @@ class UploadingVC: UIViewController {
         var db = Firestore.firestore()
         let tagUsers: [UserTagModel] = self.UploadVideoModel["tagPersons"] as! [UserTagModel]
         let tagUserDictionaries = tagUsers.map { $0.toDictionary() }
+        var comments: [CommentModel] = []
+        if let commentsData = self.UploadVideoModel["comments"] as? [[String: Any]] {
+            comments = commentsData.map { parseCommentData(data: $0) }
+        }
         let data: [String: Any] = [
             "uid"              : self.UploadVideoModel["uid"] as! String ,
             "address"          : self.UploadVideoModel["address"] as! String,
@@ -170,7 +178,7 @@ class UploadingVC: UIViewController {
             "videoUrl"         : self.UploadVideoModel["videoUrl"] as! String, //"videoUrl"
             "thumbnailUrl"     : self.UploadVideoModel["thumbnailUrl"] as! String,
             "likes"            : self.UploadVideoModel["Likes"] as! Bool,
-            "comments"         : self.UploadVideoModel["comments"] as! Bool,
+            "comments"         : comments,
             "views"            : self.UploadVideoModel["views"] as! Bool,
             "paidCollab"       : self.UploadVideoModel["paidCollab"] as! Bool,
             "introVideos"      : self.UploadVideoModel["introVideos"] as! Bool
@@ -185,7 +193,7 @@ class UploadingVC: UIViewController {
                 self?.stopAnimating()
                 self?.showToast(message: "Error adding document: \(error.localizedDescription)", seconds: 2, clr: .red)
             } else {
-                UserManager.shared.videosModel?.append(ProfileVideosModel(uid: self?.UploadVideoModel["uid"] as! String, id: "", address: self?.UploadVideoModel["address"] as! String, Zipcode: self?.UploadVideoModel["zipcode"] as! String, city: self?.UploadVideoModel["city"] as! String, Title:  self?.UploadVideoModel["title"] as! String, tagPersons: tagUsers, description: self?.UploadVideoModel["description"] as! String, categories: self?.UploadVideoModel["categories"] as! [String], hashtages: self?.UploadVideoModel["hashtages"] as! [String], language:  self?.UploadVideoModel["language"] as! String, thumbnailUrl: self?.UploadVideoModel["thumbnailUrl"] as! String, videoUrl: self?.UploadVideoModel["videoUrl"] as! String, likes:  self?.UploadVideoModel["Likes"] as! Bool, comments: self?.UploadVideoModel["comments"] as! Bool, views: self?.UploadVideoModel["views"] as! Bool, paidCollab: self?.UploadVideoModel["paidCollab"] as! Bool, introVideos: self?.UploadVideoModel["introVideos"] as! Bool))
+                UserManager.shared.videosModel?.append(ProfileVideosModel(uid: self?.UploadVideoModel["uid"] as! String, id: "", address: self?.UploadVideoModel["address"] as! String, Zipcode: self?.UploadVideoModel["zipcode"] as! String, city: self?.UploadVideoModel["city"] as! String, Title:  self?.UploadVideoModel["title"] as! String, tagPersons: tagUsers, description: self?.UploadVideoModel["description"] as! String, categories: self?.UploadVideoModel["categories"] as! [String], hashtages: self?.UploadVideoModel["hashtages"] as! [String], language:  self?.UploadVideoModel["language"] as! String, thumbnailUrl: self?.UploadVideoModel["thumbnailUrl"] as! String, videoUrl: self?.UploadVideoModel["videoUrl"] as! String, likes:  self?.UploadVideoModel["Likes"] as! Bool, comments: comments, views: self?.UploadVideoModel["views"] as! Bool, paidCollab: self?.UploadVideoModel["paidCollab"] as! Bool, introVideos: self?.UploadVideoModel["introVideos"] as! Bool))
                 self?.showToast(message: "Document added successfully.", seconds: 2, clr: .gray)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                     self?.dismiss(animated: true)

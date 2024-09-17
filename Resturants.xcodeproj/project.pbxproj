@@ -7,6 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		042C45502C96B9C000396237 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042C454F2C96B9C000396237 /* UIFont+Extension.swift */; };
+		042C45532C96BB7400396237 /* writeCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042C45522C96BB7400396237 /* writeCommentCell.xib */; };
+		042C45542C96BB7400396237 /* writeCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042C45512C96BB7400396237 /* writeCommentCell.swift */; };
+		048765472C95BF680029C055 /* VideoDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 048765462C95BF680029C055 /* VideoDetailCell.xib */; };
+		048765482C95BF680029C055 /* VideoDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048765452C95BF680029C055 /* VideoDetailCell.swift */; };
+		0497424E2C96A0A7004DC765 /* UserViewerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0497424C2C96A0A7004DC765 /* UserViewerCell.swift */; };
+		0497424F2C96A0A7004DC765 /* UserViewerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0497424D2C96A0A7004DC765 /* UserViewerCell.xib */; };
+		049742522C96A322004DC765 /* VideoCommentHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049742502C96A322004DC765 /* VideoCommentHeaderCell.swift */; };
+		049742532C96A322004DC765 /* VideoCommentHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 049742512C96A322004DC765 /* VideoCommentHeaderCell.xib */; };
+		049742562C96A598004DC765 /* VideoCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049742542C96A598004DC765 /* VideoCommentCell.swift */; };
+		049742572C96A598004DC765 /* VideoCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 049742552C96A598004DC765 /* VideoCommentCell.xib */; };
+		04C033072C96BFF800EEA490 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C033062C96BFF800EEA490 /* UITableView+Extension.swift */; };
+		04C0330A2C96CAB900EEA490 /* CategoryButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C033082C96CAB900EEA490 /* CategoryButtonCell.swift */; };
+		04C0330B2C96CAB900EEA490 /* CategoryButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04C033092C96CAB900EEA490 /* CategoryButtonCell.xib */; };
+		04C0330D2C976C4E00EEA490 /* ExtensionAppLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C0330C2C976C4E00EEA490 /* ExtensionAppLevel.swift */; };
+		04F50F512C96ABD600C994C4 /* Roboto-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04F50F452C96ABD600C994C4 /* Roboto-MediumItalic.ttf */; };
+		04F50F522C96ABD600C994C4 /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04F50F462C96ABD600C994C4 /* Roboto-Black.ttf */; };
+		04F50F532C96ABD600C994C4 /* Roboto-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04F50F472C96ABD600C994C4 /* Roboto-BlackItalic.ttf */; };
+		04F50F542C96ABD600C994C4 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04F50F482C96ABD600C994C4 /* Roboto-Medium.ttf */; };
+		04F50F552C96ABD600C994C4 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04F50F492C96ABD600C994C4 /* Roboto-Regular.ttf */; };
+		04F50F562C96ABD600C994C4 /* Roboto-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04F50F4A2C96ABD600C994C4 /* Roboto-BoldItalic.ttf */; };
+		04F50F572C96ABD600C994C4 /* Roboto-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04F50F4B2C96ABD600C994C4 /* Roboto-Italic.ttf */; };
+		04F50F582C96ABD600C994C4 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04F50F4C2C96ABD600C994C4 /* Roboto-Bold.ttf */; };
+		04F50F592C96ABD600C994C4 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04F50F4D2C96ABD600C994C4 /* Roboto-Thin.ttf */; };
+		04F50F5A2C96ABD600C994C4 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04F50F4E2C96ABD600C994C4 /* Roboto-Light.ttf */; };
+		04F50F5B2C96ABD600C994C4 /* Roboto-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04F50F4F2C96ABD600C994C4 /* Roboto-ThinItalic.ttf */; };
+		04F50F5C2C96ABD600C994C4 /* Roboto-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04F50F502C96ABD600C994C4 /* Roboto-LightItalic.ttf */; };
 		28E0884F7B0D98691A6FD7BF /* Pods_Resturants.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 338B6AC4DD0531F5E7268D31 /* Pods_Resturants.framework */; };
 		46195D3B2BCCF94B00FC8B1D /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46195D3A2BCCF94B00FC8B1D /* ProfileVC.swift */; };
 		461C01062C00EE5F00A78FA7 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461C01052C00EE5F00A78FA7 /* ProfileModel.swift */; };
@@ -158,6 +185,33 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		042C454F2C96B9C000396237 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
+		042C45512C96BB7400396237 /* writeCommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = writeCommentCell.swift; sourceTree = "<group>"; };
+		042C45522C96BB7400396237 /* writeCommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = writeCommentCell.xib; sourceTree = "<group>"; };
+		048765452C95BF680029C055 /* VideoDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailCell.swift; sourceTree = "<group>"; };
+		048765462C95BF680029C055 /* VideoDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoDetailCell.xib; sourceTree = "<group>"; };
+		0497424C2C96A0A7004DC765 /* UserViewerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewerCell.swift; sourceTree = "<group>"; };
+		0497424D2C96A0A7004DC765 /* UserViewerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserViewerCell.xib; sourceTree = "<group>"; };
+		049742502C96A322004DC765 /* VideoCommentHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCommentHeaderCell.swift; sourceTree = "<group>"; };
+		049742512C96A322004DC765 /* VideoCommentHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoCommentHeaderCell.xib; sourceTree = "<group>"; };
+		049742542C96A598004DC765 /* VideoCommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCommentCell.swift; sourceTree = "<group>"; };
+		049742552C96A598004DC765 /* VideoCommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoCommentCell.xib; sourceTree = "<group>"; };
+		04C033062C96BFF800EEA490 /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
+		04C033082C96CAB900EEA490 /* CategoryButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryButtonCell.swift; sourceTree = "<group>"; };
+		04C033092C96CAB900EEA490 /* CategoryButtonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryButtonCell.xib; sourceTree = "<group>"; };
+		04C0330C2C976C4E00EEA490 /* ExtensionAppLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionAppLevel.swift; sourceTree = "<group>"; };
+		04F50F452C96ABD600C994C4 /* Roboto-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-MediumItalic.ttf"; sourceTree = "<group>"; };
+		04F50F462C96ABD600C994C4 /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
+		04F50F472C96ABD600C994C4 /* Roboto-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-BlackItalic.ttf"; sourceTree = "<group>"; };
+		04F50F482C96ABD600C994C4 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		04F50F492C96ABD600C994C4 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		04F50F4A2C96ABD600C994C4 /* Roboto-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-BoldItalic.ttf"; sourceTree = "<group>"; };
+		04F50F4B2C96ABD600C994C4 /* Roboto-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Italic.ttf"; sourceTree = "<group>"; };
+		04F50F4C2C96ABD600C994C4 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		04F50F4D2C96ABD600C994C4 /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
+		04F50F4E2C96ABD600C994C4 /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
+		04F50F4F2C96ABD600C994C4 /* Roboto-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-ThinItalic.ttf"; sourceTree = "<group>"; };
+		04F50F502C96ABD600C994C4 /* Roboto-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-LightItalic.ttf"; sourceTree = "<group>"; };
 		0765EEAB37660B15C93D653F /* Pods-Resturants.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Resturants.debug.xcconfig"; path = "Target Support Files/Pods-Resturants/Pods-Resturants.debug.xcconfig"; sourceTree = "<group>"; };
 		338B6AC4DD0531F5E7268D31 /* Pods_Resturants.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Resturants.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		46195D3A2BCCF94B00FC8B1D /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
@@ -285,7 +339,7 @@
 		715388922B59A3D2006D682F /* Add.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Add.storyboard; sourceTree = "<group>"; };
 		715388942B59A3E1006D682F /* Video.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Video.storyboard; sourceTree = "<group>"; };
 		715388962B59A3EF006D682F /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
-		716D49952B570CD40077F47D /* Inter-VariableFont_slnt,wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Inter-VariableFont_slnt,wght.ttf"; path = "Assets(Figma)/Inter/Inter-VariableFont_slnt,wght.ttf"; sourceTree = SOURCE_ROOT; };
+		716D49952B570CD40077F47D /* Inter-VariableFont_slnt,wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Inter-VariableFont_slnt,wght.ttf"; path = "Resturants/Resource/Fonts/Inter/Inter-VariableFont_slnt,wght.ttf"; sourceTree = SOURCE_ROOT; };
 		716F6FDC2B5ADD5A00049C1C /* TabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarController.swift; sourceTree = "<group>"; };
 		716F6FDE2B5ADDC900049C1C /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		71B3DC6C2B55A93D00A3615F /* Resturants.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Resturants.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -325,6 +379,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		048765442C95BEE60029C055 /* HomeCell */ = {
+			isa = PBXGroup;
+			children = (
+				048765452C95BF680029C055 /* VideoDetailCell.swift */,
+				048765462C95BF680029C055 /* VideoDetailCell.xib */,
+				0497424C2C96A0A7004DC765 /* UserViewerCell.swift */,
+				0497424D2C96A0A7004DC765 /* UserViewerCell.xib */,
+				049742502C96A322004DC765 /* VideoCommentHeaderCell.swift */,
+				049742512C96A322004DC765 /* VideoCommentHeaderCell.xib */,
+				049742542C96A598004DC765 /* VideoCommentCell.swift */,
+				049742552C96A598004DC765 /* VideoCommentCell.xib */,
+				042C45512C96BB7400396237 /* writeCommentCell.swift */,
+				042C45522C96BB7400396237 /* writeCommentCell.xib */,
+				04C033082C96CAB900EEA490 /* CategoryButtonCell.swift */,
+				04C033092C96CAB900EEA490 /* CategoryButtonCell.xib */,
+			);
+			path = HomeCell;
+			sourceTree = "<group>";
+		};
 		17CA4BF1533BA9C394426D57 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -717,6 +790,9 @@
 				462630702B9A11F000A4E7D1 /* VIdeoCapture.swift */,
 				462630792B9AA2F600A4E7D1 /* CameraDelegate */,
 				46472E462C0598F300505AE4 /* PlayerView.swift */,
+				042C454F2C96B9C000396237 /* UIFont+Extension.swift */,
+				04C033062C96BFF800EEA490 /* UITableView+Extension.swift */,
+				04C0330C2C976C4E00EEA490 /* ExtensionAppLevel.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -793,6 +869,18 @@
 			isa = PBXGroup;
 			children = (
 				716D49952B570CD40077F47D /* Inter-VariableFont_slnt,wght.ttf */,
+				04F50F462C96ABD600C994C4 /* Roboto-Black.ttf */,
+				04F50F472C96ABD600C994C4 /* Roboto-BlackItalic.ttf */,
+				04F50F4C2C96ABD600C994C4 /* Roboto-Bold.ttf */,
+				04F50F4A2C96ABD600C994C4 /* Roboto-BoldItalic.ttf */,
+				04F50F4B2C96ABD600C994C4 /* Roboto-Italic.ttf */,
+				04F50F4E2C96ABD600C994C4 /* Roboto-Light.ttf */,
+				04F50F502C96ABD600C994C4 /* Roboto-LightItalic.ttf */,
+				04F50F482C96ABD600C994C4 /* Roboto-Medium.ttf */,
+				04F50F452C96ABD600C994C4 /* Roboto-MediumItalic.ttf */,
+				04F50F492C96ABD600C994C4 /* Roboto-Regular.ttf */,
+				04F50F4D2C96ABD600C994C4 /* Roboto-Thin.ttf */,
+				04F50F4F2C96ABD600C994C4 /* Roboto-ThinItalic.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -800,6 +888,7 @@
 		71C6A9C52B694CA000E19808 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				048765442C95BEE60029C055 /* HomeCell */,
 				461D41C32C87623E0072EA82 /* CommentsTCell */,
 				46A8772D2C801CB400EC0F17 /* CollectionsCCell */,
 				462D9B6E2C672C2400A79DA3 /* MenuDishTCell */,
@@ -909,36 +998,54 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04F50F542C96ABD600C994C4 /* Roboto-Medium.ttf in Resources */,
 				716D49962B570CD40077F47D /* Inter-VariableFont_slnt,wght.ttf in Resources */,
+				04F50F5C2C96ABD600C994C4 /* Roboto-LightItalic.ttf in Resources */,
 				465494002BD7D56700EF5111 /* SwiftCCell.xib in Resources */,
 				469AD60E2BC0EC5200469F6B /* HastagCCell.xib in Resources */,
 				462D9B722C672C6000A79DA3 /* MenuDishTCell.xib in Resources */,
 				71B3DCA52B55B25800A3615F /* Auth.storyboard in Resources */,
 				46472E442C05972000505AE4 /* IGBizTokVideoCell.xib in Resources */,
 				469AD6152BC0FA9B00469F6B /* TagPeopleCCell.xib in Resources */,
+				04C0330B2C96CAB900EEA490 /* CategoryButtonCell.xib in Resources */,
+				042C45532C96BB7400396237 /* writeCommentCell.xib in Resources */,
+				04F50F592C96ABD600C994C4 /* Roboto-Thin.ttf in Resources */,
+				0497424F2C96A0A7004DC765 /* UserViewerCell.xib in Resources */,
 				469AD6072BC0302100469F6B /* TagUserTCell.xib in Resources */,
 				46FFDA172BDF4F51000F03C0 /* NoPostCCell.xib in Resources */,
+				04F50F572C96ABD600C994C4 /* Roboto-Italic.ttf in Resources */,
+				049742532C96A322004DC765 /* VideoCommentHeaderCell.xib in Resources */,
+				04F50F562C96ABD600C994C4 /* Roboto-BoldItalic.ttf in Resources */,
 				7131D9972B92D766005DE42E /* GoogleService-Info.plist in Resources */,
 				715388972B59A3EF006D682F /* Profile.storyboard in Resources */,
+				048765472C95BF680029C055 /* VideoDetailCell.xib in Resources */,
 				7153888D2B59A368006D682F /* TabbarController.storyboard in Resources */,
 				4625A17E2B98D8B000C763DD /* FrameFilterCell.xib in Resources */,
+				04F50F552C96ABD600C994C4 /* Roboto-Regular.ttf in Resources */,
 				469C7E932BE9F65900D9797D /* MenuTCell.xib in Resources */,
 				7153888F2B59A381006D682F /* Home.storyboard in Resources */,
 				46FFDA0A2BDF4512000F03C0 /* VideosHeaderView.xib in Resources */,
+				04F50F532C96ABD600C994C4 /* Roboto-BlackItalic.ttf in Resources */,
 				715388912B59A3B5006D682F /* Search.storyboard in Resources */,
+				04F50F5A2C96ABD600C994C4 /* Roboto-Light.ttf in Resources */,
 				71B3DC7C2B55A94000A3615F /* LaunchScreen.storyboard in Resources */,
+				04F50F582C96ABD600C994C4 /* Roboto-Bold.ttf in Resources */,
 				4654940C2BDF3B5300EF5111 /* NoPostTCell.xib in Resources */,
+				04F50F5B2C96ABD600C994C4 /* Roboto-ThinItalic.ttf in Resources */,
 				467FE8E52C64773C0099DA4E /* MenuCCell.xib in Resources */,
 				715388932B59A3D2006D682F /* Add.storyboard in Resources */,
 				46A877302C801CE000EC0F17 /* CollectionsCCell.xib in Resources */,
 				71C6A9CA2B694CF200E19808 /* CollectionCell.xib in Resources */,
 				468D10B92BEDF01B009C61CB /* LocationTCell.xib in Resources */,
 				467441B32BD7965B00C51D6E /* VideoTCell.xib in Resources */,
+				04F50F512C96ABD600C994C4 /* Roboto-MediumItalic.ttf in Resources */,
 				714B0F712B69703B00570578 /* SelectioTCell.xib in Resources */,
 				71B3DC792B55A94000A3615F /* Assets.xcassets in Resources */,
 				468155432BAFE08800DF5DBC /* ColorCCell.xib in Resources */,
 				461D41C72C8762720072EA82 /* CommentsTCell.xib in Resources */,
+				04F50F522C96ABD600C994C4 /* Roboto-Black.ttf in Resources */,
 				46C4A0982B93245300F27C8F /* FilterCCell.xib in Resources */,
+				049742572C96A598004DC765 /* VideoCommentCell.xib in Resources */,
 				715388952B59A3E1006D682F /* Video.storyboard in Resources */,
 				71C6A9CF2B695F3300E19808 /* AddDataCell.xib in Resources */,
 			);
@@ -1003,6 +1110,7 @@
 				468D10BA2BEDF01B009C61CB /* LocationTCell.swift in Sources */,
 				462D9B712C672C6000A79DA3 /* MenuDishTCell.swift in Sources */,
 				4654940B2BDF3B5300EF5111 /* NoPostTCell.swift in Sources */,
+				04C0330D2C976C4E00EEA490 /* ExtensionAppLevel.swift in Sources */,
 				468C55342BF1C139005E4333 /* BlockUserPopUpVC.swift in Sources */,
 				4635E13B2BA6D93100C149ED /* CameraNC.swift in Sources */,
 				468C55362BF1C16B005E4333 /* AboutPopupVC.swift in Sources */,
@@ -1013,7 +1121,9 @@
 				462D9B742C6756C000A79DA3 /* AddORUpdateItemVC.swift in Sources */,
 				4635E13D2BA7ECA700C149ED /* ConfirmationActionVC.swift in Sources */,
 				715166462B598903007CE092 /* CrtProfile2VC.swift in Sources */,
+				0497424E2C96A0A7004DC765 /* UserViewerCell.swift in Sources */,
 				46C2969E2C29174200715CB3 /* ResonOfBugVC.swift in Sources */,
+				04C033072C96BFF800EEA490 /* UITableView+Extension.swift in Sources */,
 				4635E1392BA6B27500C149ED /* AudioViewController.swift in Sources */,
 				4626307D2B9AA38F00A4E7D1 /* RecorderDelegate.swift in Sources */,
 				46C820F92B930179007E543F /* EditVideoVC.swift in Sources */,
@@ -1043,6 +1153,7 @@
 				715166442B5985E1007CE092 /* CrtProfile1VC.swift in Sources */,
 				71B3DC902B55AFC000A3615F /* Manager.swift in Sources */,
 				46C2969A2C2905B700715CB3 /* BlockedAccntVC.swift in Sources */,
+				049742562C96A598004DC765 /* VideoCommentCell.swift in Sources */,
 				462630852B9AA40700A4E7D1 /* FrameRateCalculator.swift in Sources */,
 				462D9B762C67724D00A79DA3 /* ManageMenuModel.swift in Sources */,
 				465493FC2BD7B77000EF5111 /* ProfileNC.swift in Sources */,
@@ -1050,6 +1161,8 @@
 				7131D9952B92CCC4005DE42E /* CameraConfiguration.swift in Sources */,
 				4626307F2B9AA3B800A4E7D1 /* Capture.swift in Sources */,
 				7151664C2B598989007CE092 /* CrtProfile5VC.swift in Sources */,
+				049742522C96A322004DC765 /* VideoCommentHeaderCell.swift in Sources */,
+				04C0330A2C96CAB900EEA490 /* CategoryButtonCell.swift in Sources */,
 				71B3DC9C2B55B19C00A3615F /* UIView+Extension.swift in Sources */,
 				469AD6092BC05E8D00469F6B /* ContentSelectionVC.swift in Sources */,
 				7151DD762B6EB58D001B3018 /* LoginNC.swift in Sources */,
@@ -1068,6 +1181,7 @@
 				716F6FDF2B5ADDC900049C1C /* CustomTabBar.swift in Sources */,
 				46C4A09A2B93290100F27C8F /* VideoEditor.swift in Sources */,
 				7144BD542B6EA0CC00767374 /* MenuVC.swift in Sources */,
+				048765482C95BF680029C055 /* VideoDetailCell.swift in Sources */,
 				469C7E922BE9F65900D9797D /* MenuTCell.swift in Sources */,
 				468C55322BF1C101005E4333 /* AccountReportVC.swift in Sources */,
 				46375F9B2BF7271A00730EA5 /* FeedSelectionVC.swift in Sources */,
@@ -1101,12 +1215,14 @@
 				468155452BAFE20E00DF5DBC /* AddCaptionVC.swift in Sources */,
 				71C6A9CE2B695F3300E19808 /* AddDataCell.swift in Sources */,
 				4671C5EF2C043BE40089F82B /* SwiftVC.swift in Sources */,
+				042C45502C96B9C000396237 /* UIFont+Extension.swift in Sources */,
 				46E9F21D2BEC7D320058CC30 /* RemoveFollowerVC.swift in Sources */,
 				462630782B9AA2E100A4E7D1 /* FilterCamViewCOntroller.swift in Sources */,
 				46B5CF6F2BCE20CB000E5207 /* NewPsdVC.swift in Sources */,
 				469AD6022BC02F0100469F6B /* TagPeopleVC.swift in Sources */,
 				4626306D2B995E5D00A4E7D1 /* CameraLiveCapture.swift in Sources */,
 				467441AE2BD78FB700C51D6E /* UpdateProfileVC.swift in Sources */,
+				042C45542C96BB7400396237 /* writeCommentCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

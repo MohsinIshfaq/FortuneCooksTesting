@@ -788,7 +788,8 @@ extension ProfileVC : UITableViewDelegate , UITableViewDataSource {
 extension ProfileVC : UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == collectSwift {
-            if UserManager.shared.reelsModel?.count ?? 0 == 0{
+            let reelsCount = UserManager.shared.reelsModel?.count ?? 0
+            if reelsCount == 0 {
                 if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
                     layout.scrollDirection = .vertical
                  
@@ -819,12 +820,14 @@ extension ProfileVC : UICollectionViewDelegate , UICollectionViewDataSource , UI
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SwiftCCell.identifier, for: indexPath) as! SwiftCCell
                 //cell.lblDescrip.text = reelsModel?[indexPath.row].description ?? ""
                 cell.lblName.text    = UserManager.shared.reelsModel?[indexPath.row].Title ?? ""
+                
                 DispatchQueue.main.async {
                     guard let url = UserManager.shared.reelsModel?[indexPath.row].thumbnailUrl else {
                         return
                     }
-                    let url1 = URL(string: url)!
-                    cell.imgMain?.sd_setImage(with: url1)
+                    if let url1 = URL(string: url) {
+                        cell.imgMain?.sd_setImage(with: url1)
+                    }
                 }
                 return cell
             }else{
@@ -1035,7 +1038,8 @@ extension ProfileVC {
                 let videoUrl     = data["videoUrl"] as? String ?? ""
                 let thumbnailUrl = data["thumbnailUrl"] as? String ?? ""
                 let likes        = data["likes"] as? Bool ?? false
-                let comments     = data["comments"] as? Bool ?? false
+                let commentsData = data["comments"] as? [[String: Any]] ?? []
+                let comments = commentsData.map { parseCommentData(data: $0) }
                 let views        = data["views"] as? Bool ?? false
                 let paidCollab   = data["paidCollab"] as? Bool ?? false
                 let introVideos  = data["introVideos"] as? Bool ?? false
@@ -1097,7 +1101,8 @@ extension ProfileVC {
                 let videoUrl     = data["videoUrl"] as? String ?? ""
                 let thumbnailUrl = data["thumbnailUrl"] as? String ?? ""
                 let likes        = data["likes"] as? Bool ?? false
-                let comments     = data["comments"] as? Bool ?? false
+                let commentsData = data["comments"] as? [[String: Any]] ?? []
+                let comments = commentsData.map { parseCommentData(data: $0) }
                 let views        = data["views"] as? Bool ?? false
                 let paidCollab   = data["paidCollab"] as? Bool ?? false
                 let introVideos  = data["introVideos"] as? Bool ?? false

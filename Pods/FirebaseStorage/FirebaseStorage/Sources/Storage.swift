@@ -70,7 +70,7 @@ import FirebaseAuthInterop
   @objc(storageForApp:) open class func storage(app: FirebaseApp) -> Storage {
     let provider = ComponentType<StorageProvider>.instance(for: StorageProvider.self,
                                                            in: app.container)
-    return provider.storage(for: Storage.bucket(for: app))
+      return provider!.storage(for: Storage.bucket(for: app))
   }
 
   /**
@@ -85,7 +85,7 @@ import FirebaseAuthInterop
   open class func storage(app: FirebaseApp, url: String) -> Storage {
     let provider = ComponentType<StorageProvider>.instance(for: StorageProvider.self,
                                                            in: app.container)
-    return provider.storage(for: Storage.bucket(for: app, urlString: url))
+      return provider!.storage(for: Storage.bucket(for: app, urlString: url))
   }
 
   /**
@@ -289,9 +289,9 @@ import FirebaseAuthInterop
   internal init(app: FirebaseApp, bucket: String) {
     self.app = app
     auth = ComponentType<AuthInterop>.instance(for: AuthInterop.self,
-                                               in: app.container)
+                                               in: app.container)!
     appCheck = ComponentType<AppCheckInterop>.instance(for: AppCheckInterop.self,
-                                                       in: app.container)
+                                                       in: app.container)!
     storageBucket = bucket
     host = "firebasestorage.googleapis.com"
     scheme = "https"
