@@ -9,16 +9,20 @@ import UIKit
 
 class CommentsVC: UIViewController {
 
+    @IBOutlet weak var lblCommentsCount: UILabel!
     @IBOutlet weak var customTable: UITableView!
     @IBOutlet weak var imgUser: UIImageView!
     @IBOutlet weak var txtMessage: UITextField!
     @IBOutlet weak var viewForContent: UIView!
+    
     
     var profileVideoModel: ProfileVideosModel? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let count = profileVideoModel?.comments?.count ?? 0
+        lblCommentsCount.text = "\(count) Comments"
         viewForContent.setCornerRadius(cornerRadius: 20, corners: [.TopLeft, .TopRight])
     }
     
@@ -37,25 +41,17 @@ class CommentsVC: UIViewController {
 extension CommentsVC: UITableViewDelegate , UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            
-            return profileVideoModel?.comments?.count ?? 0
-        } else {
-            return 1
-        }
+        return profileVideoModel?.comments?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
-            let cell: CommentsTCell  = tableView.cell(for: indexPath)
-            return cell
-        } else {
-            let cell: CommentsTCell  = tableView.cell(for: indexPath)
-            return cell
-        }
+        let cell: CommentsTCell  = tableView.cell(for: indexPath)
+        cell.config(comments: profileVideoModel?.comments?[indexPath.row])
+        return cell
+        
     }
 }

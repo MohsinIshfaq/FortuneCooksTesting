@@ -1889,13 +1889,13 @@
                                 <rect key="frame" x="0.0" y="193.33333333333331" width="393" height="658.66666666666674"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="200 Comments" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vdm-9E-Oe9">
-                                        <rect key="frame" x="24" y="20" width="136.66666666666666" height="23.666666666666671"/>
+                                        <rect key="frame" x="24" y="20" width="137.33333333333334" height="23.333333333333329"/>
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
                                         <color key="textColor" name="ColorWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="E8h-Z3-BCa">
-                                        <rect key="frame" x="0.0" y="55.666666666666629" width="393" height="460"/>
+                                        <rect key="frame" x="0.0" y="55.333333333333343" width="393" height="460.33333333333326"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
@@ -2119,13 +2119,14 @@
                     <connections>
                         <outlet property="customTable" destination="E8h-Z3-BCa" id="toA-Lu-gBZ"/>
                         <outlet property="imgUser" destination="alt-6Z-KV7" id="1fj-1S-WSB"/>
+                        <outlet property="lblCommentsCount" destination="vdm-9E-Oe9" id="z3J-Fc-CDq"/>
                         <outlet property="txtMessage" destination="jS5-XT-PSz" id="5NW-nH-nsK"/>
                         <outlet property="viewForContent" destination="efh-je-nzj" id="Xxh-I4-qBe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K1S-5T-f1R" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-654" y="681"/>
+            <point key="canvasLocation" x="-654.19847328244271" y="680.98591549295782"/>
         </scene>
         <!--Add Or Remove CollectVC-->
         <scene sceneID="sZz-6F-p7s">
