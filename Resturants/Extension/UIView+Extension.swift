@@ -161,3 +161,26 @@ extension UIView {
     
 }
 
+
+extension UIView {
+    var parentViewController: UIViewController? {
+        var parentResponder: UIResponder? = self
+        while parentResponder != nil {
+            parentResponder = parentResponder!.next
+            if let viewController = parentResponder as? UIViewController {
+                return viewController
+            }
+        }
+        return nil
+    }
+    
+    func addSubview(_ controller: UIViewController) {
+        if let mainController = parentViewController {
+            mainController.addChild(controller)
+            addSubview(controller.view)
+            controller.didMove(toParent: mainController)
+        } else {
+            addSubview(controller.view)
+        }
+    }
+}

@@ -118,20 +118,32 @@ struct ProfileVideosModel {
     let language     : String?
     let thumbnailUrl : String?
     let videoUrl     : String?
-    let likes        : Bool?
-    let comments     : [CommentModel]?
-    let views        : Bool?
-    let paidCollab   : Bool?
-    let introVideos  : Bool?
+    let likes        : [String]?
+    var comments     : [CommentModel]?
+//    let views        : Bool?
+//    let paidCollab   : Bool?
+//    let introVideos  : Bool?
 }
 
 struct CommentModel {
     let id: String?
     let likes: [String]?
-    let replies: [ReplyModel]?
+    var replies: [ReplyModel]?
     let text: String?
     let timestamp: Double?
     let uid: String?
+    
+    func toDictionary() -> [String: Any] {
+        return [
+            "uid"        : uid ?? "",
+            "id"         : id ?? "",
+            "text"       : text ?? "",
+            "timesStamp" : timestamp ?? 0,
+            "likes"      : likes ?? [],
+            // Convert replies to an array of dictionaries
+            "replies"    : replies?.map { $0.toDictionary() } ?? []
+        ]
+    }
 }
 
 struct ReplyModel {
@@ -140,6 +152,16 @@ struct ReplyModel {
     let text: String?
     let timestamp: Double?
     let uid: String?
+    
+    func toDictionary() -> [String: Any] {
+        return [
+            "uid": uid ?? "",
+            "id": id ?? "",
+            "text": text ?? "",
+            "timesStamp": timestamp ?? 0,
+            "likes": likes ?? []
+        ]
+    }
 }
 
 func parseCommentData(data: [String: Any]) -> CommentModel {
@@ -164,6 +186,7 @@ func parseCommentData(data: [String: Any]) -> CommentModel {
     
     return CommentModel(id: id, likes: likes, replies: replies, text: text, timestamp: timestamp, uid: uid)
 }
+
 
 struct UserFeedModel {
     let selectedAcountType : [String]?

@@ -40,21 +40,33 @@ class HomeVC: UIViewController , MenuVCDelegate {
             self.navigationController?.pushViewController(vc!, animated: true)
         }
     }
+    
     //MARK: - @IBOutlets
     
     @IBOutlet weak var customTable: UITableView!
     @IBOutlet weak var imgImage: UIImageView!
+    @IBOutlet weak var imgHeart: UIImageView!
+    @IBOutlet weak var lblLikesCount: UILabel!
+    @IBOutlet weak var lblCommentsCount: UILabel!
+    @IBOutlet weak var viewForThumbnail: UIView!
+    @IBOutlet weak var viewForVideo: UIView!
+    
+    
+    
     
     //MARK: - variables and Properties
+    
     var db = Firestore.firestore()
+    var videoPlayerController:AVPlayerViewController? = nil
+    var videoPlayer:AVPlayer? = nil
     var profileVideoModel: ProfileVideosModel? = nil
-    var profileModel: UserProfileModel?   = nil
+    var userProfileModel: UserProfileModel?   = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         if !UserDefault.token.isEmpty {
             onlaod()
+            
         }
     }
     
@@ -66,15 +78,42 @@ class HomeVC: UIViewController , MenuVCDelegate {
     }
     @objc func ontapNavLFT() {}
     
-    @IBAction func ontapVideo(_ sender: UIButton) {
+    @IBAction func ontapPlayVideo(_ sender: UIButton) {
         let url = trim(profileVideoModel?.videoUrl)
-        let videoURL = URL(string: url)
-        playVideo(url: videoURL!)
+        guard let url = URL(string: url) else {
+            print("Invalid Video URL")
+            return
+        }
         
+        viewForThumbnail.isHidden = true
+        
+        videoPlayer = AVPlayer(url: url)
+        
+        videoPlayerController = AVPlayerViewController()
+        videoPlayerController?.player = videoPlayer
+        
+        if let videoPlayerController = videoPlayerController {
+            addChild(videoPlayerController)
+            viewForVideo.addSubview(videoPlayerController.view)
+            
+            videoPlayerController.view.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                videoPlayerController.view.leadingAnchor.constraint(equalTo: viewForVideo.leadingAnchor),
+                videoPlayerController.view.trailingAnchor.constraint(equalTo: viewForVideo.trailingAnchor),
+                videoPlayerController.view.topAnchor.constraint(equalTo: viewForVideo.topAnchor),
+                videoPlayerController.view.bottomAnchor.constraint(equalTo: viewForVideo.bottomAnchor)
+            ])
+            videoPlayer?.play()
+        }
     }
     
+    @IBAction func ontapLike(_ sender: UIButton){
+        likeVideo()
+    }
     @IBAction func ontapComments(_ sender: UIButton){
         let vc = Constants.homehStoryBoard.instantiateViewController(withIdentifier: "CommentsVC") as! CommentsVC
+        vc.profileVideoModel = self.profileVideoModel
+        vc.userProfileModel = self.userProfileModel
         self.present(vc, animated: true)
     }
 
@@ -90,8 +129,7 @@ extension HomeVC {
         fetchUserData(userID: UserDefault.token) { user in
             self.stopAnimating()
             if let user = user {
-                self.profileModel = user
-                print("User data: \(user)")
+                self.userProfileModel = user
                 self.customTable.reloadData()
             } else {
                 print("Failed to fetch user data.")
@@ -104,10 +142,17 @@ extension HomeVC {
     }
     func configData() {
         self.profileVideoModel = UserManager.shared.reelsModel?.first
+        let isLike = profileVideoModel?.likes?.contains(trim(userProfileModel?.uid)) ?? false
+        imgHeart.image = isLike ? UIImage(named: "imgHeartFill") : UIImage(systemName: "heart")
+        lblLikesCount.text = trim(profileVideoModel?.likes?.count) + " Likes"
+        let commentCount = profileVideoModel?.comments?.count ?? 0
+        let totalRepliesCount = profileVideoModel?.comments?.reduce(0) { $0 + ($1.replies?.count ?? 0) }  ?? 0
+        let totalComment = commentCount + totalRepliesCount
+        lblCommentsCount.text = "\(totalComment) Comments"
         DispatchQueue.main.async {
             let thumbnailUrl = trim(self.profileVideoModel?.thumbnailUrl)
             if let urlProfile1 = URL(string: thumbnailUrl) {
-                self.imgImage.sd_setImage(with: urlProfile1, placeholderImage: UIImage(named: "Video 1"))
+                self.imgImage.sd_setImage(with: urlProfile1)
             }
         }
         self.customTable.reloadData()
@@ -213,34 +258,31 @@ extension HomeVC {
                 let language     = data["language"] as? String ?? ""
                 let videoUrl     = data["videoUrl"] as? String ?? ""
                 let thumbnailUrl = data["thumbnailUrl"] as? String ?? ""
-                let likes        = data["likes"] as? Bool ?? false
+                let likes = data["likes"] as? [String]
                 let commentsData = data["comments"] as? [[String: Any]] ?? []
                 let comments = commentsData.map { parseCommentData(data: $0) }
-                let views        = data["views"] as? Bool ?? false
-                let paidCollab   = data["paidCollab"] as? Bool ?? false
-                let introVideos  = data["introVideos"] as? Bool ?? false
                 
-                return ProfileVideosModel(uid: uid, id: id, address: address, Zipcode: zipcode, city: city, Title: title, tagPersons: TagPersons, description: description, categories: categories, hashtages: hashtages, language: language, thumbnailUrl: thumbnailUrl, videoUrl: videoUrl, likes: likes, comments: comments, views: views, paidCollab: paidCollab, introVideos: introVideos)
+                return ProfileVideosModel(uid: uid, id: id, address: address, Zipcode: zipcode, city: city, Title: title, tagPersons: TagPersons, description: description, categories: categories, hashtages: hashtages, language: language, thumbnailUrl: thumbnailUrl, videoUrl: videoUrl, likes: likes, comments: comments)
             }
-            print("** MI videosModel: \(UserManager.shared.videosModel)")
             self.configData()
             
             self.stopAnimating()
         }
     }
-    
     func fetchReels() {
         self.startAnimating()
         UserManager.shared.reelsModel?.removeAll()
         
         let collectionPath = "Swifts/\(UserDefault.token)/VideosData"
-        
-        // Reference to the collection and document for the user
+
         let documentRef = db.collection(collectionPath)
         
-        documentRef.getDocuments { [weak self] (querySnapshot, error) in
-            guard let self = self else { return }
-            self.stopAnimating()  // Ensure the animation stops if an error occurs
+        documentRef.getDocuments { (querySnapshot, error) in
+            guard let document = querySnapshot?.documents else {
+                print("No document")
+                self.stopAnimating()
+                return
+            }
             
             if let error = error {
                 print("\(#function)\t Error getting documents: \(error.localizedDescription)")
@@ -278,19 +320,16 @@ extension HomeVC {
                 let language     = data["language"] as? String ?? ""
                 let videoUrl     = data["videoUrl"] as? String ?? ""
                 let thumbnailUrl = data["thumbnailUrl"] as? String ?? ""
-                let likes        = data["likes"] as? Bool ?? false
-                let commentsData = data["comments"] as? [[String: Any]] ?? []
+                let likes = data["likes"] as? [String]
+                let commentsData = data["commentList"] as? [[String: Any]] ?? []
                 let comments = commentsData.map { parseCommentData(data: $0) }
-                let views        = data["views"] as? Bool ?? false
-                let paidCollab   = data["paidCollab"] as? Bool ?? false
-                let introVideos  = data["introVideos"] as? Bool ?? false
-                
-                // Create a new ProfileVideosModel and add it to reelsModel
-                let profileVideo = ProfileVideosModel(uid: uid, id: id, address: address, Zipcode: zipcode, city: city, Title: title, tagPersons: TagPersons, description: description, categories: categories, hashtages: hashtages, language: language, thumbnailUrl: thumbnailUrl, videoUrl: videoUrl, likes: likes, comments: comments, views: views, paidCollab: paidCollab, introVideos: introVideos)
+
+                let profileVideo = ProfileVideosModel(uid: uid, id: id, address: address, Zipcode: zipcode, city: city, Title: title, tagPersons: TagPersons, description: description, categories: categories, hashtages: hashtages, language: language, thumbnailUrl: thumbnailUrl, videoUrl: videoUrl, likes: likes, comments: comments)
                 
                 UserManager.shared.reelsModel?.append(profileVideo)
                 
             }
+            self.stopAnimating()
             print("** UserManager.shared.reelsModel: \(UserManager.shared.reelsModel)")
             self.configData()
         }
@@ -380,6 +419,36 @@ extension HomeVC {
             }
         }
     }
+    
+    func likeVideo() {
+        let db = Firestore.firestore()
+        let documentPath = "Swifts/\(trim(profileVideoModel?.uid))/VideosData/\(trim(profileVideoModel?.id))"
+        print("** documentPath: \(documentPath)")
+        startAnimating()
+        db.document(documentPath).getDocument { (document, error) in
+            if let document = document, document.exists {
+                
+                var likes = document.data()?["likes"] as? [String] ?? []
+                
+                if likes.removeFirst(where: { $0 == trim(self.userProfileModel?.uid) }) == nil {
+                    likes.append(trim(self.userProfileModel?.uid))
+                }
+                db.document(documentPath).updateData(["likes": likes]) { error in
+                    if let error = error {
+                        self.stopAnimating()
+                        print("Error updating likes: \(error.localizedDescription)")
+                    } else {
+                        self.fetchReels()
+                        print("Successfully liked the video!")
+                    }
+                }
+            } else {
+                self.stopAnimating()
+                print("Document does not exist: \(error?.localizedDescription ?? "Unknown error")")
+            }
+        }
+    }
+
 }
 
 
@@ -419,7 +488,7 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
             return cell
         } else if indexPath.section == 1 {
             let cell: UserViewerCell = tableView.cell(for: indexPath)
-            cell.config(userProfileModel: profileModel)
+            cell.config(userProfileModel: userProfileModel)
             return cell
         } else if indexPath.section == 2 {
             if indexPath.row == 0 {

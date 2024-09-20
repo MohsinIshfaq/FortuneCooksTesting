@@ -32,7 +32,10 @@ class VideoDetailCell: UITableViewCell {
         self.handler = handler
         
         if let ProfileVideoData = profileVieosModel {
-            lblLocation.text = trim(ProfileVideoData.address)
+            let address = trim(ProfileVideoData.address)
+            let zipCode = trim(ProfileVideoData.Zipcode)
+            let city = trim(ProfileVideoData.city)
+            lblLocation.text = "\(address), \(zipCode), \(city)"
             lblTagPeople.text = "\(trim(ProfileVideoData.tagPersons?.count)) people"
             lblTitle.text = trim(ProfileVideoData.Title)
             

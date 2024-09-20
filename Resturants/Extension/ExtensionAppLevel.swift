@@ -8,6 +8,10 @@
 import Foundation
 
 
+var uniqueID: String {
+    return UUID().uuidString
+}
+
 func trim(_ stringContent : Any?) -> String
 {
     if let content = stringContent

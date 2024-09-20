@@ -7,9 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		042B38592C9B47E000108A0D /* CommentRepliesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B38572C9B47E000108A0D /* CommentRepliesCell.swift */; };
+		042B385A2C9B47E000108A0D /* CommentRepliesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042B38582C9B47E000108A0D /* CommentRepliesCell.xib */; };
+		042B385C2C9B569B00108A0D /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B385B2C9B569B00108A0D /* Array+Extension.swift */; };
 		042C45502C96B9C000396237 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042C454F2C96B9C000396237 /* UIFont+Extension.swift */; };
 		042C45532C96BB7400396237 /* writeCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042C45522C96BB7400396237 /* writeCommentCell.xib */; };
 		042C45542C96BB7400396237 /* writeCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042C45512C96BB7400396237 /* writeCommentCell.swift */; };
+		0482BFE72C9CB2F000E879E8 /* ExtensionUIControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0482BFE62C9CB2F000E879E8 /* ExtensionUIControl.swift */; };
 		048765472C95BF680029C055 /* VideoDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 048765462C95BF680029C055 /* VideoDetailCell.xib */; };
 		048765482C95BF680029C055 /* VideoDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048765452C95BF680029C055 /* VideoDetailCell.swift */; };
 		0497424E2C96A0A7004DC765 /* UserViewerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0497424C2C96A0A7004DC765 /* UserViewerCell.swift */; };
@@ -185,9 +189,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		042B38572C9B47E000108A0D /* CommentRepliesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentRepliesCell.swift; sourceTree = "<group>"; };
+		042B38582C9B47E000108A0D /* CommentRepliesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentRepliesCell.xib; sourceTree = "<group>"; };
+		042B385B2C9B569B00108A0D /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 		042C454F2C96B9C000396237 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		042C45512C96BB7400396237 /* writeCommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = writeCommentCell.swift; sourceTree = "<group>"; };
 		042C45522C96BB7400396237 /* writeCommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = writeCommentCell.xib; sourceTree = "<group>"; };
+		0482BFE62C9CB2F000E879E8 /* ExtensionUIControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUIControl.swift; sourceTree = "<group>"; };
 		048765452C95BF680029C055 /* VideoDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailCell.swift; sourceTree = "<group>"; };
 		048765462C95BF680029C055 /* VideoDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoDetailCell.xib; sourceTree = "<group>"; };
 		0497424C2C96A0A7004DC765 /* UserViewerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewerCell.swift; sourceTree = "<group>"; };
@@ -418,6 +426,8 @@
 		461D41C32C87623E0072EA82 /* CommentsTCell */ = {
 			isa = PBXGroup;
 			children = (
+				042B38572C9B47E000108A0D /* CommentRepliesCell.swift */,
+				042B38582C9B47E000108A0D /* CommentRepliesCell.xib */,
 				461D41C42C8762720072EA82 /* CommentsTCell.swift */,
 				461D41C52C8762720072EA82 /* CommentsTCell.xib */,
 			);
@@ -793,6 +803,8 @@
 				042C454F2C96B9C000396237 /* UIFont+Extension.swift */,
 				04C033062C96BFF800EEA490 /* UITableView+Extension.swift */,
 				04C0330C2C976C4E00EEA490 /* ExtensionAppLevel.swift */,
+				042B385B2C9B569B00108A0D /* Array+Extension.swift */,
+				0482BFE62C9CB2F000E879E8 /* ExtensionUIControl.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1029,6 +1041,7 @@
 				715388912B59A3B5006D682F /* Search.storyboard in Resources */,
 				04F50F5A2C96ABD600C994C4 /* Roboto-Light.ttf in Resources */,
 				71B3DC7C2B55A94000A3615F /* LaunchScreen.storyboard in Resources */,
+				042B385A2C9B47E000108A0D /* CommentRepliesCell.xib in Resources */,
 				04F50F582C96ABD600C994C4 /* Roboto-Bold.ttf in Resources */,
 				4654940C2BDF3B5300EF5111 /* NoPostTCell.xib in Resources */,
 				04F50F5B2C96ABD600C994C4 /* Roboto-ThinItalic.ttf in Resources */,
@@ -1131,6 +1144,7 @@
 				714B0F702B69703B00570578 /* SelectioTCell.swift in Sources */,
 				7144BD512B6E983100767374 /* HomeVC.swift in Sources */,
 				461D41C22C87619A0072EA82 /* CommentsVC.swift in Sources */,
+				042B385C2C9B569B00108A0D /* Array+Extension.swift in Sources */,
 				7153888B2B5998BC006D682F /* CreatAccntVC.swift in Sources */,
 				46B5CF6D2BCE1DB2000E5207 /* AccntDeleteReasonVC.swift in Sources */,
 				467158142BEDF2AA00F934C6 /* OtherLocVC.swift in Sources */,
@@ -1146,6 +1160,7 @@
 				715166482B598961007CE092 /* CrtProfile3VC.swift in Sources */,
 				71B3DC962B55B0F100A3615F /* BaseStrings.swift in Sources */,
 				468C552C2BF1BF33005E4333 /* GiveRatingVC.swift in Sources */,
+				042B38592C9B47E000108A0D /* CommentRepliesCell.swift in Sources */,
 				468C55302BF1C08B005E4333 /* AccountActionPopupVC.swift in Sources */,
 				7119F63A2B8B7DFF00FA8579 /* VideoRecordingVC.swift in Sources */,
 				46B5CF672BCE1964000E5207 /* AccountsVC.swift in Sources */,
@@ -1207,6 +1222,7 @@
 				469AD6142BC0FA9B00469F6B /* TagPeopleCCell.swift in Sources */,
 				46B8FDA32BCCEFB10058E80C /* SettingsVC.swift in Sources */,
 				4625A17D2B98D8B000C763DD /* FrameFilterCell.swift in Sources */,
+				0482BFE72C9CB2F000E879E8 /* ExtensionUIControl.swift in Sources */,
 				715166422B598537007CE092 /* LoginVC.swift in Sources */,
 				71B3DC9A2B55B17400A3615F /* UIColor+Extension.swift in Sources */,
 				46472E452C05972000505AE4 /* IGBizTokVideoCell.swift in Sources */,
