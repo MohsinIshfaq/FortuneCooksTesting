@@ -152,6 +152,7 @@ extension CommentsVC {
         
         let commentsArray = profileVideoModel?.comments?.map { $0.toDictionary() }
         print("** commentsArray: \(commentsArray)")
+        print("** commentsArray: \(profileVideoModel)")
         let documentPath = "Swifts/\(trim(profileVideoModel?.uid))/VideosData/\(trim(profileVideoModel?.id))"
         print("** documentPath: \(documentPath)")
         db.document(documentPath).setData(["commentList": commentsArray ?? []], merge: true) { error in
