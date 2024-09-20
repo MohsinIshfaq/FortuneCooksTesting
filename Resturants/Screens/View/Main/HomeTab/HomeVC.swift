@@ -70,6 +70,13 @@ class HomeVC: UIViewController , MenuVCDelegate {
         }
     }
     
+    func pushForComments() {
+        let vc = Constants.homehStoryBoard.instantiateViewController(withIdentifier: "CommentsVC") as! CommentsVC
+        vc.profileVideoModel = self.profileVideoModel
+        vc.userProfileModel = self.userProfileModel
+        self.present(vc, animated: true)
+    }
+    
     @objc func ontapNavRight() {
         
         let vc = Constants.homehStoryBoard.instantiateViewController(withIdentifier: "MenuVC") as! MenuVC
@@ -111,10 +118,7 @@ class HomeVC: UIViewController , MenuVCDelegate {
         likeVideo()
     }
     @IBAction func ontapComments(_ sender: UIButton){
-        let vc = Constants.homehStoryBoard.instantiateViewController(withIdentifier: "CommentsVC") as! CommentsVC
-        vc.profileVideoModel = self.profileVideoModel
-        vc.userProfileModel = self.userProfileModel
-        self.present(vc, animated: true)
+        pushForComments()
     }
 
 }
@@ -495,9 +499,7 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
                 let cell: VideoCommentHeaderCell = tableView.cell(for: indexPath)
                 cell.config { [weak self] in
                     guard let self = self else { return }
-                    let vc = Constants.homehStoryBoard.instantiateViewController(withIdentifier: "CommentsVC") as! CommentsVC
-                    vc.profileVideoModel = self.profileVideoModel
-                    self.present(vc, animated: true)
+                    self.pushForComments()
                 }
                 return cell
             } else if indexPath.row == 1 {

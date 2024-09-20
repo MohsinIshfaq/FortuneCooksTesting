@@ -201,8 +201,8 @@ the timer</string>
                 <outlet property="btnReply" destination="CG0-n6-ZIM" id="9tI-jW-xX9"/>
                 <outlet property="imgFavorite" destination="dsF-iG-cqP" id="wZZ-76-Wka"/>
                 <outlet property="imgImage" destination="QJy-M9-nH6" id="4fn-xt-TTZ"/>
-                <outlet property="lblCount" destination="zuc-eP-dMM" id="gS4-Pa-teH"/>
                 <outlet property="lblDetail" destination="rbS-ry-TQc" id="Lxy-Ja-O5H"/>
+                <outlet property="lblLikeCount" destination="zuc-eP-dMM" id="gS4-Pa-teH"/>
                 <outlet property="lblReplies" destination="itl-Vl-yOH" id="qYr-Cn-qar"/>
                 <outlet property="lblTitle" destination="eq0-Ed-Vgr" id="TlF-Oh-VtC"/>
                 <outlet property="viewForReplies" destination="8w0-d8-fpG" id="bcU-pY-Pd9"/>

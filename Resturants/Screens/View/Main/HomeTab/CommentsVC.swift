@@ -138,12 +138,7 @@ extension CommentsVC: UITableViewDelegate , UITableViewDataSource {
 extension CommentsVC {
     func uploadComment() {
         let db = Firestore.firestore()
-        print("** CommentId: \(trim(profileVideoModel?.id))")
-        print("** CommentId: uid \(trim(profileVideoModel?.uid))")
-        
         let newComment = CommentModel(id: uniqueID, likes: nil, replies: nil, text: trim(txtMessage.text), timestamp: Date().timeIntervalSince1970, uid: userProfileModel?.uid)
-    
-
         
         if profileVideoModel?.comments == nil {
             profileVideoModel?.comments = []
@@ -151,8 +146,6 @@ extension CommentsVC {
         profileVideoModel?.comments?.append(newComment)
         
         let commentsArray = profileVideoModel?.comments?.map { $0.toDictionary() }
-        print("** commentsArray: \(commentsArray)")
-        print("** commentsArray: \(profileVideoModel)")
         let documentPath = "Swifts/\(trim(profileVideoModel?.uid))/VideosData/\(trim(profileVideoModel?.id))"
         print("** documentPath: \(documentPath)")
         db.document(documentPath).setData(["commentList": commentsArray ?? []], merge: true) { error in
