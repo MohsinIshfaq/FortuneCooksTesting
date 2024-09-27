@@ -19,6 +19,13 @@ import Foundation
 //        "ThumbnailUrl": "\(thumbnailURL)"      ,
 //        "videoUrl"    : ""]
 
+struct UserModel: Decodable {
+    let uid: String
+    let profileUrl: String
+    let channelName: String
+}
+
+
 //Tag Users Model
 struct UserTagModel {
     let uid: String?
@@ -127,7 +134,7 @@ struct ProfileVideosModel {
 
 struct CommentModel {
     let id: String?
-    let likes: [String]?
+    var likes: [String]?
     var replies: [ReplyModel]?
     let text: String?
     let timestamp: Double?
@@ -148,7 +155,7 @@ struct CommentModel {
 
 struct ReplyModel {
     let id: String?
-    let likes: [String]?
+    var likes: [String]?
     let text: String?
     let timestamp: Double?
     let uid: String?
@@ -174,14 +181,14 @@ func parseCommentData(data: [String: Any]) -> CommentModel {
         let replyId = replyData["id"] as? String ?? ""
         let replyLikes = replyData["likes"] as? [String] ?? []
         let replyText = replyData["text"] as? String ?? ""
-        let replyTimestamp = replyData["timestamp"] as? Double ?? 0.0
+        let replyTimestamp = replyData["timesStamp"] as? Double ?? 0.0
         let replyUid = replyData["uid"] as? String ?? ""
         
         return ReplyModel(id: replyId, likes: replyLikes, text: replyText, timestamp: replyTimestamp, uid: replyUid)
     }
     
     let text = data["text"] as? String ?? ""
-    let timestamp = data["timestamp"] as? Double ?? 0.0
+    let timestamp = data["timesStamp"] as? Double ?? 0.0
     let uid = data["uid"] as? String ?? ""
     
     return CommentModel(id: id, likes: likes, replies: replies, text: text, timestamp: timestamp, uid: uid)

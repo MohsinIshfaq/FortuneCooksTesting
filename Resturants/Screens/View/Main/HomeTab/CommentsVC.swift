@@ -22,18 +22,23 @@ class CommentsVC: UIViewController {
     
     var profileVideoModel: ProfileVideosModel? = nil
     var userProfileModel: UserProfileModel? = nil
+    var arrayAllUsers: [UserModel] = []
     var arrayShowReplies: [Int] = []
     var replyIndex: Int = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configTitleCount()
+        fetchAllUsersData()
+        viewForContent.setCornerRadius(cornerRadius: 20, corners: [.TopLeft, .TopRight])
+    }
+    
+    func configTitleCount() {
         let commentCount = profileVideoModel?.comments?.count ?? 0
         let totalRepliesCount = profileVideoModel?.comments?.reduce(0) { $0 + ($1.replies?.count ?? 0) }  ?? 0
         let totalComment = commentCount + totalRepliesCount
         lblCommentsCount.text = "\(totalComment) Comments"
-        viewForContent.setCornerRadius(cornerRadius: 20, corners: [.TopLeft, .TopRight])
-        print("** Date().timeIntervalSince1970: \(Date().timeIntervalSince1970)")
     }
     
     func setReply(title: String? , message: String?, section: Int) {
@@ -56,9 +61,9 @@ class CommentsVC: UIViewController {
     @IBAction func onClickSend(_ sender: UIButton) {
         if !trim(txtMessage.text).isEmpty {
             if viewForReply.isHidden {
-                uploadComment()
+                submitComment()
             } else {
-                uploadReply()
+                submitReply(to: replyIndex)
             }
         }
     }
@@ -99,7 +104,7 @@ extension CommentsVC: UITableViewDelegate , UITableViewDataSource {
         let comment = profileVideoModel?.comments?[indexPath.section]
         if indexPath.row == 0 {
             let cell: CommentsTCell  = tableView.cell(for: indexPath)
-            cell.config(comments: comment, userProfileModel: userProfileModel)
+            cell.config(comments: comment, arrayAllUsers: arrayAllUsers, userProfileModel: userProfileModel)
             cell.btnReplies.tag = indexPath.section
             cell.btnReplies.addTarget(self, action: #selector(onClickReplies(_:)), for: .touchUpInside)
             
@@ -109,7 +114,13 @@ extension CommentsVC: UITableViewDelegate , UITableViewDataSource {
                 self.setReply(title: isCurrentUser ? "You" : "User", message: trim(comment.text), section: indexPath.section)
             }
             cell.btnLike.addAction {
-                self.likeCommentOrReply(commentId: comment?.id, replyId: nil)
+                let documentPath = "Videos/\(trim(self.profileVideoModel?.uid))/VideosData/\(trim(self.profileVideoModel?.id))"
+                likeOrDislikeComment(documentPath: documentPath, commentId: trim(comment?.id), replyId: nil, userUID: trim(self.userProfileModel?.uid)) { arrayComment in
+                    if let arrayComment {
+                        self.profileVideoModel?.comments = arrayComment
+                        self.customTable.reloadData()
+                    }
+                }
             }
             return cell
         } else {
@@ -117,7 +128,7 @@ extension CommentsVC: UITableViewDelegate , UITableViewDataSource {
             let repliesCount = comment?.replies?.count ?? 0
             
             let cell: CommentRepliesCell  = tableView.cell(for: indexPath)
-            cell.config(replies: replies, userProfileModel: userProfileModel, isLast: indexPath.row == repliesCount)
+            cell.config(replies: replies, arrayAllUsers: arrayAllUsers, userProfileModel: userProfileModel, isLast: indexPath.row == repliesCount)
             cell.btnReply.addAction {
                 guard let replies else { return }
                 let isCurrentUser = trim(replies.uid) == trim(self.userProfileModel?.uid)
@@ -126,7 +137,14 @@ extension CommentsVC: UITableViewDelegate , UITableViewDataSource {
             cell.btnHideReplies.tag = indexPath.section
             cell.btnHideReplies.addTarget(self, action: #selector(onClickReplies(_:)), for: .touchUpInside)
             cell.btnLike.addAction {
-                self.likeCommentOrReply(commentId: comment?.id, replyId: replies?.id)
+                let documentPath = "Videos/\(trim(self.profileVideoModel?.uid))/VideosData/\(trim(self.profileVideoModel?.id))"
+                print("** documentPath: \(documentPath)")
+                likeOrDislikeComment(documentPath: documentPath, commentId: trim(comment?.id), replyId: replies?.id, userUID: trim(self.userProfileModel?.uid)) { arrayComment in
+                    if let arrayComment {
+                        self.profileVideoModel?.comments = arrayComment
+                        self.customTable.reloadData()
+                    }
+                }
             }
             return cell
         }
@@ -136,101 +154,88 @@ extension CommentsVC: UITableViewDelegate , UITableViewDataSource {
 //MARK: - Firestore -
 
 extension CommentsVC {
-    func uploadComment() {
-        let db = Firestore.firestore()
-        let newComment = CommentModel(id: uniqueID, likes: nil, replies: nil, text: trim(txtMessage.text), timestamp: Date().timeIntervalSince1970, uid: userProfileModel?.uid)
-        
-        if profileVideoModel?.comments == nil {
-            profileVideoModel?.comments = []
+    
+    func submitComment() {
+        IQKeyboardManager.shared().resignFirstResponder()
+        guard let userUID = userProfileModel?.uid, let videoID = profileVideoModel?.id, let videoOwnerUID = profileVideoModel?.uid else {
+            print("Error: Missing user or video information.")
+            return
         }
-        profileVideoModel?.comments?.append(newComment)
         
-        let commentsArray = profileVideoModel?.comments?.map { $0.toDictionary() }
-        let documentPath = "Swifts/\(trim(profileVideoModel?.uid))/VideosData/\(trim(profileVideoModel?.id))"
+        let documentPath = "Videos/\(videoOwnerUID)/VideosData/\(videoID)"
         print("** documentPath: \(documentPath)")
-        db.document(documentPath).setData(["commentList": commentsArray ?? []], merge: true) { error in
-            if let error = error {
-                print("Error uploading comment: \(error.localizedDescription)")
-            } else {
-                self.txtMessage.text = ""
-                self.customTable.reloadData()
-                print("Comment successfully uploaded and merged!")
-            }
+        let newComment = CommentModel(
+            id: uniqueID,
+            likes: [],
+            replies: [],
+            text: trim(txtMessage.text),
+            timestamp: Date().timeIntervalSince1970,
+            uid: userUID
+        )
+        print("** newComment: \(newComment)")
+        
+        var currentComments = profileVideoModel?.comments ?? []
+        
+        currentComments.append(newComment)
+        
+        let arrayComment = currentComments.map { $0.toDictionary() }
+        print("** documentPath: \(documentPath) commentsArray: \(arrayComment)")
+        
+        uploadComment(documentPath: documentPath, arrayComment: arrayComment) { [weak self] arrayComment in
+            guard let self = self else { return }
+            self.txtMessage.text = ""
+            profileVideoModel?.comments = arrayComment
+            configTitleCount()
+            self.customTable.reloadData()
         }
     }
     
-    func uploadReply() {
-        let db = Firestore.firestore()
+    func submitReply(to commentIndex: Int) {
+        IQKeyboardManager.shared().resignFirstResponder()
+        guard
+            let userUID = userProfileModel?.uid,
+            let videoID = profileVideoModel?.id,
+            let videoOwnerUID = profileVideoModel?.uid,
+            let comments = profileVideoModel?.comments,
+            commentIndex < comments.count else {
+            print("Error: Missing user, video, or comment information.")
+            return
+        }
+
+        let documentPath = "Videos/\(videoOwnerUID)/VideosData/\(videoID)"
+        print("Document Path: \(documentPath)")
+
+        let newReply = ReplyModel(
+            id: uniqueID,
+            likes: [],
+            text: trim(txtMessage.text),
+            timestamp: Date().timeIntervalSince1970,
+            uid: userUID
+        )
+        print("New Reply: \(newReply)")
+
+        var updatedComments = comments
+        updatedComments[commentIndex].replies?.append(newReply)
+
+        let commentsArray = updatedComments.map { $0.toDictionary() }
+        print("Updated Comments Array: \(commentsArray)")
         
-        let newReply = ReplyModel(id: uniqueID, likes: [], text: trim(txtMessage.text), timestamp: Date().timeIntervalSince1970, uid: userProfileModel?.uid)
-        
-        if var comments = profileVideoModel?.comments {
-            comments[replyIndex].replies?.append(newReply)
-            
-            let commentsArray = comments.map { $0.toDictionary() }
-            
-            let documentPath = "Swifts/\(trim(profileVideoModel?.uid))/VideosData/\(trim(profileVideoModel?.id))"
-            print("** documentPath: \(documentPath)")
-            db.document(documentPath).setData(["commentList": commentsArray], merge: true) { error in
-                if let error = error {
-                    print("Error uploading reply: \(error.localizedDescription)")
-                } else {
-                    print("** addeddCommentReplies: \(comments)")
-                    self.profileVideoModel?.comments = comments
-                    self.txtMessage.text = ""
-                    self.viewForReply.isHidden = true
-                    self.customTable.reloadData()
-                    print("Reply successfully uploaded and merged!")
-                }
-            }
+        uploadComment(documentPath: documentPath, arrayComment: commentsArray) { [weak self] arrayComments in
+            guard let self = self else { return }
+
+            self.txtMessage.text = ""
+            self.profileVideoModel?.comments = arrayComments
+            configTitleCount()
+            self.viewForReply.isHidden = true
+            self.customTable.reloadData()
         }
     }
     
-    func likeCommentOrReply(commentId: String?, replyId: String?) {
-        let db = Firestore.firestore()
-        var documentPath = ""
-        
-        if let commentId = commentId {
-            if let replyId = replyId {
-                documentPath = "Swifts/\(trim(profileVideoModel?.uid))/VideosData/\(trim(profileVideoModel?.id))/commentList/\(commentId)/replies/\(replyId)"
-            } else {
-                documentPath = "Swifts/\(trim(profileVideoModel?.uid))/VideosData/\(trim(profileVideoModel?.id))/commentList/\(commentId)"
-            }
-        }
-        
-        print("** documentPath: \(documentPath)")
-        
-        startAnimating()
-        
-        db.document(documentPath).getDocument { (document, error) in
-            if let document = document {
-                print("** MI document: \(document.data())")
-                if document.exists {
-                    
-                    var arrayLikes = document.data()?["likes"] as? [String] ?? []
-                    
-                    if arrayLikes.removeFirst(where: { $0 == trim(self.userProfileModel?.uid) }) == nil {
-                        arrayLikes.append(trim(self.userProfileModel?.uid))
-                    }
-                    
-                    db.document(documentPath).updateData(["likes": arrayLikes]) { error in
-                        if let error = error {
-                            self.stopAnimating()
-                            print("Error updating likes: \(error.localizedDescription)")
-                        } else {
-                            print("Successfully liked/disliked the comment or reply!")
-                        }
-                    }
-                } else {
-                    self.stopAnimating()
-                }
-            } else {
-                self.stopAnimating()
-                print("Document does not exist: \(error?.localizedDescription ?? "Unknown error")")
-            }
+    func fetchAllUsersData() {
+        fetchAllUsers { [weak self] arrayUser in
+            guard let self = self else { return }
+            self.arrayAllUsers = arrayUser
+            customTable.reloadData()
         }
     }
-
-
-
 }

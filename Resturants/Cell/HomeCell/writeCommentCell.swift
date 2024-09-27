@@ -17,4 +17,14 @@ class writeCommentCell: UITableViewCell {
         // Initialization code
     }
     
+    func config(userProfileModel: UserProfileModel?) {
+        if let userProfileModel {
+            DispatchQueue.main.async {
+                if let profileURL = userProfileModel.profileUrl, let urlProfile1 = URL(string: profileURL) {
+                    self.imgImage.sd_setImage(with: urlProfile1)
+                }
+            }
+        }
+    }
+    
 }

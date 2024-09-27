@@ -51,12 +51,17 @@ public final class CachingPlayerItem: AVPlayerItem {
 
     // MARK: Public init
 
+    /**
+     Play and cache remote media on a local file. `saveFilePath` is **randomly** generated. Requires `url.pathExtension` to not be empty otherwise the player will fail playing.
+
+     - parameter url: URL referencing the media file.
+     */
     public convenience init(url: URL) {
         self.init(url: url, saveFilePath: Self.randomFilePath(withExtension: url.pathExtension), customFileExtension: nil, avUrlAssetOptions: nil)
     }
 
     /**
-     Play and cache remote media on a local file. `saveFilePath` is **radomly** generated. Requires `url.pathExtension` to not be empty otherwise the player will fail playing.
+     Play and cache remote media on a local file. `saveFilePath` is **randomly** generated. Requires `url.pathExtension` to not be empty otherwise the player will fail playing.
 
      - parameter url: URL referencing the media file.
 
@@ -68,7 +73,7 @@ public final class CachingPlayerItem: AVPlayerItem {
     }
 
     /**
-     Play and cache remote media on a local file. `saveFilePath` is **radomly** generated.
+     Play and cache remote media on a local file. `saveFilePath` is **randomly** generated.
 
      - parameter url: URL referencing the media file.
 
@@ -172,9 +177,9 @@ public final class CachingPlayerItem: AVPlayerItem {
             self.url = url.appendingPathExtension(fileExtension)
 
             // Removes old SymLinks which cause issues
-            try? FileManager.default.removeItem(at: url)
+            try? FileManager.default.removeItem(at: self.url)
 
-            try? FileManager.default.createSymbolicLink(at: url, withDestinationURL: filePathURL)
+            try? FileManager.default.createSymbolicLink(at: self.url, withDestinationURL: filePathURL)
         } else {
             assert(filePathURL.pathExtension.isEmpty == false,
                    "CachingPlayerItem error: filePathURL pathExtension empty, pass the extension in `fileExtension` parameter")
@@ -190,6 +195,12 @@ public final class CachingPlayerItem: AVPlayerItem {
         addObservers()
     }
 
+    /**
+     Play media using an AVAsset. Caching is **not** supported for this method.
+
+     - parameter asset: An instance of AVAsset.
+     - parameter automaticallyLoadedAssetKeys: An NSArray of NSStrings, each representing a property key defined by AVAsset.
+     */
     override public init(asset: AVAsset, automaticallyLoadedAssetKeys: [String]?) {
         self.url = URL(fileURLWithPath: "")
         self.initialScheme = nil
@@ -202,11 +213,11 @@ public final class CachingPlayerItem: AVPlayerItem {
     deinit {
         removeObservers()
 
-        // Don't reference lazy `resourceLoaderDelegate` if it hasn't been called before.
+        // Cancel download only for caching inits
         guard initialScheme != nil else { return }
 
         // Otherwise the ResourceLoaderDelegate wont deallocate and will keep downloading.
-        resourceLoaderDelegate.invalidateAndCancelSession()
+        cancelDownload()
     }
 
     // MARK: Public methods
@@ -215,11 +226,22 @@ public final class CachingPlayerItem: AVPlayerItem {
     public func download() {
         // Make sure we are not initilalized with a filePath or non-caching init.
         guard initialScheme != nil else {
-            assertionFailure("CachingPlayerItem error: Download method used on a non caching instance")
+            assertionFailure("CachingPlayerItem error: `download` method used on a non caching instance")
             return
         }
 
         resourceLoaderDelegate.startDataRequest(with: url)
+    }
+
+    /// Cancels the download of the media file and deletes the incomplete cached file. Works only with the initializers intended for play and cache.
+    public func cancelDownload() {
+        // Make sure we are not initilalized with a filePath or non-caching init.
+        guard initialScheme != nil else {
+            assertionFailure("CachingPlayerItem error: `cancelDownload` method used on a non caching instance")
+            return
+        }
+
+        resourceLoaderDelegate.invalidateAndCancelSession()
     }
 
     // MARK: KVO

@@ -29,8 +29,17 @@ class CommentsTCell: UITableViewCell {
         // Initialization code
     }
     
-    func config(comments: CommentModel?, userProfileModel: UserProfileModel?) {
+    func config(comments: CommentModel?, arrayAllUsers: [UserModel], userProfileModel: UserProfileModel?) {
         if let comments {
+            if let user = arrayAllUsers.first(where: { $0.uid == comments.uid }) {
+                let timestamp = comments.timestamp ?? 0
+                lblTitle.text = "\(user.channelName) · \(getTimeStapToDate(timestamp))"
+                DispatchQueue.main.async {
+                    if let urlProfile1 = URL(string: user.profileUrl) {
+                        self.imgImage.sd_setImage(with: urlProfile1)
+                    }
+                }
+            }
             lblDetail.text = trim(comments.text)
             lblReplies.text = trim(comments.replies?.count) + " replies"
             if let repliesCount = comments.replies, repliesCount.count > 0 {

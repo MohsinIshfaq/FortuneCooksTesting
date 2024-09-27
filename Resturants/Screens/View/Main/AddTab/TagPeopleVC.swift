@@ -28,6 +28,7 @@ class TagPeopleVC: UIViewController , UISearchTextFieldDelegate{
     var users: [UserTagModel]        = []
     var selectedUser: [UserTagModel] = []      //Users to be tag
     var alreadyTagUsers: [TagUsers]  = []
+    var isFromHome: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -97,6 +98,18 @@ extension TagPeopleVC{
                     self.selectedUser.append(users[i])
                 }
             }
+        }
+        self.tblSelection.reloadData()
+    }
+    
+    func markSelectedPerson() {
+        let arraySelectedPerson = selectedUser.map({ trim($0.uid) })
+        users = users.map { user in
+            var updatedUser = user
+            if arraySelectedPerson.contains(trim(user.uid)) {
+                updatedUser.selected = 1
+            }
+            return updatedUser
         }
         self.tblSelection.reloadData()
     }
@@ -215,7 +228,11 @@ extension TagPeopleVC {
                        self.users.append(user)
                        print(user)
                    }
-                   self.markSelectedAlreadytagData()
+                   if self.isFromHome {
+                       self.markSelectedPerson()
+                   } else {
+                       self.markSelectedAlreadytagData()
+                   }
                }
            }
        }

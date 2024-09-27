@@ -21,7 +21,12 @@ final class ResourceLoaderDelegate: NSObject, AVAssetResourceLoaderDelegate, URL
 
     private var session: URLSession?
     private var response: URLResponse?
-    private var pendingRequests = Set<AVAssetResourceLoadingRequest>()
+    private let queue = DispatchQueue(label: "com.gcd.CachingPlayerItemQueue", qos: .userInitiated, attributes: .concurrent)
+    private var pendingRequests: Set<AVAssetResourceLoadingRequest> {
+        get { queue.sync { return pendingRequestsValue } }
+        set { queue.async(flags: .barrier) { [weak self] in self?.pendingRequestsValue = newValue } }
+    }
+    private var pendingRequestsValue = Set<AVAssetResourceLoadingRequest>()
     private var isDownloadComplete = false
 
     private let url: URL
@@ -40,7 +45,7 @@ final class ResourceLoaderDelegate: NSObject, AVAssetResourceLoaderDelegate, URL
     }
 
     deinit {
-        invalidateAndCancelSession()
+        invalidateAndCancelSession(shouldResetData: false)
     }
 
     // MARK: AVAssetResourceLoaderDelegate
@@ -111,8 +116,19 @@ final class ResourceLoaderDelegate: NSObject, AVAssetResourceLoaderDelegate, URL
         session?.dataTask(with: urlRequest).resume()
     }
 
-    func invalidateAndCancelSession() {
+    func invalidateAndCancelSession(shouldResetData: Bool = true) {
         session?.invalidateAndCancel()
+        session = nil
+
+        if shouldResetData {
+            bufferData = Data()
+            pendingRequests.removeAll()
+        }
+
+        // We need to only remove the file if it hasn't been fully downloaded
+        guard isDownloadComplete == false else { return }
+
+        fileHandle.deleteFile()
     }
 
     // MARK: Private methods
@@ -201,7 +217,7 @@ final class ResourceLoaderDelegate: NSObject, AVAssetResourceLoaderDelegate, URL
     }
 
     private func downloadFailed(with error: Error) {
-        fileHandle.deleteFile()
+        invalidateAndCancelSession()
 
         DispatchQueue.main.async {
             self.owner?.delegate?.playerItem?(self.owner!, downloadingFailedWith: error)
@@ -209,9 +225,6 @@ final class ResourceLoaderDelegate: NSObject, AVAssetResourceLoaderDelegate, URL
     }
 
     @objc private func handleAppWillTerminate() {
-        // We need to only remove the file if it hasn't been fully downloaded
-        guard isDownloadComplete == false else { return }
-
-        fileHandle.deleteFile()
+        invalidateAndCancelSession(shouldResetData: false)
     }
 }

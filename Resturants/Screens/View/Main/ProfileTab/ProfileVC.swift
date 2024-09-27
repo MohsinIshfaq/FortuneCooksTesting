@@ -729,8 +729,9 @@ extension ProfileVC : UITableViewDelegate , UITableViewDataSource {
                     guard let url = UserManager.shared.videosModel?[indexPath.row].thumbnailUrl else {
                         return
                     }
-                    let url1 = URL(string: url)!
-                    cell.imgVideo?.sd_setImage(with: url1)
+                    if let url1 = URL(string: url) {
+                        cell.imgVideo?.sd_setImage(with: url1)
+                    }
                 }
                 return cell
             }
@@ -1064,7 +1065,7 @@ extension ProfileVC {
                 return
             }
             
-            UserManager.shared.videosModel = document.map { (QueryDocumentSnapshot) -> ProfileVideosModel in
+            UserManager.shared.reelsModel = document.map { (QueryDocumentSnapshot) -> ProfileVideosModel in
                 let data = QueryDocumentSnapshot.data()
                 
                 // Parsing tagged persons

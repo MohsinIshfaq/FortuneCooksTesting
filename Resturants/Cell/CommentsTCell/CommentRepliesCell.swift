@@ -25,12 +25,21 @@ class CommentRepliesCell: UITableViewCell {
         // Initialization code
     }
     
-    func config(replies: ReplyModel?, userProfileModel: UserProfileModel?, isLast: Bool) {
+    func config(replies: ReplyModel?, arrayAllUsers: [UserModel], userProfileModel: UserProfileModel?, isLast: Bool) {
         if let replies {
             lblDetail.text = trim(replies.text)
             lblCount.text = trim(replies.likes?.count)
             constrainForHideHeight.isActive = !isLast
             
+            if let user = arrayAllUsers.first(where: { $0.uid == replies.uid }) {
+                let timestamp = replies.timestamp ?? 0
+                lblTitle.text = "\(user.channelName) · \(getTimeStapToDate(timestamp))"
+                DispatchQueue.main.async {
+                    if let urlProfile1 = URL(string: user.profileUrl) {
+                        self.imgImage.sd_setImage(with: urlProfile1)
+                    }
+                }
+            }
             if let userProfileModel, let likes = replies.likes {
                 imgFavorite.image = likes.contains(trim(userProfileModel.uid)) ? UIImage(named: "imgHeartFill") : UIImage(systemName: "heart")?.withTintColor(UIColor.white, renderingMode: .alwaysTemplate)
             }
