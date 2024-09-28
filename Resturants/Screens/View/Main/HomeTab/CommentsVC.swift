@@ -8,6 +8,19 @@
 import UIKit
 import FirebaseFirestoreInternal
 
+enum CommentType {
+    case Videos, Swift
+    
+    var url: String {
+        switch self {
+        case .Videos:
+            return "Videos"
+        case .Swift:
+            return "Swifts"
+        }
+    }
+}
+
 class CommentsVC: UIViewController {
 
     @IBOutlet weak var lblCommentsCount: UILabel!
@@ -24,6 +37,7 @@ class CommentsVC: UIViewController {
     var userProfileModel: UserProfileModel? = nil
     var arrayAllUsers: [UserModel] = []
     var arrayShowReplies: [Int] = []
+    var commentType: CommentType = .Videos
     var replyIndex: Int = -1
     
     override func viewDidLoad() {
@@ -114,7 +128,7 @@ extension CommentsVC: UITableViewDelegate , UITableViewDataSource {
                 self.setReply(title: isCurrentUser ? "You" : "User", message: trim(comment.text), section: indexPath.section)
             }
             cell.btnLike.addAction {
-                let documentPath = "Videos/\(trim(self.profileVideoModel?.uid))/VideosData/\(trim(self.profileVideoModel?.id))"
+                let documentPath = "\(self.commentType.url)/\(trim(self.profileVideoModel?.uid))/VideosData/\(trim(self.profileVideoModel?.id))"
                 likeOrDislikeComment(documentPath: documentPath, commentId: trim(comment?.id), replyId: nil, userUID: trim(self.userProfileModel?.uid)) { arrayComment in
                     if let arrayComment {
                         self.profileVideoModel?.comments = arrayComment
@@ -137,7 +151,7 @@ extension CommentsVC: UITableViewDelegate , UITableViewDataSource {
             cell.btnHideReplies.tag = indexPath.section
             cell.btnHideReplies.addTarget(self, action: #selector(onClickReplies(_:)), for: .touchUpInside)
             cell.btnLike.addAction {
-                let documentPath = "Videos/\(trim(self.profileVideoModel?.uid))/VideosData/\(trim(self.profileVideoModel?.id))"
+                let documentPath = "\(self.commentType.url)/\(trim(self.profileVideoModel?.uid))/VideosData/\(trim(self.profileVideoModel?.id))"
                 print("** documentPath: \(documentPath)")
                 likeOrDislikeComment(documentPath: documentPath, commentId: trim(comment?.id), replyId: replies?.id, userUID: trim(self.userProfileModel?.uid)) { arrayComment in
                     if let arrayComment {
@@ -162,7 +176,7 @@ extension CommentsVC {
             return
         }
         
-        let documentPath = "Videos/\(videoOwnerUID)/VideosData/\(videoID)"
+        let documentPath = "\(commentType.url)/\(videoOwnerUID)/VideosData/\(videoID)"
         print("** documentPath: \(documentPath)")
         let newComment = CommentModel(
             id: uniqueID,
@@ -202,7 +216,7 @@ extension CommentsVC {
             return
         }
 
-        let documentPath = "Videos/\(videoOwnerUID)/VideosData/\(videoID)"
+        let documentPath = "\(commentType.url)/\(videoOwnerUID)/VideosData/\(videoID)"
         print("Document Path: \(documentPath)")
 
         let newReply = ReplyModel(

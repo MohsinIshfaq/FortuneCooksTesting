@@ -8,7 +8,7 @@
 import Foundation
 @_exported import IQKeyboardManager
 
-
+var arrayAllUsers: [UserModel] = []
 var uniqueID: String {
     return UUID().uuidString
 }

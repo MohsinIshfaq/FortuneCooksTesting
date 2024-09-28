@@ -48,6 +48,7 @@ class VideosSectionController: ListSectionController {
     private var displayingVideoTitle: String = ""
     //private var displayingVideoProfile: User_Profiles_Model = User_Profiles_Model()
     var sectionDelegate: sectionControllerDelegate? = nil
+    var handler: ((Videos) ->())? = nil
     
     
     //MARK: - Initializers and Overridings
@@ -94,6 +95,7 @@ class VideosSectionController: ListSectionController {
         
         thisCell.cellDelegate = self
         thisCell.btnComment.tag = index
+        thisCell.btnComment.addTarget(self, action: #selector(onClickComment), for: .touchUpInside)
         thisCell.btnAddtoCollect.addTarget(self, action: #selector(addCollection), for: .touchUpInside)
         thisCell.btnAddtoCollect.tag = index
         
@@ -130,8 +132,11 @@ class VideosSectionController: ListSectionController {
 //        print(currentVideo?.id ?? "")
     }
     
-    
-    
+    @objc func onClickComment(_ sender: UIButton) {
+        if let currentVideo {
+            handler?(currentVideo)
+        }
+    }
     
 }
 

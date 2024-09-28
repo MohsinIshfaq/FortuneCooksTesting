@@ -30,6 +30,7 @@ class SwiftVC: UIViewController {
     var videos          : [ListDiffable] = []
     var delegate        : IGBizTokDelegate? = nil
     var refreshControl  : OffsetableRefreshControl!
+    var profileModel    : UserProfileModel? = nil
     
     lazy var adapter: ListAdapter =  {
         let updater = ListAdapterUpdater()
@@ -59,7 +60,7 @@ class SwiftVC: UIViewController {
     func setUpVideos() {
         if let response = responseModel {
             for i in response {
-                let video = Videos(identifier: UUID().uuidString, uid: i.uid ?? "", address: i.address ?? "", Zipcode: i.Zipcode ?? "", city: i.city ?? "", hashTagsModelList: i.hashtages ?? [], Title: i.Title ?? "", description: i.description ?? "", language: i.language ?? "", ThumbnailUrl: i.thumbnailUrl ?? "", videoUrl: i.videoUrl ?? "")
+                let video = Videos(identifier: UUID().uuidString, uid: i.uid ?? "", id: i.id ?? "", address: i.address ?? "", Zipcode: i.Zipcode ?? "", city: i.city ?? "", hashTagsModelList: i.hashtages ?? [], Title: i.Title ?? "", description: i.description ?? "", language: i.language ?? "", ThumbnailUrl: i.thumbnailUrl ?? "", videoUrl: i.videoUrl ?? "")
                 self.videos.append(video)
             }
 //            guard let url = URL(string: (responseModel?[0].videoUrl)!) else {
@@ -86,6 +87,18 @@ class SwiftVC: UIViewController {
     }
     @objc func refresh(_ sender: AnyObject) {
     }
+    
+    func pushForComments(selectedVideo: Videos) {
+        guard let profileVideoModel = responseModel?.filter({ trim($0.id) == trim(selectedVideo.id) }).first else {
+            return
+        }
+        let vc = Constants.homehStoryBoard.instantiateViewController(withIdentifier: "CommentsVC") as! CommentsVC
+        vc.profileVideoModel = profileVideoModel
+        vc.userProfileModel = profileModel
+        vc.arrayAllUsers = arrayAllUsers
+        vc.commentType = .Swift
+        self.present(vc, animated: true)
+    }
 }
 
 //MARK: - List Adapters DataSource
@@ -100,6 +113,7 @@ extension SwiftVC : ListAdapterDataSource {
         let sectionController = VideosSectionController()
         sectionController.sectionDelegate = self
         sectionController.fromProfile = true
+        sectionController.handler = pushForComments
         return sectionController
     }
     

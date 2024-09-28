@@ -211,6 +211,7 @@ import IGListKit
 class Videos {
     private(set) var identifier   : String
     private(set) var uid           : String
+    private(set) var id           : String
     private(set) var address      : String
     private(set) var Zipcode      : String
     private(set) var city         : String
@@ -221,9 +222,10 @@ class Videos {
     private(set) var ThumbnailUrl : String
     private(set) var videoUrl     : String
 
-    init(identifier: String  , uid: String, address : String , Zipcode: String , city: String , hashTagsModelList: [String] , Title: String , description: String , language: String , ThumbnailUrl: String , videoUrl: String) {
+    init(identifier: String  , uid: String, id: String, address : String , Zipcode: String , city: String , hashTagsModelList: [String] , Title: String , description: String , language: String , ThumbnailUrl: String , videoUrl: String) {
         self.identifier   = identifier
         self.uid           = uid
+        self.id           = id
         self.address      = address
         self.Zipcode      = Zipcode
         self.city         = city

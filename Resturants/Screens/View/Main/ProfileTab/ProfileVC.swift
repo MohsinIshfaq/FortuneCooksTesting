@@ -871,6 +871,7 @@ extension ProfileVC : UICollectionViewDelegate , UICollectionViewDataSource , UI
                 
                 let vc = Constants.ProfileStoryBoard.instantiateViewController(withIdentifier: "SwiftVC") as? SwiftVC
                 vc?.responseModel = UserManager.shared.reelsModel
+                vc?.profileModel = profileModel
                 vc?.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(vc!, animated: true)
             }
