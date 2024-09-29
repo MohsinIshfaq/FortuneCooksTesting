@@ -79,7 +79,23 @@ class IGBizTokVideoCell: UICollectionViewCell, VideosModelUpdatable {
         pauseObserver()
     }
     
+    func configLikes(isLike: Bool) {
+        liked = isLike
+        btnLike.setImage(UIImage(named: isLike ? "liked" : "thumbsUp_icon"), for: .normal)
+    }
     
+    func configLikesCount(likeCount: Int) {
+        totalLikes = likeCount
+        var strLikecount = "0"
+        if likeCount > 1000000 {
+            strLikecount = "\(likeCount)M"
+        } else if likeCount > 1000 {
+            strLikecount = "\(likeCount)k"
+        } else {
+            strLikecount = "\(likeCount)"
+        }
+        lblLike.text = strLikecount
+    }
     
     //MARK: - IBActions
     

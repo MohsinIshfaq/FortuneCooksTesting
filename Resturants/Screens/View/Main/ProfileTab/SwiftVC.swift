@@ -60,7 +60,7 @@ class SwiftVC: UIViewController {
     func setUpVideos() {
         if let response = responseModel {
             for i in response {
-                let video = Videos(identifier: UUID().uuidString, uid: i.uid ?? "", id: i.id ?? "", address: i.address ?? "", Zipcode: i.Zipcode ?? "", city: i.city ?? "", hashTagsModelList: i.hashtages ?? [], Title: i.Title ?? "", description: i.description ?? "", language: i.language ?? "", ThumbnailUrl: i.thumbnailUrl ?? "", videoUrl: i.videoUrl ?? "")
+                let video = Videos(identifier: UUID().uuidString, uid: i.uid ?? "", id: i.id ?? "", address: i.address ?? "", Zipcode: i.Zipcode ?? "", city: i.city ?? "", hashTagsModelList: i.hashtages ?? [], Title: i.Title ?? "", description: i.description ?? "", language: i.language ?? "", ThumbnailUrl: i.thumbnailUrl ?? "", videoUrl: i.videoUrl ?? "", likes: i.likes ?? [])
                 self.videos.append(video)
             }
 //            guard let url = URL(string: (responseModel?[0].videoUrl)!) else {
@@ -112,6 +112,7 @@ extension SwiftVC : ListAdapterDataSource {
         
         let sectionController = VideosSectionController()
         sectionController.sectionDelegate = self
+        sectionController.profileModel = profileModel
         sectionController.fromProfile = true
         sectionController.handler = pushForComments
         return sectionController

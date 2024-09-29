@@ -10,6 +10,7 @@ import IGListKit
 import CoreImage
 import CachingPlayerItem
 import AVFoundation
+import FirebaseFirestore
 
 protocol VideosModelUpdatable {
     
@@ -39,6 +40,7 @@ class VideosSectionController: ListSectionController {
     //MARK: - Variables and Properties
     var fromProfile = false
     var currentVideo: Videos?
+    var profileModel    : UserProfileModel? = nil
     private var downloadedImage: UIImage?
     private var task: URLSessionDataTask?
     private var videoPlayer: AVPlayer?
@@ -95,7 +97,10 @@ class VideosSectionController: ListSectionController {
         
         thisCell.cellDelegate = self
         thisCell.btnComment.tag = index
+        thisCell.configLikes(isLike: currentVideo?.likes.contains(trim(profileModel?.uid)) ?? false)
+        thisCell.configLikesCount(likeCount: currentVideo?.likes.count ?? 0)
         thisCell.btnComment.addTarget(self, action: #selector(onClickComment), for: .touchUpInside)
+        thisCell.btnLike.addTarget(self, action: #selector(onClickLike), for: .touchUpInside)
         thisCell.btnAddtoCollect.addTarget(self, action: #selector(addCollection), for: .touchUpInside)
         thisCell.btnAddtoCollect.tag = index
         
@@ -136,6 +141,10 @@ class VideosSectionController: ListSectionController {
         if let currentVideo {
             handler?(currentVideo)
         }
+    }
+    
+    @objc func onClickLike(_ sender: UIButton) {
+        likeVideo()
     }
     
 }
@@ -257,4 +266,32 @@ extension VideosSectionController: bizTokCellDelegate {
         sectionDelegate?.didTappedComments(sender: sender, id: id, thumbnail: thumbnail, title: title)
     }
     
+}
+
+
+extension VideosSectionController {
+    func likeVideo() {
+        let db = Firestore.firestore()
+        let documentPath = "Videos/\(trim(currentVideo?.uid))/VideosData/\(trim(currentVideo?.id))"
+        print("** documentPath: \(documentPath)")
+        db.document(documentPath).getDocument { (document, error) in
+            if let document = document, document.exists {
+                
+                var likes = document.data()?["likes"] as? [String] ?? []
+                
+                if likes.removeFirst(where: { $0 == trim(self.profileModel?.uid) }) == nil {
+                    likes.append(trim(self.profileModel?.uid))
+                }
+                db.document(documentPath).updateData(["likes": likes]) { error in
+                    if let error = error {
+                        print("Error updating likes: \(error.localizedDescription)")
+                    } else {
+                        print("Successfully liked the video!")
+                    }
+                }
+            } else {
+                print("Document does not exist: \(error?.localizedDescription ?? "Unknown error")")
+            }
+        }
+    }
 }

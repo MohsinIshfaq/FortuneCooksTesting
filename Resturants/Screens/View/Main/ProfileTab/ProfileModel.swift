@@ -221,8 +221,9 @@ class Videos {
     private(set) var language     : String
     private(set) var ThumbnailUrl : String
     private(set) var videoUrl     : String
+    private (set) var likes        : [String]
 
-    init(identifier: String  , uid: String, id: String, address : String , Zipcode: String , city: String , hashTagsModelList: [String] , Title: String , description: String , language: String , ThumbnailUrl: String , videoUrl: String) {
+    init(identifier: String  , uid: String, id: String, address : String , Zipcode: String , city: String , hashTagsModelList: [String] , Title: String , description: String , language: String , ThumbnailUrl: String , videoUrl: String, likes: [String]) {
         self.identifier   = identifier
         self.uid           = uid
         self.id           = id
@@ -235,6 +236,7 @@ class Videos {
         self.language     = language
         self.ThumbnailUrl = ThumbnailUrl
         self.videoUrl     = videoUrl
+        self.likes        = likes
         
     }
 }
