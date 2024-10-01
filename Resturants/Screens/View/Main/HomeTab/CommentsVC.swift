@@ -39,6 +39,7 @@ class CommentsVC: UIViewController {
     var arrayShowReplies: [Int] = []
     var commentType: CommentType = .Videos
     var replyIndex: Int = -1
+    var handler: ((ProfileVideosModel?) -> ())? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +47,10 @@ class CommentsVC: UIViewController {
         configTitleCount()
         fetchAllUsersData()
         viewForContent.setCornerRadius(cornerRadius: 20, corners: [.TopLeft, .TopRight])
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        handler?(profileVideoModel)
     }
     
     func configTitleCount() {

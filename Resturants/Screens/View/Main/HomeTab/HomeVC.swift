@@ -45,30 +45,36 @@ class HomeVC: UIViewController , MenuVCDelegate {
     
     @IBOutlet weak var customTable: UITableView!
     @IBOutlet weak var imgImage: UIImageView!
+    @IBOutlet weak var imgPlayAndPause: UIImageView!
+    @IBOutlet weak var currentTimeLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var timeSlider: UISlider!
     @IBOutlet weak var imgHeart: UIImageView!
     @IBOutlet weak var lblLikesCount: UILabel!
     @IBOutlet weak var lblCommentsCount: UILabel!
     @IBOutlet weak var viewForThumbnail: UIView!
     @IBOutlet weak var viewForVideo: UIView!
     
-    
-    
+    @IBOutlet var arrayForVideoIndicator: [UIView]!
     
     //MARK: - variables and Properties
     
     var db = Firestore.firestore()
     var videoPlayerController:AVPlayerViewController? = nil
-    var videoPlayer:AVPlayer? = nil
+    var player:AVPlayer!/*? = nil*/
+    var playerLayer: AVPlayerLayer!
     var profileVideoModel: ProfileVideosModel? = nil
     var userProfileModel: UserProfileModel?   = nil
-    var arrayAllUsers: [UserModel] = []
     var showLoading: Bool = true
+    var isPlaying: Bool = true
+    var isShowVideoIndicator: Bool = true
+    var txtComment: UITextField? = nil
+    var isCommentReply: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         if !UserDefault.token.isEmpty {
             onlaod()
-            
         }
     }
     
@@ -77,6 +83,12 @@ class HomeVC: UIViewController , MenuVCDelegate {
         vc.profileVideoModel = self.profileVideoModel
         vc.userProfileModel = self.userProfileModel
         vc.arrayAllUsers = arrayAllUsers
+        vc.handler = { [weak self] profileVideoModel in
+            guard let self = self else { return }
+            self.profileVideoModel = profileVideoModel
+            fetchVideos()
+            customTable.reloadData()
+        }
         self.present(vc, animated: true)
     }
     
@@ -89,32 +101,65 @@ class HomeVC: UIViewController , MenuVCDelegate {
     @objc func ontapNavLFT() {}
     
     @IBAction func ontapPlayVideo(_ sender: UIButton) {
-        let url = trim(profileVideoModel?.videoUrl)
-        guard let url = URL(string: url) else {
-            print("Invalid Video URL")
-            return
-        }
-        
         viewForThumbnail.isHidden = true
+        timeSlider.isHidden = false
+        setupVideoPlayer()
+//        let url = trim(profileVideoModel?.videoUrl)
+//        guard let url = URL(string: url) else {
+//            print("Invalid Video URL")
+//            return
+//        }
+//        
         
-        videoPlayer = AVPlayer(url: url)
-        
-        videoPlayerController = AVPlayerViewController()
-        videoPlayerController?.player = videoPlayer
-        
-        if let videoPlayerController = videoPlayerController {
-            addChild(videoPlayerController)
-            viewForVideo.addSubview(videoPlayerController.view)
-            
-            videoPlayerController.view.translatesAutoresizingMaskIntoConstraints = false
-            NSLayoutConstraint.activate([
-                videoPlayerController.view.leadingAnchor.constraint(equalTo: viewForVideo.leadingAnchor),
-                videoPlayerController.view.trailingAnchor.constraint(equalTo: viewForVideo.trailingAnchor),
-                videoPlayerController.view.topAnchor.constraint(equalTo: viewForVideo.topAnchor),
-                videoPlayerController.view.bottomAnchor.constraint(equalTo: viewForVideo.bottomAnchor)
-            ])
-            videoPlayer?.play()
+//        
+//        videoPlayer = AVPlayer(url: url)
+//        
+//        videoPlayerController = AVPlayerViewController()
+//        videoPlayerController?.player = videoPlayer
+//        
+//        if let videoPlayerController = videoPlayerController {
+//            addChild(videoPlayerController)
+//            viewForVideo.addSubview(videoPlayerController.view)
+//            
+//            videoPlayerController.view.translatesAutoresizingMaskIntoConstraints = false
+//            NSLayoutConstraint.activate([
+//                videoPlayerController.view.leadingAnchor.constraint(equalTo: viewForVideo.leadingAnchor),
+//                videoPlayerController.view.trailingAnchor.constraint(equalTo: viewForVideo.trailingAnchor),
+//                videoPlayerController.view.topAnchor.constraint(equalTo: viewForVideo.topAnchor),
+//                videoPlayerController.view.bottomAnchor.constraint(equalTo: viewForVideo.bottomAnchor)
+//            ])
+//            videoPlayer?.play()
+//        }
+//        PlayVideo()
+    }
+    
+    @IBAction func onClickPlayPause(_ sender: UIButton) {
+        print("onClickPlayPause")
+        if isPlaying {
+            player.pause()
+            imgPlayAndPause.image = UIImage(named: "imgPlay")
+        } else {
+            player.play()
+            imgPlayAndPause.image = UIImage(named: "imgPause")
         }
+        isPlaying.toggle()
+    }
+    
+    @IBAction func onEditingChangeSlider(_ sender: UISlider) {
+        let newTime = CMTimeMake(value: Int64(sender.value * 1000), timescale: 1000)
+        currentTimeLabel.text = formatTime(from: newTime) + " / "
+    }
+    @IBAction func timeSliderChanged(_ sender: UISlider) {
+        let newTime = CMTimeMake(value: Int64(sender.value * 1000), timescale: 1000)
+        player.seek(to: newTime)
+    }
+    
+    @IBAction func onClickMore(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction func onClickFullScreen(_ sender: UIButton) {
+        
     }
     
     @IBAction func ontapLike(_ sender: UIButton){
@@ -134,7 +179,109 @@ class HomeVC: UIViewController , MenuVCDelegate {
         self.present(vc!, animated: true)
     }
     
+    @IBAction func onClickVideo() {
+        isShowVideoIndicator = !isShowVideoIndicator
+        arrayForVideoIndicator.forEach({ $0.isHidden = !isShowVideoIndicator })
+        timeSlider.isHidden = !isShowVideoIndicator
+    }
+    
+    @IBAction func onClickSend() {
+        if isCommentReply {
+            submitReply()
+        } else {
+            submitComment()
+        }
+    }
+    
 
+}
+
+extension HomeVC {
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        playerLayer?.frame = viewForVideo.bounds
+    }
+    
+    // MARK: - Setup Video Player
+    private func setupVideoPlayer() {
+        guard let url = URL(string: trim(profileVideoModel?.videoUrl)) else {
+            print("Invalid URL")
+            return
+        }
+        
+        player = AVPlayer(url: url)
+        
+        player.currentItem?.addObserver(self, forKeyPath: "duration", options: [.new, .initial], context: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(videoDidEnd), name: .AVPlayerItemDidPlayToEndTime, object: player.currentItem)
+        playerLayer = AVPlayerLayer(player: player)
+        playerLayer.videoGravity = .resizeAspect
+        viewForVideo.layer.addSublayer(playerLayer)
+        playerLayer?.frame = viewForVideo.bounds
+        player.play()
+        addTimeObserver()
+    }
+    
+    func addTimeObserver() {
+        let interval = CMTime(seconds: 0.5, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
+        
+        player.addPeriodicTimeObserver(forInterval: interval, queue: .main) { [weak self] _ in
+            guard let self = self, let currentItem = self.player.currentItem else { return }
+            
+            let currentTime = currentItem.currentTime().seconds
+            let duration = currentItem.duration.seconds
+            
+            if currentTime.isFinite && currentTime >= 0, duration.isFinite && duration > 0 {
+                self.timeSlider.maximumValue = Float(duration)
+                self.timeSlider.value = Float(currentTime)
+                self.currentTimeLabel.text = "\(self.formatTime(from: currentItem.currentTime())) / "
+                self.timeLabel.text = self.formatTime(from: currentItem.duration)
+            } else {
+                self.currentTimeLabel.text = "--:-- / "
+                self.timeLabel.text = "--:--"
+            }
+        }
+    }
+    
+    @objc func videoDidEnd(notification: NSNotification) {
+        
+        imgPlayAndPause.image = UIImage(named: "imgPlay")
+        isPlaying = false
+        timeSlider.value = timeSlider.maximumValue
+        currentTimeLabel.text = formatTime(from: player.currentItem?.duration ?? CMTime.zero)
+    }
+    
+    // MARK: - KVO for Duration
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "duration", let duration = player.currentItem?.duration.seconds, duration > 0.0 {
+//                            totalTimeLabel.text = formatTime(from: player.currentItem?.duration ?? CMTime.zero)
+        }
+    }
+    
+    // MARK: - Time Slider Value Changed
+    @IBAction func timeSliderValueChanged(_ sender: UISlider) {
+        let newTime = Double(sender.value)
+        seekToTime(newTime: newTime)
+    }
+    
+    // MARK: - Seek to Specific Time
+    private func seekToTime(newTime: Double) {
+        let time = CMTime(seconds: newTime, preferredTimescale: 1000)
+        player.seek(to: time)
+    }
+    
+    // MARK: - Format Time to String
+    private func formatTime(from time: CMTime) -> String {
+        let totalSeconds = CMTimeGetSeconds(time)
+        let hours = Int(totalSeconds / 3600)
+        let minutes = Int(totalSeconds.truncatingRemainder(dividingBy: 3600) / 60)
+        let seconds = Int(totalSeconds.truncatingRemainder(dividingBy: 60))
+        
+        if hours > 0 {
+            return String(format: "%02i:%02i:%02i", hours, minutes, seconds)
+        } else {
+            return String(format: "%02i:%02i", minutes, seconds)
+        }
+    }
 }
 
 //MARK: - Custom Implementation {}
@@ -155,7 +302,7 @@ extension HomeVC {
         }
         fetchAllUsers { [weak self] arrayUser in
             guard let self = self else { return }
-            self.arrayAllUsers = arrayUser
+            arrayAllUsers = arrayUser
             customTable.reloadData()
         }
     }
@@ -517,6 +664,79 @@ extension HomeVC {
             }
         }
     }
+    
+    func submitComment() {
+        IQKeyboardManager.shared().resignFirstResponder()
+        guard let userUID = userProfileModel?.uid, let videoID = profileVideoModel?.id, let videoOwnerUID = profileVideoModel?.uid else {
+            print("Error: Missing user or video information.")
+            return
+        }
+        
+        let documentPath = "Videos/\(videoOwnerUID)/VideosData/\(videoID)"
+        print("** documentPath: \(documentPath)")
+        let newComment = CommentModel(
+            id: uniqueID,
+            likes: [],
+            replies: [],
+            text: trim(txtComment?.text),
+            timestamp: Date().timeIntervalSince1970,
+            uid: userUID
+        )
+        print("** newComment: \(newComment)")
+        
+        var currentComments = profileVideoModel?.comments ?? []
+        
+        currentComments.append(newComment)
+        
+        let arrayComment = currentComments.map { $0.toDictionary() }
+        print("** documentPath: \(documentPath) commentsArray: \(arrayComment)")
+        
+        uploadComment(documentPath: documentPath, arrayComment: arrayComment) { [weak self] arrayComment in
+            guard let self = self else { return }
+            self.txtComment?.text = ""
+            profileVideoModel?.comments = arrayComment
+            self.configData()
+        }
+    }
+    
+    func submitReply() {
+        IQKeyboardManager.shared().resignFirstResponder()
+        guard
+            let userUID = userProfileModel?.uid,
+            let videoID = profileVideoModel?.id,
+            let videoOwnerUID = profileVideoModel?.uid,
+            let comments = profileVideoModel?.comments,
+            comments.count > 0 else {
+            print("Error: Missing user, video, or comment information.")
+            return
+        }
+
+        let documentPath = "Videos/\(videoOwnerUID)/VideosData/\(videoID)"
+        print("Document Path: \(documentPath)")
+
+        let newReply = ReplyModel(
+            id: uniqueID,
+            likes: [],
+            text: trim(txtComment?.text),
+            timestamp: Date().timeIntervalSince1970,
+            uid: userUID
+        )
+        print("New Reply: \(newReply)")
+
+        var updatedComments = comments
+        updatedComments[0].replies?.append(newReply)
+
+        let commentsArray = updatedComments.map { $0.toDictionary() }
+        print("Updated Comments Array: \(commentsArray)")
+        
+        uploadComment(documentPath: documentPath, arrayComment: commentsArray) { [weak self] arrayComments in
+            guard let self = self else { return }
+
+            self.txtComment?.text = ""
+            self.profileVideoModel?.comments = arrayComments
+            self.configData()
+        }
+    }
 
 }
 
@@ -576,10 +796,15 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
                         }
                     }
                 }
+                cell.btnReply.addAction {
+                    self.txtComment?.becomeFirstResponder()
+                    self.isCommentReply = true
+                }
                 return cell
             } else if indexPath.row == 2 {
                 let cell: writeCommentCell = tableView.cell(for: indexPath)
-                cell.config(userProfileModel: userProfileModel)
+                cell.config(userProfileModel: userProfileModel, handler: onClickSend)
+                self.txtComment = cell.txtComment
                 return cell
             }
         } else if indexPath.section == 3 {
