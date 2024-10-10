@@ -6,7 +6,8 @@ target 'Resturants' do
   use_frameworks!
 
   # Pods for Resturants
-    pod 'SDWebImage'
+
+ pod 'SDWebImage'
     pod 'NVActivityIndicatorView', '4.8.0'
     pod 'IQKeyboardManager'
     pod 'Firebase/Auth'
@@ -18,7 +19,4 @@ target 'Resturants' do
     pod 'IGListKit', '~> 4.0.0'
     pod 'CachingPlayerItem'
     pod 'MediaWatermark'
-
-    
-
 end

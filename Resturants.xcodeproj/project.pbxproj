@@ -142,6 +142,7 @@
 		46FFDA0A2BDF4512000F03C0 /* VideosHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46FFDA092BDF4512000F03C0 /* VideosHeaderView.xib */; };
 		46FFDA162BDF4F51000F03C0 /* NoPostCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FFDA142BDF4F51000F03C0 /* NoPostCCell.swift */; };
 		46FFDA172BDF4F51000F03C0 /* NoPostCCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46FFDA152BDF4F51000F03C0 /* NoPostCCell.xib */; };
+		4FA3A5C302FA9DBCBC68CEC3 /* Pods_Resturants.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB5B4C874B5B891D35342C12 /* Pods_Resturants.framework */; };
 		7119F63A2B8B7DFF00FA8579 /* VideoRecordingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7119F6392B8B7DFF00FA8579 /* VideoRecordingVC.swift */; };
 		7131D9952B92CCC4005DE42E /* CameraConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7131D9942B92CCC4005DE42E /* CameraConfiguration.swift */; };
 		7131D9972B92D766005DE42E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7131D9962B92D765005DE42E /* GoogleService-Info.plist */; };
@@ -187,7 +188,6 @@
 		71C6A9CA2B694CF200E19808 /* CollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 71C6A9C82B694CF200E19808 /* CollectionCell.xib */; };
 		71C6A9CE2B695F3300E19808 /* AddDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C6A9CC2B695F3300E19808 /* AddDataCell.swift */; };
 		71C6A9CF2B695F3300E19808 /* AddDataCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 71C6A9CD2B695F3300E19808 /* AddDataCell.xib */; };
-		D3DEFE18AA9DA50A0B190EBE /* Pods_Resturants.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28276D3911E25870151B4F49 /* Pods_Resturants.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -224,8 +224,6 @@
 		04F50F4E2C96ABD600C994C4 /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
 		04F50F4F2C96ABD600C994C4 /* Roboto-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-ThinItalic.ttf"; sourceTree = "<group>"; };
 		04F50F502C96ABD600C994C4 /* Roboto-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-LightItalic.ttf"; sourceTree = "<group>"; };
-		1F686C71BB08CD269FD3949E /* Pods-Resturants.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Resturants.debug.xcconfig"; path = "Target Support Files/Pods-Resturants/Pods-Resturants.debug.xcconfig"; sourceTree = "<group>"; };
-		28276D3911E25870151B4F49 /* Pods_Resturants.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Resturants.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		46195D3A2BCCF94B00FC8B1D /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		461C01052C00EE5F00A78FA7 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileModel.swift; path = Resturants/Screens/View/Main/ProfileTab/ProfileModel.swift; sourceTree = SOURCE_ROOT; };
 		461D41C12C87619A0072EA82 /* CommentsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsVC.swift; sourceTree = "<group>"; };
@@ -328,6 +326,7 @@
 		46FFDA092BDF4512000F03C0 /* VideosHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideosHeaderView.xib; sourceTree = "<group>"; };
 		46FFDA142BDF4F51000F03C0 /* NoPostCCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoPostCCell.swift; sourceTree = "<group>"; };
 		46FFDA152BDF4F51000F03C0 /* NoPostCCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoPostCCell.xib; sourceTree = "<group>"; };
+		592ACB5B909C6112C8DAF63E /* Pods-Resturants.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Resturants.release.xcconfig"; path = "Target Support Files/Pods-Resturants/Pods-Resturants.release.xcconfig"; sourceTree = "<group>"; };
 		7119F6392B8B7DFF00FA8579 /* VideoRecordingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRecordingVC.swift; sourceTree = "<group>"; };
 		7131D9942B92CCC4005DE42E /* CameraConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraConfiguration.swift; sourceTree = "<group>"; };
 		7131D9962B92D765005DE42E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -375,7 +374,8 @@
 		71C6A9C82B694CF200E19808 /* CollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionCell.xib; sourceTree = "<group>"; };
 		71C6A9CC2B695F3300E19808 /* AddDataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDataCell.swift; sourceTree = "<group>"; };
 		71C6A9CD2B695F3300E19808 /* AddDataCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddDataCell.xib; sourceTree = "<group>"; };
-		D58A16FDE785A562B14B14C7 /* Pods-Resturants.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Resturants.release.xcconfig"; path = "Target Support Files/Pods-Resturants/Pods-Resturants.release.xcconfig"; sourceTree = "<group>"; };
+		7716801B677E3F9C2D176709 /* Pods-Resturants.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Resturants.debug.xcconfig"; path = "Target Support Files/Pods-Resturants/Pods-Resturants.debug.xcconfig"; sourceTree = "<group>"; };
+		DB5B4C874B5B891D35342C12 /* Pods_Resturants.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Resturants.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -383,8 +383,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D3DEFE18AA9DA50A0B190EBE /* Pods_Resturants.framework in Frameworks */,
 				047938752CA2C3E300D96CBF /* Reachability in Frameworks */,
+				4FA3A5C302FA9DBCBC68CEC3 /* Pods_Resturants.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,8 +422,8 @@
 		2A7CB6FEFDE89927A55B648F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				1F686C71BB08CD269FD3949E /* Pods-Resturants.debug.xcconfig */,
-				D58A16FDE785A562B14B14C7 /* Pods-Resturants.release.xcconfig */,
+				7716801B677E3F9C2D176709 /* Pods-Resturants.debug.xcconfig */,
+				592ACB5B909C6112C8DAF63E /* Pods-Resturants.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -732,7 +732,7 @@
 				71B3DC6E2B55A93D00A3615F /* Resturants */,
 				71B3DC6D2B55A93D00A3615F /* Products */,
 				2A7CB6FEFDE89927A55B648F /* Pods */,
-				8A74033FDDB3B4A97DF51B3C /* Frameworks */,
+				8245B798E559646A9472D119 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -950,10 +950,10 @@
 			name = AddDataCell;
 			sourceTree = "<group>";
 		};
-		8A74033FDDB3B4A97DF51B3C /* Frameworks */ = {
+		8245B798E559646A9472D119 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				28276D3911E25870151B4F49 /* Pods_Resturants.framework */,
+				DB5B4C874B5B891D35342C12 /* Pods_Resturants.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -965,11 +965,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 71B3DC802B55A94000A3615F /* Build configuration list for PBXNativeTarget "Resturants" */;
 			buildPhases = (
-				51BF479AEC7B19EBEEDB6EC7 /* [CP] Check Pods Manifest.lock */,
+				94DE2EBBB3E981AC7B0DB28B /* [CP] Check Pods Manifest.lock */,
 				71B3DC682B55A93D00A3615F /* Sources */,
 				71B3DC692B55A93D00A3615F /* Frameworks */,
 				71B3DC6A2B55A93D00A3615F /* Resources */,
-				FFFF998803B7154A165B7D3B /* [CP] Embed Pods Frameworks */,
+				E20D393A14935891D1BA4370 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1008,7 +1008,7 @@
 			);
 			mainGroup = 71B3DC632B55A93D00A3615F;
 			packageReferences = (
-				047938732CA2C3E300D96CBF /* XCRemoteSwiftPackageReference "Reachability" */,
+				047938732CA2C3E300D96CBF /* XCRemoteSwiftPackageReference "Reachability.swift" */,
 			);
 			productRefGroup = 71B3DC6D2B55A93D00A3615F /* Products */;
 			projectDirPath = "";
@@ -1081,7 +1081,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		51BF479AEC7B19EBEEDB6EC7 /* [CP] Check Pods Manifest.lock */ = {
+		94DE2EBBB3E981AC7B0DB28B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1103,7 +1103,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FFFF998803B7154A165B7D3B /* [CP] Embed Pods Frameworks */ = {
+		E20D393A14935891D1BA4370 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1388,7 +1388,7 @@
 		};
 		71B3DC812B55A94000A3615F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1F686C71BB08CD269FD3949E /* Pods-Resturants.debug.xcconfig */;
+			baseConfigurationReference = 7716801B677E3F9C2D176709 /* Pods-Resturants.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1426,7 +1426,7 @@
 		};
 		71B3DC822B55A94000A3615F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D58A16FDE785A562B14B14C7 /* Pods-Resturants.release.xcconfig */;
+			baseConfigurationReference = 592ACB5B909C6112C8DAF63E /* Pods-Resturants.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1486,7 +1486,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		047938732CA2C3E300D96CBF /* XCRemoteSwiftPackageReference "Reachability" */ = {
+		047938732CA2C3E300D96CBF /* XCRemoteSwiftPackageReference "Reachability.swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ashleymills/Reachability.swift";
 			requirement = {
@@ -1499,7 +1499,7 @@
 /* Begin XCSwiftPackageProductDependency section */
 		047938742CA2C3E300D96CBF /* Reachability */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 047938732CA2C3E300D96CBF /* XCRemoteSwiftPackageReference "Reachability" */;
+			package = 047938732CA2C3E300D96CBF /* XCRemoteSwiftPackageReference "Reachability.swift" */;
 			productName = Reachability;
 		};
 /* End XCSwiftPackageProductDependency section */

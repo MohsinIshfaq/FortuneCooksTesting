@@ -14,6 +14,8 @@ enum VideoDetailButtonType {
 class VideoDetailCell: UITableViewCell {
     
     
+    
+    
     @IBOutlet weak var lblLocation: UILabel!
     @IBOutlet weak var lblTagPeople: UILabel!
     @IBOutlet weak var lblTitle: UILabel!
