@@ -29,6 +29,7 @@
 		04C0330A2C96CAB900EEA490 /* CategoryButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C033082C96CAB900EEA490 /* CategoryButtonCell.swift */; };
 		04C0330B2C96CAB900EEA490 /* CategoryButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04C033092C96CAB900EEA490 /* CategoryButtonCell.xib */; };
 		04C0330D2C976C4E00EEA490 /* ExtensionAppLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C0330C2C976C4E00EEA490 /* ExtensionAppLevel.swift */; };
+		04C51D662CB9A6FB00905EDC /* VideoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C51D652CB9A6FB00905EDC /* VideoVC.swift */; };
 		04F50F512C96ABD600C994C4 /* Roboto-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04F50F452C96ABD600C994C4 /* Roboto-MediumItalic.ttf */; };
 		04F50F522C96ABD600C994C4 /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04F50F462C96ABD600C994C4 /* Roboto-Black.ttf */; };
 		04F50F532C96ABD600C994C4 /* Roboto-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04F50F472C96ABD600C994C4 /* Roboto-BlackItalic.ttf */; };
@@ -212,6 +213,7 @@
 		04C033082C96CAB900EEA490 /* CategoryButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryButtonCell.swift; sourceTree = "<group>"; };
 		04C033092C96CAB900EEA490 /* CategoryButtonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryButtonCell.xib; sourceTree = "<group>"; };
 		04C0330C2C976C4E00EEA490 /* ExtensionAppLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionAppLevel.swift; sourceTree = "<group>"; };
+		04C51D652CB9A6FB00905EDC /* VideoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoVC.swift; sourceTree = "<group>"; };
 		04F50F452C96ABD600C994C4 /* Roboto-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-MediumItalic.ttf"; sourceTree = "<group>"; };
 		04F50F462C96ABD600C994C4 /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
 		04F50F472C96ABD600C994C4 /* Roboto-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-BlackItalic.ttf"; sourceTree = "<group>"; };
@@ -676,6 +678,7 @@
 			isa = PBXGroup;
 			children = (
 				7144BD502B6E983100767374 /* HomeVC.swift */,
+				04C51D652CB9A6FB00905EDC /* VideoVC.swift */,
 				7144BD532B6EA0CC00767374 /* MenuVC.swift */,
 				7119F6392B8B7DFF00FA8579 /* VideoRecordingVC.swift */,
 				46C820F82B930179007E543F /* EditVideoVC.swift */,
@@ -1008,7 +1011,7 @@
 			);
 			mainGroup = 71B3DC632B55A93D00A3615F;
 			packageReferences = (
-				047938732CA2C3E300D96CBF /* XCRemoteSwiftPackageReference "Reachability.swift" */,
+				047938732CA2C3E300D96CBF /* XCRemoteSwiftPackageReference "Reachability" */,
 			);
 			productRefGroup = 71B3DC6D2B55A93D00A3615F /* Products */;
 			projectDirPath = "";
@@ -1184,6 +1187,7 @@
 				46C2969A2C2905B700715CB3 /* BlockedAccntVC.swift in Sources */,
 				049742562C96A598004DC765 /* VideoCommentCell.swift in Sources */,
 				462630852B9AA40700A4E7D1 /* FrameRateCalculator.swift in Sources */,
+				04C51D662CB9A6FB00905EDC /* VideoVC.swift in Sources */,
 				462D9B762C67724D00A79DA3 /* ManageMenuModel.swift in Sources */,
 				465493FC2BD7B77000EF5111 /* ProfileNC.swift in Sources */,
 				461D41C62C8762720072EA82 /* CommentsTCell.swift in Sources */,
@@ -1486,7 +1490,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		047938732CA2C3E300D96CBF /* XCRemoteSwiftPackageReference "Reachability.swift" */ = {
+		047938732CA2C3E300D96CBF /* XCRemoteSwiftPackageReference "Reachability" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ashleymills/Reachability.swift";
 			requirement = {
@@ -1499,7 +1503,7 @@
 /* Begin XCSwiftPackageProductDependency section */
 		047938742CA2C3E300D96CBF /* Reachability */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 047938732CA2C3E300D96CBF /* XCRemoteSwiftPackageReference "Reachability.swift" */;
+			package = 047938732CA2C3E300D96CBF /* XCRemoteSwiftPackageReference "Reachability" */;
 			productName = Reachability;
 		};
 /* End XCSwiftPackageProductDependency section */

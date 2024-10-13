@@ -66,7 +66,7 @@ class HomeVC: UIViewController , MenuVCDelegate {
     var profileVideoModel: ProfileVideosModel? = nil
     var userProfileModel: UserProfileModel?   = nil
     var showLoading: Bool = true
-    var isPlaying: Bool = true
+    var isPlaying: Bool = false
     var isShowVideoIndicator: Bool = true
     var txtComment: UITextField? = nil
     var isCommentReply: Bool = false
@@ -104,41 +104,15 @@ class HomeVC: UIViewController , MenuVCDelegate {
         viewForThumbnail.isHidden = true
         timeSlider.isHidden = false
         setupVideoPlayer()
-//        let url = trim(profileVideoModel?.videoUrl)
-//        guard let url = URL(string: url) else {
-//            print("Invalid Video URL")
-//            return
-//        }
-//        
-        
-//        
-//        videoPlayer = AVPlayer(url: url)
-//        
-//        videoPlayerController = AVPlayerViewController()
-//        videoPlayerController?.player = videoPlayer
-//        
-//        if let videoPlayerController = videoPlayerController {
-//            addChild(videoPlayerController)
-//            viewForVideo.addSubview(videoPlayerController.view)
-//            
-//            videoPlayerController.view.translatesAutoresizingMaskIntoConstraints = false
-//            NSLayoutConstraint.activate([
-//                videoPlayerController.view.leadingAnchor.constraint(equalTo: viewForVideo.leadingAnchor),
-//                videoPlayerController.view.trailingAnchor.constraint(equalTo: viewForVideo.trailingAnchor),
-//                videoPlayerController.view.topAnchor.constraint(equalTo: viewForVideo.topAnchor),
-//                videoPlayerController.view.bottomAnchor.constraint(equalTo: viewForVideo.bottomAnchor)
-//            ])
-//            videoPlayer?.play()
-//        }
-//        PlayVideo()
     }
     
-    @IBAction func onClickPlayPause(_ sender: UIButton) {
+    @IBAction func onClickPlayPause() {
         print("onClickPlayPause")
         if isPlaying {
             player.pause()
             imgPlayAndPause.image = UIImage(named: "imgPlay")
         } else {
+            playAgain()
             player.play()
             imgPlayAndPause.image = UIImage(named: "imgPause")
         }
@@ -147,19 +121,31 @@ class HomeVC: UIViewController , MenuVCDelegate {
     
     @IBAction func onEditingChangeSlider(_ sender: UISlider) {
         let newTime = CMTimeMake(value: Int64(sender.value * 1000), timescale: 1000)
-        currentTimeLabel.text = formatTime(from: newTime) + " / "
-    }
-    @IBAction func timeSliderChanged(_ sender: UISlider) {
-        let newTime = CMTimeMake(value: Int64(sender.value * 1000), timescale: 1000)
+        currentTimeLabel.text = formatTime(from: newTime)
         player.seek(to: newTime)
     }
-    
     @IBAction func onClickMore(_ sender: UIButton) {
         
     }
     
     @IBAction func onClickFullScreen(_ sender: UIButton) {
-        
+        let vc = Constants.homehStoryBoard.instantiateViewController(withIdentifier: "VideoVC") as! VideoVC
+        vc.videoURL = URL(string: trim(profileVideoModel?.videoUrl))
+        let startTime = self.player.currentItem?.currentTime().seconds ?? 0
+        vc.startTime = startTime
+        vc.isPlaying = !isPlaying
+        vc.handler = { [weak self] videoParam in
+            guard let self = self else { return }
+            let time = videoParam.time
+            self.isPlaying = videoParam.isPlaying
+            let seekTime = CMTime(seconds: time, preferredTimescale: 1000)
+            player.seek(to: seekTime) { [weak self] _ in
+                self?.onClickPlayPause()
+            }
+            
+        }
+        vc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+        self.present(vc, animated: true)
     }
     
     @IBAction func ontapLike(_ sender: UIButton){
@@ -204,12 +190,12 @@ extension HomeVC {
     
     // MARK: - Setup Video Player
     private func setupVideoPlayer() {
-        guard let url = URL(string: trim(profileVideoModel?.videoUrl)) else {
+        guard let videoURL = URL(string: trim(profileVideoModel?.videoUrl)) else {
             print("Invalid URL")
             return
         }
         
-        player = AVPlayer(url: url)
+        player = AVPlayer(url: videoURL)
         
         player.currentItem?.addObserver(self, forKeyPath: "duration", options: [.new, .initial], context: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(videoDidEnd), name: .AVPlayerItemDidPlayToEndTime, object: player.currentItem)
@@ -217,7 +203,7 @@ extension HomeVC {
         playerLayer.videoGravity = .resizeAspect
         viewForVideo.layer.addSublayer(playerLayer)
         playerLayer?.frame = viewForVideo.bounds
-        player.play()
+//        player.play()
         addTimeObserver()
     }
     
@@ -233,13 +219,24 @@ extension HomeVC {
             if currentTime.isFinite && currentTime >= 0, duration.isFinite && duration > 0 {
                 self.timeSlider.maximumValue = Float(duration)
                 self.timeSlider.value = Float(currentTime)
-                self.currentTimeLabel.text = "\(self.formatTime(from: currentItem.currentTime())) / "
-                self.timeLabel.text = self.formatTime(from: currentItem.duration)
+                self.currentTimeLabel.text = "\(formatTime(from: currentItem.currentTime()))"
+                self.timeLabel.text = formatTime(from: currentItem.duration)
             } else {
-                self.currentTimeLabel.text = "--:-- / "
+                self.currentTimeLabel.text = "--:--"
                 self.timeLabel.text = "--:--"
             }
         }
+    }
+    
+    func playAgain() {
+        let currentTime = trim(currentTimeLabel.text)
+        let totalTime = trim(timeLabel.text)
+        
+        let isFinish = currentTime == totalTime
+        guard isFinish else { return }
+        
+        player.seek(to: CMTime.zero)
+        player.play()
     }
     
     @objc func videoDidEnd(notification: NSNotification) {
@@ -267,20 +264,6 @@ extension HomeVC {
     private func seekToTime(newTime: Double) {
         let time = CMTime(seconds: newTime, preferredTimescale: 1000)
         player.seek(to: time)
-    }
-    
-    // MARK: - Format Time to String
-    private func formatTime(from time: CMTime) -> String {
-        let totalSeconds = CMTimeGetSeconds(time)
-        let hours = Int(totalSeconds / 3600)
-        let minutes = Int(totalSeconds.truncatingRemainder(dividingBy: 3600) / 60)
-        let seconds = Int(totalSeconds.truncatingRemainder(dividingBy: 60))
-        
-        if hours > 0 {
-            return String(format: "%02i:%02i:%02i", hours, minutes, seconds)
-        } else {
-            return String(format: "%02i:%02i", minutes, seconds)
-        }
     }
 }
 
@@ -319,12 +302,13 @@ extension HomeVC {
         let totalRepliesCount = profileVideoModel?.comments?.reduce(0) { $0 + ($1.replies?.count ?? 0) }  ?? 0
         let totalComment = commentCount + totalRepliesCount
         lblCommentsCount.text = "\(totalComment) Comments"
-        DispatchQueue.main.async {
-            let thumbnailUrl = trim(self.profileVideoModel?.thumbnailUrl)
-            if let urlProfile1 = URL(string: thumbnailUrl) {
-                self.imgImage.sd_setImage(with: urlProfile1)
-            }
-        }
+        setupVideoPlayer()
+//        DispatchQueue.main.async {
+//            let thumbnailUrl = trim(self.profileVideoModel?.thumbnailUrl)
+//            if let urlProfile1 = URL(string: thumbnailUrl) {
+//                self.imgImage.sd_setImage(with: urlProfile1)
+//            }
+//        }
         showLoading = UserManager.shared.videosModel?.isEmpty ?? true
         self.customTable.reloadData()
     }
