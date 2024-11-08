@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Inter-VariableFont_slnt,wght.ttf">
+            <string>Inter-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="83" id="KGk-i7-Jjw" customClass="VideoTCell" customModule="Resturants" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="364" height="83"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="364" height="83"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hRy-Ep-afj">
+                        <rect key="frame" x="0.0" y="0.0" width="364" height="83"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Video 1" translatesAutoresizingMaskIntoConstraints="NO" id="9Jv-Nx-zpg">
+                                <rect key="frame" x="16" y="6" width="150" height="71"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="XI1-pv-1xd"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="S2T-73-I8P">
+                                <rect key="frame" x="172" y="9" width="186" height="65.333333333333329"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Does Swedan have *These Best * Snacks?!  - This with them" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RBA-kv-DtG">
+                                        <rect key="frame" x="0.0" y="0.0" width="186" height="28.666666666666668"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                                        <color key="textColor" name="ColorWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="21 march 2023 / 35 views" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xAM-jo-FoB">
+                                        <rect key="frame" x="0.0" y="34.666666666666664" width="186" height="12.333333333333336"/>
+                                        <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="10"/>
+                                        <color key="textColor" name="ColorLightGray"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amin Kitchen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PM5-Si-hdr">
+                                        <rect key="frame" x="0.0" y="53" width="186" height="12.333333333333329"/>
+                                        <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="10"/>
+                                        <color key="textColor" name="ColorLightGray"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" name="ColorBlack"/>
+                        <constraints>
+                            <constraint firstItem="9Jv-Nx-zpg" firstAttribute="leading" secondItem="hRy-Ep-afj" secondAttribute="leading" constant="16" id="3es-oP-a9o"/>
+                            <constraint firstAttribute="trailing" secondItem="S2T-73-I8P" secondAttribute="trailing" constant="6" id="5qt-EF-fIN"/>
+                            <constraint firstItem="9Jv-Nx-zpg" firstAttribute="top" secondItem="hRy-Ep-afj" secondAttribute="top" constant="6" id="GcU-9V-1i8"/>
+                            <constraint firstItem="S2T-73-I8P" firstAttribute="leading" secondItem="9Jv-Nx-zpg" secondAttribute="trailing" constant="6" id="PYT-65-jrx"/>
+                            <constraint firstItem="S2T-73-I8P" firstAttribute="centerY" secondItem="9Jv-Nx-zpg" secondAttribute="centerY" id="Ta3-iR-v8L"/>
+                            <constraint firstAttribute="bottom" secondItem="9Jv-Nx-zpg" secondAttribute="bottom" constant="6" id="kcH-V8-5n2"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="hRy-Ep-afj" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Gtf-PO-Z7Y"/>
+                    <constraint firstAttribute="bottom" secondItem="hRy-Ep-afj" secondAttribute="bottom" id="Isd-LO-37b"/>
+                    <constraint firstAttribute="trailing" secondItem="hRy-Ep-afj" secondAttribute="trailing" id="djU-tM-1FC"/>
+                    <constraint firstItem="hRy-Ep-afj" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="fWR-Nx-5AS"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="imgVideo" destination="9Jv-Nx-zpg" id="b8O-CP-vQ4"/>
+                <outlet property="lblDEscrip" destination="RBA-kv-DtG" id="MnG-jb-qZb"/>
+                <outlet property="lblDateViews" destination="xAM-jo-FoB" id="04R-Yv-cvD"/>
+                <outlet property="lblName" destination="PM5-Si-hdr" id="cSz-qg-hNC"/>
+            </connections>
+            <point key="canvasLocation" x="-71.755725190839698" y="33.450704225352112"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="Video 1" width="374" height="217"/>
+        <namedColor name="ColorBlack">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ColorLightGray">
+            <color red="0.63529411764705879" green="0.63529411764705879" blue="0.63529411764705879" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ColorWhite">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
